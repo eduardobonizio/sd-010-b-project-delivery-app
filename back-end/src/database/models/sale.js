@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     "Sale",
     {
       userId: { type: DataTypes.INTEGER, foreingKey: true },
-      sallerId: { type: DataTypes.INTEGER, foreingKey: true },
+      sellerId: { type: DataTypes.INTEGER, foreingKey: true },
       totalPrice: DataTypes.DECIMAL(9, 2),
       deliveryAddress: DataTypes.STRING,
       deliveryNumber: DataTypes.STRING,
@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
 
   Sale.associate = (models) => {
     Sale.belongsTo(models.User, {
-      foreingKey: "sellerId",
+      foreingKey: "seller_id",
       as: "seller",
     });
   };

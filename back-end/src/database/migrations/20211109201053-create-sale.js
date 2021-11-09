@@ -1,4 +1,3 @@
-"use strict";
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable("sales", {
@@ -24,7 +23,7 @@ module.exports = {
         onUpdate: "CASCADE",
         onDelete: "CASCADE",
       },
-      total_price: {
+      totalPrice: {
         allowNull: false,
         type: Sequelize.DECIMAL(9, 2),
         field: "total_price",
@@ -39,7 +38,7 @@ module.exports = {
         type: Sequelize.STRING,
         field: "delivery_number",
       },
-      SaleDate: {
+      saleDate: {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: Sequelize.NOW,
