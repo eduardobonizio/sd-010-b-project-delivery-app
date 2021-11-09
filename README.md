@@ -1,5 +1,5 @@
 ### Termos de acordo
-
+ 
 Ao iniciar este projeto, você concorda com as diretrizes do Código de Ética e Conduta e do Manual da Pessoa Estudante da Trybe.
 
 ---
@@ -219,7 +219,7 @@ Você pode ler mais sobre os atributos `data-*` [neste link](https://developer.m
 
     - Serão 10 dias de projeto.
 
-    - Data de entrega para avaliação final do projeto: `dd/mm/yyyy - 14:00h`.
+    - Data de entrega para avaliação final do projeto: `02/12/2021 - 14:00h`.
 
 ---
 
