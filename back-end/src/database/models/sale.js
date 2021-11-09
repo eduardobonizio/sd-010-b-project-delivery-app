@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     "Sale",
     {
       userId: { type: DataTypes.INTEGER, foreingKey: true },
-      sallerId: { type: DataTypes.INTEGER, foreingKey: true },
+      sellerId: { type: DataTypes.INTEGER, foreingKey: true },
       totalPrice: DataTypes.DECIMAL(9, 2),
       deliveryAddress: DataTypes.STRING,
       deliveryNumber: DataTypes.STRING,
