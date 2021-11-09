@@ -1,27 +1,20 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class sale extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-    }
-  };
-  sale.init({
-    total_price: DataTypes.NUMBER,
-    delivery_address: DataTypes.STRING,
-    delivery_number: DataTypes.STRING,
-    sale_date: DataTypes.DATE,
-    status: DataTypes.STRING
+const Sale = (sequelize, DataTypes) => {
+  const sale = sequelize.define('sale', {
+    totalPrice: { type: DataTypes.DECIMAL(9, 2), field: 'total_price' },
+    deliveryAddress: { type: DataTypes.STRING(100), field: 'delivery_address' },
+    deliveryNumber: { type: DataTypes.STRING(50), field: 'delivery_number' },
+    saleDate: {
+      type: DataTypes.DATETIME,
+      field: 'sale_date',
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
+    status: DataTypes.STRING(50),
   }, {
-    sequelize,
-    modelName: 'sale',
+    timestamps: false,
   });
+
   return sale;
 };
+
+module.exports = Sale;
