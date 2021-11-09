@@ -5,6 +5,12 @@ const SalesProduct = (sequelize, DataTypes) => {
     timestamps: false,
   });
 
+  SalesProduct.associate = (models) => {
+    SalesProduct.belongsTo(models.Product, {
+      foreignKey: 'id', as: 'product_id',
+    });
+  };
+
   return salesProduct;
 };
 
