@@ -12,10 +12,21 @@ module.exports = {
       user_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
+        references: {
+          model: 'users',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       seller_id: {
-        allowNull: false,
         type: Sequelize.INTEGER,
+        references: {
+          model: 'users',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       total_price: {
         allowNull: false,
@@ -32,6 +43,7 @@ module.exports = {
       sale_date: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: new Date(),
       },
       status: {
         allowNull: false,

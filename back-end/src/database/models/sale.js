@@ -13,5 +13,18 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: false,
   });
 
+  sale.associate = (models) => {
+    sale.belongsTo(models.user, {
+      foreignKey: 'seller_id',
+      as: 'seller',
+    })
+  }
+  sale.associate = (models) => {
+    sale.belongsTo(models.user, {
+      foreignKey: 'user_id',
+      as: 'user',
+    })
+  }
+
   return sale;
 };
