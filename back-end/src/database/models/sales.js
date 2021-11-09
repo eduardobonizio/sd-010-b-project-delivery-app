@@ -18,18 +18,17 @@ module.exports = (sequelize, DataTypes) => {
     delivery_address: DataTypes.STRING(100),
     delivery_number: DataTypes.STRING(50),
     sale_date: DataTypes.DATE,
-    status: DataTypes.STRING(50)
+    status: DataTypes.STRING(50),
+    userId: { type: DataTypes.INTEGER, foreignKey: true },
+    seller_id: { type: DataTypes.INTEGER, foreignKey: true },
   }, {
     sequelize,
     modelName: 'sales',
   });
 
   sales.associate = (models) => {
-    sales.belongsTo(models.users, { foreignKey: 'user_id', as: 'users' });
-  };
-
-  sales.associate = (models) => {
-    sales.belongsTo(models.users, { foreignKey: 'seller_id', as: 'users' });
+    models.sales.belongsTo(models.users, { foreignKey: 'user_id', as: 'users' });
+    models.sales.belongsTo(models.users, { foreignKey: 'seller_id', as: 'users' });
   };
 
   return sales;
