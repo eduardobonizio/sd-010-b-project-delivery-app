@@ -8,6 +8,13 @@ const product = sequelize.define('product', {
     underscored: true,
   });
 
+  Product.associate = (models) => {
+    Product.hasMany(models.SalesProduct, {
+      foreignKey: 'id',
+      as: 'product_id',
+    });
+  };
+
   return product;
 };
 
