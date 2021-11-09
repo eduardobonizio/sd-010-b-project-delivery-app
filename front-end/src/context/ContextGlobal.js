@@ -1,0 +1,25 @@
+import React, { createContext, useState } from 'react';
+import PropTypes from 'prop-types';
+
+export const Context = createContext();
+
+function Provider({ children }) {
+  const [state, setState] = useState('');
+
+  const object = {
+    state,
+    setState,
+  };
+
+  return (
+    <Context.Provider value={ object }>
+      {children}
+    </Context.Provider>
+  );
+}
+
+export default Provider;
+
+Provider.propTypes = {
+  children: PropTypes.Node,
+}.isRequired;
