@@ -8,8 +8,9 @@ function Login() {
 
   const validatePassword = (p) => {
     const minLength = 6;
-    const isValid = p.lenght > minLength;
-    console.log('password', isValid, p);
+    const isValid = p.length >= minLength;
+    console.log('password', isValid, p, typeof p);
+    console.log(password);
     setPasswordIsValid(isValid);
   };
 
@@ -25,7 +26,7 @@ function Login() {
   };
 
   const validateEmail = (email2) => {
-    const emailRe = /\S+@\S+.\S+/;
+    const emailRe = /^[_a-z0-9-]+(.[_a-z0-9-]+)@[a-z0-9-]+(.[a-z0-9-]+)(.[a-z]{2,4})$/;
     const isValid = emailRe.test(email2);
     setemailIsValid(isValid);
   };
@@ -66,7 +67,7 @@ function Login() {
         <button
           data-testid="common_login__button-login"
           type="button"
-          disabled={ passwordIsValid || emailIsValid }
+          disabled={ !passwordIsValid || !emailIsValid }
         >
           Login
 
