@@ -7,7 +7,6 @@ module.exports = (sequelize, DataTypes) => {
    role: DataTypes.STRING(255),
   },
   { timestamps: false,
-    tableName: 'users',
 
   });
 
