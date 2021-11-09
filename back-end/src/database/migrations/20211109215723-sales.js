@@ -29,7 +29,6 @@ module.exports = {
       total_price: {
         allowNull: false,
         type: Sequelize.DECIMAL,
-        unique: true,
       },
       delivery_address: {
         allowNull: false,
