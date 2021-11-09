@@ -1,0 +1,44 @@
+// configurar model de acordo com os dados abaixo:
+// CREATE TABLE IF NOT EXISTS products (
+//   id INT NOT NULL AUTO_INCREMENT,
+//   name VARCHAR(100) NOT NULL,
+//   price DECIMAL(4,2) NOT NULL,
+//   url_image VARCHAR(200) NOT NULL DEFAULT '',
+//   PRIMARY KEY(id),
+//   UNIQUE KEY `name` (name)
+// );
+
+module.exports = (sequelize, DataTypes) => {
+  const Products = sequelize.define('Products', {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
+    price: {
+      type: DataTypes.DECIMAL(4, 2),
+      allowNull: false,
+    },
+    url_image: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: '',
+    },
+  }, {
+    tableName: 'products',
+  });
+
+  Products.associate = (models) => {
+    Products.hasMany(models.Sales, {
+      foreignKey: 'product_id',
+      as: 'sales',
+    });
+  };
+
+  return Products;
+};
