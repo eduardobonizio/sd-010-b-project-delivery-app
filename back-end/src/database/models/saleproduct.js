@@ -6,12 +6,12 @@ const SaleProduct = (sequelize, DataTypes) => {
     quantity: DataTypes.INTEGER,
   },
   { timestamps: false });
-  // saleProduct.associate = (models) => {
-  //   saleProduct.belongsTo('Products'), {
-  //     foreignKey: 'product_id',
-  //     as: 'product'
-  //   }
-  // }
+  saleProduct.associate = (models) => {
+    saleProduct.belongsTo('Products'), {
+      foreignKey: 'product_id',
+      as: 'product'
+    }
+  }
   return saleProduct;
 };
 module.exports = SaleProduct;

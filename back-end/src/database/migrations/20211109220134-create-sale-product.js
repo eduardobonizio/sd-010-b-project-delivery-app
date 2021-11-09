@@ -10,23 +10,23 @@ module.exports = {
       },
       sale_id: {
         type: Sequelize.INTEGER,
-        // allowNull: false,
-        // onUpdate: 'CASCADE',
-        // onDelete: 'CASCADE',
-        // references: {
-        //   model: 'Sales',
-        //   key: 'id',
-        // },
+        allowNull: false,
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Sales',
+          key: 'id',
+        },
       },
       product_id: {
         type: Sequelize.INTEGER,
-        // allowNull: false,
-        // onUpdate: 'CASCADE',
-        // onDelete: 'CASCADE',
-        // references: {
-        //   model: 'Products',
-        //   key: 'id',
-        // },
+        allowNull: false,
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Products',
+          key: 'id',
+        },
       },
       quantity: {
         type: Sequelize.INTEGER
