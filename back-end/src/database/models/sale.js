@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
 
   Sale.associate = (models) => {
     Sale.belongsTo(models.User, {
-      foreingKey: "sellerId",
+      foreingKey: "seller_id",
       as: "seller",
     });
   };
