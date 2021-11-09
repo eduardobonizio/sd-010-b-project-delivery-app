@@ -9,7 +9,9 @@ module.exports = (sequelize, DataTypes) => {
   { timestamps: false,
 
   });
-
+  // User.associate = (models) => {
+  //   User.hasMany(models.Sale,{ foreingKey: "user_id", as: 'customer'},{ foreingKey: "seller_id", as: 'seller'})
+  // }
 
   return User;
 };
