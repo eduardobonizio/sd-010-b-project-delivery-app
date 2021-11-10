@@ -7,7 +7,10 @@ const tokenHandler = (token, location) => {
   console.log(location, 'location ', verifyPath);
 
   // if (!verifyPath && !token) return location.push('/');
-  if (!verifyPath) return <Navigate to="/" />;
+  if (!verifyPath) {
+    console.log('batattinha');
+    return <Navigate to="/" />;
+  }
 };
 
 export default tokenHandler;
