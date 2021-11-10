@@ -9,8 +9,6 @@ function Login() {
   const validatePassword = (p) => {
     const minLength = 6;
     const isValid = p.length >= minLength;
-    console.log('password', isValid, p, typeof p);
-    console.log(password);
     setPasswordIsValid(isValid);
   };
 
