@@ -1,15 +1,14 @@
-import React from 'react';
-import { Navigate } from 'react-router-dom';
 import checkPath from './checkPath';
 
-const tokenHandler = (token, location) => {
+const tokenHandler = (token, location, history) => {
   const verifyPath = checkPath(location);
   console.log(location, 'location ', verifyPath);
 
   // if (!verifyPath && !token) return location.push('/');
   if (!verifyPath) {
     console.log('batattinha');
-    return <Navigate to="/" />;
+    console.log(history);
+    // return history.push('/');
   }
 };
 

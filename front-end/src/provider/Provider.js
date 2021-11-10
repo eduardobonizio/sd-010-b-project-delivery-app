@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { createContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import tokenHandler from '../helper/functions/tokenHandler';
 
 const Context = createContext();
@@ -10,6 +10,7 @@ const Provider = ({ children }) => {
   const [products, setProducts] = useState([]);
 
   const location = useLocation();
+  const history = useHistory();
 
   const context = {
     products, setProducts,
@@ -17,7 +18,7 @@ const Provider = ({ children }) => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    tokenHandler(token, location);
+    tokenHandler(token, location, history);
   }, []);
 
   return (
