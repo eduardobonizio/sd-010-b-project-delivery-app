@@ -1,9 +1,10 @@
-const { users } = require('../database/models')
+const { users } = require('../database/models');
 
 const getAll = async () => {
-  return await users.findAll();
+  allUsers = await users.findAll();
+  return allUsers 
 };
 
 module.exports = {
   getAll,
-}
+};
