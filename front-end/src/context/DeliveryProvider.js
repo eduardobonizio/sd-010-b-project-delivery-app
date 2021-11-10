@@ -3,11 +3,15 @@ import PropTypes from 'prop-types';
 import DeliveryContext from './DeliveryContext';
 
 const DeliveryProvider = ({ children }) => {
-  const [exemplo, setExemplo] = useState('Valor inicial');
+  const [registerForm, setRegisterForm] = useState({
+    nome: '',
+    email: '',
+    senha: '',
+  });
 
   const contextValue = {
-    exemplo,
-    setExemplo,
+    registerForm,
+    setRegisterForm,
   };
 
   return (
