@@ -21,6 +21,19 @@ module.exports = {
         primaryKey: true,
         allowNull: false,
       },
+      seller_id: {
+        type: Sequelize.INTEGER,
+        defaultValue: 1,
+        field: 'seller_id',
+        references: {
+          model: 'users',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        primaryKey: true,
+        allowNull: false,
+      },
      // seller_id
       total_price: {
         allowNull: false,
