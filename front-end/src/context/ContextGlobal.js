@@ -4,17 +4,29 @@ import PropTypes from 'prop-types';
 export const Context = createContext();
 
 function Provider({ children }) {
-  const [errorMessage, setErrorMessage] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [errorLogin, setErrorLogin] = useState('');
+  const [errorRegister, setErrorRegister] = useState('');
+  const [emailLogin, setEmailLogin] = useState('');
+  const [passwordLogin, setPasswordLogin] = useState('');
+  const [nameRegister, setNameRegister] = useState('');
+  const [emailRegister, setEmailRegister] = useState('');
+  const [passwordRegister, setPasswordRegister] = useState('');
 
   const object = {
-    errorMessage,
-    setErrorMessage,
-    email,
-    setEmail,
-    password,
-    setPassword,
+    errorLogin,
+    setErrorLogin,
+    errorRegister,
+    setErrorRegister,
+    emailLogin,
+    setEmailLogin,
+    passwordLogin,
+    setPasswordLogin,
+    nameRegister,
+    setNameRegister,
+    emailRegister,
+    setEmailRegister,
+    passwordRegister,
+    setPasswordRegister,
   };
 
   return (
