@@ -8,6 +8,20 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      user_id: {
+        type: Sequelize.INTEGER,
+        defaultValue: 1,
+        field: 'user_id',
+        references: {
+          model: 'users',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        primaryKey: true,
+        allowNull: false,
+      },
+     // seller_id
       total_price: {
         allowNull: false,
         type: Sequelize.DECIMAL

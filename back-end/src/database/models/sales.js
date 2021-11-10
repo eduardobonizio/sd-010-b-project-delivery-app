@@ -9,5 +9,10 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: false,
     tableName: 'sales',
   });
+  sales.associate = (models) => {
+    sales.belongsTo(models.users,
+      { foreignKey: 'user_id', as: 'user' }
+    );
+  };
   return sales;
 };
