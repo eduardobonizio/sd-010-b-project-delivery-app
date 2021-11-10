@@ -1,12 +1,14 @@
 const port = process.env.PORT || 3001;
-const app = require("./app");
-const { login } = require("../routers/index");
-const cors = require("cors");
+const cors = require('cors');
+const app = require('./app');
+const express = require('express');
+const login  = require('../routers/Login');
+
 app.use(express.json());
 app.use(cors());
 
-//LOGIN
-app.use("/", login);
+// LOGIN
+app.use('/', login);
 
 app.listen(port);
 console.log(`Api rodando na porta ${port}`);
