@@ -11,7 +11,6 @@ const dados = (DataTypes) => (
   }
 )
 
-
 const sale = (sequelize, DataTypes) => {
   const sale = sequelize.define("sale", dados(DataTypes),{
     timestamps: false,
@@ -20,8 +19,10 @@ const sale = (sequelize, DataTypes) => {
   sale.associate = (models) => {
     sale.belongsTo(models.user,
       { foreignKey: 'user_id', as: 'users'},
-      { foreignKey: 'seller_id', as: 'sellers'},
-    );
+    );  
+    sale.belongsTo(models.sales, 
+        { foreignKey: 'seller_id', as: 'sellers'},
+      );
   };
 
   return sale;
