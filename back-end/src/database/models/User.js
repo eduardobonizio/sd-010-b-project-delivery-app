@@ -5,11 +5,10 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     role: DataTypes.STRING,
   });
+  
   User.associate = (models) => {
-    User.hasMany(models.sales,
-      {
-        foreignKey: 'user_id',
-      });
+    User.hasMany(models.Sale, {foreignKey: 'user_id', as: 'users'});
+    User.hasMany(models.Sale, {foreignKey: 'saller_id', as: 'sallers'});
   };
   return User;
 }
