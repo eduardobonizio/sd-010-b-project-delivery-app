@@ -1,5 +1,3 @@
-const { use } = require("chai");
-
 const user = (sequelize, DataTypes) => {
   const user = sequelize.define("user", {
     name: DataTypes.STRING,

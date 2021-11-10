@@ -1,5 +1,3 @@
-const { use } = require("chai");
-
 const product = (sequelize, DataTypes) => {
   const product = sequelize.define("product", {
     name: DataTypes.STRING,
@@ -9,7 +7,7 @@ const product = (sequelize, DataTypes) => {
     timestamps: false,
   });
 
-  use.associate = (models) => {
+  product.associate = (models) => {
     product.hasMany(models.salesProducts, 
       { foreignKey: 'id', as: 'product_id' },
     );
