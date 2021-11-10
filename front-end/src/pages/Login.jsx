@@ -22,7 +22,7 @@ function Login() {
     savePassword(value);
   };
 
-  const validateEmail = (email2) => {
+  const validateEmail = (e) => {
     const emailRe = /^[_a-z0-9-]+(.[_a-z0-9-]+)@[a-z0-9-]+(.[a-z0-9-]+)(.[a-z]{2,4})$/;
     const isValid = emailRe.test(email2);
     setemailIsValid(isValid);
