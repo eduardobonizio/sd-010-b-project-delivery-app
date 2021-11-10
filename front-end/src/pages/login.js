@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-// import { Button } from 'react-bootstrap';
-// import { initializeLocalStorage } from '../services/localStorage';
-// import logo from '../images/logo.png';
+
 import rockGlass from '../images/rockGlass.svg';
 
 function Login() {
