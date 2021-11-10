@@ -1,15 +1,13 @@
 import React from 'react';
 import './App.css';
-import rockGlass from './images/rockGlass.svg';
+
+import Layout from './components/Layout/Layout';
 
 function App() {
   return (
-    <div className="App">
-      <span className="logo">TRYBE</span>
-      <object className="rocksGlass" type="image/svg+xml" data={ rockGlass }>
-        Glass
-      </object>
-    </div>
+    <Layout>
+      <h1>Filho</h1>
+    </Layout>
   );
 }
 
