@@ -36,6 +36,7 @@ function Login() {
     const { target: { value } } = event;
     validateEmail(value);
     saveEmail(value);
+    console.log(email);
   };
 
   return (
