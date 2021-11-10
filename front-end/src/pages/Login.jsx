@@ -25,7 +25,7 @@ function Login() {
   const validateEmail = (e) => {
     const emailRe = /^[_a-z0-9-]+(.[_a-z0-9-]+)@[a-z0-9-]+(.[a-z0-9-]+)(.[a-z]{2,4})$/;
     const isValid = emailRe.test(e);
-    setemailIsValid(isValid);
+    setEmailIsValid(isValid);
   };
 
   const saveEmail = (e) => {
