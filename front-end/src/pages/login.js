@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-
+import Context from '../provider/Context';
 import rockGlass from '../images/rockGlass.svg';
 
 function Login() {
@@ -9,6 +9,10 @@ function Login() {
     email: '',
     password: '',
   });
+
+  // exemplo funcionando o estado, fique avontade para apagar
+  const contexto = useContext(Context);
+  console.log(contexto);
 
   const validateFields = ({ email, password }) => {
     const regex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
