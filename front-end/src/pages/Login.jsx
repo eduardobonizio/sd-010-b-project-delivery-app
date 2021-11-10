@@ -20,6 +20,7 @@ function Login() {
     const { target: { value } } = event;
     validatePassword(value);
     savePassword(value);
+    console.log(password);
   };
 
   const validateEmail = (e) => {
