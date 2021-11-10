@@ -5,8 +5,8 @@ import { login } from '../api';
 function Login() {
   const [passwordIsValid, setPasswordIsValid] = useState(false);
   const [password, setPassword] = useState('');
-  const [email, setemail] = useState('');
-  const [emailIsValid, setemailIsValid] = useState(false);
+  const [email, setEmail] = useState('');
+  const [emailIsValid, setEmailIsValid] = useState(false);
   const [error, setError] = useState(null);
   const history = useHistory();
 
@@ -28,14 +28,14 @@ function Login() {
     savePassword(value);
   };
 
-  const validateEmail = (email2) => {
+  const validateEmail = (e) => {
     const emailRe = /^[_a-z0-9-]+(.[_a-z0-9-]+)@[a-z0-9-]+(.[a-z0-9-]+)(.[a-z]{2,4})$/;
-    const isValid = emailRe.test(email2);
-    setemailIsValid(isValid);
+    const isValid = emailRe.test(e);
+    setEmailIsValid(isValid);
   };
 
   const saveEmail = (e) => {
-    setemail(e);
+    setEmail(e);
   };
 
   const handleEmailChange = (event) => {
