@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Provider from './contexts/createContext';
 import Login from './pages/Login';
 import Home from './pages/Home';
@@ -9,11 +9,11 @@ function App() {
   return (
     <BrowserRouter>
       <Provider>
-        <Routes>
-          <Route path="/" element={ <Home /> } />
-          <Route path="/login" element={ <Login /> } />
-          <Route path="*" element={ <h1>NOT FOUND</h1> } />
-        </Routes>
+        <Switch>
+          <Route exact path="/" component={ Home } />
+          <Route path="/login" component={ Login } />
+          <Route path="*" render={ () => (<h1>NOT FOUND</h1>) } />
+        </Switch>
       </Provider>
     </BrowserRouter>
   );

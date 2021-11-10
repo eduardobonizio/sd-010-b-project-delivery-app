@@ -1,12 +1,8 @@
-import React, { useState } from 'react';
-import Input from '../components/Input';
+import React from 'react';
+import Form from '../components/Form';
 
 export default function Login() {
-  const [ email, setEmail ] = useState('');
-  const [ pass, setPass ] = useState('');
   return (
-    <form>
-     
-    </form>
+    <Form />
   );
 }
