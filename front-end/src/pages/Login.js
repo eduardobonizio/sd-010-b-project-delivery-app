@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { Context } from '../context/ContextGlobal';
 import '../styles/Login.css';
@@ -42,13 +43,15 @@ function Login() {
         >
           LOGIN
         </Button>
-        <Button
-          className="login-button"
-          data-testid="common_login__button-register"
-        >
-          Ainda não tenho conta
+        <Link to="/register">
+          <Button
+            className="login-button"
+            data-testid="common_login__button-register"
+          >
+            Ainda não tenho conta
 
-        </Button>
+          </Button>
+        </Link>
       </form>
       {errorMessage && <span>Error message</span>}
     </div>
