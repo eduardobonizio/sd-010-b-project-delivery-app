@@ -1,9 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
-  const SalesProducts = sequelize.define('SaleProduct', {
+  const salesProducts = sequelize.define('saleProduct', {
     quantity: DataTypes.INTEGER
   }, {
     timestamps: false,
-    tableName: 'SalesProducts',
+    tableName: 'salesProducts',
   });
-  return SalesProducts;
+  return salesProducts;
 };

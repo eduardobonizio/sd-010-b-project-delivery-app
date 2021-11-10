@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Sales = sequelize.define('Sale', {
+  const sales = sequelize.define('sale', {
     total_price: DataTypes.DECIMAL,
     delivery_address: DataTypes.STRING,
     delivery_number: DataTypes.STRING,
@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     status: DataTypes.STRING
   }, {
     timestamps: false,
-    tableName: 'Sales',
+    tableName: 'sales',
   });
-  return Sales;
+  return sales;
 };
