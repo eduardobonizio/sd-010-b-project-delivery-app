@@ -37,7 +37,7 @@ describe(requirement(1), () => {
   });
 });
 
-describe.only(requirement(2), () => {
+describe(requirement(2), () => {
   test("O avaliador buscará pelos elementos fundamentais aos demais testes", async () => {
     await expect(page).toFindElement(loginPage.input.login);
     await expect(page).toFindElement(loginPage.input.password);
@@ -46,7 +46,7 @@ describe.only(requirement(2), () => {
   });
 });
 
-describe(requirement(3), () => {
+describe.only(requirement(3), () => {
   const logins = [
     {
       email: "cliente@email",
