@@ -1,14 +1,16 @@
 import React from 'react';
-import './App.css';
-import rockGlass from './images/rockGlass.svg';
+import { Switch, Route } from 'react-router-dom';
+import Login from './modules/login/Login';
+import './App.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
+  const styles = { height: '500px' };
   return (
-    <div className="App">
-      <span className="logo">TRYBE</span>
-      <object className="rocksGlass" type="image/svg+xml" data={ rockGlass }>
-        Glass
-      </object>
+    <div className="container-fluid" style="height: 100px">
+      <Switch>
+        <Route exact path="/" render={ (props) => <Login { ...props } /> } />
+      </Switch>
     </div>
   );
 }
