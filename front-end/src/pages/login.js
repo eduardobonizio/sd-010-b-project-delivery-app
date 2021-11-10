@@ -1,42 +1,50 @@
 import React from 'react';
 import Joi from 'joi';
-import {useValidator} from 'react-joi';
+import { useValidator } from 'react-joi';
 
 export default function Login() {
+  const SIX = 6;
   const { state, setData, setExplicitField, validate } = useValidator({
     initialData: {
       email: null,
       password: null,
     },
     schema: Joi.object({
-      email: Joi.string().email().required(),
-      password: Joi.string().min(6).required(),
+      email: Joi.string()
+        .email({
+          tlds: { allow: false },
+        }),
+      password: Joi.string().min(SIX).required(),
     }),
     explicitCheck: {
-      email: false,
-      password: false,
+      email: true,
+      password: true,
     },
-})
+  });
 
-const updateName = (e) => {
+  // const [isDisabled, setIsDisable] = useState(true);
+
+  const updateEmail = (e) => {
   // react < v17
-  e.persist()
+    e.persist();
 
-  setData((old) => ({
-      ...old,
-      name: e.target.value,
-  }))
-}
-
-const updateEmail = (e) => {
-  // react < v17
-  e.persist()
-
-  setData((old) => ({
+    setData((old) => ({
       ...old,
       email: e.target.value,
-  }))
-}
+    }));
+  };
+
+  const updatePassword = (e) => {
+  // react < v17
+    e.persist();
+
+    setData((old) => ({
+      ...old,
+      password: e.target.value,
+    }));
+  };
+
+  const isDisabled = state.$all_source_errors.length !== 0;
 
   return (
     <>
@@ -44,8 +52,17 @@ const updateEmail = (e) => {
 
         <label htmlFor="email">
           Email:
-          <input type="email" name="email" data-testid="common_login__input-email" />
+          <input
+            type="email"
+            name="email"
+            data-testid="common_login__input-email"
+            onChange={ updateEmail }
+            onBlur={ () => setExplicitField('email', true) }
+          />
         </label>
+        <br />
+        {state.$errors.email.map((data) => data.$message).join(',')}
+        <br />
 
         <label htmlFor="password">
           Senha:
@@ -53,14 +70,22 @@ const updateEmail = (e) => {
             type="password"
             name="password"
             data-testid="common_login__input-password"
+            onChange={ updatePassword }
+            onBlur={ () => setExplicitField('password', true) }
           />
         </label>
+        <br />
+        {/* {state.$errors.password.map((data) => data.$message).join(',')} */}
+        <br />
       </form>
+      {console.log(state.$all_source_errors)}
 
       <button
         type="submit"
         name="loginButton"
         data-testid="common_login__button-login"
+        disabled={ isDisabled }
+        onClick={ validate }
       >
         Login
 
@@ -74,6 +99,10 @@ const updateEmail = (e) => {
         Ainda não tenho conta
 
       </button>
+
+      {/* <code>
+        <pre>{JSON.stringify(state, null, 2)}</pre>
+      </code> */}
     </>
   );
 }
