@@ -8,12 +8,13 @@ const Context = createContext();
 
 const Provider = ({ children }) => {
   const [products, setProducts] = useState([]);
-
+  const [orderInProgress, setOrderInProgress] = useState();
+  const [totalOrder, setTotalOrder] = useState(0);
   const location = useLocation();
   const history = useHistory();
 
   const context = {
-    products, setProducts,
+    products, setProducts, orderInProgress, setOrderInProgress, totalOrder, setTotalOrder,
   };
 
   useEffect(() => {
