@@ -7,7 +7,7 @@ const SaleProduct = (sequelize, DataTypes) => {
   },
   { timestamps: false });
   saleProduct.associate = (models) => {
-    saleProduct.belongsTo('Products'), {
+    saleProduct.belongsTo(models.Products), {
       foreignKey: 'product_id',
       as: 'product'
     }

@@ -19,16 +19,6 @@ module.exports = {
       },
       role: {
         type: Sequelize.STRING
-      },
-      seller_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
-        references: {
-          model: 'Sales',
-          key: 'id',
-        },
       }
     });
   },
