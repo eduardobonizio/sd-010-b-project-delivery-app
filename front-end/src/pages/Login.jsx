@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { login } from '../api';
 
+import { validateEmail, validatePassword } from '../util/valdations';
+
 function Login() {
   const [passwordIsValid, setPasswordIsValid] = useState(false);
   const [password, setPassword] = useState('');
@@ -9,12 +11,6 @@ function Login() {
   const [emailIsValid, setemailIsValid] = useState(false);
   const [error, setError] = useState(null);
   const history = useHistory();
-
-  const validatePassword = (p) => {
-    const minLength = 6;
-    const isValid = p.length >= minLength;
-    setPasswordIsValid(isValid);
-  };
 
   const savePassword = (p) => {
     setPassword(p);
@@ -24,14 +20,9 @@ function Login() {
     const {
       target: { value },
     } = event;
-    validatePassword(value);
     savePassword(value);
-  };
-
-  const validateEmail = (email2) => {
-    const emailRe = /^[_a-z0-9-]+(.[_a-z0-9-]+)@[a-z0-9-]+(.[a-z0-9-]+)(.[a-z]{2,4})$/;
-    const isValid = emailRe.test(email2);
-    setemailIsValid(isValid);
+    const passwordValidation = validatePassword(value);
+    setPasswordIsValid(passwordValidation);
   };
 
   const saveEmail = (e) => {
@@ -42,8 +33,9 @@ function Login() {
     const {
       target: { value },
     } = event;
-    validateEmail(value);
     saveEmail(value);
+    const emailValidation = validateEmail(value);
+    setemailIsValid(emailValidation);
   };
 
   const handleSubmit = async (e) => {

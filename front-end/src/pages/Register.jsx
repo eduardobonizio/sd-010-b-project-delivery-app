@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 import fields from '../services/formFields';
 
+import { validateEmail, validatePassword, validateName } from '../util/valdations';
+
 function Register() {
   const [state, setState] = useState({ name: '', email: '', password: '' });
 
-  const handleInputValue = (e) => {
+  const validateInputs = (name, email, password) => {
+    const validation = validateEmail(email)
+    && validateName(name) && validatePassword(password);
+    return validation;
+  };
+  const handleInputValue = async (e) => {
     const { name } = e.target;
-    setState({ ...state, [name]: e.target.value });
+    await setState({ ...state, [name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
@@ -34,7 +41,7 @@ function Register() {
         <button
           data-testid="common_register__button-register"
           type="submit"
-          // disabled={ !passwordIsValid || !emailIsValid }
+          disabled={ !validateInputs(state.name, state.email, state.password) }
         >
           Cadastrar
         </button>
