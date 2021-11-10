@@ -19,7 +19,14 @@ module.exports = {
         },
       },
       seller_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Users',
+          key: 'id',
+        },
       },
       total_price: {
         type: Sequelize.DECIMAL(9, 2)

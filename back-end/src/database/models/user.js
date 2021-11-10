@@ -1,4 +1,5 @@
 'use strict';
+
 const User = (sequelize, DataTypes) => {
   const user = sequelize.define('User', {
     name: DataTypes.STRING,
@@ -7,8 +8,9 @@ const User = (sequelize, DataTypes) => {
     role: DataTypes.STRING,
   },
   { timestamps: false });
+
   user.associate = (models) => {
-    user.hasOne('Sales'), {
+    user.hasOne(models.Sales), {
       foreignKey: 'seller_id',
       as: 'sale'
     }
