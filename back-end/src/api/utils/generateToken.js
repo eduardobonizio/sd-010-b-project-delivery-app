@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken');
 
 const generateToken = (user) => {
-      const { id, email, role } = user;
+    const { id, email, role } = user;
+
     const jwtConfig = {
       expiresIn: '10min',
       algorithm: 'HS256',
