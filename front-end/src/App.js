@@ -1,15 +1,18 @@
 import React from 'react';
+import { Switch, Redirect } from 'react-router-dom';
 import './App.css';
-import rockGlass from './images/rockGlass.svg';
+// import rockGlass from './images/rockGlass.svg';
+import CustomRoute from './Routes';
+import Login from './views/Login';
 
 function App() {
   return (
-    <div className="App">
-      <span className="logo">TRYBE</span>
-      <object className="rocksGlass" type="image/svg+xml" data={ rockGlass }>
-        Glass
-      </object>
-    </div>
+    <Switch>
+      {/* Vai receber props com path, comp e para verificar se vai renderizar
+      com ou sem navbar horizontal */}
+      <CustomRoute path="/login" component={ Login } />
+      <Redirect from="/" to="/login" />
+    </Switch>
   );
 }
 
