@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 
 export default function FormLogin() {
+  const history = useHistory();
+  console.log(history);
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   return (
@@ -23,14 +26,13 @@ export default function FormLogin() {
       </label>
       <button
         type="submit"
+        data-testid="common_login__button-login"
       >
         Login
       </button>
-      <button
-        type="submit"
-      >
+      <Link to="/register" data-testid="common_login__button-register">
         Ainda não tenho conta
-      </button>
+      </Link>
     </form>
   );
 }

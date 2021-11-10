@@ -21,8 +21,8 @@ function App() {
           <Route path="/register" component={ Register } />
           <Route path="/customer/products" component={ Products } />
           <Route path="/customer/checkout" component={ Checkout } />
-          <Route path="/customer/orders/:id" component={ OrderDetail } />
           <Route path="/customer/orders" component={ OrderStatus } />
+          <Route path="/customer/orders/:id" component={ OrderDetail } />
           <Route path="/seller/orders" component={ SalesDetails } />
           <Route path="*" render={ () => (<h1>NOT FOUND</h1>) } />
         </Switch>

@@ -32,6 +32,7 @@ export default function FormRegister() {
       </label>
       <button
         type="submit"
+        data-testid="common_register__button-register"
       >
         Cadastro
       </button>
