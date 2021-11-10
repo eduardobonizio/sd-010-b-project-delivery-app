@@ -8,9 +8,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      quantity: {
-        type: Sequelize.INTEGER
-      },
       sale_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -31,14 +28,9 @@ module.exports = {
           key: 'id',
         },
       },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+      quantity: {
+        type: Sequelize.INTEGER
       },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
     });
   },
   down: async (queryInterface, Sequelize) => {

@@ -12,8 +12,6 @@ module.exports = {
       delivery_number: 2,
       status: 'enviado',
       sale_date: '2038-01-19 03:14:07',
-      createdAt: '2038-01-19 03:14:07',
-      updatedAt: '2038-01-19 03:14:07'
     }], {});
   },
 
