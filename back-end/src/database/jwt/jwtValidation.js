@@ -15,13 +15,13 @@ const creatToken = (userId, displayName, email) => {
 };
 
 const validateJwt = (token) => {
-  if (!token) return { validToken: true, message: { message: 'Token not found' } };
+  if (!token) return { message: 'Token not found' };
 
   try {
     const result = jwt.verify(token, secret);
-    return { validToken: false, result };
+    return  result;
   } catch (error) {
-    return { validToken: true, message: { message: 'Expired or invalid token' } };
+    return {  message: 'Expired or invalid token' };
   }
 };
 
