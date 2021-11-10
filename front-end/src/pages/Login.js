@@ -1,15 +1,12 @@
-import React from 'react';
-import { useNavigate } from 'react-router';
+import React, { useState } from 'react';
+import Input from '../components/Input';
 
 export default function Login() {
-  // UseNavigate será o mesmo que history.push()
-  const navigate = useNavigate();
-  console.log(navigate);
+  const [ email, setEmail ] = useState('');
+  const [ pass, setPass ] = useState('');
   return (
-    <div>
-      <h1>
-        Hello World
-      </h1>
-    </div>
+    <form>
+     
+    </form>
   );
 }
