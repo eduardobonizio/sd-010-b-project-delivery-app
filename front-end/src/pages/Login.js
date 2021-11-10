@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import fetchAuthUser from '../services/userAPI';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isValidEntry, setIsValidEntry] = useState(true);
+  const history = useHistory();
 
   const loginValidation = () => {
     // fonte: https://www.w3resource.com/javascript/form/email-validation.php
@@ -24,6 +26,8 @@ export default function Login() {
     console.log(res);
     if (res.message) {
       setIsValidEntry(false);
+    } else {
+      history.push('/customer/products');
     }
   };
 

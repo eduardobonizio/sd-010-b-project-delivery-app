@@ -3,6 +3,7 @@ import './App.css';
 import { Switch, Route, Redirect } from 'react-router-dom';
 // import rockGlass from './images/rockGlass.svg';
 import Login from './pages/Login';
+import Products from './pages/Products';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Redirect to="/login" />
         </Route>
         <Route path="/login" component={ Login } />
+        <Route path="/customer/products" component={ Products } />
       </Switch>
     </div>
   );
