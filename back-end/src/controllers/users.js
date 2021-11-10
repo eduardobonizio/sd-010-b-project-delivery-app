@@ -5,6 +5,6 @@ router.get('/', async (_req, res) => {
   const users = await getAll();
 
   return res.status(200).json(users);
-})
+});
 
 module.exports = router;
