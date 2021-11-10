@@ -1,8 +1,8 @@
 import React from 'react';
-import Form from '../components/Form';
+import FormLogin from '../components/FormLogin';
 
 export default function Login() {
   return (
-    <Form />
+    <FormLogin />
   );
 }
