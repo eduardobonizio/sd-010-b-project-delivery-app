@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const generateToken = (user) => {
     const { id, email, role } = user;
     const jwtConfig = {
-      expiresIn: '10min',
+      expiresIn: '60min',
       algorithm: 'HS256',
     };
 
@@ -12,6 +12,5 @@ const generateToken = (user) => {
     return token;
 };
 
-module.exports = {
-  generateToken,
-};
+module.exports = generateToken;
+

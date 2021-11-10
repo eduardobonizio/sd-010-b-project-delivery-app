@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory, Link } from 'react-router-dom';
 import { login } from '../api';
 
 function Login() {
@@ -7,6 +8,7 @@ function Login() {
   const [email, setemail] = useState('');
   const [emailIsValid, setemailIsValid] = useState(false);
   const [error, setError] = useState(null);
+  const history = useHistory();
 
   const validatePassword = (p) => {
     const minLength = 6;
@@ -49,6 +51,7 @@ function Login() {
     try {
       const user = { email, password };
       await login(user);
+      history.push('/customer/products');
     } catch (err) {
       setError(err);
     }
@@ -83,9 +86,11 @@ function Login() {
         >
           Login
         </button>
-        <button data-testid="common_login__button-register" type="button">
-          Ainda não tenho conta
-        </button>
+        <Link to="/register">
+          <button data-testid="common_login__button-register" type="button">
+            Ainda não tenho conta
+          </button>
+        </Link>
       </form>
       {error && (
         <p data-testid="common_login__element-invalid-email">
