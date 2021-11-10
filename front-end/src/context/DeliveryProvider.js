@@ -1,18 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import DeliveryContext from './DeliveryContext';
 
 const DeliveryProvider = ({ children }) => {
-  const [registerForm, setRegisterForm] = useState({
-    nome: '',
-    email: '',
-    senha: '',
-  });
-
-  const contextValue = {
-    registerForm,
-    setRegisterForm,
-  };
+  const contextValue = {};
 
   return (
     <DeliveryContext.Provider value={ contextValue }>

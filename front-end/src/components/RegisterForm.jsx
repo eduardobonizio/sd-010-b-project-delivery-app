@@ -1,16 +1,30 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
 import RegisterButton from './RegisterButton';
-import DeliveryContext from '../context/DeliveryContext';
 
 function RegisterForm() {
-  const { setRegisterForm } = useContext(DeliveryContext);
+  const [registerInfo, setRegisterInfo] = useState({
+    nome: '',
+    email: '',
+    senha: '',
+  });
+
+  console.log(registerInfo);
+  const [buttonStatus, setButtonStatus] = useState(true);
+
+  const ableButton = () => {
+    const isValid = validate();
+    if (isValid) {
+      setButtonStatus(!buttonStatus);
+    } else setButtonStatus(!buttonStatus);
+  };
 
   const handleRegisterForm = ({ target }) => {
     const { name, value } = target;
-    setRegisterForm((oldState) => ({
+    setRegisterInfo((oldState) => ({
       ...oldState,
       [name]: value,
     }));
+    ableButton();
   };
 
   return (
@@ -45,7 +59,7 @@ function RegisterForm() {
           onChange={ (event) => handleRegisterForm(event) }
         />
       </label>
-      <RegisterButton />
+      <RegisterButton buttonStatus={ buttonStatus } registerInfo={ registerInfo } />
     </form>);
 }
 
