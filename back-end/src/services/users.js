@@ -1,5 +1,5 @@
-const { getAll } = require('../models/users')
+const { getAll } = require('../models/users');
 
-module.exports ={
+module.exports = {
   getAll,
 };
