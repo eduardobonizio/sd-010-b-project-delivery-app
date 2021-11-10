@@ -1,14 +1,15 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Provider from './context/ContextGlobal';
-import Home from './pages/Home';
+import Login from './pages/Login';
 
 function App() {
   return (
     <BrowserRouter>
       <Provider>
         <Switch>
-          <Route exact path="/" component={ Home } />
+          <Redirect from="/" to="/login" />
+          <Route exact path="/login" component={ Login } />
         </Switch>
       </Provider>
     </BrowserRouter>
