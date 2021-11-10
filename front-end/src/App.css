@@ -1,4 +1,6 @@
-.App {
+@import '~antd/dist/antd.css';
+
+/* .App {
   align-items: center;
   background: #0fa36b;
   color: #464646;
@@ -21,7 +23,7 @@
 .rocksGlass {
   animation: shake 1s infinite ease;
   max-height: 80vh;
-}
+} */
 
 @keyframes shake {
 
