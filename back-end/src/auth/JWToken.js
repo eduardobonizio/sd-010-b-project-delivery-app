@@ -1,21 +1,30 @@
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
-const SECRET = 'minhasenhasecreta';
+const secret = process.env.JWT_SECRET || 'minhaSenha';
 
-module.exports = async (req, res, next) => {
-  const token = req.headers.authorization;
-
-  if (!token) {
-    return res.status(401).json({ message: 'missing auth token' });
-  }
-
-  try {
-    const decoded = jwt.verify(token, SECRET);
-    const { id } = decoded;
-    
-    req.user = id;
-    next();
-  } catch (err) {
-    return res.status(401).json({ message: 'jwt malformed' });
-  }
+const createJWT = (payload) => {
+  const newToken = jwt.sign(payload, secret, {
+    algorithm: 'HS256',
+  });
+  return newToken;
 };
+
+const verifyJWT = (req, res, next) => {
+  try {
+    const { authorization } = req.headers;
+    if (!authorization) {
+      return res.status(401).json({ message: 'Token not found' });
+    }
+    const payload = jwt.verify(authorization, secret);
+    req.user = payload;
+  } catch (err) {
+    return res.status(401).json({ message: 'Expired or invalid token' });
+  }
+  return next();
+};
+
+module.exports = { 
+  createJWT,
+   verifyJWT, 
+  };

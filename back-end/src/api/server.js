@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(cors());
 
 // LOGIN
-app.use('/', login);
+app.use('/login', login);
 
 app.listen(port);
 console.log(`Api rodando na porta ${port}`);
