@@ -20,22 +20,28 @@ function RegisterForm() {
         <input
           type="text"
           name="nome"
+          placeholder="Insira seu nome"
+          data-testid="common_register__input-name"
           onChange={ (event) => handleRegisterForm(event) }
         />
       </label>
-      <label htmlFor="nome">
+      <label htmlFor="email">
         Email
         <input
           type="email"
           name="email"
+          placeholder="Insira seu email"
+          data-testid="common_register__input-email"
           onChange={ (event) => handleRegisterForm(event) }
         />
       </label>
-      <label htmlFor="nome">
+      <label htmlFor="password">
         Senha
         <input
           type="password"
           name="senha"
+          placeholder="Insira sua senha"
+          data-testid="common_register__input-password"
           onChange={ (event) => handleRegisterForm(event) }
         />
       </label>
