@@ -3,3 +3,6 @@ seeders
 /src/tests/
 jest.config.js
 /src/coverage
+**/migrations/
+**/seeders/
+**/models/index.js
