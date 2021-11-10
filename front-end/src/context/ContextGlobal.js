@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 export const Context = createContext();
 
 function Provider({ children }) {
-  const [state, setState] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const object = {
-    state,
-    setState,
+    errorMessage,
+    setErrorMessage,
   };
 
   return (
