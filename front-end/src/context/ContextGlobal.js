@@ -5,10 +5,16 @@ export const Context = createContext();
 
 function Provider({ children }) {
   const [errorMessage, setErrorMessage] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const object = {
     errorMessage,
     setErrorMessage,
+    email,
+    setEmail,
+    password,
+    setPassword,
   };
 
   return (

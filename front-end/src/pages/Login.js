@@ -4,7 +4,8 @@ import { Context } from '../context/ContextGlobal';
 import '../styles/Login.css';
 
 function Login() {
-  const { errorMessage } = useContext(Context);
+  const { errorMessage, email, setEmail, password, setPassword } = useContext(Context);
+  const passLength = 5;
 
   return (
     <div className="login__container">
@@ -12,16 +13,32 @@ function Login() {
       <form className="login-body">
         <label htmlFor="login-title">
           <h4 className="login-title" id="login-title">Login</h4>
-          <input id="login" data-testid="common_login__input-email" />
+          <input
+            id="login"
+            value={ email }
+            autoComplete="off"
+            onChange={ ({ target }) => setEmail(target.value) }
+            data-testid="common_login__input-email"
+          />
         </label>
         <label htmlFor="login-title">
           <h4 className="login-title" id="login-title">Senha</h4>
-          <input id="login" data-testid="common_login__input-password" />
+          <input
+            id="login"
+            type="password"
+            value={ password }
+            onChange={ ({ target }) => setPassword(target.value) }
+            data-testid="common_login__input-password"
+          />
         </label>
         <Button
           className="login-button"
           type="submit"
           data-testid="common_login__button-login"
+          disabled={
+            !(/^[^\s@]+@[^\s@]+\.[^\s@]+$/).test(email)
+          || password.length <= passLength
+          }
         >
           LOGIN
         </Button>
