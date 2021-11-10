@@ -10,6 +10,7 @@ function App() {
       <Provider>
         <Routes>
           <Route path="/" element={ <Login /> } />
+          <Route path="*" element={ <h1>NOT FOUND</h1> } />
         </Routes>
       </Provider>
     </BrowserRouter>
