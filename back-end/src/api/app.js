@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 // rotas 
-const routeLogin = require('../database/routes/login');
+const routeLogin = require('./routes/login');
 // rotas
 
 const app = express();
