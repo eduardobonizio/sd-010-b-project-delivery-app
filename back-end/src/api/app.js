@@ -1,7 +1,17 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+
+const error = require('../middleware/error');
+const { userRouter } = require('./routes');
 
 const app = express();
 
-app.get('/coffee', (_req, res) => res.status(418).end());
+app.use(cors());
+app.use(bodyParser.json());
+
+app.use('/user', userRouter);
+
+app.use(error);
 
 module.exports = app;
