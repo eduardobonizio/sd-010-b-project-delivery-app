@@ -1,22 +1,44 @@
-import React, { useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from 'react';
+// import { Box } from '@mui/material';
 // import PropTypes from 'prop-types';
 function Login() {
   const [loginButtonDisabled, setLoginButtonDisabled] = useState(true);
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
+  const [isEmailInvalid, setIsEmailInvalid] = useState(false);
+
   const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const minPasswordLength = 6;
-  const isDisabled = () => {
-    if (re.test(login) && password.length > minPasswordLength) {
+  const isDisabled = ((() => {
+    if (password.length >= minPasswordLength && re.test(login)) {
       setLoginButtonDisabled(false);
     } else {
       setLoginButtonDisabled(true);
     }
-  };
+  }));
   const onChange = (value, setState) => {
+    setIsEmailInvalid(false);
     setState(value);
-    isDisabled();
   };
+  const fetchUser = () => {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: login }),
+    };
+    fetch('http://localhost:3001/login', requestOptions)
+      .then((response) => {
+        if (response.ok === false) {
+          setIsEmailInvalid(true);
+        }
+      });
+  };
+
+  useEffect(() => {
+    isDisabled();
+  }, [password, login]);
+
   return (
     <div>
       <form>
@@ -44,6 +66,7 @@ function Login() {
         data-testid="common_login__button-login"
         disabled={ loginButtonDisabled }
         type="button"
+        onClick={ () => fetchUser() }
       >
         ENTRAR
 
@@ -54,13 +77,16 @@ function Login() {
       >
         Ainda não tenho conta
       </button>
+      {isEmailInvalid ? (
+        <h4
+          data-testid="common_login__element-invalid-email"
+        >
+          Email inválido
+
+        </h4>)
+        : null}
     </div>
   );
 }
-
-// NavBar.propTypes = {
-//   username: PropTypes.string.isRequired,
-//   user: PropTypes.string.isRequired,
-// };
 
 export default Login;
