@@ -5,7 +5,7 @@ import Button from './Button';
 function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loginStatus, setLoginStatus] = useState({});
+  const [loginStatus, setLoginStatus] = useState({ });
 
   function validateLogin() {
     const validator = /^[A-Za-z0-9_.]+@[a-zA-Z_]+?\.[a-zA-Z_.]{2,7}$/;
@@ -15,19 +15,31 @@ function LoginForm() {
     }
     return false;
   }
-
-  useEffect(() => () => {
+  const clickLogin = (e) => {
     const requestOptions = {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: { email, password },
+      body: JSON.stringify({ email, password }),
     };
-    fetch('http://localhost:3001/users', requestOptions)
+    console.log(requestOptions.body);
+    fetch('http://localhost:3001/users/login', requestOptions)
       .then((response) => response.json())
-      .then((data) => setLoginStatus({ data }));
-  }, [email, password]);
+      .then((data) => setLoginStatus(data));
+    e.preventDefault();
+  };
 
-  useEffect(() => (loginStatus.toLogin ? console.log('ok') : console.log('no')), [loginStatus]);
+  useEffect(() => {
+    console.log(loginStatus);
+    const span = document.getElementById('invalid-message');
+    if (loginStatus.message === 'Login invalido') {
+      span.style.visibility = 'visible';
+    } else {
+      span.style.visibility = 'hidden';
+    }
+  }, [loginStatus, setLoginStatus]);
 
   return (
     <form>
@@ -53,7 +65,7 @@ function LoginForm() {
         className="login-btn"
         value="LOGIN"
         testId="common_login__button-login"
-        onClick={ (e) => e.preventDefault() }
+        onClick={ (e) => clickLogin(e) }
         disabled={ !validateLogin() }
       />
     </form>

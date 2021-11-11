@@ -10,6 +10,7 @@ function Login() {
       <div className="login-page">
         <main className="main-login">
           <LoginForm />
+
           <Button
             formbtn={ false }
             id="register-btn"
@@ -20,6 +21,7 @@ function Login() {
           />
         </main>
         <span
+          id="invalid-message"
           className="invalid-message"
           data-testid="common_login__element-invalid-email"
         >

@@ -74,8 +74,8 @@ label input {
   width: 15vw;
 }
 
-.className {
+.invalid-message {
   color: red;
   font-weight: 700;
-  visibility: 'hidden';
+  visibility: hidden;
 }
