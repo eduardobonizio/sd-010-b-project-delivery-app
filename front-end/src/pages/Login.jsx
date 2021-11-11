@@ -4,10 +4,10 @@ import React, { useContext } from 'react';
 
 import DeliveryContext from '../context/DeliveryContext';
 
-const buttonLogin = () => {
+const Login = () => {
   const { email, setEmail, password, setPassword } = useContext(DeliveryContext);
 
-  const login = async (event) => {
+  const buttonLogin = async (event) => {
     event.preventDefault();
     const { data: { token } } = await axios.post('http://localhost:3001/login/', { email, password });
     localStorage.setItem('token', `${token}`);
