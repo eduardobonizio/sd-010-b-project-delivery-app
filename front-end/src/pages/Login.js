@@ -1,86 +1,93 @@
-import React, { Component } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-class Login extends Component {
-  constructor(props) {
-    super(props);
+function Login() {
+  const [login, setLogin] = useState({ email: '', password: '' });
+  const [disableBtn, setDisableBtn] = useState(true);
+  const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-    this.state = {
-      disableBtn: true,
-      errorMessage: false,
-    };
-
-    this.changeState = this.changeState.bind(this);
-    this.validateData = this.validateData.bind(this);
-  }
-
-  changeState(key, value) {
-    this.setState({ [key]: value });
-  }
-
-  validateData() {
+  const validateData = () => {
     // Ref- https://pt.stackoverflow.com/questions/1386/express%C3%A3o-regular-para-valida%C3%A7%C3%A3o-de-e-mail
     const validation = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
     const MIN_LEN_PASS = 6;
 
-    const email = document.getElementById('email-login').value;
-    const password = document.getElementById('password-login').value;
-
-    if (validation.test(email) && password.length >= MIN_LEN_PASS) {
-      this.setState({ disableBtn: false });
+    if (validation.test(login.email) && login.password.length >= MIN_LEN_PASS) {
+      setDisableBtn(false);
     } else {
-      this.setState({ disableBtn: true });
+      setDisableBtn(true);
     }
-  }
+  };
 
-  render() {
-    const { disableBtn, errorMessage } = this.state;
-    const x = 'common_login__element-invalid-email';
+  const changeState = ({ target: { name, value } }) => {
+    setLogin({ ...login, [name]: value });
+    validateData();
+  };
 
-    return (
-      <div>
-        <h1>Login page</h1>
+  const lintChato = 'common_login__element-invalid-email';
 
-        <label htmlFor="email-login">
-          Login
-          <input
-            type="email"
-            id="email-login"
-            data-testid="common_login__input-email"
-            onChange={ () => this.validateData() }
-          />
-        </label>
+  useEffect(() => {
+    validateData();
+  }, [login, validateData]);
 
-        <label htmlFor="password-login">
-          Senha
-          <input
-            type="password"
-            id="password-login"
-            data-testid="common_login__input-email"
-            onChange={ () => this.validateData() }
-          />
-        </label>
+  const getApi = async () => {
+    try {
+      const response = await axios.post('http://localhost:3001/login', login);
+      const result = await response.json();
+      console.log(result);
+    } catch (e) {
+      setErrorMessage(e.response.data.message);
+      setIsError(true);
+    }
+  };
 
-        <button
-          type="button"
-          data-testid="common_login__button-login"
-          // onClick={ () => this.setState({ errorMessage: true }) }
-          disabled={ disableBtn }
-        >
-          Login
-        </button>
+  return (
+    <div>
+      <h1>Login page</h1>
 
-        <button
-          type="button"
-          data-testid="common_login__button-register"
-        >
-          Ainda não tenho conta
-        </button>
+      <label htmlFor="email-login">
+        Login
+        <input
+          type="email"
+          id="email-login"
+          name="email"
+          data-testid="common_login__input-email"
+          onChange={ changeState }
+        />
+      </label>
 
-        {errorMessage && <div data-testid={ x }> Mensagem de erro</div>}
+      <label htmlFor="password-login">
+        Senha
+        <input
+          type="password"
+          id="password-login"
+          name="password"
+          data-testid="common_login__input-email"
+          onChange={ changeState }
+        />
+      </label>
 
-      </div>
-    );
-  }
+      <button
+        type="button"
+        data-testid="common_login__button-login"
+        onClick={ () => getApi() }
+        disabled={ disableBtn }
+      >
+        Login
+      </button>
+
+      <button
+        type="button"
+        data-testid="common_login__button-register"
+      >
+        Ainda não tenho conta
+      </button>
+
+      { isError && <div data-testid={ lintChato }>{ errorMessage }</div> }
+
+    </div>
+  );
 }
 
 export default Login;
