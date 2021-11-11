@@ -9,6 +9,7 @@ const { userRouter, productRouter } = require('./routers');
 
 app.use('/', userRouter);
 app.use('/products', productRouter);
+app.use('/images', express.static('public'));
 
 app.get('/coffee', (_req, res) => res.status(418).end());
 
