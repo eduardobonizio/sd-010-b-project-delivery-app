@@ -11,21 +11,33 @@ const login = async ({ email, password }) => {
 
   const token = generateToken(isAuthenticated);
 
-  const response = { data: { ...isAuthenticated, token } };
+  const data = [{ 
+      id: isAuthenticated.id, 
+      name: isAuthenticated.name,
+      email,
+      role: isAuthenticated.role,
+      token, 
+    }];
   
-  return ({ status: httpStatus.OK, response });
+  return ({ status: httpStatus.OK, data });
 };
 
 const createUser = async ({ name, email, password }) => {
   await validations.createUser(name, email, password);
 
-  const createdUser = await User.create({ name, email, password, role: 'customer' });
+  const newUser = await User.create({ name, email, password, role: 'customer' });
 
-  const token = generateToken(createdUser);
+  const token = generateToken(email);
 
-  const response = { data: { ...createdUser, token } };
+  const data = [{ 
+      id: newUser.id, 
+      name,
+      email,
+      role: 'customer',
+      token, 
+    }];
 
-  return ({ status: httpStatus.OK, response });
+  return ({ status: httpStatus.OK, data });
 };
 
 module.exports = { login, createUser };

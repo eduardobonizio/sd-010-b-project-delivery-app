@@ -5,21 +5,21 @@ const errorMessage = require('../errosCode/errosMessage');
 const err = (statusCode) => ({ statusCode });
 
 const validateEmail = (email) => {
-  if (!email || typeof email !== 'string') throw err(errorMessage.LOGIN_NOT_FILLED);
-  
+  if (!email || typeof email !== 'string') throw err(errorMessage.INVALID_ENTRIES);
+
   const validEmail = /^[\w.]+@[a-z]+\.\w{2,3}$/g.test(email);
   if (!validEmail) throw err(errorMessage.INVALID_ENTRIES);
 };
 
 const validatePassword = (password) => {
   if (!password || typeof password !== 'string' || password.length < 6) {
-    throw err(errorMessage.LOGIN_NOT_FILLED);
+    throw err(errorMessage.INVALID_ENTRIES);
   }
 };
 
 const validateName = (name) => {
   if (!name || typeof name !== 'string' || name.length < 12) { 
-    throw err(errorMessage.LOGIN_NOT_FILLED); 
+    throw err(errorMessage.INVALID_ENTRIES); 
   }
 };
 
