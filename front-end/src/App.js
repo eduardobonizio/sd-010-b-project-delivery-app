@@ -4,13 +4,14 @@ import './App.css';
 // import rockGlass from './images/rockGlass.svg';
 import CustomRoute from './Routes';
 import Login from './pages/Login';
+import NavBar from './components/NavBar';
 
 function App() {
   return (
     <Switch>
       {/* Vai receber props com path, comp e para verificar se vai renderizar
       com ou sem navbar horizontal */}
-      <CustomRoute path="/login" navbar={ {} } component={ Login } />
+      <CustomRoute path="/login" component={ Login } navbar={ <NavBar /> } />
       <Redirect from="/" to="/login" />
     </Switch>
 
