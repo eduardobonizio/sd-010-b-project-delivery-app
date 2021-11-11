@@ -9,13 +9,13 @@ function Login() {
 
   const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const minPasswordLength = 6;
-  const isDisabled = ((() => {
-    if (password.length >= minPasswordLength && re.test(login)) {
-      setLoginButtonDisabled(false);
-    } else {
-      setLoginButtonDisabled(true);
-    }
-  }));
+  // const isDisabled = ((() => {
+  //   if (password.length >= minPasswordLength && re.test(login)) {
+  //     setLoginButtonDisabled(false);
+  //   } else {
+  //     setLoginButtonDisabled(true);
+  //   }
+  // }));
   const onChange = (value, setState) => {
     setIsEmailInvalid(false);
     setState(value);
@@ -35,9 +35,15 @@ function Login() {
   };
 
   useEffect(() => {
+    const isDisabled = ((() => {
+      if (password.length >= minPasswordLength && re.test(login)) {
+        setLoginButtonDisabled(false);
+      } else {
+        setLoginButtonDisabled(true);
+      }
+    }));
     isDisabled();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [password, login]);
+  }, [password, login, re]);
 
   return (
     <div>
