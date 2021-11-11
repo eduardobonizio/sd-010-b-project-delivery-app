@@ -7,6 +7,8 @@ export default function FormLogin() {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
 
+  const PassLength = 6;
+
   return (
     <form>
       <label htmlFor="email">
@@ -26,7 +28,8 @@ export default function FormLogin() {
         />
       </label>
       <button
-       disabled={!(/^[^\s@]+@[^\s@]+.[^\s@]+$/).test(email) || pass.length <= 6} 
+        disabled={ !(/^[^\s@]+@[^\s@]+.[^\s@]+$/).test(email)
+          || pass.length <= PassLength }
         type="submit"
         data-testid="common_login__button-login"
       >

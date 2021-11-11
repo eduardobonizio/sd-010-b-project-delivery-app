@@ -4,6 +4,10 @@ export default function FormRegister() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
+
+  const PassLength = 6;
+  const NameLength = 12;
+
   return (
     <form>
       <label htmlFor="name">
@@ -33,6 +37,9 @@ export default function FormRegister() {
       <button
         type="submit"
         data-testid="common_register__button-register"
+        disabled={ !(/^[^\s@]+@[^\s@]+.[^\s@]+$/).test(email)
+          || pass.length <= PassLength
+          || name.length <= NameLength }
       >
         Cadastro
       </button>
