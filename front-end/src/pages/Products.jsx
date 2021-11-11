@@ -1,12 +1,12 @@
 import React from 'react';
 // import './App.css';
 
-const Products = () => {
+function Products() {
   return (
     <div className="App">
       <p>produtos</p>
     </div>
   );
-};
+}
 
 export default Products;
