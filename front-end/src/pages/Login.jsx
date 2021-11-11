@@ -8,11 +8,17 @@ function Login() {
         <h1>Login</h1>
         <label htmlFor="username">
           Username:
-          <input placeholder="Digite seu username" />
+          <input
+            placeholder="Digite seu username"
+            data-testid="common_login__input-email"
+          />
         </label>
         <label htmlFor="password">
           Senha:
-          <input placeholder="Digite sua senha" />
+          <input
+            placeholder="Digite sua senha"
+            data-testid="common_login__input-password"
+          />
         </label>
       </form>
     </div>
