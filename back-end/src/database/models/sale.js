@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Sale = sequelize.define('Sale', {
+  const sale = sequelize.define('sale', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     user_id: {type: DataTypes.INTEGER, foreignKey: true},
     seller_id: {type: DataTypes.INTEGER, foreignKey: true},
@@ -10,10 +10,10 @@ module.exports = (sequelize, DataTypes) => {
     status: DataTypes.STRING(50),
   }, { timestamps: false });
 
-  Sale.associate = (models) => {
-    Sale.belongsTo(models.User, { foreignKey: 'user_id', as: 'user'});
-    Sale.belongsTo(models.User, { foreignKey: 'seller_id', as: 'seller'});
-    Sale.hasMany(models.SaleProduct, { foreignKey: 'product_id', as: 'product'});
+  sale.associate = (models) => {
+    sale.belongsTo(models.user, { foreignKey: 'user_id', as: 'user'});
+    sale.belongsTo(models.user, { foreignKey: 'seller_id', as: 'seller'});
+    sale.hasMany(models.saleProduct, { foreignKey: 'product_id', as: 'product'});
   };
-  return Sale;
+  return sale;
 };
