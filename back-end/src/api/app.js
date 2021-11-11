@@ -1,6 +1,12 @@
 const express = require('express');
 
+const login = require('../routes/loginRouter');
+
 const app = express();
+
+app.use(express.json());
+
+app.use('/login', login);
 
 app.get('/coffee', (_req, res) => res.status(418).end());
 

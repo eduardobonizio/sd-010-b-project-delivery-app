@@ -1,13 +1,16 @@
 import React from 'react';
 import './App.css';
-import { Route } from 'react-router-dom';
-import Products from './pages/products';
+import { Switch, Route } from 'react-router-dom';
+import Products from './common/pages/products';
+import Login from './common/pages/Login';
 
 function App() {
   return (
-    <div className="App">
+    <Switch>
+      <Route exact path="/" component={ Login } />
+      <Route exact path="/login" component={ Login } />
       <Route exact path="/customer/products" component={ Products } />
-    </div>
+    </Switch>
   );
 }
 
