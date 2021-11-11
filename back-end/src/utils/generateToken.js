@@ -5,7 +5,7 @@ const secret = require('fs')
 
 const jwtConfig = { expiresIn: '1d', algorithm: 'HS256' };
 
-module.exports = ({ _id, email, role }) => {
-  const token = jwt.sign({ _id, email, role }, secret, jwtConfig);
+module.exports = ({ id, name, email, role }) => {
+  const token = jwt.sign({ id, name, email, role }, secret, jwtConfig);
   return token;
 };

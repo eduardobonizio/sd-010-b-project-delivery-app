@@ -28,7 +28,7 @@ const createUser = async ({ name, email, password }) => {
 
   const newUser = await User.create({ name, email, password: md5(password), role: 'customer' });
 
-  const token = generateToken(email);
+  const token = generateToken(newUser);
 
   const data = [{ 
       id: newUser.id, 

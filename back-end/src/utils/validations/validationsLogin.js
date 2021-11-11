@@ -37,10 +37,10 @@ const createUser = async (name, email, password) => {
 const login = async (email, password) => {
   validateEmail(email);
   validatePassword(password);
-  
+
   const response = await User.findOne({ where: { email } });
   if (!response) throw err(errorMessage.LOGIN_INCORRECT);
-  
+
   const hashPassword = md5(password);
   const confirm = response.password === hashPassword;
   if (!confirm) throw err(errorMessage.LOGIN_INCORRECT);
