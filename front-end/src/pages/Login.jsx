@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setEmail, setPassword } from '../actions';
 import EmailInput from '../components/EmailInput';
+import LoginButton from '../components/LoginButton';
 import RegisterButton from '../components/RegisterButton';
 
 function Login() {
@@ -47,14 +48,7 @@ function Login() {
           type="password"
         />
       </label>
-      <button
-        data-testid="common_login__button-login"
-        disabled={ disabled }
-        onClick={ dispatchOnSubmit }
-        type="button"
-      >
-        LOGIN
-      </button>
+      <LoginButton dispatchOnSubmit={ dispatchOnSubmit } disabled={ disabled } />
       <RegisterButton />
     </div>
   );
