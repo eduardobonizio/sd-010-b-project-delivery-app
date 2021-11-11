@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     email: { type: DataTypes.STRING, unique: true },
     password: DataTypes.STRING,
     role: DataTypes.STRING,
-  });
+  }, { timestamps: false, tableName: 'users' });
    User.associate = (models) => {
     User.hasMany(models.Sale, {
       foreignkey: 'user_id', as: 'user'
