@@ -23,16 +23,16 @@ function Login() {
   };
 
   const handleChange = ({ target: { name, value } }) => {
+    console.log(name, value);
     setLogin({
       ...login,
       [name]: value,
     });
   };
 
-  const handleClick = () => {
+  const handleClick = async () => {
     // const { email, password } = login;
-    const checkLogin = loginService(login);
-
+    const checkLogin = await loginService(login);
     console.log(checkLogin);// retorna o token
   };
 
