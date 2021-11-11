@@ -7,7 +7,6 @@ function Login() {
   const [password, setPassword] = useState('');
   const [isEmailInvalid, setIsEmailInvalid] = useState(false);
 
-  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const minPasswordLength = 6;
   // const isDisabled = ((() => {
   //   if (password.length >= minPasswordLength && re.test(login)) {
@@ -24,10 +23,11 @@ function Login() {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: login }),
+      body: JSON.stringify({ email: login, password }),
     };
     fetch('http://localhost:3001/login', requestOptions)
       .then((response) => {
+        console.log(response);
         if (response.ok === false) {
           setIsEmailInvalid(true);
         }
@@ -36,6 +36,7 @@ function Login() {
 
   useEffect(() => {
     const isDisabled = ((() => {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (password.length >= minPasswordLength && re.test(login)) {
         setLoginButtonDisabled(false);
       } else {
@@ -43,7 +44,7 @@ function Login() {
       }
     }));
     isDisabled();
-  }, [password, login, re]);
+  }, [password, login]);
 
   return (
     <div>
