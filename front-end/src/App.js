@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import Products from './common/pages/products';
 import Login from './common/pages/Login';
-import Register from './common/Register';
+import Register from './common/pages/Register';
 
 import './App.css';
 
