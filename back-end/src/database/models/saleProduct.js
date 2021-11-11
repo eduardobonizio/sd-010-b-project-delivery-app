@@ -1,22 +1,22 @@
 module.exports = (sequelize, DataTypes) => {
-  const Sales_Products = sequelize.define('Sales_Products', {
+  const SalesProducts = sequelize.define('SalesProducts', {
     sale_id: DataTypes.INTEGER,
     product_id: DataTypes.INTEGER,
     quantity: DataTypes.INTEGER,
   }, {
-    tableName: 'sales_products',
+    tableName: 'salesProducts',
   });
 
-  Sales_Products.associate = function (models) {
-    Sales.hasMany(models.Sales_Products, {
+  SalesProducts.associate = function (models) {
+    models.sales.hasMany(models.salesProducts, {
       foreignKey: 'sale_id',
       as: 'products',
     });
 
-    Products.hasMany(models.Sales_Products, {
+    models.products.hasMany(models.salesProducts, {
       foreignKey: 'product_id',
       as: 'sales',
     });
   };
-  return Sales_Products;
+  return SalesProducts;
 };
