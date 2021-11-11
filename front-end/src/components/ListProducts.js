@@ -12,6 +12,7 @@ export default function ListProducts() {
   return (
     <>
     <h3>Products</h3>
+    
     { products && products.map(({ name, price, urlImage}) => (
       <section>
         <img src={ urlImage } alt={name} />
