@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const error = require('../middleware/error');
-const { userRouter } = require('./routes');
+const { userRouter, productsRouter } = require('./routes');
 
 const app = express();
 
@@ -11,6 +11,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use('/login', userRouter);
+app.use('/products', productsRouter);
 
 app.use(error);
 
