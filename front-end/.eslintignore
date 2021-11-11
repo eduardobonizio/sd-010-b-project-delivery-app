@@ -6,5 +6,4 @@ setupTests.js
 src/index.js
 build/*
 jest.config.js
-*components
 *style.js
