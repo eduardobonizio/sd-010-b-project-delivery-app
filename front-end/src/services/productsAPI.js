@@ -4,8 +4,8 @@ const fetchProducts = () => (
   fetch(URL_PRODUCTS, {
     method: 'GET',
     headers: {
-      Accept: APPLICATION_JSON,
-      'Content-Type': APPLICATION_JSON,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
   })
     .then((response) => response.json())
