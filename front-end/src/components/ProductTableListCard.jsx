@@ -30,18 +30,14 @@ const ProductTableListCard = (
 };
 
 ProductTableListCard.defaultProps = {
-  index: 1,
-  description: 'Descrição',
-  quantity: 1,
-  pricePerUnit: 1,
   removeBtn: true,
 };
 
 ProductTableListCard.propTypes = {
-  index: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  description: PropTypes.string,
-  quantity: PropTypes.number,
-  pricePerUnit: PropTypes.number,
+  index: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  description: PropTypes.string.isRequired,
+  quantity: PropTypes.number.isRequired,
+  pricePerUnit: PropTypes.number.isRequired,
   removeBtn: PropTypes.bool,
 };
 

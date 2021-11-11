@@ -15,18 +15,11 @@ const UserTableListCard = (
   </Grid>
 );
 
-UserTableListCard.defaultProps = {
-  index: 1,
-  username: '<username>',
-  userEmail: '<userEmail>',
-  userRole: '<userRole>',
-};
-
 UserTableListCard.propTypes = {
-  index: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  username: PropTypes.string,
-  userEmail: PropTypes.string,
-  userRole: PropTypes.string,
+  index: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  username: PropTypes.string.isRequired,
+  userEmail: PropTypes.string.isRequired,
+  userRole: PropTypes.string.isRequired,
 };
 
 export default UserTableListCard;

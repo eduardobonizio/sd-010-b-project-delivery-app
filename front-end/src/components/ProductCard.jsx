@@ -41,16 +41,10 @@ function ProductCard({ value, description, img }) {
   );
 }
 
-ProductCard.defaultProps = {
-  value: 0,
-  description: 'Descrição',
-  img: 'https://i.pinimg.com/200x150/fa/46/03/fa460302f7f057a12d1efc992e225848.jpg',
-};
-
 ProductCard.propTypes = {
-  value: PropTypes.number,
-  description: PropTypes.string,
-  img: PropTypes.string,
+  value: PropTypes.number.isRequired,
+  description: PropTypes.string.isRequired,
+  img: PropTypes.string.isRequired,
 };
 
 export default ProductCard;

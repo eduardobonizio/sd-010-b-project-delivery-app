@@ -46,14 +46,9 @@ function NavBar({ username, user }) {
   );
 }
 
-NavBar.defaultProps = {
-  username: '<Username>',
-  user: 'customer',
-};
-
 NavBar.propTypes = {
-  username: PropTypes.string,
-  user: PropTypes.string,
+  username: PropTypes.string.isRequired,
+  user: PropTypes.string.isRequired,
 };
 
 export default NavBar;

@@ -51,18 +51,14 @@ function StatusProductCard({ orderNum, status, orderDate, price, address }) {
 }
 
 StatusProductCard.defaultProps = {
-  orderNum: 1,
-  status: 'Pendente',
-  orderDate: '11/11/2021',
-  price: 0,
   address: null,
 };
 
 StatusProductCard.propTypes = {
-  orderNum: PropTypes.number,
-  status: PropTypes.string,
-  orderDate: PropTypes.string,
-  price: PropTypes.number,
+  orderNum: PropTypes.number.isRequired,
+  status: PropTypes.string.isRequired,
+  orderDate: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
   address: PropTypes.string,
 };
 
