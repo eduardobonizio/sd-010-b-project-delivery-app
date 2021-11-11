@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import Provider from './context/provider';
 import Login from './pages/login';
 import Register from './pages/register';
@@ -17,7 +17,10 @@ function App() {
     <main>
       <Provider>
         <BrowserRouter>
-          <Route exact path="/" component={ Login } />
+          {/* <Route exact path="/" component={ Login } /> */}
+          <Route exact path="/">
+            <Redirect to="/login" />
+          </Route>
           <Route exact path="/login" component={ Login } />
           <Route exact path="/register" component={ Register } />
           <Route exact path="/customer/products" component={ Products } />
