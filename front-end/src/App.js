@@ -4,7 +4,7 @@ import { Route, Switch, Redirect } from 'react-router';
 import Provider from './provider/Provider';
 
 import Login from './pages/login';
-import Register from './pages/Register';
+import Register from './pages/register';
 
 import './App.css';
 
