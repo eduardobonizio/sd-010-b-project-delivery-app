@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setEmail, setPassword } from '../actions';
+import LoginButton from '../components/loginButton';
 
 function Login() {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ function Login() {
   const dispatchOnSubmit = () => {
     dispatch(setEmail(email));
     dispatch(setPassword(password));
+
     const fail = true;
     if (fail) return setHideErrorMessage(!hideErrorMessage);
     return navigate('/customer/products');
@@ -29,19 +31,10 @@ function Login() {
     <div className="login">
       <p>LOGO</p>
       <p>NOME DO APP</p>
-      <span hidden={ hideErrorMessage }>
+      <span data-testid="common_login__element-invalid-email" hidden={ hideErrorMessage }>
         Usuário/Senha inválidos
       </span>
-      <label htmlFor="email">
-        Login
-        <input
-          name="email"
-          id="email"
-          data-testid="common_login__input-email"
-          onChange={ (e) => setStateEmail(e.target.value) }
-          type="text"
-        />
-      </label>
+      <LoginButton setStateEmail={ setStateEmail } />
       <label htmlFor="password">
         Senha
         <input
