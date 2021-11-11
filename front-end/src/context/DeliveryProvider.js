@@ -15,10 +15,10 @@ const DeliveryProvider = ({ children }) => {
     return true;
   };
 
-  const validarEmail = (email) => {
+  const validarEmail = (e) => {
     const emailTester = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/i;
 
-    if (!emailTester.test(email)) return false;
+    if (!emailTester.test(e)) return false;
 
     return true;
   };
