@@ -29,7 +29,10 @@ function ProductCard({ value, description, img }) {
           spacing={ 0 }
         >
           <ButtonUnstyled onClick={ () => setQuantity(quantity - 1) }>-</ButtonUnstyled>
-          <input style={ { maxWidth: '15px', minWidth: '15px' } } value={ quantity } />
+          <input
+            style={ { maxWidth: '25px', minWidth: '25px', textAlign: 'center' } }
+            value={ quantity }
+          />
           <ButtonUnstyled onClick={ () => setQuantity(quantity + 1) }>+</ButtonUnstyled>
         </Stack>
       </Stack>
