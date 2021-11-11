@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-// import { register } from '../services/api';
-// import { createStorage } from '../utils/localStorage';
-
-
+import { register } from '../services/api';
+import { createStorage } from '../utils/localStorage';
 
 export default function FormRegister() {
   const history = useHistory();
@@ -16,9 +14,11 @@ export default function FormRegister() {
 
   async function submit(e) {
     e.preventDefault();
-    // const user =  await register({ email, password: pass }).then((data) => data);
-    // console.log(user)
-    // createStorage('user', user);
+    const user = await register({ name, email, password: pass });
+    if (!user.data) {
+      return user;
+    }
+    createStorage('user', user.data[0]);
     history.push('/customer/products');
   }
 
