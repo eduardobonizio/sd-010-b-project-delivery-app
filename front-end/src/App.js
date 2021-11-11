@@ -14,7 +14,6 @@ function App() {
       <CustomRoute path="/login" component={ Login } navbar={ <NavBar /> } />
       <Redirect from="/" to="/login" />
     </Switch>
-
   );
 }
 
