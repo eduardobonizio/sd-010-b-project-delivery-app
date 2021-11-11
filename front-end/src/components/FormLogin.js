@@ -36,7 +36,7 @@ export default function FormLogin() {
         Login
       </button>
       <button type="button" data-testid="common_login__button-register">
-        <Link to="/register" >
+        <Link to="/register">
           Ainda não tenho conta
         </Link>
       </button>
