@@ -1,18 +1,32 @@
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router';
 
 const regex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
 const MIN_NAME = 12;
 const MIN_PASSWORD = 6;
 
 function Register() {
+  const history = useHistory();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [disableBtn, setDisableBtn] = useState(true);
-  const [showMessage] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
+  const [showMessageError, setShowMessageError] = useState('Erro');
 
-  const sendNewUser = (e) => {
+  const sendNewUser = async (e) => {
     e.preventDefault();
+    const path = 'http://localhost:3001/register';
+
+    try {
+      const { data } = await axios.post(path, { name, email, password });
+      console.log(data);
+      history.push('/customer/products');
+    } catch (err) {
+      setShowMessageError('Email ou usuário já existente!');
+      setShowMessage(true);
+    }
   };
 
   useEffect(() => {
@@ -74,7 +88,7 @@ function Register() {
           <span
             data-testid="common_register__element-invalid_register"
           >
-            Ivalid
+            { showMessageError }
           </span>
         )
       }
