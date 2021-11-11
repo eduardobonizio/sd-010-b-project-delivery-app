@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 // import { Box } from '@mui/material';
 // import PropTypes from 'prop-types';
@@ -37,6 +36,7 @@ function Login() {
 
   useEffect(() => {
     isDisabled();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [password, login]);
 
   return (
