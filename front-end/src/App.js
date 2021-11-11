@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router';
 import { Switch, Route } from 'react-router-dom';
 
-import Products from './common/pages/products';
+import Products from './common/pages/products/Products';
 import Login from './common/pages/Login';
 
 import './App.css';
