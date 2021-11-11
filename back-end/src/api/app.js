@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 // rotas 
 const routeLogin = require('./routes/login');
 const routeProducts = require('./routes/products');
@@ -12,6 +13,7 @@ app.use(cors());
 
 app.use('/login', routeLogin);
 app.use('/products', routeProducts);
+app.use('/images', express.static(path.join(__dirname, '', 'Images')));
 
 app.get('/coffee', (_req, res) => res.status(418).end());
 
