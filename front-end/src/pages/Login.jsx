@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { setEmail, setPassword } from '../actions';
 import EmailInput from '../components/EmailInput';
 import LoginButton from '../components/LoginButton';
+import PasswordInput from '../components/PasswordInput';
 import RegisterButton from '../components/RegisterButton';
 
 function Login() {
@@ -37,17 +38,10 @@ function Login() {
         Usuário/Senha inválidos
       </span>
       <EmailInput setStateEmail={ setStateEmail } />
-      <label htmlFor="password">
-        Senha
-        <input
-          data-testid="common_login__input-email"
-          onChange={ (e) => {
-            setStatePassword(e.target.value);
-            changeDisabled();
-          } }
-          type="password"
-        />
-      </label>
+      <PasswordInput
+        setStatePassword={ setStatePassword }
+        changeDisabled={ changeDisabled }
+      />
       <LoginButton dispatchOnSubmit={ dispatchOnSubmit } disabled={ disabled } />
       <RegisterButton />
     </div>
