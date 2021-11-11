@@ -1,28 +1,37 @@
  // model para fazer o login
+ const fs = require('fs');
  const md5 = require('md5');
+ const jwt = require('jsonwebtoken');
+ const path = require('path');
+ const { User } = require('../database/models');
 
- const secret = 'secreto';
+ const folderName = path.join(__dirname, '..', '..', 'jwt.evaluation.key');
+ const secret = fs.readFileSync(folderName, 'utf8', (_err, data) => data);
+ console.log(secret);
+
  const jwtConfig = {
   expiresIn: '30d',
   algorithm: 'HS256',
 };
 
-const loginController = (req, res) => {
-  const { email, password } = req.body;
-  const criptPassword = md5(password)
+const loginController = async (req, res) => {
+  const { user, password } = req.body;
+  const pEncripted = md5(password);
+  if (pEncripted !== user.password) {
+    res.status(401).json({ message: '"email" or "password" is incorrect' });
+  }
+  delete user.password;
+  delete user.id;
+  const token = jwt.sign({ ...user }, secret(), jwtConfig);
+  res.status(200).json({ ...user, token });
+};
 
-  //fazer if para verificar se o banco achou o usuario e retornar ELE NA CONST dadosPessoa
-  const token = jwt.sign({ dadosPessoa }, secret, jwtConfig);
-  res.status(200).json(ObjetoPessoaUsuaria, token);
+const register = async (req, res) => {
+  const { name, email } = req.body;
+  const password = md5(req.body.password);
+   
+  await User.create({ name, email, password, role: 'customer' });
+  res.status(201).json({ message: 'Created' });
+};
 
-}
-
-const register = (req, res) => {
-  const { name, email, password } = req.body;
-  const criptPassword = md5(password)
-  // chamar model para inserir no db
-  res.status(201).json({ message: 'Created'});
-
-}
-
-module.exports = { loginController, register }
+module.exports = { loginController, register };

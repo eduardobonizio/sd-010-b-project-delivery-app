@@ -1,4 +1,4 @@
-// model que vai procurar o usuario no banco
+const { User } = require('../database/models');
 
 const verifyName = (req, res, next) => {
   const { name } = req.body;
@@ -27,31 +27,27 @@ const verifyPassword = (req, res, next) => {
   next();
 };
 
-// verificaçõesd o /login
-
 const verifyDbUser = async (req, res, next) => {
   const { email } = req.body;
-  const db = await User.findOne({ where: { email } });
-  if (!db) return res.status(404).json({ message: 'Not found' });
+  const { dataValues } = await User.findOne({ where: { email } });
+  if (!dataValues) return res.status(404).json({ message: 'Not found' });
+  req.body.user = dataValues;
   next();
 };
 
 const verifyNameDB = async (req, res, next) => {
   const { name } = req.body;
   const db = await User.findOne({ where: { name } });
-  if (db) return res.status(404).json({ message: '"name" already exists' });
+  if (db) return res.status(401).json({ message: '"name" already exists' });
   next();
-}
+};
 
 const verifyEmailDB = async (req, res, next) => {
   const { email } = req.body;
   const db = await User.findOne({ where: { email } });
-  if (db) return res.status(404).json({ message: '"email" already exists' });
+  if (db) return res.status(401).json({ message: '"email" already exists' });
   next();
-}
-
-// procurar pelo id
-
+};
 
 module.exports = { 
   verifyName, 
@@ -59,5 +55,5 @@ module.exports = {
   verifyPassword, 
   verifyDbUser,
   verifyNameDB,
-  verifyEmailDB
+  verifyEmailDB,
 };

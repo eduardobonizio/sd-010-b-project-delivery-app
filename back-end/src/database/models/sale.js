@@ -7,14 +7,16 @@ const Sale = (sequelize, DataTypes) => {
     deliveryNumber: DataTypes.STRING(50),
     saleDate: DataTypes.DATE,
     status: DataTypes.STRING(50),
+  }, {
+    timestamps: false,
   });
 
   Sale.associate = (models) => {
-    Sale.belogsTo(models.User, { foreignKey: 'id' });
-    Sale.belogsTo(models.Product, { through: 'SalesProducts' });
+    Sale.belongsTo(models.User, { foreignKey: 'id' });
+    Sale.belongsTo(models.Product, { through: 'SalesProducts' });
   };
   
-  return Sale;
+  return Sale; 
 };
 
-module.exports = User;
+module.exports = Sale;

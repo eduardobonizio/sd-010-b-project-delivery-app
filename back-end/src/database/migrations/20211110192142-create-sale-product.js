@@ -24,16 +24,6 @@ module.exports = {
         references: { model: 'Products', key: 'id' },
         field: 'product_id',
       },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        field: 'created_at'
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        field: 'updated_at'
-      }
     });
   },
   down: async (queryInterface, Sequelize) => {

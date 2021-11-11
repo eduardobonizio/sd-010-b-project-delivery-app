@@ -1,10 +1,10 @@
 // criar const model de trazer produtos
+const { Product } = require('../database/models');
 
-const getProducts = (req, res) => {
-
+const getProducts = async (req, res) => {
+  const products = await Product.findAll();
   // colocar model para buscar produtos
+  res.status(200).json(products);
+};
 
-  res.status(200).json(products)
-}
-
-module.exports = { getProducts }
+module.exports = { getProducts };

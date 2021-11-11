@@ -44,16 +44,6 @@ module.exports = {
         references: { model: 'Users', key: 'id' },
         field: 'seller_id',
       },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        field: 'created_at',
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        field: 'updated_at',
-      }
     });
   },
   down: async (queryInterface, Sequelize) => {
