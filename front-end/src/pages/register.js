@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Joi from 'joi';
 import { useValidator } from 'react-joi';
 
 export default function Register() {
   const TWELVE = 12;
   const SIX = 6;
-  const { state, setData, setExplicitField, validate } = useValidator({
+  const { state, setData, validate } = useValidator({
     initialData: {
       name: null,
       email: null,
@@ -25,6 +25,14 @@ export default function Register() {
       password: true,
     },
   });
+
+  const [isDisabled, setIsDisable] = useState(true);
+
+  useEffect(() => {
+    const disabled = state.$all_source_errors.length !== 0;
+    setIsDisable(disabled);
+  }, [state]);
+
   const updateName = (e) => {
     e.persist();
     setData((old) => ({
@@ -34,7 +42,6 @@ export default function Register() {
   };
 
   const updateEmail = (e) => {
-    // react < v17
     e.persist();
 
     setData((old) => ({
@@ -44,7 +51,6 @@ export default function Register() {
   };
 
   const updatePassword = (e) => {
-    // react < v17
     e.persist();
 
     setData((old) => ({
@@ -65,7 +71,6 @@ export default function Register() {
             name="name"
             data-testid="common_register__input-name"
             onChange={ updateName }
-            // onBlur={ () => setExplicitField('name', true) }
           />
         </label>
         <br />
@@ -80,7 +85,6 @@ export default function Register() {
             name="email"
             data-testid="common_register__input-email"
             onChange={ updateEmail }
-            onBlur={ () => setExplicitField('email', true) }
           />
         </label>
         <br />
@@ -94,7 +98,6 @@ export default function Register() {
             name="password"
             data-testid="common_register__input-password"
             onChange={ updatePassword }
-            onBlur={ () => setExplicitField('password', true) }
           />
         </label>
         <br />
@@ -106,7 +109,7 @@ export default function Register() {
         type="submit"
         name="registerButton"
         data-testid="common_register__button-register"
-        disabled={ state.$all_source_errors.length !== 0 }
+        disabled={ isDisabled }
         onClick={ validate }
       >
         CADASTRAR
