@@ -1,21 +1,26 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import Context from '../provider/Context';
+// import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import rockGlass from '../images/rockGlass.svg';
+import { setOnLocalStorage } from '../services/servicesLocalStorage';
+import { loginService } from '../services/servicesLogin';
+import Context from '../provider/Context';
 
 function Login() {
   const history = useHistory();
   const [disableBtn, setDisableBtn] = useState(true);
+  const [hidden, setHidden] = useState(true);
   const [login, setLogin] = useState({
     email: '',
     password: '',
   });
 
+  // Dennis
   const redirect = () => {
     history.push('/register');
   };
 
-  // exemplo funcionando o estado, fique avontade para apagar
+  // Dennis
   const contexto = useContext(Context);
   console.log(contexto);
 
@@ -38,9 +43,16 @@ function Login() {
     });
   };
 
-  const handleClick = () => {
-    const { email } = login;
-    initializeLocalStorage(email);
+  const handleClick = async () => {
+    const checkLogin = await loginService(login);
+    if (checkLogin.message.id) {
+      const { message } = checkLogin;
+      setOnLocalStorage('login', message);
+      history.push('/bebidas');
+      console.log('dentro');
+    }
+    setHidden(false);
+    console.log('fora');// logica para estourar o erro do login
   };
 
   useEffect(() => {
@@ -75,17 +87,15 @@ function Login() {
         />
       </label>
       <div className="loginButton">
-        <Link to="/bebidas">
-          <button
-            className="loginButton"
-            type="button"
-            data-testid="common_login__button-login"
-            disabled={ disableBtn }
-            onClick={ handleClick }
-          >
-            Entrar/Logar
-          </button>
-        </Link>
+        <button
+          className="loginButton"
+          type="button"
+          data-testid="common_login__button-login"
+          disabled={ disableBtn }
+          onClick={ handleClick }
+        >
+          Entrar/Logar
+        </button>
       </div>
       <div>
         <button
@@ -98,7 +108,7 @@ function Login() {
       </div>
       <h2
         data-testid="common_login__element-invalid-email"
-        hidden
+        hidden={ hidden }
       >
         Email ou Senha invalidos
       </h2>
