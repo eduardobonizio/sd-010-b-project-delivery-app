@@ -37,7 +37,7 @@ describe('Tests for Customer Checkout', () => {
   ]
 
   const getAllSellersMock = jest
-    .spyOn(api, 'getAllSellers')
+    .spyOn(APICalls, 'getAllSellers')
     .mockResolvedValue(SELLERS_ARRAY);
       
   beforeEach(() => {
@@ -146,7 +146,7 @@ describe('Tests for Customer Checkout', () => {
         
         expect(endOrderFormTitle.type).toBe('h1');
         expect(endOrderFormTitle).toBeInTheDocument();
-      });should 
+      });
 
       it('should have \"table header\" content', () => {
         const { getByText } = renderWithRouter(<CustomerCheckout />);
