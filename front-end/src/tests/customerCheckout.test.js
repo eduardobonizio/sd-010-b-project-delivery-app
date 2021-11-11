@@ -56,10 +56,9 @@ describe('Tests for Customer Checkout', () => {
 
   describe('path', () => {
     it('should be at customer/checkout', () => {
-      const { history } = renderWithRouter(<CustomerCheckout />);
-      const { location: { pathname } } = history;
-
-      expect(pathname).toBe('/customer/checkout');
+      const { history, getByTestId } = renderWithRouter(<App />);
+      history.push('/customer/checkout');
+      expect(getByTestId('customer-checkout-page')).toBeInTheDocument();
     });
   });
 
