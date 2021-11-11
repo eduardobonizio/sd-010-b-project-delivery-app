@@ -14,7 +14,6 @@ const validateJWT = async (req, res, next) => {
     const decoded = jwt.verify(token, SECRET);
     const { id, role } = decoded;
 
-    // verificar se o id é encontrado no bd
     const findUserById = await User.findOne({ where: { id } });
     if(!findUserById) return res.status(401).json({ message: 'User not found' });
     
