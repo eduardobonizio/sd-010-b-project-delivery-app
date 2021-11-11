@@ -17,7 +17,6 @@ function App() {
     <main>
       <Provider>
         <BrowserRouter>
-          {/* <Route exact path="/" component={ Login } /> */}
           <Route exact path="/">
             <Redirect to="/login" />
           </Route>
