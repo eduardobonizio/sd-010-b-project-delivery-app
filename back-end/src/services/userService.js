@@ -14,6 +14,8 @@ const createUser = async (body) => {
   const newUser = await User.create({ name, email, passwordCripto });
   const { id } = newUser;
   const token = createJWT({ id });
+  // retornar as informações completas do usuário para armazenar no localStorage
+  // name, email, role, token. (detalhes no requisito 13)
   return { status: 201, message: token }
 };
 
