@@ -1,4 +1,5 @@
 'use strict';
+
 const Product = (sequelize, DataTypes) => {
   const product = sequelize.define('Product', {
     name: DataTypes.STRING,
@@ -6,12 +7,8 @@ const Product = (sequelize, DataTypes) => {
     url_image: DataTypes.STRING,
   },
   { timestamps: false });
-  product.associate = (models) => {
-    product.belongsTo(models.Sales), {
-      foreignKey: 'seller_id',
-      as: 'sale'
-    }
-  }
+
   return product;
 };
+
 module.exports = Product;
