@@ -1,11 +1,14 @@
 const { User } = require('../../database/models');
+const { userService } = require('../services/userService');
 
 const add = async (req, res) => {
-  const { name, email, password, role } = req.body;
+  // const { name, email, password, role } = req.body;
 
-  await User.create({ name, email, password, role });
+  const result = await userService(req.body, res);
+  
+  if (!result) return res.status(400).json(result);
 
-  return res.status(200).json('Rota User');
+  return res.status(200).json(result);
 };
 
 const findAll = async (req, res) => {
