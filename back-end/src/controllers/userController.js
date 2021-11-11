@@ -14,7 +14,7 @@ const login = async (req, res) => {
 
 const create = async (req, res) => {
   try {
-    const token = await userService.createUser(req.body);
+    const token = await userService.create(req.body);
     if (token.err) {
       return res.status(token.err.status).json({ message: token.err.message });
     }

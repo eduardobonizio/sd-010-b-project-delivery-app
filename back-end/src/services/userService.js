@@ -1,9 +1,9 @@
-const { User } = require('../database/models');
+const { user } = require('../database/models');
 
 const { generateToken, encode } = require('../middlewares/middlewares');
 
 const findUserName = async (name) => {
-  const nameExists = await User.findOne({ where: { name } });
+  const nameExists = await user.findOne({ where: { name } });
   if (nameExists !== null) {
     return { err: {
       status: 409,
@@ -14,20 +14,20 @@ const findUserName = async (name) => {
 };
 
 const findEmail = async (email) => {
-  const emailExists = await User.findOne({ where: { email } });
+  const emailExists = await user.findOne({ where: { email } });
   if (emailExists !== null) {
     return { err: {
       status: 409,
-      message: 'User already registered',
+      message: 'Email already registered',
     } };
   }
   return false;
 };
 
-const login = async (email, password) => {
+const login = async ({email, password}) => {
   const encodePassword = encode(password);
-
-  const userExistes = await User.findOne({ where: { email, encodePassword } });
+  
+  const userExistes = await user.findOne({ where: { email, encodePassword } });
    if (userExistes === null) {
     return { err: {
       status: 404,
@@ -38,18 +38,18 @@ const login = async (email, password) => {
   return token;
 };
 
-const create = async ({ name, email, password }) => {
+const create = async ({ name, email, password: userPassword }) => {
   const emailExists = await findEmail(email);
   if (emailExists.err) return emailExists;
 
   const nameExists = await findUserName(name);
   if (nameExists.err) return nameExists;
   
-  const encodePassword = encode(password);
+  const password = encode(userPassword);
   const role = 'customer';
-  const user = await User.create({ name, email, encodePassword, role });
-
-  const token = generateToken(user);
+  const { id } = await user.create({ name, email, password, role });
+  
+  const token = generateToken({ id, name, email, role });
   return token;
 };
 

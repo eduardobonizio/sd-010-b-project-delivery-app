@@ -3,6 +3,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const userRouter = require('../routes/user');
+const loginRouter = require('../routes/login');
 
 const app = express();
 
@@ -15,12 +16,12 @@ const app = express();
 //   },
 // });
 
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(cors());
 
 /** SOURCE https://www.ti-enxame.com/pt/javascript/como-voltar-1-nivel-de-pasta-com-dirname/1052924164/ */
 app.use('/images', express.static(path.join(__dirname, '../../../', './back-end/public')));
-app.use('/login', userRouter);
+app.use('/login', loginRouter);
 app.use('/register', userRouter);
 
 app.get('/coffee', (_req, res) => res.status(418).end());
