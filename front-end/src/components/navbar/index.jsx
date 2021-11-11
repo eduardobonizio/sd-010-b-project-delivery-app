@@ -25,7 +25,7 @@ function NavBar() {
           </ContainerTextProducts>
         </Link>
 
-        <Link to="/" className="link__navbar">
+        <Link to="/customer/orders" className="link__navbar">
           <ContainerPedidos data-testid="customer_products__element-navbar-link-orders">
             <TextNavBar>
               PEDIDOS
