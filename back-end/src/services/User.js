@@ -6,9 +6,7 @@ const validations = require('../utils/validations/validationsLogin');
 const generateToken = require('../utils/generateToken');
 
 const login = async ({ email, password }) => {
-  const hashPassword = md5(password);
-  
-  await validations.login(email, hashPassword);
+  await validations.login(email, password);
 
   const isAuthenticated = await User.findOne({ where: { email } });
 
@@ -40,7 +38,7 @@ const createUser = async ({ name, email, password }) => {
       token, 
     }];
 
-  return ({ status: httpStatus.OK, data });
+  return ({ status: httpStatus.CREATED, data });
 };
 
 module.exports = { login, createUser };

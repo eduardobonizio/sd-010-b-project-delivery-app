@@ -8,7 +8,7 @@ module.exports = {
 
   emailRegistred: {
     status: httpStatus.CONFLICT,
-    message: 'Email already registered',
+    message: 'Email or name already registered',
   },
 
   loginNotFilled: {

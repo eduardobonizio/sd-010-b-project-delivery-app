@@ -1,5 +1,7 @@
-const { User } = require('../../database/models');
+const md5 = require('md5');
+const { Op } = require('sequelize');
 
+const { User } = require('../../database/models');
 const errorMessage = require('../errosCode/errosMessage');
 
 const err = (statusCode) => ({ statusCode });
@@ -23,22 +25,25 @@ const validateName = (name) => {
   }
 };
 
-const login = async (email, password) => {
-  validateEmail(email);
-  validatePassword(password);
-  const response = await User.findOne({ where: { email } });
-  if (!response) throw err(errorMessage.LOGIN_INCORRECT);
-
-  const confirm = response.password === password;
-  if (!confirm) throw err(errorMessage.LOGIN_INCORRECT);
-};
-
 const createUser = async (name, email, password) => {
   validateName(name);
   validateEmail(email);
   validatePassword(password);
-  const response = await User.findOne({ where: { email } });
+  
+  const response = await User.findOne({ where: { [Op.or]: [{ email }, { name }] } });
   if (response) throw err(errorMessage.EMAIL_REGISTRED);
+};
+
+const login = async (email, password) => {
+  validateEmail(email);
+  validatePassword(password);
+  
+  const response = await User.findOne({ where: { email } });
+  if (!response) throw err(errorMessage.LOGIN_INCORRECT);
+  
+  const hashPassword = md5(password);
+  const confirm = response.password === hashPassword;
+  if (!confirm) throw err(errorMessage.LOGIN_INCORRECT);
 };
 
 module.exports = {
