@@ -1,5 +1,6 @@
 const md5 = require('md5');
 const { user } = require('../../database/models');
+const generateToken = require('../../utils/generateToken');
 
 const cryptoPassword = (password) => {
   const regexExp = /^[a-f0-9]{32}$/gi;
@@ -15,14 +16,25 @@ const existUser = async ({ email, password }) => {
   if (userFound === null) {
     return { message: 'Usuário não encontrado' };
   }
-  return userFound;
+  const { name, role } = userFound;
+
+  const token = generateToken({ name, role, email });
+
+  return { name, email, role, token };
 };
 
 const createUser = async ({ name, email, password }) => {
-  const newUser = await user.create({
+  await user.create({
     name, email, password: cryptoPassword(password), role: 'user',
   });
-  return newUser;
+  const token = generateToken({ name, role: 'user', email });
+
+  return { name, email, role: 'user', token };
 };
 
-module.exports = { existUser, createUser };
+const findUser = async ({ email }) => {
+  const userFounded = await user.findOne({ where: email });
+  if (!userFounded) return false;
+  return true;
+};
+module.exports = { existUser, createUser, findUser };

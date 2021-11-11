@@ -1,11 +1,11 @@
-const URL = 'http://localhost:3001/login';
+const applicationJson = 'application/json';
 
-const fetchAuthUser = (email, password) => (
-  fetch(URL, {
+export default function handleFetch(email, password, url) {
+  fetch(url, {
     method: 'POST',
     headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
+      Accept: applicationJson,
+      'Content-Type': applicationJson,
     },
     body: JSON.stringify({
       email,
@@ -14,7 +14,5 @@ const fetchAuthUser = (email, password) => (
   })
     .then((response) => response.json())
     .then((data) => data)
-    .catch((error) => error)
-);
-
-export default fetchAuthUser;
+    .catch((error) => error);
+}

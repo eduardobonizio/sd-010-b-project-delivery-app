@@ -65,9 +65,9 @@ module.exports = {
     },
     {
       id: 11,
-      name: 'Skol Beats Senses 269ml',
-      price: 3.57,
-      url_image: 'http://localhost:3001/images/skol_beats_senses_269ml.jpg',
+      name: 'Stella Artois 275ml',
+      price: 3.49,
+      url_image: 'http://localhost:3001/images/stella_artois_275ml.jpg',
     },
     ], { timestamps: false });
   },

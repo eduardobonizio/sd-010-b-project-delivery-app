@@ -1,35 +1,41 @@
 import React, { useState } from 'react';
-import fetchAuthUser from '../services/userAPI';
+import { useHistory } from 'react-router-dom';
+import handleFetch from '../services/userAPI';
+
+const URLREGISTER = 'http://localhost:3001/register';
 
 export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   // const [isValidEntry, setIsValidEntry] = useState(true);
+  const history = useHistory();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const res = await handleFetch(email, password, URLREGISTER);
+    localStorage.setItem('user', JSON.stringify(res));
+    console.log(res);
+    if (res.message) {
+      setIsValidEntry(false);
+    } else {
+      history.push('/customer/products');
+    }
+  };
 
   const buttonActivation = () => {
     // fonte: https://www.w3resource.com/javascript/form/email-validation.php
     const EMAILREGEX = /\S+@\S+\.\S+/;
 
     const PASSWORDMIN = 6;
-    if (email.match(EMAILREGEX) && password.length >= PASSWORDMIN) {
+    if (email.match(EMAILREGEX) && password.length > PASSWORDMIN) {
       return false;
     }
     return true;
   };
 
-  const auth = async (e) => {
-    e.preventDefault();
-    const res = await fetchAuthUser(email, password);
-
-    console.log(res);
-    if (res.message) {
-      setIsValidEntry(false);
-    }
-  };
-
   return (
     <div>
-      <form onSubmit={ auth }>
+      <form onSubmit={ handleSubmit }>
         Nome
         <input
           type="text"

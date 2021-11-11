@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-import fetchAuthUser from '../services/userAPI';
+import handleFetch from '../services/userAPI';
+
+const URLLOGIN = 'http://localhost:3001/login';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -21,9 +23,9 @@ export default function Login() {
 
   const auth = async (e) => {
     e.preventDefault();
-    const res = await fetchAuthUser(email, password);
+    const res = await handleFetch(email, password, URLLOGIN);
 
-    console.log(res);
+    localStorage.setItem('user', JSON.stringify(res));
     if (res.message) {
       setIsValidEntry(false);
     } else {
