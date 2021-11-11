@@ -37,9 +37,6 @@ function CardsProducts() {
       <ContainerCard>
         <ContainerQuantity />
       </ContainerCard>
-      <ContainerCard>
-        <ContainerQuantity />
-      </ContainerCard>
     </ContainerListCard>
   );
 }
