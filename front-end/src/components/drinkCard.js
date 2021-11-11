@@ -7,7 +7,7 @@ function DrinkCard({ product }) {
   return (
     <div>
       <span data-testid={ `customer_products__element-card-price-${product.id}` }>
-        {`R$ ${product.price}`}
+        {product.price.replace('.', ',')}
       </span>
       <img
         src={ product.url_image }
