@@ -1,7 +1,19 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+
+const error = require('../middleware/error');
+const { userRouter, productsRouter } = require('./routes');
 
 const app = express();
+app.use(express.json());
 
-app.get('/coffee', (_req, res) => res.status(418).end());
+app.use(cors());
+app.use(bodyParser.json());
+
+app.use('/users', userRouter);
+app.use('/products', productsRouter);
+
+app.use(error);
 
 module.exports = app;
