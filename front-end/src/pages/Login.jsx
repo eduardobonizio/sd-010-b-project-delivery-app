@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setEmail, setPassword } from '../actions';
-import LoginButton from '../components/loginButton';
+import LoginButton from '../components/LoginButton';
 
 function Login() {
   const dispatch = useDispatch();
