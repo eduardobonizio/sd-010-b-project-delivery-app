@@ -1,1 +1,21 @@
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
+
+.custom-card {
+  border: solid 1px #000;
+  border-radius: 4px;
+  padding-top: 1px;
+  width: 220px;
+  span {
+    background-color:#F2FFFC;
+    border-radius: 4px;
+    font-size: 18px; 
+    font-weight: bold;
+    padding: 4px;
+  }
+  &.prod-bg {
+    background-position: 'center';
+    background-size: 'cover';
+    width: 30%;
+    height: 150px;
+  }
+  }

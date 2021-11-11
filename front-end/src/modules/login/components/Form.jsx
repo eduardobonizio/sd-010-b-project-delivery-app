@@ -14,7 +14,12 @@ function Form() {
   useEffect(() => {
     const isEmailChecked = validateEmail(email);
     const isPasswordChecked = validatePassword(password);
-    if (isEmailChecked && isPasswordChecked) setIsValidade(false);
+
+    if (isEmailChecked && isPasswordChecked) {
+      setIsValidade(false);
+    } else {
+      setIsValidade(true);
+    }
   }, [email, password]);
 
   async function handleLogin(event) {
@@ -40,7 +45,7 @@ function Form() {
 
     localStorage.setItem('user', JSON.stringify(dataLocalStorage));
 
-    // history.push('/client/products');
+    history.push('/customer/products');
   }
 
   function handleRegister() {

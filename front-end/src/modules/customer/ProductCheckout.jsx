@@ -1,15 +1,14 @@
 import React from 'react';
-import Cards from '../../components/Cards';
-
 import Navbar from '../../components/Navbar';
+import ItemRow from '../../components/ItemRow';
 
-function ProductList() {
+function ProductCheckout() {
   return (
     <div>
       <Navbar />
-      <Cards />
+      <ItemRow />
     </div>
   );
 }
 
-export default ProductList;
+export default ProductCheckout;
