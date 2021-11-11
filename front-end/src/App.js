@@ -1,15 +1,35 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Login from './modules/login/Login';
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Login from './modules/login/Login';
+import Signup from './modules/signup/Signup';
+import ProductList from './modules/customer/ProductList';
 
 function App() {
-  const styles = { height: '500px' };
   return (
-    <div className="container-fluid" style="height: 100px">
+    <div className="container-fluid">
       <Switch>
-        <Route exact path="/" render={ (props) => <Login { ...props } /> } />
+        <Route
+          exact
+          path="/products/list"
+          render={ (props) => <ProductList { ...props } /> }
+        />
+        <Route
+          exact
+          path="/register"
+          render={ (props) => <Signup { ...props } /> }
+        />
+        <Route
+          exact
+          path="/login"
+          render={ (props) => <Login { ...props } /> }
+        />
+        <Route
+          exact
+          path="/"
+          render={ (props) => <Login { ...props } /> }
+        />
       </Switch>
     </div>
   );
