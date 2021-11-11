@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setEmail, setPassword } from '../actions';
 import LoginButton from '../components/LoginButton';
+import RegisterButton from '../components/RegisterButton';
 
 function Login() {
   const dispatch = useDispatch();
@@ -54,13 +55,7 @@ function Login() {
       >
         LOGIN
       </button>
-      <button
-        onClick={ () => navigate('/register') }
-        data-testid="common_login__button-register"
-        type="button"
-      >
-        Ainda não tenho conta
-      </button>
+      <RegisterButton />
     </div>
   );
 }
