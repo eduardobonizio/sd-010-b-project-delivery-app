@@ -31,15 +31,7 @@ label {
   padding-top: 15px;
 }
 
-.email {
-  border-radius: 10px;
-  box-sizing: border-box;
-  margin: 8px 0;
-  padding: 12px 20px;
-  width: 100%;
-}
-
-.password {
+label input {
   border-radius: 10px;
   box-sizing: border-box;
   margin: 8px 0;
