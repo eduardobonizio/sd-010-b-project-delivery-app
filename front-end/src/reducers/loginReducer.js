@@ -1,13 +1,11 @@
-const INITIAL_STATE = {
-  state: '',
-};
+const INITIAL_STATE = {};
 
 function loginReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
   case 'SET_EMAIL':
-    return [...state, action.state];
+    return { ...state, email: action.payload };
   case 'SET_PASSWORD':
-    return [...state, action.state];
+    return { ...state, password: action.payload };
   default:
     return state;
   }

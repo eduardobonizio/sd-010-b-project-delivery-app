@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setEmail, setPassword } from '../actions';
 
 function Login() {
+  const dispatch = useDispatch();
   const [email, setStateEmail] = useState();
   const [password, setStatePassword] = useState();
   const [disabled, setDisable] = useState(true);
@@ -14,8 +15,8 @@ function Login() {
   };
 
   const dispatchOnSubmit = () => {
-    dispatchEmail(email);
-    dispatchPassword(password);
+    dispatch(setEmail(email));
+    dispatch(setPassword(password));
   };
 
   return (
@@ -40,9 +41,4 @@ function Login() {
   );
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  email: dispatch(setEmail(email)),
-  password: dispatch(setPassword(password)),
-});
-
-export default connect(null, mapDispatchToProps)(Login);
+export default Login;
