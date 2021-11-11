@@ -7,11 +7,11 @@ function Login() {
       <form>
         <h1>Login</h1>
         <label htmlFor="username">
-          Username
+          Username:
           <input placeholder="Digite seu username" />
         </label>
         <label htmlFor="password">
-          Senha
+          Senha:
           <input placeholder="Digite sua senha" />
         </label>
       </form>
