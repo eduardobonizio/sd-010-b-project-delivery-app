@@ -1,22 +1,21 @@
 const { Sale } = require('../database/models');
-const decodeToken = require('../utils/decodeToken');
 
-const createSale = async (body, token) => {
+const createSale = async (body, user_id) => {
   // DÚVIDA userId e sellerID.
 
-  // recebe o token total_price address number status(só quem pode mudar é o vendedor ou admin)
-  const { sellerId, totalPrice, deliveryAddress, deliveryNumber, status } = body;
-  
-  // decode do token para pegar o userId
-  const { id: userId } = decodeToken(token);
+  // recebe o token total_price address number status( 'pendente', só quem pode mudar é o vendedor ou admin)
+  const { seller_id, total_price, delivery_address, delivery_number, status } = body;
+  const dateNow = new Date();
   
   // criar a venda
-  const payloadSale = { userId, sellerId, totalPrice, deliveryAddress, deliveryNumber, status }
-  const newSale = Sale.create(payloadSale);
-  
+  const payloadSale = { 
+    user_id, seller_id, total_price, delivery_address, delivery_number, sale_date: dateNow, status 
+  }
+  const { dataValues } = await Sale.create(payloadSale);
+
   // retorna data e id da venda
-  const { id, saleDate } = newSale;
-  return { status: 201, data: { id, saleDate }}
+  const { id, sale_date } = dataValues;
+  return { status: 201, data: { id, sale_date }}
 };
 
 module.exports = {

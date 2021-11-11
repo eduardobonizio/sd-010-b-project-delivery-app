@@ -1,25 +1,30 @@
-const rescue = require('express-rescue');
 const { User } = require('../database/models');
-const CustomError = require('../utils/CustomerError');
-const decodeToken = require('../utils/decodeToken');
+const jwt = require('jsonwebtoken');
 
-const validateJWT = rescue(async (req, _res) => {
+const SECRET = process.env.JWT_SECRET  || 'minhaSenha';
+
+const validateJWT = async (req, res, next) => {
   const token = req.headers.authorization;
 
   if (!token) {
-    throw new CustomError('Token not found', 401);
+    return res.status(401).json({ message: 'Token not found' });
   }
 
-  // dentro do token vem id e role
-  const decoded = decodeToken(token);
-  const { id, role } = decoded;
-  console.log(decoded);
-  
-  // verificar se o id é encontrado no bd
-  const findUserById = await User.findOne({ where: { id } });
-  if(!findUserById) throw new CustomError('Expired or invalid token', 401)
-  
-  req.user = role;
-});
+  try {
+    const decoded = jwt.verify(token, SECRET);
+    const { id, role } = decoded;
+
+    // verificar se o id é encontrado no bd
+    const findUserById = await User.findOne({ where: { id } });
+    if(!findUserById) return res.status(401).json({ message: 'User not found' });
+    
+    req.user = { id, role };
+    next();
+  } catch (err) {
+    console.log(err);
+    return res.status(401).json({ message: 'Expired or invalid token' });
+  }
+};
+
 
 module.exports = validateJWT;

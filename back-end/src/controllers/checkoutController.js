@@ -2,10 +2,11 @@ const checkoutService = require('../services/checkoutService');
 const rescue = require('express-rescue');
 
 const checkoutSale = rescue(async (req, res) => {
-  const token = req.headers.authorization;
+  const { id: userId } = req.user;
   const { body } = req;
   
-  const sale = await checkoutService.createSale(body, token);
+  const sale = await checkoutService.createSale(body, userId);
+  
   return res.status(201).json(sale.data);
 });
 

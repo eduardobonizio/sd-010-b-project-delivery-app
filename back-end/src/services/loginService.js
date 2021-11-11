@@ -1,3 +1,4 @@
+const { createJWT } = require('../auth/JWToken');
 const { User } = require('../database/models');
 const { checkLogin } = require('../utils/validateUser');
 
@@ -9,7 +10,7 @@ const loginService = async ({ email, password }) => {
 
   if (!getToken) return { status: 404, message: "User not found" };
   const { role, id } = getToken;
-  const token = createJWT({ id, role });
+  const token = createJWT ({ id, role });
 
   return { status: 200, message: token };
 };
