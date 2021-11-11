@@ -4,7 +4,6 @@ const loginUser = async (req, res) => {
   const { body } = req;
 
   const login = await userService.loginUser(body);
-
   if (login.message) {
     return res.status(400).json(login.message);
   }
