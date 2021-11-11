@@ -9,7 +9,7 @@ function LoginForm() {
   function validateLogin() {
     const validator = /^[A-Za-z0-9_.]+@[a-zA-Z_]+?\.[a-zA-Z_.]{2,7}$/;
     const PASSWORD_MIN_LENGHT = 6;
-    if (password.length > PASSWORD_MIN_LENGHT && validator.test(email)) {
+    if (password.length >= PASSWORD_MIN_LENGHT && validator.test(email)) {
       return true;
     }
     return false;
@@ -38,7 +38,7 @@ function LoginForm() {
         id="login-btn"
         className="login-btn"
         value="LOGIN"
-        data-testeid="common_login__button-login"
+        testId="common_login__button-login"
         onClick={ (e) => e.preventDefault() }
         disabled={ !validateLogin() }
       />

@@ -8,7 +8,7 @@ function Input(props) {
       { name }
       <br />
       <input
-        data-testeid={ testId }
+        data-testid={ testId }
         id={ id }
         type={ type }
         placeholder={ placeholder }

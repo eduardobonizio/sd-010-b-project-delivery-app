@@ -6,7 +6,7 @@ import '../styles/loginPage.css';
 
 function Login() {
   return (
-    <>
+    <section>
       <div>
         <main>
           <LoginForm />
@@ -15,18 +15,18 @@ function Login() {
             id="register-btn"
             className="register-btn"
             value="Ainda não tenho conta"
-            data-testeid="common_login__button-login"
+            testId="common_login__button-register"
             onClick={ () => console.log('registro de usuario') }
           />
         </main>
         <span
           style={ { visibility: 'hidden' } }
-          data-testeid="common_login__element-invalid-email"
+          data-testid="common_login__element-invalid-email"
         >
           [Elemento oculto (Mensagens de erro)]
         </span>
       </div>
-    </>
+    </section>
   );
 }
 
