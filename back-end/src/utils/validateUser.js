@@ -22,7 +22,6 @@ const verifyUser = async (name, email) => {
   }
 };
 
-
 const checkLogin = (email, password) => {
   const { error } = Joi.object({
     email: Joi.string().email().required(),
