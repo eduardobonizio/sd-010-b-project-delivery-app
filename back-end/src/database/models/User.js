@@ -6,9 +6,9 @@ module.exports = (sequelize, DataTypes) => {
     role: DataTypes.STRING,
   });
   
-  User.associate = (models) => {
-    User.hasMany(models.Sale, { foreignKey: 'user_id', as: 'users' });
-    User.hasMany(models.Sale, { foreignKey: 'saller_id', as: 'sallers' });
-  };
+  // User.associate = (models) => {
+  //   User.hasMany(models.Sale, { foreignKey: 'user_id', as: 'users' });
+  //   User.hasMany(models.Sale, { foreignKey: 'saller_id', as: 'sallers' });
+  // };
   return User;
 }

@@ -1,11 +1,11 @@
 const express = require('express');
-// Controller
+
+const loginController = require('../app/controllers/loginController');
+
 // jwt
 
 const router = express.Router();
 
-router.get('/', (_req, res) => {
-  res.status(200).send('Você Acabou de entrar na rota de Login');
-});
+router.get('/', loginController.login);
 
 module.exports = router;

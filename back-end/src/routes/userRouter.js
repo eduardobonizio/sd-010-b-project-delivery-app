@@ -1,11 +1,11 @@
 const express = require('express');
-// Controller
+const userController = require('../app/controllers/userController');
 // jwt
 
 const router = express.Router();
 
-router.get('/', (_req, res) => {
-  res.status(200).send('Você Acabou de entrar na rota de User');
-});
+router.post('/', userController.add);
+
+router.get('/', userController.findAll);
 
 module.exports = router;
