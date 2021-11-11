@@ -10,5 +10,4 @@ router.post('/', validarLogin, loginController.loginUser);
 
 router.post('/login', () => loginController.login);
 
-
 module.exports = router;
