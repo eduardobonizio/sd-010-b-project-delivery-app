@@ -40,7 +40,7 @@ export default function Register() {
         Email
         <input
           onChange={ ({ target }) => setEmail(target.value) }
-          onClick={ () => setIsValidEntry(true) }
+          // onClick={ () => setIsValidEntry(true) }
           type="email"
           data-testid="common_register__input-email"
           placeholder="seu-email@site.com.br"
@@ -49,7 +49,7 @@ export default function Register() {
         Senha
         <input
           onChange={ ({ target }) => setPassword(target.value) }
-          onClick={ () => setIsValidEntry(true) }
+          // onClick={ () => setIsValidEntry(true) }
           type="password"
           data-testid="common_register__input-password"
           placeholder="********"

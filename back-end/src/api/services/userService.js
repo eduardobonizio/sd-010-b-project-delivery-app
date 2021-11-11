@@ -2,7 +2,7 @@ const md5 = require('md5');
 const { user } = require('../../database/models');
 
 const cryptoPassword = (password) => {
-  const regexExp = /^[a-f0-9]{32}$/gi; 
+  const regexExp = /^[a-f0-9]{32}$/gi;
   if (!password.match(regexExp)) {
     return md5(password);
   }
@@ -18,4 +18,11 @@ const existUser = async ({ email, password }) => {
   return userFound;
 };
 
-module.exports = { existUser };
+const createUser = async ({ name, email, password }) => {
+  const newUser = await user.create({
+    name, email, password: cryptoPassword(password), role: 'user',
+  });
+  return newUser;
+};
+
+module.exports = { existUser, createUser };
