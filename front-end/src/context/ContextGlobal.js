@@ -11,6 +11,7 @@ function Provider({ children }) {
   const [nameRegister, setNameRegister] = useState('');
   const [emailRegister, setEmailRegister] = useState('');
   const [passwordRegister, setPasswordRegister] = useState('');
+  const [products, setProducts] = useState([]);
 
   const object = {
     errorLogin,
@@ -27,6 +28,8 @@ function Provider({ children }) {
     setEmailRegister,
     passwordRegister,
     setPasswordRegister,
+    products,
+    setProducts,
   };
 
   return (
