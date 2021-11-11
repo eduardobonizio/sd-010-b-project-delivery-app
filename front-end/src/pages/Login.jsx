@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setEmail, setPassword } from '../actions';
-import LoginButton from '../components/LoginButton';
+import EmailInput from '../components/EmailInput';
 import RegisterButton from '../components/RegisterButton';
 
 function Login() {
@@ -35,7 +35,7 @@ function Login() {
       <span data-testid="common_login__element-invalid-email" hidden={ hideErrorMessage }>
         Usuário/Senha inválidos
       </span>
-      <LoginButton setStateEmail={ setStateEmail } />
+      <EmailInput setStateEmail={ setStateEmail } />
       <label htmlFor="password">
         Senha
         <input

@@ -1,7 +1,7 @@
 import React from 'react';
 import Proptypes from 'prop-types';
 
-function LoginButton({ setStateEmail }) {
+function EmailInput({ setStateEmail }) {
   return (
     <label htmlFor="email">
       Login
@@ -16,8 +16,8 @@ function LoginButton({ setStateEmail }) {
   );
 }
 
-export default LoginButton;
+export default EmailInput;
 
-LoginButton.propTypes = {
+EmailInput.propTypes = {
   setStateEmail: Proptypes.func.isRequired,
 };
