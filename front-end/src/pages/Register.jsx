@@ -1,11 +1,10 @@
 import React from 'react';
-// import './App.css';
+
+import RegisterForm from '../components/RegisterButton';
 
 function Register() {
   return (
-    <div className="App">
-      cadastro
-    </div>
+    <RegisterForm />
   );
 }
 
