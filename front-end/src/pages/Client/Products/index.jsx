@@ -1,9 +1,14 @@
 import React from 'react';
+import CardsProducts from '../../../components/cards';
+import Header from '../../../components/navbar';
 
-export default function Products() {
+function Products() {
   return (
-    <div>
-      <h1>Products</h1>
-    </div>
+    <>
+      <Header />
+      <CardsProducts />
+    </>
   );
 }
+
+export default Products;
