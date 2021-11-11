@@ -10,6 +10,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       user_id: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE', 
@@ -19,6 +20,7 @@ module.exports = {
         }
       },
       seller_id: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE', 
@@ -36,13 +38,16 @@ module.exports = {
         type: Sequelize.STRING(100),
       },
       delivery_number: {
+        allowNull: false,
         type: Sequelize.STRING(50),
 
       },
       sale_date: {
+        allowNull: false,
         type: Sequelize.DATE,
       },
       status: {
+        allowNull: false,
         type: Sequelize.STRING(50),
       },
     })
