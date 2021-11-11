@@ -1,8 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router';
-import './App.css';
-
-import Login from './pages/login/Login';
+import Login from './pages/login';
 
 function App() {
   return (

@@ -1,0 +1,8 @@
+Dentro da pasta pages, deve contar :
+
+- uma pasta com o nome da tela ( ex: login )
+
+Dentro da pasta da tela, deve conter:
+
+- Arquivo "index.js", que fará a renderização e a lógica da page;
+- Arquivo "style.js" que terá todos os styled components referentes à página;

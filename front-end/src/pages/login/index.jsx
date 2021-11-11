@@ -1,9 +1,9 @@
 import React from 'react';
 
 const Login = () => (
-  <div>
-    <p>Hello</p>
-  </div>
+  <form className="login-form">
+    <h1>Login</h1>
+  </form>
 );
 
 export default Login;
