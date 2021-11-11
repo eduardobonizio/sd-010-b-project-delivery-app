@@ -7,8 +7,8 @@ import '../styles/loginPage.css';
 function Login() {
   return (
     <section>
-      <div>
-        <main>
+      <div className="login-page">
+        <main className="main-login">
           <LoginForm />
           <Button
             formbtn={ false }
