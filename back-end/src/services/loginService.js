@@ -8,7 +8,7 @@ const loginService = async ({ email, password }) => {
   
   const getToken = await User.findOne({ where: { email, password } });
 
-  if (!getToken) return { status: 404, message: "Usuário ou senha incorreto" };
+  if (!getToken) return { status: 404, data: "Usuário ou senha incorreto" };
   const { name, role, id } = getToken;
   const token = createJWT({ id, role });
 
