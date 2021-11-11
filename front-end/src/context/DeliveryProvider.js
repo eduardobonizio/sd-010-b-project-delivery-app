@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import DeliveryContext from './DeliveryContext';
 
@@ -6,7 +6,36 @@ const DeliveryProvider = ({ children }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const validarNome = (nome) => {
+    const NAME_LENGTH = 12;
+    if (nome.length < NAME_LENGTH) {
+      return false;
+    }
+
+    return true;
+  };
+
+  const validarEmail = (email) => {
+    const emailTester = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/i;
+
+    if (!emailTester.test(email)) return false;
+
+    return true;
+  };
+
+  const validarSenha = (senha) => {
+    const SENHA_LENGTH = 6;
+
+    if (senha.length < SENHA_LENGTH) {
+      return false;
+    }
+    return true;
+  };
+
   const contextValue = {
+    validarNome,
+    validarEmail,
+    validarSenha,
     email,
     setEmail,
     password,
