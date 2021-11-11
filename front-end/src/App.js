@@ -18,7 +18,7 @@ function App() {
             <Route exact path="/" render={ () => (<Redirect to="/login" />) } />
             <Route path="/login" component={ Login } />
             <Route path="/register" component={ Register } />
-            <Route path="/" component={ Bebidas } />
+            <Route path="/customer/products" component={ Bebidas } />
           </Switch>
         </BrowserRouter>
       </Provider>
