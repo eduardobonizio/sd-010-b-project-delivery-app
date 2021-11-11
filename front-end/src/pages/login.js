@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const Joi = require('joi');
 
@@ -30,7 +31,7 @@ function Login() {
 
   useEffect(() => {
     validateLogin();
-  }, [login, password]);
+  }, [login, password, validateLogin]);
 
   return (
     <div>
@@ -67,12 +68,14 @@ function Login() {
         >
           Login
         </button>
-        <button
-          type="button"
-          data-testid="common_login__button-register"
-        >
-          Ainda não tenho conta
-        </button>
+        <Link to="/register">
+          <button
+            type="button"
+            data-testid="common_login__button-register"
+          >
+            Ainda não tenho conta
+          </button>
+        </Link>
 
         <p id="error-msg" data-testid="common_login__element-invalid-email">erro</p>
       </form>
