@@ -1,27 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
+const Joi = require('joi');
 
 function Login() {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [button, setButton] = useState(true);
+  const minPasswordLength = 6;
+
+  const loginSchema = Joi.object({
+    login: Joi.string().email({ tlds: { allow: false } }).required(),
+    password: Joi.string().min(minPasswordLength).required(),
+  });
+
+  const validateLogin = () => {
+    const { error } = loginSchema.validate({ login, password });
+    if (!error) setButton(false);
+    else setButton(true);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
     if (name === 'login') setLogin(value);
     if (name === 'password') setPassword(value);
-    setButton(false);
-    console.log(login, password);
+
+    validateLogin();
   };
 
-  // handleChange({ target }) {
-  //   const { name } = target;
-  //   const value = target.type === 'checkbox' ? target.checked : target.value;
-
-  //   this.setState({
-  //     [name]: value,
-  //   });
-  // }
+  useEffect(() => {
+    validateLogin();
+  }, [login, password]);
 
   return (
     <div>
@@ -35,6 +44,7 @@ function Login() {
             name="login"
             data-testid="common_login__input-email"
             onChange={ handleChange }
+            value={ login }
           />
         </label>
         <label htmlFor="password-input">
@@ -46,6 +56,7 @@ function Login() {
             name="password"
             data-testid="common_login__input-password"
             onChange={ handleChange }
+            value={ password }
           />
         </label>
 
