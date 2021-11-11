@@ -1,13 +1,15 @@
 import axios from 'axios';
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import './App.css';
+import { useState } from 'react/cjs/react.development';
 
 import DeliveryContext from '../context/DeliveryContext';
 
 const Login = () => {
+  const [isValidPW, setIsValidPW] = useState(false);
   const navigate = useNavigate();
-  const { email, setEmail, password, setPassword } = useContext(DeliveryContext);
+  const { email, setEmail, password, setPassword, validarEmail, validarSenha,
+  } = useContext(DeliveryContext);
 
   const buttonLogin = async (event) => {
     event.preventDefault();
@@ -16,6 +18,7 @@ const Login = () => {
       localStorage.setItem('token', `${token}`);
       navigate('/products');
     } catch (error) {
+      setIsValidPW(true);
       return error;
     }
   };
@@ -23,6 +26,13 @@ const Login = () => {
   const handleChange = ({ target }) => {
     const { value, name } = target;
     return name === 'email' ? setEmail(value) : setPassword(value);
+  };
+
+  const isValid = () => {
+    if (validarEmail(email) && validarSenha(password)) {
+      return false;
+    }
+    return true;
   };
 
   return (
@@ -46,9 +56,9 @@ const Login = () => {
         />
         <button
           data-testid="common_login__button-login"
-          disabled={ false }
           type="button"
           onClick={ buttonLogin }
+          disabled={ isValid() }
         >
           LOGIN
         </button>
@@ -59,6 +69,11 @@ const Login = () => {
         >
           Ainda não tenho conta
         </button>
+        {
+          isValidPW
+            ? <span>Password ou E-mail invalido!</span>
+            : null
+        }
       </form>
     </div>
   );
