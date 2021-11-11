@@ -23,7 +23,7 @@ export default function Login() {
 
   const auth = async (e) => {
     e.preventDefault();
-    const res = await handleFetch(email, password, URLLOGIN);
+    const res = await handleFetch({ email, password }, URLLOGIN);
 
     localStorage.setItem('user', JSON.stringify(res));
     if (res.message) {

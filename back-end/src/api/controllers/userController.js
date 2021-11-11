@@ -1,5 +1,6 @@
 const status = require('http-status');
 const userService = require('../services/userService');
+const generateToken = require('../../utils/generateToken');
 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
@@ -25,14 +26,15 @@ const findUser = async (req, res) => {
 
 const createUser = async (req, res) => {
   try {
-    const userData = req.body;
-    const user = await userService.createUser(userData);
+    const { name, email, password } = req.body;
+    await findUser({ email });
+    await userService.createUser({ name, email, password });
 
-    const token = JWTgenerate({ user }, jwtConfig, secret);
+    const token = generateToken({ name, email, role: 'user' });
 
-    return res.status(status.CREATED).json({ token });
+    return res.status(status.CREATED).json({ token, name, email, role: 'user' });
   } catch (error) {
-    return res.status().json({ message });
+    return res.status(status.INTERNAL_SERVER_ERROR).json({ message: 'Algo deu errado' });
   }
 };
 

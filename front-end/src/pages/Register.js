@@ -5,16 +5,18 @@ import handleFetch from '../services/userAPI';
 const URLREGISTER = 'http://localhost:3001/register';
 
 export default function Register() {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const [isValidEntry, setIsValidEntry] = useState(true);
+  const [isValidEntry, setIsValidEntry] = useState(true);
   const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await handleFetch(email, password, URLREGISTER);
-    localStorage.setItem('user', JSON.stringify(res));
+    const res = await handleFetch({ name, email, password }, URLREGISTER);
     console.log(res);
+    localStorage.setItem('user', JSON.stringify(res));
+    console.log(res, 'register 18');
     if (res.message) {
       setIsValidEntry(false);
     } else {
@@ -38,6 +40,7 @@ export default function Register() {
       <form onSubmit={ handleSubmit }>
         Nome
         <input
+          onChange={ ({ target }) => setName(target.value) }
           type="text"
           data-testid="common_register__input-name"
           placeholder="Seu nome"
@@ -68,6 +71,12 @@ export default function Register() {
         >
           CADASTRAR
         </button>
+        { !isValidEntry
+          && (
+            <span data-testid="common_login__element-invalid-email">
+              Usuário não encontrado
+            </span>
+          )}
       </form>
     </div>
   );

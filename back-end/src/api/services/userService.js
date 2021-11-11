@@ -27,6 +27,7 @@ const createUser = async ({ name, email, password }) => {
   await user.create({
     name, email, password: cryptoPassword(password), role: 'user',
   });
+
   const token = generateToken({ name, role: 'user', email });
 
   return { name, email, role: 'user', token };
