@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+// import { register } from '../services/api';
+// import { createStorage } from '../utils/localStorage';
+
+
 
 export default function FormRegister() {
+  const history = useHistory();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
@@ -8,8 +14,16 @@ export default function FormRegister() {
   const PassLength = 6;
   const NameLength = 12;
 
+  async function submit(e) {
+    e.preventDefault();
+    // const user =  await register({ email, password: pass }).then((data) => data);
+    // console.log(user)
+    // createStorage('user', user);
+    history.push('/customer/products');
+  }
+
   return (
-    <form>
+    <form onSubmit={ (e) => submit(e) }>
       <label htmlFor="name">
         <input
           id="name"

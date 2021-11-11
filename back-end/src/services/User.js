@@ -11,7 +11,7 @@ const login = async ({ email, password }) => {
   const isAuthenticated = await User.findOne({ where: { email } });
 
   const token = generateToken(isAuthenticated);
-
+  console.log('CHEGUEO', token);
   const data = [{ 
       id: isAuthenticated.id, 
       name: isAuthenticated.name,

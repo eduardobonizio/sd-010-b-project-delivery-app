@@ -1,16 +1,29 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { login } from '../services/api';
+import { createStorage } from '../utils/localStorage';
 
 export default function FormLogin() {
   const history = useHistory();
-  console.log(history);
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
+  // const [err, setErr] = useState('');
 
   const PassLength = 6;
 
+  async function submit(e) {
+    e.preventDefault();
+    const user =  await login({ email, password: pass });
+    console.log(user, 'REQUEST');
+    if (user) {
+      return user;
+    }
+    createStorage('user', user);
+    history.push('/customer/products');
+  }
+
   return (
-    <form>
+    <form onSubmit={ (e) => submit(e) }>
       <label htmlFor="email">
         <input
           id="email"

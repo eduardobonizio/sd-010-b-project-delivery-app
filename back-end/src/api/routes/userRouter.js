@@ -4,6 +4,6 @@ const rescue = require('express-rescue');
 const { userController } = require('../../controllers');
 
 router.post('/register', rescue(userController.createUser));
-router.post('/', rescue(userController.login));
+router.post('/login', rescue(userController.login));
 
 module.exports = router;
