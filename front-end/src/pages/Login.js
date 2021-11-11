@@ -20,10 +20,10 @@ function Login() {
           />
         </main>
         <span
-          style={ { visibility: 'hidden' } }
+          className="invalid-message"
           data-testid="common_login__element-invalid-email"
         >
-          [Elemento oculto (Mensagens de erro)]
+          Login inválido
         </span>
       </div>
     </section>

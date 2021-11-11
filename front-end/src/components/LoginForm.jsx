@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Input from './Input';
 import Button from './Button';
 
 function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loginStatus, setLoginStatus] = useState({});
 
   function validateLogin() {
     const validator = /^[A-Za-z0-9_.]+@[a-zA-Z_]+?\.[a-zA-Z_.]{2,7}$/;
@@ -14,6 +15,19 @@ function LoginForm() {
     }
     return false;
   }
+
+  useEffect(() => () => {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: { email, password },
+    };
+    fetch('http://localhost:3001/users', requestOptions)
+      .then((response) => response.json())
+      .then((data) => setLoginStatus({ data }));
+  }, [email, password]);
+
+  useEffect(() => (loginStatus.toLogin ? console.log('ok') : console.log('no')), [loginStatus]);
 
   return (
     <form>

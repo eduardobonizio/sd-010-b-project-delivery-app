@@ -73,3 +73,9 @@ label input {
   text-decoration: none;
   width: 15vw;
 }
+
+.className {
+  color: red;
+  font-weight: 700;
+  visibility: 'hidden';
+}

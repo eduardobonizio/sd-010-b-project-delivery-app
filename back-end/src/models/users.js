@@ -5,6 +5,12 @@ const getAll = async () => {
   return allUsers;
 };
 
+const getOne = async (email, password) => {
+  const oneUser = await users.findOne({ where: { email, password } });
+  return oneUser;
+};
+
 module.exports = {
   getAll,
+  getOne,
 };
