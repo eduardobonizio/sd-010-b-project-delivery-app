@@ -1,42 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import DeliveryContext from '../context/DeliveryContext';
+import ErrorMessage from './ErrorMessage';
 
 function RegisterForm() {
+  const { validarNome, validarSenha, validarEmail } = useContext(DeliveryContext);
+
   const [registerInfo, setRegisterInfo] = useState({
     nome: '',
     email: '',
     senha: '',
   });
-
-  console.log(registerInfo);
-
-  // const [buttonStatus, setButtonStatus] = useState(true);
-
-  const validarNome = (nome) => {
-    const NAME_LENGTH = 12;
-    if (nome.length < NAME_LENGTH) {
-      return false;
-    }
-
-    return true;
-  };
-
-  const validarEmail = (email) => {
-    const emailTester = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/i;
-
-    if (!emailTester.test(email)) return false;
-
-    return true;
-  };
-
-  const validarSenha = (senha) => {
-    const SENHA_LENGTH = 6;
-
-    if (senha.length < SENHA_LENGTH) {
-      console.log(senha.length);
-      return false;
-    }
-    return true;
-  };
 
   const ableButton = () => {
     const { nome, senha, email } = registerInfo;
@@ -56,6 +29,7 @@ function RegisterForm() {
     ableButton();
   };
 
+  const { nome, senha, email } = registerInfo;
   return (
     <form>
       <label htmlFor="nome">
@@ -67,6 +41,11 @@ function RegisterForm() {
           data-testid="common_register__input-name"
           onChange={ (event) => handleRegisterForm(event) }
         />
+        {
+          !validarNome(nome)
+            ? <ErrorMessage input="nome" />
+            : null
+        }
       </label>
       <label htmlFor="email">
         Email
@@ -77,6 +56,11 @@ function RegisterForm() {
           data-testid="common_register__input-email"
           onChange={ (event) => handleRegisterForm(event) }
         />
+        {
+          !validarEmail(email)
+            ? <ErrorMessage input="email" />
+            : null
+        }
       </label>
       <label htmlFor="password">
         Senha
@@ -87,6 +71,11 @@ function RegisterForm() {
           data-testid="common_register__input-password"
           onChange={ (event) => handleRegisterForm(event) }
         />
+        {
+          !validarSenha(senha)
+            ? <ErrorMessage input="senha" />
+            : null
+        }
       </label>
       <button type="button" disabled={ ableButton() }>Registra-se</button>
     </form>);
