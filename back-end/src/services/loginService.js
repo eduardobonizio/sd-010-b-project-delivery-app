@@ -5,15 +5,13 @@ const { checkLogin } = require('../utils/validateUser');
 const loginService = async ({ email, password }) => {
   checkLogin(email, password);
   
-  const getToken = await User.findOne({ where: { email } });
+  const getToken = await User.findOne({ where: { email, password } });
 
-  
-  if (!getToken) return { status: 404, message: "User not found" };
-  const { role, id } = getToken;
-  console.log(getToken, role, id);
+  if (!getToken) return { status: 404, data: "Usuário ou senha incorreto" };
+  const { name, role, id } = getToken;
   const token = createJWT({ id, role });
-  console.log(token,'<--------------');
-  return { status: 200, message: token };
+
+  return { status: 200, data: {id, name, email, role, token} };
 };
 
 module.exports = { loginService };

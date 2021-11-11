@@ -6,7 +6,7 @@ export async function loginService({ email, password }) {
     const { data } = await axios.post(END_POINT, { email, password });
     return data;
   } catch (error) {
-    console.log(error.message, 'errooooooo');
+    return error;
   }
 }
 

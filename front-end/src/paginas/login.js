@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 // import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import rockGlass from '../images/rockGlass.svg';
+import { setOnLocalStorage } from '../services/servicesLocalStorage';
 import { loginService } from '../services/servicesLogin';
 
 function Login() {
   const [disableBtn, setDisableBtn] = useState(true);
+  const [hidden, setHidden] = useState(true);
   const [login, setLogin] = useState({
     email: '',
     password: '',
@@ -22,16 +25,23 @@ function Login() {
   };
 
   const handleChange = ({ target: { name, value } }) => {
-    console.log(name, value);
     setLogin({
       ...login,
       [name]: value,
     });
   };
 
+  const history = useHistory();
   const handleClick = async () => {
     const checkLogin = await loginService(login);
-    console.log(checkLogin);// retorna o token
+    if (checkLogin.message.id) {
+      const { message } = checkLogin;
+      setOnLocalStorage('login', message);
+      history.push('/bebidas');
+      console.log('dentro');
+    }
+    setHidden(false);
+    console.log('fora');// logica para estourar o erro do login
   };
 
   useEffect(() => {
@@ -87,7 +97,7 @@ function Login() {
       </div>
       <h2
         data-testid="common_login__element-invalid-email"
-        hidden
+        hidden={ hidden }
       >
         Email ou Senha invalidos
       </h2>

@@ -1,30 +1,18 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
+// Aqui ficaria jwt.evaluation.key ?
 const secret = process.env.JWT_SECRET || 'minhaSenha';
 
-const createJWT = (payload) => {
-  const newToken = jwt.sign(payload, secret, {
-    algorithm: 'HS256',
-  });
-  return newToken;
+// Huggo Parcelly: modificação na estrutura do createJWT
+// criação de um config e coloquei retorno direto
+
+const jwtConfig = {
+  expiresIn: '30d',
+  algorithm: 'HS256',
 };
 
-const verifyJWT = (req, res, next) => {
-  try {
-    const { authorization } = req.headers;
-    if (!authorization) {
-      return res.status(401).json({ message: 'Token not found' });
-    }
-    const payload = jwt.verify(authorization, secret);
-    req.user = payload;
-  } catch (err) {
-    return res.status(401).json({ message: 'Expired or invalid token' });
-  }
-  return next();
-};
+const createJWT = (payload) => jwt.sign(payload, secret, jwtConfig);
 
-module.exports = { 
-  createJWT,
-   verifyJWT, 
-  };
+
+module.exports = { createJWT };

@@ -6,6 +6,7 @@ import Login from './paginas/login';
 import Provider from './provider/Provider';
 
 import './App.css';
+import Bebidas from './paginas/bebidas';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Switch>
             <Route exact path="/" render={ () => (<Redirect to="/login" />) } />
             <Route path="/login" component={ Login } />
+            <Route path="/bebidas" component={ Bebidas } />
           </Switch>
         </BrowserRouter>
       </Provider>

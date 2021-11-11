@@ -4,6 +4,7 @@ const app = require('./app');
 const express = require('express');
 const login  = require('../routers/Login');
 const register = require('../routers/Register');
+const checkout = require('../routers/Checkout');
 const product = require('../routers/Product');
 const error = require('../middleware/error');
 
@@ -14,6 +15,8 @@ app.use(cors());
 app.use('/login', login);
 //REGISTER
 app.use('/register', register);
+// SALE
+app.use('/sale', checkout);
 //PRODUCT
 app.use('/customer/products', product)
 
