@@ -3,11 +3,20 @@ import PropTypes from 'prop-types';
 
 import ProductsContext from '../context/productContext';
 
+const INC_VALUE = 1;
+const DES_VALUE = -1;
+
 function DrinkCard({ product }) {
   const { id, name, price, url_image: urlImage } = product;
 
   const [quantity, setQuantity] = useState(0);
   const { updateCart } = useContext(ProductsContext);
+
+  const updateQuantity = (value) => {
+    if (quantity + value >= 0) {
+      setQuantity(quantity + value);
+    }
+  };
 
   useEffect(() => {
     updateCart({ name, price, quantity });
@@ -29,7 +38,7 @@ function DrinkCard({ product }) {
       </span>
       <button
         type="button"
-        onClick={ () => { setQuantity(quantity - 1); } }
+        onClick={ () => { updateQuantity(DES_VALUE); } }
         data-testid={ `customer_products__button-card-rm-item-${id}` }
       >
         -
@@ -37,12 +46,13 @@ function DrinkCard({ product }) {
       <input
         type="number"
         value={ quantity }
+        min="0"
         data-testid={ `customer_products__input-card-quantity-${id}` }
       />
 
       <button
         type="button"
-        onClick={ () => { setQuantity(quantity + 1); } }
+        onClick={ () => { updateQuantity(INC_VALUE); } }
         data-testid={ `customer_products__button-card-add-item-${id}` }
       >
         +
