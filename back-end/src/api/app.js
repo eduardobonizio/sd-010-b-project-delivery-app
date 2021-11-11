@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 
 const app = express();
 
@@ -14,8 +15,8 @@ const {
   } = require('../middlewares/middleLogin');
 // const { validateJWT } = require('../middlewares/tokenVerify');
 
-app.use(express.static(`${__dirname}/public`));
 app.use(express.json());
+app.use('/', express.static(path.resolve(__dirname, '..', '..', 'public')));
 
 app.post('/login', verifyEmail, verifyPassword, verifyDbUser, loginController);
 app.post('/register', 

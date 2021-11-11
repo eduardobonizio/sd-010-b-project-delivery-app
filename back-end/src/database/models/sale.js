@@ -13,7 +13,7 @@ const Sale = (sequelize, DataTypes) => {
 
   Sale.associate = (models) => {
     Sale.belongsTo(models.User, { foreignKey: 'id' });
-    Sale.belongsTo(models.Product, { through: 'SalesProducts' });
+    // Sale.belongsTo(models.Product, { through: 'SalesProducts' }); se der ruim descomenta
   };
   
   return Sale; 
