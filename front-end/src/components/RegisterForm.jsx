@@ -14,10 +14,8 @@ function RegisterForm() {
     const validation = password.length >= PASSWORD_MIN_LENGHT
       && name.length >= NAME_MIN_LENGTH
       && emailRegex.test(email);
-    if (validation) {
-      return true;
-    }
-    return false;
+    console.log(validation);
+    return validation;
   }
 
   return (
