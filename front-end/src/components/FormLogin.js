@@ -6,6 +6,7 @@ export default function FormLogin() {
   console.log(history);
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
+
   return (
     <form>
       <label htmlFor="email">
@@ -25,6 +26,7 @@ export default function FormLogin() {
         />
       </label>
       <button
+       disabled={!(/^[^\s@]+@[^\s@]+.[^\s@]+$/).test(email) || pass.length <= 6} 
         type="submit"
         data-testid="common_login__button-login"
       >
