@@ -6,6 +6,7 @@ const login  = require('../routers/Login');
 const register = require('../routers/Register');
 const checkout = require('../routers/Checkout');
 const product = require('../routers/Product');
+const order = require('../routers/Order');
 const error = require('../middleware/error');
 
 app.use(express.json());
@@ -19,6 +20,8 @@ app.use('/register', register);
 app.use('/sale', checkout);
 //PRODUCT
 app.use('/customer/products', product)
+//ORDER
+app.use('/customer/orders', order);
 
 
 app.use(error);
