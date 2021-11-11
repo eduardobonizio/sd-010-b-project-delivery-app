@@ -14,7 +14,6 @@ function Login() {
     const regex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
     const passwordLength = password.length;
     const minPassword = 5;
-
     if ((regex.test(email)) && (passwordLength > minPassword)) {
       setDisableBtn(false);
     } else {
@@ -31,7 +30,6 @@ function Login() {
   };
 
   const handleClick = async () => {
-    // const { email, password } = login;
     const checkLogin = await loginService(login);
     console.log(checkLogin);// retorna o token
   };

@@ -13,8 +13,8 @@ function App() {
       <Provider>
         <BrowserRouter>
           <Switch>
-            <Route exact path="/" render={ () => (<Redirect to="/Login" />) } />
-            <Route path="/Login" component={ Login } />
+            <Route exact path="/" render={ () => (<Redirect to="/login" />) } />
+            <Route path="/login" component={ Login } />
           </Switch>
         </BrowserRouter>
       </Provider>
