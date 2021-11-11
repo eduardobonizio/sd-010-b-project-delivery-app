@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-// import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
+import Context from '../provider/Context';
 import rockGlass from '../images/rockGlass.svg';
-import { loginService } from '../services/servicesLogin';
 
 function Login() {
   const [disableBtn, setDisableBtn] = useState(true);
@@ -9,6 +9,10 @@ function Login() {
     email: '',
     password: '',
   });
+
+  // exemplo funcionando o estado, fique avontade para apagar
+  const contexto = useContext(Context);
+  console.log(contexto);
 
   const validateFields = ({ email, password }) => {
     const regex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
@@ -30,10 +34,8 @@ function Login() {
   };
 
   const handleClick = () => {
-    // const { email, password } = login;
-    const checkLogin = loginService(login);
-
-    console.log(checkLogin);// retorna o token
+    const { email } = login;
+    initializeLocalStorage(email);
   };
 
   useEffect(() => {
@@ -68,15 +70,17 @@ function Login() {
         />
       </label>
       <div className="loginButton">
-        <button
-          className="loginButton"
-          type="button"
-          data-testid="common_login__button-login"
-          disabled={ disableBtn }
-          onClick={ handleClick }
-        >
-          Entrar/Logar
-        </button>
+        <Link to="/bebidas">
+          <button
+            className="loginButton"
+            type="button"
+            data-testid="common_login__button-login"
+            disabled={ disableBtn }
+            onClick={ handleClick }
+          >
+            Entrar/Logar
+          </button>
+        </Link>
       </div>
       <div>
         <button
