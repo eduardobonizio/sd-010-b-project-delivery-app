@@ -37,9 +37,9 @@ export default function FormRegister() {
       <button
         type="submit"
         data-testid="common_register__button-register"
-        disabled={ !(/^[^\s@]+@[^\s@]+.[^\s@]+$/).test(email)
-          || pass.length <= PassLength
-          || name.length <= NameLength }
+        disabled={ !(/[a-z0-9]+@[a-z0-9]+\.[a-z0-9]{2,3}(\.[a-z0-9]+)?$/.test(email))
+          || pass.length < PassLength
+          || name.length < NameLength }
       >
         Cadastro
       </button>

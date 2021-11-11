@@ -28,16 +28,18 @@ export default function FormLogin() {
         />
       </label>
       <button
-        disabled={ !(/^[^\s@]+@[^\s@]+.[^\s@]+$/).test(email)
-          || pass.length <= PassLength }
+        disabled={ !(/[a-z0-9]+@[a-z0-9]+\.[a-z0-9]{2,3}(\.[a-z0-9]+)?$/.test(email))
+          || pass.length < PassLength }
         type="submit"
         data-testid="common_login__button-login"
       >
         Login
       </button>
-      <Link to="/register" data-testid="common_login__button-register">
-        Ainda não tenho conta
-      </Link>
+      <button type="button" data-testid="common_login__button-register">
+        <Link to="/register" >
+          Ainda não tenho conta
+        </Link>
+      </button>
     </form>
   );
 }
