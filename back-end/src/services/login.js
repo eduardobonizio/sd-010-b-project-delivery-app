@@ -1,9 +1,10 @@
 const { User } = require('../database/models');
 
 const login = async ({ email, password }) => {
-  console.log(email, password);
-  const getUser = await User.findOne({ where: { email, password } }).catch((e) => console.log(e));
-  return getUser;
+  const { dataValues } = await User
+    .findOne({ where: { email, password }, attributes: { exclude: ['password'] } })
+      .catch((e) => console.log(e));
+  return dataValues;
 };
 
 module.exports = {
