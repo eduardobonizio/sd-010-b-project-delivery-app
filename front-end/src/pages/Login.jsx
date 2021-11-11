@@ -5,6 +5,7 @@ import { setEmail, setPassword } from '../actions';
 import EmailInput from '../components/EmailInput';
 import LoginButton from '../components/LoginButton';
 import PasswordInput from '../components/PasswordInput';
+import LoginErrorMessage from '../components/LoginErrorMessage';
 import RegisterButton from '../components/RegisterButton';
 
 function Login() {
@@ -34,9 +35,7 @@ function Login() {
     <div className="login">
       <p>LOGO</p>
       <p>NOME DO APP</p>
-      <span data-testid="common_login__element-invalid-email" hidden={ hideErrorMessage }>
-        Usuário/Senha inválidos
-      </span>
+      <LoginErrorMessage hideErrorMessage={ hideErrorMessage } />
       <EmailInput setStateEmail={ setStateEmail } />
       <PasswordInput
         setStatePassword={ setStatePassword }
