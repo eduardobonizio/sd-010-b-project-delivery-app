@@ -17,7 +17,7 @@ module.exports = {
   },
 
   loginIncorrect: {
-    status: httpStatus.BAD_REQUEST,
+    status: httpStatus.NOT_FOUND,
     message: 'Incorrect username or password',
   },
 

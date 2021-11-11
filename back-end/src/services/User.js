@@ -1,11 +1,14 @@
 const httpStatus = require('http-status');
+const md5 = require('md5');
 
 const { User } = require('../database/models');
 const validations = require('../utils/validations/validationsLogin');
 const generateToken = require('../utils/generateToken');
 
 const login = async ({ email, password }) => {
-  await validations.login(email, password);
+  const hashPassword = md5(password);
+  
+  await validations.login(email, hashPassword);
 
   const isAuthenticated = await User.findOne({ where: { email } });
 
@@ -25,7 +28,7 @@ const login = async ({ email, password }) => {
 const createUser = async ({ name, email, password }) => {
   await validations.createUser(name, email, password);
 
-  const newUser = await User.create({ name, email, password, role: 'customer' });
+  const newUser = await User.create({ name, email, password: md5(password), role: 'customer' });
 
   const token = generateToken(email);
 
