@@ -1,14 +1,19 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Context from '../provider/Context';
 import rockGlass from '../images/rockGlass.svg';
 
 function Login() {
+  const history = useHistory();
   const [disableBtn, setDisableBtn] = useState(true);
   const [login, setLogin] = useState({
     email: '',
     password: '',
   });
+
+  const redirect = () => {
+    history.push('/register');
+  };
 
   // exemplo funcionando o estado, fique avontade para apagar
   const contexto = useContext(Context);
@@ -86,7 +91,7 @@ function Login() {
         <button
           type="button"
           data-testid="common_login__button-register"
-          disabled={ disableBtn }
+          onClick={ redirect }
         >
           Registrar novo usuario
         </button>
