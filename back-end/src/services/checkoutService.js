@@ -20,6 +20,7 @@ const createSale = async (body, user_id) => {
 
 
 const getSaleById = async (id) => {
+  
   const sales = await Sale.findOne({ where: { id } });
   
   if(!sales) return { status: 404, data: { message: 'Venda não encontrada'}}
@@ -27,6 +28,8 @@ const getSaleById = async (id) => {
   
   const seller = await User.findOne({ where: { id: seller_id } });
 
+  // falta retornar os produtos, acredito que seja feito através da tabela de junção
+  
   // nome do vendedor
   const { name } = seller;
   const data = { id, name, total_price, sale_date, status };
