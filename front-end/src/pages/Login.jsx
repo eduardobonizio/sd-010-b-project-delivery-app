@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Button } from 'react-bootstrap';
-import { NavLink as RRNavLink, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { setEmail, setPassword } from '../actions';
 
 function Login() {
@@ -9,7 +8,6 @@ function Login() {
   const [email, setStateEmail] = useState();
   const [password, setStatePassword] = useState();
   const [disabled, setDisable] = useState(true);
-  const [changePage, setChangePage] = useState(false);
 
   const changeDisabled = () => {
     if (email && password) {
@@ -21,12 +19,6 @@ function Login() {
     dispatch(setEmail(email));
     dispatch(setPassword(password));
     redirect('/customer/products');
-  };
-
-  const toRegister = () => {
-    setChangePage(true);
-    console.log(changePage);
-    return <Navigate to="/register" />;
   };
 
   return (
@@ -54,21 +46,15 @@ function Login() {
       >
         LOGIN
       </button>
-      <Button
-        onClick={ toRegister }
-        type="button"
-        tag={ RRNavLink }
-        to="/register"
-      >
-        Ainda não tenho conta
-      </Button>
-      {/* <button
-        data-testid="common_login__button-register"
-        type="button"
-        onClick={ toRegister }
-      >
-        Ainda não tenho conta
-      </button> */}
+      <Link to="/register">
+        <button
+          data-testid="common_login__button-register"
+          type="button"
+        >
+          Ainda não tenho conta
+        </button>
+      </Link>
+
     </div>
   );
 }
