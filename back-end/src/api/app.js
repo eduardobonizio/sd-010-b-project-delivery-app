@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use('/login', userRouter);
+app.use('/users', userRouter);
 app.use('/products', productsRouter);
 
 app.use(error);
