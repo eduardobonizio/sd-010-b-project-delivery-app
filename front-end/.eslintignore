@@ -3,6 +3,6 @@ serviceWorker.js
 reportWebVitals.js
 setupTests.js
 .gitattributes
-src/index.js
+src/index.jsx
 build/*
 jest.config.js
