@@ -4,6 +4,7 @@ import { Route, Switch, Redirect } from 'react-router';
 import Provider from './provider/Provider';
 
 import Login from './pages/login';
+import Register from './pages/Register';
 
 import './App.css';
 
@@ -15,6 +16,7 @@ function App() {
           <Switch>
             <Route exact path="/" render={ () => (<Redirect to="/Login" />) } />
             <Route path="/Login" component={ Login } />
+            <Route path="/register" component={ Register } />
           </Switch>
         </BrowserRouter>
       </Provider>
