@@ -13,6 +13,7 @@ export default function NavBar() {
     updateUserData();
   }, []);
 
+  console.log(userData);
   return (
     <nav>
       <Link to="/customer/products">
@@ -30,10 +31,14 @@ export default function NavBar() {
           {userData.name}
         </div>
       </Link>
-      <Link to="/login">
-        <div data-testid="customer_products__element-navbar-link-logout">
+      <Link to="/login" data-testid="customer_products__element-navbar-link-logout">
+        <button
+          type="button"
+          onClick={ () => { localStorage.removeItem('user'); } }
+          data-testid="customer_products__element-navbar-link-logout"
+        >
           Sair
-        </div>
+        </button>
       </Link>
     </nav>
   );
