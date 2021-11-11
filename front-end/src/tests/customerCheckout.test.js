@@ -161,7 +161,7 @@ describe('Tests for Customer Checkout', () => {
       });
 
       // TODO: Verify if works with MUI
-      describe('select box', async () => {
+      describe('select box', () => {
         it('should have a Select Box to select one all Sellers', () => {
           const { getByTestId } = renderWithRouter(<CustomerCheckout />);
 
