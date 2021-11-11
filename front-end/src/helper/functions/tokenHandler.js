@@ -6,7 +6,6 @@ const tokenHandler = (token, location, history) => {
 
   // if (!verifyPath && !token) return location.push('/');
   if (!verifyPath) {
-    console.log('batattinha');
     console.log(history);
     // return history.push('/');
   }

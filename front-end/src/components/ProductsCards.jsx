@@ -1,5 +1,7 @@
-import React from 'react-router-dom';
+import React, { useContext } from 'react';
 import data from '../mockDatas/productsMockData';
+import { Context } from '../provider/Provider';
+
 import '../styles/ProductsCards.css';
 
 const fixPrice = (price) => {
@@ -8,7 +10,8 @@ const fixPrice = (price) => {
   return number;
 };
 const ProductsCards = () => {
-  console.log('bah');
+  const { products } = useContext(Context);
+  console.log('bah', products);
 
   return (
     <div>
