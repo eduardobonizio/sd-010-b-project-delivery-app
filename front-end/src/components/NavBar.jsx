@@ -1,28 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Stack, Tabs, Tab, Typography, Box, Button } from '@mui/material';
 import PropTypes from 'prop-types';
 
 function NavBar({ username, user }) {
+  const [tabsValue, setTabsValue] = useState(false);
+
   const renderTabByUser = () => {
+    const customerLabelArray = ['Produtos', 'Meus Pedidos'];
+
     if (user === 'customer') {
-      return (
-        <>
-          <Tab value="products" label="Produtos" />
-          <Tab value="my-orders" label="Meus Pedidos" />
-        </>
-      );
+      return customerLabelArray
+        .map((label) => <Tab value={ label } key={ label } label={ label } />);
     }
     if (user === 'seller') {
       return (
-        <Tab value="orders" label="Pedidos" />
+        <Tab value="Pedidos" label="Pedidos" />
       );
     }
     if (user === 'admin') {
       return (
-        <Tab value="manage-users" label="Gerenciar Usuários" />
+        <Tab value="Gerenciar Usuários" label="Gerenciar Usuários" />
       );
     }
   };
+
+  useEffect(() => {
+    const verifyUserRole = () => {
+      if (user === 'customer') setTabsValue('Produtos');
+      if (user === 'seller') setTabsValue('Pedidos');
+      if (user === 'admin') setTabsValue('Gerenciar Usuários');
+    };
+
+    verifyUserRole();
+  }, [user]);
 
   return (
     <Stack
@@ -32,6 +42,7 @@ function NavBar({ username, user }) {
       spacing={ 0 }
     >
       <Tabs
+        value={ tabsValue }
         textColor="secondary"
         indicatorColor="secondary"
         aria-label="secondary tabs example"
