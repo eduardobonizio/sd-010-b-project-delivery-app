@@ -11,6 +11,7 @@ function DrinkCard({ product }) {
 
   useEffect(() => {
     updateCart({ name, price, quantity });
+    // eslint-disable-next-line
   }, [quantity]);
 
   return (
