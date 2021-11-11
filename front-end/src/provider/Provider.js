@@ -14,6 +14,7 @@ const Provider = ({ children }) => {
   const [chooseSeller, setChooseSeller] = useState('');
   const [purchaseAddress, setPurchaseAddress] = useState('');
   const [addressNumber, setAddressNumber] = useState('');
+  const [ordered, setOrdered] = useState([]);
   const location = useLocation();
   const history = useHistory();
 
@@ -55,6 +56,8 @@ const Provider = ({ children }) => {
     setAddressNumber,
     checkoutPurchase,
     removeProduct,
+    ordered,
+    setOrdered,
   };
 
   useEffect(() => {
