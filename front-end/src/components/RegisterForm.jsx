@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import RegisterButton from './RegisterButton';
 
 function RegisterForm() {
   const [registerInfo, setRegisterInfo] = useState({
@@ -9,13 +8,43 @@ function RegisterForm() {
   });
 
   console.log(registerInfo);
-  const [buttonStatus, setButtonStatus] = useState(true);
+
+  // const [buttonStatus, setButtonStatus] = useState(true);
+
+  const validarNome = (nome) => {
+    const NAME_LENGTH = 12;
+    if (nome.length < NAME_LENGTH) {
+      return false;
+    }
+
+    return true;
+  };
+
+  const validarEmail = (email) => {
+    const emailTester = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/i;
+
+    if (!emailTester.test(email)) return false;
+
+    return true;
+  };
+
+  const validarSenha = (senha) => {
+    const SENHA_LENGTH = 6;
+
+    if (senha.length < SENHA_LENGTH) {
+      console.log(senha.length);
+      return false;
+    }
+    return true;
+  };
 
   const ableButton = () => {
-    const isValid = validate();
-    if (isValid) {
-      setButtonStatus(!buttonStatus);
-    } else setButtonStatus(!buttonStatus);
+    const { nome, senha, email } = registerInfo;
+
+    if (validarNome(nome) && validarSenha(senha) && validarEmail(email)) {
+      return false;
+    }
+    return true;
   };
 
   const handleRegisterForm = ({ target }) => {
@@ -59,7 +88,7 @@ function RegisterForm() {
           onChange={ (event) => handleRegisterForm(event) }
         />
       </label>
-      <RegisterButton buttonStatus={ buttonStatus } registerInfo={ registerInfo } />
+      <button type="button" disabled={ ableButton() }>Registra-se</button>
     </form>);
 }
 
