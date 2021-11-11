@@ -69,6 +69,7 @@ export default function Login() {
       const user = state.$data;
       const { data } = await api.create(user);
       // setUser(response);
+      localStorage.setItem('user', JSON.stringify(data));
       redirect(data);
     } catch (error) {
       setIsErr(true);
