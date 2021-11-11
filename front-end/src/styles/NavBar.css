@@ -1,0 +1,18 @@
+.navBar__container {
+  align-items: center;
+  border-bottom: 1px solid #cecece;
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  padding: 0 2rem;
+  width: 100%;
+}
+
+.navBar-left {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.navBar-right {
+  display: flex;
+}
