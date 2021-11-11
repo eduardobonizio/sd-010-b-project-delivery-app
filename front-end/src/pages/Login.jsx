@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Button } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { setEmail, setPassword } from '../actions';
 
 function Login() {
@@ -9,6 +8,7 @@ function Login() {
   const [email, setStateEmail] = useState();
   const [password, setStatePassword] = useState();
   const [disabled, setDisable] = useState(true);
+  const [hideErrorMessage, setHideErrorMessage] = useState(true);
   const navigate = useNavigate();
 
   const changeDisabled = () => {
@@ -20,26 +20,39 @@ function Login() {
   const dispatchOnSubmit = () => {
     dispatch(setEmail(email));
     dispatch(setPassword(password));
-    return <Navigate to="/customer/products" />;
+    const fail = true;
+    if (fail) return setHideErrorMessage(!hideErrorMessage);
+    return navigate('/customer/products');
   };
 
   return (
     <div className="login">
       <p>LOGO</p>
       <p>NOME DO APP</p>
-      <input
-        data-testid="common_login__input-email"
-        onChange={ (e) => setStateEmail(e.target.value) }
-        type="text"
-      />
-      <input
-        data-testid="common_login__input-email"
-        onChange={ (e) => {
-          setStatePassword(e.target.value);
-          changeDisabled();
-        } }
-        type="password"
-      />
+      <span hidden={ hideErrorMessage }>
+        Usuário/Senha inválidos
+      </span>
+      <label htmlFor="email">
+        Login
+        <input
+          name="email"
+          id="email"
+          data-testid="common_login__input-email"
+          onChange={ (e) => setStateEmail(e.target.value) }
+          type="text"
+        />
+      </label>
+      <label htmlFor="password">
+        Senha
+        <input
+          data-testid="common_login__input-email"
+          onChange={ (e) => {
+            setStatePassword(e.target.value);
+            changeDisabled();
+          } }
+          type="password"
+        />
+      </label>
       <button
         data-testid="common_login__button-login"
         disabled={ disabled }
@@ -48,11 +61,13 @@ function Login() {
       >
         LOGIN
       </button>
-      <Link to="/register">
-        <Button type="button">
-          Ainda não tenho conta
-        </Button>
-      </Link>
+      <button
+        onClick={ () => navigate('/register') }
+        data-testid="common_login__button-register"
+        type="button"
+      >
+        Ainda não tenho conta
+      </button>
     </div>
   );
 }
