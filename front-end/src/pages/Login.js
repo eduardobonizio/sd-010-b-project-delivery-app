@@ -23,7 +23,7 @@ export default function Login() {
     e.preventDefault();
     const res = await fetchAuthUser(email, password);
 
-    console.log(res);
+    localStorage.setItem('user', JSON.stringify(res));
     if (res.message) {
       setIsValidEntry(false);
     } else {
