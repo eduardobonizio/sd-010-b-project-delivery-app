@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { loginUser } from '../services/user';
 
 const Joi = require('joi');
 
@@ -29,13 +30,19 @@ function Login() {
     validateLogin();
   };
 
+  const handleSubmit = (event) => {
+    console.log('aqui');
+    event.preventDefault();
+    loginUser({ email: login, password });
+  };
+
   useEffect(() => {
     validateLogin();
   }, [login, password, validateLogin]);
 
   return (
     <div>
-      <form>
+      <form onSubmit={ handleSubmit }>
         <label htmlFor="login-input">
           Login
           <input
@@ -65,6 +72,7 @@ function Login() {
           type="submit"
           data-testid="common_login__button-login"
           disabled={ button }
+          onSubmit={ handleSubmit }
         >
           Login
         </button>

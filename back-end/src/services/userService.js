@@ -24,10 +24,10 @@ const findEmail = async (email) => {
   return false;
 };
 
-const login = async ({email, password}) => {
-  const encodePassword = encode(password);
+const login = async ({ email, password: userPassword }) => {
+  const password = encode(userPassword);
   
-  const userExistes = await user.findOne({ where: { email, encodePassword } });
+  const userExistes = await user.findOne({ where: { email, password } });
    if (userExistes === null) {
     return { err: {
       status: 404,
