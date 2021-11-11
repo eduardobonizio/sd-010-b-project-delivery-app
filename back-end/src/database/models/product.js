@@ -7,11 +7,11 @@ const product = (sequelize, DataTypes) => {
     timestamps: false,
   });
 
-  product.associate = (models) => {
-    product.hasMany(models.salesProducts, 
-      { foreignKey: 'id', as: 'product_id' },
-    );
-  };
+  // product.associate = (models) => {
+  //   product.hasMany(models.salesProducts, 
+  //     { foreignKey: 'id', as: 'product_id' },
+  //   );
+  // };
 
   return product;
 };
