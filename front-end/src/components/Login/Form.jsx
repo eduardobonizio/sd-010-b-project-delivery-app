@@ -44,11 +44,14 @@ function LoginForm() {
             ] }
           >
             <Input
+              data-testid="common_login__input-email"
               prefix={ <UserOutlined className="site-form-item-icon" /> }
               placeholder="email@trybeer.com"
             />
           </Form.Item>
+
           <Form.Item
+            label="Senha"
             name="password"
             rules={ [
               {
@@ -62,6 +65,7 @@ function LoginForm() {
             ] }
           >
             <Input.Password
+              data-testid="common_login__input-password"
               prefix={ <LockOutlined className="site-form-item-icon" /> }
               type="password"
               placeholder="Senha"
@@ -70,6 +74,7 @@ function LoginForm() {
 
           <Form.Item style={ { textAlign: 'center', marginBottom: 0 } }>
             <Button
+              data-testid="common_login__button-login"
               style={ { backgroundColor: '#036b52' } }
               onClick={ () => openNotificationWithIcon('success') }
               block
@@ -81,7 +86,7 @@ function LoginForm() {
             </Button>
             <p style={ { marginBottom: 0 } }>ou</p>
             <Button
-              onClick={ () => openNotificationWithIcon('success') }
+              data-testid="common_login__button-register"
               type="default"
               block
               shape="round"
