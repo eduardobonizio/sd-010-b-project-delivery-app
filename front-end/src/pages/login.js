@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Joi from 'joi';
 import { useValidator } from 'react-joi';
+import api from '../services';
+import NotFound from '../components/notFound';
 
 export default function Login() {
   const SIX = 6;
@@ -22,12 +24,18 @@ export default function Login() {
     },
   });
 
-  // const [isDisabled, setIsDisable] = useState(true);
+  const [isDisabled, setIsDisable] = useState(true);
+  const [isErr, setIsErr] = useState(false);
+  // const [user, setUser] = useState({});
+
+  useEffect(() => {
+    const disabled = state.$all_source_errors.length !== 0;
+    setIsDisable(disabled);
+  }, [state]);
 
   const updateEmail = (e) => {
-  // react < v17
+    // react < v17
     e.persist();
-
     setData((old) => ({
       ...old,
       email: e.target.value,
@@ -44,7 +52,28 @@ export default function Login() {
     }));
   };
 
-  const isDisabled = state.$all_source_errors.length !== 0;
+  const redirect = ({ role }) => {
+    console.log(role);
+    switch (role) {
+    case 'administrator': return window.location.replace('/customer/products');
+    case 'customer': return window.location.replace('/customer/products');
+    case 'seller': return window.location.replace('/customer/seller');
+      // case 'seller':
+    default:
+      break;
+    }
+  };
+
+  const userLogin = async () => {
+    try {
+      const user = state.$data;
+      const { data } = await api.create(user);
+      // setUser(response);
+      redirect(data);
+    } catch (error) {
+      setIsErr(true);
+    }
+  };
 
   return (
     <>
@@ -78,14 +107,13 @@ export default function Login() {
         {/* {state.$errors.password.map((data) => data.$message).join(',')} */}
         <br />
       </form>
-      {console.log(state.$all_source_errors)}
 
       <button
         type="submit"
         name="loginButton"
         data-testid="common_login__button-login"
         disabled={ isDisabled }
-        onClick={ validate }
+        onClick={ async () => { validate(); await userLogin(); } }
       >
         Login
 
@@ -100,9 +128,7 @@ export default function Login() {
 
       </button>
 
-      {/* <code>
-        <pre>{JSON.stringify(state, null, 2)}</pre>
-      </code> */}
+      {isErr && <NotFound />}
     </>
   );
 }
