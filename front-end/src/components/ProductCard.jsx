@@ -1,14 +1,15 @@
-import { Container, Stack, Typography } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 import { ButtonUnstyled } from '@mui/core';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Box } from '@mui/system';
 
 function ProductCard({ value, description, img }) {
   const [quantity, setQuantity] = useState(0);
 
   return (
     // TODO: Remove inline styles
-    <Container style={ { width: '200px' } }>
+    <Box style={ { width: '200px' } }>
       <Stack
         direction="column"
         justifyContent="center"
@@ -36,7 +37,7 @@ function ProductCard({ value, description, img }) {
           <ButtonUnstyled onClick={ () => setQuantity(quantity + 1) }>+</ButtonUnstyled>
         </Stack>
       </Stack>
-    </Container>
+    </Box>
   );
 }
 
