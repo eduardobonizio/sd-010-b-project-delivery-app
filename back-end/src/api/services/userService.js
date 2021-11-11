@@ -1,5 +1,6 @@
 const md5 = require('md5');
 const { user } = require('../../database/models');
+const generateToken = require('../../utils/generateToken');
 
 const cryptoPassword = (password) => {
   const regexExp = /^[a-f0-9]{32}$/gi; 
@@ -15,7 +16,11 @@ const existUser = async ({ email, password }) => {
   if (userFound === null) {
     return { message: 'Usuário não encontrado' };
   }
-  return userFound;
+  const { name, role } = userFound;
+
+  const token = generateToken({ name, role, email });
+
+  return { name, email, role, token };
 };
 
 module.exports = { existUser };
