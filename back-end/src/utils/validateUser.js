@@ -1,5 +1,5 @@
 const { User } = require('../database/models');
-const CustomError = require('../ultils/CustomerError');
+const CustomError = require('./CustomerError');
 const Joi = require('joi');
 
 const validationUser = (body) => {
@@ -12,6 +12,7 @@ const validationUser = (body) => {
   if (error) throw new CustomError(error.message, 400);
 }
 
+
 const verifyUser = async (name, email) => {
   const findUserByEmail = await User.findOne({ where: { email } });
   const findUserByName = await User.findOne({ where: { name } });
@@ -21,7 +22,18 @@ const verifyUser = async (name, email) => {
   }
 };
 
+
+const checkLogin = (email, password) => {
+  const { error } = Joi.object({
+    email: Joi.string().email().required(),
+    password: Joi.string().min(6).required(),
+  }).validate({ email, password });
+
+  if (error) throw new CustomError(error.message, 400);
+};
+
 module.exports = {
   verifyUser,
   validationUser,
+  checkLogin
 }
