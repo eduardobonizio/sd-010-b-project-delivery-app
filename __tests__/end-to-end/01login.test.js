@@ -26,12 +26,12 @@ beforeEach(async () => {
   await expect(page).toCompareURL(`${host}/login`);
 });
 
-describe.only(requirement(1), () => {
-  test("O avaliador navegará para o endereço do host utilizando o endpoint '/'", async () => {
+describe(requirement(1), () => {
+  test.only("O avaliador navegará para o endereço do host utilizando o endpoint '/'", async () => {
     await expect(page).toNavigate(`${host}/`);
     await expect(page).toCompareURL(`${host}/login`);
   });
-  test("O avaliador navegará para o endereço do host utilizando o endpoint '/login'", async () => {
+  test.only("O avaliador navegará para o endereço do host utilizando o endpoint '/login'", async () => {
     await expect(page).toNavigate(`${host}/login`);
     await expect(page).toCompareURL(`${host}/login`);
   });
