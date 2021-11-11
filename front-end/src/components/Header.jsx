@@ -1,13 +1,40 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/Header.css';
 
 function Header() {
   return (
     <header>
-      <Link to="/"><div>PRODUTOS</div></Link>
-      <Link to="/"><div>MEUS PRODUTOS</div></Link>
-      <Link to="/"><div>CICRANO DA SILVA</div></Link>
-      <Link to="/"><div>Sair</div></Link>
+      <nav>
+        <Link
+          data-testid="customer_products__element-navbar-link-products"
+          to="/"
+          className="nav1"
+        >
+          PRODUTOS
+        </Link>
+        <Link
+          data-testid="customer_products__element-navbar-link-orders"
+          to="/"
+          className="nav2"
+        >
+          MEUS PRODUTOS
+        </Link>
+        <Link
+          data-testid="customer_products__element-navbar-user-full-name"
+          to="/"
+          className="nav3"
+        >
+          CICRANO DA SILVA
+        </Link>
+        <Link
+          data-testid="customer_products__element-navbar-link-logout"
+          to="/"
+          className="nav4"
+        >
+          Sair
+        </Link>
+      </nav>
     </header>
   );
 }
