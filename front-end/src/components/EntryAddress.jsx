@@ -1,5 +1,5 @@
-import React from "react";
-import Context from "../src/provider/Provider"
+import React from 'react';
+import Context from '../provider/Provider';
 
 function EntryAddress() {
   const { setPurchaseAddress } = React.useContext(Context);
@@ -11,7 +11,7 @@ function EntryAddress() {
           type="text"
           name="insert-address"
           data-testid="customer_checkout__input-address"
-          onChange={(e) => setPurchaseAddress(e.target.value)}
+          onChange={ (e) => setPurchaseAddress(e.target.value) }
         />
       </label>
     </div>

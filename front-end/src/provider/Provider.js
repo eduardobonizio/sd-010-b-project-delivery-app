@@ -3,13 +3,12 @@ import React, { createContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useLocation } from 'react-router-dom';
 import tokenHandler from '../helper/functions/tokenHandler';
-import moment from 'moment';
 
 const Context = createContext();
 
 const Provider = ({ children }) => {
   const [products, setProducts] = useState([]);
-  const [orderInProgress, setOrderInProgress] = useState();
+  const [orderInProgress, setOrderInProgress] = useState([]);
   const [totalOrder, setTotalOrder] = useState(0);
   const [dataUser, setDataUser] = useState({});
   const [chooseSeller, setChooseSeller] = useState('');
@@ -17,10 +16,6 @@ const Provider = ({ children }) => {
   const [addressNumber, setAddressNumber] = useState('');
   const location = useLocation();
   const history = useHistory();
-
-  const context = {
-    products, setProducts, orderInProgress, setOrderInProgress, totalOrder, setTotalOrder, dataUser, setDataUser, chooseSeller, setChooseSeller, purchaseAddress, setPurchaseAddress, addressNumber, setAddressNumber, checkoutPurchase
-  };
 
   function checkoutPurchase() {
     const checkoutKeys = {
@@ -35,6 +30,32 @@ const Provider = ({ children }) => {
     };
     console.log(checkoutKeys);
   }
+
+  function removeProduct(productIndex) {
+    const clearProduct = orderInProgress.filter(
+      (_product, index) => index !== productIndex,
+    );
+    return setOrderInProgress(clearProduct);
+  }
+
+  const context = {
+    products,
+    setProducts,
+    orderInProgress,
+    setOrderInProgress,
+    totalOrder,
+    setTotalOrder,
+    dataUser,
+    setDataUser,
+    chooseSeller,
+    setChooseSeller,
+    purchaseAddress,
+    setPurchaseAddress,
+    addressNumber,
+    setAddressNumber,
+    checkoutPurchase,
+    removeProduct,
+  };
 
   useEffect(() => {
     const token = localStorage.getItem('token');

@@ -1,5 +1,5 @@
 import React from 'react';
-import Context from '../src/provider/Provider';
+import Context from '../provider/Provider';
 
 function EntryAddressNumber() {
   const { setAddressNumber } = React.useContext(Context);
@@ -11,7 +11,7 @@ function EntryAddressNumber() {
           type="number"
           name="addressNumber"
           data-testid="customer_checkout__input-addressNumber"
-          onChange={(e) => setAddressNumber(e.target.value)}
+          onChange={ (e) => setAddressNumber(e.target.value) }
         />
       </label>
     </div>
