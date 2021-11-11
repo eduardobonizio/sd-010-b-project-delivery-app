@@ -1,15 +1,17 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Login from './modules/login/Login';
+import Register from './modules/register/Register';
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  const styles = { height: '500px' };
   return (
-    <div className="container-fluid" style="height: 100px">
+    <div className="container-fluid">
       <Switch>
-        <Route exact path="/" render={ (props) => <Login { ...props } /> } />
+        <Route exact path="/"><Login /></Route>
+        <Route exact path="/login"><Login /></Route>
+        <Route exact path="/register"><Register /></Route>
       </Switch>
     </div>
   );
