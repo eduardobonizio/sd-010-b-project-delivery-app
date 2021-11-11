@@ -1,10 +1,11 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Route, Switch, Redirect } from 'react-router';
-import Provider from './provider/Provider';
 
 import Login from './pages/login';
 import Register from './pages/register';
+import Provider from './provider/Provider';
+import Bebidas from './pages/bebidas';
 
 import './App.css';
 
@@ -17,6 +18,7 @@ function App() {
             <Route exact path="/" render={ () => (<Redirect to="/login" />) } />
             <Route path="/login" component={ Login } />
             <Route path="/register" component={ Register } />
+            <Route path="/" component={ Bebidas } />
           </Switch>
         </BrowserRouter>
       </Provider>

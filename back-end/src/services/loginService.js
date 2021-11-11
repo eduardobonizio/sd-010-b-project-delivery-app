@@ -3,7 +3,6 @@ const { User } = require('../database/models');
 const { checkLogin } = require('../utils/validateUser');
 
 const loginService = async ({ email, password }) => {
-  
   checkLogin(email, password);
   
   const getToken = await User.findOne({ where: { email, password } });
