@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 // import { Box } from '@mui/material';
 // import PropTypes from 'prop-types';
 function Login() {
+  const history = useHistory();
   const [loginButtonDisabled, setLoginButtonDisabled] = useState(true);
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
@@ -30,6 +32,8 @@ function Login() {
         console.log(response);
         if (response.ok === false) {
           setIsEmailInvalid(true);
+        } else {
+          history.push('/customer/products');
         }
       });
   };
