@@ -4,7 +4,7 @@ import Navbar from '../components/navbar';
 function Products() {
   return (
     <div>
-      <Navbar />
+      <Navbar name="Camila" products="Produtos" orders="Pedidos" />
     </div>
   );
 }

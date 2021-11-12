@@ -9,9 +9,9 @@ const Product = (sequelize, DataTypes) => {
     underscored: true,
   });
 
-  product.associate = (models) => {
-    product.belongsToMany(models.Sale, { foreignKey: 'sale_id', as: 'sales' });
-  };
+  // product.associate = (models) => {
+  //   product.belongsToMany(models.sale, { foreignKey: 'sale_id', as: 'sales' });
+  // };
 
   return product;
 };
