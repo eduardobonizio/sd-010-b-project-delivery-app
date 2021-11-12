@@ -10,7 +10,10 @@ import OrderDetail from './pages/OrderDetail';
 import OrderStatus from './pages/OrderStatus';
 import Checkout from './pages/Checkout';
 import SalesDetails from './pages/SalesDetails';
-
+/**
+ *
+ * @returns
+ */
 function App() {
   return (
     <BrowserRouter>
