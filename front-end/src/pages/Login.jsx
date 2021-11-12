@@ -18,12 +18,8 @@ function Login() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(email);
-    console.log(password);
     if (password && email) {
       if (validateEmailFormat(email) && validatePassword(password)) {
-        console.log(validateEmailFormat(email));
-        console.log(validatePassword(password));
         setDisable(false);
       } else {
         setDisable(true);
