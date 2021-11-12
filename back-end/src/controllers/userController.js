@@ -18,7 +18,7 @@ const create = async (req, res) => {
     if (token.err) {
       return res.status(token.err.status).json({ message: token.err.message });
     }
-    res.status(201).json(token.data);
+    res.status(201).json({ token });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
