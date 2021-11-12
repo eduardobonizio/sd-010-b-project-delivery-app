@@ -4,7 +4,6 @@ import validateEmail from './functions';
 import * as style from './style';
 
 export default function Login() {
-  const [validPassword, setValidPassword] = useState(false);
   const [validEmail, setValidEmail] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const [password, setPassword] = useState('');
@@ -19,16 +18,8 @@ export default function Login() {
   }, [email]);
 
   useEffect(() => {
-    const length = 3;
-
-    if (password.length > length) {
-      setValidPassword(true);
-    }
-  }, [password]);
-
-  useEffect(() => {
     const enableBtn = () => {
-      if (validEmail && validPassword) {
+      if (validEmail) {
         setDisabled(false);
       } else {
         setDisabled(true);
@@ -36,7 +27,7 @@ export default function Login() {
     };
 
     enableBtn();
-  }, [email, password, validEmail, validPassword]);
+  }, [email, password, validEmail]);
 
   return (
     <style.CommonContainer>
@@ -73,7 +64,12 @@ export default function Login() {
         <Link to="/register" data-testid="common_login__button-register">
           <style.RegisterButton type="submit">Ainda nao tenho conta</style.RegisterButton>
         </Link>
-        <p id="erro">{' '}</p>
+        <p
+          id="erro"
+          data-testid={ `common_login__element-invalid-email${'element'}` }
+        >
+          {' '}
+        </p>
 
       </style.CommonForm>
     </style.CommonContainer>
