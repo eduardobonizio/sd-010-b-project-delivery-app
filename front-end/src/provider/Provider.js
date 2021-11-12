@@ -72,7 +72,13 @@ const Provider = ({ children }) => {
     const token = localStorage.getItem('token');
     tokenHandler(token, location, history);
     fetchProducts();
+    const carrinho = localStorage.getItem('carrinho');
+    setOrderInProgress(JSON.parse(carrinho));
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem('carrinho', JSON.stringify(orderInProgress));
+  }, [orderInProgress]);
 
   return (
     <Context.Provider value={ context }>{children}</Context.Provider>

@@ -1,7 +1,3 @@
-// const translateProductsToCamelCase = (id, name, price, url_image) => ({
-//   id, name, price, url,
-// });
-
 const getAllProducts = async () => {
   const endpoint = 'http://localhost:3001/products';
   // const token = localStorage.getItem('token');

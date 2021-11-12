@@ -1,0 +1,50 @@
+.div-mainDiv {
+display: flex;
+flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+.cards-sections {
+  background-color: hotpink;
+  width: 280px;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-left: 15px;
+  margin-top: 20px;
+  /* justify-content: center; */
+  align-items: center;
+  justify-content: space-between;
+
+
+}
+
+.div-btn-mainDiv {
+  background-color: #d3d3d3 ;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  height: 100px;
+  margin: 0;
+  bottom: 0;
+}
+
+.div-btn-handlers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  bottom: 10px;
+  
+}
+
+.btn-handlers {
+  height: 30px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

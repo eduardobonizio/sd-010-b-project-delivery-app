@@ -1,5 +1,4 @@
 import React from 'react';
-// import MainDiv from '../styles/header.styles';
 import '../styles/header.css';
 
 const Header = () => {
@@ -12,6 +11,7 @@ const Header = () => {
           <button
             type="button"
             data-testid="customer_products__element-navbar-link-products"
+            className="btn-navbar"
           >
             PRODUTOS
 
@@ -19,6 +19,8 @@ const Header = () => {
           <button
             type="button"
             data-testid="customer_products__element-navbar-link-orders"
+            className="btn-navbar"
+
           >
             MEUS PEDIDOS
 
@@ -29,12 +31,16 @@ const Header = () => {
         <button
           type="button"
           data-testid="customer_products__element-navbar-user-full-name"
+          className="btn-navbar"
+
         >
           NOME DA PESSOA
         </button>
         <button
           type="button"
           data-testid="customer_products__element-navbar-link-logout"
+          className="btn-navbar"
+
         >
           SAIR
         </button>
