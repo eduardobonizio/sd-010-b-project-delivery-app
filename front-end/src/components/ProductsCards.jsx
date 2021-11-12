@@ -47,6 +47,7 @@ const ProductsCards = () => {
             src={ el.url }
             alt={ el.name }
             data-testid={ `customer_products__img-card-bg-image-${el.id}` }
+            className="imgs-element-cards"
           />
           <div className="div-btn-mainDiv">
             <h4

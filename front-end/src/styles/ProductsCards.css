@@ -48,3 +48,10 @@ flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
+
+.imgs-element-cards {
+  width:150px;
+  height: 150px;
+  position: absolute;
+  display: flex;
+}

@@ -20,4 +20,9 @@
 
 .btn-navbar {
   height: 100%;
+  width: 175px;
+  margin: 0;
+	border: none;
+	background: none;
+
 }
