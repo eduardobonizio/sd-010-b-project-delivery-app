@@ -22,7 +22,7 @@ function ProductOrders() {
 
   useEffect(() => {
     setOrdered(orderedArray);
-  }, [orderedArray, setOrdered]);
+  }, []);
 
   return (
     <div>

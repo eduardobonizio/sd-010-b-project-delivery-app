@@ -74,4 +74,4 @@ Provider.propTypes = {
   children: PropTypes.shape.isRequired,
 };
 
-export { Provider, Context };
+export default { Provider, Context };
