@@ -17,77 +17,66 @@ const PRODUCT_OBJ_ARRAY = [{
   description: 'Skol Lata 250ml',
   quantity: 2,
   unitPrice: 2.20,
-  subTotal: 4.40,
 },
 {
   id: 2,
   description: 'Império Lata 250ml',
   quantity: 2,
   unitPrice: 2.20,
-  subTotal: 4.40,
 },
 {
   id: 3,
   description: 'Brahma Lata 250ml',
   quantity: 2,
   unitPrice: 2.20,
-  subTotal: 4.40,
 },
 {
   id: 4,
   description: 'Budweiser Lata 250ml',
   quantity: 2,
   unitPrice: 2.20,
-  subTotal: 4.40,
 },
 {
   id: 5,
   description: 'Stella Lata 250ml',
   quantity: 2,
   unitPrice: 2.20,
-  subTotal: 4.40,
 },
 {
   id: 6,
   description: 'Coca Lata 250ml',
   quantity: 2,
   unitPrice: 2.20,
-  subTotal: 4.40,
 },
 {
   id: 7,
   description: 'Pespi Lata 250ml',
   quantity: 2,
   unitPrice: 2.20,
-  subTotal: 4.40,
 },
 {
   id: 8,
   description: 'Guarana Lata 250ml',
   quantity: 2,
   unitPrice: 2.20,
-  subTotal: 4.40,
 },
 {
   id: 9,
   description: 'Agua Lata 250ml',
   quantity: 2,
   unitPrice: 2.20,
-  subTotal: 4.40,
 },
 {
   id: 10,
   description: 'Tequila Lata 250ml',
   quantity: 2,
   unitPrice: 2.20,
-  subTotal: 4.40,
 },
 {
   id: 11,
   description: 'Leite Lata 250ml',
   quantity: 2,
   unitPrice: 2.20,
-  subTotal: 4.40,
 },
 ];
 // ---------------------------------------------------------
@@ -101,10 +90,28 @@ function CustomerCheckout() {
   }, []);
 
   useEffect(() => {
-    setProducts(JSON.parse(localStorage.getItem('customerCart')));
+    const getLocalStorage = localStorage.getItem('customerCart');
+    if (getLocalStorage) setProducts(JSON.parse(getLocalStorage));
     setRefresh(false);
   }, [refresh]);
   // ---------------------------------------------------------
+  const renderCartItems = () => {
+    const mappedRenderProducts = Array.isArray(products) ? products.map(
+      ({ id, description, quantity, unitPrice }, index) => (
+        <ProductTableListCard
+          key={ id }
+          index={ index }
+          description={ description }
+          quantity={ quantity }
+          pricePerUnit={ unitPrice }
+          removeBtn
+        />
+      ),
+    ) : null;
+
+    return mappedRenderProducts;
+  };
+
   return (
     <div data-testid="customer-checkout-page">
       <NavBar username="<username>" user="customer" />
@@ -120,13 +127,7 @@ function CustomerCheckout() {
             spacing={ 0 }
           >
             <ProductTableHeader />
-            <ProductTableListCard
-              index="1"
-              description="Teste"
-              quantity={ 3 }
-              pricePerUnit={ 10.99 }
-              removeBtn
-            />
+            { renderCartItems() }
           </Stack>
         </Container>
       </main>
