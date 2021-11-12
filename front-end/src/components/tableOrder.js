@@ -17,6 +17,7 @@ export default function TableOrder() {
 
   return (
     <>
+      <h2>Finalizar Pedido</h2>
       <table>
         <thead>
           <tr>
