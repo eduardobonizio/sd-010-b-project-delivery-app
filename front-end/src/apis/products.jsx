@@ -8,10 +8,10 @@ export const getAll = () => {
   return products;
 };
 
-export const getProductById = () => {
-  const productss = fetch(URL)
+export const getProductById = (id) => {
+  const product = fetch(`${URL}/${id}`)
     .then((response) => response.json())
-    .then((data) => console.log(data));
+    .then((data) => data);
 
-  return productss;
+  return product;
 };

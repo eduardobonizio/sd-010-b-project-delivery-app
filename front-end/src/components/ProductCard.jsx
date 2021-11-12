@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+
+import Context from '../context/Context';
 
 import '../styles/productCard.css';
 
 const ProductsCard = ({ product: { id, name, price, url_image: urlImage } }) => {
+  const { addProductToCart } = useContext(Context);
+
   const convertDotToComma = (value) => value.toString().replace('.', ',');
 
   return (
@@ -24,6 +28,7 @@ const ProductsCard = ({ product: { id, name, price, url_image: urlImage } }) => 
       </section>
       <footer className="product-card__container__footer">
         <span
+          className="product-card__container__title"
           data-testid={ `customer_products__element-card-title-${id}` }
         >
           { name }
@@ -45,6 +50,7 @@ const ProductsCard = ({ product: { id, name, price, url_image: urlImage } }) => 
             className="product-card__container__button-sum"
             type="button"
             data-testid={ `customer_products__button-card-add-item-${id}` }
+            onClick={ () => addProductToCart(id) }
           >
             +
           </button>

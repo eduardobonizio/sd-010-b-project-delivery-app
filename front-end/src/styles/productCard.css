@@ -26,6 +26,11 @@
   position: absolute;
 }
 
+.product-card__container__title {
+  margin: 8px auto auto;
+  max-width: 90%;
+}
+
 .product-card__container__footer {
   align-items: center;
   background-color: rgba(128, 128, 128, 0.2);
@@ -33,7 +38,7 @@
   flex-direction: column;
   gap: 6px;
   height: 100%;
-  justify-content: space-around;
+  justify-content: space-between;
   text-align: center;
   width: 100%;
 }
@@ -44,6 +49,7 @@
   color: aliceblue;
   font-weight: 900;
   height: 28px;
+  margin: auto auto 8px;
   padding: 0;
   width: 32px;
 }
