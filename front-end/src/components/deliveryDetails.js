@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { fetchAllSellers } from '../services/userAPI';
 
 const initialState = {
   seller: '',
@@ -6,15 +7,25 @@ const initialState = {
   number: 0,
 };
 
-const sellers = [{ name: 'Vendedor 1' }, { name: 'Vendedor 2' }];
-
 export default function DeliveryDetails() {
   const [checkoutInfo, setCheckoutInfo] = useState(initialState);
+  const [sellers, setSellers] = useState([]);
 
   const updateState = (name, value) => {
     setCheckoutInfo({ ...inputData, [name]: value });
   };
+
+  useEffect(() => {
+    const getSellers = async () => {
+      const data = await fetchAllSellers();
+      setSellers(data);
+    };
+    getSellers();
+  }, []);
+
+  // TODO: remover o console.log abaixo após configurar checkout
   console.log(checkoutInfo);
+
   return (
     <form>
       <h2>Detalhes e endereço para entrega</h2>
