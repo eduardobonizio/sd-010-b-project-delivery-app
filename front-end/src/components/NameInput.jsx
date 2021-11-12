@@ -2,15 +2,15 @@ import React from 'react';
 import Proptypes from 'prop-types';
 
 function NameInput(props) {
-  const { setStateEmail } = props;
+  const { setStateName, nameTestId } = props;
   return (
-    <label htmlFor="email-input">
-      Login
+    <label htmlFor="name-input">
+      Nome
       <input
-        id="email-input"
-        data-testid="common_login__input-email"
+        id="name-input"
+        data-testid={ nameTestId }
         onChange={ (e) => {
-          setStateEmail(e.target.value);
+          setStateName(e.target.value);
         } }
         type="text"
       />
@@ -21,5 +21,6 @@ function NameInput(props) {
 export default NameInput;
 
 NameInput.propTypes = {
-  setStateEmail: Proptypes.func.isRequired,
+  nameTestId: Proptypes.string.isRequired,
+  setStateName: Proptypes.func.isRequired,
 };

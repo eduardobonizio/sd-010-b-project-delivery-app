@@ -16,6 +16,9 @@ function Login() {
   const [disabled, setDisable] = useState(true);
   const [hideErrorMessage, setHideErrorMessage] = useState(true);
   const navigate = useNavigate();
+  const emailTestId = 'common_login__input-email';
+  const passwordTestId = 'common_login__input-password';
+  const title = 'Login';
 
   useEffect(() => {
     if (password && email) {
@@ -42,12 +45,13 @@ function Login() {
       <p>NOME DO APP</p>
       <LoginErrorMessage hideErrorMessage={ hideErrorMessage } />
       <EmailInput
+        title={ title }
         setStateEmail={ setStateEmail }
-        // changeDisabled={ changeDisabled }
+        emailTestId={ emailTestId }
       />
       <PasswordInput
         setStatePassword={ setStatePassword }
-        // changeDisabled={ changeDisabled }
+        passwordTestId={ passwordTestId }
       />
       <LoginButton dispatchOnSubmit={ dispatchOnSubmit } disabled={ disabled } />
       <RegisterButton />
