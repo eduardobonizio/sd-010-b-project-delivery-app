@@ -11,4 +11,6 @@ app.use('/cliente', productRouter);
 
 app.get('/', (_req, res) => res.redirect('/login'));
 
+app.use('/cliente', productRouter);
+
 module.exports = app;
