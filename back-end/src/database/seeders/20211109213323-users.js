@@ -1,5 +1,5 @@
 "use strict";
-const SHA256 = require('crypto-js/sha256');
+
 module.exports = {
   up: async (queryInterface, _Sequelize) => {
     await queryInterface.bulkInsert(
