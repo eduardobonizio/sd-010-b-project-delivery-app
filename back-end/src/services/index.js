@@ -1,4 +1,5 @@
-const userService = require('./User');
+const registerService = require('./Register');
+const loginService = require('./Login');
 const productsService = require('./Products');
 
-module.exports = { userService, productsService };
+module.exports = { registerService, productsService, loginService };
