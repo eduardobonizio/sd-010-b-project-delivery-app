@@ -78,23 +78,26 @@ function LoginForm() {
             />
           </Form.Item>
 
-          <Form.Item style={ { textAlign: 'center', marginBottom: 0 } }>
-            <Button
-              data-testid="common_login__button-login"
-              style={ { backgroundColor: '#036b52' } }
-              onClick={ () => openNotificationWithIcon('success') }
-              block
-              shape="round"
-              htmlType="submit"
-              className="login-form-button"
-              disabled={
-                !form.isFieldsTouched(true)
-                || !!form.getFieldsError().filter(({ errors }) => errors.length).length
-              }
-            >
-              Login
-            </Button>
-            <p style={ { marginBottom: 0 } }>ou</p>
+          <Form.Item shouldUpdate style={ { textAlign: 'center', marginBottom: 0 } }>
+            {() => (
+              <Button
+                data-testid="common_login__button-login"
+                style={ { backgroundColor: '#036b52' } }
+                onClick={ () => openNotificationWithIcon('success') }
+                block
+                shape="round"
+                htmlType="submit"
+                className="login-form-button"
+                disabled={
+                  !form.isFieldsTouched(true)
+                  || !!form.getFieldsError().filter(({ errors }) => errors.length).length
+                }
+              >
+                Login
+              </Button>
+            )}
+          </Form.Item>
+          <Form.Item>
             <Button
               data-testid="common_login__button-register"
               type="default"
@@ -103,7 +106,7 @@ function LoginForm() {
               htmlType="submit"
               className="login-form-button"
             >
-              Registre-se
+              Ainda não tenho cadastro
             </Button>
           </Form.Item>
         </Form>
