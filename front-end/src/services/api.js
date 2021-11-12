@@ -5,11 +5,11 @@ const token = () => ({
   headers: { authorization: getStorage('user').token },
 });
 
-export const login = async (body) => axios.post('http://localhost:3001/users/login', body)
+export const login = async (body) => axios.post('http://localhost:3001/login', body)
   .then(({ data }) => data)
   .catch((err) => err.response.data);
 
-export const register = async (body) => axios.post('http://localhost:3001/users/register', body)
+export const register = async (body) => axios.post('http://localhost:3001/register', body)
   .then(({ data }) => data)
   .catch((err) => err.response.data);
 
