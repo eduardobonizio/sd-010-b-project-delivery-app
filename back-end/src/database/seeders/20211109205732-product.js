@@ -22,11 +22,6 @@ module.exports = {
         url_image: "http://localhost:3001/images/brahma_600ml.jpg",
       },
       {
-        name: "Skol 600ml",
-        price: 7.5,
-        url_image: "http://localhost:3001/images/brahma_600ml.jpg",
-      },
-      {
         name: "Skol 269ml",
         price: 2.19,
         url_image: "http://localhost:3001/images/skol_269ml.jpg",
