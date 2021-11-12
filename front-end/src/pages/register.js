@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Joi from 'joi';
 import { useValidator } from 'react-joi';
+import api from '../services';
 
 export default function Register() {
   const TWELVE = 12;
@@ -27,6 +28,7 @@ export default function Register() {
   });
 
   const [isDisabled, setIsDisable] = useState(true);
+  const [isErr, setIsErr] = useState(false);
 
   useEffect(() => {
     const disabled = state.$all_source_errors.length !== 0;
@@ -59,6 +61,17 @@ export default function Register() {
     }));
   };
 
+  const userRegister = async () => {
+    try {
+      const info = state.$data;
+      await api.register(info);
+      return window.location.replace('/customer/products');
+      // console.log(data);
+    } catch (error) {
+      setIsErr(true);
+    }
+  };
+
   return (
     <>
       <h2>REGISTRO</h2>
@@ -74,7 +87,7 @@ export default function Register() {
           />
         </label>
         <br />
-        {console.log(state)}
+        {/* {console.log(state)} */}
         {state.$errors.name.map((data) => data.$message).join(',')}
         <br />
 
@@ -110,7 +123,7 @@ export default function Register() {
         name="registerButton"
         data-testid="common_register__button-register"
         disabled={ isDisabled }
-        onClick={ validate }
+        onClick={ async () => { validate(); await userRegister(); } }
       >
         CADASTRAR
 
@@ -119,7 +132,7 @@ export default function Register() {
       <p
         data-testid="common_register__element-invalid_register"
       >
-        MENSAGEM DE ERRO - ELEMENTO OCULTO
+        {isErr && <p>Erro: Email já cadastrado </p>}
 
       </p>
     </>
