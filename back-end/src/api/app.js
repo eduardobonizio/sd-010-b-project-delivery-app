@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(cors());
 app.use(express.static('public'));
 
-app.use('/login', loginRouter)
+app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/products', productsRouter);
 

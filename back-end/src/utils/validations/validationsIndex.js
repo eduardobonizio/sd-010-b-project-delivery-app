@@ -2,8 +2,8 @@ const {
   validateEmail,
   validatePassword,
   validateName,
-  confirmPassword,
-  confirmUser } = require('./validationsUsers')
+  confirmLogin,
+  confirmUser } = require('./validationsUsers');
 
 const createUser = async (name, email, password) => {
   validateName(name);
