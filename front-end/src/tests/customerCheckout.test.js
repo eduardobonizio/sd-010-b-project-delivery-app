@@ -63,10 +63,19 @@ describe('Tests for Customer Checkout', () => {
   });
 
   describe('localStorage', () => {
-    it('should be setted one time with customerCart at App', () => {
+    it('should getItem once', () => {
       renderWithRouter(<App />);
-      expect(window.localStorage.setItem(CUSTOMER_CART_KEY, [])).toHaveBeenCalledTimes(1);
-      expect(window.localStorage.getItem(CUSTOMER_CART_KEY)).toBe('[]');
+      expect(window.localStorage.getItem).toHaveBeenCalledTimes(1);
+    });
+    it('should be setted one time with customerCart at App if don\'t have a key', () => {
+      renderWithRouter(<App />);
+      
+      const gotItem = window.localStorage.getItem(CUSTOMER_CART_KEY);
+      window.localStorage.setItem(CUSTOMER_CART_KEY, []);
+      
+      expect(window.localStorage.getItem).toHaveBeenCalled();
+      expect(gotItem).toBeFalsy();
+      expect(window.localStorage.setItem).toHaveBeenCalled();
     });
   });
 
