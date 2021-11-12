@@ -1,14 +1,13 @@
 const express = require('express');
-const userController = require('../app/controllers/userController');
 
-const userValid = require('../middlewares/userValidations');
+const userController = require('../app/controllers/userController');
 
 // jwt
 
 const router = express.Router();
 
-router.post('/', userValid, userController.add);
-
-router.get('/', userController.findAll);
+router.route('/')
+.get(userController.findAll)
+.post(userController.add);
 
 module.exports = router;

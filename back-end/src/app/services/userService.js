@@ -1,14 +1,26 @@
 const { User } = require('../../database/models');
+const { validUser } = require('../../middlewares/userValidations');
 
-const userService = async (req, res) => {
-try {
-  const { name, email, password, role } = req;
-  const newUser = await User.create({ name, email, password, role });
-   if (newUser) return newUser;
-} catch (error) {
-  return res.status(500).json({ message: error.message });
-}
+const messageError = (status, message) => ({
+  status,
+  message,
+});
+
+const findAll = async () => {
+  const findAllUsers = await User.findAll();
+  return findAllUsers;
 };
+
+const addUser = async (bodyCategory) => {
+  const { error } = validUser.validate(bodyCategory);
+  
+  if (error) throw messageError(417, error.message);
+
+  const newUser = await User.create(bodyCategory);
+  return newUser;
+};
+
 module.exports = {
-  userService,
+  addUser,
+  findAll,
 };
