@@ -29,7 +29,7 @@ label {
   flex-direction: column;
 }
 
-input {
+input, button {
   border: 1px solid #b1c2be;
   border-radius: 5px;
   font-size: larger;
@@ -38,4 +38,15 @@ input {
   outline: none;
   padding: 0;
   width: 300px;
+}
+
+.login-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+span {
+  background-color: blueviolet;
+  text-align: center;
 }
