@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../components/navbar';
 import ProductCard from '../components/productCard';
 
 function Products() {
+  const [userObj, setUserObj] = useState({});
+
+  useEffect(() => {
+    const userInfo = localStorage.getItem('user');
+    setUserObj(JSON.parse(userInfo));
+    console.log(userObj);
+  }, []);
+
   const products = [
     {
       id: 1,
@@ -18,9 +26,11 @@ function Products() {
     },
   ];
 
+  const { name } = userObj;
+
   return (
     <div>
-      <Navbar name="Camila" products="Produtos" orders="Pedidos" />
+      <Navbar name={ name } products="Produtos" orders="Pedidos" />
       { products.map((product) => {
         console.log('lint');
         return <ProductCard key={ product.id } product={ product } />;
