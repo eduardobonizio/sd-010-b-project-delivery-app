@@ -20,10 +20,7 @@ function Login() {
   };
 
   // utilize o contexto aqui
-  const contexto = useContext(Context);
-  const mantemContextSemQuebrar = () => {
-    console.log(contexto);
-  };
+  const { setUser } = useContext(Context);
 
   const validateFields = ({ email, password }) => {
     const regex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
@@ -49,13 +46,24 @@ function Login() {
     if (checkLogin.message.id) {
       const { message } = checkLogin;
       setOnLocalStorage('login_delivery', message);
+      setUser(message);
       history.push('/customer/products');
     }
     setHidden(false);
-    mantemContextSemQuebrar();// soapara chamar em algum lugar
   };
 
   const atalho = () => {
+    const tokenPart1 = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.';
+    const tokenPart2 = 'eyJpZCI6NCwic…4OTB9.oyJ1J0jotGuP2De4xMkY2tm5gSsKiU9OI2BDR-HWvzA';
+    const message = {
+      id: 4,
+      name: 'teste',
+      email: 'teste@gmail.com',
+      role: 'custumer',
+      token: `${tokenPart1}${tokenPart2}`,
+    };
+    setOnLocalStorage('login_delivery', message);
+    setUser(message);
     history.push('/customer/products');
   };
 
