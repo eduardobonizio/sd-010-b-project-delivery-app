@@ -5,21 +5,21 @@ module.exports = {
     await queryInterface.bulkInsert('sales',
     [
       {
-        user_id: 1,
-        saller_id: 1,
+        user_id: null,
+        seller_id: 1,
         total_price: 50,
         delivery_address: 'avenida brasil',
         delivery_number: 134,
-        sale_date: Date(),
+        sale_date: new Date(),
         status: 'entregue'
       },
       {
         user_id: 2,
-        saller_id: 2,
+        seller_id: null,
         total_price: 50,
         delivery_address: 'avenida brasil',
         delivery_number: 134,
-        sale_date: Date(),
+        sale_date: new Date(),
         status: 'pendente'
       },
     ],

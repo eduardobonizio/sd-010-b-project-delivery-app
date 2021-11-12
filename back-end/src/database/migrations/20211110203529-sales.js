@@ -10,7 +10,6 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       user_id: {
-        allowNull: false,
         type: Sequelize.INTEGER,
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE', 
@@ -20,7 +19,6 @@ module.exports = {
         }
       },
       seller_id: {
-        allowNull: false,
         type: Sequelize.INTEGER,
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE', 
