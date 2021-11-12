@@ -3,8 +3,10 @@ import { Switch, Redirect } from 'react-router-dom';
 
 import CustomRoute from './Routes';
 import Login from './pages/Login';
-import NavBar from './components/NavBar';
+import Register from './pages/Register';
 import Products from './pages/Products';
+
+import NavBar from './components/NavBar';
 
 import './App.css';
 
@@ -20,7 +22,7 @@ function App() {
         component={ Products }
         navbar={ <NavBar /> }
       />
-
+      <CustomRoute path="/register" component={ Register } />
       <Redirect from="/" to="/login" />
     </Switch>
   );
