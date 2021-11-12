@@ -8,7 +8,7 @@ function Login() {
   const [passwordIsValid, setPasswordIsValid] = useState(false);
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  const [emailIsValid, setemailIsValid] = useState(false);
+  const [emailIsValid, setEmailIsValid] = useState(false);
   const [error, setError] = useState(null);
   const history = useHistory();
 
