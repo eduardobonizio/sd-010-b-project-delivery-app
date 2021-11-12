@@ -8,7 +8,6 @@ import React, {
   useState,
 } from 'react';
 import CartForm from '../components/CartForm';
-import NavBar from '../components/NavBar';
 import ProductTableHeader from '../components/ProductTableHeader';
 import ProductTableListCard from '../components/ProductTableListCard';
 
@@ -124,39 +123,36 @@ function CustomerCheckout() {
   };
 
   return (
-    <div data-testid="customer-checkout-page">
-      <NavBar username="<username>" user="customer" />
-      <main>
-        <Container>
-          <Typography variant="h5" component="h1">
-            Finalizar Pedido
-          </Typography>
-          <Stack
-            direction="column"
-            justifyContent="center"
-            alignItems="center"
-            spacing={ 0 }
-          >
-            <ProductTableHeader />
-            { renderCartItems() }
-          </Stack>
-          <Typography>{`Total: R$ ${calculateTotalPrice()}`}</Typography>
-        </Container>
-        <Container>
-          <Typography variant="h5" component="h1">
-            Detalhes e Endereço para Entrega
-          </Typography>
-          <Stack
-            direction="column"
-            justifyContent="center"
-            alignItems="center"
-            spacing={ 2 }
-          >
-            <CartForm />
-          </Stack>
-        </Container>
-      </main>
-    </div>
+    <main data-testid="customer-checkout-page">
+      <Container>
+        <Typography variant="h5" component="h1">
+          Finalizar Pedido
+        </Typography>
+        <Stack
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+          spacing={ 0 }
+        >
+          <ProductTableHeader />
+          { renderCartItems() }
+        </Stack>
+        <Typography>{`Total: R$ ${calculateTotalPrice()}`}</Typography>
+      </Container>
+      <Container>
+        <Typography variant="h5" component="h1">
+          Detalhes e Endereço para Entrega
+        </Typography>
+        <Stack
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+          spacing={ 2 }
+        >
+          <CartForm />
+        </Stack>
+      </Container>
+    </main>
   );
 }
 

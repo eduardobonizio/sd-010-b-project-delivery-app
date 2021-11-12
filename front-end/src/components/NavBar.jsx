@@ -1,38 +1,44 @@
 import React, { useEffect, useState } from 'react';
-import { Stack, Tabs, Tab, Typography, Box, Button } from '@mui/material';
+import { Stack, Tab, Typography, Box, Button, Tabs } from '@mui/material';
 import PropTypes from 'prop-types';
+import { useLocation } from 'react-router-dom';
 
-function NavBar({ username, user }) {
-  const [tabsValue, setTabsValue] = useState(false);
+const customerLabelArray = [
+  { label: 'Produtos', route: '/customer/products' },
+  { label: 'Meus Pedidos', route: '/customer/checkout' },
+];
 
-  const renderTabByUser = () => {
-    const customerLabelArray = ['Produtos', 'Meus Pedidos'];
+const renderTabByuserRole = (userRole) => {
+  if (userRole === 'customer') {
+    return customerLabelArray
+      .map(({ label, route }) => <Tab key={ label } label={ label } href={ route } />);
+  }
+  if (userRole === 'seller') {
+    return (
+      <Tab component="a" label="Pedidos" href="/seller/order" />
+    );
+  }
+  if (userRole === 'admin') {
+    return (
+      <Tab component="a" label="Pedidos" href="/admin/manage" />
+    );
+  }
+};
+function NavBar({ username, userRole }) {
+  const [tabsValue, setTabsValue] = useState(0);
 
-    if (user === 'customer') {
-      return customerLabelArray
-        .map((label) => <Tab value={ label } key={ label } label={ label } />);
-    }
-    if (user === 'seller') {
-      return (
-        <Tab value="Pedidos" label="Pedidos" />
-      );
-    }
-    if (user === 'admin') {
-      return (
-        <Tab value="Gerenciar Usuários" label="Gerenciar Usuários" />
-      );
-    }
-  };
+  const location = useLocation();
 
   useEffect(() => {
-    const verifyUserRole = () => {
-      if (user === 'customer') setTabsValue('Produtos');
-      if (user === 'seller') setTabsValue('Pedidos');
-      if (user === 'admin') setTabsValue('Gerenciar Usuários');
-    };
+    if (userRole === 'customer') {
+      if (location.pathname === '/customer/products') setTabsValue(0);
+      if (location.pathname === '/customer/checkout') setTabsValue(1);
+    }
+  }, [location.pathname, userRole]);
 
-    verifyUserRole();
-  }, [user]);
+  const handleChange = (event, newValue) => {
+    setTabsValue(newValue);
+  };
 
   return (
     <Stack
@@ -41,13 +47,8 @@ function NavBar({ username, user }) {
       alignItems="center"
       spacing={ 0 }
     >
-      <Tabs
-        value={ tabsValue }
-        textColor="secondary"
-        indicatorColor="secondary"
-        aria-label="secondary tabs example"
-      >
-        { renderTabByUser() }
+      <Tabs value={ tabsValue } onChange={ handleChange } aria-label="nav tabs example">
+        { renderTabByuserRole(userRole) }
       </Tabs>
       <Stack direction="row" alignItems="center" spacing={ 2 }>
         <Box><Typography>{username}</Typography></Box>
@@ -59,7 +60,7 @@ function NavBar({ username, user }) {
 
 NavBar.propTypes = {
   username: PropTypes.string.isRequired,
-  user: PropTypes.string.isRequired,
+  userRole: PropTypes.string.isRequired,
 };
 
 export default NavBar;
