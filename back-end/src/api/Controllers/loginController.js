@@ -7,9 +7,9 @@ const loginUser = async (req, res) => {
     if (login.message) {
       return res.status(404).json(login.message);
     }
-    
+
     return res.status(200).json({ token: login });
-  }
+  };
 
 module.exports = {
   loginUser,
