@@ -1,14 +1,25 @@
 import React from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
-import rockGlass from './images/rockGlass.svg';
+import Login from './Components/Login';
+// import Home from './Components/Home';
 
 function App() {
+  // const location = useLocation();
+
   return (
     <div className="App">
-      <span className="logo">TRYBE</span>
-      <object className="rocksGlass" type="image/svg+xml" data={ rockGlass }>
-        Glass
-      </object>
+      <Switch>
+        <Route path="/login" component={ Login } />
+        <Route
+          exact
+          path="/"
+          // element={ <Home /> }
+          // render={ (props) => <Home { ...props } /> }
+        >
+          <Redirect to="/login" />
+        </Route>
+      </Switch>
     </div>
   );
 }
