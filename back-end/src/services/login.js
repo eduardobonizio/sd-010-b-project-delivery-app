@@ -1,8 +1,8 @@
-const SHA256 = require('crypto-js/sha256');
+const MD5 = require('md5');
 const { User } = require('../database/models');
 
 const login = async ({ email, password }) => {
-  const encript = SHA256(password).words.join('');
+  const encript = MD5(password);
   const result = await User
     .findOne({ where: { email, password: encript }, attributes: { exclude: ['password'] } })
       .catch((e) => console.log(e));
