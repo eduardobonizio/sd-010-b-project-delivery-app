@@ -11,13 +11,15 @@ export default function Provider({ children }) {
 
   const addProductToCart = async (id) => {
     const product = await getProductById(id);
-    console.log(cart);
-    setCart({ ...cart, ...product });
+
+    setCart([...cart, { ...product }]);
   };
 
   const updateTotalCartValue = () => {
-    setTotalCart(totalCart + 1);
-    console.log(totalCart);
+    const totalValue = cart.reduce((acc, { price }) => Number(price) + acc, 0);
+    const decimalTotalValue = totalValue.toFixed(2);
+
+    setTotalCart(decimalTotalValue);
   };
 
   useEffect(() => {
