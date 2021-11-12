@@ -8,13 +8,24 @@ const checkIfUserExist = async (email) => {
   return user;
 };
 
+const encryptPassword = (password) => crypto.createHash('md5').update(password).digest('hex');
+
 const checkIfPasswordIsValid = async (userPassword, password) => {
-  const cryptoPassword = crypto.createHash('md5').update(password).digest('hex');
+  const cryptoPassword = encryptPassword(password);
   const isValid = userPassword === cryptoPassword;
-  if (!isValid) throw new ApiError('Incorrect password', 401);
+  if (!isValid) throw new ApiError('Incorrect password');
+};
+
+const checkAndCreateUser = async ({ name, email, password }) => {
+  const user = await User.findOne({ where: { email } });
+  if (user) throw new ApiError('User already exists', 409);
+  const cryptPass = encryptPassword(password);
+  const newUser = await User.create({ name, email, password: cryptPass, role: 'customer' });
+  return newUser;
 };
 
 module.exports = {
   checkIfUserExist,
   checkIfPasswordIsValid,
+  checkAndCreateUser,
 };
