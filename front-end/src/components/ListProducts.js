@@ -12,10 +12,8 @@ export default function ListProducts() {
   }, []);
 
   const history = useHistory();
-
   return (
     <>
-      {console.log(products)}
       <h3>Products</h3>
 
       { products && products.map(({ name, price, urlImage }, index) => (

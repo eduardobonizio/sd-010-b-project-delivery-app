@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getStorage } from '../utils/localStorage';
 
 const token = () => ({
-  headers: { authorization: getStorage('user') && getStorage('user').token },
+  headers: { authorization: getStorage('user').token },
 });
 
 export const login = async (body) => axios.post('http://localhost:3001/users/login', body)
