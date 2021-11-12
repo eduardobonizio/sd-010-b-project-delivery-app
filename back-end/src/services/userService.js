@@ -34,8 +34,10 @@ const login = async ({ email, password: userPassword }) => {
       message: 'User Not Found',
     } };
   }
+  const userInfo = userExistes.dataValues;
   const token = generateToken(userExistes);
-  return token;
+  const response = { name: userInfo.name, email, role: userInfo.role , token };
+  return response;
 };
 
 const create = async ({ name, email, password: userPassword }) => {
