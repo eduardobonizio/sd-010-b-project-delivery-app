@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, BrowserRouter, Redirect, Switch } from 'react-router-dom';
 
 import Login from '../pages/login';
+import Register from '../pages/register';
 
 const Routes = () => (
   <BrowserRouter>
@@ -10,6 +11,7 @@ const Routes = () => (
         <Redirect to="/login" />
       </Route>
       <Route path="/login" component={ Login } />
+      <Route path="/register" component={ Register } />
     </Switch>
   </BrowserRouter>
 );
