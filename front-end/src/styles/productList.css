@@ -1,0 +1,9 @@
+.product-list__container {
+  display: flex;
+  flex-direction: row;
+  padding: 24px;
+}
+
+.product-list__container__card {
+  margin: 24px;
+}
