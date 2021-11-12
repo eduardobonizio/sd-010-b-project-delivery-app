@@ -12,21 +12,29 @@ const tableHeader = [
 ];
 
 export default function TableOrder() {
-  const { productsInCart } = useContext(ProductsContext);
+  const { productsInCart, totalPrice } = useContext(ProductsContext);
   const cartItems = productsInCart.filter(({ quantity }) => quantity > 0);
 
-  console.log(cartItems);
-
   return (
-    <table>
-      <thead>
-        <tr>
-          {tableHeader.map((th, idx) => (
-            <th key={ idx }>{th}</th>
-          ))}
-        </tr>
-      </thead>
-      <TableOrderBody cartItems={ cartItems } />
-    </table>
+    <>
+      <table>
+        <thead>
+          <tr>
+            {tableHeader.map((th, idx) => (
+              <th key={ idx }>{th}</th>
+            ))}
+          </tr>
+        </thead>
+        <TableOrderBody cartItems={ cartItems } />
+      </table>
+      <div>
+        Total: R$
+        <span
+          data-testid="customer_checkout__element-order-total-price"
+        >
+          {totalPrice.toFixed(2).replace('.', ',')}
+        </span>
+      </div>
+    </>
   );
 }
