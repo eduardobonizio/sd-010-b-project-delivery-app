@@ -1,8 +1,9 @@
-const { checkIfUserExist, checkIfPasswordIsValid } = require('./validations/validation');
+const { checkIfUserExist, checkIfPasswordIsValid, getUser } = require('./validations/validation');
 
 const login = async (body) => {
   const { email, password } = body;
-  const user = await checkIfUserExist(email);
+  await checkIfUserExist({ email, expectExist: true });
+  const user = await getUser(email);
   await checkIfPasswordIsValid(user.password, password);
   return user;
 };

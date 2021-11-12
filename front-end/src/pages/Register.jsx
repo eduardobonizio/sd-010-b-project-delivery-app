@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router';
 
 import fields from '../services/formFields';
+
+import { register } from '../api';
 
 import {
   validateEmail,
@@ -10,6 +13,8 @@ import {
 
 function Register() {
   const [state, setState] = useState({ name: '', email: '', password: '' });
+  const history = useHistory();
+  const [error, setError] = useState('');
 
   const validateInputs = (name, email, password) => {
     const validation = validateEmail(email)
@@ -24,6 +29,15 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const { name, email, password } = state;
+    try {
+      const user = { name, email, password };
+      await register(user);
+      history.push('/customer/products');
+    } catch (err) {
+      setError(err);
+    }
   };
 
   return (
@@ -46,16 +60,16 @@ function Register() {
         <button
           data-testid="common_register__button-register"
           type="submit"
-          disabled={ !validateInputs(state.name,
-            state.email, state.password) }
+          disabled={ !validateInputs(state.name, state.email, state.password) }
         >
           Cadastrar
         </button>
       </form>
-      <p data-testid="common_register__element-invalid_register">
-        Email já utilizado
-      </p>
-
+      {error && (
+        <p data-testid="common_register__element-invalid_register">
+          Email já utilizado
+        </p>
+      )}
     </div>
   );
 }
