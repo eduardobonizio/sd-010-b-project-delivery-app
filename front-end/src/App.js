@@ -1,18 +1,23 @@
 import React from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
-import './App.css';
-import Login from './Components/Login';
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  Redirect
+} from 'react-router-dom';
+
+import NavBar from './components/NavBar';
 
 function App() {
   return (
-    <div className="App">
+    <BrowserRouter>
       <Switch>
-        <Route path="/login" component={ Login } />
+      <Route path="/login" component={ Login } />
         <Route exact path="/">
           <Redirect to="/login" />
         </Route>
       </Switch>
-    </div>
+    </BrowserRouter>
   );
 }
 
