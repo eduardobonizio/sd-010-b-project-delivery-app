@@ -1,7 +1,9 @@
-import React from "react";
+import React from 'react';
+import RegisterComponent from '../components/Register/registerComponent';
+import '../styles/formRegister.css';
 
 const Register = () => (
-  <h1>Tela de Registro!</h1>
+  <RegisterComponent />
 );
 
 export default Register;
