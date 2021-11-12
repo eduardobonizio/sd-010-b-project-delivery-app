@@ -1,6 +1,6 @@
 'use strict';
 const User = (sequelize, DataTypes) => {
-  const User = sequelize.define("User", {
+  const User = sequelize.define("user", {
     name: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
@@ -8,7 +8,7 @@ const User = (sequelize, DataTypes) => {
   }, { timestamps: false });
 
   User.associate = (models) => {
-    models.User.hasMany(models.Sale, {
+    models.user.hasMany(models.sale, {
       as: 'sales',
       foreignKey: 'sale_id'
     });
