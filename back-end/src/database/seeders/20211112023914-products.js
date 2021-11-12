@@ -5,10 +5,16 @@ module.exports = {
     await queryInterface.bulkInsert('products',
     [
       {
-        id: 2,
+        id: 1,
         name: 'John Cola',
         price: 45,
         url_image: 'aaaaaaaaaaaaaaaaaaaaaaaa',
+      },
+      {
+        id: 2,
+        name: 'John Peps',
+        price: 2,
+        url_image: 'bbbbbbbbbbbbbbbbbbbbbbbbbb',
       }
     ],
     { timestamps: false })
