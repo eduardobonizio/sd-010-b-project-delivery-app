@@ -66,6 +66,14 @@ export const LoginButton = styled.button`
   margin-top: 10px;
   height: 50px;
   width: 200px;
+
+  &:enabled:hover {
+    cursor: pointer;
+  }
+
+  &:disabled {
+    background-color: gray;
+  }
 `;
 
 export const RegisterButton = styled.button`
@@ -82,6 +90,7 @@ export const RegisterButton = styled.button`
 
   &:hover {
     color: green;
+    cursor: pointer;
     transform: scale(1.1);
   }
 `;
