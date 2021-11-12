@@ -6,7 +6,7 @@ const app = express();
 app.get('/teste', async (_req, res) => {
   try {
     const testeResult = await Sale.findAll({
-      include: { model: User, as: 'users'},
+      include: [{ model: User, as: 'users'}, { model: User, as: 'sellers'}]
     });
 
     return res.status(200).json(testeResult);
