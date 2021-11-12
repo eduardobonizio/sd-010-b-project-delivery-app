@@ -1,32 +1,28 @@
 import React, { useState } from 'react';
+import { useHistory, Link } from 'react-router-dom';
+import { login } from '../api';
+
+import { validateEmail, validatePassword } from '../util/valdations';
 
 function Login() {
   const [passwordIsValid, setPasswordIsValid] = useState(false);
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [emailIsValid, setEmailIsValid] = useState(false);
-
-  const validatePassword = (p) => {
-    const minLength = 6;
-    const isValid = p.length >= minLength;
-    setPasswordIsValid(isValid);
-  };
+  const [error, setError] = useState(null);
+  const history = useHistory();
 
   const savePassword = (p) => {
     setPassword(p);
   };
 
   const handlePasswordChange = (event) => {
-    const { target: { value } } = event;
-    validatePassword(value);
+    const {
+      target: { value },
+    } = event;
     savePassword(value);
-    console.log(password);
-  };
-
-  const validateEmail = (e) => {
-    const emailRe = /^[_a-z0-9-]+(.[_a-z0-9-]+)@[a-z0-9-]+(.[a-z0-9-]+)(.[a-z]{2,4})$/;
-    const isValid = emailRe.test(e);
-    setEmailIsValid(isValid);
+    const passwordValidation = validatePassword(value);
+    setPasswordIsValid(passwordValidation);
   };
 
   const saveEmail = (e) => {
@@ -34,16 +30,29 @@ function Login() {
   };
 
   const handleEmailChange = (event) => {
-    const { target: { value } } = event;
-    validateEmail(value);
+    const {
+      target: { value },
+    } = event;
     saveEmail(value);
-    console.log(email);
+    const emailValidation = validateEmail(value);
+    setEmailIsValid(emailValidation);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const user = { email, password };
+      await login(user);
+      history.push('/customer/products');
+    } catch (err) {
+      setError(err);
+    }
   };
 
   return (
     <div>
       <h1>App de Delivery</h1>
-      <form>
+      <form onSubmit={ handleSubmit }>
         <label htmlFor="email">
           Login
           <input
@@ -58,23 +67,28 @@ function Login() {
           <input
             data-testid="common_login__input-password"
             id="password"
-            type="email"
+            type="password"
             onChange={ handlePasswordChange }
           />
         </label>
         <button
           data-testid="common_login__button-login"
-          type="button"
+          type="submit"
           disabled={ !passwordIsValid || !emailIsValid }
         >
           Login
-
         </button>
-        <button data-testid="common_login__button-register" type="button">
-          Ainda não tenho conta
-        </button>
+        <Link to="/register">
+          <button data-testid="common_login__button-register" type="button">
+            Ainda não tenho conta
+          </button>
+        </Link>
       </form>
-      <p data-testid="common_login__element-invalid-email" />
+      {error && (
+        <p data-testid="common_login__element-invalid-email">
+          Email ou senha inválidos
+        </p>
+      )}
     </div>
   );
 }
