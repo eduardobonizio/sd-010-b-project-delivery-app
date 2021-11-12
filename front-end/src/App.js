@@ -5,7 +5,6 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
-import { Redirect } from 'react-router';
 import Product from './pages/Product';
 import Login from './Components/Login';
 
