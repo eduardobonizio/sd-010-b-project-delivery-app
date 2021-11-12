@@ -7,6 +7,7 @@ import React, {
   useEffect,
   useState,
 } from 'react';
+import CartForm from '../components/CartForm';
 import NavBar from '../components/NavBar';
 import ProductTableHeader from '../components/ProductTableHeader';
 import ProductTableListCard from '../components/ProductTableListCard';
@@ -112,12 +113,22 @@ function CustomerCheckout() {
     return mappedRenderProducts;
   };
 
+  const calculateTotalPrice = () => {
+    const totalPrice = Array.isArray(products) ? products.reduce(
+      (sum, { quantity, unitPrice }) => sum + quantity * unitPrice,
+      0,
+    ) : null;
+
+    // SOURCE: https://stackoverflow.com/questions/11832914/how-to-round-to-at-most-2-decimal-places-if-necessary
+    return Math.ceil(totalPrice * 100) / 100;
+  };
+
   return (
     <div data-testid="customer-checkout-page">
       <NavBar username="<username>" user="customer" />
       <main>
         <Container>
-          <Typography variant="h4" component="h1">
+          <Typography variant="h5" component="h1">
             Finalizar Pedido
           </Typography>
           <Stack
@@ -128,6 +139,20 @@ function CustomerCheckout() {
           >
             <ProductTableHeader />
             { renderCartItems() }
+          </Stack>
+          <Typography>{`Total: R$ ${calculateTotalPrice()}`}</Typography>
+        </Container>
+        <Container>
+          <Typography variant="h5" component="h1">
+            Detalhes e Endereço para Entrega
+          </Typography>
+          <Stack
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+            spacing={ 2 }
+          >
+            <CartForm />
           </Stack>
         </Container>
       </main>
