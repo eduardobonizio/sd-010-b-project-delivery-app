@@ -1,10 +1,10 @@
 import React from 'react';
 import { Redirect } from 'react-router';
 import { Switch, Route } from 'react-router-dom';
-// import Products from './common/pages/products';
+// import Products from './common/pages/products/Products';
 import Login from './common/pages/Login';
 import './App.css';
-// import Products from '../src/common/pages/products';
+// import Products from '../src/common/pages/products/Products';
 // import Checkout from './common/pages/checkout/Checkout';
 // import ProductOrders from './common/pages/checkout/ProductOrders';
 
