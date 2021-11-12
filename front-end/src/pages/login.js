@@ -50,7 +50,6 @@ function Login() {
       const { message } = checkLogin;
       setOnLocalStorage('login_delivery', message);
       history.push('/customer/products');
-      console.log('dentro');
     }
     setHidden(false);
     mantemContextSemQuebrar();// soapara chamar em algum lugar
