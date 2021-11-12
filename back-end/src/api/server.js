@@ -22,7 +22,6 @@ app.use('/register', register);
 
 app.use('/customer', customer)
 
-
 // SELLER
 app.use('/seller', seller);
 

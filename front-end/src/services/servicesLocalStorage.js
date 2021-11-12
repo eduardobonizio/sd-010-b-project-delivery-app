@@ -1,6 +1,6 @@
 export const getFromLocalStorage = (key) => {
   const storedItem = localStorage.getItem(key);
-  return storedItem;
+  return JSON.parse(storedItem);
 };
 
 export const setOnLocalStorage = (key, value) => {
