@@ -25,7 +25,12 @@ function NavBar() {
             <Nav.Link eventKey="link-2" disabled>CLIENTE: JOÃO DA SILVA</Nav.Link>
           </Nav.Item>
           <Nav.Item as="li" data-testid="customer_products__element-navbar-link-logout">
-            <Nav.Link>SAIR</Nav.Link>
+            <Nav.Link 
+              href="/login"
+              onClick={ () => localStorage.clear() }
+            >
+              SAIR
+            </Nav.Link>
           </Nav.Item>
         </div>
       </Nav>

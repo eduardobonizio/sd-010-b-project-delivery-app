@@ -13,7 +13,12 @@
 }
 
 .register-title {
-  margin-bottom: 0;
+  margin: 5px 0 0;
+}
+
+.register-input {
+  border-radius: 5px;
+  padding: 5px;
 }
 
 .register-button {
