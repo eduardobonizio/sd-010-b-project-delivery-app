@@ -1,33 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import validateEmail from './functions';
 import * as style from './style';
 
 export default function Login() {
-  const [validEmail, setValidEmail] = useState(false);
-  const [disabled, setDisabled] = useState(true);
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
 
-  const logIn = () => {
-    console.log('LogIn efetuado');
-  };
-
-  useEffect(() => {
-    setValidEmail(validateEmail(email));
-  }, [email]);
-
-  useEffect(() => {
-    const enableBtn = () => {
-      if (validEmail) {
-        setDisabled(false);
-      } else {
-        setDisabled(true);
-      }
-    };
-
-    enableBtn();
-  }, [email, password, validEmail]);
+  console.log(email);
+  console.log(password);
 
   return (
     <style.CommonContainer>
@@ -54,10 +34,8 @@ export default function Login() {
           />
         </style.InputLabel>
         <style.LoginButton
-          disabled={ disabled }
           type="submit"
           data-testid="common_login__button-login"
-          onClick={ () => logIn() }
         >
           Login
         </style.LoginButton>
