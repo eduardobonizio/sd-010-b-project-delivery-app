@@ -1,8 +1,15 @@
 import React from 'react';
+import EmailInput from '../components/EmailInput';
+import PasswordInput from '../components/PasswordInput';
+import NameInput from '../components/NameInput';
 
 function Register() {
   return (
-    <h1>Register</h1>
+    <div>
+      <NameInput />
+      <EmailInput />
+      <PasswordInput />
+    </div>
   );
 }
 
