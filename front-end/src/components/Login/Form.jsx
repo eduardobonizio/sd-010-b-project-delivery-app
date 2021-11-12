@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 
 import { Form, Input, Button, notification } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
@@ -7,13 +8,29 @@ import './loginForm.css';
 
 function LoginForm() {
   // const { setUserData } = useContext(toDoContext);
+  const [isError, setIsError] = useState(false);
 
-  const onFinish = (values) => {
-    // setUserData(values);
-    console.log(values);
+  const onFinish = async (values) => {
+    const { email, password } = values;
+    try {
+      const respLogin = await axios.post('http://localhost:3001/login', {
+        email,
+        password,
+      });
+      console.log(respLogin);
+    } catch (error) {
+      console.log(error);
+      console.log('entrou aqui');
+      setIsError(true);
+    }
+
+    // setUserData(values.username);
+    // console.log(values);
   };
 
   const openNotificationWithIcon = (type) => {
+    // const resp = await axios.get('http://localhost:3001/products');
+    // console.log(password, email);
     notification[type]({
       message: 'Login efetuado com sucesso!',
       duration: 3,
@@ -22,6 +39,7 @@ function LoginForm() {
 
   return (
     <section className="main-container">
+      { isError && (<p data-testid="common_login__element-invalid-email"> TESTE </p>) }
       <section className="secondary-container">
         <Form
           name="normal_login"
@@ -31,7 +49,7 @@ function LoginForm() {
           <Form.Item
             colon
             label="Login"
-            name="username"
+            name="email"
             rules={ [
               {
                 required: true,
