@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import EmailInput from '../components/EmailInput';
 import PasswordInput from '../components/PasswordInput';
 import NameInput from '../components/NameInput';
-// import { validateEmailFormat, validatePassword } from '../helpers/validation';
+import {
+  validateEmailFormat, validateName, validatePassword } from '../helpers/validation';
 
 function Register() {
   const [name, setStateName] = useState();
   const [email, setStateEmail] = useState();
   const [password, setStatePassword] = useState();
+  const [disabled, setDisabled] = useState(true);
 
   const nameTestId = 'common_register__input-name';
   const emailTestId = 'common_register__input-email';
@@ -15,13 +17,14 @@ function Register() {
   const title = 'Email';
 
   useEffect(() => {
-    // if (password && email) {
-    //   if (validateEmailFormat(email) && validatePassword(password)) {
-    //     setDisable(false);
-    //   } else {
-    //     setDisable(true);
-    //   }
-    // }
+    if (password && email && name) {
+      if (validateEmailFormat(email) && validatePassword(password)
+      && validateName(name)) {
+        setDisabled(false);
+      } else {
+        setDisabled(true);
+      }
+    }
   }, [email, name, password]);
 
   return (
@@ -41,6 +44,7 @@ function Register() {
       />
       <button
         data-testid="common_register__button-register"
+        disabled={ disabled }
         onClick={ () => navigate('/register') }
         type="button"
       >
