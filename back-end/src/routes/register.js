@@ -20,9 +20,8 @@ router.post('/',
       return res.status(409).json({ message: 'Email or name already registered' });
     }
 
-    const id = await registerService.createUser(name, email, password)
+    const id = await registerService.createUser(name, email, password);
     return res.status(201).json({ id });
-  }
-);
+});
 
 module.exports = router;

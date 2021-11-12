@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 
-
 const login = require('../routes/loginRouter');
 const register = require('../routes/register');
 

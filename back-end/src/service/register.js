@@ -1,6 +1,6 @@
+const { Op } = require('sequelize');
 const md5 = require('md5');
 const { User } = require('../database/models');
-const { Op } = require("sequelize");
 
 const createUser = async (name, email, passwordWithouCrypto) => {
   const password = md5(passwordWithouCrypto);
@@ -17,10 +17,10 @@ const userExists = async (email, name) => {
       },
     },
   });
-  return alreadyExists.length > 0 ? true : false;
+  return alreadyExists.length > 0;
 };
 
 module.exports = {
   createUser,
   userExists,
-}
+};

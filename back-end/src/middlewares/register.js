@@ -20,10 +20,10 @@ const verifyEmail = (req, res, next) => {
     return res.status(400).json({ message: 'Review your email entry' });
   }
   next();
-}
+};
 
 module.exports = {
   verifyPassword,
   verifyName,
   verifyEmail,
-}
+};
