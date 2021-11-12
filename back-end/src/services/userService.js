@@ -8,7 +8,7 @@ const createUser = async (body) => {
   validationUser(body);
 
   await verifyUser(name, email);
-
+  
   const passwordCripto = MD5(password);
 
   const newUser = await User.create({ name, email, password: passwordCripto, role:'customer' });

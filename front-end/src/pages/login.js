@@ -15,12 +15,11 @@ function Login() {
     password: '',
   });
 
-  // Dennis
   const redirect = () => {
     history.push('/register');
   };
 
-  // Dennis
+  // utilize o contexto aqui
   const contexto = useContext(Context);
   const mantemContextSemQuebrar = () => {
     console.log(contexto);
@@ -49,8 +48,9 @@ function Login() {
     const checkLogin = await loginService(login);
     if (checkLogin.message.id) {
       const { message } = checkLogin;
-      setOnLocalStorage('login', message);
+      setOnLocalStorage('login_delivery', message);
       history.push('/customer/products');
+      console.log('dentro');
     }
     setHidden(false);
     mantemContextSemQuebrar();// soapara chamar em algum lugar

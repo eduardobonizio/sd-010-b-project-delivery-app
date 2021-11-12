@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
+import { setOnLocalStorage } from '../services/servicesLocalStorage';
 
 const regex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
 const MIN_NAME = 12;
@@ -21,7 +22,7 @@ function Register() {
 
     try {
       const { data } = await axios.post(path, { name, email, password });
-      console.log(data);
+      await setOnLocalStorage('login_delivery', data);
       history.push('/customer/products');
     } catch (err) {
       setShowMessageError('Email ou usuário já existente!');
