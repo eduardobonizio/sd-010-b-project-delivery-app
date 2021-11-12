@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import handleFetch from '../services/userAPI';
-
-const URLREGISTER = 'http://localhost:3001/register';
+import handleFetchRegister from '../services/fetchAPIRegister';
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -13,10 +11,8 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await handleFetch({ name, email, password }, URLREGISTER);
-    console.log(res);
+    const res = await handleFetchRegister(name, email, password);
     localStorage.setItem('user', JSON.stringify(res));
-    console.log(res, 'register 18');
     if (res.message) {
       setIsValidEntry(false);
     } else {
@@ -29,7 +25,9 @@ export default function Register() {
     const EMAILREGEX = /\S+@\S+\.\S+/;
 
     const PASSWORDMIN = 6;
-    if (email.match(EMAILREGEX) && password.length > PASSWORDMIN) {
+    const NAME = 12;
+    if (name.length >= NAME
+      && email.match(EMAILREGEX) && password.length >= PASSWORDMIN) {
       return false;
     }
     return true;
@@ -49,7 +47,7 @@ export default function Register() {
         Email
         <input
           onChange={ ({ target }) => setEmail(target.value) }
-          // onClick={ () => setIsValidEntry(true) }
+          onClick={ () => setIsValidEntry(true) }
           type="email"
           data-testid="common_register__input-email"
           placeholder="seu-email@site.com.br"
@@ -58,7 +56,7 @@ export default function Register() {
         Senha
         <input
           onChange={ ({ target }) => setPassword(target.value) }
-          // onClick={ () => setIsValidEntry(true) }
+          onClick={ () => setIsValidEntry(true) }
           type="password"
           data-testid="common_register__input-password"
           placeholder="********"
@@ -73,8 +71,8 @@ export default function Register() {
         </button>
         { !isValidEntry
           && (
-            <span data-testid="common_login__element-invalid-email">
-              Usuário não encontrado
+            <span data-testid="common_register__element-invalid_register">
+              Usuário já existente
             </span>
           )}
       </form>

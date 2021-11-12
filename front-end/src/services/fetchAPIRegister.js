@@ -1,6 +1,6 @@
-const URL = 'http://localhost:3001/login';
+const URL = 'http://localhost:3001/register';
 
-const fetchAuthUser = (email, password) => (
+const handleFetchRegister = (name, email, password) => (
   fetch(URL, {
     method: 'POST',
     headers: {
@@ -8,6 +8,7 @@ const fetchAuthUser = (email, password) => (
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
+      name,
       email,
       password,
     }),
@@ -17,4 +18,4 @@ const fetchAuthUser = (email, password) => (
     .catch((error) => error)
 );
 
-export default fetchAuthUser;
+export default handleFetchRegister;

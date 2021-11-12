@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-import handleFetch from '../services/userAPI';
-
-const URLLOGIN = 'http://localhost:3001/login';
+import fetchAuthUser from '../services/userAPI';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -23,7 +21,7 @@ export default function Login() {
 
   const auth = async (e) => {
     e.preventDefault();
-    const res = await handleFetch({ email, password }, URLLOGIN);
+    const res = await fetchAuthUser(email, password);
 
     localStorage.setItem('user', JSON.stringify(res));
     if (res.message) {

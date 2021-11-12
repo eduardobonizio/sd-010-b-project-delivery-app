@@ -27,14 +27,14 @@ const findUser = async (req, res) => {
 const createUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
-    await findUser({ email });
+
     await userService.createUser({ name, email, password });
 
-    const token = generateToken({ name, email, role: 'user' });
+    const token = await generateToken({ name, email, role: 'user' });
 
     return res.status(status.CREATED).json({ token, name, email, role: 'user' });
   } catch (error) {
-    return res.status(status.INTERNAL_SERVER_ERROR).json({ message: 'Algo deu errado' });
+    return res.status(status.CONFLICT).json({ message: 'Usuário já cadastrado' });
   }
 };
 
