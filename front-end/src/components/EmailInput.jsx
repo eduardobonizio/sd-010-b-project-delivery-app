@@ -3,11 +3,10 @@ import Proptypes from 'prop-types';
 
 function EmailInput({ setStateEmail }) {
   return (
-    <label htmlFor="email">
+    <label htmlFor="email-input">
       Login
       <input
-        name="email"
-        id="email"
+        id="email-input"
         data-testid="common_login__input-email"
         onChange={ (e) => setStateEmail(e.target.value) }
         type="text"

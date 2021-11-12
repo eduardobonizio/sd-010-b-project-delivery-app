@@ -7,7 +7,7 @@ function PasswordInput(props) {
     <label htmlFor="password">
       Senha
       <input
-        data-testid="common_login__input-email"
+        data-testid="common_login__input-password"
         onChange={ (e) => {
           setStatePassword(e.target.value);
           changeDisabled();
