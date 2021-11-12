@@ -5,26 +5,25 @@ const Sale = (sequelize, DataTypes) => {
     totalPrice: DataTypes.DECIMAL(9,2),
     deliveryAddress: DataTypes.STRING,
     deliveryNumber : DataTypes.STRING,
-    saleDate: DataTypes.DATETIME,
+    saleDate: new Date,
     status: DataTypes.STRING,
 
   }, 
   {
     timestamps: false,
-    createdAt: 'saleDate',
     underscored: true,
   });
 
   sale.associate = (models) => {
-    sale.hasMany(models.Product, { foreignKey: 'product_id', as: 'products' });
+    sale.hasMany(models.product, { foreignKey: 'product_id', as: 'products' });
   };
 
   sale.associate = (models) => {
-    sale.belongsTo(models.User, { foreignKey: 'user_id', as: 'user' });
+    sale.belongsTo(models.user, { foreignKey: 'user_id', as: 'user' });
   };
 
   sale.associate = (models) => {
-    sale.belongsTo(models.User, { foreignKey: 'seller_id', as: 'seller' });
+    sale.belongsTo(models.user, { foreignKey: 'seller_id', as: 'seller' });
   };
 
   return sale;

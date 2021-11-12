@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
+import { loginUser } from '../services/user';
 
 const Joi = require('joi');
 
@@ -7,6 +9,7 @@ function Login() {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [button, setButton] = useState(true);
+  const [token, setToken] = useState('');
   const minPasswordLength = 6;
 
   const loginSchema = Joi.object({
@@ -29,13 +32,19 @@ function Login() {
     validateLogin();
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const logged = await loginUser({ email: login, password });
+    if (logged.data.token) setToken(logged.data.token);
+  };
+
   useEffect(() => {
     validateLogin();
   }, [login, password, validateLogin]);
 
   return (
     <div>
-      <form>
+      <form onSubmit={ handleSubmit }>
         <label htmlFor="login-input">
           Login
           <input
@@ -65,6 +74,7 @@ function Login() {
           type="submit"
           data-testid="common_login__button-login"
           disabled={ button }
+          onSubmit={ handleSubmit }
         >
           Login
         </button>
@@ -76,7 +86,8 @@ function Login() {
             Ainda não tenho conta
           </button>
         </Link>
-
+        {token !== ''
+          ? <Redirect to={ { pathname: '/customer/products', state: token } } /> : null}
         <p id="error-msg" data-testid="common_login__element-invalid-email">erro</p>
       </form>
     </div>
