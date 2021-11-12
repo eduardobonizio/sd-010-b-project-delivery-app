@@ -1,5 +1,5 @@
 import React from 'react';
-import Context from '../../../provider/Provider';
+import { Context } from '../../../provider/Provider';
 import CheckoutProducts from '../../../components/CheckoutProducts';
 import PurchaseTotal from '../../../components/PurchaseTotal';
 import EntryAddress from '../../../components/EntryAddress';

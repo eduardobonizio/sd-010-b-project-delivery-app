@@ -1,5 +1,5 @@
 import React from 'react';
-import Context from '../provider/Provider';
+import { Context } from '../provider/Provider';
 
 function EntryAddressNumber() {
   const { setAddressNumber } = React.useContext(Context);
