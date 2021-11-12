@@ -1,4 +1,5 @@
 'use strict';
+
 const Product = (sequelize, DataTypes) => {
   const product = sequelize.define('Product', {
     name: DataTypes.STRING,
