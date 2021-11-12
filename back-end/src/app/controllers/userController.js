@@ -1,20 +1,15 @@
-const { User } = require('../../database/models');
-const { userService } = require('../services/userService');
+const rescue = require('express-rescue');
+const userService = require('../services/userService');
 
-const add = async (req, res) => {
-  // const { name, email, password, role } = req.body;
-
-  const result = await userService(req.body, res);
-  
-  if (!result) return res.status(400).json(result);
-
-  return res.status(200).json(result);
-};
-
-const findAll = async (req, res) => {
-  const findUsers = await User.findAll();
+const findAll = rescue(async (_req, res) => {
+  const findUsers = await userService.findAll();
   return res.status(200).json(findUsers);
-};
+});
+
+const add = rescue(async (req, res) => {
+  const newUser = await userService.addUser(req.body);
+  return res.status(200).json(newUser);
+});
 
 module.exports = {
   add,
