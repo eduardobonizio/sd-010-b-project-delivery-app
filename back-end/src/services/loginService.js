@@ -3,9 +3,7 @@ const { User } = require('../database/models');
 const { checkLogin } = require('../utils/validateUser');
 var MD5 = require('md5');
 
-
 const loginService = async ({ email, password }) => {
-  
   checkLogin(email, password);
   
   const passwordCripto = MD5(password);
