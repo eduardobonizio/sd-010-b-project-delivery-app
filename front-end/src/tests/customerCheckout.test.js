@@ -12,8 +12,12 @@ describe('Tests for Customer Checkout', () => {
   const CUSTOMER_CART_KEY = 'customerCart';
   const PRODUCT_OBJ_ARRAY = [
     {id: 1, description: 'Skol Lata 250ml', quantity: 2, unitPrice: 2.20 },
+    {id: 2, description: 'Império Lata 250ml', quantity: 4, unitPrice: 2.50 },
   ];
-  const CUSTOMER_CART_LENGHT = 1;
+  const PRODUCT_TOTAL_PRICE = {
+    0: 4.4,
+    1: 10,
+  }
   const SELLERS_ARRAY = [
     {
       id: 2,
@@ -103,40 +107,44 @@ describe('Tests for Customer Checkout', () => {
         localStorage.setItem(CUSTOMER_CART_KEY, PRODUCT_OBJ_ARRAY);
         expect(localStorage.setItem).toHaveBeenCalledWith(CUSTOMER_CART_KEY, PRODUCT_OBJ_ARRAY);
 
+        const LS_GET_STRING_OUTPUT = "[{\"id\":1,\"description\":\"Skol Lata 250ml\",\"quantity\":2,\"unitPrice\":2.2},{\"id\":2,\"description\":\"Império Lata 250ml\",\"quantity\":4,\"unitPrice\":2.5}]"
+
         jest.spyOn(Storage.prototype, 'getItem').mockReturnValue(JSON.stringify(PRODUCT_OBJ_ARRAY));
-        expect(localStorage.getItem()).toStrictEqual(
-          "[{\"id\":1,\"description\":\"Skol Lata 250ml\",\"quantity\":2,\"unitPrice\":2.2}]"
-        );
+        expect(localStorage.getItem()).toStrictEqual(LS_GET_STRING_OUTPUT);
         
         const { getByText } = renderWithRouter(<CustomerCheckout />);
 
-        const idItem = getByText(Object.keys(PRODUCT_OBJ_ARRAY)[0]);
-        const descriptionItem = getByText(PRODUCT_OBJ_ARRAY[0].description);
-        const quantityItem = getByText(PRODUCT_OBJ_ARRAY[0].quantity);
-        const unitPriceItem = getByText(
-          `R$ ${PRODUCT_OBJ_ARRAY[0].unitPrice}`
-        );
-        const subTotalItem = getByText(/R[$] 4.4/i);
-  
-        expect(idItem).toBeInTheDocument();
-        expect(descriptionItem).toBeInTheDocument();
-        expect(quantityItem).toBeInTheDocument();
-        expect(unitPriceItem).toBeInTheDocument();
-        expect(subTotalItem).toBeInTheDocument();
+        PRODUCT_OBJ_ARRAY.forEach((product, index) => {
+          const totalPrice = new RegExp(`R[$] ${PRODUCT_TOTAL_PRICE[index]}`, 'i');
+
+          const idItem = getByText(index);
+          const descriptionItem = getByText(product.description);
+          const quantityItem = getByText(product.quantity);
+          const unitPriceItem = getByText(`R$ ${product.unitPrice}`);
+          const subTotalItem = getByText(totalPrice);
+    
+          expect(idItem).toBeInTheDocument();
+          expect(descriptionItem).toBeInTheDocument();
+          expect(quantityItem).toBeInTheDocument();
+          expect(unitPriceItem).toBeInTheDocument();
+          expect(subTotalItem).toBeInTheDocument();
+        })
       });
   
-      it.skip('should have \"remove buttons\" equal to localStorage customerCart length', () => {
-        const { queryAllByText } = renderWithRouter(<CustomerCheckout />);
+      it('should have \"remove buttons\" equal to localStorage customerCart length', () => {
+        jest.spyOn(Storage.prototype, 'getItem').mockReturnValue(JSON.stringify(PRODUCT_OBJ_ARRAY));
+
+
+        const { getAllByRole } = renderWithRouter(<CustomerCheckout />);
+        const removeButtons = getAllByRole('button', { name: /remove/i });
         
-        const removeButtons = queryAllByText('Remover');
-        const areButtons = removeButtons.every((btn) => btn.type === 'button')
-        
-        expect(removeButtons.length).toBe(CUSTOMER_CART_LENGHT);
-        expect(areButtons).toBeTruthy();
+        expect(removeButtons.length).toStrictEqual(2);
+        expect(removeButtons[0]).toBeInTheDocument();
+        expect(removeButtons[1]).toBeInTheDocument();
   
       })
   
-      it.skip('should have \"Total: R$ \" text to show the total cart price', () => {
+      it('should have \"Total: R$ \" text to show the total cart price', () => {
         const { getByText } = renderWithRouter(<CustomerCheckout />);
         const totalCartPrice = getByText(/total: r[$] /i);
   
