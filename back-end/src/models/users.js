@@ -5,12 +5,21 @@ const getAll = async () => {
   return allUsers;
 };
 
-const getOne = async (email, password) => {
+const login = async (email, password) => {
   const oneUser = await users.findOne({ where: { email, password } });
   return oneUser;
 };
 
+const register = async (name, email, password) => {
+  const result = await users.findOrCreate({ 
+    where: { email }, defaults: { name, email, password, role: 'customer' }
+  })
+  return result;
+
+}
+
 module.exports = {
   getAll,
-  getOne,
+  login,
+  register,
 };

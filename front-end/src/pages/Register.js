@@ -11,10 +11,11 @@ function Register() {
           <RegisterForm />
         </main>
         <span
+          id="invalid-message"
           style={ { visibility: 'hidden' } }
           data-testid="common_register__element-invalid_register"
         >
-          [Elemento oculto (Mensagens de erro)]
+          Usuário já cadastrado
         </span>
       </div>
     </section>
