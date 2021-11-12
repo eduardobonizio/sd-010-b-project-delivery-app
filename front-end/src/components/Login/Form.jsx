@@ -3,14 +3,20 @@ import React from 'react';
 import { Form, Input, Button, notification } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import './loginForm.css';
-// import toDoContext from '../context/ToDoContext';
+import Logincontext from '../../context/LoginContext';
 
 function LoginForm() {
-  // const { setUserData } = useContext(toDoContext);
+  const [form] = Form.useForm();
+  const [, forceUpdate] = React.useState({});
+
+  const { setUserData } = React.useContext(Logincontext);
+
+  React.useEffect(() => {
+    forceUpdate({});
+  }, []);
 
   const onFinish = (values) => {
-    // setUserData(values);
-    console.log(values);
+    setUserData(values);
   };
 
   const openNotificationWithIcon = (type) => {
@@ -24,6 +30,7 @@ function LoginForm() {
     <section className="main-container">
       <section className="secondary-container">
         <Form
+          form={ form }
           name="normal_login"
           className="login-form"
           onFinish={ onFinish }
@@ -37,11 +44,9 @@ function LoginForm() {
                 required: true,
                 message: 'Por favor, insira seu e-mail!',
               },
-              {
-                pattern: /\S+@\S+\.\S+/,
-                message: 'Insira um e-mail válido!',
-              },
+              { type: 'email', message: 'Insira um e-mail válido!' },
             ] }
+            hasFeedback
           >
             <Input
               data-testid="common_login__input-email"
@@ -63,6 +68,7 @@ function LoginForm() {
                 message: 'Senha deve possui mais de 6 caracteres.',
               },
             ] }
+            hasFeedback
           >
             <Input.Password
               data-testid="common_login__input-password"
@@ -81,6 +87,10 @@ function LoginForm() {
               shape="round"
               htmlType="submit"
               className="login-form-button"
+              disabled={
+                !form.isFieldsTouched(true)
+                || !!form.getFieldsError().filter(({ errors }) => errors.length).length
+              }
             >
               Login
             </Button>

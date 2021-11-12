@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import LoginContext from './LoginContext';
 
 function LoginProvider({ children }) {
+  const [userData, setUserData] = React.useState(null);
 
   const context = {
-    
+    userData,
+    setUserData,
   };
 
   return (
