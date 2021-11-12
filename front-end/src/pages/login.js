@@ -56,6 +56,10 @@ function Login() {
     mantemContextSemQuebrar();// soapara chamar em algum lugar
   };
 
+  const atalho = () => {
+    history.push('/customer/products');
+  };
+
   useEffect(() => {
     validateFields(login);
   }, [login]);
@@ -113,6 +117,13 @@ function Login() {
       >
         Email ou Senha invalidos
       </h2>
+
+      <button
+        type="button"
+        onClick={ atalho }
+      >
+        atalho
+      </button>
     </div>
   );
 }
