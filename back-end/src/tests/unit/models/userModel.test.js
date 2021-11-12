@@ -16,4 +16,8 @@ describe('src/models/user', () => {
   const user = new User();
 
   checkModelName(User)('user');
+
+  describe('check properties', () => {
+    [];
+  });
 });
