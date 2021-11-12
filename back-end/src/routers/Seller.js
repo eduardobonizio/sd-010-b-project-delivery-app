@@ -4,7 +4,7 @@ const { getAllOrdersBySellerId, getOrderById } = require('../controllers/orderCo
 
 const router = express.Router();
 
-router.get('/orders/:id', validateJWT, getAllOrdersBySellerId );
+router.get('/orders', validateJWT, getAllOrdersBySellerId );
 router.get('/orders/details/:id', validateJWT, getOrderById);
 
 module.exports = router;

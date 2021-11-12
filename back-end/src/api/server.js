@@ -7,6 +7,7 @@ const register = require('../routers/Register');
 
 const customer = require('../routers/Customer');
 const seller = require('../routers/Seller');
+const admin = require('../routers/Admin');
 
 const error = require('../middleware/error');
 
@@ -23,6 +24,8 @@ app.use('/customer', customer)
 
 // SELLER
 app.use('/seller', seller);
+
+app.use('/admin', admin)
 
 app.use(error);
 
