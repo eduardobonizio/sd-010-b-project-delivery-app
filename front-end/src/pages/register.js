@@ -92,6 +92,7 @@ function Register() {
         >
           Cadastrar
         </button>
+        /**Source https://stackoverflow.com/questions/52064303/reactjs-pass-props-with-redirect-component */
         {token !== ''
           ? <Redirect to={ { pathname: '/customer/products', state: token } } /> : null}
         <p id="error-msg" data-testid="common_register__element-invalid_register">erro</p>
