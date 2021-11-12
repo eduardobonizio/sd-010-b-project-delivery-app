@@ -5,13 +5,14 @@ import { getStorage } from '../utils/localStorage';
 
 export default function ListProducts() {
   const [products, setProducts] = useState('');
+  const history = useHistory();
 
   useEffect(() => {
-    if (!getStorage('user')){ history.push('/login'); } 
-    getProducts().then(({ data }) => setProducts(data)).catch((err) => { console.log(err); });
-  }, []);
+    if (!getStorage('user')) { history.push('/login'); }
+    getProducts().then(({ data }) => setProducts(data))
+      .catch((err) => { console.log(err); });
+  }, [history]);
 
-  const history = useHistory();
   return (
     <>
       <h3>Products</h3>
