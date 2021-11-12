@@ -1,11 +1,13 @@
-import React from 'react'
+import React from 'react';
+import NavBar from '../components/navBar';
 
 function OrderClient() {
-    return (
-        <div>
-            
-        </div>
-    )
+  return (
+    <>
+      <NavBar />
+      <div />
+    </>
+  );
 }
 
-export default OrderClient
+export default OrderClient;
