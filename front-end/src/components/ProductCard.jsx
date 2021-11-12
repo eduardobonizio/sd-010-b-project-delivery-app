@@ -5,13 +5,13 @@ import '../styles/productCard.css';
 
 const ProductsCard = ({ product: { id, name, price, url_image: urlImage } }) => (
   <main id={ id } className="product-card__container">
+    <span
+      className="product-card__container__price"
+      data-testid="customer_products__element-card-price-"
+    >
+      { price }
+    </span>
     <section>
-      <span
-        className="product-card__container__price"
-        data-testid="customer_products__element-card-price-"
-      >
-        { price }
-      </span>
       <img
         data-testid="customer_products__img-card-bg-image-"
         src={ urlImage }

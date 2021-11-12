@@ -1,7 +1,14 @@
 .product-list__container {
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.product-list__box {
+  display: flex;
   flex-flow: row wrap;
   padding: 24px;
+  width: 88%;
 }
 
 .product-list__container__card {
