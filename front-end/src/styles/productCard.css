@@ -59,5 +59,7 @@
 .product-card__container__value {
   background-color: aliceblue;
   border: 1px solid gray;
-  padding: 3px 8px 5px;
+  height: 24px;
+  text-align: center;
+  width: 20px;
 }
