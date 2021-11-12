@@ -1,6 +1,6 @@
 import React from 'react';
+import RedirectButton from '../../components/RedirectButton';
 import Cards from '../../components/Cards';
-
 import Navbar from '../../components/Navbar';
 
 function ProductList() {
@@ -8,6 +8,7 @@ function ProductList() {
     <div>
       <Navbar />
       <Cards />
+      <RedirectButton />
     </div>
   );
 }

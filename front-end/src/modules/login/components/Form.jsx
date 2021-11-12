@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-// import api from '../../../api/api';
+import api from '../../../services/api';
 import './form.scss';
 import { validateEmail, validatePassword } from './functions';
 
@@ -25,27 +25,48 @@ function Form() {
   async function handleLogin(event) {
     event.preventDefault();
     setIsNotFound(false);
-    // const data = {
-    //   email,
-    //   password,
-    // };
-    // const response = await api.post('/login', data);
-    // console.log(response)
-
-    if (!(email === 'trybe@email.com' && password === '123456')) {
+    try {
+      const data = {
+        email,
+        password,
+      };
+      const response = await api.post('/login', data);
+      const dataLocalStorage = {
+        name: response.data.name,
+        email: response.data.email,
+        role: response.data.role,
+        token: response.data.token,
+      };
+      localStorage.setItem('user', JSON.stringify(dataLocalStorage));
+      switch (response.data.role) {
+      case 'customer':
+        history.push('/customer/products');
+        break;
+      case 'seller':
+        history.push('/seller/orders');
+        break;
+      case 'administrator':
+        history.push('/admin/manage');
+        break;
+      default:
+        history.push('/');
+        break;
+      }
+    } catch (error) {
+      console.log(error.response);
+      setEmail('');
+      setPassword('');
       return setIsNotFound(true);
     }
 
-    const dataLocalStorage = {
-      name: 'nome', // response.name
-      email: 'email', // response.email
-      role: 'role', // response.naroleme
-      token: 'token', // response.token
-    };
+    // zebirita@email.com
+    // $#zebirita#$
 
-    localStorage.setItem('user', JSON.stringify(dataLocalStorage));
+    // fulana@deliveryapp.com
+    // fulana@123
 
-    history.push('/customer/products');
+    // adm@deliveryapp.com
+    // --adm2@21!!--
   }
 
   function handleRegister() {
