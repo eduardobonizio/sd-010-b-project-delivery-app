@@ -8,11 +8,10 @@ import renderWithRouter from './renderWithRouter';
 const APICalls = { getAllSellers: () => {} };
 
 describe('Tests for Customer Checkout', () => {
-  let store = {};
 
   const CUSTOMER_CART_KEY = 'customerCart';
   const PRODUCT_OBJ_ARRAY = [
-    {id: 1, description: 'Skol Lata 250ml', quantity: 2, unitPrice: 2.20, subTotal: 4.40 },
+    {id: 1, description: 'Skol Lata 250ml', quantity: 2, unitPrice: 2.20 },
   ];
   const CUSTOMER_CART_LENGHT = 1;
   const SELLERS_ARRAY = [
@@ -36,19 +35,14 @@ describe('Tests for Customer Checkout', () => {
     .spyOn(APICalls, 'getAllSellers')
     .mockResolvedValue(SELLERS_ARRAY);
   
-  /* 
-    SOURCE: https://javascript.plainenglish.io/testing-local-storage-with-testing-library-580f74e8805b
-    AND https://stackoverflow.com/questions/32911630/how-do-i-deal-with-localstorage-in-jest-tests 
-  */
-  beforeEach(() => {
-    // jest.spyOn(Storage.prototype, 'setItem'); // Test if works
-    Object.defineProperty(window, "localStorage", {
-      value: {
-        getItem: jest.fn((key) => store[key]),
-        setItem: jest.fn((key, value) => store[key] = JSON.stringify(value))
-      },
-      writable: true
-    });
+  // SOURCE https://github.com/facebook/jest/issues/6798
+  beforeAll(() => {
+    jest.spyOn(Storage.prototype, 'setItem');
+    jest.spyOn(Storage.prototype, 'getItem');
+  })
+
+  afterEach(() => {    
+    jest.clearAllMocks();
   });
 
   describe('path', () => {
@@ -62,17 +56,17 @@ describe('Tests for Customer Checkout', () => {
   describe('localStorage', () => {
     it('should getItem once', () => {
       renderWithRouter(<App />);
-      expect(window.localStorage.getItem).toHaveBeenCalledTimes(1);
+      expect(localStorage.getItem).toHaveBeenCalledTimes(1);
     });
     it('should be setted one time with customerCart at App if don\'t have a key', () => {
       renderWithRouter(<App />);
-      store = {};
-      const gotItem = window.localStorage.getItem(CUSTOMER_CART_KEY);
-      window.localStorage.setItem(CUSTOMER_CART_KEY, []);
-      
-      expect(window.localStorage.getItem).toHaveBeenCalled();
+      const gotItem = localStorage.getItem(CUSTOMER_CART_KEY);
+      localStorage.setItem(CUSTOMER_CART_KEY, []);
+
+      expect(localStorage.getItem).toHaveBeenCalledWith(CUSTOMER_CART_KEY);
+      expect(localStorage.getItem).toHaveBeenCalled();
       expect(gotItem).toBeFalsy();
-      expect(window.localStorage.setItem).toHaveBeenCalled();
+      expect(localStorage.setItem).toHaveBeenCalled();
     });
   });
 
@@ -84,7 +78,6 @@ describe('Tests for Customer Checkout', () => {
           level: 1,
           name: /finalizar pedido/i,
         });
-        console.log(userCartTitle.type);
         expect(userCartTitle).toBeInTheDocument();
       });
 
@@ -106,18 +99,24 @@ describe('Tests for Customer Checkout', () => {
         expect(removeItemHeader).toBeInTheDocument();
       });
       
-      it.skip('should render localStorage content', () => {
+      it('should render localStorage content', () => {
+        localStorage.setItem(CUSTOMER_CART_KEY, PRODUCT_OBJ_ARRAY);
+        expect(localStorage.setItem).toHaveBeenCalledWith(CUSTOMER_CART_KEY, PRODUCT_OBJ_ARRAY);
+
+        jest.spyOn(Storage.prototype, 'getItem').mockReturnValue(JSON.stringify(PRODUCT_OBJ_ARRAY));
+        expect(localStorage.getItem()).toStrictEqual(
+          "[{\"id\":1,\"description\":\"Skol Lata 250ml\",\"quantity\":2,\"unitPrice\":2.2}]"
+        );
+        
         const { getByText } = renderWithRouter(<CustomerCheckout />);
-        window.localStorage.setItem(CUSTOMER_CART_KEY, PRODUCT_OBJ_ARRAY);
-        const localStorageProducts = window.localStorage.getItem(CUSTOMER_CART_KEY);
-  
-        expect(localStorageProducts).toHaveBeenCalledTimes(1);
-  
-        const idItem = getByText(PRODUCT_OBJ_ARRAY[0].id);
+
+        const idItem = getByText(Object.keys(PRODUCT_OBJ_ARRAY)[0]);
         const descriptionItem = getByText(PRODUCT_OBJ_ARRAY[0].description);
         const quantityItem = getByText(PRODUCT_OBJ_ARRAY[0].quantity);
-        const unitPriceItem = getByText(PRODUCT_OBJ_ARRAY[0].unitPrice);
-        const subTotalItem = getByText(PRODUCT_OBJ_ARRAY[0].subTotal);
+        const unitPriceItem = getByText(
+          `R$ ${PRODUCT_OBJ_ARRAY[0].unitPrice}`
+        );
+        const subTotalItem = getByText(/R[$] 4.4/i);
   
         expect(idItem).toBeInTheDocument();
         expect(descriptionItem).toBeInTheDocument();
