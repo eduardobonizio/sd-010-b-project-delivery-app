@@ -1,12 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function cardProduct(props) {
+function CardProduct(props) {
+  const { id, price, url_image: urlImage, name } = props;
+
   return (
-    <div className="cardProduct">
-      <span>{`R$${props.price}`}</span>
-      <img alt="produto" src={ props.url_image } />
-      <div className="">
-        <span>{props.name}</span>
+    <div className="cardProduct" key={ id }>
+      <span>{`R$${price}`}</span>
+      <img alt="produto" src={ urlImage } width="100" height="50" />
+      <div className="card">
+        <span>{name}</span>
         <div className="controlerQuantityProduct">
           <button className="decrementProduct" type="button">-</button>
           <span className="quantity">0</span>
@@ -17,4 +20,11 @@ function cardProduct(props) {
   );
 }
 
-export default cardProduct;
+export default CardProduct;
+
+CardProduct.propTypes = {
+  name: PropTypes.string.isRequired,
+  url_image: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+};
