@@ -1,4 +1,5 @@
 'use strict';
+
 const Sale = (sequelize, DataTypes) => {
   const sale = sequelize.define('Sale', {
     user_id: DataTypes.INTEGER,
@@ -11,7 +12,7 @@ const Sale = (sequelize, DataTypes) => {
   },
   { timestamps: false });
   sale.associate = (models) => {
-    sale.belongsTo(models.Users), {
+    sale.belongsTo(models.users), {
       foreignKey: 'user_id',
       as: 'user'
     }
