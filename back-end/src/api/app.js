@@ -9,4 +9,6 @@ app.use(express.json());
 
 app.use('/cliente', productRouter);
 
+app.get('/', (_req, res) => res.redirect('/login'));
+
 module.exports = app;
