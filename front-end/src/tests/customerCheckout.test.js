@@ -152,13 +152,15 @@ describe('Tests for Customer Checkout', () => {
       });
     });
     
-    describe.skip('user end order form', () => {
-      it('should have a \"Detalhes e endereço para entrega\" title ', () => {
+    describe('user end order form', () => {
+      it.only('should have a \"Detalhes e endereço para entrega\" title ', () => {
         
-        const { getByText } = renderWithRouter(<CustomerCheckout />);
-        const endOrderFormTitle = getByText(/detalhes e endereço para entrega/i);
+        const { getByRole } = renderWithRouter(<CustomerCheckout />);
+        const endOrderFormTitle = getByRole('heading', {
+          level: 1,
+          name: /detalhes e endere[çc]o para entrega/i
+        });
         
-        expect(endOrderFormTitle.type).toBe('h1');
         expect(endOrderFormTitle).toBeInTheDocument();
       });
 
