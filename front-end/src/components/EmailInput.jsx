@@ -2,13 +2,13 @@ import React from 'react';
 import Proptypes from 'prop-types';
 
 function EmailInput(props) {
-  const { setStateEmail } = props;
+  const { setStateEmail, emailTestId, title } = props;
   return (
     <label htmlFor="email-input">
-      Login
+      { title }
       <input
         id="email-input"
-        data-testid="common_login__input-email"
+        data-testid={ emailTestId }
         onChange={ (e) => {
           setStateEmail(e.target.value);
         } }
@@ -21,5 +21,7 @@ function EmailInput(props) {
 export default EmailInput;
 
 EmailInput.propTypes = {
+  title: Proptypes.string.isRequired,
+  emailTestId: Proptypes.string.isRequired,
   setStateEmail: Proptypes.func.isRequired,
 };
