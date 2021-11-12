@@ -3,7 +3,7 @@ import React, { createContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useLocation } from 'react-router-dom';
 import tokenHandler from '../helper/functions/tokenHandler';
-import getAllProducts from '../services/api';
+import { getAllProducts } from '../services/api';
 import translateToCamelCase from '../helper/functions/translateProductsToCamelCase';
 
 const Context = createContext();
@@ -76,7 +76,7 @@ const Provider = ({ children }) => {
     tokenHandler(token, location, history);
     fetchProducts();
     const carrinho = localStorage.getItem('carrinho');
-    setOrderInProgress(JSON.parse(carrinho));
+    setOrderInProgress(JSON.parse(carrinho) || []);
   }, []);
 
   useEffect(() => {

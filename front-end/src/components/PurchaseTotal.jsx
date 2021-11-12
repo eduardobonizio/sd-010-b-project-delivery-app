@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Context } from '../provider/Provider';
 
 function PurshaseTotal() {
-  const { orderInProgress, totalOrder, setTotalOrder } = useContext(Context);
+  const { orderInProgress, totalOrder, setTotalOrder } = React.useContext(Context);
 
   useEffect(() => {
     setTotalOrder(orderInProgress.reduce((
       acc, curr,
-    ) => acc + (curr.price * curr.quantity), 0));
+    ) => acc + (curr.price * curr.quantity), 0).toFixed(2));
   }, [orderInProgress, setTotalOrder]);
 
   return (

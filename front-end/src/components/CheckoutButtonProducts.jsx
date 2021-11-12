@@ -2,12 +2,10 @@ import React, { useContext } from 'react';
 import '../styles/CheckoutButtonProducts.css';
 import { Link } from 'react-router-dom';
 import addZeroes from '../helper/functions/addZeroes';
-
-const Context = require('../provider/Provider');
+import { Context } from '../provider/Provider';
 
 const CheckoutButtonProducts = () => {
   const { totalOrder } = useContext(Context);
-
   console.log('checkout', totalOrder, typeof totalOrder);
   return (
     <div className="checkout-div">

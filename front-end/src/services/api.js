@@ -26,7 +26,7 @@ const getAllProducts = async () => {
   return data.data;
 };
 
-export default {
+export {
   getPurchase,
   getAllProducts,
 };

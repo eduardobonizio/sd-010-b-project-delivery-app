@@ -6,7 +6,6 @@ import '../styles/ProductsCards.css';
 const ProductsCards = () => {
   const { products, setOrderInProgress, orderInProgress,
     setTotalOrder, totalOrder } = useContext(Context);
-
   const handleClick = (el, name) => {
     if (name === '+') {
       setOrderInProgress([

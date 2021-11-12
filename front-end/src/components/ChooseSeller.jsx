@@ -9,16 +9,22 @@ function ChooseSeller() {
   }, [chooseSeller, setChooseSeller]);
 
   return (
-    <select onChange={ (e) => setChooseSeller(e.target.value) }>
-      {chooseSeller.map((seller) => (
-        <option
-          key={ seller.id }
-          value={ seller.name }
-        >
-          {seller.name}
-        </option>
-      ))}
-    </select>
+    <label htmlFor="chooseSeller">
+      <select
+        id="chooseSeller"
+        name="chooseSeller"
+        onChange={ (e) => setChooseSeller(e.target.value) }
+      >
+        {chooseSeller.map((seller) => (
+          <option
+            key={ seller.id }
+            value={ seller.name }
+          >
+            {seller.name}
+          </option>
+        ))}
+      </select>
+    </label>
   );
 }
 
