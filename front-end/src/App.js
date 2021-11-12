@@ -3,9 +3,11 @@ import { Switch, Route } from 'react-router-dom';
 import Login from './modules/login/Login';
 import Signup from './modules/signup/Signup';
 import ProductList from './modules/customer/ProductList';
+import Seller from './modules/seller/Seller';
 import ProductCheckout from './modules/customer/ProductCheckout';
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Admin from './modules/admin/Admin';
 
 function App() {
   return (
@@ -35,6 +37,16 @@ function App() {
           exact
           path="/"
           render={ (props) => <Login { ...props } /> }
+        />
+        <Route
+          exact
+          path="/seller/orders"
+          render={ (props) => <Seller { ...props } /> }
+        />
+        <Route
+          exact
+          path="/admin/manage"
+          render={ (props) => <Admin { ...props } /> }
         />
       </Switch>
     </div>

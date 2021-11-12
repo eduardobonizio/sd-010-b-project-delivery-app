@@ -25,7 +25,6 @@ function Form() {
   async function handleLogin(event) {
     event.preventDefault();
     setIsNotFound(false);
-
     try {
       const data = {
         email,
@@ -44,16 +43,17 @@ function Form() {
         history.push('/customer/products');
         break;
       case 'seller':
-        history.push('/');
+        history.push('/seller/orders');
         break;
       case 'administrator':
-        history.push('/');
+        history.push('/admin/manage');
         break;
       default:
         history.push('/');
         break;
       }
-    } catch {
+    } catch (error) {
+      console.log(error.response);
       setEmail('');
       setPassword('');
       return setIsNotFound(true);
@@ -61,6 +61,12 @@ function Form() {
 
     // zebirita@email.com
     // $#zebirita#$
+
+    // fulana@deliveryapp.com
+    // fulana@123
+
+    // adm@deliveryapp.com
+    // --adm2@21!!--
   }
 
   function handleRegister() {
