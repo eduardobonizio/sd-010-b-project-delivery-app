@@ -29,9 +29,9 @@ const verifyPassword = (req, res, next) => {
 
 const verifyDbUser = async (req, res, next) => {
   const { email } = req.body;
-  const { dataValues } = await User.findOne({ where: { email } });
-  if (!dataValues) return res.status(404).json({ message: 'Not found' });
-  req.body.user = dataValues;
+  const response = await User.findOne({ where: { email } });
+  if (!response) return res.status(404).json({ message: 'Not found' });
+  req.body.user = response.dataValues;
   next();
 };
 
