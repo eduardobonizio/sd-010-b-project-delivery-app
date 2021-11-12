@@ -36,6 +36,7 @@ function RegisterForm() {
   }
 
   React.useEffect(() => {
+    localstorage.setitem(userStatus.user);
     const span = document.getElementById('invalid-message');
     if (userStatus.message === 'Usuário já cadastrado') {
       span.style.visibility = 'visible';

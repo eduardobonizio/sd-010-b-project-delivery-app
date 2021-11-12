@@ -9,6 +9,8 @@ import Products from './pages/Products';
 import NavBar from './components/NavBar';
 
 import './App.css';
+import SellerOrder from './pages/SellerOrder';
+import AdminManage from './pages/AdminManage';
 
 function App() {
   return (
@@ -20,6 +22,16 @@ function App() {
       <CustomRoute
         path="/customer/products"
         component={ Products }
+        navbar={ <NavBar /> }
+      />
+      <CustomRoute
+        path="/seller/orders"
+        component={ SellerOrder }
+        navbar={ <NavBar /> }
+      />
+      <CustomRoute
+        path="/admin/manage"
+        component={ AdminManage }
         navbar={ <NavBar /> }
       />
       <CustomRoute path="/register" component={ Register } />

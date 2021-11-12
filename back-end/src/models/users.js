@@ -5,9 +5,10 @@ const getAll = async () => {
   return allUsers;
 };
 
-const login = async (email, password) => {
-  const oneUser = await users.findOne({ where: { email, password } });
-  return oneUser;
+const login = async (mail, password) => {
+  const oneUser = await users.findOne({ where: { email: mail, password } });
+  const { name, email, role } = oneUser;
+  return { name, email, role };
 };
 
 const register = async (name, email, password) => {
