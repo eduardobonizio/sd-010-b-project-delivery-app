@@ -26,7 +26,7 @@ function Login() {
   };
 
   const saveEmail = (e) => {
-    setemail(e);
+    setEmail(e);
   };
 
   const handleEmailChange = (event) => {
