@@ -7,15 +7,13 @@ import {
 
 // import { Redirect } from 'react-router';
 
-import NavBar from './components/NavBar';
+import Product from './pages/Product';
 
 function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={ NavBar }>
-          {/* <Redirect to="/login" /> */}
-        </Route>
+        <Route exact path="/customer/products" component={ Product } />
       </Switch>
     </BrowserRouter>
   );
