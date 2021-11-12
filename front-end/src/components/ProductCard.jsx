@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import Context from '../context/Context';
@@ -6,9 +6,26 @@ import Context from '../context/Context';
 import '../styles/productCard.css';
 
 const ProductsCard = ({ product: { id, name, price, url_image: urlImage } }) => {
-  const { addProductToCart } = useContext(Context);
+  const { addProductToCart, cart } = useContext(Context);
+  const [quantity, setQuantity] = useState(0);
 
   const convertDotToComma = (value) => value.toString().replace('.', ',');
+
+  const updateProductQuantity = () => {
+    const totalProductQuantity = cart.reduce((acc, product) => {
+      if (product.id === id) {
+        return acc + 1;
+      }
+
+      return acc;
+    }, 0);
+
+    setQuantity(totalProductQuantity);
+  };
+
+  useEffect(() => {
+    updateProductQuantity();
+  }, [cart]);
 
   return (
     <main id={ id } className="product-card__container">
@@ -44,7 +61,7 @@ const ProductsCard = ({ product: { id, name, price, url_image: urlImage } }) => 
           <input
             className="product-card__container__value"
             data-testid={ `customer_products__input-card-quantity-${id}` }
-            value={ 0 }
+            value={ quantity }
           />
           <button
             className="product-card__container__button-sum"

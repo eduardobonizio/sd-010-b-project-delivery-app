@@ -27,6 +27,7 @@ export default function Provider({ children }) {
   }, [cart]);
 
   const context = {
+    cart,
     totalCart,
     addProductToCart,
   };
