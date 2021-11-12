@@ -2,6 +2,8 @@ const status = require('http-status');
 const userService = require('../services/userService');
 const generateToken = require('../../utils/generateToken');
 
+const INTERNAL_SERVER_ERROR_MSG = 'Alguma coisa deu errado :(';
+
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
@@ -38,4 +40,20 @@ const createUser = async (req, res) => {
   }
 };
 
-module.exports = { loginUser, findUser, createUser };
+const getAllSellers = async (req, res) => {
+  try {
+    const result = await userService.getAllSellers();
+
+    res.status(status.OK).json(result);
+  } catch (err) {
+    console.log(err);
+    res.status(status.INTERNAL_SERVER_ERROR).json({ message: INTERNAL_SERVER_ERROR_MSG });
+  }
+};
+
+module.exports = {
+  loginUser,
+  findUser,
+  createUser,
+  getAllSellers,
+};
