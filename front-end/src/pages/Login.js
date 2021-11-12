@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 function Login() {
@@ -7,6 +8,7 @@ function Login() {
   const [disableBtn, setDisableBtn] = useState(true);
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [isRedirect, setIsRedirect] = useState(false);
 
   const validateData = () => {
     // Ref- https://pt.stackoverflow.com/questions/1386/express%C3%A3o-regular-para-valida%C3%A7%C3%A3o-de-e-mail
@@ -33,17 +35,23 @@ function Login() {
 
   const getApi = async () => {
     try {
-      const response = await axios.post('http://localhost:3001/login', login);
-      const result = await response.json();
-      console.log(result);
+      const { data } = await axios.post('http://localhost:3001/login', login);
+
+      console.log(data);
+      setIsRedirect(true);
+      localStorage.setItem('user', JSON.stringify(data));
     } catch (e) {
       setErrorMessage(e.response.data.message);
+      console.log(e.response.data.message);
+
       setIsError(true);
     }
   };
 
   return (
     <div>
+      { isRedirect && <Redirect to="/customer/products" />}
+
       <h1>Login page</h1>
 
       <label htmlFor="email-login">
@@ -63,7 +71,7 @@ function Login() {
           type="password"
           id="password-login"
           name="password"
-          data-testid="common_login__input-email"
+          data-testid="common_login__input-password"
           onChange={ changeState }
         />
       </label>
