@@ -41,6 +41,7 @@ describe('Tests for Customer Checkout', () => {
     AND https://stackoverflow.com/questions/32911630/how-do-i-deal-with-localstorage-in-jest-tests 
   */
   beforeEach(() => {
+    // jest.spyOn(Storage.prototype, 'setItem'); // Test if works
     Object.defineProperty(window, "localStorage", {
       value: {
         getItem: jest.fn((key) => store[key]),
@@ -75,20 +76,22 @@ describe('Tests for Customer Checkout', () => {
     });
   });
 
-  describe.skip('rendering', () => {
+  describe('rendering', () => {
     describe('user product cart', () => {
       it('should have a \"Finalizar pedido\" title ', () => {
-        const { getAllByText } = renderWithRouter(<CustomerCheckout />);
-        const [userCartTitle] = getAllByText(/finalizar pedido/i);
-        
-        expect(userCartTitle.type).toBe('h1');
+        const { getByRole } = renderWithRouter(<CustomerCheckout />);
+        const userCartTitle = getByRole('heading', {
+          level: 1,
+          name: /finalizar pedido/i,
+        });
+        console.log(userCartTitle.type);
         expect(userCartTitle).toBeInTheDocument();
       });
 
       it('should have \"table header\" content', () => {
         const { getByText } = renderWithRouter(<CustomerCheckout />);
         
-        const itemHeader = getByText(/item/i);
+        const itemHeader = getByText(/^(?!.*substring)item/i);
         const descriptionHeader = getByText(/descri[cç][aã]o/i);
         const quantityHeader = getByText(/quantidade/i);
         const unitValueHeader = getByText(/valor unit[aá]rio/i);
@@ -103,7 +106,7 @@ describe('Tests for Customer Checkout', () => {
         expect(removeItemHeader).toBeInTheDocument();
       });
       
-      it('should render localStorage content', () => {
+      it.skip('should render localStorage content', () => {
         const { getByText } = renderWithRouter(<CustomerCheckout />);
         window.localStorage.setItem(CUSTOMER_CART_KEY, PRODUCT_OBJ_ARRAY);
         const localStorageProducts = window.localStorage.getItem(CUSTOMER_CART_KEY);
@@ -123,7 +126,7 @@ describe('Tests for Customer Checkout', () => {
         expect(subTotalItem).toBeInTheDocument();
       });
   
-      it('should have \"remove buttons\" equal to localStorage customerCart length', () => {
+      it.skip('should have \"remove buttons\" equal to localStorage customerCart length', () => {
         const { queryAllByText } = renderWithRouter(<CustomerCheckout />);
         
         const removeButtons = queryAllByText('Remover');
@@ -134,7 +137,7 @@ describe('Tests for Customer Checkout', () => {
   
       })
   
-      it('should have \"Total: R$ \" text to show the total cart price', () => {
+      it.skip('should have \"Total: R$ \" text to show the total cart price', () => {
         const { getByText } = renderWithRouter(<CustomerCheckout />);
         const totalCartPrice = getByText(/total: r[$] /i);
   
@@ -142,7 +145,7 @@ describe('Tests for Customer Checkout', () => {
       });
     });
     
-    describe('user end order form', () => {
+    describe.skip('user end order form', () => {
       it('should have a \"Detalhes e endereço para entrega\" title ', () => {
         
         const { getByText } = renderWithRouter(<CustomerCheckout />);
