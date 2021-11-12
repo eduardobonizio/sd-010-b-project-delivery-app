@@ -34,10 +34,6 @@ describe('Tests for Customer Checkout', () => {
       role: 'seller'
     },
   ]
-
-  const getAllSellersMock = jest
-    .spyOn(APICalls, 'getAllSellers')
-    .mockResolvedValue(SELLERS_ARRAY);
   
   // SOURCE https://github.com/facebook/jest/issues/6798
   beforeAll(() => {
@@ -153,7 +149,7 @@ describe('Tests for Customer Checkout', () => {
     });
     
     describe('user end order form', () => {
-      it.only('should have a \"Detalhes e endereço para entrega\" title ', () => {
+      it('should have a \"Detalhes e endereço para entrega\" title ', () => {
         
         const { getByRole } = renderWithRouter(<CustomerCheckout />);
         const endOrderFormTitle = getByRole('heading', {
@@ -186,9 +182,11 @@ describe('Tests for Customer Checkout', () => {
         });
         
         it('should have all got sellers as options', async () => {
+          jest.spyOn(APICalls, 'getAllSellers')
+              .mockResolvedValue(SELLERS_ARRAY);
           const { getAllByRole } = renderWithRouter(<CustomerCheckout />);
-          const gotSellers = await getAllSellersMock();
-          expect(getAllSellersMock).toHaveBeenCalledTimes(1);
+          
+          expect(APICalls.getAllSellers).toHaveBeenCalled();
 
           const sellerOptions = getAllByRole('option');
 
@@ -202,25 +200,20 @@ describe('Tests for Customer Checkout', () => {
       });
 
       it('should have \"address input\" and \"address number input\"', () => {
-        const { getByTestId } = renderWithRouter(<CustomerCheckout />);
+        const { getAllByText } = renderWithRouter(<CustomerCheckout />);
 
-        const addressInput = getByTestId('address-input');
-        const numberAddressInput = getByTestId('number-address-input');
+        const addressInput = getAllByText('Endereço');
+        console.log(addressInput[0]);
+        const numberAddressInput = getAllByText(/n[úu]mero/i);
 
-        expect(addressInput.type).toBe('input');
-        expect(numberAddressInput.type).toBe('input');
-
-        expect(addressInput).toBeInTheDocument();
-        expect(numberAddressInput).toBeInTheDocument();
+        expect(addressInput[0]).toBeInTheDocument();
+        expect(numberAddressInput[0]).toBeInTheDocument();
       });
 
       it('should have a button with text \"FINALIZAR PEDIDO\"', () => {
-        const { getAllByText } = renderWithRouter(<CustomerCheckout />);
+        const { getByRole } = renderWithRouter(<CustomerCheckout />);
+        const endOrderButton = getByRole('button', { name: /finalizar pedido/i });
 
-        const endOrderElement = getAllByText(/finalizar pedido/i);
-        const [endOrderButton] = endOrderElement.filter((btn) => btn.type === 'button');
-
-        expect(endOrderButton).not.toEqual([]);
         expect(endOrderButton).toBeInTheDocument();
       });
     });
