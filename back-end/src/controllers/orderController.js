@@ -7,6 +7,14 @@ const getAllOrdersByUserId = rescue(async (req, res) => {
   return res.status(result.status).json(result.data);
 });
 
+const getAllOrdersBySellerId = rescue(async (req, res) => {
+  const { id: seller_id } = req.params;
+  console.log(seller_id);
+  const result = await orderService.getAllOrdersBySellerId(seller_id);
+  return res.status(result.status).json(result.data);
+});
+
 module.exports = {
   getAllOrdersByUserId,
+  getAllOrdersBySellerId,
 };
