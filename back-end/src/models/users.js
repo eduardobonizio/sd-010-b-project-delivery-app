@@ -12,11 +12,10 @@ const login = async (email, password) => {
 
 const register = async (name, email, password) => {
   const result = await users.findOrCreate({ 
-    where: { email }, defaults: { name, email, password, role: 'customer' }
-  })
+    where: { email }, defaults: { name, email, password, role: 'customer' },
+  });
   return result;
-
-}
+};
 
 module.exports = {
   getAll,

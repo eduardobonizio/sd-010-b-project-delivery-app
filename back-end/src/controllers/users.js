@@ -12,12 +12,12 @@ router.post('/register', async (req, res) => {
   try {
     const { name, email, password } = req.body;
     const encryptedPass = md5(password);
-    await register(name, email, encryptedPass)
+    await register(name, email, encryptedPass);
     return res.status(201).json({ message: 'register ok', redirect: true });
   } catch (error) {
     return res.status(409).json({ message: error.message, redirect: false });
   }
-})
+});
 
 router.post('/login', async (req, res) => {
   try {

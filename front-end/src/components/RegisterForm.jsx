@@ -20,7 +20,7 @@ function RegisterForm() {
   }
 
   function registerUser(e) {
-    e.preventDefault()
+    e.preventDefault();
     const requestOptions = {
       headers: {
         Accept: 'application/json',
@@ -32,23 +32,22 @@ function RegisterForm() {
 
     fetch('http://localhost:3001/users/register', requestOptions)
       .then((res) => res.json())
-      .then((data) => setUserStatus(data))
+      .then((data) => setUserStatus(data));
   }
 
   React.useEffect(() => {
-    const span = document.getElementById('invalid-message')
-    if(userStatus.message === 'Usuário já cadastrado') {
-      span.style.visibility = 'visible'
+    const span = document.getElementById('invalid-message');
+    if (userStatus.message === 'Usuário já cadastrado') {
+      span.style.visibility = 'visible';
     } else {
-      span.style.visibility = 'hidden'
+      span.style.visibility = 'hidden';
     }
-  }, [userStatus])
+  }, [userStatus]);
 
   return (
     <>
-      { userStatus.redirect ? <Redirect to='/customer/products' />
-        : null
-      }
+      { userStatus.redirect ? <Redirect to="/customer/products" />
+        : null}
       <form>
         <Input
           name="Nome"
@@ -80,7 +79,7 @@ function RegisterForm() {
           className="login-btn"
           value="REGISTER"
           testId="common_register__button-register"
-          onClick={ (e) => e.preventDefault() }
+          onClick={ (e) => registerUser(e) }
           disabled={ !validateLogin() }
         />
       </form>
