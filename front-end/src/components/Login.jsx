@@ -16,7 +16,7 @@ const Login = () => {
     try {
       const { data: { token } } = await axios.post('http://localhost:3001/login/', { email, password });
       localStorage.setItem('token', `${token}`);
-      navigate('/customer/products');
+      return navigate('/customer/products');
     } catch (error) {
       setIsValidPW(true);
       return error;
