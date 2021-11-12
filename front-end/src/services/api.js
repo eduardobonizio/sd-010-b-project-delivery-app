@@ -11,7 +11,7 @@ export const login = async (body) => axios.post('http://localhost:3001/login', b
 
 export const register = async (body) => axios.post('http://localhost:3001/register', body)
   .then(({ data }) => data)
-  .catch((err) => err.response.data);
+  .catch((err) => { console.log(err); return err.response.data});
 
 export const getProducts = async () => axios.get('http://localhost:3001/products', token())
   .then(({ data }) => data)

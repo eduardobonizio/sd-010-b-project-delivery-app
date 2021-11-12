@@ -4,7 +4,7 @@ import { getProducts } from '../services/api';
 import { getStorage } from '../utils/localStorage';
 
 export default function ListProducts() {
-  const [products, setProducts] = useState('');
+  const [products, setProducts] = useState([]);
   const history = useHistory();
 
   useEffect(() => {
