@@ -21,7 +21,7 @@ const loginController = async (req, res) => {
   }
   delete user.password;
   delete user.id;
-  const token = jwt.sign({ ...user }, secret(), jwtConfig);
+  const token = jwt.sign({ ...user }, secret, jwtConfig);
   res.status(200).json({ ...user, token });
 };
 

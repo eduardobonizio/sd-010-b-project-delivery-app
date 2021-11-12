@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { validateEmail, validatePassword, validateName } from './functions';
+import api from '../../../services/api';
 
 function Form() {
   const history = useHistory();
@@ -26,27 +27,33 @@ function Form() {
     event.preventDefault();
     setIsNotFound(false);
 
-    if (email === 'trybe@email.com') {
+    try {
+      const dataRegister = { email, password, name };
+      await api.post('/register', dataRegister);
+
+      const dataLogin = { email, password };
+      const loginResponse = await api.post('/login', dataLogin);
+
+      const dataLocalStorage = {
+        name: loginResponse.data.name,
+        email: loginResponse.data.email,
+        role: loginResponse.data.role,
+        token: loginResponse.data.token,
+      };
+
+      localStorage.setItem('user', JSON.stringify(dataLocalStorage));
+
+      history.push('/customer/products');
+    } catch (error) {
+      setName('');
+      setPassword('');
+      setEmail('');
       return setIsNotFound(true);
     }
 
-    /**
-     * const dataRegister = { email, password, name };
-     * const dataLogin = { email, password };
-     * const registerResponse = await api.post('/register', dataRegister)
-     * const loginResponse = await api.post('/login', dataLogin)
-     */
-
-    const dataLocalStorage = {
-      name: 'nome', // loginResponse.name
-      email: 'email', // loginResponse.email
-      role: 'role', // loginResponse.role
-      token: 'token', // loginResponse.token
-    };
-
-    localStorage.setItem('user', JSON.stringify(dataLocalStorage));
-
-    history.push('/customer/products');
+    // Cliente Zé Birita
+    // zebirita@email.com
+    // $#zebirita#$
   }
 
   return (
@@ -104,7 +111,7 @@ function Form() {
           isNotFound
             && (
               <p data-testid="common_register__element-invalid_register">
-                usuário não encontrado
+                usuário já cadastrado
               </p>
             )
         }
