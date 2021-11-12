@@ -42,6 +42,7 @@ function NavBar() {
             } }
           >
             <BottomNavigationAction
+              data-testid="customer_products__element-navbar-link-products"
               sx={ {
                 width: 'xs',
                 gridArea: 'produtos',
@@ -52,6 +53,7 @@ function NavBar() {
               icon={ <ProductionQuantityLimitsOutlined /> }
             />
             <BottomNavigationAction
+              data-testid="customer_products__element-navbar-link-orders"
               sx={ {
                 width: 'xs',
                 gridArea: 'meusPedidos',
@@ -63,6 +65,7 @@ function NavBar() {
               icon={ <RequestQuoteOutlined /> }
             />
             <BottomNavigationAction
+              data-testid="customer_products__element-navbar-user-full-name"
               sx={ {
                 width: 'xs',
                 gridArea: 'cicranoDaSilva',
@@ -74,6 +77,7 @@ function NavBar() {
               icon={ <LoginOutlined /> }
             />
             <BottomNavigationAction
+              data-testid="customer_products__element-navbar-link-logout"
               sx={ {
                 width: 'xs',
                 gridArea: 'sair',
