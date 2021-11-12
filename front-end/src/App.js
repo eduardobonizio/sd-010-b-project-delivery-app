@@ -3,7 +3,7 @@ import { Switch, Redirect } from 'react-router-dom';
 
 import CustomRoute from './Routes';
 import Login from './pages/Login';
-// import NavBar from './components/NavBar';
+import NavBar from './components/NavBar';
 import Products from './pages/Products';
 
 import './App.css';
@@ -15,7 +15,11 @@ function App() {
       com ou sem navbar horizontal */}
 
       <CustomRoute path="/login" component={ Login } /* navbar={ <NavBar /> } */ />
-      <CustomRoute path="/customer/products" component={ Products } />
+      <CustomRoute
+        path="/customer/products"
+        component={ Products }
+        navbar={ <NavBar /> }
+      />
 
       <Redirect from="/" to="/login" />
     </Switch>
