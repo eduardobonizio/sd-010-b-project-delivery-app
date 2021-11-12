@@ -7,8 +7,8 @@ const findAll = rescue(async (_req, res) => {
 });
 
 const add = rescue(async (req, res) => {
-  const newUser = await userService.addUser(req.body);
-  return res.status(200).json(newUser);
+  await userService.addUser(req.body);
+  return res.status(201).json({ message: '201 - Created' });
 });
 
 module.exports = {
