@@ -1,6 +1,6 @@
 const { User } = require('../../database/models');
 const { validUser } = require('../../middlewares/userValidations');
-const md5 = require('md5');
+// const md5 = require('md5');
 
 const messageError = (status, message) => ({
   status,
