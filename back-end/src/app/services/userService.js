@@ -1,6 +1,6 @@
 const { User } = require('../../database/models');
 const { validUser } = require('../../middlewares/userValidations');
-// const md5 = require('md5');
+const md5 = require('md5');
 
 const messageError = (status, message) => ({
   status,
@@ -15,8 +15,11 @@ const findAll = async () => {
 const addUser = async (bodyCategory) => {
   const { error } = validUser.validate(bodyCategory);
   if (error) throw messageError(417, error.message);
+  const { name, email, password, role } = bodyCategory
 
-  const newUser = await User.create(bodyCategory);
+  const password_hash = md5(password);
+
+  const newUser = await User.create({ name, email, password: password_hash, role });
   return newUser;
 };
 
