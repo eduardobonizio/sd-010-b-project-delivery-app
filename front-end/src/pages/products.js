@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Login = () => (
+const Products = () => (
   <main>
     <h1>Products</h1>
   </main>
 );
 
-export default Login;
+export default Products;
