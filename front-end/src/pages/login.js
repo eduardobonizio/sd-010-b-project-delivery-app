@@ -63,15 +63,15 @@ export default function Login() {
       break;
     }
   };
-
   const userLogin = async () => {
     try {
       const user = state.$data;
       const { data } = await api.create(user);
-      // setUser(response);
+      localStorage.setItem('user', JSON.stringify(data.email));
       redirect(data);
     } catch (error) {
       setIsErr(true);
+      console.log(error);
     }
   };
 
