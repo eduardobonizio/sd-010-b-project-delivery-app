@@ -12,6 +12,17 @@ const validationUser = (body) => {
   if (error) throw new CustomError(error.message, 400);
 }
 
+const validationUserByAdmin = (body) => {
+  const { error } = Joi.object({
+    name: Joi.string().min(12).required(),
+    email: Joi.string().email().required(),
+    password: Joi.string().min(6).required(),
+    role: Joi.string().required(),
+  }).validate(body);
+
+  if (error) throw new CustomError(error.message, 400);
+}
+
 
 const verifyUser = async (name, email) => {
   const findUserByEmail = await User.findOne({ where: { email } });
@@ -34,5 +45,6 @@ const checkLogin = (email, password) => {
 module.exports = {
   verifyUser,
   validationUser,
-  checkLogin
+  checkLogin,
+  validationUserByAdmin
 }
