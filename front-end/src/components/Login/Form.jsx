@@ -5,9 +5,10 @@ import axios from 'axios';
 import { Form, Input, Button, notification } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import './loginForm.css';
-// import toDoContext from '../context/ToDoContext';
+import Logincontext from '../../context/LoginContext';
 
 function LoginForm() {
+<<<<<<< HEAD
   // const { setUserData } = useContext(toDoContext);
   const [isError, setIsError] = useState(false);
   const [redirect, setRedirect] = useState(false);
@@ -27,6 +28,19 @@ function LoginForm() {
 
     // setUserData(values.username);
     // console.log(values);
+=======
+  const [form] = Form.useForm();
+  const [, forceUpdate] = React.useState({});
+
+  const { setUserData } = React.useContext(Logincontext);
+
+  React.useEffect(() => {
+    forceUpdate({});
+  }, []);
+
+  const onFinish = (values) => {
+    setUserData(values);
+>>>>>>> b8a570791b71bc367122a8f19e524038d841b760
   };
 
   const openNotificationWithIcon = (type) => {
@@ -49,6 +63,7 @@ function LoginForm() {
       { isError && (<p data-testid="common_login__element-invalid-email"> TESTE </p>) }
       <section className="secondary-container">
         <Form
+          form={ form }
           name="normal_login"
           className="login-form"
           onFinish={ onFinish }
@@ -62,11 +77,9 @@ function LoginForm() {
                 required: true,
                 message: 'Por favor, insira seu e-mail!',
               },
-              {
-                pattern: /\S+@\S+\.\S+/,
-                message: 'Insira um e-mail válido!',
-              },
+              { type: 'email', message: 'Insira um e-mail válido!' },
             ] }
+            hasFeedback
           >
             <Input
               data-testid="common_login__input-email"
@@ -88,6 +101,7 @@ function LoginForm() {
                 message: 'Senha deve possui mais de 6 caracteres.',
               },
             ] }
+            hasFeedback
           >
             <Input.Password
               data-testid="common_login__input-password"
@@ -97,19 +111,26 @@ function LoginForm() {
             />
           </Form.Item>
 
-          <Form.Item style={ { textAlign: 'center', marginBottom: 0 } }>
-            <Button
-              data-testid="common_login__button-login"
-              style={ { backgroundColor: '#036b52' } }
-              onClick={ () => openNotificationWithIcon('success') }
-              block
-              shape="round"
-              htmlType="submit"
-              className="login-form-button"
-            >
-              Login
-            </Button>
-            <p style={ { marginBottom: 0 } }>ou</p>
+          <Form.Item shouldUpdate style={ { textAlign: 'center', marginBottom: 0 } }>
+            {() => (
+              <Button
+                data-testid="common_login__button-login"
+                style={ { backgroundColor: '#036b52' } }
+                onClick={ () => openNotificationWithIcon('success') }
+                block
+                shape="round"
+                htmlType="submit"
+                className="login-form-button"
+                disabled={
+                  !form.isFieldsTouched(true)
+                  || !!form.getFieldsError().filter(({ errors }) => errors.length).length
+                }
+              >
+                Login
+              </Button>
+            )}
+          </Form.Item>
+          <Form.Item>
             <Button
               data-testid="common_login__button-register"
               type="default"
@@ -118,7 +139,7 @@ function LoginForm() {
               htmlType="submit"
               className="login-form-button"
             >
-              Registre-se
+              Ainda não tenho cadastro
             </Button>
           </Form.Item>
         </Form>
