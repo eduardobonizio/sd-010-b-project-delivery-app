@@ -7,6 +7,7 @@ import '../styles/productList.css';
 
 const ProductsList = ({ products }) => (
   <main className="product-list__container">
+    {/* { console.log(products) } */}
     { products.map((product, index) => (
       <section key={ index } className="product-list__container__card">
         <ProductCard product={ product } />

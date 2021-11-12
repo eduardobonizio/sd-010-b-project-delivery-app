@@ -6,11 +6,19 @@ import ProductsList from '../components/ProductsList';
 const Products = () => {
   const [products, setProducts] = useState([]);
 
+  const requestProducts = async () => {
+    setProducts(await getAll());
+  };
+
   useEffect(() => {
-    setProducts(getAll());
+    requestProducts();
   }, []);
 
-  return <ProductsList products={ products } />;
+  return (
+    <div>
+      { products && <ProductsList products={ products } /> }
+    </div>
+  );
 };
 
 export default Products;
