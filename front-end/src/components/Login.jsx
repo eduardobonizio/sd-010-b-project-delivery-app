@@ -16,7 +16,7 @@ const Login = () => {
     try {
       const { data: { token } } = await axios.post('http://localhost:3001/login/', { email, password });
       localStorage.setItem('token', `${token}`);
-      navigate('/products');
+      navigate('/customer/products');
     } catch (error) {
       setIsValidPW(true);
       return error;
@@ -34,6 +34,8 @@ const Login = () => {
     }
     return true;
   };
+
+  const TEST_INVALID_EMAIL = 'common_login__element-invalid-email';
 
   return (
     <div className="App">
@@ -71,7 +73,7 @@ const Login = () => {
         </button>
         {
           isValidPW
-            ? <span>Password ou E-mail invalido!</span>
+            ? <span data-testid={ TEST_INVALID_EMAIL }>Password ou E-mail invalido!</span>
             : null
         }
       </form>

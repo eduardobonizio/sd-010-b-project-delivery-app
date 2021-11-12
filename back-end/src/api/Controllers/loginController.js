@@ -5,7 +5,7 @@ const loginUser = async (req, res) => {
 
   const login = await userService.loginUser(body);
   if (login.message) {
-    return res.status(400).json(login.message);
+    return res.status(404).json(login.message);
   }
 
   return res.status(200).json({ token: login });
