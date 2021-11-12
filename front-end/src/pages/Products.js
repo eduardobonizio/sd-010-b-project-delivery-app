@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-export default function Products() {
-  return (
-    <div>
-      <span>teste</span>
-    </div>
-  );
-}
+import { getAll } from '../apis/products';
+import ProductsList from '../components/ProductsList';
+
+const Products = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    setProducts(getAll());
+  }, []);
+
+  return <ProductsList products={ products } />;
+};
+
+export default Products;
+

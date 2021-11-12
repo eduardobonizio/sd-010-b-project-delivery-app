@@ -1,0 +1,20 @@
+.product-card__container {
+  background-color: aliceblue;
+  border: 1px solid gray;
+  border-radius: 0;
+  height: 240px;
+  width: 180px;
+}
+
+.product-card__container__image {
+  height: 160px;
+}
+
+.product-card__container__price {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  font-weight: 600;
+  left: 0;
+  padding: 4px 8px;
+  position: absolute;
+}
