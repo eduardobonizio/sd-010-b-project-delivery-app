@@ -5,6 +5,7 @@ module.exports = {
     return queryInterface.createTable('salesProducts', {
       sale_id:{
         allowNull: false,
+        primaryKey: true,
         type: Sequelize.INTEGER,
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
@@ -15,6 +16,7 @@ module.exports = {
       },
       product_id:{
         allowNull: false,
+        primaryKey: true,
         type: Sequelize.INTEGER,
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',

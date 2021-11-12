@@ -5,10 +5,13 @@ module.exports = {
     await queryInterface.bulkInsert('salesProducts',
     [
       {
-
+        sale_id: 1,
+        product_id: 1,
         quantity: 99,
       },
       {
+        sale_id: 1,
+        product_id: 2,
         quantity: 54,
       },
     ],
@@ -19,9 +22,3 @@ module.exports = {
     await queryInterface.bulkDelete('salesProducts', null, {})
   }
 };
-
-// sale_id: 1,
-// product_id: 2,
-
-// sale_id: 1,
-// product_id: 1,
