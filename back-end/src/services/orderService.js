@@ -1,9 +1,15 @@
-const { Sale } = require('../database/models');
+const { Sale } = require("../database/models");
 
 const getAllOrdersByUserId = async (user_id) => {
-  const getOrder = await Sale.findAll({ where: {  user_id } });
-  if (!getOrder) return { status: 404, message: "Pedido não encontrado" };
-  return { status: 200, data: getOrder };
+  const getOrderUser = await Sale.findAll({ where: { user_id } });
+  if (!getOrderUser) return { status: 404, data: "Nenhum pedido encontrado" };
+  return { status: 200, data: getOrderUser };
 };
 
-module.exports = { getAllOrdersByUserId };
+const getAllOrdersBySellerId = async (seller_id) => {
+  const getOrderSeller = await Sale.findAll({ where: { seller_id } });
+  if (!getOrderSeller) return { status: 404, data: "Nenhum pedido encontrado" };
+  return { status: 200, data: getOrderSeller };
+};
+
+module.exports = { getAllOrdersByUserId, getAllOrdersBySellerId };
