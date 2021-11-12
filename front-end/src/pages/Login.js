@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import fetchAuthUser from '../services/userAPI';
 
 export default function Login() {
@@ -8,7 +8,7 @@ export default function Login() {
   const [isValidEntry, setIsValidEntry] = useState(true);
   const history = useHistory();
 
-  const loginValidation = () => {
+  const buttonActivation = () => {
     // fonte: https://www.w3resource.com/javascript/form/email-validation.php
     const EMAILREGEX = /\S+@\S+\.\S+/;
 
@@ -47,22 +47,23 @@ export default function Login() {
           data-testid="common_login__input-password"
         />
         <button
-          disabled={ loginValidation() }
+          disabled={ buttonActivation() }
           type="submit"
           data-testid="common_login__button-login"
         >
           LOGIN
         </button>
-        <button type="button" data-testid="common_login__button-register">
-          AINDA NÃO TENHO CONTA
-        </button>
+        <Link to="/register">
+          <button type="button" data-testid="common_login__button-register">
+            AINDA NÃO TENHO CONTA
+          </button>
+        </Link>
         { !isValidEntry
           && (
             <span data-testid="common_login__element-invalid-email">
               Usuário não encontrado
             </span>
           )}
-
       </form>
     </div>
   );
