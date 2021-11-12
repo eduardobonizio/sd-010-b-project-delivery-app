@@ -9,3 +9,7 @@
   position: fixed;
   right: 0;
 }
+
+.cart-card__container:hover {
+  cursor: pointer;
+}

@@ -8,7 +8,7 @@ function Button(props) {
       type={ formbtn ? 'submit' : 'button' }
       id={ id }
       className={ className }
-      data-testeid={ testId }
+      data-testid={ testId }
       onClick={ onClick }
       disabled={ disabled }
     >
