@@ -4,6 +4,11 @@ import PropTypes from 'prop-types';
 
 function Navbar(props) {
   const { name, products, orders } = props;
+
+  const clearStorage = () => {
+    localStorage.removeItem('user');
+  };
+
   return (
     <nav>
       <div>
@@ -26,7 +31,7 @@ function Navbar(props) {
         <p data-testid="customer_products__element-navbar-user-full-name">{ name }</p>
       </div>
       <div data-testid="customer_products__element-navbar-link-logout">
-        <Link to="/">Sair</Link>
+        <Link to="/" onClick={ clearStorage }>Sair</Link>
       </div>
     </nav>
   );
