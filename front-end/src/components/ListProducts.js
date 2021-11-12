@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getProducts } from '../services/api';
 
 export default function ListProducts() {
-  const [products, setProducts] = useState('');
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     getProducts().then(({ data }) => setProducts(data));
