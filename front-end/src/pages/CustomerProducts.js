@@ -1,10 +1,7 @@
-import React, { useContext } from 'react';
-import { Context } from '../context/ContextGlobal';
+import React from 'react';
 import NavBar from '../components/NavBar';
 
 function CustomerProducts() {
-/*   const { products, setProducts } =  */useContext(Context);
-
   return (
     <div>
       <NavBar />
