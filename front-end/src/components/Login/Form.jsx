@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router';
 import axios from 'axios';
 
 import { Form, Input, Button, notification } from 'antd';
@@ -9,18 +10,18 @@ import './loginForm.css';
 function LoginForm() {
   // const { setUserData } = useContext(toDoContext);
   const [isError, setIsError] = useState(false);
+  const [redirect, setRedirect] = useState(false);
 
   const onFinish = async (values) => {
     const { email, password } = values;
     try {
-      const respLogin = await axios.post('http://localhost:3001/login', {
+      await axios.post('http://localhost:3001/login', {
         email,
         password,
       });
-      console.log(respLogin);
+      // console.log(respLogin);
+      setRedirect(true);
     } catch (error) {
-      console.log(error);
-      console.log('entrou aqui');
       setIsError(true);
     }
 
@@ -36,6 +37,12 @@ function LoginForm() {
       duration: 3,
     });
   };
+
+  if (redirect) {
+    return (
+      <Redirect to="/customer/products" />
+    );
+  }
 
   return (
     <section className="main-container">
