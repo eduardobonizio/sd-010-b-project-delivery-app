@@ -9,5 +9,5 @@ module.exports = (sequelize, DataTypes) => sequelize.define('Sale', {
 },
 {
   timestamps: false,
-  tableName: 'Sales',
+  tableName: 'sales',
 }); 
