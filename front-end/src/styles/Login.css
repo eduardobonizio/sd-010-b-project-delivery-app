@@ -1,6 +1,7 @@
 .login__container {
   align-items: center;
-  background-image: linear-gradient(to right, #3361cc, #88a1d8);
+  background-image: url('../images/beer.gif');
+  background-size: cover;
   display: flex;
   height: 100vh;
   justify-content: center;
@@ -14,24 +15,28 @@
   border-radius: 10px;
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   display: flex;
+  flex-direction: column;
+  padding: 20px 40px 40px;
 }
 
-.login-image {
-  border-radius: 10px 0 0 10px;
-  width: 400px;
+.login-heroTitle__container {
+  width: 40%;
 }
 
-.login-rightSide {
-  padding: 40px;
-}
-
-h1 {
+.login-hero {
+  font-style: italic;
   text-align: center;
+  width: 85%;
 }
 
 .login-body {
   display: flex;
   flex-direction: column;
+}
+
+.login-logo {
+  margin-top: 20px;
+  width: 200px;
 }
 
 .login-title {
@@ -43,7 +48,12 @@ h1 {
   padding: 5px;
 }
 
-.login-button {
+.login-button1, .login-button2 {
   margin-top: 5px;
   width: 100%;
+}
+
+.login-button2 {
+  background-color: #212529;
+  border: 1px solid #212529;
 }
