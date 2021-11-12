@@ -52,11 +52,10 @@ function Register() {
           Cadastrar
         </button>
       </form>
-      {error && (
-        <p data-testid="common_register__element-invalid_register">
-          Email já utilizado
-        </p>
-      )}
+      <p data-testid="common_register__element-invalid_register">
+        Email já utilizado
+      </p>
+
     </div>
   );
 }

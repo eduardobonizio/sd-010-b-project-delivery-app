@@ -7,8 +7,8 @@ import { validateEmail, validatePassword } from '../util/valdations';
 function Login() {
   const [passwordIsValid, setPasswordIsValid] = useState(false);
   const [password, setPassword] = useState('');
-  const [email, setemail] = useState('');
-  const [emailIsValid, setemailIsValid] = useState(false);
+  const [email, setEmail] = useState('');
+  const [emailIsValid, setEmailIsValid] = useState(false);
   const [error, setError] = useState(null);
   const history = useHistory();
 
@@ -26,7 +26,7 @@ function Login() {
   };
 
   const saveEmail = (e) => {
-    setemail(e);
+    setEmail(e);
   };
 
   const handleEmailChange = (event) => {
@@ -35,7 +35,7 @@ function Login() {
     } = event;
     saveEmail(value);
     const emailValidation = validateEmail(value);
-    setemailIsValid(emailValidation);
+    setEmailIsValid(emailValidation);
   };
 
   const handleSubmit = async (e) => {
