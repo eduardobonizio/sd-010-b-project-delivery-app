@@ -35,4 +35,9 @@ module.exports = {
     status: httpStatus.NOT_FOUND,
     message: 'recipe not found',
   },
+
+  incorrectFormat: {
+    status: httpStatus.NOT_FOUND,
+    message: 'Incorrect format',
+  },
 };
