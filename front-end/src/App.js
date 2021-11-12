@@ -4,11 +4,12 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 // import rockGlass from './images/rockGlass.svg';
 import Login from './pages/Login';
 import Products from './pages/Products';
+import ProductsProvider from './context/provider';
 import Register from './pages/Register';
 
 function App() {
   return (
-    <div className="App">
+    <ProductsProvider>
       <Switch>
         <Route exact path="/">
           <Redirect to="/login" />
@@ -17,7 +18,7 @@ function App() {
         <Route path="/register" component={ Register } />
         <Route path="/customer/products" component={ Products } />
       </Switch>
-    </div>
+    </ProductsProvider>
   );
 }
 
