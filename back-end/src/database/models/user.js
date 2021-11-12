@@ -10,11 +10,11 @@ const User = (sequelize, DataTypes) => {
   { timestamps: false });
 
   user.associate = (models) => {
-    user.hasOne(models.sales), {
-      foreignKey: 'seller_id',
-      as: 'sale'
-    }
-  }
+    user.hasMany(models.Sale,
+      { foreignKey: 'user_id', as: 'sales' });
+  };
+
   return user;
 };
+
 module.exports = User;
