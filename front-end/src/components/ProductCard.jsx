@@ -6,19 +6,20 @@ import '../styles/productCard.css';
 const ProductsCard = ({ product: { id, name, price, url_image: urlImage } }) => (
   <main id={ id } className="product-card__container">
     <section>
+      <span className="product-card__container__price">{ price }</span>
       <img
         src={ urlImage }
         alt={ `Product ${name}` }
         className="product-card__container__image"
       />
-      <span className="product-card__container__price">{ price }</span>
     </section>
-    <footer>
+    <footer className="product-card__container__footer">
       <span>{ name }</span>
-      <span>{ price }</span>
-      <span><button type="button">-</button></span>
-      <span>0</span>
-      <span><button type="button">+</button></span>
+      <span>
+        <button className="product-card__container__button-sub" type="button">-</button>
+        <span className="product-card__container__value">0</span>
+        <button className="product-card__container__button-sum" type="button">+</button>
+      </span>
     </footer>
   </main>
 );

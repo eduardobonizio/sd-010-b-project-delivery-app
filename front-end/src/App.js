@@ -14,7 +14,7 @@ function App() {
       {/* Vai receber props com path, comp e para verificar se vai renderizar
       com ou sem navbar horizontal */}
       <CustomRoute path="/products" component={ Products } navbar={ <NavBar /> } />
-      <CustomRoute path="/login" component={ Login } navbar={ <NavBar /> } />
+      <CustomRoute path="/login" component={ Login } />
       <Redirect from="/" to="/login" />
     </Switch>
 
