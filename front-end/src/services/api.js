@@ -15,5 +15,4 @@ export const register = async (body) => axios.post('http://localhost:3001/users/
 
 export const getProducts = async () => axios.get('http://localhost:3001/products', token)
   .then(({ data }) => data)
-  .catch(( err ) => err.response.data);
-  
+  .catch((err) => err.response.data);
