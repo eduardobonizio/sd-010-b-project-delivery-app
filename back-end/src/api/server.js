@@ -4,9 +4,10 @@ const app = require('./app');
 const express = require('express');
 const login  = require('../routers/Login');
 const register = require('../routers/Register');
-const checkout = require('../routers/Checkout');
-const product = require('../routers/Product');
-const order = require('../routers/Order');
+
+const customer = require('../routers/Customer');
+const seller = require('../routers/Seller');
+
 const error = require('../middleware/error');
 
 app.use(express.json());
@@ -16,13 +17,12 @@ app.use(cors());
 app.use('/login', login);
 //REGISTER
 app.use('/register', register);
-// SALE
-app.use('/sale', checkout);
 //PRODUCT
-app.use('/customer/products', product)
-//ORDER
-app.use('/customer/orders', order);
 
+app.use('/customer', customer)
+
+// SELLER
+app.use('/seller', seller);
 
 app.use(error);
 

@@ -22,7 +22,9 @@ function Login() {
 
   // Dennis
   const contexto = useContext(Context);
-  console.log(contexto);
+  const mantemContextSemQuebrar = () => {
+    console.log(contexto);
+  };
 
   const validateFields = ({ email, password }) => {
     const regex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
@@ -48,11 +50,10 @@ function Login() {
     if (checkLogin.message.id) {
       const { message } = checkLogin;
       setOnLocalStorage('login', message);
-      history.push('/bebidas');
-      console.log('dentro');
+      history.push('/customer/products');
     }
     setHidden(false);
-    console.log('fora');// logica para estourar o erro do login
+    mantemContextSemQuebrar();// soapara chamar em algum lugar
   };
 
   useEffect(() => {
