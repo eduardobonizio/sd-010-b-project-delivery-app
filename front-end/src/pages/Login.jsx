@@ -35,7 +35,7 @@ function Login() {
     } = event;
     saveEmail(value);
     const emailValidation = validateEmail(value);
-    setemailIsValid(emailValidation);
+    setEmailIsValid(emailValidation);
   };
 
   const handleSubmit = async (e) => {
