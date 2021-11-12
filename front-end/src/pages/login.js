@@ -15,12 +15,11 @@ function Login() {
     password: '',
   });
 
-  // Dennis
   const redirect = () => {
     history.push('/register');
   };
 
-  // Dennis
+  // utilize o contexto aqui
   const contexto = useContext(Context);
   console.log(contexto);
 
