@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import ProductsContext from './productContext';
@@ -9,7 +9,6 @@ function ProductsProvider({ children }) {
 
   const updateCart = (cartItem) => {
     const { name, price, quantity } = cartItem;
-    console.log(quantity);
 
     if (productsInCart.some((el) => name === el.name)) {
       const updatedCart = productsInCart.map((el) => {
@@ -28,6 +27,14 @@ function ProductsProvider({ children }) {
       productsInCart.push(cartItem);
     }
   };
+
+  useEffect(() => {
+    const totalValue = productsInCart.reduce((
+      acc,
+      { price, quantity },
+    ) => (acc + (price * quantity)), 0);
+    setTotalPrice(totalValue);
+  }, [productsInCart]);
 
   const globalContext = {
     totalPrice,

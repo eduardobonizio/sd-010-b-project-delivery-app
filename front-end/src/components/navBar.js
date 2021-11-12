@@ -13,7 +13,6 @@ export default function NavBar() {
     updateUserData();
   }, []);
 
-  console.log(userData);
   return (
     <nav>
       <Link to="/customer/products">

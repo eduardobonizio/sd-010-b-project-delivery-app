@@ -14,7 +14,7 @@ function DrinkCard({ product }) {
 
   const updateQuantity = (value) => {
     if (quantity + value >= 0) {
-      setQuantity(quantity + value);
+      setQuantity(Number(quantity) + Number(value));
     }
   };
 
@@ -47,6 +47,7 @@ function DrinkCard({ product }) {
         type="number"
         value={ quantity }
         min="0"
+        onChange={ ({ target }) => setQuantity(Number(target.value)) }
         data-testid={ `customer_products__input-card-quantity-${id}` }
       />
 
@@ -63,7 +64,7 @@ function DrinkCard({ product }) {
 }
 
 DrinkCard.propTypes = {
-  product: PropTypes.arrayOf.isRequired,
+  product: PropTypes.objectOf.isRequired,
 };
 
 export default DrinkCard;
