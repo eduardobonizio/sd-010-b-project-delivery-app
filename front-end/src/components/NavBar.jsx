@@ -1,26 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { Stack, Tab, Typography, Box, Button, Tabs } from '@mui/material';
 import PropTypes from 'prop-types';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 
 const customerLabelArray = [
   { label: 'Produtos', route: '/customer/products' },
   { label: 'Meus Pedidos', route: '/customer/checkout' },
 ];
 
-const renderTabByuserRole = (userRole) => {
+const renderTabByuserRole = (userRole, history) => {
   if (userRole === 'customer') {
     return customerLabelArray
-      .map(({ label, route }) => <Tab key={ label } label={ label } href={ route } />);
+      .map(({ label, route }) => (
+        <Tab key={ label } label={ label } onClick={ () => history.push(route) } />
+      ));
   }
   if (userRole === 'seller') {
     return (
-      <Tab component="a" label="Pedidos" href="/seller/order" />
+      <Tab label="Pedidos" onClick={ () => history.push('/seller/orders') } />
     );
   }
   if (userRole === 'admin') {
     return (
-      <Tab component="a" label="Pedidos" href="/admin/manage" />
+      <Tab label="Pedidos" onClick={ () => history.push('/seller/orders') } />
     );
   }
 };
@@ -28,6 +30,7 @@ function NavBar({ username, userRole }) {
   const [tabsValue, setTabsValue] = useState(0);
 
   const location = useLocation();
+  const history = useHistory();
 
   useEffect(() => {
     if (userRole === 'customer') {
@@ -48,7 +51,7 @@ function NavBar({ username, userRole }) {
       spacing={ 0 }
     >
       <Tabs value={ tabsValue } onChange={ handleChange } aria-label="nav tabs example">
-        { renderTabByuserRole(userRole) }
+        { renderTabByuserRole(userRole, history) }
       </Tabs>
       <Stack direction="row" alignItems="center" spacing={ 2 }>
         <Box><Typography>{username}</Typography></Box>
