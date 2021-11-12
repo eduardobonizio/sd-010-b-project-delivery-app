@@ -8,7 +8,7 @@ const getAllOrdersByUserId = async (user_id) => {
 
 const getAllOrdersBySellerId = async (seller_id) => {
   const getOrderSeller = await Sale.findAll({ where: { seller_id } });
-  if (!getOrder) return { status: 404, data: "Nenhum pedido encontrado" };
+  if (!getOrderSeller) return { status: 404, data: "Nenhum pedido encontrado" };
   return { status: 200, data: getOrderSeller };
 };
 
