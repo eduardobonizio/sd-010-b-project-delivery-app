@@ -14,7 +14,7 @@ const findAll = async () => {
 
 const addUser = async (bodyCategory) => {
   const { error } = validUser.validate(bodyCategory);
-  if (error) throw messageError(417, error.message);
+  if (error) throw messageError(409, '409 - Conflict');
   const { name, email, password, role } = bodyCategory
 
   const password_hash = md5(password);

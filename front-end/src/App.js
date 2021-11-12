@@ -8,6 +8,7 @@ import {
   Checkout,
   ClientOrderDetails,
   OrderDetails,
+  Home,
 } from './pages';
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
       <Route path="/seller/orders" element={ <OrderDetails /> } />
       <Route path="/register" element={ <Register /> } />
       <Route path="/login" element={ <Login /> } />
-      <Route path="/" element={ <Login /> } />
+      <Route path="/" element={ <Home /> } />
     </Routes>
   );
 }
