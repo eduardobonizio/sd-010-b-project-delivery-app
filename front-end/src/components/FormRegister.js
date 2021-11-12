@@ -12,14 +12,14 @@ export default function FormRegister() {
 
   const PassLength = 6;
   const NameLength = 12;
+  const threeSecond = 3000;
 
   async function submit(e) {
     e.preventDefault();
     const user = await register({ name, email, password: pass });
-    console.log(user);
     if (user.message) {
       setErr(true);
-      return setTimeout(() => setErr(false), 3000);
+      return setTimeout(() => setErr(false), threeSecond);
     }
     createStorage('user', user.data[0]);
     history.push('/customer/products');
@@ -60,8 +60,14 @@ export default function FormRegister() {
       >
         Cadastro
       </button>
-      { err && <p className="message-error"
-      data-testid='common_register__element-invalid_register'>Login já é cadastrado</p> }
+      { err && (
+        <p
+          className="message-error"
+          data-testid="common_register__element-invalid_register"
+        >
+          Login já é cadastrado
+
+        </p>) }
     </form>
   );
 }

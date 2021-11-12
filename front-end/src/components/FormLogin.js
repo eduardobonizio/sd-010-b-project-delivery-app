@@ -10,6 +10,7 @@ export default function FormLogin() {
   const [err, setErr] = useState(false);
 
   const PassLength = 6;
+  const threeSecond = 3000;
 
   async function submit(e) {
     e.preventDefault();
@@ -17,7 +18,7 @@ export default function FormLogin() {
     console.log(user);
     if (user.message) {
       setErr(true);
-      return setTimeout(() => setErr(false), 3000);
+      return setTimeout(() => setErr(false), threeSecond);
     }
     createStorage('user', user.data[0]);
     history.push('/customer/products');
@@ -49,8 +50,14 @@ export default function FormLogin() {
       >
         Login
       </button>
-      { err && <p className="message-error"
-      data-testid='common_login__element-invalid-email'>Login ou senha invalidos</p> }
+      { err && (
+        <p
+          className="message-error"
+          data-testid="common_login__element-invalid-email"
+        >
+          Login ou senha invalidos
+
+        </p>) }
       <button type="button" data-testid="common_login__button-register">
         <Link to="/register">
           Ainda não tenho conta
