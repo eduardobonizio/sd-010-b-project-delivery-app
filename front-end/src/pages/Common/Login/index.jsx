@@ -44,7 +44,7 @@ export default function Login() {
         </Link>
         <p
           id="erro"
-          data-testid={ `common_login__element-invalid-email${'elemento'}` }
+          data-testid="common_login__element-invalid-email"
         >
           {' '}
         </p>
