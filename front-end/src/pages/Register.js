@@ -19,17 +19,19 @@ function Register() {
 
   return (
     <div className="register__container">
-      <h1>Cadastro</h1>
+      <h1>Cadastre-se!</h1>
       <form className="register-body">
         <h4 className="register-title">Nome</h4>
         <input
           value={ nameRegister }
+          className="register-input"
           autoComplete="off"
           onChange={ ({ target }) => setNameRegister(target.value) }
         />
         <h4 className="register-title">Email</h4>
         <input
           value={ emailRegister }
+          className="register-input"
           onChange={ ({ target }) => setEmailRegister(target.value) }
           data-testid="common_register__input-email"
         />
@@ -37,6 +39,7 @@ function Register() {
         <input
           type="password"
           value={ passwordRegister }
+          className="register-input"
           onChange={ ({ target }) => setPasswordRegister(target.value) }
           data-testid="common_register__input-password"
         />
