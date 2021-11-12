@@ -1,6 +1,6 @@
 .product-list__container {
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
   padding: 24px;
 }
 

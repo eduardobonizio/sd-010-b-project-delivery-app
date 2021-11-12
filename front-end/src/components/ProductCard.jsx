@@ -6,19 +6,42 @@ import '../styles/productCard.css';
 const ProductsCard = ({ product: { id, name, price, url_image: urlImage } }) => (
   <main id={ id } className="product-card__container">
     <section>
-      <span className="product-card__container__price">{ price }</span>
+      <span
+        className="product-card__container__price"
+        data-testid="customer_products__element-card-price-"
+      >
+        { price }
+      </span>
       <img
+        data-testid="customer_products__img-card-bg-image-"
         src={ urlImage }
         alt={ `Product ${name}` }
         className="product-card__container__image"
       />
     </section>
     <footer className="product-card__container__footer">
-      <span>{ name }</span>
+      <span data-testid="customer_products__element-card-title-">{ name }</span>
       <span>
-        <button className="product-card__container__button-sub" type="button">-</button>
-        <span className="product-card__container__value">0</span>
-        <button className="product-card__container__button-sum" type="button">+</button>
+        <button
+          className="product-card__container__button-sub"
+          type="button"
+          data-testid="customer_products__button-card-rm-item-"
+        >
+          -
+        </button>
+        <span
+          className="product-card__container__value"
+          data-testid="customer_products__input-card-quantity-"
+        >
+          0
+        </span>
+        <button
+          className="product-card__container__button-sum"
+          type="button"
+          data-testid="customer_products__button-card-add-item-"
+        >
+          +
+        </button>
       </span>
     </footer>
   </main>
