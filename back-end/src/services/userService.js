@@ -36,7 +36,7 @@ const login = async ({ email, password: userPassword }) => {
   }
   const userInfo = userExistes.dataValues;
   const token = generateToken(userExistes);
-  const response = { name: userInfo.name, email, role: userInfo.role , token };
+  const response = { name: userInfo.name, email, role: userInfo.role, token };
   return response;
 };
 
