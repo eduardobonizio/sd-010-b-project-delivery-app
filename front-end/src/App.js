@@ -3,16 +3,16 @@ import {
   BrowserRouter,
   Switch,
   Route,
-  Redirect
+  Redirect,
 } from 'react-router-dom';
 
-import NavBar from './components/NavBar';
+import Login from './Components/Login';
 
 function App() {
   return (
     <BrowserRouter>
       <Switch>
-      <Route path="/login" component={ Login } />
+        <Route path="/login" component={ Login } />
         <Route exact path="/">
           <Redirect to="/login" />
         </Route>
