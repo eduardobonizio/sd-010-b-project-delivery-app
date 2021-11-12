@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css';
 import { Route, Routes } from 'react-router';
 import {
   Login,
@@ -7,6 +8,7 @@ import {
   Checkout,
   ClientOrderDetails,
   OrderDetails,
+  Home,
 } from './pages';
 
 function App() {
@@ -18,7 +20,7 @@ function App() {
       <Route path="/seller/orders" element={ <OrderDetails /> } />
       <Route path="/register" element={ <Register /> } />
       <Route path="/login" element={ <Login /> } />
-      <Route path="/" element={ <Login /> } />
+      <Route path="/" element={ <Home /> } />
     </Routes>
   );
 }

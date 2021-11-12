@@ -7,6 +7,7 @@ import Register from './Common/Register';
 import Checkout from './Client/Checkout';
 import Products from './Client/Products';
 import Login from './Common/Login';
+import Home from './Common/Home';
 
 export {
   ClientOrderDetails,
@@ -18,4 +19,5 @@ export {
   Requests,
   Products,
   Login,
+  Home,
 };
