@@ -48,7 +48,7 @@ function Login() {
     if (checkLogin.message.id) {
       const { message } = checkLogin;
       setOnLocalStorage('login', message);
-      history.push('/bebidas');
+      history.push('/customer/products');
       console.log('dentro');
     }
     setHidden(false);
