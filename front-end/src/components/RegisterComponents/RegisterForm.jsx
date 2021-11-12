@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 import RegisterErrorMessages from './RegisterErrorMessages';
 
 export default function RegisterForm() {
+  const [redirectToProducts, setRedirectToProducts] = useState(false);
   const [registerButtonDisabled, setRegisterButtonDisabled] = useState(false);
+  const [userName, setUserName] = useState('');
+  const [userPassword, setUserPassword] = useState('');
+  const [userEmail, setUserEmail] = useState('');
   const [somethingIsWrong, setSomethingIsWrong] = useState({
     nameRegister: true,
     emailRegister: true,
@@ -26,6 +32,7 @@ export default function RegisterForm() {
 
   const changeName = (value) => {
     const maxCharacterNameLength = 12;
+    console.log(/[a-zA-Z]+/i.test(value));
     if (value.length < maxCharacterNameLength) {
       setSomethingIsWrong({
         ...somethingIsWrong,
@@ -37,22 +44,21 @@ export default function RegisterForm() {
         nameRegister: false,
       });
     }
+    setUserName(value);
   };
 
   const changeEmail = (value) => {
-    console.log(value);
     if (!/[\w.-]+@[a-zA-Z]+\.+[a-zA-Z]+/i.test(value)) {
       setSomethingIsWrong({
         ...somethingIsWrong,
         emailRegister: true,
       });
-      console.log('email errado');
     } else {
       setSomethingIsWrong({
         ...somethingIsWrong,
         emailRegister: false,
       });
-      console.log('email certo');
+      setUserEmail(value);
     }
   };
 
@@ -69,6 +75,7 @@ export default function RegisterForm() {
         passwordRegister: false,
       });
     }
+    setUserPassword(value);
   };
 
   const registerFormChanged = (name, value) => {
@@ -82,6 +89,20 @@ export default function RegisterForm() {
     default:
       changePassword(value);
     }
+  };
+
+  const registerUser = async () => {
+    await axios({
+      method: 'post',
+      url: 'http://localhost:3001/register',
+      data: {
+        name: userName,
+        email: userEmail,
+        password: userPassword,
+      },
+    })
+      .then(() => setRedirectToProducts(true))
+      .catch((e) => console.error(e));
   };
 
   return (
@@ -119,12 +140,14 @@ export default function RegisterForm() {
           name="register"
           id="registerUser"
           disabled={ registerButtonDisabled }
+          onClick={ async () => registerUser() }
           data-testid="common_register__button-register"
         >
           CADASTRAR
         </button>
       </form>
       <RegisterErrorMessages somethingIsWrong={ somethingIsWrong } />
+      { redirectToProducts && <Redirect to="/customer/products" /> }
     </section>
   );
 }

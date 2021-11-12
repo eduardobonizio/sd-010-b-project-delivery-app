@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 
 export default function RegisterErrorMessages({ somethingIsWrong }) {
@@ -9,7 +9,7 @@ export default function RegisterErrorMessages({ somethingIsWrong }) {
   const invalidPassword = 'Senha inválida';
   const invalidUser = 'Este usuário já existe';
 
-  const showMeAnError = () => {
+  const showMeAnError = useCallback(() => {
     const errorMessage = [];
 
     if (somethingIsWrong.nameRegister) {
@@ -31,12 +31,11 @@ export default function RegisterErrorMessages({ somethingIsWrong }) {
     setInputErrors(
       errorMessage.map((phrase, index) => <li key={ index }>{ phrase }</li>),
     );
-  };
+  }, [somethingIsWrong]);
 
   useEffect(() => {
     showMeAnError();
-    console.log(inputErrors);
-  }, [somethingIsWrong]);
+  }, [somethingIsWrong, showMeAnError]);
 
   return (
     <div data-testid="common_register__element-invalid_register">
