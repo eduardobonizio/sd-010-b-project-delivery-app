@@ -8,12 +8,18 @@ import './loginForm.css';
 import Logincontext from '../../context/LoginContext';
 
 function LoginForm() {
-<<<<<<< HEAD
-  // const { setUserData } = useContext(toDoContext);
+  const { setUserData } = React.useContext(Logincontext);
+  const [form] = Form.useForm();
+  const [, forceUpdate] = React.useState({});
   const [isError, setIsError] = useState(false);
   const [redirect, setRedirect] = useState(false);
 
+  React.useEffect(() => {
+    forceUpdate({});
+  }, []);
+
   const onFinish = async (values) => {
+    setUserData(values);
     const { email, password } = values;
     try {
       await axios.post('http://localhost:3001/login', {
@@ -25,23 +31,9 @@ function LoginForm() {
     } catch (error) {
       setIsError(true);
     }
-
-    // setUserData(values.username);
-    // console.log(values);
-=======
-  const [form] = Form.useForm();
-  const [, forceUpdate] = React.useState({});
-
-  const { setUserData } = React.useContext(Logincontext);
-
-  React.useEffect(() => {
-    forceUpdate({});
-  }, []);
-
-  const onFinish = (values) => {
-    setUserData(values);
->>>>>>> b8a570791b71bc367122a8f19e524038d841b760
   };
+
+  // console.log(values);
 
   const openNotificationWithIcon = (type) => {
     // const resp = await axios.get('http://localhost:3001/products');
@@ -60,7 +52,7 @@ function LoginForm() {
 
   return (
     <section className="main-container">
-      { isError && (<p data-testid="common_login__element-invalid-email"> TESTE </p>) }
+      {isError && (<p data-testid="common_login__element-invalid-email"> TESTE </p>)}
       <section className="secondary-container">
         <Form
           form={ form }
