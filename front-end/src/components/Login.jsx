@@ -13,7 +13,9 @@ const Login = () => {
   const buttonLogin = async (event) => {
     event.preventDefault();
     try {
+      console.log('entrei');
       const { data } = await axios.post('http://localhost:3001/login', { email, password });
+      console.log(data);
       localStorage.setItem('token', `${JSON.stringify(data)}`);
       return navigate('/customer/products');
     } catch (error) {
