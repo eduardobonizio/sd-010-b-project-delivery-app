@@ -6,16 +6,16 @@ import DeliveryContext from '../context/DeliveryContext';
 
 const Login = () => {
   const [isValidPW, setIsValidPW] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const { email, setEmail, password, setPassword, validarEmail, validarSenha,
+
+  const { validarEmail, validarSenha,
   } = useContext(DeliveryContext);
 
   const buttonLogin = async () => {
-    console.log('antes do try');
     try {
-      console.log('dentro do try');
       const { data } = await axios.post('http://localhost:3001/login', { email, password });
-      console.log('depois da requisição');
       localStorage.setItem('token', `${JSON.stringify(data)}`);
       return navigate('/customer/products');
     } catch (error) {
