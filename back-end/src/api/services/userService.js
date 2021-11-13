@@ -16,11 +16,11 @@ const existUser = async ({ email, password }) => {
   if (userFound === null) {
     return { message: 'Usuário não encontrado' };
   }
-  const { name, role } = userFound;
+  const { id, name, role } = userFound;
 
   const token = generateToken({ name, role, email });
 
-  return { name, email, role, token };
+  return { id, name, email, role, token };
 };
 
 const findUser = async ({ email }) => {
