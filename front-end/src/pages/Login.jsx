@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Col, Container, Form, Image, Row } from 'react-bootstrap';
+import axios from 'axios';
+import md5 from 'crypto';
 import { setEmail, setPassword } from '../actions';
 import EmailInput from '../components/EmailInput';
 import LoginButton from '../components/LoginButton';
@@ -9,7 +11,7 @@ import PasswordInput from '../components/PasswordInput';
 import LoginErrorMessage from '../components/LoginErrorMessage';
 import RegisterButton from '../components/RegisterButton';
 import { validateEmailFormat, validatePassword } from '../helpers/validation';
-import './Login.css';
+import './css/Login.css';
 
 function Login() {
   const dispatch = useDispatch();
@@ -32,12 +34,16 @@ function Login() {
     }
   }, [email, password]);
 
-  const dispatchOnSubmit = () => {
-    dispatch(setEmail(email));
-    dispatch(setPassword(password));
+  const dispatchOnSubmit = async () => {
+    const okStatus = 200;
+    const hashedPassword = md5(password);
+    const response = await axios.post('http://localhost:3001/login', { email, password: hashedPassword });
+    if (response.status !== okStatus) return setHideErrorMessage(!hideErrorMessage);
+    // dispatch(setEmail(email));
+    // dispatch(setPassword(password));
 
-    const fail = true;
-    if (fail) return setHideErrorMessage(!hideErrorMessage);
+    // const fail = true;
+    // if (fail) return setHideErrorMessage(!hideErrorMessage);
     return navigate('/customer/products');
   };
 

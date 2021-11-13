@@ -6,7 +6,7 @@ import PasswordInput from '../components/PasswordInput';
 import NameInput from '../components/NameInput';
 import {
   validateEmailFormat, validateName, validatePassword } from '../helpers/validation';
-import './Register.css';
+import './css/Register.css';
 
 function Register() {
   const [name, setStateName] = useState();
