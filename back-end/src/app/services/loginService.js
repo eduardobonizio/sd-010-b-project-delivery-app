@@ -1,17 +1,26 @@
+const md5 = require('md5');
 const { User } = require('../../database/models');
+const { validLogin } = require('../../middlewares/loginValidations');
 
-const loginService = async (req, res) => {
-try {
-  const { email, password } = req;
+const messageError = (status, message) => ({
+  status,
+  message,
+});
 
-  const UserLogin = await User.findOne({ where: { email } });
-  if (!UserLogin || UserLogin.password !== password) {
-    return res.status(400).json({ message: 'Invalid fields' });
+const loginService = async (user) => {
+  const { email, password } = user;
+  const { error } = validLogin.validate(user);
+  
+  if (error) throw messageError(400, error.message);
+
+  const passwordHash = md5(password);
+  const validUser = await User.findOne({ where: { email, password: passwordHash } });
+  
+  if (validUser === null) {
+    throw messageError(404, '404 - Not found');
   }
-  return UserLogin;
-} catch (error) {
-  return res.status(500).json({ message: error.message });
-}
+  
+  return validUser;
 };
 
 module.exports = {

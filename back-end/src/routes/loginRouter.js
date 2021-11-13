@@ -1,11 +1,13 @@
 const express = require('express');
 
-const loginController = require('../app/controllers/loginController');
-
-// jwt
-
 const router = express.Router();
 
-router.get('/', loginController.login);
+const loginController = require('../app/controllers/loginController');
+
+router.route('/')
+  .get(loginController.login);
+
+router.route('/login')
+  .get(loginController.login);
 
 module.exports = router;
