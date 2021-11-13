@@ -8,7 +8,8 @@ const messageError = (status, message) => ({
 });
 
 const findAll = async () => {
-  const findAllUsers = await User.findAll();
+  const findAllUsers = await User.scope('withoutPassword').findAll();
+
   return findAllUsers;
 };
 
@@ -36,3 +37,5 @@ module.exports = {
   findById,
   addUser,
 };
+
+// Agradecimentos a >> https://stackoverflow.com/questions/27972271/sequelize-dont-return-password

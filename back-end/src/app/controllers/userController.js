@@ -3,6 +3,8 @@ const userService = require('../services/userService');
 
 const findAll = rescue(async (_req, res) => {
   const findUsers = await userService.findAll();
+  // delete findUsers.password;
+  console.log('controller', findUsers);
   return res.status(200).json(findUsers);
 });
 
