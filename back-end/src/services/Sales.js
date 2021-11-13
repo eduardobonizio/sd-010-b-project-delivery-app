@@ -3,7 +3,6 @@ const httpStatus = require('http-status');
 const { Sale, SalesProduct } = require('../database/models');
 const validations = require('../utils/validations/validationsIndex');
 
-
 const createSale = async (payloadUser, { sale, cart } ) => {
   validations.createSale(sale, cart);
   const { sellerId, totalPrice, deliveryAddress, deliveryNumber } = sale;

@@ -14,7 +14,7 @@ app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/products', productsRouter);
 app.use('/sales', salesRouter);
-app.use('./user', usersRouter);
+app.use('/user', usersRouter);
 
 app.use(error);
 
