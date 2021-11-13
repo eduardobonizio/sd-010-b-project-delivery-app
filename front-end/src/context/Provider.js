@@ -57,11 +57,34 @@ export default function Provider({ children }) {
     updateTotalCartValue();
   }, [cart]);
 
+  const setProductQuantityManual = async ({ id, value }) => {
+    const productExistsOnCart = cart.find((product) => product.id === id);
+
+    if (productExistsOnCart) {
+      if (value !== 0) {
+        setCart((oldCard) => oldCard.map((product) => {
+          if (product.id === id) {
+            return { ...product, quantity: value };
+          }
+
+          return product;
+        }));
+      } else {
+        const product = await getProductById(id);
+        setCart([...cart, { ...product, quantity: value }]);
+      }
+    } else {
+      const product = await getProductById(id);
+      setCart([...cart, { ...product, quantity: value }]);
+    }
+  };
+
   const context = {
     cart,
     totalCart,
     addProductToCart,
     removeProductFromCart,
+    setProductQuantityManual,
   };
 
   return (

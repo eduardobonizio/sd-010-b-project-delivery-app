@@ -6,7 +6,9 @@ import Context from '../context/Context';
 import '../styles/productCard.css';
 
 const ProductsCard = ({ product: { id, name, price, url_image: urlImage } }) => {
-  const { addProductToCart, cart, removeProductFromCart } = useContext(Context);
+  const {
+    addProductToCart, cart, removeProductFromCart, setProductQuantityManual,
+  } = useContext(Context);
   const [quantity, setQuantity] = useState(0);
 
   const convertDotToComma = (value) => value.toString().replace('.', ',');
@@ -17,6 +19,21 @@ const ProductsCard = ({ product: { id, name, price, url_image: urlImage } }) => 
     if (product) {
       setQuantity(product.quantity);
     } else {
+      setQuantity(0);
+    }
+  };
+
+  const handleQuantityInput = ({ value }) => {
+    // BASED ON https://www.ti-enxame.com/pt/javascript/regex-para-verificar-se-uma-string-contem-apenas-numeros/942732264/
+    const regex = new RegExp(/^-?\d*\.?\d*$/);
+
+    if (regex.test(value)) {
+      setProductQuantityManual({ id, value });
+    }
+  };
+
+  const onFocusOutQuantityInput = ({ value }) => {
+    if (value === '') {
       setQuantity(0);
     }
   };
@@ -61,6 +78,8 @@ const ProductsCard = ({ product: { id, name, price, url_image: urlImage } }) => 
             className="product-card__container__value"
             data-testid={ `customer_products__input-card-quantity-${id}` }
             value={ quantity }
+            onChange={ ({ target }) => handleQuantityInput(target) }
+            onBlur={ ({ target }) => onFocusOutQuantityInput(target) }
           />
           <button
             className="product-card__container__button-sum"
