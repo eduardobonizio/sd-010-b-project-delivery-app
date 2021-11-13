@@ -10,4 +10,7 @@ router.route('/')
 .get(userController.findAll)
 .post(userController.add);
 
+router.route('/:id')
+.get(userController.findById);
+
 module.exports = router;

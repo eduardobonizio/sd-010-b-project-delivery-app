@@ -8,8 +8,17 @@ const messageError = (status, message) => ({
 });
 
 const findAll = async () => {
-  const findAllUsers = await User.findAll();
+  const findAllUsers = await User.scope('withoutPassword').findAll();
+
   return findAllUsers;
+};
+
+const findById = async (id) => {
+  const findIdUser = await User.findByPk(id);
+
+  if (!findIdUser) throw messageError(404, '404 - non-existent user');
+
+  return findIdUser;
 };
 
 const addUser = async (bodyCategory) => {
@@ -24,6 +33,9 @@ const addUser = async (bodyCategory) => {
 };
 
 module.exports = {
-  addUser,
   findAll,
+  findById,
+  addUser,
 };
+
+// Agradecimentos a >> https://stackoverflow.com/questions/27972271/sequelize-dont-return-password
