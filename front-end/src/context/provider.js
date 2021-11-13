@@ -8,12 +8,13 @@ function ProductsProvider({ children }) {
   const [productsInCart, setProductsInCart] = useState([]);
 
   const updateCart = (cartItem) => {
-    const { name, price, quantity } = cartItem;
+    const { id, name, price, quantity } = cartItem;
 
     if (productsInCart.some((el) => name === el.name)) {
       const updatedCart = productsInCart.map((el) => {
         if (el.name === name) {
           return {
+            id,
             name,
             price,
             quantity,

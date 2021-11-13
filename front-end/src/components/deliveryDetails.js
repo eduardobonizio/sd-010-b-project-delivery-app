@@ -16,7 +16,7 @@ export default function DeliveryDetails() {
   const [sellers, setSellers] = useState([]);
 
   const history = useHistory();
-  const { totalPrice } = useContext(ProductsContext);
+  const { totalPrice, productsInCart } = useContext(ProductsContext);
 
   const updateState = (name, value) => {
     setCheckoutInfo({ ...checkoutInfo, [name]: value });
@@ -40,6 +40,7 @@ export default function DeliveryDetails() {
       total_price: totalPrice.toFixed(2),
       delivery_address: address,
       delivery_number: number,
+      products: productsInCart.filter(({ quantity }) => quantity > 0),
     };
 
     const { id: saleId } = await postSale(payload, token);
@@ -58,7 +59,7 @@ export default function DeliveryDetails() {
           type="text"
           required
           data-testid="customer_checkout__select-seller"
-          onClick={ ({ target: t }) => { updateState(t.name, t.value); } }
+          onChange={ ({ target: t }) => { updateState(t.name, t.value); } }
         >
           {sellers.map(({ name, id }, idx) => {
             if (idx === 0) {
