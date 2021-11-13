@@ -6,21 +6,19 @@ import Context from '../context/Context';
 import '../styles/productCard.css';
 
 const ProductsCard = ({ product: { id, name, price, url_image: urlImage } }) => {
-  const { addProductToCart, cart } = useContext(Context);
+  const { addProductToCart, cart, removeProductFromCart } = useContext(Context);
   const [quantity, setQuantity] = useState(0);
 
   const convertDotToComma = (value) => value.toString().replace('.', ',');
 
   const updateProductQuantity = () => {
-    const totalProductQuantity = cart.reduce((acc, product) => {
-      if (product.id === id) {
-        return acc + 1;
-      }
+    const product = cart.find((cartProduct) => cartProduct.id === id);
 
-      return acc;
-    }, 0);
-
-    setQuantity(totalProductQuantity);
+    if (product) {
+      setQuantity(product.quantity);
+    } else {
+      setQuantity(0);
+    }
   };
 
   useEffect(() => {
@@ -55,6 +53,7 @@ const ProductsCard = ({ product: { id, name, price, url_image: urlImage } }) => 
             className="product-card__container__button-sub"
             type="button"
             data-testid={ `customer_products__button-card-rm-item-${id}` }
+            onClick={ () => removeProductFromCart(id) }
           >
             -
           </button>

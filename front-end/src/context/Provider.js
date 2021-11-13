@@ -10,13 +10,44 @@ export default function Provider({ children }) {
   const [totalCart, setTotalCart] = useState(0);
 
   const addProductToCart = async (id) => {
-    const product = await getProductById(id);
+    const productExistsOnCart = cart.find((product) => product.id === id);
 
-    setCart([...cart, { ...product }]);
+    if (productExistsOnCart) {
+      setCart((oldCard) => oldCard.map((product) => {
+        if (product.id === id) {
+          return { ...product, quantity: product.quantity + 1 };
+        }
+
+        return product;
+      }));
+    } else {
+      const product = await getProductById(id);
+      setCart([...cart, { ...product, quantity: 1 }]);
+    }
+  };
+
+  const removeProductFromCart = async (id) => {
+    const productExistsOnCart = cart.find((product) => product.id === id);
+
+    if (productExistsOnCart) {
+      if (productExistsOnCart.quantity > 1) {
+        setCart((oldCard) => oldCard.map((product) => {
+          if (product.id === id) {
+            return { ...product, quantity: product.quantity - 1 };
+          }
+
+          return product;
+        }));
+      } else {
+        const newCart = cart.filter((product) => product.id !== id);
+        setCart(newCart);
+      }
+    }
   };
 
   const updateTotalCartValue = () => {
-    const totalValue = cart.reduce((acc, { price }) => Number(price) + acc, 0);
+    const totalValue = cart.reduce((acc, { price, quantity }) => (
+      Number(price) * Number(quantity)) + acc, 0);
     const decimalTotalValue = totalValue.toFixed(2);
 
     setTotalCart(decimalTotalValue);
@@ -30,6 +61,7 @@ export default function Provider({ children }) {
     cart,
     totalCart,
     addProductToCart,
+    removeProductFromCart,
   };
 
   return (
