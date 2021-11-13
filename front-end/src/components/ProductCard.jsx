@@ -7,7 +7,11 @@ import '../styles/productCard.css';
 
 const ProductsCard = ({ product: { id, name, price, url_image: urlImage } }) => {
   const {
-    addProductToCart, cart, removeProductFromCart, setProductQuantityManual,
+    increaseProductFromCart,
+    cart,
+    decreaseProductFromCart,
+    setProductQuantityManual,
+    deleteProductFromCart,
   } = useContext(Context);
   const [quantity, setQuantity] = useState(0);
 
@@ -26,14 +30,23 @@ const ProductsCard = ({ product: { id, name, price, url_image: urlImage } }) => 
   const handleQuantityInput = ({ value }) => {
     // BASED ON https://www.ti-enxame.com/pt/javascript/regex-para-verificar-se-uma-string-contem-apenas-numeros/942732264/
     const regex = new RegExp(/^-?\d*\.?\d*$/);
-
     if (regex.test(value)) {
-      setProductQuantityManual({ id, value });
+      if (value !== '') {
+        if (parseInt(value[0], 10) === 0 && parseInt(value[1], 10) === 0) {
+          setProductQuantityManual({ id, value: parseInt(value, 10) });
+        } else {
+          // Aceita zero no input
+          setProductQuantityManual({ id, value });
+        }
+      } else {
+        setQuantity('');
+      }
     }
   };
 
   const onFocusOutQuantityInput = ({ value }) => {
     if (value === '') {
+      deleteProductFromCart(id);
       setQuantity(0);
     }
   };
@@ -70,7 +83,7 @@ const ProductsCard = ({ product: { id, name, price, url_image: urlImage } }) => 
             className="product-card__container__button-sub"
             type="button"
             data-testid={ `customer_products__button-card-rm-item-${id}` }
-            onClick={ () => removeProductFromCart(id) }
+            onClick={ () => decreaseProductFromCart(id) }
           >
             -
           </button>
@@ -85,7 +98,7 @@ const ProductsCard = ({ product: { id, name, price, url_image: urlImage } }) => 
             className="product-card__container__button-sum"
             type="button"
             data-testid={ `customer_products__button-card-add-item-${id}` }
-            onClick={ () => addProductToCart(id) }
+            onClick={ () => increaseProductFromCart(id) }
           >
             +
           </button>

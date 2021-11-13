@@ -9,38 +9,41 @@ export default function Provider({ children }) {
   const [cart, setCart] = useState([]);
   const [totalCart, setTotalCart] = useState(0);
 
-  const addProductToCart = async (id) => {
+  const changeProductCartQuantity = (id, quantity) => {
+    setCart((oldCard) => oldCard.map((product) => {
+      if (product.id === id) return { ...product, quantity };
+      return product;
+    }));
+  };
+
+  const addProductToCart = async (id, quantity) => {
+    const product = await getProductById(id);
+    setCart([...cart, { ...product, quantity }]);
+  };
+
+  const deleteProductFromCart = (id) => {
+    const newCart = cart.filter((product) => product.id !== id);
+    setCart(newCart);
+  };
+
+  const increaseProductFromCart = (id) => {
     const productExistsOnCart = cart.find((product) => product.id === id);
 
     if (productExistsOnCart) {
-      setCart((oldCard) => oldCard.map((product) => {
-        if (product.id === id) {
-          return { ...product, quantity: product.quantity + 1 };
-        }
-
-        return product;
-      }));
+      changeProductCartQuantity(id, productExistsOnCart.quantity + 1);
     } else {
-      const product = await getProductById(id);
-      setCart([...cart, { ...product, quantity: 1 }]);
+      addProductToCart(id, 1);
     }
   };
 
-  const removeProductFromCart = async (id) => {
+  const decreaseProductFromCart = (id) => {
     const productExistsOnCart = cart.find((product) => product.id === id);
 
     if (productExistsOnCart) {
       if (productExistsOnCart.quantity > 1) {
-        setCart((oldCard) => oldCard.map((product) => {
-          if (product.id === id) {
-            return { ...product, quantity: product.quantity - 1 };
-          }
-
-          return product;
-        }));
+        changeProductCartQuantity(id, productExistsOnCart.quantity - 1);
       } else {
-        const newCart = cart.filter((product) => product.id !== id);
-        setCart(newCart);
+        deleteProductFromCart(id);
       }
     }
   };
@@ -62,29 +65,23 @@ export default function Provider({ children }) {
 
     if (productExistsOnCart) {
       if (value !== 0) {
-        setCart((oldCard) => oldCard.map((product) => {
-          if (product.id === id) {
-            return { ...product, quantity: value };
-          }
-
-          return product;
-        }));
+        changeProductCartQuantity(id, value);
       } else {
         const product = await getProductById(id);
         setCart([...cart, { ...product, quantity: value }]);
       }
     } else {
-      const product = await getProductById(id);
-      setCart([...cart, { ...product, quantity: value }]);
+      addProductToCart(id, value);
     }
   };
 
   const context = {
     cart,
     totalCart,
-    addProductToCart,
-    removeProductFromCart,
+    increaseProductFromCart,
+    decreaseProductFromCart,
     setProductQuantityManual,
+    deleteProductFromCart,
   };
 
   return (
