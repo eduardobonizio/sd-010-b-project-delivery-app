@@ -1,12 +1,14 @@
 // import axios from 'axios';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import reqUserLogin from '../services/reqUserLogin';
 
 // import DeliveryContext from '../context/DeliveryContext';
 
 const Login = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const history = useHistory();
 
   const [isValidPW, setIsValidPW] = useState(false);
   const [email, setEmail] = useState('');
@@ -54,7 +56,7 @@ const Login = () => {
       return setIsValidPW(true);
     }
     localStorage.setItem('token', `${JSON.stringify(data)}`);
-    return navigate('/customer/products');
+    return history.push('/customer/products');
   };
 
   const handleChange = ({ target }) => {
