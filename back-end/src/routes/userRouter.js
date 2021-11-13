@@ -8,7 +8,9 @@ const router = express.Router();
 
 router.route('/')
 .get(userController.findAll)
-.get(userController.findById)
 .post(userController.add);
+
+router.route('/:id')
+.get(userController.findById);
 
 module.exports = router;
