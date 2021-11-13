@@ -61,9 +61,11 @@ export default function Login() {
         >
           Login
         </style.LoginButton>
-        <Link to="/register" data-testid="common_login__button-register">
-          <style.RegisterButton type="submit">Ainda nao tenho conta</style.RegisterButton>
-        </Link>
+        <style.RegisterButton type="submit" data-testid="common_login__button-register">
+          <Link to="/register">
+            Ainda nao tenho conta
+          </Link>
+        </style.RegisterButton>
         <p
           id="erro"
           data-testid={ `common_login__element-invalid-email${'elemento'}` }
