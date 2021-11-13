@@ -13,8 +13,8 @@ const Login = () => {
   const buttonLogin = async (event) => {
     event.preventDefault();
     try {
-      const { data: { token } } = await axios.post('http://localhost:3001/login/', { email, password });
-      localStorage.setItem('token', `${token}`);
+      const { data } = await axios.post('http://localhost:3001/login', { email, password });
+      localStorage.setItem('token', `${JSON.stringify(data)}`);
       return navigate('/customer/products');
     } catch (error) {
       setIsValidPW(true);

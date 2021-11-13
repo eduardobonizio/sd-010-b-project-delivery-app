@@ -17,7 +17,12 @@ const loginUser = async (body) => {
 
   const token = jwt.creatToken(userId);
 
-  return token;
+  return { 
+    login: login.name,
+    email: login.email,
+    role: login.role,
+    token,
+  };
 };
 
 module.exports = {
