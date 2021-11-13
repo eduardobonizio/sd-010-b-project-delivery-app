@@ -1,15 +1,10 @@
-const rescue = require('express-rescue');
 const Joi = require('joi');
 
-const validLogin = rescue(async (req, _res, next) => {
-  const { error } = Joi.object({
-    email: Joi.string().email().required(),
-    password: Joi.string().length(6).required(),
-}).validate(req.body);
-
-  if (error) return next(error);
-
-  return next();
+const validLogin = Joi.object({
+  email: Joi.string().email().required(),
+  password: Joi.string().min(6).required(),
 });
 
-module.exports = validLogin;
+module.exports = {
+  validLogin,
+};

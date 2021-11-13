@@ -1,14 +1,13 @@
+ const rescue = require('express-rescue');
 const { loginService } = require('../services/loginService');
 
-const login = async (req, res) => {
-  try {
-    const result = await loginService(req.body, res);
-    if (!result) return res.status(400).json(result);
-    return res.status(200).json(result);
-} catch (error) {
-  return res.status(500).json({ message: error.message });
-}
-};
+const login = rescue(async (req, res) => {  
+  const user = req.body; 
+  console.log('back-end: ', user);
+  const validUser = await loginService(user);
+
+  return res.status(200).json(validUser);
+});
 
 module.exports = {
   login,
