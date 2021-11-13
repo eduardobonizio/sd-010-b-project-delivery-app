@@ -5,7 +5,18 @@ import { getStorage } from '../utils/localStorage';
 
 export default function ListProducts() {
   const [products, setProducts] = useState([]);
+  const [quantity, setQuantity] = useState(0);
   const history = useHistory();
+
+  function setQuantityItems(operator) {
+    if (operator === '-' && quantity > 0) {
+      return setQuantity(quantity - 1);
+    }
+    if (operator === '+') {
+      return setQuantity(quantity + 1);
+    }
+    return 0;
+  }
 
   useEffect(() => {
     if (!getStorage('user')) { history.push('/login'); }
@@ -31,11 +42,13 @@ export default function ListProducts() {
           <button
             type="button"
             data-testid={ `customer_products__button-card-rm-item-${id}` }
+            onClick={ () => setQuantityItems('-') }
           >
             -
           </button>
           <input
             type="number"
+            value={ quantity }
             min="0"
             data-testid={ `customer_products__input-card-quantity-${id}` }
           />
@@ -43,6 +56,7 @@ export default function ListProducts() {
           <button
             type="button"
             data-testid={ `customer_products__button-card-add-item-${id}` }
+            onClick={ () => setQuantityItems('+') }
           >
             +
           </button>
