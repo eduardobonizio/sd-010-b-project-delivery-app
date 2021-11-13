@@ -1,12 +1,13 @@
 import React from 'react';
 import Proptypes from 'prop-types';
+import Form from 'react-bootstrap/Form';
 
 function NameInput(props) {
   const { setStateName, nameTestId } = props;
   return (
-    <label htmlFor="name-input">
+    <Form.Label>
       Nome
-      <input
+      <Form.Control
         id="name-input"
         data-testid={ nameTestId }
         onChange={ (e) => {
@@ -14,7 +15,7 @@ function NameInput(props) {
         } }
         type="text"
       />
-    </label>
+    </Form.Label>
   );
 }
 

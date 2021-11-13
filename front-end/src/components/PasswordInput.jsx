@@ -1,19 +1,20 @@
 import React from 'react';
 import Proptypes from 'prop-types';
+import Form from 'react-bootstrap/Form';
 
 function PasswordInput(props) {
   const { setStatePassword, passwordTestId } = props;
   return (
-    <label htmlFor="password">
+    <Form.Label>
       Senha
-      <input
+      <Form.Control
         data-testid={ passwordTestId }
         onChange={ (e) => {
           setStatePassword(e.target.value);
         } }
         type="password"
       />
-    </label>
+    </Form.Label>
   );
 }
 

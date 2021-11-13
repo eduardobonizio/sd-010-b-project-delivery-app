@@ -1,17 +1,19 @@
 import React from 'react';
 import Proptypes from 'prop-types';
+import Button from 'react-bootstrap/Button';
 
 function LoginButton(props) {
   const { dispatchOnSubmit, disabled } = props;
   return (
-    <button
+    <Button
+      variant="success"
       data-testid="common_login__button-login"
       disabled={ disabled }
       onClick={ dispatchOnSubmit }
       type="button"
     >
       LOGIN
-    </button>
+    </Button>
   );
 }
 

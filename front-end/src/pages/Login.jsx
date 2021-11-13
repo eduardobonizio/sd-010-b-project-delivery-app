@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { Col, Container, Form, Image, Row } from 'react-bootstrap';
 import { setEmail, setPassword } from '../actions';
 import EmailInput from '../components/EmailInput';
 import LoginButton from '../components/LoginButton';
@@ -8,6 +9,7 @@ import PasswordInput from '../components/PasswordInput';
 import LoginErrorMessage from '../components/LoginErrorMessage';
 import RegisterButton from '../components/RegisterButton';
 import { validateEmailFormat, validatePassword } from '../helpers/validation';
+import './Login.css';
 
 function Login() {
   const dispatch = useDispatch();
@@ -40,22 +42,55 @@ function Login() {
   };
 
   return (
-    <div className="login">
-      <p>LOGO</p>
-      <p>NOME DO APP</p>
-      <LoginErrorMessage hideErrorMessage={ hideErrorMessage } />
-      <EmailInput
-        title={ title }
-        setStateEmail={ setStateEmail }
-        emailTestId={ emailTestId }
-      />
-      <PasswordInput
-        setStatePassword={ setStatePassword }
-        passwordTestId={ passwordTestId }
-      />
-      <LoginButton dispatchOnSubmit={ dispatchOnSubmit } disabled={ disabled } />
-      <RegisterButton />
-    </div>
+    <Container className="login">
+      <Form>
+        <Row className="justify-content-md-center">
+          <Col md="auto">
+            <Image src="images/logo.svg" className="login-logo" />
+          </Col>
+        </Row>
+        <Row className="justify-content-md-center">
+          <Col md="auto">
+            <h3>Disk-Birita</h3>
+          </Col>
+        </Row>
+        <Row className="justify-content-md-center">
+          <Col md="auto">
+            <EmailInput
+              title={ title }
+              setStateEmail={ setStateEmail }
+              emailTestId={ emailTestId }
+            />
+          </Col>
+        </Row>
+        <Row className="justify-content-md-center">
+          <Col md="auto">
+            <PasswordInput
+              setStatePassword={ setStatePassword }
+              passwordTestId={ passwordTestId }
+            />
+          </Col>
+        </Row>
+        <br />
+        <Row className="justify-content-md-center">
+          <Col md="auto">
+            <LoginButton dispatchOnSubmit={ dispatchOnSubmit } disabled={ disabled } />
+          </Col>
+        </Row>
+        <br />
+        <Row className="justify-content-md-center">
+          <Col md="auto">
+            <RegisterButton />
+          </Col>
+        </Row>
+        <br />
+        <Row className="justify-content-md-center">
+          <Col md="auto">
+            <LoginErrorMessage hideErrorMessage={ hideErrorMessage } />
+          </Col>
+        </Row>
+      </Form>
+    </Container>
   );
 }
 

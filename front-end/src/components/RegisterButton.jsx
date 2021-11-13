@@ -1,17 +1,19 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 
 function RegisterButton() {
   const navigate = useNavigate();
 
   return (
-    <button
+    <Button
+      variant="warning"
       onClick={ () => navigate('/register') }
       data-testid="common_login__button-register"
       type="button"
     >
       Ainda não tenho conta
-    </button>
+    </Button>
   );
 }
 

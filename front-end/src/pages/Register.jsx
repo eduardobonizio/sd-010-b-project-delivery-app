@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import Button from 'react-bootstrap/Button';
+import { Col, Container, Form, Row } from 'react-bootstrap';
 import EmailInput from '../components/EmailInput';
 import PasswordInput from '../components/PasswordInput';
 import NameInput from '../components/NameInput';
 import {
   validateEmailFormat, validateName, validatePassword } from '../helpers/validation';
+import './Register.css';
 
 function Register() {
   const [name, setStateName] = useState();
@@ -28,29 +31,48 @@ function Register() {
   }, [email, name, password]);
 
   return (
-    <div>
-      <NameInput
-        nameTestId={ nameTestId }
-        setStateName={ setStateName }
-      />
-      <EmailInput
-        emailTestId={ emailTestId }
-        setStateEmail={ setStateEmail }
-        title={ title }
-      />
-      <PasswordInput
-        passwordTestId={ passwordTestId }
-        setStatePassword={ setStatePassword }
-      />
-      <button
-        data-testid="common_register__button-register"
-        disabled={ disabled }
-        onClick={ () => navigate('/register') }
-        type="button"
-      >
-        Cadastrar
-      </button>
-    </div>
+    <Container fluid className="register">
+      <Form>
+        <Row className="justify-content-md-center">
+          <Col md="auto">
+            <NameInput
+              nameTestId={ nameTestId }
+              setStateName={ setStateName }
+            />
+          </Col>
+        </Row>
+        <Row className="justify-content-md-center">
+          <Col md="auto">
+            <EmailInput
+              emailTestId={ emailTestId }
+              setStateEmail={ setStateEmail }
+              title={ title }
+            />
+          </Col>
+        </Row>
+        <Row className="justify-content-md-center">
+          <Col md="auto">
+            <PasswordInput
+              passwordTestId={ passwordTestId }
+              setStatePassword={ setStatePassword }
+            />
+          </Col>
+        </Row>
+        <Row className="justify-content-md-center">
+          <Col md="auto">
+            <Button
+              variant="success"
+              data-testid="common_register__button-register"
+              disabled={ disabled }
+              onClick={ () => navigate('/register') }
+              type="button"
+            >
+              Cadastrar
+            </Button>
+          </Col>
+        </Row>
+      </Form>
+    </Container>
   );
 }
 

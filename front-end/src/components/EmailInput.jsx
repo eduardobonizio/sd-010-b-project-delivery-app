@@ -1,12 +1,13 @@
 import React from 'react';
 import Proptypes from 'prop-types';
+import Form from 'react-bootstrap/Form';
 
 function EmailInput(props) {
   const { setStateEmail, emailTestId, title } = props;
   return (
-    <label htmlFor="email-input">
+    <Form.Label>
       { title }
-      <input
+      <Form.Control
         id="email-input"
         data-testid={ emailTestId }
         onChange={ (e) => {
@@ -14,7 +15,7 @@ function EmailInput(props) {
         } }
         type="text"
       />
-    </label>
+    </Form.Label>
   );
 }
 
