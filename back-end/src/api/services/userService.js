@@ -23,12 +23,6 @@ const existUser = async ({ email, password }) => {
   return { name, email, role, token };
 };
 
-const findUser = async ({ email }) => {
-  const userFounded = await user.findOne({ where: email });
-  if (!userFounded) return false;
-  return true;
-};
-
 const createUser = async ({ name, email, password }) => {
   await user.create({
     name, email, password: cryptoPassword(password), role: 'user',
@@ -37,4 +31,9 @@ const createUser = async ({ name, email, password }) => {
   return { name, email, role: 'user', token };
 };
 
-module.exports = { existUser, createUser, findUser };
+const getAllUsers = async () => {
+  const allUsers = await user.findAll();
+  return allUsers;
+};
+
+module.exports = { existUser, createUser, getAllUsers };
