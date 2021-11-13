@@ -10,11 +10,11 @@ describe('Tests for Customer Checkout', () => {
 
   const CUSTOMER_CART_KEY = 'customerCart';
   const PRODUCT_OBJ_ARRAY = [
-    {id: 1, description: 'Skol Lata 250ml', quantity: 2, unitPrice: 2.20 },
+    {id: 1, description: 'Skol Lata 250ml', quantity: 3, unitPrice: 2.20 },
     {id: 2, description: 'Império Lata 250ml', quantity: 4, unitPrice: 2.50 },
   ];
   const PRODUCT_TOTAL_PRICE = {
-    0: 4.4,
+    0: 6.6,
     1: 10,
   }
   const SELLERS_ARRAY = [
@@ -121,7 +121,7 @@ describe('Tests for Customer Checkout', () => {
         localStorage.setItem(CUSTOMER_CART_KEY, PRODUCT_OBJ_ARRAY);
         expect(localStorage.setItem).toHaveBeenCalledWith(CUSTOMER_CART_KEY, PRODUCT_OBJ_ARRAY);
 
-        const LS_GET_STRING_OUTPUT = "[{\"id\":1,\"description\":\"Skol Lata 250ml\",\"quantity\":2,\"unitPrice\":2.2},{\"id\":2,\"description\":\"Império Lata 250ml\",\"quantity\":4,\"unitPrice\":2.5}]"
+        const LS_GET_STRING_OUTPUT = "[{\"id\":1,\"description\":\"Skol Lata 250ml\",\"quantity\":3,\"unitPrice\":2.2},{\"id\":2,\"description\":\"Império Lata 250ml\",\"quantity\":4,\"unitPrice\":2.5}]"
 
         jest.spyOn(Storage.prototype, 'getItem').mockReturnValue(JSON.stringify(PRODUCT_OBJ_ARRAY));
         expect(localStorage.getItem()).toStrictEqual(LS_GET_STRING_OUTPUT);
@@ -135,7 +135,7 @@ describe('Tests for Customer Checkout', () => {
         PRODUCT_OBJ_ARRAY.forEach((product, index) => {
           const totalPrice = new RegExp(`R[$] ${PRODUCT_TOTAL_PRICE[index]}`, 'i');
 
-          const idItem = getByText(index);
+          const idItem = getByText(index + 1);
           const descriptionItem = getByText(product.description);
           const quantityItem = getByText(product.quantity);
           const unitPriceItem = getByText(`R$ ${product.unitPrice}`);
@@ -213,7 +213,7 @@ describe('Tests for Customer Checkout', () => {
           })
           const { getByTestId } = screen;
 
-          const selectBox = getByTestId('select-box');
+          const selectBox = getByTestId('customer_checkout__select-seller');
           expect(selectBox).toBeInTheDocument();
         });
         
