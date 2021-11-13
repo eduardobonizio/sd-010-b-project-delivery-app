@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { validateEmail, validatePassword, validateName } from './functions';
+import { isValidateRegister } from '../../../helpers/validateRegister';
 import api from '../../../services/api';
 
 function Form() {
@@ -12,11 +12,8 @@ function Form() {
   const [isNotFound, setIsNotFound] = useState(false);
 
   useEffect(() => {
-    const isEmailChecked = validateEmail(email);
-    const isPasswordChecked = validatePassword(password);
-    const isNameChecked = validateName(name);
-
-    if (isEmailChecked && isPasswordChecked && isNameChecked) {
+    const validateForm = isValidateRegister(name, email, password);
+    if (validateForm) {
       setIsValidade(false);
     } else {
       setIsValidade(true);

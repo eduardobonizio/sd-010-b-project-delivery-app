@@ -3,11 +3,12 @@ import { Switch, Route } from 'react-router-dom';
 import Login from './modules/login/Login';
 import Signup from './modules/signup/Signup';
 import ProductList from './modules/customer/ProductList';
-import Seller from './modules/seller/Seller';
+import SellerOrders from './modules/seller/sellerOrder/SellerOrders';
 import ProductCheckout from './modules/customer/ProductCheckout';
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Admin from './modules/admin/Admin';
+import SellerOrderDetail from './modules/seller/sellerOrderDetail/SellerOrderDetail';
 
 function App() {
   return (
@@ -41,7 +42,12 @@ function App() {
         <Route
           exact
           path="/seller/orders"
-          render={ (props) => <Seller { ...props } /> }
+          render={ (props) => <SellerOrders { ...props } /> }
+        />
+        <Route
+          exact
+          path="/seller/orders/:id"
+          render={ (props) => <SellerOrderDetail { ...props } /> }
         />
         <Route
           exact

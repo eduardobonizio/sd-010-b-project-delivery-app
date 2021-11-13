@@ -10,3 +10,14 @@ export function validatePassword(password) {
     return true;
   }
 }
+
+export function isValidateLogin(email, password) {
+  const isEmailChecked = validateEmail(email);
+  const isPasswordChecked = validatePassword(password);
+
+  if (!(isEmailChecked && isPasswordChecked)) {
+    return false;
+  }
+
+  return true;
+}

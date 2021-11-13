@@ -1,5 +1,6 @@
 import React from 'react';
-import NavBar from '../../components/Navbar';
+
+import NavBar from '../../../components/Navbar';
 import Orders from './components/Orders';
 
 function Seller() {
@@ -12,9 +13,13 @@ function Seller() {
         user={ user.name }
       />
       <div>
-        <Orders />
-        <Orders />
-        <Orders />
+        <Orders
+          id="1"
+          status="pendente"
+          date="20/05/2021"
+          price="29,60"
+          address="Rua piripiri, 158"
+        />
       </div>
     </div>
   );
