@@ -11,15 +11,10 @@ module.exports = (sequelize, DataTypes) => {
       sale_date: DataTypes.DATE,
       status: DataTypes.STRING(50),
     },
-<<<<<<< HEAD
-    { timestamps: false,
-    tableName:"sales" }
-=======
-    { 
+    {
       timestamps: false,
       tableName: "sales",
      }
->>>>>>> 70fc70e24e2e867a77394d20adf0a3dbeea98093
   );
 
   Sale.associate = (models) => {
