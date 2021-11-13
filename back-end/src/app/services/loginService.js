@@ -14,9 +14,11 @@ const loginService = async (user) => {
   if (error) throw messageError(400, error.message);
 
   const passwordHash = md5(password);
-  const validUser = await User.findOne({ where: { email, password: passwordHash } });
+  const validUser = await User
+  .scope('withoutPassword')
+  .findOne({ where: { email, password: passwordHash } });
   
-  if (validUser === null) {
+  if (!validUser) {
     throw messageError(404, '404 - Not found');
   }
   
