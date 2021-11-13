@@ -40,7 +40,7 @@ const Login = () => {
 
   return (
     <div className="App">
-      <form action="">
+      <form onSubmit={ buttonLogin } action="">
         <input
           data-testid="common_login__input-email"
           type="text"
@@ -60,7 +60,7 @@ const Login = () => {
         <button
           data-testid="common_login__button-login"
           type="button"
-          onClick={ buttonLogin }
+          // onClick={ buttonLogin }
           disabled={ isValid() }
         >
           LOGIN
