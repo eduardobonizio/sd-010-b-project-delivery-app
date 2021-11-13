@@ -5,7 +5,8 @@ function ProductCard(props) {
   const [quantity, setQuantity] = useState(0);
 
   const { product } = props;
-  const { name, price, url, id } = product;
+  const { name, price, urlImage, id } = product;
+  console.log(id);
 
   const onClick = (e) => {
     const { name: tagName } = e.target;
@@ -18,10 +19,13 @@ function ProductCard(props) {
       <p data-testid={ `customer_products__element-card-title-${id}` }>{ name }</p>
       <img
         data-testid={ `customer_products__img-card-bg-image-${id}` }
-        src={ url }
+        src={ urlImage }
         alt={ name }
+        width="100px"
       />
-      <p data-testid={ `customer_products__img-card-bg-image-${id}` }>{ price }</p>
+      <p data-testid={ `customer_products__element-card-price-${id}` }>
+        { price.replace(/\./, ',') }
+      </p>
       <div>
         <button
           onClick={ onClick }
@@ -53,7 +57,7 @@ ProductCard.propTypes = {
   product: PropTypes.shape({
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    url: PropTypes.string.isRequired,
+    urlImage: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
   }).isRequired,
 };
