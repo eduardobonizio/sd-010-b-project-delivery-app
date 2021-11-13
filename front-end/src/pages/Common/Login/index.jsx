@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import validateEmail from './functions';
 import * as style from './style';
+// import { apiRequestLogin } from '../../../services/login/apiRequestLogin';
+// const axios = require('axios');
 
 export default function Login() {
   const [validEmail, setValidEmail] = useState(false);
@@ -16,6 +18,18 @@ export default function Login() {
   useEffect(() => {
     setValidEmail(validateEmail(email));
   }, [email]);
+
+  // Chamada da API utilizando apiRequestLogin
+
+  // useEffect(async () => {
+  //   const result = await apiRequestLogin(
+  //     {
+  //       email: 'maado@teste.com',
+  //       password: '123456789',
+  //     },
+  //   );
+  //   console.log('resultado: ', result);
+  // }, []);
 
   useEffect(() => {
     const enableBtn = () => {
