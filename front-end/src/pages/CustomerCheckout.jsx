@@ -138,7 +138,11 @@ function CustomerCheckout() {
           <ProductTableHeader />
           { renderCartItems() }
         </Stack>
-        <Typography>{`Total: R$ ${calculateTotalPrice()}`}</Typography>
+        <Typography
+          data-testId="customer_checkout__element-order-total-price"
+        >
+          {`Total: R$ ${calculateTotalPrice()}`}
+        </Typography>
       </Container>
       <Container>
         <Typography variant="h5" component="h1">
@@ -151,7 +155,13 @@ function CustomerCheckout() {
           spacing={ 2 }
         >
           <CartForm />
-          <Button variant="contained">FINALIZAR PEDIDO</Button>
+          <Button
+            variant="contained"
+            data-testId="customer_checkout__button-submit-order"
+          >
+            FINALIZAR PEDIDO
+
+          </Button>
         </Stack>
       </Container>
     </main>
