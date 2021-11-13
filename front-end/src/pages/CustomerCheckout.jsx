@@ -1,4 +1,5 @@
 import {
+  Button,
   Container,
   Stack,
   Typography,
@@ -150,6 +151,7 @@ function CustomerCheckout() {
           spacing={ 2 }
         >
           <CartForm />
+          <Button variant="contained">FINALIZAR PEDIDO</Button>
         </Stack>
       </Container>
     </main>
