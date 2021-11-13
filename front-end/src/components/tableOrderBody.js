@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import ProductsContext from '../context/productContext';
 
 const DATA_TESTID = {
   itemNumber: 'customer_checkout__element-order-table-item-number-',
@@ -11,6 +12,8 @@ const DATA_TESTID = {
 };
 
 export default function TableOrderBody({ cartItems }) {
+  const { removeCartItem } = useContext(ProductsContext);
+
   return (
     <tbody>
       {cartItems.map(({ name, price, quantity }, idx) => (
@@ -35,6 +38,7 @@ export default function TableOrderBody({ cartItems }) {
           <td>
             <button
               type="button"
+              onClick={ () => removeCartItem({ name, price, quantity }) }
               data-testid={ `${DATA_TESTID.tableRemove}${idx}` }
             >
               Remover

@@ -28,6 +28,23 @@ function ProductsProvider({ children }) {
     }
   };
 
+  const removeCartItem = (cartItem) => {
+    const { name, price } = cartItem;
+
+    const updatedCart = productsInCart.map((el) => {
+      if (el.name === name) {
+        return {
+          name,
+          price,
+          quantity: 0,
+        };
+      }
+      return el;
+    });
+
+    setProductsInCart(updatedCart);
+  };
+
   useEffect(() => {
     const totalValue = productsInCart.reduce((
       acc,
@@ -42,6 +59,7 @@ function ProductsProvider({ children }) {
     productsInCart,
     setProductsInCart,
     updateCart,
+    removeCartItem,
 
   };
 
