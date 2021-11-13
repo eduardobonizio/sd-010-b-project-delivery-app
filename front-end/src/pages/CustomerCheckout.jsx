@@ -106,6 +106,7 @@ function CustomerCheckout() {
           quantity={ quantity }
           pricePerUnit={ unitPrice }
           removeBtn
+          testIdPreffix="customer_checkout"
         />
       ),
     ) : null;
