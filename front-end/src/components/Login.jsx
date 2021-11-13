@@ -10,12 +10,12 @@ const Login = () => {
   const { email, setEmail, password, setPassword, validarEmail, validarSenha,
   } = useContext(DeliveryContext);
 
-  const buttonLogin = async (event) => {
-    event.preventDefault();
+  const buttonLogin = async () => {
+    console.log('antes do try');
     try {
-      console.log('entrei');
+      console.log('dentro do try');
       const { data } = await axios.post('http://localhost:3001/login', { email, password });
-      console.log(data);
+      console.log('depois da requisição');
       localStorage.setItem('token', `${JSON.stringify(data)}`);
       return navigate('/customer/products');
     } catch (error) {
@@ -40,7 +40,7 @@ const Login = () => {
 
   return (
     <div className="App">
-      <form onSubmit={ buttonLogin } action="">
+      <form action="">
         <input
           data-testid="common_login__input-email"
           type="text"
@@ -60,7 +60,7 @@ const Login = () => {
         <button
           data-testid="common_login__button-login"
           type="button"
-          // onClick={ buttonLogin }
+          onClick={ buttonLogin }
           disabled={ isValid() }
         >
           LOGIN
