@@ -2,6 +2,7 @@ const userService = require('../Services/loginService');
 
 const loginUser = async (req, res) => {
   const { body } = req;
+  try {
     const login = await userService.loginUser(body);
 
     if (login.message) {
@@ -9,6 +10,9 @@ const loginUser = async (req, res) => {
     }
 
     return res.status(200).json(login);
+  } catch (error) {
+    return error;
+  }
   };
 
 module.exports = {
