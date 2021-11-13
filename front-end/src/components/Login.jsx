@@ -1,27 +1,60 @@
-import axios from 'axios';
-import React, { useContext, useState } from 'react';
+// import axios from 'axios';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import reqUserLogin from '../services/reqUserLogin';
 
-import DeliveryContext from '../context/DeliveryContext';
+// import DeliveryContext from '../context/DeliveryContext';
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [isValidPW, setIsValidPW] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
 
-  const { validarEmail, validarSenha,
-  } = useContext(DeliveryContext);
+  // const { validarEmail, validarSenha,
+  // } = useContext(DeliveryContext);
+
+  const validarEmail = (e) => {
+    const emailTester = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/i;
+
+    if (!emailTester.test(e)) return false;
+
+    return true;
+  };
+
+  const validarSenha = (senha) => {
+    const SENHA_LENGTH = 6;
+
+    if (senha.length < SENHA_LENGTH) {
+      return false;
+    }
+    return true;
+  };
+
+  // const buttonLogin = async () => {
+  //   // try {
+  //   const data = await reqUserLogin({ email, password });
+  //   if (data instanceof Error) {
+  //     return setIsValidPW(true);
+  //   }
+  //   // const { data } = await axios.post('http://localhost:3001/login', { email, password });
+  //   localStorage.setItem('token', `${JSON.stringify(data)}`);
+  //   return history.push('/customer/products');
+  //   // return navigate('/customer/products');
+  //   // } catch (error) {
+  //   // setIsValidPW(true);
+  //   // return error;
+  //   // }
+  // };
 
   const buttonLogin = async () => {
-    try {
-      const { data } = await axios.post('http://localhost:3001/login', { email, password });
-      localStorage.setItem('token', `${JSON.stringify(data)}`);
-      return navigate('/customer/products');
-    } catch (error) {
-      setIsValidPW(true);
-      return error;
+    const data = await reqUserLogin({ email, password });
+    if (data instanceof Error) {
+      return setIsValidPW(true);
     }
+    localStorage.setItem('token', `${JSON.stringify(data)}`);
+    return navigate('/customer/products');
   };
 
   const handleChange = ({ target }) => {
