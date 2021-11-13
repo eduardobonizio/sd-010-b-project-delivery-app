@@ -1,5 +1,5 @@
  const rescue = require('express-rescue');
-const { loginService }  = require('../services/loginService');
+const { loginService } = require('../services/loginService');
 
 const login = rescue(async (req, res) => {  
   const user = req.body; 
