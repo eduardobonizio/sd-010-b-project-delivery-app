@@ -107,7 +107,7 @@ describe(requirement(13), () => {
   })
 });
 
-describe.only(requirement(14), () => {
+describe(requirement(14), () => {
   const cards = products.state01;
 
   test("O avaliador testará se os dados de cada card condizem com os dados esperados",
@@ -154,7 +154,7 @@ describe.only(requirement(14), () => {
   );
 });
 
-describe(requirement(15), () => {
+describe.only(requirement(15), () => {
   const itemList = action.customer.getRandomProducts();
   showCurrentCart(itemList, requirement(15));
 
