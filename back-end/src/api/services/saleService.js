@@ -1,23 +1,21 @@
 const { sale, salesProducts } = require('../../database/models');
 
 const createSale = async (body) => {
-  const { user_id, seller_id, total_price, delivery_address, delivery_number, products } = body;
+  const { userId, sellerId, totalPrice, deliveryAddress, deliveryNumber, products } = body;
   const newSale = await sale.create(
-    // eslint desabilitado temporariamente para testes
     {
-      user_id,    // eslint-disable-line
-      seller_id,    // eslint-disable-line
-      total_price,    // eslint-disable-line
-      delivery_address,    // eslint-disable-line
-      delivery_number,   // eslint-disable-line
-      sale_date: Date.now(), // eslint-disable-line
+      userId,
+      sellerId,
+      totalPrice,
+      deliveryAddress,
+      deliveryNumber,
+      saleDate: Date.now(),
       status: 'Pendente',
     },
   );
   
   products.forEach(async ({ id, quantity }) => {
-    // eslint-disable-next-line
-    await salesProducts.create({ sale_id: newSale.id, product_id: id, quantity });
+    await salesProducts.create({ saleId: newSale.id, productId: id, quantity });
   });
 
   return newSale;

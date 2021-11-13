@@ -35,11 +35,11 @@ export default function DeliveryDetails() {
     const { id, token } = JSON.parse(localStorage.getItem('user'));
 
     const payload = {
-      user_id: id,
-      seller_id: seller,
-      total_price: totalPrice.toFixed(2),
-      delivery_address: address,
-      delivery_number: number,
+      userId: id,
+      sellerId: seller,
+      totalPrice: totalPrice.toFixed(2),
+      deliveryAddress: address,
+      deliveryNumber: number,
       products: productsInCart.filter(({ quantity }) => quantity > 0),
     };
 
