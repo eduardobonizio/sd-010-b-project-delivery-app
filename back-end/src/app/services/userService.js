@@ -12,6 +12,14 @@ const findAll = async () => {
   return findAllUsers;
 };
 
+const findById = async (id) => {
+  const findIdUser = await User.findByPk(id);
+
+  if (!findIdUser) throw messageError(404, '404 - non-existent user');
+
+  return findIdUser;
+};
+
 const addUser = async (bodyCategory) => {
   const { error } = validUser.validate(bodyCategory);
   if (error) throw messageError(409, '409 - Conflict');
@@ -24,6 +32,7 @@ const addUser = async (bodyCategory) => {
 };
 
 module.exports = {
-  addUser,
   findAll,
+  findById,
+  addUser,
 };
