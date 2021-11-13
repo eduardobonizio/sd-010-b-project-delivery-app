@@ -26,8 +26,10 @@ export default function Login() {
     localStorage.setItem('user', JSON.stringify(res));
     if (res.message) {
       setIsValidEntry(false);
-    } else {
+    } else if (res.role === 'customer') {
       history.push('/customer/products');
+    } else if (res.role === 'seller') {
+      history.push('/seller/orders');
     }
   };
 

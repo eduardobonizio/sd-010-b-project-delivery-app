@@ -5,7 +5,7 @@ import NavBar from '../components/navBar';
 export default function Products() {
   return (
     <>
-      <NavBar />
+      <NavBar isCustomer nameButtonOrder="Meus Pedidos" linkOrder="/customer/orders" />
       <Menu />
     </>
   );

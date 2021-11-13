@@ -5,9 +5,10 @@ const app = express();
 app.use(express.json());
 app.use(cors()); 
 
-const { userRouter, productRouter } = require('./routers');
+const { userRouter, productRouter, saleRouter } = require('./routers');
 
 app.use('/', userRouter);
+app.use('/', saleRouter);
 app.use('/products', productRouter);
 app.use('/images', express.static('public'));
 
