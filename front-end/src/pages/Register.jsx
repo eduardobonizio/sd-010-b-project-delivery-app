@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
-import { setOnLocalStorage } from '../services/servicesLocalStorage';
+import { setOnLocalStorage } from '../services/helpers/servicesLocalStorage';
 
 const regex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
 const MIN_NAME = 12;

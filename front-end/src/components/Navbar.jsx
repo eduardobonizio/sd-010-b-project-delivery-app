@@ -1,13 +1,9 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import Context from '../../provider/Context';
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import Context from "../context/Context";
 
 function NavBar() {
-  const {
-    User,
-    // setUser
-  } = useContext(Context);
-  console.log(User, 'navbar');
+  const { User } = useContext(Context);
 
   return (
     <nav className="navbar">
@@ -48,10 +44,7 @@ function NavBar() {
         </button>
       </Link>
       <Link to="/login">
-        <button
-          type="button"
-          className="exitButton"
-        >
+        <button type="button" className="exitButton">
           atalho p login
         </button>
       </Link>

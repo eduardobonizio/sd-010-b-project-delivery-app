@@ -2,9 +2,9 @@ import React, { useState, useEffect, useContext } from 'react';
 // import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import rockGlass from '../images/rockGlass.svg';
-import { setOnLocalStorage } from '../services/servicesLocalStorage';
-import { loginService } from '../services/servicesLogin';
-import Context from '../provider/Context';
+import { setOnLocalStorage } from '../services/helpers/servicesLocalStorage';
+import { loginService } from '../services/apis/servicesLogin';
+import Context from '../context/Context';
 
 function Login() {
   const history = useHistory();
