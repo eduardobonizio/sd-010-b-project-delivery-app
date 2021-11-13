@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import * as style from './style';
+import * as style from '../style';
 
 export default function Login() {
   const [password, setPassword] = useState('');
@@ -18,7 +18,7 @@ export default function Login() {
         <style.InputLabel>
           Login
           <br />
-          <style.InputEmail
+          <style.CommonInput
             type="text"
             onChange={ (e) => setEmail(e.target.value) }
             data-testid="common_login__input-email"
@@ -27,7 +27,7 @@ export default function Login() {
         <style.InputLabel>
           Senha
           <br />
-          <style.InputPassword
+          <style.CommonInput
             type="password"
             onChange={ (e) => setPassword(e.target.value) }
             data-testid="common_login__input-password"
