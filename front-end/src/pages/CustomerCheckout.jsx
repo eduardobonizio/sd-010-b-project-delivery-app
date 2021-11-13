@@ -139,7 +139,7 @@ function CustomerCheckout() {
           { renderCartItems() }
         </Stack>
         <Typography
-          data-testId="customer_checkout__element-order-total-price"
+          data-testid="customer_checkout__element-order-total-price"
         >
           {`Total: R$ ${calculateTotalPrice()}`}
         </Typography>
@@ -157,7 +157,7 @@ function CustomerCheckout() {
           <CartForm />
           <Button
             variant="contained"
-            data-testId="customer_checkout__button-submit-order"
+            data-testid="customer_checkout__button-submit-order"
           >
             FINALIZAR PEDIDO
 

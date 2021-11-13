@@ -26,7 +26,7 @@ function CartForm() {
       ? sellersArray.map(
         ({ id, name }) => (
           <option
-            data-testid="customer_checkout__select-seller"
+            data-testid="select-option"
             key={ id }
             value={ name }
           >
@@ -57,7 +57,7 @@ function CartForm() {
           P. Vendedora Responsável
         </InputLabel>
         <NativeSelect
-          data-testid="select-box"
+          data-testid="customer_checkout__select-seller"
           value={ seller }
           inputProps={ {
             name: 'P. Vendedora Responsável',
@@ -72,13 +72,13 @@ function CartForm() {
         sx={ { maxWidth: 500, minWidth: 500 } }
         label="Endereço"
         variant="outlined"
-        data-testId="customer_checkout__input-address"
+        data-testid="customer_checkout__input-address"
       />
       <TextField
         sx={ { maxWidth: 200, minWidth: 200 } }
         label="Número"
         variant="outlined"
-        data-testId="customer_checkout__input-addressNumber"
+        data-testid="customer_checkout__input-addressNumber"
       />
     </Stack>
   );
