@@ -1,8 +1,8 @@
 import { getAll } from '../httpService';
 
-export async function apiGetAllProducts() {
+async function apiGetAllProducts() {
   try {
-    const allProducts = await getAll('/customer/products');
+    const allProducts = await getAll('/product'); // /customer/products
     return allProducts;
   } catch (error) {
     console.log(error);
