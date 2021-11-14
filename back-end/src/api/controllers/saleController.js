@@ -1,10 +1,24 @@
-const { NOT_FOUND, OK, BAD_REQUEST } = require('http-status');
+const { NOT_FOUND, OK, BAD_REQUEST, CREATED, INTERNAL_SERVER_ERROR } = require('http-status');
 const saleService = require('../services/saleService');
+
+const INTERNAL_SERVER_ERROR_MSG = 'Alguma coisa deu errado :(';
 
 const getSalesByIdSeller = async (req, res) => {
   const { id } = req.params;
 
   const sales = await saleService.getSalesByIdSeller({ id });
+
+  if (sales.message) {
+    return res.status(NOT_FOUND).json(sales);
+  }
+
+  return res.status(OK).json(sales);
+};
+
+const getSalesByIdUser = async (req, res) => {
+  const { id } = req.params;
+
+  const sales = await saleService.getSalesByIdUser({ id });
 
   if (sales.message) {
     return res.status(NOT_FOUND).json(sales);
@@ -26,4 +40,20 @@ const setStatusSale = async (req, res) => {
   return res.status(OK).json(saleUpdated);
 };
 
-module.exports = { getSalesByIdSeller, setStatusSale };
+const createSale = async (req, res) => {
+  try {
+    const result = await saleService.createSale(req.body);
+
+    res.status(CREATED).json(result);
+  } catch (err) {
+    console.log(err);
+    res.status(INTERNAL_SERVER_ERROR).json({ message: INTERNAL_SERVER_ERROR_MSG });
+  }
+};
+
+module.exports = { 
+  getSalesByIdSeller, 
+  setStatusSale,
+  createSale,
+  getSalesByIdUser,
+};

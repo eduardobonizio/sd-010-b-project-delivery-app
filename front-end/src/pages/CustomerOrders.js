@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from '../components/navBar';
 import StatusCard from '../components/statusCard';
-import { fetchGetSalesByIdSeller } from '../services/saleAPI';
+import { fetchGetSalesByIdCustomer } from '../services/saleAPI';
 
-export default function SellerOrders() {
+export default function CustomerOrders() {
   const [allOrders, setAllOrders] = useState([]);
 
   useEffect(() => {
     const getAllSales = async () => {
       const user = JSON.parse(localStorage.getItem('user'));
-      const res = await fetchGetSalesByIdSeller({ id: user.id });
+      const res = await fetchGetSalesByIdCustomer({ id: user.id });
 
       if (res.message) {
         console.log(res);
@@ -24,14 +24,14 @@ export default function SellerOrders() {
 
   return (
     <div>
-      <NavBar isCustomer={ false } nameButtonOrder="Pedidos" linkOrder="/seller/orders" />
+      <NavBar isCustomer nameButtonOrder="Meus Pedidos" linkOrder="/customer/orders" />
       <div>
         {allOrders.length !== 0
           && allOrders.map((el, index) => (
             <StatusCard
               order={ el }
-              type="seller"
-              linkDetail="/seller/orders"
+              type="customer"
+              linkDetail="/customer/orders"
               key={ index }
             />
           ))}

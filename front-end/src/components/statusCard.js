@@ -2,34 +2,41 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function StatusCard({ order, arrayDataTestid, linkDetail }) {
+export default function StatusCard({ order, type, linkDetail }) {
+  const dateNow = (date) => {
+    const data = new Date(date);
+    const dia = data.getDate().toString().padStart(2, '0');
+    const mes = (data.getMonth() + 1).toString().padStart(2, '0');
+    const ano = data.getFullYear();
+    return `${dia}/${mes}/${ano}`;
+  };
   return (
     <div>
       <Link to={ `${linkDetail}/${order.id}` }>
         <p
-          data-testid={ `${arrayDataTestid[0]}${order.seller_id}` }
+          data-testid={ `${type}_orders__element-order-id-${order.id}` }
         >
           {order.id}
         </p>
         <p
-          data-testid={ `${arrayDataTestid[1]}${order.seller_id}` }
+          data-testid={ `${type}_orders__element-delivery-status-${order.id}` }
         >
           {order.status}
         </p>
         <p
-          data-testid={ `${arrayDataTestid[2]}${order.seller_id}` }
+          data-testid={ `${type}_orders__element-order-date-${order.id}` }
         >
-          {order.sale_date}
+          {dateNow(order.saleDate)}
         </p>
         <p
-          data-testid={ `${arrayDataTestid[3]}${order.seller_id}` }
+          data-testid={ `${type}_orders__element-card-price-${order.id}` }
         >
-          {order.total_price}
+          {order.totalPrice.replace('.', ',')}
         </p>
         <p
-          data-testid={ `${arrayDataTestid[4]}${order.seller_id}` }
+          data-testid={ `${type}_orders__element-card-address-${order.id}` }
         >
-          {`${order.delivery_address}`}
+          {`${order.deliveryAddress}`}
         </p>
       </Link>
     </div>
@@ -37,14 +44,13 @@ export default function StatusCard({ order, arrayDataTestid, linkDetail }) {
 }
 
 StatusCard.propTypes = {
-  arrayDataTestid: PropTypes.array,
   linkDetail: PropTypes.string,
   order: PropTypes.shape({
-    delivery_adress: PropTypes.string,
+    deliveryAddress: PropTypes.string,
     id: PropTypes.number,
-    sale_date: PropTypes.string,
-    seller_id: PropTypes.number,
+    saleDate: PropTypes.string,
     status: PropTypes.string,
-    total_price: PropTypes.number,
+    totalPrice: PropTypes.string,
   }),
+  type: PropTypes.string,
 }.isRequired;

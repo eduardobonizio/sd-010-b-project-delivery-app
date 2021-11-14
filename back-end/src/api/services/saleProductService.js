@@ -1,16 +1,25 @@
-const { sale, product } = require('../../database/models');
+const { sale, product, salesProducts, user } = require('../../database/models');
 
 const getSalesByIdSale = async ({ id }) => {
-  const salesFounded = await sale.findAll(
+  const saleFounded = await sale.findAll(
     { where: { id },
-      include: [{ model: product, as: 'sales', through: { attributes: [] } }],
+      include: [{ model: product, as: 'products', through: { attributes: [] } }],
     },
   );
   
-  if (salesFounded.length === 0) {
+  if (saleFounded.length === 0) {
     return { message: 'Vendas e Produtos não encontrados' };
   }
-  return salesFounded;
+
+  const saleQuantity = await salesProducts.findAll(
+    { where: { saleId: saleFounded[0].id } },
+  );
+
+  const seller = await user.findOne(
+    { where: { id: saleFounded[0].sellerId } },
+  );
+  const saleFoundedWithQuantiy = [...saleFounded, [...saleQuantity], seller];
+  return saleFoundedWithQuantiy;
 };
 
 module.exports = { getSalesByIdSale };

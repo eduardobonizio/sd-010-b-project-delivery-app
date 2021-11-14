@@ -6,7 +6,7 @@ import TableProducts from '../components/tableProducts';
 import fetchGetSaleProducts from '../services/saleProductsAPI';
 import NavBar from '../components/navBar';
 
-export default function SellerDetailOrder() {
+export default function CustomerDetailOrder() {
   const [sale, setSale] = useState([]);
   const { id } = useParams();
 
@@ -27,22 +27,22 @@ export default function SellerDetailOrder() {
 
   return (
     <div>
-      <NavBar isCustomer={ false } nameButtonOrder="Pedidos" linkOrder="/seller/orders" />
+      <NavBar isCustomer nameButtonOrder="Meus Pedidos" linkOrder="/customer/orders" />
       <p>Detalhe do pedido</p>
       {sale.length !== 0 && (
         <OrderNavBar
-          type="seller"
-          order={ sale[0] }
+          type="customer"
+          order={ { ...sale[0], sellerName: sale[2].name } }
         />)}
 
       {sale.length !== 0 && (
         <TableProducts
-          type="seller"
+          type="customer"
           products={ sale }
         />)}
       {sale.length !== 0 && (
         <p
-          data-testid="seller_order_details__element-order-total-price"
+          data-testid="customer_order_details__element-order-total-price"
         >
           {sale[0].totalPrice && sale[0].totalPrice.replace('.', ',')}
         </p>)}
@@ -50,7 +50,7 @@ export default function SellerDetailOrder() {
   );
 }
 
-SellerDetailOrder.propTypes = {
+CustomerDetailOrder.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string,

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-export default function TableProducts({ products, arrayDataTestid }) {
+export default function TableProducts({ products, type }) {
   return (
     <div>
       <table>
@@ -12,32 +12,43 @@ export default function TableProducts({ products, arrayDataTestid }) {
           <th>Valor Unitário</th>
           <th>Sub-total</th>
         </tr>
-        {products.map((el, index) => (
+        {products[0].products.map((el, index) => (
           <tr key={ el.id }>
             <th
-              data-testid={ `${arrayDataTestid[0]}${order.seller_id}` }
+              data-testid={
+                `${type}_order_details__element-order-table-item-number-${index}`
+              }
             >
-              {index}
+              {index + 1}
             </th>
             <th
-              data-testid={ `${arrayDataTestid[1]}${order.seller_id}` }
+              data-testid={
+                `${type}_order_details__element-order-table-name-${index}`
+              }
             >
               {el.name}
             </th>
             <th
-              data-testid={ `${arrayDataTestid[2]}${order.seller_id}` }
+              data-testid={
+                `${type}_order_details__element-order-table-quantity-${index}`
+              }
             >
-              {el.quantity}
+              {products[1][index].quantity}
             </th>
             <th
-              data-testid={ `${arrayDataTestid[3]}${order.seller_id}` }
+              data-testid={
+                `${type}_order_details__element-order-table-unit-price-${index}`
+              }
             >
               {el.price}
             </th>
             <th
-              data-testid={ `${arrayDataTestid[4]}${order.seller_id}` }
+              data-testid={
+                `${type}_order_details__element-order-table-sub-total-${index}`
+              }
             >
-              {el.quantity * el.price}
+              {(parseFloat(products[1][index].quantity)
+              * parseFloat(el.price).toFixed(2))}
             </th>
           </tr>
         ))}
