@@ -1,6 +1,6 @@
 const URL_SALES = 'http://localhost:3001/sales';
 
-const fetchSales = ({ id }) => (
+const fetchGetSales = ({ id }) => (
   fetch(`${URL_SALES}/${id}`, {
     method: 'GET',
     headers: {
@@ -13,4 +13,17 @@ const fetchSales = ({ id }) => (
     .catch((error) => error)
 );
 
-export default fetchSales;
+export const fetchSetStatusSale = ({ id, status }) => (
+  fetch(`${URL_SALES}/${id}`, {
+    method: 'GET',
+    headers,
+    body: JSON.stringify({
+      status,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => data)
+    .catch((error) => error)
+);
+
+export default fetchGetSales;

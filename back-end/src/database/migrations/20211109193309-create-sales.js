@@ -25,7 +25,7 @@ module.exports = {
           key: 'id'
         }
       },
-      total_prince: {
+      total_price: {
         allowNull: false,
         type: Sequelize.DECIMAL(9,2)
       },

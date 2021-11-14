@@ -1,41 +1,45 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-export default function StatusCard({ product, arrayDataTestid }) {
+export default function StatusCard({ order, arrayDataTestid, linkDetail }) {
   return (
     <div>
-      <p
-        data-testid={ `${arrayDataTestid[0]}${product.seller_id}` }
-      >
-        {product.id}
-      </p>
-      <p
-        data-testid={ `${arrayDataTestid[1]}${product.seller_id}` }
-      >
-        {product.status}
-      </p>
-      <p
-        data-testid={ `${arrayDataTestid[2]}${product.seller_id}` }
-      >
-        {product.sale_date}
-      </p>
-      <p
-        ata-testid={ `${arrayDataTestid[3]}${product.seller_id}` }
-      >
-        {product.total_price}
-      </p>
-      <p
-        data-testid={ `${arrayDataTestid[4]}${product.seller_id}` }
-      >
-        {`${product.delivery_adress}`}
-      </p>
+      <Link to={ `${linkDetail}/${order.id}` }>
+        <p
+          data-testid={ `${arrayDataTestid[0]}${order.seller_id}` }
+        >
+          {order.id}
+        </p>
+        <p
+          data-testid={ `${arrayDataTestid[1]}${order.seller_id}` }
+        >
+          {order.status}
+        </p>
+        <p
+          data-testid={ `${arrayDataTestid[2]}${order.seller_id}` }
+        >
+          {order.sale_date}
+        </p>
+        <p
+          data-testid={ `${arrayDataTestid[3]}${order.seller_id}` }
+        >
+          {order.total_price}
+        </p>
+        <p
+          data-testid={ `${arrayDataTestid[4]}${order.seller_id}` }
+        >
+          {`${order.delivery_address}`}
+        </p>
+      </Link>
     </div>
   );
 }
 
 StatusCard.propTypes = {
   arrayDataTestid: PropTypes.array,
-  product: PropTypes.shape({
+  linkDetail: PropTypes.string,
+  order: PropTypes.shape({
     delivery_adress: PropTypes.string,
     id: PropTypes.number,
     sale_date: PropTypes.string,
