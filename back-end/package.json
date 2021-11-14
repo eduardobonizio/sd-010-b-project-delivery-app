@@ -12,9 +12,9 @@
     "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "start": "node .",
     "dev": "nodemon .",
-    "pretest": "NODE_ENV=test sequelize db:migrate",
-    "test": "mocha src/tests/**/*$NAME*.test.js --exit",
-    "posttest":"NODE_ENV=test sequelize db:migrate:undo:all",
+    "pretest": "NODE_ENV=test npx sequelize-cli db:create && NODE_ENV=test sequelize db:migrate",
+    "test": "NODE_ENV=test mocha src/tests/**/*$NAME*.test.js --exit",
+    "posttest":"NODE_ENV=test ",
     "test:coverage": "nyc --all npm run test",
     "test:coverage:json": "nyc --all --reporter=json-summary npm run test",
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json ."
