@@ -2,6 +2,7 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const app = require('../../api/app');
 const faker = require('faker');
+const  { fakeUser }  = require('../utils/fakes');
 
 chai.use(chaiHttp);
 
@@ -13,12 +14,7 @@ describe('1 - teste user', () => {
   before(async () => {
     response = await chai.request(app)
       .post('/user')
-      .send({
-        name: faker.name.findName(),
-        email: faker.internet.email(),
-        password: faker.internet.password(),
-        role: 'user',
-      });
+      .send(fakeUser);
   })
 
   it('1 + 1 é igual a 2 ?', () => {
