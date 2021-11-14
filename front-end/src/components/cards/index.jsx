@@ -66,39 +66,66 @@ function CardsProducts() {
 
   return (
     <ContainerListCard>
-      <ContainerCard>
-        <ContainerQuantity />
-      </ContainerCard>
-      <ContainerCard>
-        <ContainerQuantity />
-      </ContainerCard>
-      <ContainerCard>
-        <ContainerQuantity />
-      </ContainerCard>
-      <ContainerCard>
-        <ContainerQuantity />
-      </ContainerCard>
-      <ContainerCard>
-        <ContainerQuantity />
-      </ContainerCard>
-      <ContainerCard>
-        <ContainerQuantity />
-      </ContainerCard>
-      <ContainerCard>
-        <ContainerQuantity />
-      </ContainerCard>
-      <ContainerCard>
-        <ContainerQuantity />
-      </ContainerCard>
-      <ContainerCard>
-        <ContainerQuantity />
-      </ContainerCard>
-      <ContainerCard>
-        <ContainerQuantity />
-      </ContainerCard>
-      <ContainerCard>
-        <ContainerQuantity />
-      </ContainerCard>
+      {
+        dataProducts.map((value, index) => (
+          <ContainerCard key={ value.id }>
+
+            <CotainerPrice>
+              <TextPrice
+                data-testid={ `customer_products__element-card-price-${value.id}` }
+              >
+                {`R$ ${value.price}`}
+              </TextPrice>
+            </CotainerPrice>
+
+            <ImageProduct
+              data-testid={ `customer_products__img-card-bg-image-${value.id}` }
+              src={ imageCerveja }
+            />
+
+            <ContainerQuantity>
+              <TextName
+                data-testid={ `customer_products__element-card-title-${value.id}` }
+              >
+                {value.name}
+              </TextName>
+
+              <ContainerInput>
+                <ButtonQuantitySubtract
+                  id="rm"
+                  type="button"
+                  name="quantity"
+                  data-testid={ `customer_products__button-card-rm-item-${value.id}` }
+                  onClick={ (event) => handleOnClick(index, event) }
+                  value={ value.price }
+                >
+                  -
+                </ButtonQuantitySubtract>
+
+                <InputQuantity
+                  data-testid={ `customer_products__input-card-quantity-${value.id}` }
+                  type="number"
+                  min="0"
+                  value={ value.quantity }
+                  onChange={ (event) => handleOnChange(index, event) }
+                  name="quantity"
+                />
+
+                <ButtonQuantitySum
+                  id="add"
+                  type="button"
+                  name="quantity"
+                  data-testid={ `customer_products__button-card-add-item-${value.id}` }
+                  onClick={ (event) => handleOnClick(index, event) }
+                  value={ value.price }
+                >
+                  +
+                </ButtonQuantitySum>
+              </ContainerInput>
+
+            </ContainerQuantity>
+
+          </ContainerCard>
     </ContainerListCard>
   );
 }
