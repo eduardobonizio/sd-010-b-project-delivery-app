@@ -126,6 +126,15 @@ function CardsProducts() {
             </ContainerQuantity>
 
           </ContainerCard>
+        ))
+      }
+      <Link to="/customer/checkout">
+        <ButtonCart
+          data-testid="customer_products__checkout-bottom-value"
+        >
+          {`Ver Carrinho: R$ ${valueTotalProduct.toFixed(2)}`}
+        </ButtonCart>
+      </Link>
     </ContainerListCard>
   );
 }
