@@ -7,7 +7,7 @@ export const ContainerGeneric = styled.div`
 
 export const Header = styled.nav`
   width: 100vw;
-  height: 105px;
+  height: 70px;
   display: flex;
   flex-direction: row;
   background: #3E7C17;
