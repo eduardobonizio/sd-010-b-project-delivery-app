@@ -7,13 +7,15 @@ export default function Customer() {
   const [isLoading, setLoading] = useState(true);
   const {
     products,
+    setUserInfo,
+    getProducts,
   } = useContext(ProductsContext);
 
   useEffect(() => {
-    // setUserInfo(JSON.parse(localStorage.getItem('user')));
-    // getProducts();
+    setUserInfo(JSON.parse(localStorage.getItem('user')));
+    getProducts();
     setLoading(false);
-  }, []);
+  }, [getProducts, setUserInfo]);
 
   return !isLoading
     ? (

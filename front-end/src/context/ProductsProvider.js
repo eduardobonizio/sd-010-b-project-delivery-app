@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ProductsContext from './ProductsContext';
 
-const ProductsProvider = ({ children }) => {
+function Provider({ children }) {
   const [products, setProducts] = useState([]);
   const [userInfo, setUserInfo] = useState({});
 
@@ -15,7 +15,7 @@ const ProductsProvider = ({ children }) => {
     }
   };
 
-  const context = {
+  const state = {
     products,
     userInfo,
     setProducts,
@@ -24,14 +24,13 @@ const ProductsProvider = ({ children }) => {
   };
 
   return (
-    <ProductsContext value={ context }>
+    <ProductsContext.Provider value={ state }>
       { children }
-    </ProductsContext>
-  );
-};
+    </ProductsContext.Provider>);
+}
 
-ProductsProvider.propTypes = {
+Provider.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default ProductsProvider;
+export default Provider;
