@@ -1,28 +1,28 @@
 require('dotenv').config();
 const rescue = require('express-rescue');
 const jwt = require('jsonwebtoken');
-const { User } = require('../../database/models');
 
 const secret = process.env.JWT_SECRET;
 
+const messageError = (status, message) => ({
+  status,
+  message,
+});
+
 const validToken = rescue(async (req, _res, next) => {
   const token = req.headers.authorization;
-  if (!token) {
-    next({ status: 401, message: 'Token not found' });
-  }
+  if (!token) throw messageError(401, 'Token not found');
 
   jwt.verify(token, secret, (err, decoded) => {
-    if (err) next({ status: 401, message: 'Expired or invalid token' });
+    if (err) throw messageError(401, 'Expired or invalid token');
+   
     req.payload = decoded;
   });
 
   const { payload } = req;
 
-  const findEmail = await User.findOne({ where: { email: payload.email } });
-  if (!findEmail) { 
-    return next({ status: 400, message: 'Invalid fields' });
-  }
-  return next();
+  console.log(payload);
+  next();
 });
 
 module.exports = { validToken };

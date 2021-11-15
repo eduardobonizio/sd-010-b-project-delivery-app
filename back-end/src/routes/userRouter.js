@@ -1,6 +1,7 @@
 const express = require('express');
 
 const userController = require('../app/controllers/userController');
+const { validToken } = require('../middlewares/auth/validJWT');
 
 // jwt
 
@@ -11,7 +12,7 @@ router.route('/')
 .post(userController.add);
 
 router.route('/:id')
-.get(userController.findById);
+.get(validToken, userController.findById);
 
 // by role
 
