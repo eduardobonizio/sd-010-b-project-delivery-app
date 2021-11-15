@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Route, Routes } from 'react-router';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import {
   Login,
   Register,
@@ -13,15 +13,18 @@ import {
 
 function App() {
   return (
-    <Routes>
-      <Route path="/customer/orders" element={ <ClientOrderDetails /> } />
-      <Route path="/customer/products" element={ <Products /> } />
-      <Route path="/customer/checkout" element={ <Checkout /> } />
-      <Route path="/seller/orders" element={ <OrderDetails /> } />
-      <Route path="/register" element={ <Register /> } />
-      <Route path="/login" element={ <Login /> } />
-      <Route path="/" element={ <Home /> } />
-    </Routes>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/customer/orders" component={ ClientOrderDetails } />
+        <Route exact path="/customer/products" component={ Products } />
+        <Route exact path="/customer/checkout" component={ Checkout } />
+        <Route path="/seller/orders" component={ OrderDetails } />
+        <Route path="/register" component={ Register } />
+        <Route path="/login" component={ Login } />
+        <Route path="/" component={ Home } />
+      </Switch>
+    </BrowserRouter>
+
   );
 }
 

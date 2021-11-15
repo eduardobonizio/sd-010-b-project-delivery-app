@@ -1,28 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router';
+// import { Link } from 'react-router-dom';
 import * as style from './style';
 import { apiRequestLogin } from '../../../services/login/apiRequestLogin';
 
 export default function Login() {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  const [erro, setErro] = useState();
+  const [erro] = useState();
   const [user, setUser] = useState();
   const [btnDisable, setBtnDisable] = useState(true);
-  // setBtnDisable
-  useEffect(() => {
-    console.log('erro:', erro);
-    console.log('user:', user);
-  }, [erro, user]);
 
-  const tryLogin = (e) => {
-    apiRequestLogin({ email, password })
-      .then((response) => setUser(response))
-      .catch((error) => setErro(error));
+  const history = useHistory();
 
-    if (!user) {
-      e.preventDefault();
-    }
+  const tryLogin = async (e) => {
+    // if (!user);
+    e.preventDefault();
+
+    const login = await apiRequestLogin({ email, password });
+    setUser(login);
+    // console.log(login);
+    console.log('user: ', user);
+    history.push('/customer/products');
   };
 
   useEffect(() => {
@@ -67,10 +66,15 @@ export default function Login() {
           onClick={ (e) => tryLogin(e) }
         >
           Login
+          {/* <Link to="/customer/products" /> */}
         </style.LoginButton>
-        <style.RegisterButton type="submit" data-testid="common_login__button-register">
+        <style.RegisterButton
+          type="submit"
+          data-testid="common_login__button-register"
+          onClick={ () => history.push('/register') }
+        >
           Ainda nao tenho conta
-          <Link to="/register" />
+          {/* <Link to="/register" /> */}
         </style.RegisterButton>
         <p
           id="erro"
