@@ -30,9 +30,8 @@ const createUser = async (req, res) => {
 const createUserByADM = async (req, res) => {
   try {
     const { name, email, password, role } = req.body;
-    console.log(req.body, 'body');
-    await userService.createUserByADM({ name, email, password, role });
 
+    await userService.createUserByADM({ name, email, password, role });
     const token = await generateToken({ name, email, role });
 
     return res.status(status.CREATED).json({ token, name, email, role });
