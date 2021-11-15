@@ -15,9 +15,9 @@ export default function FormLogin() {
     e.preventDefault();
     const user = await login({ email, password: pass });
     console.log(user.data[0]);
-    if (user.message) {
-      return user;
-    }
+    // if (user.message) {
+    //   return user;
+    // }
     createStorage('user', user.data[0]);
     history.push('/customer/products');
   }
