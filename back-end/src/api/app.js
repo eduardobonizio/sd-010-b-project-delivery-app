@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 
 const error = require('../middleware/error');
-const { registerRouter, productsRouter, loginRouter, salesRouter, usersRouter } = require('./routes');
+const routes = require('./routes');
 
 const app = express();
 app.use(express.json());
@@ -10,11 +10,11 @@ app.use(express.json());
 app.use(cors());
 app.use(express.static('public'));
 
-app.use('/login', loginRouter);
-app.use('/register', registerRouter);
-app.use('/products', productsRouter);
-app.use('/sales', salesRouter);
-app.use('/user', usersRouter);
+app.use('/login', routes.loginRouter);
+app.use('/register', routes.registerRouter);
+app.use('/products', routes.productsRouter);
+app.use('/sales', routes.salesRouter);
+app.use('/user', routes.usersRouter);
 
 app.use(error);
 
