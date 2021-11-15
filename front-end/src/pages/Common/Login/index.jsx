@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as style from './style';
 import { apiRequestLogin } from '../../../services/login/apiRequestLogin';
+// import LoginForm from '../Product';
 
 export default function Login() {
   const [password, setPassword] = useState('');
@@ -10,19 +11,18 @@ export default function Login() {
   const [user, setUser] = useState();
   const [btnDisable, setBtnDisable] = useState(true);
   // setBtnDisable
-  useEffect(() => {
-    console.log('erro:', erro);
-    console.log('user:', user);
-  }, [erro, user]);
+
+  const navigate = useNavigate();
 
   const tryLogin = (e) => {
+    if (!user) e.preventDefault();
+
     apiRequestLogin({ email, password })
       .then((response) => setUser(response))
       .catch((error) => setErro(error));
 
-    if (!user) {
-      e.preventDefault();
-    }
+    navigate('../customer/products', { replace: true });
+    // return (<LoginForm />);
   };
 
   useEffect(() => {
