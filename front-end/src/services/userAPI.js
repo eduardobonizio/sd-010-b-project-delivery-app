@@ -1,11 +1,14 @@
-const URL = 'http://localhost:3001/login';
+const URL_LOGIN = 'http://localhost:3001/login';
+const URL_SELLER = 'http://localhost:3001/sellers';
 
-const fetchAuthUser = (email, password) => (
-  fetch(URL, {
+const APPLICATION_JSON = 'application/json';
+
+export const fetchAuthUser = (email, password) => (
+  fetch(URL_LOGIN, {
     method: 'POST',
     headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
+      Accept: APPLICATION_JSON,
+      'Content-Type': APPLICATION_JSON,
     },
     body: JSON.stringify({
       email,
@@ -17,4 +20,15 @@ const fetchAuthUser = (email, password) => (
     .catch((error) => error)
 );
 
-export default fetchAuthUser;
+export const fetchAllSellers = () => (
+  fetch(URL_SELLER, {
+    method: 'GET',
+    headers: {
+      Accept: APPLICATION_JSON,
+      'Content-Type': APPLICATION_JSON,
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => data)
+    .catch((error) => error)
+);

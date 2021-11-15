@@ -19,7 +19,7 @@ function DrinkCard({ product }) {
   };
 
   useEffect(() => {
-    updateCart({ name, price, quantity });
+    updateCart({ id, name, price, quantity });
     // eslint-disable-next-line
   }, [quantity]);
 

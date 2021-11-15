@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-import fetchAuthUser from '../services/userAPI';
+import { fetchAuthUser } from '../services/userAPI';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -11,6 +11,15 @@ export default function Login() {
   const buttonActivation = () => {
     // fonte: https://www.w3resource.com/javascript/form/email-validation.php
     const EMAILREGEX = /\S+@\S+\.\S+/;
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    if (user) {
+      if (user.role === 'customer') {
+        history.push('/customer/products');
+      } else if (user.role === 'seller') {
+        history.push('/seller/orders');
+      }
+    }
 
     const PASSWORDMIN = 6;
     if (email.match(EMAILREGEX) && password.length >= PASSWORDMIN) {
@@ -26,8 +35,10 @@ export default function Login() {
     localStorage.setItem('user', JSON.stringify(res));
     if (res.message) {
       setIsValidEntry(false);
-    } else {
+    } else if (res.role === 'customer') {
       history.push('/customer/products');
+    } else if (res.role === 'seller') {
+      history.push('/seller/orders');
     }
   };
 

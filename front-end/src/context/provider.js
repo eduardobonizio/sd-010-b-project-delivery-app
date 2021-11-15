@@ -8,12 +8,13 @@ function ProductsProvider({ children }) {
   const [productsInCart, setProductsInCart] = useState([]);
 
   const updateCart = (cartItem) => {
-    const { name, price, quantity } = cartItem;
+    const { id, name, price, quantity } = cartItem;
 
     if (productsInCart.some((el) => name === el.name)) {
       const updatedCart = productsInCart.map((el) => {
         if (el.name === name) {
           return {
+            id,
             name,
             price,
             quantity,
@@ -26,6 +27,23 @@ function ProductsProvider({ children }) {
     } else {
       productsInCart.push(cartItem);
     }
+  };
+
+  const removeCartItem = (cartItem) => {
+    const { name, price } = cartItem;
+
+    const updatedCart = productsInCart.map((el) => {
+      if (el.name === name) {
+        return {
+          name,
+          price,
+          quantity: 0,
+        };
+      }
+      return el;
+    });
+
+    setProductsInCart(updatedCart);
   };
 
   useEffect(() => {
@@ -42,6 +60,7 @@ function ProductsProvider({ children }) {
     productsInCart,
     setProductsInCart,
     updateCart,
+    removeCartItem,
 
   };
 
