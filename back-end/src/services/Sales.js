@@ -20,4 +20,14 @@ const createSale = async (payloadUser, { sale, cart }) => {
   return ({ status: httpStatus.CREATED, data: [{ saleId: response.id }] });
 };
 
-module.exports = { createSale };
+const getAll = async ({ id, role }) => {
+  if (role === 'customer') {
+    const data = await Sale.findAll({ where: { userId: id } });
+    return ({ status: httpStatus.OK, data });
+  }
+
+  const data = await Sale.findAll();
+  return ({ status: httpStatus.OK, data });
+};
+
+module.exports = { createSale, getAll };
