@@ -12,5 +12,6 @@ router.post('/ADMregister', userController.createUserByADM);
 // USERs
 router.get('/users', userController.getAllUsers);
 router.delete('/users', userController.deleteUser);
+router.get('/sellers', userController.getAllSellers);
 
 module.exports = router;

@@ -9,6 +9,7 @@ const secretKey = fs
   .readFileSync(
     path.join(`${__dirname}../../../../jwt.evaluation.key`), { encoding: 'utf-8' },
   ).trim();
+const INTERNAL_SERVER_ERROR_MSG = 'Alguma coisa deu errado :(';
 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
@@ -51,14 +52,23 @@ const createUserByADM = async (req, res) => {
   }
 };
 
-const INTERNAL_SERVER_ERROR_MSG = 'Alguma coisa deu errado :(';
-
 const getAllUsers = async (req, res) => {
   try {
     const result = await userService.getAllUsers();
 
     res.status(status.OK).json(result);
   } catch (err) {
+    res.status(status.INTERNAL_SERVER_ERROR).json({ message: INTERNAL_SERVER_ERROR_MSG });
+  }
+};
+
+const getAllSellers = async (req, res) => {
+  try {
+    const result = await userService.getAllSellers();
+
+    res.status(status.OK).json(result);
+  } catch (err) {
+    console.log(err);
     res.status(status.INTERNAL_SERVER_ERROR).json({ message: INTERNAL_SERVER_ERROR_MSG });
   }
 };
@@ -74,4 +84,11 @@ const deleteUser = async (req, res) => {
   }
 };
 
-module.exports = { loginUser, createUser, createUserByADM, getAllUsers, deleteUser };
+module.exports = {
+  loginUser,
+  createUser,
+  getAllSellers,
+  createUserByADM,
+  getAllUsers,
+  deleteUser,
+};
