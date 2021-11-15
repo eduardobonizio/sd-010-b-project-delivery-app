@@ -13,4 +13,8 @@ router.route('/')
 router.route('/:id')
 .get(userController.findById);
 
+// by role
+
+// deleteUser
+
 module.exports = router;
