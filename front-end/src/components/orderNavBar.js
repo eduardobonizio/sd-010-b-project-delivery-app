@@ -1,8 +1,17 @@
 import PropTypes from 'prop-types';
-import React from 'react';
-import changeStatusFunc from '../helper/asynFunc/changeStatus';
+import React, { useEffect, useState } from 'react';
+
+import socket from '../utils/socket/socketClient';
 
 export default function OrderNavBar({ order, type }) {
+  const [status, setStatus] = useState(order.status);
+
+  const changeStatusFunc = (newStatus) => {
+    const { id } = order;
+    const statusObject = { id, status: newStatus };
+    socket.emit('changeStatus', statusObject);
+  };
+
   const dateNow = (date) => {
     const data = new Date(date);
     const dia = data.getDate().toString().padStart(2, '0');
@@ -10,6 +19,10 @@ export default function OrderNavBar({ order, type }) {
     const ano = data.getFullYear();
     return `${dia}/${mes}/${ano}`;
   };
+
+  useEffect(() => {
+    socket.on('changeStatus', (newStatus) => setStatus(newStatus.status));
+  }, []);
   return (
     <div>
       <p
@@ -39,12 +52,12 @@ export default function OrderNavBar({ order, type }) {
           `${type}_order_details__element-order-details-label-delivery-status`
         }
       >
-        {order.status}
+        {status}
       </p>
       {type === 'customer' && (
         <button
           data-testid="customer_order_details__button-delivery-check"
-          disabled
+          disabled={ status !== 'Em Trânsito' }
           onClick={ () => changeStatusFunc('Entregue') }
           type="button"
         >
@@ -54,6 +67,7 @@ export default function OrderNavBar({ order, type }) {
         <div>
           <button
             data-testid="seller_order_details__button-preparing-check"
+            disabled={ status !== 'Pendente' }
             onClick={ () => changeStatusFunc('Preparando') }
             type="button"
           >
@@ -61,16 +75,15 @@ export default function OrderNavBar({ order, type }) {
           </button>
           <button
             data-testid="seller_order_details__button-dispatch-check"
-            onClick={ () => changeStatusFunc('Em trânsito') }
-            disabled
+            disabled={ status !== 'Preparando' }
+            onClick={ () => changeStatusFunc('Em Trânsito') }
             type="button"
           >
             Saiu para entrega
           </button>
         </div>
       )}
-    </div>
-  );
+    </div>);
 }
 
 OrderNavBar.propTypes = {

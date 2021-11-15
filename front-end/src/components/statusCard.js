@@ -1,8 +1,12 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import socket from '../utils/socket/socketClient';
+
 export default function StatusCard({ order, type, linkDetail }) {
+  const [status, setStatus] = useState(order.status);
+
   const dateNow = (date) => {
     const data = new Date(date);
     const dia = data.getDate().toString().padStart(2, '0');
@@ -10,6 +14,14 @@ export default function StatusCard({ order, type, linkDetail }) {
     const ano = data.getFullYear();
     return `${dia}/${mes}/${ano}`;
   };
+
+  useEffect(() => {
+    socket.on('changeStatus', (newStatus) => {
+      if (newStatus.id === order.id) {
+        setStatus(newStatus.status);
+      }
+    });
+  }, [order.id]);
   return (
     <div>
       <Link to={ `${linkDetail}/${order.id}` }>
@@ -21,7 +33,7 @@ export default function StatusCard({ order, type, linkDetail }) {
         <p
           data-testid={ `${type}_orders__element-delivery-status-${order.id}` }
         >
-          {order.status}
+          {status}
         </p>
         <p
           data-testid={ `${type}_orders__element-order-date-${order.id}` }
