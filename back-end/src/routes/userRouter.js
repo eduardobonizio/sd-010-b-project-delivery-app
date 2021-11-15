@@ -1,6 +1,7 @@
 const express = require('express');
 
 const userController = require('../app/controllers/userController');
+// const { validToken } = require('../middlewares/auth/validJWT');
 
 // jwt
 
@@ -12,5 +13,9 @@ router.route('/')
 
 router.route('/:id')
 .get(userController.findById);
+
+// by role
+
+// deleteUser
 
 module.exports = router;
