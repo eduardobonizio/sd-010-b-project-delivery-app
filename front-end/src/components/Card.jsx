@@ -18,14 +18,14 @@ const card = (
       </Typography>
       <Typography
         data-testid="customer_products__img-card-bg-image-"
-        sx={ { mb: 1.5 } }
+        // sx={ { mb: 1.5 } }
         color="text.secondary"
       >
         Imagem
       </Typography>
       <Typography
         data-testid="customer_products__element-card-title-"
-        sx={ { fontSize: 14 } }
+        // sx={ { fontSize: 14 } }
         color="text.secondary"
         gutterBottom
       >
@@ -33,20 +33,30 @@ const card = (
       </Typography>
     </CardContent>
     <CardActions>
-      <Button data-testid="customer_products__button-card-rm-item-">-</Button>
+      <Button
+        data-testid="customer_products__button-card-rm-item-"
+        // sx={ { fontSize: 20 } }
+      >
+        -
+      </Button>
       <input
         data-testid="customer_products__input-card-quantity-"
         type="number"
         title="quantidade de ítens"
       />
-      <Button data-testid="customer_products__button-card-add-item-">+</Button>
+      <Button
+        data-testid="customer_products__button-card-add-item-"
+        // sx={ { fontSize: 20 } }
+      >
+        +
+      </Button>
     </CardActions>
   </Box>
 );
 
 function OutlinedCard() {
   return (
-    <Box sx={ { minWidth: 275 } }>
+    <Box>
       <Card variant="outlined">{card}</Card>
     </Box>
   );
