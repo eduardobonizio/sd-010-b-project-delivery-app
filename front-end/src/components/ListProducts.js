@@ -19,7 +19,7 @@ export default function ListProducts() {
 
       { products && products.map(({ name, price, urlImage }, index) => (
         <section key={ index }>
-          <img width='100px' src={ urlImage } alt={ name } />
+          <img width="100px" src={ urlImage } alt={ name } />
           <li>{ name }</li>
           <li>{ price }</li>
         </section>
