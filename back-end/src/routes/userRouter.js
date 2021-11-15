@@ -1,11 +1,16 @@
 const express = require('express');
+
 const userController = require('../app/controllers/userController');
+
 // jwt
 
 const router = express.Router();
 
-router.post('/', userController.add);
+router.route('/')
+.get(userController.findAll)
+.post(userController.add);
 
-router.get('/', userController.findAll);
+router.route('/:id')
+.get(userController.findById);
 
 module.exports = router;

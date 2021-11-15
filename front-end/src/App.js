@@ -1,5 +1,6 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import './App.css';
+import { Route, Routes } from 'react-router';
 import {
   Login,
   Register,
@@ -7,19 +8,20 @@ import {
   Checkout,
   ClientOrderDetails,
   OrderDetails,
+  Home,
 } from './pages';
 
 function App() {
   return (
-    <Switch>
-      <Route exact path="/customer/orders" component={ ClientOrderDetails } />
-      <Route exact path="/customer/products" component={ Products } />
-      <Route exact path="/customer/checkout" component={ Checkout } />
-      <Route exact path="/seller/orders" component={ OrderDetails } />
-      <Route exact path="/register" component={ Register } />
-      <Route exact path="/login" component={ Login } />
-      <Route exact path="/" component={ Login } />
-    </Switch>
+    <Routes>
+      <Route path="/customer/orders" element={ <ClientOrderDetails /> } />
+      <Route path="/customer/products" element={ <Products /> } />
+      <Route path="/customer/checkout" element={ <Checkout /> } />
+      <Route path="/seller/orders" element={ <OrderDetails /> } />
+      <Route path="/register" element={ <Register /> } />
+      <Route path="/login" element={ <Login /> } />
+      <Route path="/" element={ <Home /> } />
+    </Routes>
   );
 }
 

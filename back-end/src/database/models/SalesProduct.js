@@ -6,5 +6,22 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: false
   });
   
+  SaleProduct.associate = (models) => {
+  models.Sale.belongsToMany(models.Product,
+    {
+      as: 'products',
+      through: SaleProduct,
+      foreignKey: 'sale_id',
+      otherKey: 'productId',
+    });
+
+  models.Product.belongsToMany(models.Sale,
+    {
+      as: 'sales',
+      through: SaleProduct,
+      foreignKey: 'id',
+      otherKey: 'saleId',
+    });
+  }
   return SaleProduct;
 }
