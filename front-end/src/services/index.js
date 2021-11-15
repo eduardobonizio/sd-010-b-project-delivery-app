@@ -11,4 +11,9 @@ const api = axios.create({
 const create = (data) => api.post('/login', data);
 const getAll = (data) => api.get('/login', data);
 
-export default { create, getAll };
+const getProducts = async () => {
+  const { data } = await axios.get('http://localhost:3001/products');
+  return data;
+};
+
+export default { create, getAll, getProducts };
