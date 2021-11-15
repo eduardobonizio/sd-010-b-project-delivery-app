@@ -1,19 +1,25 @@
-const { User } = require('../../database/models');
+const rescue = require('express-rescue');
+const userService = require('../services/userService');
 
-const add = async (req, res) => {
-  const { name, email, password, role } = req.body;
-
-  await User.create({ name, email, password, role });
-
-  return res.status(200).json('Rota User');
-};
-
-const findAll = async (req, res) => {
-  const findUsers = await User.findAll();
+const findAll = rescue(async (_req, res) => {
+  const findUsers = await userService.findAll();
+  // delete findUsers.password;
+  console.log('controller', findUsers);
   return res.status(200).json(findUsers);
-};
+});
+
+const findById = rescue(async (req, res) => {
+  const findId = await userService.findById(req.params.id);
+  return res.status(200).json(findId);
+});
+
+const add = rescue(async (req, res) => {
+  await userService.addUser(req.body);
+  return res.status(201).json({ message: '201 - Created' });
+});
 
 module.exports = {
   add,
   findAll,
+  findById,
 };
