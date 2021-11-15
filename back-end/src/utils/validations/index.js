@@ -22,7 +22,7 @@ const createSale = ({ sellerId, totalPrice, deliveryAddress, deliveryNumber }, c
   cart.forEach(({ productId, quantity }) => {
     sale.validateProductId(productId);
     sale.validateQuantity(quantity);
-  })
+  });
 };
 
 module.exports = { createUser, login, createSale };
