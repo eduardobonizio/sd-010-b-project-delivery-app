@@ -32,11 +32,14 @@ const createUser = async ({ name, email, password }) => {
 };
 
 const createUserByADM = async ({ name, email, password, role }) => {
-  await user.create({
-    name, email, password: cryptoPassword(password), role,
-  });
-  const token = generateToken({ name, role, email });
-  return { name, email, role, token };
+  const testUser = await existUser({ email, password });
+  if (testUser.message) {
+    await user.create({ name, email, password: cryptoPassword(password), role }); 
+    const token = generateToken({ name, role, email });
+
+    return { name, email, role, token };
+  }
+  return { message: 'Usuário já existe' };
 };
 
 const getAllUsers = async () => {

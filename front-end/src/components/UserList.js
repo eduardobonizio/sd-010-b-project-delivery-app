@@ -18,7 +18,6 @@ export default function Menu() {
   };
 
   const deleteUser = async (evt) => {
-    console.log(evt);
     await deleteUsersAPI(evt);
   };
 
@@ -26,42 +25,44 @@ export default function Menu() {
     <section>
       <h2>Lista de usuarios</h2>
       <ul>
-        {users.map((el) => (
-          <li key={ el.id }>
-            <span
-              data-testid="admin_manage__element-user-table-item-number-"
-            >
-              { users.indexOf(el) + 1 }
-            </span>
-            { ' - ' }
-            <span
-              data-testid="admin_manage__element-user-table-name-"
-            >
-              { el.name }
-            </span>
-            { ' - ' }
-            <span
-              data-testid="admin_manage__element-user-table-email-"
-            >
-              { el.email }
-            </span>
-            { ' - ' }
-            <span
-              data-testid="admin_manage__element-user-table-role-"
-            >
-              { el.role }
-            </span>
-            { ' - ' }
-            <button
-              disabled={ userADM(el.role) }
-              onClick={ () => deleteUser(el.id) }
-              type="button"
-              data-testid="admin_manage__element-user-table-remove-"
-            >
-              Excluir
-            </button>
-          </li>
-        ))}
+        { users.length > 1
+          ? users.map((el) => (
+            <li key={ el.id }>
+              <span
+                data-testid="admin_manage__element-user-table-item-number-"
+              >
+                { users.indexOf(el) + 1 }
+              </span>
+              { ' - ' }
+              <span
+                data-testid="admin_manage__element-user-table-name-"
+              >
+                { el.name }
+              </span>
+              { ' - ' }
+              <span
+                data-testid="admin_manage__element-user-table-email-"
+              >
+                { el.email }
+              </span>
+              { ' - ' }
+              <span
+                data-testid="admin_manage__element-user-table-role-"
+              >
+                { el.role }
+              </span>
+              { ' - ' }
+              <button
+                disabled={ userADM(el.role) }
+                onClick={ () => deleteUser(el.id) }
+                type="button"
+                data-testid="admin_manage__element-user-table-remove-"
+              >
+                Excluir
+              </button>
+            </li>
+          ))
+          : ''}
 
       </ul>
     </section>

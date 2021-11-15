@@ -7,13 +7,21 @@ export default function Admin() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('Customer');
+  const [role, setRole] = useState('customer');
   const [isValidEntry, setIsValidEntry] = useState(true);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await admRegisterAPI(name, email, password, role);
-    if (res.message) setIsValidEntry(false);
+    const admInfo = JSON.parse(localStorage.getItem('user'));
+
+    const newUser = {
+      name,
+      email,
+      password,
+      role,
+    };
+    const res = await admRegisterAPI(newUser, admInfo.token);
+    if (typeof res === 'string') setIsValidEntry(false);
   };
 
   const buttonActivation = () => {
@@ -61,8 +69,8 @@ export default function Admin() {
           data-testid="admin_manage__select-role"
           onChange={ ({ target }) => setRole(target.value) }
         >
-          <option value="Customer">Cliente</option>
-          <option value="Seller">Vendedor</option>
+          <option defaultValue value="customer">Cliente</option>
+          <option value="seller">Vendedor</option>
         </select>
         <button
           disabled={ buttonActivation() }

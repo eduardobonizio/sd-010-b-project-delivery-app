@@ -1,17 +1,18 @@
 const URL = 'http://localhost:3001/ADMregister';
 
-const handleFetchRegister = (name, email, password, role) => (
+const admRegisterAPI = (newUser, token) => (
   fetch(URL, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
+      authorization: token,
     },
     body: JSON.stringify({
-      name,
-      email,
-      password,
-      role,
+      name: newUser.name,
+      email: newUser.email,
+      password: newUser.password,
+      role: newUser.role,
     }),
   })
     .then((response) => response.json())
@@ -19,4 +20,4 @@ const handleFetchRegister = (name, email, password, role) => (
     .catch((error) => error)
 );
 
-export default handleFetchRegister;
+export default admRegisterAPI;
