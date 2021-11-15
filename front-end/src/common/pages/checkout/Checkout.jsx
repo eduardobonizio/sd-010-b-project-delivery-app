@@ -1,26 +1,10 @@
 import React from 'react';
 import { Context } from '../../../provider/Provider';
-import CheckoutProducts from '../../../components/CheckoutProducts';
-import PurchaseTotal from '../../../components/PurchaseTotal';
-import EntryAddress from '../../../components/EntryAddress';
-import PurchaseOrderBtn from '../../../components/PurchaseOrderBtn';
+import CheckoutContainer from '../../../components/CheckoutContainer';
 
 function Checkout() {
-  const { orderInProgress } = React.useContext(Context);
-  return (
-    <div>
-      {orderInProgress.map((order, index) => (
-        <CheckoutProducts
-          orderItem={ order }
-          key={ index }
-          index={ index }
-        />
-      ))}
-      <PurchaseTotal />
-      <EntryAddress />
-      <PurchaseOrderBtn />
-    </div>
-  );
+  const { totalOrder } = React.useContext(Context);
+  return totalOrder > 0 ? <CheckoutContainer /> : <h2>Vazio</h2>;
 }
 
 export default Checkout;

@@ -5,7 +5,8 @@ import EntryAddressNumber from './EntryAddressNumber';
 
 function DeliveryContainer() {
   return (
-    <div className="delivery-container">
+    <div>
+      <h3>Detalhes e Endereço para Entrega</h3>
       <ChooseSeller />
       <EntryAddress />
       <EntryAddressNumber />

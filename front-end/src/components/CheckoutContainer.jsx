@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import CheckoutProducts from './CheckoutProducts';
 import PurshaseTotal from './PurchaseTotal';
 import PurchaseOrderBtn from './PurchaseOrderBtn';
-import EntryAddress from './EntryAddress';
+import DeliveryContainer from './DeliveryContainer';
 import { Provider } from '../provider/Provider';
 
 function CheckoutContainer() {
@@ -33,7 +33,7 @@ function CheckoutContainer() {
         text="Total"
         data-testid="customer_checkout__element-order-total-price"
       />
-      <EntryAddress />
+      <DeliveryContainer />
       <PurchaseOrderBtn />
       <Link to="/customer/products">Voltar</Link>
     </div>
