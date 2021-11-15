@@ -101,7 +101,7 @@ describe('Testing /sale POST route', () => {
             .post(SALE_PATH)
             .send(SALE_MISSING_USER_ID);
 
-          expect(message).to.be.equals('"user_id" is required')
+          expect(message).to.be.an('array').that.contains('"user_id" is required');
         });
       });
 
@@ -111,7 +111,7 @@ describe('Testing /sale POST route', () => {
             .post(SALE_PATH)
             .send(SALE_MISSING_SELLER_ID);
 
-          expect(message).to.be.equals('"seller_id" is required')
+            expect(message).to.be.an('array').that.contains('"seller_id" is required');
         });
       });
 
@@ -121,7 +121,7 @@ describe('Testing /sale POST route', () => {
             .post(SALE_PATH)
             .send(SALE_MISSING_TOTAL_PRICE);
 
-          expect(message).to.be.equals('"total_price" is required')
+            expect(message).to.be.an('array').that.contains('"total_price" is required');
         });
       });
 
@@ -131,7 +131,7 @@ describe('Testing /sale POST route', () => {
             .post(SALE_PATH)
             .send(SALE_MISSING_DELIVERY_ADDRESS);
 
-          expect(message).to.be.equals('"delivery_address" is required')
+            expect(message).to.be.an('array').that.contains('"delivery_address" is required');
         });
       });
 
@@ -141,7 +141,7 @@ describe('Testing /sale POST route', () => {
             .post(SALE_PATH)
             .send(SALE_MISSING_DELIVERY_NUMBER);
 
-          expect(message).to.be.equals('"delivery_number" is required')
+            expect(message).to.be.an('array').that.contains('"delivery_number" is required');
         });
       });
     });
