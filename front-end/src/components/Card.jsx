@@ -10,14 +10,6 @@ const card = (
   <Box>
     <CardContent>
       <Typography
-        data-testid="customer_products__element-card-title-"
-        sx={ { fontSize: 14 } }
-        color="text.secondary"
-        gutterBottom
-      >
-        Nome/Título do Produto
-      </Typography>
-      <Typography
         data-testid="customer_products__element-card-price-"
         variant="h5"
         component="div"
@@ -31,15 +23,23 @@ const card = (
       >
         Imagem
       </Typography>
+      <Typography
+        data-testid="customer_products__element-card-title-"
+        sx={ { fontSize: 14 } }
+        color="text.secondary"
+        gutterBottom
+      >
+        Nome/Título do Produto
+      </Typography>
     </CardContent>
     <CardActions>
-      <Button data-testid="customer_products__button-card-rm-item-">Remover</Button>
+      <Button data-testid="customer_products__button-card-rm-item-">-</Button>
       <input
         data-testid="customer_products__input-card-quantity-"
         type="number"
         title="quantidade de ítens"
       />
-      <Button data-testid="customer_products__button-card-add-item-">Adicionar</Button>
+      <Button data-testid="customer_products__button-card-add-item-">+</Button>
     </CardActions>
   </Box>
 );
