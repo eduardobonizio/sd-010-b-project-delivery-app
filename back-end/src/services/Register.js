@@ -2,8 +2,8 @@ const httpStatus = require('http-status');
 const md5 = require('md5');
 
 const { User } = require('../database/models');
-const validations = require('../utils/validations/validationsIndex');
-const generateToken = require('../utils/generateToken');
+const validations = require('../utils/validations');
+const generateToken = require('../utils/token');
 
 const createUser = async ({ name, email, password }) => {
   await validations.createUser(name, email, password);

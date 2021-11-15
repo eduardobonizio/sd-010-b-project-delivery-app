@@ -1,10 +1,11 @@
 const httpStatus = require('http-status');
 
 const { Sale, SalesProduct } = require('../database/models');
-const validations = require('../utils/validations/validationsIndex');
+const validations = require('../utils/validations');
 
 const createSale = async (payloadUser, { sale, cart }) => {
   validations.createSale(sale, cart);
+
   const { sellerId, totalPrice, deliveryAddress, deliveryNumber } = sale;
 
   const response = await Sale.create({
@@ -12,7 +13,7 @@ const createSale = async (payloadUser, { sale, cart }) => {
   });
 
   const promises = cart.map(async ({ productId, quantity }) =>
-  await SalesProduct.create({ saleId: response.id, productId, quantity }));
+    SalesProduct.create({ saleId: response.id, productId, quantity }));
   
   await Promise.all(promises);
 

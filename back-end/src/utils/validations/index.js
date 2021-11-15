@@ -14,13 +14,15 @@ const login = async (email, password) => {
   await user.confirmLogin(email, password);
 };
 
-const createSale = ({ sellerId, totalPrice, deliveryAddress, deliveryNumber }) => {
+const createSale = ({ sellerId, totalPrice, deliveryAddress, deliveryNumber }, cart) => {
   sale.validateSaller(sellerId);
   sale.validatePrice(totalPrice);
   sale.validateAddress(deliveryAddress);
   sale.validateNumber(deliveryNumber);
-  // sale.validateProductId(produtoId);
-  // sale.validateQuantity(quantity);
+  cart.forEach(({ productId, quantity }) => {
+    sale.validateProductId(productId);
+    sale.validateQuantity(quantity);
+  })
 };
 
 module.exports = { createUser, login, createSale };
