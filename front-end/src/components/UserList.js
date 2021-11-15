@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import fetchAllUsers from '../services/allUsersAPI';
+import deleteUsersAPI from '../services/deleteUsersAPI';
 
 export default function Menu() {
   const [users, setUsers] = useState([]);
@@ -10,7 +11,16 @@ export default function Menu() {
       setUsers(data);
     };
     getUsers();
-  }, []);
+  }, [users]);
+
+  const userADM = (role) => {
+    if (role === 'administrator') return true;
+  };
+
+  const deleteUser = async (evt) => {
+    console.log(evt);
+    await deleteUsersAPI(evt);
+  };
 
   return (
     <section>
@@ -43,6 +53,8 @@ export default function Menu() {
             </span>
             { ' - ' }
             <button
+              disabled={ userADM(el.role) }
+              onClick={ () => deleteUser(el.id) }
               type="button"
               data-testid="admin_manage__element-user-table-remove-"
             >

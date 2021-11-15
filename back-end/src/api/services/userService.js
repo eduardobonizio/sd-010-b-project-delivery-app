@@ -25,10 +25,19 @@ const existUser = async ({ email, password }) => {
 
 const createUser = async ({ name, email, password }) => {
   await user.create({
-    name, email, password: cryptoPassword(password), role: 'user',
+    name, email, password: cryptoPassword(password), role: 'Customer',
   });
-  const token = generateToken({ name, role: 'user', email });
-  return { name, email, role: 'user', token };
+  const token = generateToken({ name, role: 'Customer', email });
+  return { name, email, role: 'Customer', token };
+};
+
+const createUserByADM = async ({ name, email, password, role = 'Customer' }) => {
+  await user.create({
+    name, email, password: cryptoPassword(password), role,
+  });
+  const token = generateToken({ name, role, email });
+  console.log(name, email, password, role, 'dale');
+  return { name, email, role, token };
 };
 
 const getAllUsers = async () => {
@@ -36,4 +45,8 @@ const getAllUsers = async () => {
   return allUsers;
 };
 
-module.exports = { existUser, createUser, getAllUsers };
+const deleteUser = async (id) => {
+  await user.destroy({ where: { id } });
+};
+
+module.exports = { existUser, createUser, createUserByADM, getAllUsers, deleteUser };

@@ -19,9 +19,23 @@ const createUser = async (req, res) => {
     const { name, email, password } = req.body;
     await userService.createUser({ name, email, password });
 
-    const token = await generateToken({ name, email, role: 'user' });
+    const token = await generateToken({ name, email, role: 'Customer' });
 
-    return res.status(status.CREATED).json({ token, name, email, role: 'user' });
+    return res.status(status.CREATED).json({ token, name, email, role: 'Customer' });
+  } catch (error) {
+    return res.status(status.CONFLICT).json({ message: 'Usuário já cadastrado' });
+  }
+};
+
+const createUserByADM = async (req, res) => {
+  try {
+    const { name, email, password, role } = req.body;
+    console.log(req.body, 'body');
+    await userService.createUserByADM({ name, email, password, role });
+
+    const token = await generateToken({ name, email, role });
+
+    return res.status(status.CREATED).json({ token, name, email, role });
   } catch (error) {
     return res.status(status.CONFLICT).json({ message: 'Usuário já cadastrado' });
   }
@@ -40,4 +54,15 @@ const getAllUsers = async (req, res) => {
   }
 };
 
-module.exports = { loginUser, createUser, getAllUsers };
+const deleteUser = async (req, res) => {
+  try {
+    const { id } = req.body;
+    
+    await userService.deleteUser(id);
+    res.status(status.OK).json({ message: 'user deleted' });
+  } catch (error) {
+    res.status(status.INTERNAL_SERVER_ERROR).json({ message: INTERNAL_SERVER_ERROR_MSG });
+  }
+};
+
+module.exports = { loginUser, createUser, createUserByADM, getAllUsers, deleteUser };

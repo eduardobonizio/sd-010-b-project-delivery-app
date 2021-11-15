@@ -1,25 +1,19 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import NavBar from '../components/navBar';
 import UserList from '../components/UserList';
-import handleFetchRegister from '../services/fetchAPIRegister';
+import admRegisterAPI from '../services/admRegisterAPI';
 
 export default function Admin() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [role, setRole] = useState('Customer');
   const [isValidEntry, setIsValidEntry] = useState(true);
-  const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await handleFetchRegister(name, email, password);
-    localStorage.setItem('user', JSON.stringify(res));
-    if (res.message) {
-      setIsValidEntry(false);
-    } else {
-      history.push('/customer/products');
-    }
+    const res = await admRegisterAPI(name, email, password, role);
+    if (res.message) setIsValidEntry(false);
   };
 
   const buttonActivation = () => {
@@ -63,9 +57,12 @@ export default function Admin() {
           data-testid="admin_manage__input-password"
           placeholder="********"
         />
-        <select data-testid="admin_manage__select-role">
-          <option value="customer">Cliente</option>
-          <option value="seller">Vendedor</option>
+        <select
+          data-testid="admin_manage__select-role"
+          onChange={ ({ target }) => setRole(target.value) }
+        >
+          <option value="Customer">Cliente</option>
+          <option value="Seller">Vendedor</option>
         </select>
         <button
           disabled={ buttonActivation() }
@@ -76,8 +73,8 @@ export default function Admin() {
         </button>
         { !isValidEntry
             && (
-              <span>
-                Usuário já existente
+              <span data-testid="admin_manage__element-invalid-register">
+                Erro ao cadastrar.
               </span>
             )}
       </form>
