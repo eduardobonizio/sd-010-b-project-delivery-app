@@ -1,4 +1,4 @@
-const crypto = require('crypto');
+const md5 = require('md5');
 const { User } = require('../../../database/models');
 const { ApiError } = require('../../utils/ApiError');
 
@@ -14,17 +14,17 @@ const checkIfUserExist = async ({ email, expectExist }) => {
   return user;
 };
 
-const encryptPassword = (password) => crypto.createHash('md5').update(password).digest('hex');
+// const encryptPassword = (password) => crypto.createHash('md5').update(password).digest('hex');
 
 const checkIfPasswordIsValid = async (userPassword, password) => {
-  const cryptoPassword = encryptPassword(password);
+  const cryptoPassword = md5(password);
   const isValid = userPassword === cryptoPassword;
   if (!isValid) throw new ApiError('Incorrect password');
 };
 
 const createUser = async ({ name, email, password }) => {
   await checkIfUserExist({ email, expectExist: false });
-  const cryptPass = encryptPassword(password);
+  const cryptPass = md5(password);
   const newUser = await User.create({ name, email, password: cryptPass, role: 'customer' });
   return newUser;
 };
