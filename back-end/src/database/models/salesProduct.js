@@ -24,5 +24,5 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: 'productId' 
     });
   };
-  return Sales_Products;
+  return salesProduct;
 };
