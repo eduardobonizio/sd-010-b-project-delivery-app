@@ -3,7 +3,7 @@ import { useHistory } from 'react-router';
 
 import fields from '../services/formFields';
 
-import { register } from '../api';
+import API from '../api';
 
 import {
   validateEmail,
@@ -33,7 +33,7 @@ function Register() {
     const { name, email, password } = state;
     try {
       const user = { name, email, password };
-      await register(user);
+      await API.register(user);
       history.push('/customer/products');
     } catch (err) {
       setError(err);

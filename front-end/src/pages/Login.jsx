@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-import { login } from '../api';
+import API from '../api';
 
 import { validateEmail, validatePassword } from '../util/valdations';
 
@@ -42,7 +42,7 @@ function Login() {
     e.preventDefault();
     try {
       const user = { email, password };
-      await login(user);
+      API.login(user);
       history.push('/customer/products');
     } catch (err) {
       setError(err);
