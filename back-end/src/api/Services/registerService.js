@@ -17,10 +17,14 @@ const registerUser = async ({ name, password, email }) => {
   console.log(newPassword);
 
   const register = await user.create({ name, password: newPassword, email });
+  
+  console.log(register);
 
   if (!register) return false;
 
-  return { name, email, password: newPassword, role: register.role }; 
+  // return { name, email, password: newPassword, role: 'user' };
+
+  return register;
 };
 
 module.exports = {
