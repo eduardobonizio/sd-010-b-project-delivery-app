@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  BrowserRouter,
   Switch,
   Route,
   Redirect,
@@ -11,16 +10,14 @@ import Register from './pages/Register';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/register" component={ Register } />
-        <Route exact path="/customer/products" component={ Product } />
-        <Route path="/login" component={ Login } />
-        <Route exact path="/">
-          <Redirect to="/login" />
-        </Route>
-      </Switch>
-    </BrowserRouter>
+    <Switch>
+      <Route exact path="/register" component={ Register } />
+      <Route exact path="/customer/products" component={ Product } />
+      <Route path="/login" component={ Login } />
+      <Route exact path="/">
+        <Redirect to="/login" />
+      </Route>
+    </Switch>
   );
 }
 
