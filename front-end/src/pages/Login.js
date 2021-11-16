@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { Context } from '../context/ContextGlobal';
-import LoginGif from '../images/login.gif';
+// import LoginGif from '../images/login.gif';
 import '../styles/Login.css';
 
 function Login() {
@@ -18,9 +18,6 @@ function Login() {
   return (
     <div className="login__container">
       <div className="login-sub__container">
-        <div>
-          <img src={ LoginGif } alt="gif delivery" className="login-image" />
-        </div>
         <div className="login-rightSide">
           <h1>Login</h1>
           <form className="login-body">
@@ -52,17 +49,17 @@ function Login() {
               LOGIN
             </Button>
             <Link to="/register">
-              <Button
+              {/* <Button
                 className="login-button"
                 data-testid="common_login__button-register"
               >
                 Ainda não tenho conta
-              </Button>
+              </Button> */}
             </Link>
           </form>
           {errorLogin
             && <span data-testid="common_login__element-invalid-email">{ error }</span>}
-        </div> 
+        </div>
       </div>
     </div>
   );
