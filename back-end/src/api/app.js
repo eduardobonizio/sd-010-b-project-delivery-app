@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const { userRouter, loginRouter } = require('../routes');
+const { userRouter, loginRouter, customerRouter } = require('../routes');
 
 const app = express();
 
@@ -11,6 +11,7 @@ app.use(express.json());
 app.use(cors());
 
 app.get('/coffee', (_req, res) => res.status(418).end());
+app.use('/customers', customerRouter);
 app.use('/login', loginRouter);
 app.use('/user', userRouter);
 app.use(error);
