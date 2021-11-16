@@ -1,57 +1,55 @@
 .div-mainDiv {
-display: flex;
-flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
-
 .cards-sections {
-  background-color: hotpink;
-  width: 280px;
-  height: 280px;
+  box-shadow: 0 4px 4px 0  #b1c2be;
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  flex-flow: column wrap;
+  height: 400px;
+  justify-content: space-between;
   margin-left: 15px;
   margin-top: 20px;
-  /* justify-content: center; */
-  align-items: center;
-  justify-content: space-between;
-
-
+  width: 280px;
 }
 
 .div-btn-mainDiv {
-  background-color: #d3d3d3 ;
+  align-items: center;
+  background-color: lightgray;
+  bottom: 0;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  align-items: center;
-  height: 100px;
+  height: 80px;
   margin: 0;
-  bottom: 0;
+  width: 100%;
 }
 
 .div-btn-handlers {
+  align-items: center;
+  bottom: 33px;
   display: flex;
   justify-content: center;
-  align-items: center;
   position: relative;
-  bottom: 10px;
-  
 }
 
 .btn-handlers {
-  height: 30px;
-  width: 30px;
-  display: flex;
-  justify-content: center;
   align-items: center;
+  display: flex;
+  height: 30px;
+  justify-content: center;
+  width: 30px;
 }
 
 .imgs-element-cards {
-  width:150px;
-  height: 150px;
-  position: absolute;
   display: flex;
+  height: 270px;
+  width: 100%;
+}
+
+.div-price {
+  background-color: rgba(242, 255, 252, 0.75);
+  font-weight: 700;
+  margin-left: 16px;
 }

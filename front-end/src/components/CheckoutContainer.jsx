@@ -4,11 +4,12 @@ import CheckoutProducts from './CheckoutProducts';
 import PurshaseTotal from './PurchaseTotal';
 import PurchaseOrderBtn from './PurchaseOrderBtn';
 import DeliveryContainer from './DeliveryContainer';
-import Header from './Header';
 import { Context } from '../provider/Provider';
+import Header from './Header';
 
 function CheckoutContainer() {
   const { orderInProgress } = React.useContext(Context);
+  console.log('order', orderInProgress);
   return (
     <div>
       <Header />
