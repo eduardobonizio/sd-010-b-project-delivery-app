@@ -17,7 +17,7 @@ const CheckoutButtonProducts = () => {
           className="checkout-btn"
           data-testid="customer_products__checkout-bottom-value"
         >
-          {`Ver Carrinho: R$ ${totalOrder}` }
+          {`Ver Carrinho: R$ ${addZeroes(totalOrder)}` }
         </button>
       </Link>
     </div>
