@@ -12,7 +12,7 @@ function Cards({ values }) {
           className="div-price"
           data-testid={ `customer_products__element-card-price-${id}` }
         >
-          {`R$ ${price},00`}
+          {`R$ ${price}`}
         </div>
         <img
           alt="Cerveja"
