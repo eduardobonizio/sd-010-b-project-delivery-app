@@ -1,6 +1,6 @@
 const httpStatus = require('http-status');
 
-const { Sale, SalesProduct } = require('../database/models');
+const { User, Sale, SalesProduct, Product } = require('../database/models');
 const validations = require('../utils/validations');
 
 const createSale = async (payloadUser, { sale, cart }) => {
@@ -30,4 +30,15 @@ const getAll = async ({ id, role }) => {
   return ({ status: httpStatus.OK, data });
 };
 
-module.exports = { createSale, getAll };
+const getById = async ({ id }) => {
+  const data = await Sale.findAll({
+    where: { id },
+    include: [
+      { model: User, as: 'seller', attributes: ['name']},
+      { model: Product, as: 'products', through: { attributes: ['quantity'] } },
+    ],
+  });
+  return ({ status: httpStatus.OK, data });
+};
+
+module.exports = { createSale, getAll, getById };
