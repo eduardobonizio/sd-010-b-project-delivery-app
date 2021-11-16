@@ -6,8 +6,29 @@ import Context from './Context';
 
 function Provider({ children }) {
   const [value, setValue] = useState(0);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMsg, setErrorMsg] = useState(false);
+
+  const handleClick = (user) => {
+    if (!user.email || !user.password) {
+      setErrorMsg(true);
+    }
+  };
+
+  const states = {
+    value,
+    setValue,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    errorMsg,
+    handleClick,
+  };
+
   return (
-    <Context.Provider value={ { value, setValue } }>
+    <Context.Provider value={ states }>
       {children}
     </Context.Provider>
   );
