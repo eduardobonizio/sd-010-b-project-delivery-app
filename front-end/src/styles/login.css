@@ -1,10 +1,10 @@
 html, body {
-  display: flex;
   height: 100%;
   margin: 0;
+  width: 100%;
 }
 
-form {
+.form-login {
   background: #eaf1ef;
   border: 1px solid #b1c2be;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
@@ -15,19 +15,19 @@ form {
   width: 350px;
 }
 
-form > div {
+.form-login > div {
   align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
 }
 
-label {
+.label-login {
   display: flex;
   flex-direction: column;
 }
 
-input, button {
+.input-login, .login-btn {
   border: 1px solid #b1c2be;
   border-radius: 5px;
   font-size: larger;
@@ -39,8 +39,10 @@ input, button {
 }
 
 .login-content {
+  align-items: center;
   display: flex;
   flex-direction: column;
+  height: 100%;
   justify-content: center;
 }
 

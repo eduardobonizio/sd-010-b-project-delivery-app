@@ -5,8 +5,6 @@ import '../styles/ProductsCards.css';
 
 const handleProductsObjectsToOrders = (el, signal = 'mais', quantity = 0) => {
   const { id, name, price, url } = el;
-  console.log('quantity', quantity, quantity, signal, 1);
-
   if (signal === 'mais') {
     return {
       id, name, price, url, quantity: quantity + 1,
@@ -25,7 +23,6 @@ const ProductsCards = () => {
   const handleSetOrderPositive = (el) => {
     const arr = orderInProgress.filter(({ id }) => id === el.id);
     const arrRest = orderInProgress.filter(({ id }) => id !== el.id);
-    console.log(arr, 'arr', arr.length);
     if (arr.length === 0) {
       console.log('lenght 0', arr);
       return setOrderInProgress([
@@ -33,7 +30,6 @@ const ProductsCards = () => {
       ]);
     }
     if (arr.length > 0) {
-      console.log('entrei batata', arr, arr.quantity, arr[0], arr[0].quantity);
       return setOrderInProgress(
         arrRest.concat(handleProductsObjectsToOrders(el, 'mais', arr[0].quantity)),
       );
@@ -51,7 +47,8 @@ const ProductsCards = () => {
     const arrToRemove = orderInProgress.filter(({ id }) => id === el.id);
     const arrRest = orderInProgress.filter(({ id }) => id !== el.id);
 
-    if (arrToRemove.length > 0) {
+    if (arrToRemove.length > 0 && arrToRemove[0].quantity) {
+      console.log(arrToRemove, 'arr to remove');
       setOrderInProgress(arrRest
         .concat(handleProductsObjectsToOrders(el, 'menos', arrToRemove[0].quantity)));
 
@@ -63,7 +60,6 @@ const ProductsCards = () => {
   const handleQuantity = (el) => {
     if (orderInProgress.length < 1) return 0;
     const arr = orderInProgress.filter((data) => data.id === el.id);
-    console.log(arr.quantity, arr, 'aqui');
     if (arr.length === 1) {
       console.log('eu existo ');
       return arr[0].quantity;
