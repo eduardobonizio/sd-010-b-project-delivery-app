@@ -10,6 +10,7 @@ function Register() {
   const [registerPassword, setRegisterPassword] = useState('');
   const [btnDisable, setBtnDisable] = useState(true);
   const [error, setError] = useState('');
+  const [isEmailInvalid, setIsEmailInvalid] = useState(false);
 
   const history = useHistory();
 
@@ -23,6 +24,7 @@ function Register() {
   }, [registerName, registerEmail, registerPassword]);
 
   const handleInput = ({ target: { name: inputName, value } }) => {
+    setIsEmailInvalid(false);
     if (error) setError('');
     switch (inputName) {
     case 'name':
@@ -50,7 +52,10 @@ function Register() {
         localStorage.setItem('user', JSON.stringify({ token, ...user }));
         history.push('/customer/products');
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setIsEmailInvalid(true);
+        console.log(err);
+      });
   };
 
   return (
@@ -112,6 +117,14 @@ function Register() {
           )
         }
       </form>
+      {isEmailInvalid ? (
+        <h4
+          data-testid="common_register__element-invalid_register"
+        >
+          Email ou nome já cadastrado
+
+        </h4>)
+        : null}
     </div>
   );
 }

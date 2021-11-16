@@ -1,4 +1,4 @@
-const { getUserByEmailService, createUserService } = require('../services/userService');
+const { getUserByEmailService, createUserService, getUserByNameService } = require('../services/userService');
 const md5 = require('md5');
 
 const getUserByEmail = async (req, res) => {
@@ -23,13 +23,20 @@ const getUserByEmail = async (req, res) => {
 
 const createUser = async (req, res) => {
   const { registerName: name, registerEmail: email, registerPassword, role } = req.body;
+  const nameResult = await getUserByNameService(name);
+  const emailResult = await getUserByEmailService(email);
+  if(emailResult !== null){
+    return res.status(409).json({message: 'Email já cadastrado'})
+  }
+  if(nameResult !== null){
+    return res.status(409).json({message: 'Email já cadastrado'})
+  }
   if(!name || !email || !registerPassword){
     return req.status(400).json({message: 'Campos inválidos!'})
   }
   const password = md5(registerPassword);
   try{
     const result = await createUserService({name, email, password, role});
-    console.log(result);
     return res.status(201).json({message: 'User created', result});
   }
   catch(err){
