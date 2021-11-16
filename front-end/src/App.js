@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Provider from './context/ContextGlobal';
+import AdminManage from './pages/AdminManage';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import CustomerProducts from './pages/CustomerProducts';
@@ -30,6 +31,7 @@ function App() {
           />
           <Route path="/seller/orders" component={ SellerOrders } />
           <Route path="/seller/orders/:id" component={ SellerOrdersId } />
+          <Route path="/admin/manage" component={ AdminManage } />
         </Switch>
       </Provider>
     </BrowserRouter>
