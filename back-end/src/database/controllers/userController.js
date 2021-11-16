@@ -21,13 +21,20 @@ const getUserByEmail = async (req, res) => {
   }
 }
 
-const createUser = (req, res) => {
-  console.log(req.body);
-  const { registerName, registerEmail, registerPassword, role } = req.body;
-  // try{
-
-  // }
-  // return res.status(201).json({message: 'User created'})
+const createUser = async (req, res) => {
+  const { registerName: name, registerEmail: email, registerPassword, role } = req.body;
+  if(!name || !email || !registerPassword){
+    return req.status(400).json({message: 'Campos inválidos!'})
+  }
+  const password = md5(registerPassword);
+  try{
+    const result = await createUserService({name, email, password, role});
+    console.log(result);
+    return res.status(201).json({message: 'User created', result});
+  }
+  catch(err){
+    return res.status(500).json({message: 'Erro interno', err})
+  }
 }
 
 module.exports={

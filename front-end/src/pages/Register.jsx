@@ -44,7 +44,6 @@ function Register() {
       registerPassword,
       role: 'customer',
     };
-    console.log('oba');
     await axios.post(pushUrl, userData)
       .then((res) => {
         const { user, token } = res.data;

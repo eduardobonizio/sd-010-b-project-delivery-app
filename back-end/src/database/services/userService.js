@@ -6,7 +6,8 @@ const getUserByEmailService = async (email) => {
 }
 
 const createUserService = async ({name, email, password, role}) => {
-
+  const result = await User.create({name, email, password, role});
+  return result;
 }
 
 module.exports={
