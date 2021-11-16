@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import DeliveryContext from '../context/DeliveryContext';
 import ErrorMessage from './ErrorMessage';
@@ -10,6 +11,9 @@ function RegisterForm() {
     email: '',
     senha: '',
   });
+
+  const [isValidData, setIsValidData] = useState(true);
+
   const { nome, senha, email } = registerInfo;
 
   const ableButton = () => {
@@ -31,13 +35,15 @@ function RegisterForm() {
   const handleSendRegister = async (event) => {
     event.preventDefault();
     try {
-      const data = await axios.post('http://localhost:3001/register', {
+      const { data } = await axios.post('http://localhost:3001/register', {
         name: nome,
         password: senha,
         email,
       });
       console.log(data);
     } catch (err) {
+      console.log(err);
+      setIsValidData(false);
       return err;
     }
   };
@@ -97,6 +103,11 @@ function RegisterForm() {
       >
         Registra-se
       </button>
+      {
+        isValidData
+          ? null
+          : <ErrorMessage input="invalid-data" />
+      }
     </form>);
 }
 

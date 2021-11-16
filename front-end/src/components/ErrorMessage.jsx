@@ -6,6 +6,7 @@ function ErrorMessage({ input }) {
     nome: 'O nome precisa ter no mínimo 12 caracteres',
     senha: 'A senha precisa ter no mínimo 6 caraceteres',
     email: 'Precisa ser um email válido',
+    'invalid-data': 'Usuário já cadastrado ou dados inválidos',
   };
 
   return (
