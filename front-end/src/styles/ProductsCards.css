@@ -6,12 +6,17 @@
 
 
 .cards-sections {
+
   /* background-color: hotpink; */
+
   /* height: 280px; */
+
   /* height: 486px; */
+
   /* justify-content: center; */
+
   /* align-items: center; */
-  box-shadow: 0 4px 4px 0  #B1C2BE;
+  box-shadow: 0 4px 4px 0  #b1c2be;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -24,7 +29,7 @@
 
 .div-btn-mainDiv {
   align-items: center;
-  background-color: #d3d3d3 ;
+  background-color: lightgray ;
   bottom: 0;
   display: flex;
   flex-direction: column;
@@ -62,6 +67,6 @@
 .div-price {
   /* background-color:  #F2FFFC; */
   background-color:  rgba(242, 255, 252, 0.75);
-  margin-left: 16px;
   font-weight: bold;
+  margin-left: 16px;
 }
