@@ -1,27 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import * as style from './style';
 import { apiRequestLogin } from '../../../services/login/apiRequestLogin';
 
 export default function Login() {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  const [erro, setErro] = useState();
+  const [erro] = useState();
   const [user, setUser] = useState();
   const [btnDisable, setBtnDisable] = useState(true);
-  // setBtnDisable
-  useEffect(() => {
-    console.log('erro:', erro);
-    console.log('user:', user);
-  }, [erro, user]);
 
-  const tryLogin = (e) => {
-    apiRequestLogin({ email, password })
-      .then((response) => setUser(response))
-      .catch((error) => setErro(error));
+  const navigate = useNavigate();
 
-    if (!user) {
-      e.preventDefault();
+  const tryLogin = async (e) => {
+    e.preventDefault();
+
+    const login = await apiRequestLogin({ email, password });
+
+    setUser(login);
+
+    if (login.id) {
+      console.log(user);
+      navigate('../customer/products', { replace: true });
     }
   };
 
@@ -68,9 +68,12 @@ export default function Login() {
         >
           Login
         </style.LoginButton>
-        <style.RegisterButton type="submit" data-testid="common_login__button-register">
+        <style.RegisterButton
+          type="submit"
+          data-testid="common_login__button-register"
+          onClick={ () => navigate('../register', { replace: true }) }
+        >
           Ainda nao tenho conta
-          <Link to="/register" />
         </style.RegisterButton>
         <p
           id="erro"

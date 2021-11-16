@@ -1,12 +1,12 @@
 import { postAll } from '../httpService';
 
-async function apiCreateLogin(userObject) {
+async function apiCreateUser(userObject) {
   try {
-    const newUser = await postAll('/register', userObject);
+    const newUser = await postAll('/user', userObject);
     return newUser;
   } catch (error) {
-    console.log(error);
+    return error.response.data;
   }
 }
 
-export default apiCreateLogin;
+export default apiCreateUser;
