@@ -27,7 +27,7 @@ const createSale = ({ sellerId, totalPrice, deliveryAddress, deliveryNumber }, c
 
 const updateSale = (id, status) => {
   sale.validateId(id);
-  sale.validadeStatus(status);
+  sale.validateStatus(status);
 };
 
 module.exports = { createUser, login, createSale, updateSale };
