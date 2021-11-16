@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { Redirect } from 'react-router';
 import { useHistory } from 'react-router-dom';
-import axios from 'axios';
 
-import { Form, Input, Button, notification } from 'antd';
+import { Form, Input, Button, Alert } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+
 import './loginForm.css';
+
 import Logincontext from '../../context/LoginContext';
 
 function LoginForm() {
@@ -28,22 +30,10 @@ function LoginForm() {
         email,
         password,
       });
-      // console.log(respLogin);
       setRedirect(true);
     } catch (error) {
       setIsError(true);
     }
-  };
-
-  // console.log(values);
-
-  const openNotificationWithIcon = (type) => {
-    // const resp = await axios.get('http://localhost:3001/products');
-    // console.log(password, email);
-    notification[type]({
-      message: 'Login efetuado com sucesso!',
-      duration: 3,
-    });
   };
 
   if (redirect) {
@@ -52,11 +42,17 @@ function LoginForm() {
     );
   }
 
-  const redirectToRegister = () => history.push('/register');
-
   return (
     <section className="main-container">
-      {isError && (<p data-testid="common_login__element-invalid-email"> TESTE </p>)}
+      {isError && (
+        <section className="container-error-message">
+          <Alert
+            data-testid="common_login__element-invalid-email"
+            message="Usuário não cadastrado!"
+            type="error"
+            showIcon
+          />
+        </section>)}
       <section className="secondary-container">
         <Form
           form={ form }
@@ -112,7 +108,6 @@ function LoginForm() {
               <Button
                 data-testid="common_login__button-login"
                 style={ { backgroundColor: '#036b52' } }
-                onClick={ () => openNotificationWithIcon('success') }
                 block
                 shape="round"
                 htmlType="submit"
@@ -134,7 +129,7 @@ function LoginForm() {
           shape="round"
           htmlType="submit"
           className="login-form-button"
-          onClick={ () => redirectToRegister() }
+          onClick={ () => history.push('/register') }
         >
           Ainda não tenho cadastro
         </Button>

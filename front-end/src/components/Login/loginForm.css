@@ -12,3 +12,10 @@
   padding: 30px;
   width: 450px;
 }
+
+.container-error-message {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
