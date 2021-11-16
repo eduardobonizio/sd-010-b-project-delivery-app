@@ -5,6 +5,11 @@ const getUserByEmailService = async (email) => {
   return result;
 }
 
+const createUserService = async ({name, email, password, role}) => {
+
+}
+
 module.exports={
   getUserByEmailService,
+  createUserService
 }

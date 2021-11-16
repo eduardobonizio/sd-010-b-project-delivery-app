@@ -1,4 +1,4 @@
-const { getUserByEmailService } = require('../services/userService');
+const { getUserByEmailService, createUserService } = require('../services/userService');
 const md5 = require('md5');
 
 const getUserByEmail = async (req, res) => {
@@ -21,6 +21,16 @@ const getUserByEmail = async (req, res) => {
   }
 }
 
+const createUser = (req, res) => {
+  console.log(req.body);
+  const { registerName, registerEmail, registerPassword, role } = req.body;
+  // try{
+
+  // }
+  // return res.status(201).json({message: 'User created'})
+}
+
 module.exports={
   getUserByEmail,
+  createUser,
 }
