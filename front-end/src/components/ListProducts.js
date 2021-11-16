@@ -6,13 +6,16 @@ import { getStorage } from '../utils/localStorage';
 export default function ListProducts() {
   const [products, setProducts] = useState([]);
   const [quantity, setQuantity] = useState(0);
+  const [total, setTotal] = useState(0);
   const history = useHistory();
 
-  function setQuantityItems(operator) {
-    if (operator === '-' && quantity > 0) {
+  function setQuantityItems(target, price) {
+    if (target.innerText === '-' && quantity > 0) {
+      setTotal(total - price);
       return setQuantity(quantity - 1);
     }
-    if (operator === '+') {
+    if (target.innerText === '+') {
+      setTotal(total + price);
       return setQuantity(quantity + 1);
     }
     return 0;
@@ -34,6 +37,7 @@ export default function ListProducts() {
           <img
             src={ urlImage }
             alt={ name }
+            style={ { width: '5rem' } }
             data-testid={ `customer_products__img-card-bg-image-${id}` }
           />
           <span data-testid={ `customer_products__element-card-title-${id}` }>
@@ -42,7 +46,7 @@ export default function ListProducts() {
           <button
             type="button"
             data-testid={ `customer_products__button-card-rm-item-${id}` }
-            onClick={ () => setQuantityItems('-') }
+            onClick={ ({ target }) => setQuantityItems(target, price) }
           >
             -
           </button>
@@ -56,7 +60,7 @@ export default function ListProducts() {
           <button
             type="button"
             data-testid={ `customer_products__button-card-add-item-${id}` }
-            onClick={ () => setQuantityItems('+') }
+            onClick={ ({ target }) => setQuantityItems(target, price) }
           >
             +
           </button>
@@ -65,6 +69,11 @@ export default function ListProducts() {
         </section>
 
       ))}
+      <h2>
+        Preço total é:
+        {' '}
+        { total }
+      </h2>
     </>
 
   );
