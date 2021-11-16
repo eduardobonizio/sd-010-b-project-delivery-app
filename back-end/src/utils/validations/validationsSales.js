@@ -39,13 +39,13 @@ const validateQuantity = (quantity) => {
 };
 
 const validateId = (id) => {
-  if (!number || !Number(number)) {
+  if (!id || !Number(id)) {
     throw err(errorMessage.INVALID_ENTRIES);
   }
 };
 
 const validateStatus = (status) => {
-  const allStatus = ['Pendente', 'Preparando', 'Em Trânsito', 'Entregue']
+  const allStatus = ['Pendente', 'Preparando', 'Em Trânsito', 'Entregue'];
   if (!status || !allStatus.includes(status)) {
     throw err(errorMessage.INVALID_ENTRIES);
   }

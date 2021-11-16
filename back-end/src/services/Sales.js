@@ -34,7 +34,7 @@ const getById = async ({ id }) => {
   const data = await Sale.findAll({
     where: { id },
     include: [
-      { model: User, as: 'seller', attributes: ['name']},
+      { model: User, as: 'seller', attributes: ['name'] },
       { model: Product, as: 'products', through: { attributes: ['quantity'] } },
     ],
   });
@@ -44,9 +44,9 @@ const getById = async ({ id }) => {
 const updateStatus = async ({ id }, { status }) => {
   validations.updateSale(id, status);
 
-  await Sale.update({ status }, { where: { id }});
+  await Sale.update({ status }, { where: { id } });
   
-  return ({ status: httpStatus.NO_CONTENT, data: [{ message: "Atualizado" }] });
+  return ({ status: httpStatus.NO_CONTENT, data: [{ message: 'Atualizado' }] });
 };
 
 module.exports = { createSale, getAll, getById, updateStatus };
