@@ -1,10 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import apiCreateUser from '../../../services/register/apiRequestRegister';
 
 export default function Register() {
   const [btnDisable, setBtnDisable] = useState(true);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const navigate = useNavigate();
+
+  const tryRegister = async (e) => {
+    e.preventDefault();
+
+    const register = await apiCreateUser({ name, email, password, role: 'customer' });
+
+    if (register.token) navigate('../customer/products', { replace: true });
+  };
 
   useEffect(() => {
     function buttonAble() {
@@ -49,7 +61,7 @@ export default function Register() {
           type="submit"
           disabled={ btnDisable }
           data-testid="common_register__button-register"
-          onClick={ (e) => console.log(e) }
+          onClick={ (e) => tryRegister(e) }
         >
           desabilitando botao
         </button>

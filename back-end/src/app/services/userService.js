@@ -1,7 +1,7 @@
 const md5 = require('md5');
 const { User } = require('../../database/models');
 const { validUser } = require('../../middlewares/userValidations');
-// const { jwtLogin } = require('../../middlewares/auth/tokenJWT');
+const { jwtLogin } = require('../../middlewares/auth/tokenJWT');
 
 const messageError = (status, message) => ({
   status,
@@ -29,12 +29,12 @@ const addUser = async (bodyCategory) => {
 
   const passwordHash = md5(password);
 
-  // const payload = { email };
-  // // jwtLogin(payload);
+  const payload = { email };
+  const token = jwtLogin(payload);
 
   // // // console.log(token);
-  const newUser = await User.create({ name, email, password: passwordHash, role });
-  return newUser;
+  await User.create({ name, email, password: passwordHash, role });
+  return { token };
 };
 
 module.exports = {

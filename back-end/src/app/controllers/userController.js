@@ -14,8 +14,8 @@ const findById = rescue(async (req, res) => {
 });
 
 const add = rescue(async (req, res) => {
-  await userService.addUser(req.body);
-  return res.status(201).json({ message: '201 - Created' });
+  const result = await userService.addUser(req.body);
+  return res.status(201).json(result);
 });
 
 module.exports = {
