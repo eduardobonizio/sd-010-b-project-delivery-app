@@ -1,5 +1,5 @@
-const { User } = require('../database/models');
 const md5 = require('md5');
+const { User } = require('../database/models');
 
 const verifyName = (req, res, next) => {
   const { name } = req.body;
@@ -32,7 +32,8 @@ const verifyDbUser = async (req, res, next) => {
   const { email, password } = req.body;
   const response = await User.findOne({ where: { email } });
   if (!response) return res.status(404).json({ message: 'Not found' });
-  if (md5(password) !== response.dataValues.password) return res.status(404).json({ message: 'Senha errada' });
+  const { dataValues } = response;
+  if (md5(password) !== dataValues.password) return res.status(404).json({ message: 'Not Found' });
   req.body.user = response.dataValues;
   next();
 };
