@@ -3,26 +3,59 @@ import { Context } from '../provider/Provider';
 import fixPrice from '../helper/functions/fixPrice';
 import '../styles/ProductsCards.css';
 
+const handleProductsObjectsToOrders = (el, signal = 'mais', quantity = 0) => {
+  const { id, name, price, url } = el;
+  console.log('quantity', quantity, quantity, signal, 1);
+
+  if (signal === 'mais') {
+    return {
+      id, name, price, url, quantity: quantity + 1,
+    };
+  }
+  return {
+    id, name, price, url, quantity: quantity - 1,
+
+  };
+};
+
 const ProductsCards = () => {
   const { products, setOrderInProgress, orderInProgress,
     setTotalOrder, totalOrder } = useContext(Context);
+
+  const handleSetOrderPositive = (el) => {
+    const arr = orderInProgress.filter(({ id }) => id === el.id);
+    const arrRest = orderInProgress.filter(({ id }) => id !== el.id);
+    console.log(arr, 'arr', arr.length);
+    if (arr.length === 0) {
+      console.log('lenght 0', arr);
+      return setOrderInProgress([
+        ...orderInProgress, handleProductsObjectsToOrders(el),
+      ]);
+    }
+    if (arr.length > 0) {
+      console.log('entrei batata', arr, arr.quantity, arr[0], arr[0].quantity);
+      return setOrderInProgress(
+        arrRest.concat(handleProductsObjectsToOrders(el, 'mais', arr[0].quantity)),
+      );
+    }
+  };
+
   const handleClick = (el, name) => {
     if (name === '+') {
-      setOrderInProgress([
-        ...orderInProgress, el,
-      ]);
+      handleSetOrderPositive(el);
 
       const total = totalOrder + parseFloat(el.price);
       return setTotalOrder(parseFloat(total.toFixed(2)));
     }
+    // }
     const arrToRemove = orderInProgress.filter(({ id }) => id === el.id);
     const arrRest = orderInProgress.filter(({ id }) => id !== el.id);
 
     if (arrToRemove.length > 0) {
-      const newArr = arrToRemove.splice(0, arrToRemove.length - 1);
-      setOrderInProgress(arrRest.concat(newArr));
-      const total = totalOrder - parseFloat(el.price);
+      setOrderInProgress(arrRest
+        .concat(handleProductsObjectsToOrders(el, 'menos', arrToRemove[0].quantity)));
 
+      const total = totalOrder - parseFloat(el.price);
       return setTotalOrder(parseFloat(total.toFixed(2)));
     }
   };
@@ -30,6 +63,11 @@ const ProductsCards = () => {
   const handleQuantity = (el) => {
     if (orderInProgress.length < 1) return 0;
     const arr = orderInProgress.filter((data) => data.id === el.id);
+    console.log(arr.quantity, arr, 'aqui');
+    if (arr.length === 1) {
+      console.log('eu existo ');
+      return arr[0].quantity;
+    }
     return arr.length;
   };
 
@@ -41,7 +79,7 @@ const ProductsCards = () => {
             <p data-testid={ `customer_products__element-card-price-${el.id}` }>
               R$
               {' '}
-              { fixPrice(el.price) }
+              {fixPrice(el.price)}
             </p>
           </div>
           <img
