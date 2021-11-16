@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const { getUserByEmail } = require('../database/controllers/userController');
+const costumerProductRouter = require('../routers/RouterCostumersProducts');
 
 const app = express();
 app.use(bodyParser.json());
@@ -13,5 +14,9 @@ app.get('/login', async (_req, res) => res.status(200).json({ message: 'LOGIN' }
 app.post('/login', async (req, res) => getUserByEmail(req, res));
 
 app.get('/coffee', (_req, res) => res.status(418).end());
+
+app.use('/costumer/products', costumerProductRouter);
+
+app.use((err, _req, res, _next) => res.status(err.status).json(err.error));
 
 module.exports = app;
