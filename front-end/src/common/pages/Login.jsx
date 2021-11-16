@@ -1,4 +1,5 @@
 import React from 'react';
+import RedirectToRegister from '../../components/RegisterComponents/RedirectToRegister';
 
 import '../../styles/login.css';
 
@@ -25,12 +26,13 @@ export default function Login() {
           >
             LOGIN
           </button>
-          <button
+          {/* <button
             type="button"
             data-testid="common_login__button-register"
           >
             Ainda não tenho conta
-          </button>
+          </button> */}
+          <RedirectToRegister />
         </div>
       </form>
       <span
@@ -39,6 +41,8 @@ export default function Login() {
       >
         Erro!
       </span>
+      {/* <div> */}
+      {/* LOGIN */}
     </div>
   );
 }

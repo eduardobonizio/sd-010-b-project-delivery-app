@@ -77,6 +77,7 @@ const Provider = ({ children }) => {
     setOrderInProgress(JSON.parse(carrinho) || []);
     setTotalOrder(JSON.parse(price) || 0);
   }, []);
+  // }, [history, location]);
 
   useEffect(() => {
     localStorage.setItem('carrinho', JSON.stringify(orderInProgress));
