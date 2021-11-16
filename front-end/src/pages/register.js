@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router';
+import { create } from '../services/user';
 // import { Link } from 'react-router-dom';
 
 const Joi = require('joi');
@@ -8,6 +10,7 @@ function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [button, setButton] = useState(true);
+  const [token, setToken] = useState('');
   const minPasswordLength = 6;
   const minNameLength = 12;
 
@@ -31,13 +34,19 @@ function Register() {
     if (name === 'password') setPassword(value);
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const register = await create({ name: userName, email, password });
+    if (register.data.token) setToken(register.data.token);
+  };
+
   useEffect(() => {
     validateLogin();
   }, [userName, email, password, validateLogin]);
 
   return (
     <div>
-      <form>
+      <form onSubmit={ handleSubmit }>
         <label htmlFor="login-input">
           Nome
           <input
@@ -82,7 +91,9 @@ function Register() {
         >
           Cadastrar
         </button>
-
+        {/** Source https://stackoverflow.com/questions/52064303/reactjs-pass-props-with-redirect-component */}
+        {token !== ''
+          ? <Redirect to={ { pathname: '/customer/products', state: token } } /> : null}
         <p id="error-msg" data-testid="common_register__element-invalid_register">erro</p>
       </form>
     </div>
