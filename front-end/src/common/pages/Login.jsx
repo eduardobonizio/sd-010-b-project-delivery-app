@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import RedirectToRegister from '../../components/RegisterComponents/RedirectToRegister';
 
 import '../../styles/login.css';
 
@@ -54,12 +55,7 @@ export default function Login() {
           >
             LOGIN
           </button>
-          <button
-            type="button"
-            data-testid="common_login__button-register"
-          >
-            Ainda não tenho conta
-          </button>
+          <RedirectToRegister />
         </div>
       </form>
       <span

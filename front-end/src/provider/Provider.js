@@ -19,7 +19,7 @@ const Provider = ({ children }) => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     tokenHandler(token, location, history);
-  }, []);
+  }, [history, location]);
 
   return (
     <Context.Provider value={ context }>{children}</Context.Provider>
