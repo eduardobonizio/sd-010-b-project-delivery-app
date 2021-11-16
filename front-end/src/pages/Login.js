@@ -34,12 +34,20 @@ export default function Login() {
     const res = await fetchAuthUser(email, password);
 
     localStorage.setItem('user', JSON.stringify(res));
-    if (res.message) {
-      setIsValidEntry(false);
-    } else if (res.role === 'customer') {
+
+    switch (res.role) {
+    case 'customer':
       history.push('/customer/products');
-    } else if (res.role === 'seller') {
+      break;
+    case 'seller':
       history.push('/seller/orders');
+      break;
+    case 'administrator':
+      history.push('/admin/manage');
+      break;
+    default:
+      setIsValidEntry(false);
+      break;
     }
   };
 

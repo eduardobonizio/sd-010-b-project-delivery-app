@@ -34,48 +34,43 @@ export default function Register() {
   };
 
   return (
-    <div>
-      <form onSubmit={ handleSubmit }>
-        Nome
-        <input
-          onChange={ ({ target }) => setName(target.value) }
-          type="text"
-          data-testid="common_register__input-name"
-          placeholder="Seu nome"
-        />
-        <br />
-        Email
-        <input
-          onChange={ ({ target }) => setEmail(target.value) }
-          onClick={ () => setIsValidEntry(true) }
-          type="email"
-          data-testid="common_register__input-email"
-          placeholder="seu-email@site.com.br"
-        />
-        <br />
-        Senha
-        <input
-          onChange={ ({ target }) => setPassword(target.value) }
-          onClick={ () => setIsValidEntry(true) }
-          type="password"
-          data-testid="common_register__input-password"
-          placeholder="********"
-        />
-        <br />
-        <button
-          disabled={ buttonActivation() }
-          type="submit"
-          data-testid="common_register__button-register"
-        >
-          CADASTRAR
-        </button>
-        { !isValidEntry
+    <form onSubmit={ handleSubmit }>
+      Nome
+      <input
+        onChange={ ({ target }) => setName(target.value) }
+        type="text"
+        data-testid="common_register__input-name"
+        placeholder="Seu nome"
+      />
+      <br />
+      Email
+      <input
+        onChange={ ({ target }) => setEmail(target.value) }
+        type="email"
+        data-testid="common_register__input-email"
+        placeholder="seu-email@site.com.br"
+      />
+      <br />
+      Senha
+      <input
+        onChange={ ({ target }) => setPassword(target.value) }
+        type="password"
+        data-testid="common_register__input-password"
+        placeholder="********"
+      />
+      <button
+        disabled={ buttonActivation() }
+        type="submit"
+        data-testid="common_register__button-register"
+      >
+        CADASTRAR
+      </button>
+      { !isValidEntry
           && (
             <span data-testid="common_register__element-invalid_register">
               Usuário já existente
             </span>
           )}
-      </form>
-    </div>
+    </form>
   );
 }
