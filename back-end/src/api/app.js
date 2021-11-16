@@ -10,7 +10,7 @@ app.use(express.json());
 
 app.use('/cliente', productRouter);
 
-app.use('/usuario', userRouter);
+app.use('/login', userRouter);
 
 app.get('/', (_req, res) => res.redirect('/login'));
 
