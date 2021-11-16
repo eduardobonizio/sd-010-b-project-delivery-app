@@ -1,15 +1,23 @@
 import axios from 'axios';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import DeliveryContext from '../context/DeliveryContext';
 
 const Login = () => {
   const [isValidPW, setIsValidPW] = useState(false);
-  const [isValid, setIsValid] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
   const navigate = useNavigate();
   const { email, setEmail, password, setPassword, validarEmail, validarSenha,
   } = useContext(DeliveryContext);
+
+  useEffect(() => {
+    console.log('loop');
+    if (validarEmail(email) && validarSenha(password)) {
+      return setIsDisabled(false);
+    }
+    return setIsDisabled(true);
+  }, [email, password, validarEmail, validarSenha]);
 
   const buttonLogin = async () => {
     try {
@@ -22,18 +30,32 @@ const Login = () => {
     return navigate('/customer/products');
   };
 
-  const handleChange = ({ target }) => {
-    const { value, name } = target;
-    setIsValid(!(validarEmail(email) && validarSenha(password)));
-    return name === 'email' ? setEmail(value) : setPassword(value);
-  };
+  // const validarEmail = (e) => {
+  //   const emailTester = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/i;
 
-  // const isValid = () => {
-  //   if (validarEmail(email) && validarSenha(password)) {
+  //   if (!emailTester.test(e)) return false;
+
+  //   return true;
+  // };
+
+  // const validarSenha = (senha) => {
+  //   const SENHA_LENGTH = 6;
+  //   console.log(senha);
+
+  //   if (senha.length < SENHA_LENGTH) {
   //     return false;
   //   }
   //   return true;
   // };
+
+  const handleChange = ({ target }) => {
+    const { value, name } = target;
+    if (name === 'email') {
+      setEmail(value);
+    } else {
+      setPassword(value);
+    }
+  };
 
   const TEST_INVALID_EMAIL = 'common_login__element-invalid-email';
 
@@ -60,7 +82,7 @@ const Login = () => {
           data-testid="common_login__button-login"
           type="button"
           onClick={ buttonLogin }
-          disabled={ isValid }
+          disabled={ isDisabled }
         >
           LOGIN
         </button>
