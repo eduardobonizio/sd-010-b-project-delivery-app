@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router';
+// import { useNavigate } from 'react-router';
 
 function Home() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     localStorage.clear();
-    navigate('/login');
+    // navigate('/login');
   }, [navigate]);
 
   return (
