@@ -37,7 +37,7 @@ const createUserByADM = async (req, res) => {
   try {
     const { name, email, password, role } = req.body;
     const { authorization } = req.headers;
-    console.log(req.body, 'teste');
+    // console.log(req.body, 'teste');
     const decoded = jwt.verify(authorization, secretKey);
     
     if (decoded.role === 'administrator') { 
