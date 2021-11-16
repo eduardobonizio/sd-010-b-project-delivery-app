@@ -1,9 +1,11 @@
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import DeliveryContext from '../context/DeliveryContext';
 import ErrorMessage from './ErrorMessage';
 
 function RegisterForm() {
+  const navigate = useNavigate();
   const { validarNome, validarSenha, validarEmail } = useContext(DeliveryContext);
 
   const [registerInfo, setRegisterInfo] = useState({
@@ -40,6 +42,7 @@ function RegisterForm() {
         password: senha,
         email,
       });
+      navigate('/products');
       console.log(data);
     } catch (err) {
       console.log(err);
