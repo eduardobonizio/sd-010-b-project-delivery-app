@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 
 const middlewareError = require('../middlewares/error');
 const loginRoute = require('../routes/loginRoute');
@@ -9,7 +10,7 @@ const productsRoute = require('../routes/productsRoute');
 const app = express();
 
 app.use(express.json());
-
+app.use('/images', express.static(path.join(__dirname, '..', '..', 'public')));
 app.use(cors());
 app.use('/login', loginRoute);
 app.use('/register', userRegisterRoute);
