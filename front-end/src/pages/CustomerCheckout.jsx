@@ -9,6 +9,8 @@ import React, {
   useEffect,
   useState,
 } from 'react';
+import { useHistory } from 'react-router-dom';
+
 import CartForm from '../components/CartForm';
 import ProductTableHeader from '../components/ProductTableHeader';
 import ProductTableListCard from '../components/ProductTableListCard';
@@ -104,6 +106,8 @@ function CustomerCheckout() {
     setTotalPrice: setTotalPriceContext,
   } = useContext(ProductsContext);
 
+  const history = useHistory();
+
   useEffect(() => {
     localStorage.setItem('customerCart', JSON.stringify(PRODUCT_OBJ_ARRAY));
     setRefresh(true);
@@ -115,6 +119,15 @@ function CustomerCheckout() {
     setRefresh(false);
   }, [refresh]);
   // ---------------------------------------------------------
+  const handleOnClickRemove = (index) => {
+    const filterRenderProducts = Array.isArray(products)
+      ? products.filter((product, pIndex) => (
+        pIndex !== index
+      )) : null;
+    localStorage.setItem('customerCart', JSON.stringify(filterRenderProducts));
+    setRefresh(true);
+  };
+
   const renderCartItems = () => {
     const mappedRenderProducts = Array.isArray(products) ? products.map(
       ({ id, description, quantity, unitPrice }, index) => (
@@ -126,6 +139,7 @@ function CustomerCheckout() {
           pricePerUnit={ unitPrice }
           removeBtn
           testIdPreffix="customer_checkout"
+          onClick={ handleOnClickRemove }
         />
       ),
     ) : null;
@@ -154,6 +168,9 @@ function CustomerCheckout() {
       total_price: totalPriceContext,
     });
     console.log(createdSale);
+    if (createdSale.status) {
+      history.push(`/customer/orders/${createdSale.data.id}`);
+    }
   };
 
   return (

@@ -4,7 +4,7 @@ import { Box } from '@mui/system';
 import PropTypes from 'prop-types';
 
 const ProductTableListCard = (
-  { index, description, quantity, pricePerUnit, removeBtn, testIdPreffix },
+  { index, description, quantity, pricePerUnit, removeBtn, testIdPreffix, onClick },
 ) => {
   const DESC_SIZE_W_REMOVEBTN = 7;
   const DESC_SIZE_WO_REVOMEBTN = 9;
@@ -59,6 +59,7 @@ const ProductTableListCard = (
                 data-testid={
                   `${testIdPreffix}__element-order-table-remove-${index}`
                 }
+                onClick={ () => onClick(index) }
               >
                 Remove
               </Button>
@@ -71,6 +72,7 @@ const ProductTableListCard = (
 
 ProductTableListCard.defaultProps = {
   removeBtn: true,
+  onClick: false,
 };
 
 ProductTableListCard.propTypes = {
@@ -80,6 +82,7 @@ ProductTableListCard.propTypes = {
   pricePerUnit: PropTypes.number.isRequired,
   removeBtn: PropTypes.bool,
   testIdPreffix: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
 };
 
 export default ProductTableListCard;
