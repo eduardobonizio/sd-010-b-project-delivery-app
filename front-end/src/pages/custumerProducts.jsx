@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import getProducts from '../function/api';
 
+import ProductCard from '../components/productCard';
+
 const CustomerProducts = () => {
   const [isLoading, setIsloading] = useState(true);
   const [products, setProducts] = useState([]);
@@ -14,8 +16,8 @@ const CustomerProducts = () => {
   return !isLoading
     ? (
       <div>
-        {products.map(({ id, name, price, image }) => (
-          <productCard key={ id }>
+        {products.map(({ id, price, image, description }) => (
+          <ProductCard key={ id }>
             id=
             {id}
             price=
@@ -23,8 +25,8 @@ const CustomerProducts = () => {
             image=
             {image}
             description=
-            {name}
-          </productCard>
+            {description}
+          </ProductCard>
         ))}
 
         <h1>Customer Products</h1>
