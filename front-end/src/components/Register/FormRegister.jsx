@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import { Redirect } from 'react-router';
+import { Redirect } from 'react-router';
 import axios from 'axios';
 
 import { Form, Input, Button, notification } from 'antd';
@@ -12,7 +12,7 @@ function FormRegister() {
   const [form] = Form.useForm();
   const [, forceUpdate] = React.useState({});
   const [isError, setIsError] = useState(false);
-  // const [redirect, setRedirect] = useState(false);
+  const [redirect, setRedirect] = useState(false);
 
   React.useEffect(() => {
     forceUpdate({});
@@ -20,9 +20,10 @@ function FormRegister() {
 
   const onFinish = async (values) => {
     setUserData(values);
-    const { email, password } = values;
+    const { name, email, password } = values;
     try {
-      await axios.post('http://localhost:3001/login', {
+      await axios.post('http://localhost:3001/register', {
+        name,
         email,
         password,
       });
@@ -44,11 +45,11 @@ function FormRegister() {
     });
   };
 
-  // if (redirect) {
-  //   return (
-  //     <Redirect to="/customer/products" />
-  //   );
-  // }
+  if (redirect) {
+    return (
+      <Redirect to="/customer/products" />
+    );
+  }
 
   return (
     <section className="main-container">
@@ -65,7 +66,7 @@ function FormRegister() {
           <Form.Item
             colon
             label="Nome"
-            name="nome"
+            name="name"
             rules={ [
               {
                 required: true,
