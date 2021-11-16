@@ -3,8 +3,10 @@ import React from 'react';
 import Proptypes from 'prop-types';
 import { Context } from '../provider/Provider';
 
-function CheckoutProduct({ orderItem, index }) {
-  const { name, price, quantity } = orderItem;
+function CheckoutProduct({ order, index }) {
+  const { name, price, quantity } = order;
+  console.log(price);
+  console.log(quantity);
   const { removeProduct } = React.useContext(Context);
   return (
     <tr>
@@ -48,7 +50,7 @@ function CheckoutProduct({ orderItem, index }) {
 }
 
 CheckoutProduct.propTypes = {
-  orderItem: Proptypes.shape({
+  order: Proptypes.shape({
     name: Proptypes.string.isRequired,
     price: Proptypes.number.isRequired,
     quantity: Proptypes.number.isRequired,

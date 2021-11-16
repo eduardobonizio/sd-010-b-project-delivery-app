@@ -7,13 +7,20 @@ import { getAllProducts } from '../services/api';
 import translateToCamelCase from '../helper/functions/translateProductsToCamelCase';
 
 const Context = createContext();
+const seller = [
+  {
+    id: 1,
+    name: 'João',
+  },
+];
 
 const Provider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [orderInProgress, setOrderInProgress] = useState([]);
   const [totalOrder, setTotalOrder] = useState(0);
   const [dataUser, setDataUser] = useState({});
-  const [chooseSeller, setChooseSeller] = useState('');
+  const [sellers, setSellers] = useState(seller);
+  const [chooseSeller, setChooseSeller] = useState();
   const [purchaseAddress, setPurchaseAddress] = useState('');
   const [addressNumber, setAddressNumber] = useState('');
   const [ordered, setOrdered] = useState([]);
@@ -60,6 +67,8 @@ const Provider = ({ children }) => {
     removeProduct,
     ordered,
     setOrdered,
+    sellers,
+    setSellers,
   };
 
   const fetchProducts = async () => {

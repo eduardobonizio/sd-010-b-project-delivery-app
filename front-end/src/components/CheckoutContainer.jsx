@@ -4,10 +4,10 @@ import CheckoutProducts from './CheckoutProducts';
 import PurshaseTotal from './PurchaseTotal';
 import PurchaseOrderBtn from './PurchaseOrderBtn';
 import DeliveryContainer from './DeliveryContainer';
-import { Provider } from '../provider/Provider';
+import { Context } from '../provider/Provider';
 
 function CheckoutContainer() {
-  const { orderInProgress } = React.useContext(Provider);
+  const { orderInProgress } = React.useContext(Context);
   return (
     <div>
       Finalizar Pedido

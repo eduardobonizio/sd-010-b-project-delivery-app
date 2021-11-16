@@ -1,10 +1,10 @@
 import React from 'react';
-import { Context } from '../../../provider/Provider';
+// import { Context } from '../../../provider/Provider';
 import CheckoutContainer from '../../../components/CheckoutContainer';
 
 function Checkout() {
-  const { totalOrder } = React.useContext(Context);
-  return totalOrder > 0 ? <CheckoutContainer /> : <h2>Carrinho Vazio</h2>;
+  // const { totalOrder } = React.useContext(Context);
+  return <CheckoutContainer />;
 }
 
 export default Checkout;
