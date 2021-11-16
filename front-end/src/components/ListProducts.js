@@ -5,25 +5,33 @@ import { getStorage } from '../utils/localStorage';
 
 export default function ListProducts() {
   const [products, setProducts] = useState([]);
-  const [quantity, setQuantity] = useState(0);
   const [total, setTotal] = useState(0);
   const history = useHistory();
 
-  function setQuantityItems(target, price) {
-    if (target.innerText === '-' && quantity > 0) {
+  function setQuantityItems(target, product) {
+    const { price, quant } = product;
+    console.log(quant);
+    if (target.innerText === '-' && quant > 0) {
+      const indexProduct = products.indexOf(product);
+      products.splice(indexProduct, 1, { ...product, quant: quant - 1 });
       setTotal(total - price);
-      return setQuantity(quantity - 1);
+      return setProducts(products);
     }
     if (target.innerText === '+') {
+      const indexProduct = products.indexOf(product);
+      products.splice(indexProduct, 1, { ...product, quant: quant + 1 });
       setTotal(total + price);
-      return setQuantity(quantity + 1);
+      setProducts(products);
     }
     return 0;
   }
 
   useEffect(() => {
     if (!getStorage('user')) { history.push('/login'); }
-    getProducts().then(({ data }) => setProducts(data))
+    getProducts().then(({ data }) => {
+      const newObj = data.map((item) => ({ ...item, quant: 0 }));
+      setProducts(newObj);
+    })
       .catch((err) => { console.log(err); });
   }, [history]);
 
@@ -31,41 +39,43 @@ export default function ListProducts() {
     <>
       <h3>Products</h3>
 
-      {products && products.map(({ id, name, price, urlImage }) => (
-        <section key={ id } data-testid={ `customer_products__element-card-price-${id}` }>
-
+      {products && products.map((product) => (
+        <section
+          key={ product.id }
+          data-testid={ `customer_products__element-card-price-${product.id}` }
+        >
           <img
-            src={ urlImage }
-            alt={ name }
+            src={ product.urlImage }
+            alt={ product.name }
             style={ { width: '5rem' } }
-            data-testid={ `customer_products__img-card-bg-image-${id}` }
+            data-testid={ `customer_products__img-card-bg-image-${product.id}` }
           />
-          <span data-testid={ `customer_products__element-card-title-${id}` }>
-            {name}
+          <span data-testid={ `customer_products__element-card-title-${product.id}` }>
+            {product.name}
           </span>
           <button
             type="button"
-            data-testid={ `customer_products__button-card-rm-item-${id}` }
-            onClick={ ({ target }) => setQuantityItems(target, price) }
+            data-testid={ `customer_products__button-card-rm-item-${product.id}` }
+            onClick={ ({ target }) => setQuantityItems(target, product) }
           >
             -
           </button>
           <input
             type="number"
-            value={ quantity }
+            value={ product.quant }
             min="0"
-            data-testid={ `customer_products__input-card-quantity-${id}` }
+            data-testid={ `customer_products__input-card-quantity-${product.id}` }
           />
 
           <button
             type="button"
-            data-testid={ `customer_products__button-card-add-item-${id}` }
-            onClick={ ({ target }) => setQuantityItems(target, price) }
+            data-testid={ `customer_products__button-card-add-item-${product.id}` }
+            onClick={ ({ target }) => setQuantityItems(target, product) }
           >
             +
           </button>
 
-          <li>{price}</li>
+          <li>{product.price}</li>
         </section>
 
       ))}
