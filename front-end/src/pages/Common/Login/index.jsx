@@ -68,7 +68,11 @@ export default function Login() {
         >
           Login
         </style.LoginButton>
-        <style.RegisterButton type="submit" data-testid="common_login__button-register">
+        <style.RegisterButton
+          type="submit"
+          data-testid="common_login__button-register"
+          onClick={ () => navigate('../register', { replace: true }) }
+        >
           Ainda nao tenho conta
         </style.RegisterButton>
         <p
