@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import './App.css';
 
 import DeliveryContext from '../context/DeliveryContext';
 
