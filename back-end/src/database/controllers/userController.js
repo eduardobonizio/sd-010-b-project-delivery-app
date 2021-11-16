@@ -29,7 +29,7 @@ const createUser = async (req, res) => {
     return res.status(409).json({message: 'Email já cadastrado'})
   }
   if(nameResult !== null){
-    return res.status(409).json({message: 'Email já cadastrado'})
+    return res.status(409).json({message: 'Nome já cadastrado'})
   }
   if(!name || !email || !registerPassword){
     return req.status(400).json({message: 'Campos inválidos!'})
