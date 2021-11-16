@@ -24,8 +24,8 @@ const Login = () => {
 
   const handleChange = ({ target }) => {
     const { value, name } = target;
-    name === 'email' ? setEmail(value) : setPassword(value);
-    return setIsValid(!(validarEmail(email) && validarSenha(password)));
+    setIsValid(!(validarEmail(email) && validarSenha(password)));
+    return name === 'email' ? setEmail(value) : setPassword(value);
   };
 
   // const isValid = () => {
