@@ -1,8 +1,14 @@
-// import axios from 'axios';
-// require('dotenv').config();
-// const api = axios.create({
-//   baseURL: process.env.REACT_APP_BACKEND_URL
-// });
+import axios from 'axios';
+
+require('dotenv').config();
+
+const api = axios.create({
+  baseURL: 'http://localhost:3002',
+});
+
+const createSale = (saleData) => api.post('/sale', saleData)
+  .then(({ data, status }) => ({ data, status }))
+  .catch(({ response: { data, status } }) => ({ data, status }));
 
 // Just for tests
 const SELLERS_ARRAY = [
@@ -31,4 +37,4 @@ const getAllSellers = async () => {
 };
 // --------------
 
-export default { getAllSellers };
+export default { getAllSellers, createSale };

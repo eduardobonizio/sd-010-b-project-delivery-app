@@ -5,12 +5,18 @@ import {
   Typography,
 } from '@mui/material';
 import React, {
+  useContext,
   useEffect,
   useState,
 } from 'react';
 import CartForm from '../components/CartForm';
 import ProductTableHeader from '../components/ProductTableHeader';
 import ProductTableListCard from '../components/ProductTableListCard';
+
+import UsersContext from '../context/Users/UsersContext';
+import ProductsContext from '../context/Products/ProductsContext';
+
+import APICalls from '../services/APICalls';
 
 // Just for testing until macro requirement 3 isn't finished
 const PRODUCT_OBJ_ARRAY = [{
@@ -85,6 +91,19 @@ function CustomerCheckout() {
   // Just for testing until macro requirement 3 isn't finished
   const [refresh, setRefresh] = useState(false);
   const [products, setProducts] = useState([]);
+
+  const {
+    sellerId,
+    userId,
+    userAddress,
+    userAddressNumber,
+  } = useContext(UsersContext);
+
+  const {
+    totalPrice: totalPriceContext,
+    setTotalPrice: setTotalPriceContext,
+  } = useContext(ProductsContext);
+
   useEffect(() => {
     localStorage.setItem('customerCart', JSON.stringify(PRODUCT_OBJ_ARRAY));
     setRefresh(true);
@@ -115,13 +134,26 @@ function CustomerCheckout() {
   };
 
   const calculateTotalPrice = () => {
-    const totalPrice = Array.isArray(products) ? products.reduce(
+    let totalPrice = Array.isArray(products) ? products.reduce(
       (sum, { quantity, unitPrice }) => sum + quantity * unitPrice,
       0,
     ) : null;
 
     // SOURCE: https://stackoverflow.com/questions/11832914/how-to-round-to-at-most-2-decimal-places-if-necessary
-    return Math.ceil(totalPrice * 100) / 100;
+    totalPrice = Math.ceil(totalPrice * 100) / 100;
+    setTotalPriceContext(totalPrice);
+    return totalPrice;
+  };
+
+  const handleOnClickCheckout = async () => {
+    const createdSale = await APICalls.createSale({
+      user_id: userId,
+      seller_id: sellerId,
+      delivery_address: userAddress,
+      delivery_number: userAddressNumber,
+      total_price: totalPriceContext,
+    });
+    console.log(createdSale);
   };
 
   return (
@@ -159,9 +191,9 @@ function CustomerCheckout() {
           <Button
             variant="contained"
             data-testid="customer_checkout__button-submit-order"
+            onClick={ handleOnClickCheckout }
           >
             FINALIZAR PEDIDO
-
           </Button>
         </Stack>
       </Container>

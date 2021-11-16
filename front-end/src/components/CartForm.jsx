@@ -4,22 +4,38 @@ import {
   NativeSelect,
   Stack,
   TextField } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import APICalls from '../services/APICalls';
+import UsersContext from '../context/Users/UsersContext';
 
 function CartForm() {
-  const [seller, setSeller] = useState('');
+  const [sellerName, setSellerName] = useState('');
   const [sellersArray, setSellersArray] = useState([]);
+
+  const {
+    setSellerId,
+    userAddress,
+    setUserAddress,
+    userAddressNumber,
+    setUserAddressNumber,
+  } = useContext(UsersContext);
 
   useEffect(() => {
     const getAllSellers = async () => {
       const sellers = await APICalls.getAllSellers();
       setSellersArray(sellers);
-      setSeller(sellers[0].name);
+      setSellerName(sellers[0].name);
     };
 
     getAllSellers();
   }, []);
+
+  useEffect(() => {
+    const foundSeller = sellersArray.find(({ name }) => name === sellerName);
+    if (foundSeller) {
+      setSellerId(foundSeller.id);
+    }
+  }, [sellerName, sellersArray, setSellerId]);
 
   const renderSellers = () => {
     const mappedRenderSellers = Array.isArray(sellersArray)
@@ -39,7 +55,7 @@ function CartForm() {
   };
 
   const selectOnChange = (event) => {
-    setSeller(event.target.value);
+    setSellerName(event.target.value);
   };
 
   return (
@@ -58,7 +74,7 @@ function CartForm() {
         </InputLabel>
         <NativeSelect
           data-testid="customer_checkout__select-seller"
-          value={ seller }
+          value={ sellerName }
           inputProps={ {
             name: 'P. Vendedora Responsável',
             id: 'select-seller',
@@ -70,12 +86,16 @@ function CartForm() {
       </FormControl>
       <TextField
         sx={ { maxWidth: 500, minWidth: 500 } }
+        value={ userAddress }
+        onChange={ ({ target: { value } }) => setUserAddress(value) }
         label="Endereço"
         variant="outlined"
         data-testid="customer_checkout__input-address"
       />
       <TextField
         sx={ { maxWidth: 200, minWidth: 200 } }
+        value={ userAddressNumber }
+        onChange={ ({ target: { value } }) => setUserAddressNumber(value) }
         label="Número"
         variant="outlined"
         data-testid="customer_checkout__input-addressNumber"

@@ -1,10 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import UsersContext from './UsersContext';
 
 function UsersProvider({ children }) {
-  const contextValue = {
+  // Seller States
+  const [sellerId, setSellerId] = useState(0);
 
+  // Customer
+  const TEST_USER_ID = 3;
+  const [userId, setUserId] = useState(TEST_USER_ID);
+  const [userAddress, setUserAddress] = useState('');
+  const [userAddressNumber, setUserAddressNumber] = useState('');
+
+  const contextValue = {
+    sellerId,
+    setSellerId,
+    userId,
+    setUserId,
+    userAddress,
+    setUserAddress,
+    userAddressNumber,
+    setUserAddressNumber,
   };
 
   return (
