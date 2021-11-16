@@ -4,9 +4,13 @@ import Input from './Input';
 import Button from './Button';
 
 function LoginForm() {
+  const loginInitialState = { user: { role: '' }, message: '', toLogin: false };
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loginStatus, setLoginStatus] = useState({ message: '', toLogin: false });
+  const [loginStatus, setLoginStatus] = useState(loginInitialState);
+  const [customer, setCustomer] = useState(false);
+  const [seller, setSeller] = useState(false);
+  const [admin, setAdmin] = useState(false);
 
   function validateLogin() {
     const validator = /^[A-Za-z0-9_.]+@[a-zA-Z_]+?\.[a-zA-Z_.]{2,7}$/;
@@ -25,7 +29,6 @@ function LoginForm() {
       method: 'POST',
       body: JSON.stringify({ email, password }),
     };
-    console.log(requestOptions.body);
     fetch('http://localhost:3001/users/login', requestOptions)
       .then((response) => response.json())
       .then((data) => setLoginStatus(data));
@@ -33,7 +36,7 @@ function LoginForm() {
   };
 
   useEffect(() => {
-    console.log(loginStatus);
+    localStorage.setItem('user', JSON.stringify(loginStatus.user));
     const span = document.getElementById('invalid-message');
     if (loginStatus.message === 'Login invalido') {
       span.style.visibility = 'visible';
@@ -42,9 +45,22 @@ function LoginForm() {
     }
   }, [loginStatus, setLoginStatus]);
 
+  useEffect(() => {
+    if (loginStatus.user.role === 'customer') {
+      setCustomer(true);
+    } if (loginStatus.user.role === 'seller') {
+      setSeller(true);
+    } if (loginStatus.user.role === 'administrator') {
+      setAdmin(true);
+    }
+  }, [loginStatus, setLoginStatus]);
+
   return (
     <>
-      { loginStatus.toLogin ? <Redirect to="/customer/products" /> : null }
+      { customer ? <Redirect to="/customer/products" /> : null }
+      { seller ? <Redirect to="/seller/orders" /> : null }
+      { admin ? <Redirect to="/admin/manage" /> : null }
+
       <form>
         <Input
           name="Login"
