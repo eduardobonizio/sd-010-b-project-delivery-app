@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const md5 = require('md5');
-const { checkUserLogin } = require('../service')
+const { checkUserLogin } = require('../service');
 
 router.post('/', async (req, res) => {
 const { email, password } = req.body;
