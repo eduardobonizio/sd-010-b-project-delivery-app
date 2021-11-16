@@ -1,30 +1,47 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Navbar from '../components/navbar';
 import ProductCard from '../components/productCard';
+import getProducts from '../services/products';
 
 function Products() {
-  const products = [
-    {
-      id: 1,
-      name: 'Product 1',
-      price: '$100',
-      image: 'https://picsum.photos/id/1/200/300',
-    },
-    {
-      id: 2,
-      name: 'Product 2',
-      price: '$200',
-      image: 'https://picsum.photos/id/2/200/300',
-    },
-  ];
+  const [userObj, setUserObj] = useState({});
+  const [products, setProducts] = useState([]);
+  const [subtotal, setSubtotal] = useState('0,00');
+
+  useEffect(async () => {
+    const userInfo = localStorage.getItem('user');
+    const fetchProducts = await getProducts();
+    const productsData = fetchProducts.data;
+
+    setSubtotal('0,00');
+    setProducts(productsData);
+    setUserObj(JSON.parse(userInfo));
+    // console.log(userObj);
+  }, []);
+
+  const { name } = userObj;
 
   return (
     <div>
-      <Navbar name="Camila" products="Produtos" orders="Pedidos" />
-      { products.map((product) => {
-        console.log('lint');
-        return <ProductCard key={ product.id } product={ product } />;
-      })}
+      <Navbar name={ name } products="Produtos" orders="Pedidos" />
+      { products.map((product) => (
+        <ProductCard
+          key={ product.id }
+          product={ product }
+          setSubtotal={ setSubtotal }
+        />))}
+
+      <button
+        disabled={ subtotal === '0,00' }
+        type="button"
+        data-testid="customer_products__button-cart"
+      >
+        <Link to="/customer/checkout">
+          Ver carrinho:
+          <p data-testid="customer_products__checkout-bottom-value">{ subtotal }</p>
+        </Link>
+      </button>
     </div>
   );
 }

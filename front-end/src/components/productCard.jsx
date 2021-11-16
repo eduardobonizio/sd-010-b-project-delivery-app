@@ -4,13 +4,30 @@ import PropTypes from 'prop-types';
 function ProductCard(props) {
   const [quantity, setQuantity] = useState(0);
 
-  const { product } = props;
-  const { name, price, url, id } = product;
+  const { product, setSubtotal } = props;
+  const { name, price, urlImage, id } = product;
 
   const onClick = (e) => {
-    const { name: tagName } = e.target;
-    if (tagName === 'add') setQuantity(quantity + 1);
-    if (tagName === 'rm' && quantity > 0) setQuantity(quantity - 1);
+    const { name: tagName, value } = e.target;
+    let total = 0;
+    if (tagName === 'add') {
+      setQuantity(quantity + 1);
+      total = (quantity + 1) * price;
+    }
+    if (tagName === 'rm' && quantity > 0) {
+      setQuantity(quantity - 1);
+      total = (quantity - 1) * price;
+    }
+    if (tagName === 'setManual') {
+      setQuantity(quantity + value);
+      total = (quantity + value) * price;
+    }
+    const carrinho = JSON.parse(localStorage.getItem('carrinho'));
+    const key = id;
+    carrinho[key] = total;
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+    const subtotal = Object.values(carrinho).reduce((acc, curr) => acc + curr);
+    setSubtotal(subtotal.toFixed(2).replace(/\./, ','));
   };
 
   return (
@@ -18,10 +35,13 @@ function ProductCard(props) {
       <p data-testid={ `customer_products__element-card-title-${id}` }>{ name }</p>
       <img
         data-testid={ `customer_products__img-card-bg-image-${id}` }
-        src={ url }
+        src={ urlImage }
         alt={ name }
+        width="100px"
       />
-      <p data-testid={ `customer_products__img-card-bg-image-${id}` }>{ price }</p>
+      <p data-testid={ `customer_products__element-card-price-${id}` }>
+        { price.replace(/\./, ',') }
+      </p>
       <div>
         <button
           onClick={ onClick }
@@ -32,9 +52,11 @@ function ProductCard(props) {
           -
         </button>
         <input
+          onChange={ onClick }
           data-testid={ `customer_products__input-card-quantity-${id}` }
           type="text"
           value={ quantity }
+          name="setManual"
         />
         <button
           onClick={ onClick }
@@ -52,10 +74,11 @@ function ProductCard(props) {
 ProductCard.propTypes = {
   product: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    url: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+    urlImage: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
   }).isRequired,
+  setSubtotal: PropTypes.func.isRequired,
 };
 
 export default ProductCard;
