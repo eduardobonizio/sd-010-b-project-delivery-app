@@ -1,11 +1,11 @@
 import React from 'react';
-import './App.css';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import Login from './pages/Login';
-import Products from './pages/Products';
 import ProductsProvider from './context/provider';
-import Register from './pages/Register';
-import Admin from './pages/Admin';
+
+import ProductsProvider from './context/provider';
+import { Login, Products, Register, Checkout, Admin } from './pages';
+
+import './App.css';
 
 function App() {
   return (
@@ -17,6 +17,7 @@ function App() {
         <Route exact path="/login" component={ Login } />
         <Route exact path="/register" component={ Register } />
         <Route exact path="/customer/products" component={ Products } />
+        <Route exact path="/customer/checkout" component={ Checkout } />
         <Route exact path="/admin/manage" component={ Admin } />
       </Switch>
     </ProductsProvider>

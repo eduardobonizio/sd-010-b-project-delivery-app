@@ -16,11 +16,11 @@ const existUser = async ({ email, password }) => {
   if (userFound === null) {
     return { message: 'Usuário não encontrado' };
   }
-  const { name, role } = userFound;
+  const { id, name, role } = userFound;
 
   const token = generateToken({ name, role, email });
 
-  return { name, email, role, token };
+  return { id, name, email, role, token };
 };
 
 const createUser = async ({ name, email, password }) => {
@@ -51,4 +51,14 @@ const deleteUser = async (id) => {
   await user.destroy({ where: { id } });
 };
 
-module.exports = { existUser, createUser, createUserByADM, getAllUsers, deleteUser };
+const getAllSellers = async () => user.findAll({ where: { role: 'seller' } });
+
+module.exports = {
+  existUser,
+  createUser,
+  findUser,
+  getAllSellers,
+  createUserByADM,
+  getAllUsers,
+  deleteUser
+};

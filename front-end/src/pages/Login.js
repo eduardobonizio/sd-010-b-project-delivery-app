@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-import fetchAuthUser from '../services/userAPI';
+import { fetchAuthUser } from '../services/userAPI';
 
 export default function Login() {
   const [email, setEmail] = useState('');
