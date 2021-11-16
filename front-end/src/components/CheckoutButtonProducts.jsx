@@ -3,7 +3,7 @@ import '../styles/CheckoutButtonProducts.css';
 import { Link } from 'react-router-dom';
 import { Context } from '../provider/Provider';
 
-// import addZeroes from '../helper/functions/addZeroes';
+import addZeroes from '../helper/functions/addZeroes';
 // import { Context } from '../provider/Provider';
 
 const CheckoutButtonProducts = () => {
