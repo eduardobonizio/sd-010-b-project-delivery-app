@@ -6,16 +6,45 @@ function CardProduct(props) {
 
   return (
     <div className="cardProduct" key={ id }>
-      <span>{`R$${price}`}</span>
-      <img alt="produto" src={ urlImage } width="100" height="50" />
-      <div className="card">
-        <span>{name}</span>
-        <div className="controlerQuantityProduct">
-          <button className="decrementProduct" type="button">-</button>
-          <span className="quantity">0</span>
-          <button className="incrementeProduct" type="button">+</button>
-        </div>
-      </div>
+      <span
+        data-testid={ `customer_products__element-card-price-${id}` }
+      >
+        {`R$${price}`}
+      </span>
+
+      <img
+        data-testid={ `customer_products__img-card-bg-image-${id}` }
+        alt="produto"
+        src={ urlImage }
+        width="100"
+        height="50"
+      />
+
+      <span data-testid={ `customer_products__element-card-title-${id}` }>{name}</span>
+
+      <form className="controlerQuantityProduct">
+        <button
+          data-testid={ `customer_products__button-card-rm-item-${id}` }
+          className="decrementProduct"
+          type="button"
+          onClick=""
+        >
+          -
+        </button>
+        <input
+          data-testid={ `customer_products__input-card-quantity-${id}` }
+          className="quantity"
+          value="0"
+        />
+        <button
+          data-testid={ `customer_products__button-card-add-item-${id}` }
+          className="incrementeProduct"
+          type="button"
+          onClick=""
+        >
+          +
+        </button>
+      </form>
     </div>
   );
 }
