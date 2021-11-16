@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import NavBar from '../components/navBar';
-import UserList from '../components/UserList';
+import UserList from '../components/userList';
 import admRegisterAPI from '../services/admRegisterAPI';
 
 export default function Admin() {
