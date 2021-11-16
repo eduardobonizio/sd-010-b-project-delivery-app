@@ -18,6 +18,6 @@ describe('src/models/user', () => {
   checkModelName(User)('user');
 
   describe('check properties', () => {
-    [];
+    ['name', 'email', 'password', 'role'].forEach(checkPropertyExists(user));
   });
 });
