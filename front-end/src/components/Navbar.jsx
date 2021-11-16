@@ -18,7 +18,12 @@ function Navbar({ item1, item2, item3, user }) {
         <span className="d-flex justify-content-center">{user}</span>
       </div>
       <div className="col-1 bg-secondary p-4">
-        <span className="d-flex justify-content-center">Sair</span>
+        <button
+          type="button"
+          className="btn btn-primary d-flex justify-content-center"
+        >
+          Sair
+        </button>
       </div>
     </div>
   );
