@@ -19,9 +19,9 @@ const validateJwt = (token) => {
 
   try {
     const result = jwt.verify(token, secret);
-    return  result;
+    return result;
   } catch (error) {
-    return {  message: 'Expired or invalid token' };
+    return { message: 'Expired or invalid token' };
   }
 };
 
