@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router';
+// import { Redirect } from 'react-router';
 import axios from 'axios';
 
 import { Form, Input, Button, notification } from 'antd';
@@ -12,7 +12,7 @@ function FormRegister() {
   const [form] = Form.useForm();
   const [, forceUpdate] = React.useState({});
   const [isError, setIsError] = useState(false);
-  const [redirect, setRedirect] = useState(false);
+  // const [redirect, setRedirect] = useState(false);
 
   React.useEffect(() => {
     forceUpdate({});
@@ -39,16 +39,16 @@ function FormRegister() {
     // const resp = await axios.get('http://localhost:3001/products');
     // console.log(password, email);
     notification[type]({
-      message: 'Login efetuado com sucesso!',
+      message: 'Cadastro efetuado com sucesso!',
       duration: 3,
     });
   };
 
-  if (redirect) {
-    return (
-      <Redirect to="/customer/products" />
-    );
-  }
+  // if (redirect) {
+  //   return (
+  //     <Redirect to="/customer/products" />
+  //   );
+  // }
 
   return (
     <section className="main-container">
@@ -71,7 +71,11 @@ function FormRegister() {
                 required: true,
                 message: 'Por favor, insira seu nome!',
               },
-              { type: 'email', message: 'Insira um nome válido!' },
+              {
+                min: 12,
+                message: 'Nome deve possui ao menos 12 caracteres.',
+              },
+              { type: 'string', message: 'Insira um nome válido!' },
             ] }
             hasFeedback
           >
@@ -139,21 +143,9 @@ function FormRegister() {
                   || !!form.getFieldsError().filter(({ errors }) => errors.length).length
                 }
               >
-                Login
+                Cadastrar
               </Button>
             )}
-          </Form.Item>
-          <Form.Item>
-            <Button
-              data-testid="common_login__button-register"
-              type="default"
-              block
-              shape="round"
-              htmlType="submit"
-              className="login-form-button"
-            >
-              Ainda não tenho cadastro
-            </Button>
           </Form.Item>
         </Form>
       </section>
