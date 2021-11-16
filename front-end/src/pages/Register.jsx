@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import { Col, Container, Form, Row } from 'react-bootstrap';
@@ -12,7 +12,8 @@ import {
 import './css/Register.css';
 
 function Register() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const history = useHistory();
 
   const [name, setStateName] = useState();
   const [email, setStateEmail] = useState();
@@ -48,7 +49,7 @@ function Register() {
     localStorage.setItem('email', parsedResponse.email);
     localStorage.setItem('role', parsedResponse.role);
     localStorage.setItem('token', parsedResponse.token);
-    return navigate('/customer/products');
+    history.push('/customer/products');
   };
 
   return (

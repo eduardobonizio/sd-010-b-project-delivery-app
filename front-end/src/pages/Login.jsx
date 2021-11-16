@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Col, Container, Form, Image, Row } from 'react-bootstrap';
 import axios from 'axios';
 import md5 from 'md5';
@@ -16,7 +16,7 @@ function Login() {
   const [password, setStatePassword] = useState('');
   const [disabled, setDisable] = useState(true);
   const [hideErrorMessage, setHideErrorMessage] = useState(true);
-  const navigate = useNavigate();
+  const history = useHistory();
   const emailTestId = 'common_login__input-email';
   const passwordTestId = 'common_login__input-password';
   const title = 'Login';
@@ -35,17 +35,13 @@ function Login() {
     const hashedPassword = md5(password);
     try {
       const response = await axios.post('http://localhost:3001/login', { email, password: hashedPassword });
-      console.log(response);
       const parsedResponse = response.data;
-      console.log(response.status);
       localStorage.setItem('name', parsedResponse.name);
       localStorage.setItem('email', parsedResponse.email);
       localStorage.setItem('role', parsedResponse.role);
       localStorage.setItem('token', parsedResponse.token);
-      return navigate('/customer/products');
+      history.push('/customer/products');
     } catch (e) {
-      console.log(e);
-      console.log(hideErrorMessage);
       setHideErrorMessage(false);
     }
   };
