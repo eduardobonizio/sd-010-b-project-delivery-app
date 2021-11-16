@@ -1,13 +1,14 @@
-import React from 'react';
-import Context from '../provider/Provider';
+import React, { useEffect } from 'react';
+import { Context } from '../provider/Provider';
+import addZeroes from '../helper/functions/addZeroes';
 
 function PurshaseTotal() {
-  const { orderInProgress, totalOrder, setTotalOrder } = useContext(Context);
+  const { orderInProgress, totalOrder, setTotalOrder } = React.useContext(Context);
 
   useEffect(() => {
     setTotalOrder(orderInProgress.reduce((
       acc, curr,
-    ) => acc + (curr.price * curr.quantity), 0));
+    ) => acc + (curr.price * curr.quantity), 0).toFixed(2));
   }, [orderInProgress, setTotalOrder]);
 
   return (
@@ -16,7 +17,7 @@ function PurshaseTotal() {
         data-testid="customer_checkout__element-order-total-price"
       >
         {
-          `Total: ${totalOrder}`
+          `Total: ${addZeroes(totalOrder)}`
         }
       </h3>
     </div>

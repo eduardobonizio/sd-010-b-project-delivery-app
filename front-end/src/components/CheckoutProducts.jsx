@@ -1,6 +1,7 @@
+// container de detalhes do pedido
 import React from 'react';
 import Proptypes from 'prop-types';
-import Context from '../src/provider/Provider';
+import { Context } from '../provider/Provider';
 
 function CheckoutProduct({ orderItem, index }) {
   const { name, price, quantity } = orderItem;
