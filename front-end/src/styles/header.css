@@ -7,7 +7,7 @@
 
 .header-nav-bar1 {
   display: flex;
-  justify-content: space-between;      
+  justify-content: space-between;
   width: 100%;
 }
 
@@ -18,8 +18,8 @@
 }
 
 .btn-navbar {
-	background: none;
-	border: none;
+  background: none;
+  border: none;
   color: white;
   height: 100%;
   margin: 0;
