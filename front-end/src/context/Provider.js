@@ -19,7 +19,7 @@ export default function Provider({ children }) {
       console.log(newCart);
       setCart(newCart);
     } else {
-      cart.push( eachItem );
+      cart.push(eachItem);
     }
   };
 
