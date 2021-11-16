@@ -11,17 +11,14 @@ const Login = () => {
   } = useContext(DeliveryContext);
 
   const buttonLogin = async () => {
-    console.log('antes do try');
     try {
-      console.log('dentro do try');
       const { data } = await axios.post('http://localhost:3001/login', { email, password });
-      console.log('depois da requisição');
       localStorage.setItem('token', `${JSON.stringify(data)}`);
-      return navigate('/customer/products');
     } catch (error) {
       setIsValidPW(true);
       return error;
     }
+    return navigate('/customer/products');
   };
 
   const handleChange = ({ target }) => {
