@@ -17,6 +17,7 @@ export default function Register() {
     const register = await apiCreateUser({ name, email, password, role: 'customer' });
 
     if (register.token) navigate('../customer/products', { replace: true });
+    // register
   };
 
   useEffect(() => {
