@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 function ErrorMessage({ input }) {
   const errorMessages = {
-    nome: 'Seu nome precisa ter no mínimo 12 caracteres',
-    senha: 'Sua senha precisa ter no mínimo 6 caraceteres',
-    email: 'Seu email',
+    nome: 'O nome precisa ter no mínimo 12 caracteres',
+    senha: 'A senha precisa ter no mínimo 6 caraceteres',
+    email: 'Precisa ser um email válido',
   };
 
   return (

@@ -77,7 +77,13 @@ function RegisterForm() {
             : null
         }
       </label>
-      <button type="button" disabled={ ableButton() }>Registra-se</button>
+      <button
+        type="button"
+        disabled={ ableButton() }
+        data-testid="common_register__button-register"
+      >
+        Registra-se
+      </button>
     </form>);
 }
 
