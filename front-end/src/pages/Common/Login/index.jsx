@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as style from './style';
 import { apiRequestLogin } from '../../../services/login/apiRequestLogin';
+import { setOnLocalStorage } from '../../../helpers/localStorage';
 
 export default function Login() {
   const [password, setPassword] = useState('');
@@ -16,11 +17,13 @@ export default function Login() {
     e.preventDefault();
 
     const login = await apiRequestLogin({ email, password });
+    console.log(login);
 
     setUser(login);
 
-    if (login.id) {
+    if (login.token) {
       console.log(user);
+      setOnLocalStorage('user', login);
       navigate('../customer/products', { replace: true });
     }
   };
