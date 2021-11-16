@@ -29,25 +29,25 @@ export default function Menu() {
           ? users.map((el) => (
             <li key={ el.id }>
               <span
-                data-testid="admin_manage__element-user-table-item-number-"
+                data-testid={ `admin_manage__element-user-table-item-number-${el.id}` }
               >
                 { users.indexOf(el) + 1 }
               </span>
               { ' - ' }
               <span
-                data-testid="admin_manage__element-user-table-name-"
+                data-testid={ `admin_manage__element-user-table-name-${el.id}` }
               >
                 { el.name }
               </span>
               { ' - ' }
               <span
-                data-testid="admin_manage__element-user-table-email-"
+                data-testid={ `admin_manage__element-user-table-email-${el.id}` }
               >
                 { el.email }
               </span>
               { ' - ' }
               <span
-                data-testid="admin_manage__element-user-table-role-"
+                data-testid={ `admin_manage__element-user-table-role-${el.id}` }
               >
                 { el.role }
               </span>
@@ -56,7 +56,7 @@ export default function Menu() {
                 disabled={ userADM(el.role) }
                 onClick={ () => deleteUser(el.id) }
                 type="button"
-                data-testid="admin_manage__element-user-table-remove-"
+                data-testid={ `admin_manage__element-user-table-remove-${el.id}` }
               >
                 Excluir
               </button>
