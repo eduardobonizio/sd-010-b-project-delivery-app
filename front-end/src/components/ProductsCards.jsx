@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Context } from '../provider/Provider';
 import fixPrice from '../helper/functions/fixPrice';
 import '../styles/ProductsCards.css';
+import AddZeroes from '../helper/functions/addZeroes';
 
 const handleProductsObjectsToOrders = (el, signal = 'mais', quantity = 0) => {
   const { id, name, price, url } = el;
@@ -41,8 +42,10 @@ const ProductsCards = () => {
       handleSetOrderPositive(el);
 
       const total = totalOrder + parseFloat(el.price);
-      console.log(total.toFixed(2), 'TOTTAAAAAAAAAAAL');
-      return setTotalOrder(parseFloat(total.toFixed(2)));
+      // console.log(typeof total);
+      // console.log(total, 'TOTTAAAAAAAAAAAL');
+      // console.log(parseFloat(total.toFixed(2)));
+      return setTotalOrder(AddZeroes(total));
     }
     // }
     const arrToRemove = orderInProgress.filter(({ id }) => id === el.id);
