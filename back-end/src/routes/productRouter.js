@@ -2,10 +2,10 @@ const express = require('express');
 
 const router = express.Router();
 
-// const productController = require('../app/controllers/productController');
+const productController = require('../app/controllers/productController');
 
-router.route('/');
-  // .get(productController.findAll);
+router.route('/')
+  .get(productController.findAll);
 
 // router.route('/:id', productController.findById);
 
