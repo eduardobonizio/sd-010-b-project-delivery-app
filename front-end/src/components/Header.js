@@ -16,7 +16,7 @@ export default function Header(props) {
           <li
             data-testid="customer_products__element-navbar-link-orders"
           >
-            MEUS PEDIDOS
+            {status}
           </li>
           <li
             data-testid="customer_products__element-navbar-user-full-name"

@@ -21,7 +21,10 @@ export default function ListProducts() {
         <section key={ index }>
           <img width="100px" src={ urlImage } alt={ name } />
           <li>{ name }</li>
-          <li>{ price }</li>
+          <li>
+            R$:
+            { price }
+          </li>
         </section>
       )) }
     </>
