@@ -6,7 +6,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 import Product from './pages/Product';
-import Login from './Components/Login';
+import Login from './pages/Login';
 
 function App() {
   return (
