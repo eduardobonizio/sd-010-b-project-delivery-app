@@ -23,14 +23,15 @@ const loginService = async (user) => {
   if (!validUser) {
     throw messageError(404, '404 - Not found');
   }
-  const { name, email: newEmail, role } = validUser;
-
+  
   const payload = { email };
+  const { name, email: emailUser, role } = validUser;
   const token = jwtLogin(payload);
-  const result = { name, email: newEmail, role, token };
-  console.log(result);
+  // console.log(token);
 
-  return validUser;
+  const result = { name, email: emailUser, role, token };
+  // console.log(result);
+  return result;
 };
 
 module.exports = {

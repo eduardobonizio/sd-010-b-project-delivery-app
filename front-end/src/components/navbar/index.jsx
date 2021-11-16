@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { getFromLocalStorage } from '../../helpers/localStorage';
 import {
   ContainerPedidos,
   ContainerTextProducts,
@@ -11,6 +12,13 @@ import {
 } from './styles';
 
 function NavBar() {
+  const [userName, setUserName] = useState({});
+
+  useEffect(() => {
+    const user = getFromLocalStorage('user');
+    setUserName(user);
+  }, []);
+
   return (
     <Header>
 
@@ -37,11 +45,15 @@ function NavBar() {
       <ContainerGeneric>
         <ContainerName data-testid="customer_products__element-navbar-user-full-name">
           <TextNavBar>
-            Fioravante Chiozzi
+            {userName.name}
           </TextNavBar>
         </ContainerName>
 
-        <Link to="/login" className="link__navbar">
+        <Link
+          to="/login"
+          className="link__navbar"
+          onClick={ () => localStorage.removeItem('user') }
+        >
           <ContainerLogout data-testid="customer_products__element-navbar-link-logout">
             <TextNavBar>
               SAIR
