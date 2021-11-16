@@ -10,20 +10,25 @@ export default function ListProducts() {
 
   function setQuantityItems(target, product) {
     const { price, quant } = product;
-    console.log(quant);
+    const priceNumber = parseFloat(price);
+    const indexProduct = products.indexOf(product);
     if (target.innerText === '-' && quant > 0) {
-      const indexProduct = products.indexOf(product);
+      const valorFinal = total - priceNumber;
       products.splice(indexProduct, 1, { ...product, quant: quant - 1 });
-      setTotal(total - price);
+      setTotal(valorFinal);
       return setProducts(products);
     }
     if (target.innerText === '+') {
-      const indexProduct = products.indexOf(product);
+      const valorFinal = priceNumber + total;
       products.splice(indexProduct, 1, { ...product, quant: quant + 1 });
-      setTotal(total + price);
-      setProducts(products);
+      setTotal(valorFinal);
+      return setProducts(products);
     }
-    return 0;
+    const quantidade = parseFloat(target.value);
+    const valorFinal = quantidade * priceNumber;
+    products.splice(indexProduct, 1, { ...product, quant: quantidade });
+    setTotal(valorFinal + total);
+    return setProducts(products);
   }
 
   useEffect(() => {
@@ -64,6 +69,7 @@ export default function ListProducts() {
             type="number"
             value={ product.quant }
             min="0"
+            onChange={ ({ target }) => setQuantityItems(target, product) }
             data-testid={ `customer_products__input-card-quantity-${product.id}` }
           />
 
