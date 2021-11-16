@@ -4,12 +4,27 @@
   justify-content: center;
 }
 
-
 .cards-sections {
+<<<<<<< HEAD
   box-shadow: 0 4px 4px 0  #b1c2be;
   display: flex;
   flex-flow: wrap;
   flex-direction: column;
+=======
+
+  /* background-color: hotpink; */
+
+  /* height: 280px; */
+
+  /* height: 486px; */
+
+  /* justify-content: center; */
+
+  /* align-items: center; */
+  box-shadow: 0 4px 4px 0  #b1c2be;
+  display: flex;
+  flex-flow: column wrap;
+>>>>>>> baad449e0ae0bc6aa4be8a1b786fd21bfb80d291
   height: 400px;
   justify-content: space-between;
   margin-left: 15px;
@@ -19,7 +34,11 @@
 
 .div-btn-mainDiv {
   align-items: center;
+<<<<<<< HEAD
   background-color: lightgrey;
+=======
+  background-color: lightgray;
+>>>>>>> baad449e0ae0bc6aa4be8a1b786fd21bfb80d291
   bottom: 0;
   display: flex;
   flex-direction: column;
@@ -45,12 +64,30 @@
 }
 
 .imgs-element-cards {
+<<<<<<< HEAD
+=======
+
+  /* width:150px; */
+
+  /* width:230px; */
+
+  /* height: 150px; */
+
+  /* margin-top: 25px; */
+
+  /* position: absolute; */
+>>>>>>> baad449e0ae0bc6aa4be8a1b786fd21bfb80d291
   display: flex;
   height: 270px;
   width: 100%;
 }
 
 .div-price {
+<<<<<<< HEAD
+=======
+
+  /* background-color:  #F2FFFC; */
+>>>>>>> baad449e0ae0bc6aa4be8a1b786fd21bfb80d291
   background-color: rgba(242, 255, 252, 0.75);
   font-weight: 700;
   margin-left: 16px;

@@ -1,10 +1,15 @@
 html, body {
 
   /* align-items: center; */
-  display: flex;
-  height: 100%;
 
   /* justify-content: center; */
+  display: flex;
+  height: 100%;
+<<<<<<< HEAD
+
+  /* justify-content: center; */
+=======
+>>>>>>> baad449e0ae0bc6aa4be8a1b786fd21bfb80d291
   margin: 0;
 }
 

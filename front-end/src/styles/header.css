@@ -39,6 +39,11 @@
 }
 
 .div-main-header {
+<<<<<<< HEAD
+=======
+
+  /* position: fixed; */
+>>>>>>> baad449e0ae0bc6aa4be8a1b786fd21bfb80d291
   display: flex;
   height: 45px;
   top: 0;
