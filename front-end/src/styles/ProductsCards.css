@@ -4,7 +4,6 @@
   justify-content: center;
 }
 
-
 .cards-sections {
 
   /* background-color: hotpink; */
@@ -18,8 +17,7 @@
   /* align-items: center; */
   box-shadow: 0 4px 4px 0  #b1c2be;
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  flex-flow: column wrap;
   height: 400px;
   justify-content: space-between;
   margin-left: 15px;
@@ -67,12 +65,13 @@
   /* position: absolute; */
   display: flex;
   height: 270px;
-  width:100%;
+  width: 100%;
 }
+
 .div-price {
 
   /* background-color:  #F2FFFC; */
-  background-color:  rgba(242, 255, 252, 0.75);
+  background-color: rgba(242, 255, 252, 0.75);
   font-weight: bold;
   margin-left: 16px;
 }
