@@ -23,18 +23,32 @@ const existUser = async ({ email, password }) => {
   return { id, name, email, role, token };
 };
 
-const findUser = async ({ email }) => {
-  const userFounded = await user.findOne({ where: email });
-  if (!userFounded) return false;
-  return true;
-};
-
 const createUser = async ({ name, email, password }) => {
   await user.create({
-    name, email, password: cryptoPassword(password), role: 'user',
+    name, email, password: cryptoPassword(password), role: 'Customer',
   });
-  const token = generateToken({ name, role: 'user', email });
-  return { name, email, role: 'user', token };
+  const token = generateToken({ name, role: 'Customer', email });
+  return { name, email, role: 'Customer', token };
+};
+
+const createUserByADM = async ({ name, email, password, role }) => {
+  const testUser = await existUser({ email, password });
+  if (testUser.message) {
+    await user.create({ name, email, password: cryptoPassword(password), role }); 
+    const token = generateToken({ name, role, email });
+
+    return { name, email, role, token };
+  }
+  return { message: 'Usuário já existe' };
+};
+
+const getAllUsers = async () => {
+  const allUsers = await user.findAll();
+  return allUsers;
+};
+
+const deleteUser = async (id) => {
+  await user.destroy({ where: { id } });
 };
 
 const getAllSellers = async () => user.findAll({ where: { role: 'seller' } });
@@ -42,6 +56,8 @@ const getAllSellers = async () => user.findAll({ where: { role: 'seller' } });
 module.exports = {
   existUser,
   createUser,
-  findUser,
   getAllSellers,
+  createUserByADM,
+  getAllUsers,
+  deleteUser,
 };
