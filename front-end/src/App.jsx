@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import { Route, Routes } from 'react-router';
+import { Route, Routes } from 'react-router-dom';
+
 import {
   Login,
   Register,
@@ -14,9 +15,9 @@ import {
 function App() {
   return (
     <Routes>
-      <Route path="/customer/orders" element={ <ClientOrderDetails /> } />
-      <Route path="/customer/products" element={ <Products /> } />
-      <Route path="/customer/checkout" element={ <Checkout /> } />
+      <Route exact path="/customer/orders" element={ <ClientOrderDetails /> } />
+      <Route exact path="/customer/products" element={ <Products /> } />
+      <Route exact path="/customer/checkout" element={ <Checkout /> } />
       <Route path="/seller/orders" element={ <OrderDetails /> } />
       <Route path="/register" element={ <Register /> } />
       <Route path="/login" element={ <Login /> } />
