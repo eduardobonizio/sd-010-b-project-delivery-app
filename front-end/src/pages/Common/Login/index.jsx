@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as style from './style';
 import { apiRequestLogin } from '../../../services/login/apiRequestLogin';
-// import LoginForm from '../Product';
 
 export default function Login() {
   const [password, setPassword] = useState('');
@@ -10,23 +9,20 @@ export default function Login() {
   const [erro] = useState();
   const [user, setUser] = useState();
   const [btnDisable, setBtnDisable] = useState(true);
-  const [loading, isloading] = useState(false);
-  // setBtnDisable
 
   const navigate = useNavigate();
 
   const tryLogin = async (e) => {
-    if (!user) e.preventDefault();
+    e.preventDefault();
 
     const login = await apiRequestLogin({ email, password });
-    isloading(true);
-    if (loading) {
-      console.log('entrei', login);
-      setUser(login);
+
+    setUser(login);
+
+    if (login.id) {
+      console.log(user);
       navigate('../customer/products', { replace: true });
     }
-
-    // return (<LoginForm />);
   };
 
   useEffect(() => {
@@ -74,7 +70,6 @@ export default function Login() {
         </style.LoginButton>
         <style.RegisterButton type="submit" data-testid="common_login__button-register">
           Ainda nao tenho conta
-          {/* <Link to="/register" /> */}
         </style.RegisterButton>
         <p
           id="erro"
