@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-import * as S from "../styles/Navbar";
-import Context from "../context/Context";
-import { removeLocalStorage } from "../services/helpers/servicesLocalStorage";
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import * as S from '../styles/Navbar';
+import Context from '../context/Context';
+import { removeLocalStorage } from '../services/helpers/servicesLocalStorage';
 
 function NavBar() {
   const { User } = useContext(Context);
@@ -35,7 +35,7 @@ function NavBar() {
       </p>
       <Link to="/login">
         <S.buttonNav
-          onClick={() => removeLocalStorage("user")}
+          onClick={ () => removeLocalStorage('user') }
           type="button"
           data-testid="customer_products__element-navbar-link-logout"
         >

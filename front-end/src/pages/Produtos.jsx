@@ -28,13 +28,13 @@ function Produtos() {
         <button
           onClick={ () => history.push('/customer/checkout') }
           type="button"
-          data-testid='customer_products__button-cart'
-          disabled= {(totalPrice === 0) }
-          >
+          data-testid="customer_products__button-cart"
+          disabled={ (totalPrice === 0) }
+        >
           <h2
             data-testid="customer_products__checkout-bottom-value"
           >
-          {totalPrice && totalPrice.toFixed(2).replace(".", ",")}
+            {totalPrice && totalPrice.toFixed(2).replace('.', ',')}
           </h2>
         </button>
       </footer>

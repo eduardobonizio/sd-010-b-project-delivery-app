@@ -16,8 +16,8 @@ export default function Provider({ children }) {
         if (item.id === id) return { id, name, price, quantity };
         return item;
       });
-      console.log(newCart);
       setCart(newCart);
+      console.log(cart);
     } else {
       cart.push(eachItem);
     }
@@ -28,7 +28,7 @@ export default function Provider({ children }) {
       (acc, { price, quantity }) => acc + price * quantity,
       0,
     );
-
+    console.log(valorTotal);
     setTotalPrice(valorTotal);
   }, [cart]);
 
@@ -40,7 +40,6 @@ export default function Provider({ children }) {
     cart,
     setCart,
     insertCart,
-    setTotalPrice,
     totalPrice,
   };
 
