@@ -1,54 +1,51 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import * as S from "../styles/Navbar";
 import Context from "../context/Context";
+import { removeLocalStorage } from "../services/helpers/servicesLocalStorage";
 
 function NavBar() {
   const { User } = useContext(Context);
 
   return (
-    <nav className="navbar">
+    <S.navBar>
       <Link to="/customer/products">
-        <button
+        <S.buttonNav
           type="button"
-          className="exitButton"
           data-testid="customer_products__element-navbar-link-products"
         >
           PRODUTO
-        </button>
+        </S.buttonNav>
       </Link>
       <Link to="/customer/meusPedidos">
-        <button
+        <S.buttonNav
           type="button"
-          className="exitButton"
           data-testid="customer_products__element-navbar-link-orders"
         >
           MEUS PEDIDOS
-        </button>
+        </S.buttonNav>
       </Link>
-      <Link to="/page404">
-        <button
+      <p>
+        <S.buttonNav
           type="button"
-          className="exitButton"
           data-testid="customer_products__element-navbar-user-full-name"
         >
           {User.name}
-        </button>
-      </Link>
-      <Link to="/customer/checkout">
-        <button
+        </S.buttonNav>
+      </p>
+      <Link to="/login">
+        <S.buttonNav
+          onClick={() => removeLocalStorage("user")}
           type="button"
-          className="exitButton"
           data-testid="customer_products__element-navbar-link-logout"
         >
           SAIR
-        </button>
+        </S.buttonNav>
       </Link>
       <Link to="/login">
-        <button type="button" className="exitButton">
-          atalho p login
-        </button>
+        <S.buttonNav type="button">atalho p login</S.buttonNav>
       </Link>
-    </nav>
+    </S.navBar>
   );
 }
 

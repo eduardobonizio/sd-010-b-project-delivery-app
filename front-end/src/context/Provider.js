@@ -1,15 +1,49 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Context from "./Context";
 
 export default function Provider({ children }) {
-  // Crie novos estados aqui
   const [User, setUser] = useState({});
 
   const [allProducts, setAllProducts] = useState([]);
+  const [cart, setCart] = useState([]);
+  const [price, setPrice] = useState(0);
 
-  // Exporta para os outros aquivos
-  const context = { User, setUser, allProducts, setAllProducts };
+  const insertCart = async (eachItem) => {
+    const { id, name, price, quantity } = eachItem;
+    if (cart.some((item) => item.id === id)) {
+      const newCart = cart.map((item) => {
+        if (item.id === id) return { id, name, price, quantity };
+        return item;
+      });
+      console.log(newCart);
+      setCart(newCart);
+    } else {
+      cart.push(eachItem);
+    }
+  };
+
+  useEffect(() => {
+    const valorTotal = cart.reduce(
+      (acc, { price, quantity }) => acc + price * quantity,
+      0
+    );
+
+    setPrice(valorTotal);
+  }, [cart]);
+
+
+
+  const context = {
+    User,
+    setUser,
+    allProducts,
+    setAllProducts,
+    cart,
+    setCart,
+    insertCart,
+    price,
+  };
 
   return <Context.Provider value={context}>{children}</Context.Provider>;
 }

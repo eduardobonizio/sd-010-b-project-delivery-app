@@ -45,7 +45,7 @@ function Login() {
     const checkLogin = await loginService(login);
     if (checkLogin.message.id) {
       const { message } = checkLogin;
-      setOnLocalStorage('login_delivery', message);
+      setOnLocalStorage('user', message);
       setUser(message);
       history.push('/customer/products');
     }
@@ -62,7 +62,7 @@ function Login() {
       role: 'custumer',
       token: `${tokenPart1}${tokenPart2}`,
     };
-    setOnLocalStorage('login_delivery', message);
+    setOnLocalStorage('user', message);
     setUser(message);
     history.push('/customer/products');
   };

@@ -1,16 +1,16 @@
 import React, { useContext } from "react";
-// import * as S from "../styles/Produtos";
+import * as S from "../styles/Produtos";
 import Context from "../context/Context";
 import ListCardProdutos from "./ListCardProdutos";
 
 function CardProdutos() {
   const { allProducts } = useContext(Context);
   return (
-    <div>
+    <S.contentProduct>
       {allProducts.map((products) => (
-        <ListCardProdutos key="key" products={products}/>
+        <ListCardProdutos key={products.id} products={products}/>
       ))}
-    </div>
+    </S.contentProduct>
   );
 }
 

@@ -1,16 +1,16 @@
 import React, { useContext, useEffect } from "react";
 import { getFromLocalStorage } from "../services/helpers/servicesLocalStorage";
 import getAllProcuts from "../services/apis/getAllProducts";
-import NavBar from '../components/Navbar';
+import NavBar from "../components/Navbar";
 import Context from "../context/Context";
-import CardProdutos from '../components/CardProdutos'
-
+import CardProdutos from "../components/CardProdutos";
+import { useHistory } from "react-router-dom";
 function Produtos() {
-  const { setAllProducts} = useContext(Context);
-
+  const history = useHistory();
+  const { setAllProducts, price } = useContext(Context);
   useEffect(() => {
     const getProducts = async () => {
-      const token = getFromLocalStorage("login_delivery");
+      const token = getFromLocalStorage("user");
       const allProducts = await getAllProcuts(token);
       await setAllProducts(allProducts);
     };
@@ -18,10 +18,26 @@ function Produtos() {
   }, []);
 
   return (
-    <div>
+    <>
       <NavBar />
-      <CardProdutos/>
-    </div>
+      <div>
+        <CardProdutos />
+      </div>
+      <footer>
+        <button
+          onClick={() => history.push("/customer/checkout")}
+          type="button"
+          data-testid='customer_products__button-cart'
+          disabled= {(price === 0) }
+          >
+          <h2
+          data-testid="customer_products__checkout-bottom-value"
+          >
+          {price && price.toFixed(2).replace(".", ",")}
+          </h2>
+        </button>
+      </footer>
+    </>
   );
 }
 

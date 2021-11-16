@@ -4,15 +4,19 @@ const app = require('./app');
 const express = require('express');
 const login  = require('../routers/Login');
 const register = require('../routers/Register');
-
+const path = require('path');
 const customer = require('../routers/Customer');
 const seller = require('../routers/Seller');
 const admin = require('../routers/Admin');
-
+const http = require('http');
+const httpServer = http.createServer(app);
 const error = require('../middleware/error');
 
 app.use(express.json());
 app.use(cors());
+
+app.use('/images', express.static(path.join(__dirname, '..', '..', 'public','images')));
+
 
 // LOGIN
 app.use('/login', login);
@@ -29,5 +33,5 @@ app.use('/admin', admin)
 
 app.use(error);
 
-app.listen(port);
+httpServer.listen(port);
 console.log(`Api rodando na porta ${port}`);
