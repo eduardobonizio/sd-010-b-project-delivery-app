@@ -5,7 +5,7 @@ function CardProduct(props) {
   const { id, price, url_image: urlImage, name } = props;
 
   return (
-    <div className="cardProduct" key={ id }>
+    <div className="card-product" key={ id }>
       <div className="price-product">
         <span>R$</span>
         <span data-testid={ `customer_products__element-card-price-${id}` }>
@@ -22,10 +22,10 @@ function CardProduct(props) {
 
       <span data-testid={ `customer_products__element-card-title-${id}` }>{name}</span>
 
-      <form className="controlerQuantityProduct">
+      <form className="controller-quantity-product">
         <button
           data-testid={ `customer_products__button-card-rm-item-${id}` }
-          className="decrementProduct"
+          className="decrement-product"
           type="button"
           onClick=""
         >
@@ -38,7 +38,7 @@ function CardProduct(props) {
         />
         <button
           data-testid={ `customer_products__button-card-add-item-${id}` }
-          className="incrementeProduct"
+          className="incremente-product"
           type="button"
           onClick=""
         >
