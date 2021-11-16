@@ -38,11 +38,13 @@ const ProductsCards = () => {
     <div className="div-mainDiv">
       {products && products.map((el) => (
         <section key={ el.id } className="cards-sections">
-          <p data-testid={ `customer_products__element-card-price-${el.id}` }>
-            R$
-            {' '}
-            { fixPrice(el.price) }
-          </p>
+          <div className="div-price">
+            <p data-testid={ `customer_products__element-card-price-${el.id}` }>
+              R$
+              {' '}
+              { fixPrice(el.price) }
+            </p>
+          </div>
           <img
             src={ el.url }
             alt={ el.name }
@@ -77,7 +79,6 @@ const ProductsCards = () => {
                 className="btn-handlers"
                 name="+"
                 onClick={ ({ target: { name } }) => handleClick(el, name) }
-
               >
                 +
               </button>

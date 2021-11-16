@@ -73,11 +73,14 @@ const Provider = ({ children }) => {
     tokenHandler(token, location, history);
     fetchProducts();
     const carrinho = localStorage.getItem('carrinho');
-    setOrderInProgress(JSON.parse(carrinho));
+    const price = localStorage.getItem('price');
+    setOrderInProgress(JSON.parse(carrinho) || []);
+    setTotalOrder(JSON.parse(price) || 0);
   }, []);
 
   useEffect(() => {
     localStorage.setItem('carrinho', JSON.stringify(orderInProgress));
+    localStorage.setItem('price', JSON.stringify(totalOrder));
   }, [orderInProgress]);
 
   return (
