@@ -20,6 +20,7 @@ const checkIfPasswordIsValid = async (userPassword, password) => {
   const cryptoPassword = md5(password);
   const isValid = userPassword === cryptoPassword;
   if (!isValid) throw new ApiError('Incorrect password');
+  return true;
 };
 
 const createUser = async ({ name, email, password }) => {
