@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 // import { Box } from '@mui/material';
 // import PropTypes from 'prop-types';
 function Login() {
@@ -82,12 +82,14 @@ function Login() {
         ENTRAR
 
       </button>
-      <button
-        data-testid="common_login__button-register"
-        type="button"
-      >
-        Ainda não tenho conta
-      </button>
+      <Link to="/register">
+        <button
+          data-testid="common_login__button-register"
+          type="button"
+        >
+          Ainda não tenho conta
+        </button>
+      </Link>
       {isEmailInvalid ? (
         <h4
           data-testid="common_login__element-invalid-email"
