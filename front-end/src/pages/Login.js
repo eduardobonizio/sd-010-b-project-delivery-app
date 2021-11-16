@@ -43,7 +43,7 @@ export default function Login() {
   };
 
   return (
-    <div>
+    <div className="bg-red-400">
       <form onSubmit={ auth }>
         <input
           onChange={ ({ target }) => setEmail(target.value) }
