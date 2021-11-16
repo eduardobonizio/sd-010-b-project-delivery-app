@@ -6,12 +6,12 @@ function CardProduct(props) {
 
   return (
     <div className="cardProduct" key={ id }>
-      <span
-        data-testid={ `customer_products__element-card-price-${id}` }
-      >
-        {`R$${price}`}
-      </span>
-
+      <div className="price-product">
+        <span>R$</span>
+        <span data-testid={ `customer_products__element-card-price-${id}` }>
+          {price.replace('.', ',')}
+        </span>
+      </div>
       <img
         data-testid={ `customer_products__img-card-bg-image-${id}` }
         alt="produto"
