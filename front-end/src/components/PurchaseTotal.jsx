@@ -7,7 +7,7 @@ function PurshaseTotal() {
   useEffect(() => {
     setTotalOrder(orderInProgress.reduce((
       acc, curr,
-    ) => acc + (curr.price * curr.quantity), 0).toFixed(2));
+    ) => acc + (curr.price * curr.quantity), 0));
   }, [orderInProgress, setTotalOrder]);
 
   return (
