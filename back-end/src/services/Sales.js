@@ -42,8 +42,11 @@ const getById = async ({ id }) => {
 };
 
 const updateStatus = async ({ id }, { status }) => {
-  const data = await Sale.update({ status }, { where: { id }});
-  return ({ status: httpStatus.OK, data });
+  validations.updateSale(id, status);
+
+  await Sale.update({ status }, { where: { id }});
+  
+  return ({ status: httpStatus.NO_CONTENT, data: [{ message: "Atualizado" }] });
 };
 
 module.exports = { createSale, getAll, getById, updateStatus };
