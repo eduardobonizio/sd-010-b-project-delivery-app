@@ -40,3 +40,12 @@
   height: 30px;
   cursor: pointer;
 }
+
+#message-error {
+  color: red;
+  height: 25px;
+  padding: 3px;
+  margin-top: 5px;
+  width: 200px;
+  text-align: center;
+}
