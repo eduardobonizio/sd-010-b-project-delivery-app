@@ -1,9 +1,10 @@
 import React from 'react';
+import Navbar from '../components/navbar';
 
-const Login = () => (
-  <main>
-    <h1>customer orders</h1>
-  </main>
-);
+function CustomerOrders() {
+  return (
+    <Navbar />
+  );
+}
 
-export default Login;
+export default CustomerOrders;

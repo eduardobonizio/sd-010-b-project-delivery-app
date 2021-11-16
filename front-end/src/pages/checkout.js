@@ -1,9 +1,13 @@
 import React from 'react';
+import Navbar from '../components/navbar';
 
-const Login = () => (
-  <main>
-    <h1>checkout</h1>
-  </main>
-);
+function Checkout() {
+  return (
+    <div>
+      <Navbar />
+      <p>batata</p>
+    </div>
+  );
+}
 
-export default Login;
+export default Checkout;
