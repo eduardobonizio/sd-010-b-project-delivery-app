@@ -12,7 +12,6 @@ import {
 import './css/Register.css';
 
 function Register() {
-  // const navigate = useNavigate();
   const history = useHistory();
 
   const [name, setStateName] = useState();

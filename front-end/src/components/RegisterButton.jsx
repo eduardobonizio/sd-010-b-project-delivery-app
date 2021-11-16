@@ -4,7 +4,6 @@ import Button from 'react-bootstrap/Button';
 
 function RegisterButton() {
   const history = useHistory();
-  // const navigate = useNavigate();
 
   return (
     <Button
