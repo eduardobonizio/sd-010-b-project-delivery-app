@@ -16,6 +16,7 @@ const Login = () => {
       console.log('dentro do try');
       const { data } = await axios.post('http://localhost:3001/login', { email, password });
       console.log('depois da requisição');
+      
       localStorage.setItem('token', `${JSON.stringify(data)}`);
       return navigate('/customer/products');
     } catch (error) {
