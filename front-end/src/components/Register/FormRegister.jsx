@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import { Form, Input, Button, notification } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import './loginForm.css';
+import '../Login/loginForm.css';
 import Logincontext from '../../context/LoginContext';
 
 function FormRegister() {
@@ -52,7 +52,9 @@ function FormRegister() {
 
   return (
     <section className="main-container">
-      {isError && (<p data-testid="common_login__element-invalid-email"> TESTE </p>)}
+      {isError && (
+        <p data-testid="common_register__element-invalid_register"> TESTE </p>
+      )}
       <section className="secondary-container">
         <Form
           form={ form }
@@ -60,6 +62,25 @@ function FormRegister() {
           className="login-form"
           onFinish={ onFinish }
         >
+          <Form.Item
+            colon
+            label="Nome"
+            name="nome"
+            rules={ [
+              {
+                required: true,
+                message: 'Por favor, insira seu nome!',
+              },
+              { type: 'email', message: 'Insira um nome válido!' },
+            ] }
+            hasFeedback
+          >
+            <Input
+              data-testid="common_register__input-name"
+              prefix={ <UserOutlined className="site-form-item-icon" /> }
+              placeholder="Seu nome"
+            />
+          </Form.Item>
           <Form.Item
             colon
             label="Login"
