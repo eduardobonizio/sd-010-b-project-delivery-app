@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 import { Form, Input, Button, notification } from 'antd';
@@ -8,6 +9,7 @@ import './loginForm.css';
 import Logincontext from '../../context/LoginContext';
 
 function LoginForm() {
+  const history = useHistory();
   const { setUserData } = React.useContext(Logincontext);
   const [form] = Form.useForm();
   const [, forceUpdate] = React.useState({});
@@ -50,9 +52,7 @@ function LoginForm() {
     );
   }
 
-  const redirectToRegister = () => {
-    <Redirect to
-  }
+  const redirectToRegister = () => history.push('/register');
 
   return (
     <section className="main-container">
@@ -126,19 +126,6 @@ function LoginForm() {
               </Button>
             )}
           </Form.Item>
-          {/* <Form.Item>
-            <Button
-              data-testid="common_login__button-register"
-              type="default"
-              block
-              shape="round"
-              htmlType="submit"
-              className="login-form-button"
-              onClick={ () => <Redirect to="/register" /> }
-            >
-              Ainda não tenho cadastro
-            </Button>
-          </Form.Item> */}
         </Form>
         <Button
           data-testid="common_login__button-register"
@@ -147,7 +134,7 @@ function LoginForm() {
           shape="round"
           htmlType="submit"
           className="login-form-button"
-          onClick={ redirectToRegister() }
+          onClick={ () => redirectToRegister() }
         >
           Ainda não tenho cadastro
         </Button>
