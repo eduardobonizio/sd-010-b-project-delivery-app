@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-const validarLogin = (req, res, next) => {
+const validarRegistro = (req, res, next) => {
   const { email, password, name } = req.body;
   const { error } = Joi.object({
     email: Joi.string().email().required(),
@@ -16,5 +16,5 @@ const validarLogin = (req, res, next) => {
 };
 
 module.exports = {
-  validarLogin,
+  validarRegistro,
 };
