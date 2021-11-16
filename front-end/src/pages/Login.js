@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { fetchAuthUser } from '../services/userAPI';
@@ -43,9 +44,10 @@ export default function Login() {
   };
 
   return (
-    <div className="bg-red-400">
-      <form onSubmit={ auth }>
+    <div className=" sgfsgfs sgfs sgfsgssfgsf sgfssfs sffffffffffbg-yellow-color flex-col text-dark-color">
+      <form className="flex flex-col" onSubmit={ auth }>
         <input
+          className="border-2 border-yellow-color"
           onChange={ ({ target }) => setEmail(target.value) }
           onClick={ () => setIsValidEntry(true) }
           type="email"
