@@ -36,6 +36,7 @@ function Login() {
     event.preventDefault();
     const logged = await loginUser({ email: login, password });
     localStorage.setItem('user', JSON.stringify(logged.data));
+    localStorage.setItem('carrinho', JSON.stringify({}));
     if (logged.data.token) setToken(logged.data.token);
   };
 

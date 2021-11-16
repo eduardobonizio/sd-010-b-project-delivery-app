@@ -4,14 +4,26 @@ import PropTypes from 'prop-types';
 function ProductCard(props) {
   const [quantity, setQuantity] = useState(0);
 
-  const { product } = props;
+  const { product, setSubtotal } = props;
   const { name, price, urlImage, id } = product;
-  console.log(id);
 
   const onClick = (e) => {
     const { name: tagName } = e.target;
-    if (tagName === 'add') setQuantity(quantity + 1);
-    if (tagName === 'rm' && quantity > 0) setQuantity(quantity - 1);
+    let total = 0;
+    if (tagName === 'add') {
+      setQuantity(quantity + 1);
+      total = (quantity + 1) * price;
+    }
+    if (tagName === 'rm' && quantity > 0) {
+      setQuantity(quantity - 1);
+      total = (quantity - 1) * price;
+    }
+    const carrinho = JSON.parse(localStorage.getItem('carrinho'));
+    const key = id;
+    carrinho[key] = total;
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+    const subtotal = Object.values(carrinho).reduce((acc, curr) => acc + curr);
+    setSubtotal(subtotal.toFixed(2).replace(/\./, ','));
   };
 
   return (
@@ -56,10 +68,11 @@ function ProductCard(props) {
 ProductCard.propTypes = {
   product: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
+    price: PropTypes.string.isRequired,
     urlImage: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
   }).isRequired,
+  setSubtotal: PropTypes.func.isRequired,
 };
 
 export default ProductCard;

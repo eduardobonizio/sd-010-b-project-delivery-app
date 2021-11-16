@@ -7,6 +7,7 @@ function Navbar(props) {
 
   const clearStorage = () => {
     localStorage.removeItem('user');
+    localStorage.removeItem('carrinho');
   };
 
   return (
