@@ -14,6 +14,7 @@ function Products() {
     const fetchProducts = await getProducts();
     const productsData = fetchProducts.data;
 
+    setSubtotal('0,00');
     setProducts(productsData);
     setUserObj(JSON.parse(userInfo));
     // console.log(userObj);
