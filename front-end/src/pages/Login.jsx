@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Col, Container, Form, Image, Row } from 'react-bootstrap';
 import axios from 'axios';
-import md5 from 'crypto';
-import { setEmail, setPassword } from '../actions';
+import md5 from 'md5';
 import EmailInput from '../components/EmailInput';
 import LoginButton from '../components/LoginButton';
 import PasswordInput from '../components/PasswordInput';
@@ -14,7 +12,6 @@ import { validateEmailFormat, validatePassword } from '../helpers/validation';
 import './css/Login.css';
 
 function Login() {
-  const dispatch = useDispatch();
   const [email, setStateEmail] = useState('');
   const [password, setStatePassword] = useState('');
   const [disabled, setDisable] = useState(true);
@@ -35,16 +32,22 @@ function Login() {
   }, [email, password]);
 
   const dispatchOnSubmit = async () => {
-    const okStatus = 200;
     const hashedPassword = md5(password);
-    const response = await axios.post('http://localhost:3001/login', { email, password: hashedPassword });
-    if (response.status !== okStatus) return setHideErrorMessage(!hideErrorMessage);
-    // dispatch(setEmail(email));
-    // dispatch(setPassword(password));
-
-    // const fail = true;
-    // if (fail) return setHideErrorMessage(!hideErrorMessage);
-    return navigate('/customer/products');
+    try {
+      const response = await axios.post('http://localhost:3001/login', { email, password: hashedPassword });
+      console.log(response);
+      const parsedResponse = response.data;
+      console.log(response.status);
+      localStorage.setItem('name', parsedResponse.name);
+      localStorage.setItem('email', parsedResponse.email);
+      localStorage.setItem('role', parsedResponse.role);
+      localStorage.setItem('token', parsedResponse.token);
+      return navigate('/customer/products');
+    } catch (e) {
+      console.log(e);
+      console.log(hideErrorMessage);
+      setHideErrorMessage(false);
+    }
   };
 
   return (
