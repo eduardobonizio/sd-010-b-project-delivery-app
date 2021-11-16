@@ -4,18 +4,12 @@ import CheckoutProducts from './CheckoutProducts';
 import PurshaseTotal from './PurchaseTotal';
 import PurchaseOrderBtn from './PurchaseOrderBtn';
 import DeliveryContainer from './DeliveryContainer';
-<<<<<<< HEAD
-import Header from './Header';
-=======
->>>>>>> dbbf12b0c3db0248f62e1b74b466a632f134cbf4
 import { Context } from '../provider/Provider';
+import Header from './Header';
 
 function CheckoutContainer() {
   const { orderInProgress } = React.useContext(Context);
-<<<<<<< HEAD
-=======
   console.log('order', orderInProgress);
->>>>>>> dbbf12b0c3db0248f62e1b74b466a632f134cbf4
   return (
     <div>
       <Header />
