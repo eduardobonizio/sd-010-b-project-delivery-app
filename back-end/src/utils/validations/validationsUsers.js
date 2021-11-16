@@ -14,12 +14,12 @@ const validateEmail = (email) => {
 };
 
 const validatePassword = (password) => {
-  if (!password) {
+  if (!password || password.length < 6) {
     throw err(errorMessage.INVALID_ENTRIES);
   }
 
-  const validPassword = /[\w\D]{6}/g.test(password);
-  if (!validPassword) throw err(errorMessage.INCORRECT_FORMAT);
+  // const validPassword = /[\w\D]{6}/g.test(password);
+  // if (!validPassword) throw err(errorMessage.INCORRECT_FORMAT);
 };
 
 const validateName = (name) => {

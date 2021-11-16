@@ -8,7 +8,7 @@ export default function ListItemCheckout() {
     { id: 4, name: 'Brahma 600ml', price: '7.50', quant: 2 },
   ];
 
-  // const [total, settotal] = useState([]);
+  // const [total, setTotal] = useState([]);
 
   function itemTotal(Valor, Quantity) {
     const result = Valor * Quantity;
@@ -57,12 +57,14 @@ export default function ListItemCheckout() {
               R$:
               {itemTotal(price, quant)}
             </span>
-            <span
-              className="subtotalPrice"
+            <button
+              className="removeItem"
               data-testid={ `customer_checkout__element-order-table-remove-${id}` }
+              type="submit"
+              onClick={ () => deleteOneTask(id) }
             >
               Remover
-            </span>
+            </button>
           </li>
         </ul>
       ))}
@@ -72,7 +74,6 @@ export default function ListItemCheckout() {
         data-testid="customer_checkout__element-order-total-price"
       >
         Total: R$
-        {' '}
         {orderTotal()}
       </div>
       <form>

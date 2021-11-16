@@ -10,11 +10,11 @@ app.use(express.json());
 app.use(cors());
 app.use(express.static('public'));
 
-app.use('/login', routes.loginRouter);
-app.use('/register', routes.registerRouter);
-app.use('/products', routes.productsRouter);
-app.use('/sales', routes.salesRouter);
-app.use('/user', routes.usersRouter);
+app.use('/login', routes.login);
+app.use('/register', routes.register);
+app.use('/products', routes.products);
+app.use('/sales', routes.sales);
+app.use('/user', routes.users);
 
 app.use(error);
 
