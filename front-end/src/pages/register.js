@@ -22,7 +22,7 @@ function Register() {
 
     try {
       const { data } = await axios.post(path, { name, email, password });
-      await setOnLocalStorage('login_delivery', data);
+      await setOnLocalStorage('user', data);
       history.push('/customer/products');
     } catch (err) {
       setShowMessageError('Email ou usuário já existente!');
