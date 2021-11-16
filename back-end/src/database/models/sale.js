@@ -8,7 +8,7 @@ const Sale = (sequelize, DataTypes) => {
     sale_date: DataTypes.DATE,
     status: DataTypes.STRING,
   },
-  { timestamps: false });
+  { timestamps: false, tableName: 'sales' });
 
   sale.associate = (models) => {
     sale.belongsTo(models.User,
