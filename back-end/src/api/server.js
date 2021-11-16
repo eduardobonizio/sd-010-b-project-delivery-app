@@ -1,7 +1,7 @@
-const app = require('./app');
+const http = require('./app');
 
-const port = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3001;
 
-app.listen(port);
-
-console.log(`Api rodando na porta ${port}`);
+http.listen(PORT, () => {
+  console.log(`Servidor ouvindo na porta ${PORT}`);
+});

@@ -7,7 +7,7 @@ import DeliveryDetails from '../components/deliveryDetails';
 export default function Checkout() {
   return (
     <>
-      <NavBar />
+      <NavBar isCustomer nameButtonOrder="Meus Pedidos" linkOrder="/customer/orders" />
       <OrderCheckout />
       <DeliveryDetails />
     </>
