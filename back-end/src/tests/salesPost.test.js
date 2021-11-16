@@ -1,5 +1,5 @@
 const chai = require('chai');
-const { stub } = require('sinon');
+const sinon = require('sinon');
 const chaiHttp = require('chai-http');
 
 chai.use(chaiHttp);
@@ -25,65 +25,77 @@ const {
 } = require('./utils/constants')
 
 describe('Testing /sale POST route', () => {
-  const createStub = stub(Sale, 'create');
+  const createStub = sinon.stub(Sale, 'create');
 
   describe('when "body" data is valid', () => {
     let postSale;
+    describe('returning body and status', () => {
+      before(async () => {
+        createStub.resolves(SALE_VALID_RETURNED_VALUE);
+        
+        postSale = await chai.request(app)
+          .post(SALE_PATH)
+          .send(SALE_VALID);
+      })
+
+      after(() => {
+        createStub.restore();
+
+      })
+  
+      it('calls Sale.create', () => {
+        expect(createStub.calledOnce).to.be.true;
+      });
+  
+      it('returns 201 - Created', () => {
+        const { status } = postSale;
+  
+        expect(status).to.be.equals(STATUS_CREATED);
+      });
+  
+      it('returns created object', () => {
+        const { body } = postSale;
+        
+        expect(body).to.be.deep.equals(SALE_VALID_RETURNED_VALUE);
+      });
+    });
+
+    describe('without passing "sale_date" and "pending"', () => {
+      
+      it('returns sale_date at format "yyyy-mm-dd hh:mm:ss"', async () => {
+        postSale = await chai.request(app)
+          .post(SALE_PATH)
+          .send(SALE_VALID);
+        
+        const { body: { sale_date } } = postSale;
+        console.log(postSale.body);
+        
+        const dateRegex = new RegExp(/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01]) ([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$/)
+        const regexTestResult = dateRegex.test(sale_date);
+  
+        expect(regexTestResult).to.be.true;
+      });
+  
+      it('returns always "status" as "pending"', () => {    
+        const { body: { status } } = postSale;
+  
+        expect(status).to.be.equals('pending');
+      })
+    });
     
-    before(async () => {
-      createStub.resolves(SALE_VALID_RETURNED_VALUE)
-      
-      postSale = await chai.request(app)
-        .post(SALE_PATH)
-        .send(SALE_VALID);
-    })
-
-    after(() => {
-      createStub.restore();
-    })
-
-    it('calls Sale.create', () => {
-      expect(Sale.create.calledOnce).to.be.true;
-    });
-
-    it('returns 201 - Created', () => {
-      const { status } = postSale;
-
-      expect(status).to.be.equals(STATUS_CREATED);
-    });
-
-    it('returns created object', () => {
-      const { body } = postSale;
-      
-      expect(body).to.be.deep.equals(SALE_VALID);
-    });
-
-    it('returns sale_date at format "yyyy-mm-dd hh:mm:ss"', () => {
-      createStub.restore();
-
-      const { body: { sale_date } } = postSale;
-      const dateRegex = new RegExp(/ ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01]) ([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$ /)
-      const regexTestResult = dateRegex.test(sale_date);
-
-      expect(regexTestResult).to.be.true;
-    });
-
-    it('returns always "status" as "pending"', () => {
-      createStub.restore();
-      
-      const { body: { status } } = postSale;
-
-      expect(status).to.be.equals('pending');
-    })
   });
 
   describe('when "body" data is invalid', () => {
+    before(() => {
+      createStub.restore();
+    })
+    
     it('shouldn\'t calls Sale.create', async () => {
       await chai.request(app)
         .post(SALE_PATH)
         .send({});
 
-      expect(Sale.create.calledOnce).to.be.false;
+      expect(createStub.calledOnce).to.be.false;
     });
 
     it('return 400 - Bad Request', async () => {

@@ -1,0 +1,7 @@
+const STATUS_CREATED = 201;
+const STATUS_BAD_REQUEST = 400;
+
+module.exports = {
+  STATUS_CREATED,
+  STATUS_BAD_REQUEST,
+};
