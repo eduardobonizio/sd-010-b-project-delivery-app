@@ -1,11 +1,11 @@
-import axios from "axios";
+import axios from 'axios';
 
-const getAllProcuts = async ({token}) => {
-  const END_POINT = "http://localhost:3001/customer/products";
+const getAllProcuts = async ({ token }) => {
+  const END_POINT = 'http://localhost:3001/customer/products';
   try {
-    const { data } = await axios.get(END_POINT,{ 
+    const { data } = await axios.get(END_POINT, {
       headers: {
-        Authorization:token
+        Authorization: token,
       },
     });
     return data;

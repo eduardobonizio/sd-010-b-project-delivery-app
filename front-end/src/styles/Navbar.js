@@ -6,7 +6,7 @@ flex-direction: row;
 width: 100%;
 justify-content: space-evenly;
 background-color: #4CAF50;
-`
+`;
 export const buttonNav = styled.button` 
   background-color: #4CAF50;
   border: none;
@@ -18,6 +18,4 @@ export const buttonNav = styled.button`
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
-`
-
-
+`;
