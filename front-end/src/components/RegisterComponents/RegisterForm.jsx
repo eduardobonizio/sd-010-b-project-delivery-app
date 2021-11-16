@@ -32,7 +32,6 @@ export default function RegisterForm() {
 
   const changeName = (value) => {
     const maxCharacterNameLength = 12;
-    console.log(/[a-zA-Z]+/i.test(value));
     if (value.length < maxCharacterNameLength) {
       setSomethingIsWrong({
         ...somethingIsWrong,
