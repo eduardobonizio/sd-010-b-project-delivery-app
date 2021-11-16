@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import axios from 'axios';
+import axios from '../api/api';
 
 import validRegister from '../helpers/validRegister';
 
@@ -37,19 +37,21 @@ function Register() {
   };
 
   const handleSubmit = async () => {
-    const pushUrl = 'http:localhost:3001/register';
+    const pushUrl = '/register';
     const userData = {
       registerName,
       registerEmail,
       registerPassword,
       role: 'customer',
     };
+    console.log('oba');
     await axios.post(pushUrl, userData)
       .then((res) => {
         const { user, token } = res.data;
         localStorage.setItem('user', JSON.stringify({ token, ...user }));
         history.push('/customer/products');
-      }, ({ res: { data: { message } } }) => setError(message));
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -99,7 +101,7 @@ function Register() {
           type="button"
           data-testid="common_register__button-register"
           disabled={ btnDisable }
-          onClick={ handleSubmit }
+          onClick={ () => handleSubmit() }
         >
           CADASTRAR
         </button>
