@@ -23,7 +23,6 @@ const findById = async (id) => {
 };
 
 const addUser = async (bodyCategory) => {
-  console.log('entrei no add');
   const { error } = validUser.validate(bodyCategory);
   if (error) throw messageError(409, '409 - Conflict');
   const { name, email, password, role } = bodyCategory;
@@ -33,10 +32,8 @@ const addUser = async (bodyCategory) => {
   const payload = { email };
   const token = jwtLogin(payload);
 
-  // // // console.log(token);
   await User.create({ name, email, password: passwordHash, role });
-  // console.log(result);
-  // if (!result) throw messageError(409, '409 - Conflict');
+
   return { token };
 };
 
