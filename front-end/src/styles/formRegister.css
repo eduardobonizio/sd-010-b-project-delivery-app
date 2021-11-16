@@ -41,6 +41,10 @@
   cursor: pointer;
 }
 
+.btn-general:disabled {
+  background-color: grey;
+}
+
 #message-error {
   color: red;
   height: 25px;

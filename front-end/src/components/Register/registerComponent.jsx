@@ -11,49 +11,48 @@ const RegisterComponent = () => {
     invalidPassword: true,
   });
   const [msgError, setMsgError] = useState();
-  // const [enablad, setEnablad] = useState(false);
 
   const handleChangeName = ({ value }) => {
     const twelve = 12;
-    if (value.length < twelve) {
-      setName({
-        invalidName: true,
-      });
-      setMsgError('*Invalid name');
-    } else {
+    if (value.length > twelve) {
       setName({
         invalidName: false,
       });
       setMsgError('');
+    } else {
+      setName({
+        invalidName: true,
+      });
+      setMsgError('*Invalid name');
     }
   };
 
   const handleChangeEmail = ({ value }) => {
     const regexEmail = /^[\w-.]+@([\w-]+.)+[\w-]{2,4}$/;
-    if (!regexEmail.test(value)) {
+    if (regexEmail.test(value)) {
+      setEmail({
+        invalidEmail: false,
+      });
+      setMsgError('');
+    } else {
       setEmail({
         invalidEmail: true,
       });
       setMsgError('*Invalid email');
-    } else {
-      setName({
-        invalidEmail: false,
-      });
-      setMsgError('');
     }
   };
   const handleChangePassword = ({ value }) => {
     const six = 6;
-    if (value.length < six) {
-      setPassword({
-        invalidPassword: true,
-      });
-      setMsgError('*Invalid password');
-    } else {
+    if (value.length >= six) {
       setPassword({
         invalidPassword: false,
       });
       setMsgError('');
+    } else {
+      setPassword({
+        invalidPassword: true,
+      });
+      setMsgError('*Invalid password');
     }
   };
 
@@ -95,7 +94,6 @@ const RegisterComponent = () => {
         </label>
         <button
           disabled={ name.invalidName || email.invalidEmail || password.invalidPassword }
-          // onClick={ handleClick }
           data-testid="common_register__button-register"
           className="btn-general"
           type="button"
