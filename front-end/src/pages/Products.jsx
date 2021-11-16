@@ -3,8 +3,9 @@ import TopBar from '../components/TopBar';
 import './css/Products.css';
 
 function Products() {
+  const name = localStorage.getItem('name');
   return (
-    <TopBar />
+    <TopBar name={ name } />
   );
 }
 

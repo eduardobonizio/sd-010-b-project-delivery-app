@@ -1,7 +1,10 @@
 import React from 'react';
 import { Image, Navbar } from 'react-bootstrap';
+import Proptypes from 'prop-types';
 
-function TopBar() {
+function TopBar(props) {
+  const { name } = props;
+
   return (
     <Navbar variant="dark" fixed="top" className="navbar">
       <Navbar.Collapse className="justify-content-start">
@@ -34,7 +37,7 @@ function TopBar() {
             data-testid="customer_products__element-navbar-user-full-name"
             href="/customer/orders"
           >
-            Zé da Silva
+            { name }
           </Navbar.Text>
           <Navbar.Text
             className="exit align-items-center"
@@ -48,5 +51,9 @@ function TopBar() {
     </Navbar>
   );
 }
+
+TopBar.propTypes = {
+  name: Proptypes.string.isRequired,
+};
 
 export default TopBar;

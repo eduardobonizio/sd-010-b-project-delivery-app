@@ -21,8 +21,8 @@ router.post('/', async (req, res) => {
     const newUser = await User.findOne({ where: { email } });
     if (!newUser) {
       const token = jwt.sign({ data: email }, secret, jwtConfig);
-      const response = await User.create({ name, email, password: hashedPassword, role: 'user' });
-      return res.status(200).json({
+      const response = await User.create({ name, email, password: hashedPassword, role: 'customer' });
+      return res.status(201).json({
         name: response.dataValues.name,
         email: response.dataValues.email,
         role: response.dataValues.role,
