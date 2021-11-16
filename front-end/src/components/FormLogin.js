@@ -15,7 +15,6 @@ export default function FormLogin() {
   async function submit(e) {
     e.preventDefault();
     const user = await login({ email, password: pass });
-    console.log(user);
     if (user.message) {
       setErr(true);
       return setTimeout(() => setErr(false), threeSecond);

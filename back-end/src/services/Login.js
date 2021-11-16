@@ -1,8 +1,8 @@
 const httpStatus = require('http-status');
 
 const { User } = require('../database/models');
-const validations = require('../utils/validations/validationsIndex');
-const generateToken = require('../utils/generateToken');
+const validations = require('../utils/validations');
+const generateToken = require('../utils/token');
 
 const login = async ({ email, password }) => {
   await validations.login(email, password);
