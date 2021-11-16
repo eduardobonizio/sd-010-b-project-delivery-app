@@ -7,7 +7,7 @@ const login = async (req, res, next) => {
   try {
     const user = await loginService.login({ email, password });
     const token = generateToken(user);
-    return res.status(200).json({ token });
+    return res.status(200).json({ user: { name: user.name, email, role: user.role, token } });
   } catch (e) {
     next(e);
   }
@@ -16,3 +16,10 @@ const login = async (req, res, next) => {
 module.exports = {
   login,
 };
+
+// {
+//   name: "Nome Da Pessoa Usuária",
+//   email: "email@dominio.com",
+//   role: "customer",
+//   token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTm9tZSBEYSBQZXNzb2EgVXN1w6FyaWEiLCJlbWFpbCI6ImVtYWlsQGRvbWluaW8uY29tIiwicm9sZSI6ImN1c3RvbWVyIn0.s5cmiyY16yViCXkHuzWekxkMeYBi75eT8uJnSbfadNE"
+// }

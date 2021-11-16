@@ -9,7 +9,7 @@ function Products() {
       <Navbar />
       <h1>Produtos</h1>
       {cardFields.map((el) => (
-        <ProductCard key={ el.id } />
+        <ProductCard key={ el.id } product={ el } />
       ))}
     </div>
   );

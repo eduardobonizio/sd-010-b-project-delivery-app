@@ -9,10 +9,12 @@ import axios from 'axios';
 //   },
 // };
 
+// https://pt.stackoverflow.com/q/365296/207241
+
 const API = axios.create({
-  baseUrl: 'http://localhost:3001',
+  baseURL: 'http://localhost:3001',
   headers: {
-    'Content-Type': 'application/json',
+    'Content-type': 'application/json',
   },
 });
 
