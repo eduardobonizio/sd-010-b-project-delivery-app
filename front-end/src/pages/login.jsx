@@ -1,15 +1,7 @@
 import React from 'react';
 
-import Input from '../components/Input';
-import Card from '../components/Card';
-import Button from '../components/Button';
-
 const Login = () => (
-  <Card>
-    <Input />
-    <Input />
-    <Button />
-  </Card>
+  <div><h3>Login</h3></div>
 );
 
 export default Login;

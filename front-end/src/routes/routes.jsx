@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, BrowserRouter, Redirect, Switch } from 'react-router-dom';
+import Product from '../pages/customer/products';
 
 import Login from '../pages/login';
 import Register from '../pages/register';
@@ -12,6 +13,7 @@ const Routes = () => (
       </Route>
       <Route path="/login" component={ Login } />
       <Route path="/register" component={ Register } />
+      <Route path="/customer/products" component={ Product } />
     </Switch>
   </BrowserRouter>
 );
