@@ -56,9 +56,8 @@ const getAllSellers = async () => user.findAll({ where: { role: 'seller' } });
 module.exports = {
   existUser,
   createUser,
-  findUser,
   getAllSellers,
   createUserByADM,
   getAllUsers,
-  deleteUser
+  deleteUser,
 };

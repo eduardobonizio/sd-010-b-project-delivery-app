@@ -47,8 +47,8 @@ export default function Login() {
     default:
       setIsValidEntry(false);
       break;
+    }
   };
-}
 
   return (
     <div>

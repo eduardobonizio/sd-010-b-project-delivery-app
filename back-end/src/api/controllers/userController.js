@@ -52,7 +52,6 @@ const createUserByADM = async (req, res) => {
   }
 };
 
-
 const getAllUsers = async (req, res) => {
   try {
     const result = await userService.getAllUsers();
@@ -62,7 +61,7 @@ const getAllUsers = async (req, res) => {
     console.log(err);
     res.status(status.INTERNAL_SERVER_ERROR).json({ message: INTERNAL_SERVER_ERROR_MSG });
   }
-}
+};
 
 const getAllSellers = async (req, res) => {
   try {
@@ -88,10 +87,9 @@ const deleteUser = async (req, res) => {
 
 module.exports = {
   loginUser,
-  findUser,
   createUser,
   getAllSellers,
   getAllUsers,
   deleteUser,
-  createUserByADM
+  createUserByADM,
 };
