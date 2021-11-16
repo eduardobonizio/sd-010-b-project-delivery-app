@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export async function loginService({ email, password }) {
+async function loginService({ email, password }) {
   const END_POINT = 'http://localhost:3001/login';
   try {
     const { data } = await axios.post(END_POINT, { email, password });
@@ -9,3 +9,5 @@ export async function loginService({ email, password }) {
     return error;
   }
 }
+
+export default loginService;

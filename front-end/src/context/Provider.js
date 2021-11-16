@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import Context from "./Context";
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import Context from './Context';
 
 export default function Provider({ children }) {
   const [User, setUser] = useState({});
 
   const [allProducts, setAllProducts] = useState([]);
   const [cart, setCart] = useState([]);
-  const [price, setPrice] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const insertCart = async (eachItem) => {
     const { id, name, price, quantity } = eachItem;
@@ -26,13 +26,11 @@ export default function Provider({ children }) {
   useEffect(() => {
     const valorTotal = cart.reduce(
       (acc, { price, quantity }) => acc + price * quantity,
-      0
+      0,
     );
 
-    setPrice(valorTotal);
+    setTotalPrice(valorTotal);
   }, [cart]);
-
-
 
   const context = {
     User,
@@ -42,10 +40,11 @@ export default function Provider({ children }) {
     cart,
     setCart,
     insertCart,
-    price,
+    setTotalPrice,
+    totalPrice,
   };
 
-  return <Context.Provider value={context}>{children}</Context.Provider>;
+  return <Context.Provider value={ context }>{children}</Context.Provider>;
 }
 
 // Validação de props

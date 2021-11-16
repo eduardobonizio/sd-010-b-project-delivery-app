@@ -21,7 +21,7 @@ function ListCardProdutos({ products }) {
     setQuantity(quantity - 1);
   };
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     setQuantity(Number(e.target.value));
   };
 
@@ -56,7 +56,7 @@ function ListCardProdutos({ products }) {
           data-testid={`customer_products__input-card-quantity-${id}`}
           value={quantity}
           min="0"
-          onChange={(e) => handleChange(e)}
+          onChange={e => handleChange(e)}
           type="number"
         />
         <S.buttonProduct
@@ -77,7 +77,7 @@ ListCardProdutos.propTypes = {
   products: PropTypes.object,
   price: PropTypes.string,
   url_image: PropTypes.string,
-  name: PropTypes.string,
+  name: PropTypes.string
 };
 
 export default ListCardProdutos;
