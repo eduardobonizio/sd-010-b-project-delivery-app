@@ -9,6 +9,7 @@ export default function RedirectToRegister() {
 
   return (
     <button
+      className="login-btn"
       href="/register"
       type="button"
       data-testid="common_login__button-register"

@@ -26,22 +26,24 @@ export default function Login() {
 
   return (
     <div className="login-content">
-      <form action="">
+      <form className="form-login" action="">
         <div>
-          <label htmlFor="email">
+          <label className="label-login" htmlFor="email">
             Login
             <input
               autoComplete="off"
+              className="input-login"
               type="text"
               name="email"
               data-testid="common_login__input-email"
               onChange={ (e) => setEmail(e.target.value) }
             />
           </label>
-          <label htmlFor="password">
+          <label className="label-login" htmlFor="password">
             Senha
             <input
               autoComplete="off"
+              className="input-login"
               type="password"
               name="password"
               data-testid="common_login__input-password"
@@ -49,6 +51,7 @@ export default function Login() {
             />
           </label>
           <button
+            className="login-btn"
             type="submit"
             data-testid="common_login__button-login"
             disabled={ disabledBtn }
