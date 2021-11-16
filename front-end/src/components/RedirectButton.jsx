@@ -16,7 +16,7 @@ function RedirectButton() {
         type="button"
         onClick={ redirectCheckout }
       >
-        Button
+        Ver carrinho
       </button>
     </div>
   );

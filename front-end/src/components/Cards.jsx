@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import {
   Button,
   Card,
@@ -9,7 +11,7 @@ import {
   Input,
 } from 'reactstrap';
 
-function Cards() {
+function Cards({ product }) {
   // const prodBg = 'https://static.paodeacucar.com/img/uploads/1/241/693241.jpg';
   return (
     <div className="row">
@@ -17,15 +19,15 @@ function Cards() {
         <Card inverse>
           <CardImg
             alt="Card image cap"
-            src="https://picsum.photos/256/186"
+            src={ product.urlImage }
             top
             width="100%"
           />
           <CardBody>
-            <CardTitle>R$ 0,00</CardTitle>
+            <CardTitle>{ `R$ ${product.price}` }</CardTitle>
             <CardImgOverlay />
           </CardBody>
-          <CardTitle className="text-center mb-0">Product Name</CardTitle>
+          <CardTitle className="text-center mb-0">{ product.name }</CardTitle>
           <CardBody className="d-flex">
             <Button> - </Button>
             <Input />
@@ -39,3 +41,12 @@ function Cards() {
 }
 
 export default Cards;
+
+Cards.propTypes = {
+  product: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+    urlImage: PropTypes.string.isRequired,
+  }).isRequired,
+};

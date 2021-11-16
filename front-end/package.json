@@ -10,6 +10,7 @@
   "scripts": {
     "with-env": "SKIP_PREFLIGHT_CHECK=true",
     "start": "npm run with-env react-scripts start",
+    "windows": "react-scripts start",
     "start:build": "PORT=3000 ./node_modules/.bin/serve -s build",
     "build": "npm run with-env react-scripts build",
     "test": "npm run with-env react-scripts test -- --runInBand --detectOpenHandles --verbose",
@@ -23,6 +24,7 @@
     "@testing-library/jest-dom": "5.14.1",
     "@testing-library/react": "11.2.7",
     "@testing-library/user-event": "12.8.3",
+    "axios": "^0.24.0",
     "bootstrap": "^5.1.3",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
