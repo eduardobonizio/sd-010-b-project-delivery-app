@@ -10,10 +10,9 @@ function RegisterForm() {
     email: '',
     senha: '',
   });
+  const { nome, senha, email } = registerInfo;
 
   const ableButton = () => {
-    const { nome, senha, email } = registerInfo;
-
     if (validarNome(nome) && validarSenha(senha) && validarEmail(email)) {
       return false;
     }
@@ -29,7 +28,20 @@ function RegisterForm() {
     ableButton();
   };
 
-  const { nome, senha, email } = registerInfo;
+  const handleSendRegister = async (event) => {
+    event.preventDefault();
+    try {
+      const data = await axios.post('http://localhost:3001/register', {
+        name: nome,
+        password: senha,
+        email,
+      });
+      console.log(data);
+    } catch (err) {
+      return err;
+    }
+  };
+
   return (
     <form>
       <label htmlFor="nome">
@@ -80,6 +92,7 @@ function RegisterForm() {
       <button
         type="button"
         disabled={ ableButton() }
+        onClick={ handleSendRegister }
         data-testid="common_register__button-register"
       >
         Registra-se
