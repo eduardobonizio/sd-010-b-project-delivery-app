@@ -7,11 +7,13 @@ import '../styles/productList.css';
 
 const ProductsList = ({ products }) => (
   <main className="product-list__container">
-    { products.map((product, index) => (
-      <section key={ index } className="product-list__container__card">
-        <ProductCard product={ product } />
-      </section>
-    )) }
+    <main className="product-list__box">
+      { products.map((product, index) => (
+        <section key={ index } className="product-list__container__card">
+          <ProductCard product={ product } />
+        </section>
+      )) }
+    </main>
   </main>
 );
 
