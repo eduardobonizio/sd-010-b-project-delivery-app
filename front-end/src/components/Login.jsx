@@ -6,6 +6,7 @@ import DeliveryContext from '../context/DeliveryContext';
 
 const Login = () => {
   const [isValidPW, setIsValidPW] = useState(false);
+  const [isValid, setIsValid] = useState(false);
   const navigate = useNavigate();
   const { email, setEmail, password, setPassword, validarEmail, validarSenha,
   } = useContext(DeliveryContext);
@@ -23,15 +24,16 @@ const Login = () => {
 
   const handleChange = ({ target }) => {
     const { value, name } = target;
-    return name === 'email' ? setEmail(value) : setPassword(value);
+    name === 'email' ? setEmail(value) : setPassword(value);
+    setIsValid(!(validarEmail(email) && validarSenha(password)));
   };
 
-  const isValid = () => {
-    if (validarEmail(email) && validarSenha(password)) {
-      return false;
-    }
-    return true;
-  };
+  // const isValid = () => {
+  //   if (validarEmail(email) && validarSenha(password)) {
+  //     return false;
+  //   }
+  //   return true;
+  // };
 
   const TEST_INVALID_EMAIL = 'common_login__element-invalid-email';
 
@@ -58,7 +60,7 @@ const Login = () => {
           data-testid="common_login__button-login"
           type="button"
           onClick={ buttonLogin }
-          disabled={ isValid() }
+          disabled={ isValid }
         >
           LOGIN
         </button>
