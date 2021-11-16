@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import { Col, Container, Form, Row } from 'react-bootstrap';
-import md5 from 'md5';
 import EmailInput from '../components/EmailInput';
 import PasswordInput from '../components/PasswordInput';
 import NameInput from '../components/NameInput';
@@ -38,12 +37,12 @@ function Register() {
 
   const createUser = async () => {
     const conflict = 409;
-    const hashedPassword = md5(password);
-    const response = await axios.post('http://localhost:3001/register', { name, email, password: hashedPassword });
+    const response = await axios.post('http://localhost:3001/register', { name, email, password });
     if (response.status === conflict) {
       return setHidden(false);
     }
     const parsedResponse = response.data;
+    console.log(parsedResponse.data);
     localStorage.setItem('name', parsedResponse.name);
     localStorage.setItem('email', parsedResponse.email);
     localStorage.setItem('role', parsedResponse.role);
@@ -94,7 +93,7 @@ function Register() {
         </Row>
         <Row className="justify-content-md-center">
           <Col md="auto">
-            <span hidden={ hidden }>Usuário já existente</span>
+            <span hidden={ hidden }>Usuário já existente!</span>
           </Col>
         </Row>
       </Form>

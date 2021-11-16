@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Col, Container, Form, Image, Row } from 'react-bootstrap';
 import axios from 'axios';
-import md5 from 'md5';
 import EmailInput from '../components/EmailInput';
 import LoginButton from '../components/LoginButton';
 import PasswordInput from '../components/PasswordInput';
@@ -32,9 +31,12 @@ function Login() {
   }, [email, password]);
 
   const dispatchOnSubmit = async () => {
-    const hashedPassword = md5(password);
+    const notFound = 404;
+
     try {
-      const response = await axios.post('http://localhost:3001/login', { email, password: hashedPassword });
+      const response = await axios.post('http://localhost:3001/login', { email, password });
+      if (response.status === notFound) return setHideErrorMessage(false);
+      console.log(response);
       const parsedResponse = response.data;
       localStorage.setItem('name', parsedResponse.name);
       localStorage.setItem('email', parsedResponse.email);
@@ -42,6 +44,7 @@ function Login() {
       localStorage.setItem('token', parsedResponse.token);
       history.push('/customer/products');
     } catch (e) {
+      console.log(e);
       setHideErrorMessage(false);
     }
   };
