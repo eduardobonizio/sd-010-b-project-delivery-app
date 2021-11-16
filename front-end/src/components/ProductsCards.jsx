@@ -41,6 +41,7 @@ const ProductsCards = () => {
       handleSetOrderPositive(el);
 
       const total = totalOrder + parseFloat(el.price);
+      console.log(total.toFixed(2), 'TOTTAAAAAAAAAAAL');
       return setTotalOrder(parseFloat(total.toFixed(2)));
     }
     // }
