@@ -7,6 +7,7 @@ export default function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [erro] = useState();
 
   const navigate = useNavigate();
 
@@ -65,6 +66,9 @@ export default function Register() {
         >
           desabilitando botao
         </button>
+        <p data-testid="common_register__element-invalid_register">
+          { erro ? 'Falhou' : ' '}
+        </p>
       </form>
     </div>
   );
