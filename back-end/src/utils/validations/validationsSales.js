@@ -38,6 +38,19 @@ const validateQuantity = (quantity) => {
   }
 };
 
+const validateId = (id) => {
+  if (!id || !Number(id)) {
+    throw err(errorMessage.INVALID_ENTRIES);
+  }
+};
+
+const validateStatus = (status) => {
+  const allStatus = ['Pendente', 'Preparando', 'Em Trânsito', 'Entregue'];
+  if (!status || !allStatus.includes(status)) {
+    throw err(errorMessage.INVALID_ENTRIES);
+  }
+};
+
 module.exports = {
   validateSaller,
   validatePrice,
@@ -45,4 +58,6 @@ module.exports = {
   validateNumber,
   validateProductId,
   validateQuantity,
+  validateId,
+  validateStatus,
 };
