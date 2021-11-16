@@ -1,0 +1,14 @@
+.main-container {
+  height: 100vh;
+  padding: 50px 0 0;
+}
+
+.secondary-container {
+  background-color: #eaf1ef;
+  border-radius: 15px;
+  box-shadow: -8px 9px 8px -4px #71ecbf;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px;
+  width: 450px;
+}

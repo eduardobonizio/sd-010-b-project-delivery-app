@@ -1,12 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
+import LoginProvider from './context/LoginProvider';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <LoginProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </LoginProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 );
