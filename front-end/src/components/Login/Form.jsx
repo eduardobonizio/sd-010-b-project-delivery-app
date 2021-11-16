@@ -11,6 +11,7 @@ import './loginForm.css';
 import Logincontext from '../../context/LoginContext';
 
 function LoginForm() {
+  const textButtonLogin = 'login';
   const history = useHistory();
   const { setUserData } = React.useContext(Logincontext);
   const [form] = Form.useForm();
@@ -45,9 +46,11 @@ function LoginForm() {
   return (
     <section className="main-container">
       {isError && (
-        <section className="container-error-message">
+        <section
+          className="container-error-message"
+          data-testid="common_login__element-invalid-email"
+        >
           <Alert
-            data-testid="common_login__element-invalid-email"
             message="Usuário não cadastrado!"
             type="error"
             showIcon
@@ -107,7 +110,6 @@ function LoginForm() {
             {() => (
               <Button
                 data-testid="common_login__button-login"
-                style={ { backgroundColor: '#036b52' } }
                 block
                 shape="round"
                 htmlType="submit"
@@ -117,7 +119,7 @@ function LoginForm() {
                   || !!form.getFieldsError().filter(({ errors }) => errors.length).length
                 }
               >
-                Login
+                {textButtonLogin.toUpperCase()}
               </Button>
             )}
           </Form.Item>
@@ -128,7 +130,7 @@ function LoginForm() {
           block
           shape="round"
           htmlType="submit"
-          className="login-form-button"
+          className="login-form-button-register"
           onClick={ () => history.push('/register') }
         >
           Ainda não tenho cadastro
