@@ -1,21 +1,22 @@
-import React, { useContext, useEffect } from "react";
-import { getFromLocalStorage } from "../services/helpers/servicesLocalStorage";
-import getAllProcuts from "../services/apis/getAllProducts";
-import NavBar from "../components/Navbar";
-import Context from "../context/Context";
-import CardProdutos from "../components/CardProdutos";
-import { useHistory } from "react-router-dom";
+import React, { useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { getFromLocalStorage } from '../services/helpers/servicesLocalStorage';
+import getAllProcuts from '../services/apis/getAllProducts';
+import NavBar from '../components/Navbar';
+import Context from '../context/Context';
+import CardProdutos from '../components/CardProdutos';
+
 function Produtos() {
   const history = useHistory();
   const { setAllProducts, totalPrice } = useContext(Context);
   useEffect(() => {
     const getProducts = async () => {
-      const token = getFromLocalStorage("user");
+      const token = getFromLocalStorage('user');
       const allProducts = await getAllProcuts(token);
       await setAllProducts(allProducts);
     };
     getProducts();
-  }, []);
+  }, [setAllProducts]);
 
   return (
     <>
@@ -25,13 +26,13 @@ function Produtos() {
       </div>
       <footer>
         <button
-          onClick={() => history.push("/customer/checkout")}
+          onClick={ () => history.push('/customer/checkout') }
           type="button"
           data-testid='customer_products__button-cart'
           disabled= {(totalPrice === 0) }
           >
           <h2
-          data-testid="customer_products__checkout-bottom-value"
+            data-testid="customer_products__checkout-bottom-value"
           >
           {totalPrice && totalPrice.toFixed(2).replace(".", ",")}
           </h2>
