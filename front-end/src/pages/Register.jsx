@@ -2,6 +2,11 @@ import React from 'react';
 import ErrorRegister from '../components/ErrorRegister';
 
 function Register() {
+  const {
+    errorMsg,
+    handleClick,
+  } = useContext(Context);
+
   return (
     <form>
       <input
@@ -26,6 +31,7 @@ function Register() {
         data-testid="common_register__button-register"
         type="button"
         value="Cadastrar"
+        onClick={ () => handleClick() }
       />
       { errorMsg ? <ErrorRegister /> : '' }
     </form>
