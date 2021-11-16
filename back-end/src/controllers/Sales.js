@@ -9,4 +9,7 @@ const getAll = async (req, res) => salesService.getAll(req.userInfo)
 const getById = async (req, res) => salesService.getById(req.params)
   .then(({ status, data }) => res.status(status).json({ data }));
 
-module.exports = { createSale, getAll, getById };
+const updateStatus = async (req, res) => salesService.updateStatus(req.params, req.body)
+  .then(({ status, data }) => res.status(status).json({ data }));
+
+module.exports = { createSale, getAll, getById, updateStatus };
