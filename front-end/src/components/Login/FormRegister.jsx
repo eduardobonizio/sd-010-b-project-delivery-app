@@ -7,7 +7,7 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import './loginForm.css';
 import Logincontext from '../../context/LoginContext';
 
-function LoginForm() {
+function FormRegister() {
   const { setUserData } = React.useContext(Logincontext);
   const [form] = Form.useForm();
   const [, forceUpdate] = React.useState({});
@@ -50,10 +50,6 @@ function LoginForm() {
     );
   }
 
-  const redirectToRegister = () => {
-    <Redirect to
-  }
-
   return (
     <section className="main-container">
       {isError && (<p data-testid="common_login__element-invalid-email"> TESTE </p>)}
@@ -78,7 +74,7 @@ function LoginForm() {
             hasFeedback
           >
             <Input
-              data-testid="common_login__input-email"
+              data-testid="common_register__input-email"
               prefix={ <UserOutlined className="site-form-item-icon" /> }
               placeholder="email@trybeer.com"
             />
@@ -100,7 +96,7 @@ function LoginForm() {
             hasFeedback
           >
             <Input.Password
-              data-testid="common_login__input-password"
+              data-testid="common_register__input-password"
               prefix={ <LockOutlined className="site-form-item-icon" /> }
               type="password"
               placeholder="Senha"
@@ -110,7 +106,7 @@ function LoginForm() {
           <Form.Item shouldUpdate style={ { textAlign: 'center', marginBottom: 0 } }>
             {() => (
               <Button
-                data-testid="common_login__button-login"
+                data-testid="common_register__button-register"
                 style={ { backgroundColor: '#036b52' } }
                 onClick={ () => openNotificationWithIcon('success') }
                 block
@@ -126,7 +122,7 @@ function LoginForm() {
               </Button>
             )}
           </Form.Item>
-          {/* <Form.Item>
+          <Form.Item>
             <Button
               data-testid="common_login__button-register"
               type="default"
@@ -134,26 +130,14 @@ function LoginForm() {
               shape="round"
               htmlType="submit"
               className="login-form-button"
-              onClick={ () => <Redirect to="/register" /> }
             >
               Ainda não tenho cadastro
             </Button>
-          </Form.Item> */}
+          </Form.Item>
         </Form>
-        <Button
-          data-testid="common_login__button-register"
-          type="default"
-          block
-          shape="round"
-          htmlType="submit"
-          className="login-form-button"
-          onClick={ redirectToRegister() }
-        >
-          Ainda não tenho cadastro
-        </Button>
       </section>
     </section>
   );
 }
 
-export default LoginForm;
+export default FormRegister;

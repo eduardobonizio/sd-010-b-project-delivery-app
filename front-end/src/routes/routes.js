@@ -3,6 +3,7 @@ import { Switch, Redirect } from 'react-router-dom';
 import { Route, useLocation } from 'react-router';
 
 import Login from '../pages/Login';
+import Register from '../pages/Register';
 
 const Routes = () => {
   const location = useLocation();
@@ -12,6 +13,7 @@ const Routes = () => {
       {location.pathname === '/'
         ? <Redirect to="/login" />
         : null}
+      <Route exact path="/register" component={ Register } />
       <Route path="/" component={ Login } />
     </Switch>
   );
