@@ -85,7 +85,7 @@ const Provider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem('carrinho', JSON.stringify(orderInProgress));
     localStorage.setItem('price', JSON.stringify(totalOrder));
-  }, [orderInProgress]);
+  }, [orderInProgress, totalOrder]);
 
   return (
     <Context.Provider value={ context }>{children}</Context.Provider>
