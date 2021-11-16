@@ -85,12 +85,16 @@ const Provider = ({ children }) => {
     tokenHandler(token, location, history);
     fetchProducts();
     const carrinho = localStorage.getItem('carrinho');
+    const price = localStorage.getItem('price');
+    setTotalOrder(JSON.parse(price) || 0);
     setOrderInProgress(JSON.parse(carrinho) || []);
-  }, []);
+  // }, []);
+  }, [history, location]);
 
   useEffect(() => {
     localStorage.setItem('carrinho', JSON.stringify(orderInProgress));
-  }, [orderInProgress]);
+    localStorage.setItem('price', JSON.stringify(totalOrder));
+  }, [orderInProgress, totalOrder]);
 
   return (
     <Context.Provider value={ context }>{children}</Context.Provider>

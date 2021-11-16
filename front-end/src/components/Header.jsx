@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/header.css';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   console.log('pato');
@@ -8,47 +9,51 @@ const Header = () => {
     <header className="header">
       <nav className="header-nav-bar1">
         <section>
-          <button
-            type="button"
-            data-testid="customer_products__element-navbar-link-products"
-            className="btn-navbar"
-          >
-            PRODUTOS
+          <Link to="/customer/products">
+            <button
+              type="button"
+              data-testid="customer_products__element-navbar-link-products"
+              className="btn-navbar btn-1"
+            >
+              PRODUTOS
 
-          </button>
-          <button
-            type="button"
-            data-testid="customer_products__element-navbar-link-orders"
-            className="btn-navbar"
+            </button>
+          </Link>
+          <Link to="/customer/orders">
+            <button
+              type="button"
+              data-testid="customer_products__element-navbar-link-orders"
+              className="btn-navbar btn-2"
 
-          >
-            MEUS PEDIDOS
+            >
+              MEUS PEDIDOS
 
-          </button>
+            </button>
+          </Link>
         </section>
       </nav>
       <nav className="header-nav-bar2">
         <button
           type="button"
           data-testid="customer_products__element-navbar-user-full-name"
-          className="btn-navbar"
+          className="btn-navbar btn-3"
 
         >
-          NOME DA PESSOA
+          Ciclano da Silva
         </button>
         <button
           type="button"
           data-testid="customer_products__element-navbar-link-logout"
-          className="btn-navbar"
+          className="btn-navbar btn-4"
 
         >
-          SAIR
+          Sair
         </button>
       </nav>
     </header>
   );
   return (
-    <div>
+    <div className="div-main-header">
       { renderHeader()}
     </div>
   );
