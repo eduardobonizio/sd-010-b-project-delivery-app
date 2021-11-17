@@ -84,7 +84,7 @@ export default function ListProducts() {
           <li
             data-testid={ `customer_products__element-card-price-${product.id}` }
           >
-            {product.price}
+            {product.price.replace(/\./g, ',')}
 
           </li>
         </section>
@@ -97,7 +97,7 @@ export default function ListProducts() {
       >
         Ver carrinho:
         {' '}
-        { `R$ ${total.toString().replace(/\./g, ',')}` }
+        { `R$ ${total.toFixed(2)}` }
       </button>
     </>
 
