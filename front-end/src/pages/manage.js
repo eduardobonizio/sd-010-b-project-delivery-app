@@ -98,7 +98,7 @@ function ManagePage() {
         </label>
         <button
           type="submit"
-          data-testid="dmin_manage__button-register"
+          data-testid="admin_manage__button-register"
           disabled={ button }
         >
           Cadastrar
