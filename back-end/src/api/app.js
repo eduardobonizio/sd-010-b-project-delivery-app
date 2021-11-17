@@ -3,6 +3,7 @@ const cors = require('cors');
 const path = require('path');
 // rotas 
 const routeLogin = require('./routes/login');
+const routeRegister = require('./routes/register');
 const routeProducts = require('./routes/products');
 // rotas
 
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/login', routeLogin);
+app.use('/register', routeRegister);
 app.use('/products', routeProducts);
 app.use('/images', express.static(path.join(__dirname, '', 'Images')));
 
