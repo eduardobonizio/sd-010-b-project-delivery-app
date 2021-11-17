@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 const { 
   dataIsRequired, 
   dataIsUnauthorized, 
@@ -60,7 +59,8 @@ const saleProductsDataValidation = async (productArray, fnHasProducts) => {
 
   if (!Array.isArray(productArray)) return dataMustBeArray('products');
 
-  const hasQtyAndId = productArray.every(({ quantity, product_id }) => quantity && product_id);
+  // Every: Not destructuring, cuz snake case problem.
+  const hasQtyAndId = productArray.every((product) => product.quantity && product.product_id);
   if (!hasQtyAndId) return DATA_IS_MISSING;
   const productsIdArray = saleProductsIdsToArray(productArray);
 
