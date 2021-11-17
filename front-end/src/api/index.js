@@ -1,13 +1,14 @@
 import axios from 'axios';
 
-const loginUrl = 'http://localhost:3001/login';
-
-const config = {
-  Headers: {
-    'Content-Type': 'application/json',
+const API = axios.create({
+  baseURL: 'http://localhost:3001',
+  headers: {
+    'Content-type': 'application/json',
   },
-};
+});
 
-export const login = (user) => axios.post(loginUrl, user, config);
+const login = (user) => API.post('/login', user);
 
-export const teste = (user) => axios.post(loginUrl, user, config);
+const register = (user) => API.post('/user/register', user);
+
+export default { login, register };

@@ -1,23 +1,43 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router';
+
 import fields from '../services/formFields';
 
-import { validateEmail, validatePassword, validateName } from '../util/valdations';
+import API from '../api';
+
+import {
+  validateEmail,
+  validatePassword,
+  validateName,
+} from '../util/valdations';
 
 function Register() {
   const [state, setState] = useState({ name: '', email: '', password: '' });
+  const history = useHistory();
+  const [error, setError] = useState('');
 
   const validateInputs = (name, email, password) => {
     const validation = validateEmail(email)
     && validateName(name) && validatePassword(password);
     return validation;
   };
-  const handleInputValue = async (e) => {
+
+  const handleInputValue = (e) => {
     const { name } = e.target;
-    await setState({ ...state, [name]: e.target.value });
+    setState({ ...state, [name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const { name, email, password } = state;
+    try {
+      const user = { name, email, password };
+      await API.register(user);
+      history.push('/customer/products');
+    } catch (err) {
+      setError(err);
+    }
   };
 
   return (
@@ -37,7 +57,6 @@ function Register() {
             />
           </div>
         ))}
-
         <button
           data-testid="common_register__button-register"
           type="submit"
@@ -45,13 +64,12 @@ function Register() {
         >
           Cadastrar
         </button>
-
       </form>
-
-      <p data-testid="common_login__element-invalid-email">
-        Email ou senha inválidos
-      </p>
-
+      {error && (
+        <p data-testid="common_register__element-invalid_register">
+          Email já utilizado
+        </p>
+      )}
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-import { login } from '../api';
+import API from '../api';
 
 import { validateEmail, validatePassword } from '../util/valdations';
 
@@ -38,12 +38,21 @@ function Login() {
     setEmailIsValid(emailValidation);
   };
 
+  const redirect = ({ role }) => {
+    switch (role) {
+    case 'administrator': return history.push('/customer/products');
+    case 'customer': return history.push('/customer/products');
+    case 'seller': return history.push('/customer/seller');
+    default:
+      break;
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const user = { email, password };
-      await login(user);
-      history.push('/customer/products');
+      const { data: { user } } = await API.login({ email, password });
+      redirect(user);
     } catch (err) {
       setError(err);
     }

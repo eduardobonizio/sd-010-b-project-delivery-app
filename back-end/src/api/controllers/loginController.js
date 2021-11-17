@@ -7,7 +7,7 @@ const login = async (req, res, next) => {
   try {
     const user = await loginService.login({ email, password });
     const token = generateToken(user);
-    return res.status(200).json({ token });
+    return res.status(200).json({ user: { name: user.name, email, role: user.role, token } });
   } catch (e) {
     next(e);
   }
