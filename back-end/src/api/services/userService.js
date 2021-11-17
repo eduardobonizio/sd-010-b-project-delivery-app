@@ -1,4 +1,5 @@
 const { StatusCodes } = require('http-status-codes');
+const { Op } = require('sequelize');
 const md5 = require('md5');
 const { User } = require('../../database/models');
 
@@ -16,6 +17,24 @@ const loginValidateService = async (email, password) => {
   return validUser;
 };
 
+const registerValidateService = async (name, email, password) => {
+  const hashPassword = md5(password);
+
+  const userExists = await User.findOne({ where: { [Op.or]: [{ name }, { email }] } });  
+
+  if (userExists) {
+    return { err: { 
+      status: StatusCodes.CONFLICT, 
+      code: 'conflict',
+      message: 'Email or name already exists' } }; 
+  }
+
+  const userData = await User.create({ name, email, password: hashPassword, role: 'customer' });  
+  
+  return userData;
+};
+
 module.exports = {
   loginValidateService,
+  registerValidateService,
 };
