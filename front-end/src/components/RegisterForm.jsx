@@ -1,8 +1,11 @@
+import axios from 'axios';
 import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import DeliveryContext from '../context/DeliveryContext';
 import ErrorMessage from './ErrorMessage';
 
 function RegisterForm() {
+  const navigate = useNavigate();
   const { validarNome, validarSenha, validarEmail } = useContext(DeliveryContext);
 
   const [registerInfo, setRegisterInfo] = useState({
@@ -11,9 +14,11 @@ function RegisterForm() {
     senha: '',
   });
 
-  const ableButton = () => {
-    const { nome, senha, email } = registerInfo;
+  const [isValidData, setIsValidData] = useState(true);
 
+  const { nome, senha, email } = registerInfo;
+
+  const ableButton = () => {
     if (validarNome(nome) && validarSenha(senha) && validarEmail(email)) {
       return false;
     }
@@ -29,7 +34,23 @@ function RegisterForm() {
     ableButton();
   };
 
-  const { nome, senha, email } = registerInfo;
+  const handleSendRegister = async (event) => {
+    event.preventDefault();
+    try {
+      const { data } = await axios.post('http://localhost:3001/register', {
+        name: nome,
+        password: senha,
+        email,
+      });
+      navigate('/customer/products');
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+      setIsValidData(false);
+      return err;
+    }
+  };
+
   return (
     <form>
       <label htmlFor="nome">
@@ -77,7 +98,19 @@ function RegisterForm() {
             : null
         }
       </label>
-      <button type="button" disabled={ ableButton() }>Registra-se</button>
+      <button
+        type="button"
+        disabled={ ableButton() }
+        onClick={ handleSendRegister }
+        data-testid="common_register__button-register"
+      >
+        Registra-se
+      </button>
+      {
+        isValidData
+          ? null
+          : <ErrorMessage input="invalid-data" />
+      }
     </form>);
 }
 
