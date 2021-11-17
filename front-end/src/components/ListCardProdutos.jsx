@@ -1,4 +1,6 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState,
+  //  useEffect
+} from 'react';
 import PropTypes from 'prop-types';
 import Context from '../context/Context';
 import * as S from '../styles/Produtos';
@@ -10,16 +12,17 @@ function ListCardProdutos({ products }) {
 
   useEffect(() => {
     insertCart({ id, name, price, quantity });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, [quantity]);
 
-  const addItem = () => {
-    setQuantity(quantity + 1);
+  const addItem = async () => {
+    await setQuantity(quantity + 1);
   };
 
-  const removeItem = () => {
+  const removeItem = async () => {
     if (quantity === 0) return null;
-    setQuantity(quantity - 1);
+    await setQuantity(quantity - 1);
+    insertCart({ id, name, price, quantity });
   };
 
   const handleChange = (e) => {
