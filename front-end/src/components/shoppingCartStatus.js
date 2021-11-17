@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-max-depth */
+/* eslint-disable max-len */
 import React, { useContext, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 
@@ -16,6 +18,7 @@ function ShoppingCartStatus() {
     <>
       {shouldRedirect && <Redirect to="/customer/checkout" />}
       <button
+        className="bg-yellow-color px-10 py-3 rounded-xl text-xl font-medium self-end my-10"
         type="button"
         disabled={ totalPrice === 0 }
         onClick={ () => { handleClick(); } }
