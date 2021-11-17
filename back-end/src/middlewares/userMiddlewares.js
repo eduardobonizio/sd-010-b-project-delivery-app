@@ -17,7 +17,7 @@ const validatePassword = rescue(async (req, res, next) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ where: { email } });
-  
+
   if (md5(password) !== user.password) {
     return res.status(400).json({ message: errors.passwordWrong });
   }
