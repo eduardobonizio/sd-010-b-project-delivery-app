@@ -117,9 +117,14 @@ function CardsProducts() {
       }
       <Link to="/customer/checkout">
         <style.ButtonCart
-          data-testid="customer_products__checkout-bottom-value"
+          type="button"
+          disabled={ valueTotalProduct === 0 }
+          data-testid="customer_products__button-cart"
         >
-          {`Ver Carrinho: R$ ${valueTotalProduct.toFixed(2)}`}
+          Ver Carrinho: R$
+          <style.TextTotalCart data-testid="customer_products__checkout-bottom-value">
+            {valueTotalProduct.toFixed(2).replace('.', ',')}
+          </style.TextTotalCart>
         </style.ButtonCart>
       </Link>
     </style.ContainerListCard>
