@@ -46,6 +46,7 @@ function ManagePage() {
   return (
     <div>
       {/* <Navbar /> */}
+      <h4>Cadastrar novo usuário</h4>
       <form>
         <label htmlFor="name-input">
           Nome
