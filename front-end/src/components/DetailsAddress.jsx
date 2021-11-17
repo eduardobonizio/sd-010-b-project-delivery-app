@@ -20,7 +20,7 @@ function DetailsAddress({ sellers }) {
 }
 
 DetailsAddress.propTypes = {
-  sellers: PropTypes.shape({
+  sellers: PropTypes.arrayOf({
     id: PropTypes.number,
     name: PropTypes.string,
     email: PropTypes.string,

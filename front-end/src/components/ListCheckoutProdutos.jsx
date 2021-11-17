@@ -2,14 +2,10 @@ import React, { useContext } from 'react';
 // import PropTypes from 'prop-types';
 import Context from '../context/Context';
 
-const removeItem = (itemId) => {
-  console.log(itemId);
-};
-
 function ListCheckoutProdutos() {
   let count = 0;
 
-  const { cart, totalPrice } = useContext(Context);
+  const { cart, totalPrice, setCart } = useContext(Context);
 
   return (
     <div>
@@ -38,7 +34,7 @@ function ListCheckoutProdutos() {
                   <td>
                     <button
                       type="button"
-                      onClick={ () => removeItem(product.id) }
+                      onClick={ setCart(...cart, { product: { quantity: 0 } }) }
                     >
                       Remover
                     </button>
