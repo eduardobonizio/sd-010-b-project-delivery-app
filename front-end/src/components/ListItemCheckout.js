@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { Context } from '../contexts/createContext';
 import { getSellers } from '../services/api';
 
 export default function ListItemCheckout() {
-  const userCheckout = [
-    { id: 1, idProduct: 0, name: 'Skol Lata 250ml', price: '2.20', quant: 2 },
-    { id: 2, idProduct: 1, name: 'Heineken 600ml', price: '7.50', quant: 3 },
-    { id: 3, idProduct: 2, name: 'Antarctica Pilsen 300ml', price: '2.49', quant: 1 },
-    { id: 4, idProduct: 3, name: 'Brahma 600ml', price: '7.50', quant: 2 },
-  ];
+
+  const { products, setProducts, total, setTotal } = useContext(Context);
+ const [ productsList, setProductsList ] = useState([])
 
   // const [total, setTotal] = useState([]);
   const [sellers, setSellers] = useState([]);
@@ -17,26 +15,31 @@ export default function ListItemCheckout() {
     return result;
   }
   useEffect(() => {
+    setProductsList(products)
     getSellers()
       .then(({ data }) => {
         data.forEach((seller) => {
           setSellers([...sellers, seller]);
         });
       });
-  }, [sellers]);
+  }, []);
 
   function orderTotal() {
-
+ return productsList.filter((product) =>product.quant > 0
+).reduce((acc, {price})=> acc+parseInt(price),0)
   }
 
   return (
     <>
       <p>Finalizar Pedido:</p>
-      {userCheckout.map(({ id, name, price, quant }, i) => (
+      {productsList.filter((product) =>product.quant > 0
+      ).map((product, i) => {
+        const { id, name, price, quant} = product
+        return (
         <ul key={ i }>
           <li>
             <span
-              key={ idProduct }
+              key={ id }
               className="itemId"
               data-testid={ `customer_checkout__element-order-table-item-number-${id}` }
             >
@@ -58,7 +61,7 @@ export default function ListItemCheckout() {
               className="unitPrice"
               data-testid={ `customer_checkout__element-order-table-unit-price-${id}` }
             >
-              R$:
+              R$ :
               {price}
             </span>
             <span
@@ -72,20 +75,23 @@ export default function ListItemCheckout() {
               className="removeItem"
               data-testid={ `customer_checkout__element-order-table-remove-${id}` }
               type="submit"
-              onClick={ () => console.log('apagou') }
+              onClick={ (id) => { products.splice(id, 1, { ...product, quant: 0})
+              return setProducts(products);
+            }}
             >
               Remover
             </button>
           </li>
         </ul>
-      ))}
+      )})}
 
       <div
         className="orderTotal"
         data-testid="customer_checkout__element-order-total-price"
       >
         Total: R$
-        {orderTotal()}
+    {/* {orderTotal()} */}
+    {total}
       </div>
       <form>
         <p>Detalhes e Endereço para Entrega</p>
