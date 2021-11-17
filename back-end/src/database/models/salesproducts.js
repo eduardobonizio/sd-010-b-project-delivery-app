@@ -10,16 +10,16 @@ module.exports = (sequelize, DataTypes) => {
       {
         as: 'sales',
         through: salesProduct,
-        foreignKey: 'sale_id',
-        otherKey: 'product_id',
+        foreignKey: 'product_id',
+        otherKey: 'sale_id',
       }
     );
     models.sale.belongsToMany(models.product,
       {
         as: 'products',
         through: salesProduct,
-        foreignKey: 'product_id',
-        otherKey: 'sale_id',
+        foreignKey: 'sale_id',
+        otherKey: 'product_id',
       }
     );
   };
