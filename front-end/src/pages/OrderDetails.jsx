@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+
+import { useParams } from 'react-router';
 import NavBar from '../components/Navbar';
-import * as S from '../styles/Table';
+import getOrderDetails from '../services/apis/getOrders';
+import { getFromLocalStorage } from '../services/helpers/servicesLocalStorage';
+import * as C from '../styles/Table';
+// import * as P from '../styles/PageOrderDetails';
 
 // Definição dos IDs
 const ID_ORDER = 'customer_order_details__element-order-details-label-order-id';
@@ -10,8 +15,34 @@ const STATUS = 'customer_order_details__element-order-details-label-delivery-sta
 const CHECK_STAUS = 'customer_order_details__button-delivery-check';
 
 function OrderDetails() {
+  const [productsDetails, setProductsDetails] = useState({});
+  const { idVenda } = useParams();
+  const { token } = getFromLocalStorage('user');
+
+  console.log(productsDetails);
+
+  useEffect(() => {
+    (async () => {
+      const response = await getOrderDetails(token, idVenda);
+      setProductsDetails(response);
+    })();
+  }, [idVenda, token]);
+
+  // components
+  const theadOrderDetails = () => (
+    <C.thead>
+      <C.tr>
+        <C.th>Item</C.th>
+        <C.th>Descrição</C.th>
+        <C.th>Quantidade</C.th>
+        <C.th>Valor Unitário</C.th>
+        <C.th>Sub-total</C.th>
+      </C.tr>
+    </C.thead>
+  );
+
   return (
-    <div>
+    <div className="order-details">
       <NavBar />
 
       <div>
@@ -39,17 +70,12 @@ function OrderDetails() {
         </div>
       </div>
 
-      <body>
-        <S.table>
-          <S.tr>
-            <S.th>Item</S.th>
-            <S.th>Descrição</S.th>
-            <S.th>Quantidade</S.th>
-            <S.th>Valor Unitário</S.th>
-            <S.th>Sub-total</S.th>
-          </S.tr>
-        </S.table>
-      </body>
+      <div>
+        <C.table>
+          {theadOrderDetails()}
+
+        </C.table>
+      </div>
 
     </div>
   );
