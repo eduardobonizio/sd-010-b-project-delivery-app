@@ -15,7 +15,7 @@ function CardsProducts() {
   // console.log(inputQuantity);
   useEffect(() => {
     async function apiRequest() {
-      const response = await apiGetAllProducts();
+      const response = await apiGetAllProducts() || [];
       const newResponse = response.map((value) => ({
         ...value,
         quantity: 0,
