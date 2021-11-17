@@ -48,12 +48,26 @@
   padding: 5px;
 }
 
+.login-input:focus {
+  outline: none;
+}
+
 .login-button1, .login-button2 {
   margin-top: 5px;
   width: 100%;
 }
 
 .login-button2 {
+  background-color: #3c4349;
+  border: 1px solid #3c4349;
+}
+
+.login-button2:hover {
   background-color: #212529;
   border: 1px solid #212529;
+}
+
+.login-errorMessage {
+  color: red;
+  margin: 10px 0 0;
 }

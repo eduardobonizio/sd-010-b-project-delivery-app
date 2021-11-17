@@ -4,7 +4,6 @@ const { User } = require('../../database/models');
 
 const loginValidateService = async (email, password) => {
   const hashPassword = md5(password);
-  console.log(hashPassword);
   const validUser = await User.findOne({ where: { email, password: hashPassword } });  
   
   if (!validUser) {
