@@ -1,7 +1,7 @@
 const express = require('express');
 const userController = require('../database/controllers/userControllers');
 const cors = require('cors');
-const { attemptLogin } = require('../controllers/Login');
+const { attemptLogin } = require('../database/controllers/Login');
 
 const app = express();
 app.use(express.json());
