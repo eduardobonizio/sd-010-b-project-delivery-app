@@ -24,10 +24,7 @@ export default function ListProducts() {
       setTotal(valorFinal);
       return setProducts(products);
     }
-    let quantidade = parseFloat(target.value);
-    if (target.value.length === 0) {
-      quantidade = 0;
-    }
+    let quantidade = target.value.length !== 0 ? parseFloat(target.value) : 0;
     const valorFinal = quantidade * priceNumber;
     products.splice(indexProduct, 1, { ...product, quant: quantidade });
     setTotal(parseFloat((valorFinal + total).toFixed(2)));
