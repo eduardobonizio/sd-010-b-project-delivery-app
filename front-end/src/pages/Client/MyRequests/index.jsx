@@ -7,18 +7,22 @@ import * as style from './style';
 /* eslint-disable */  // excluir essa linha quando for enviar o requisito para merge ( essa linha desabilita o eslint para que ele nao quebre o projeto)
 
 export default function CustomerSales() {
-  // sales é o array que vem do banco de dados
-  const [sales, setSales] = useState([
-    { pedido: 1, status: 'pendente', data: '01/01/0000', valor: 1000 }, // apagar esse objeto quando o GET tiver dado certo
-  ]);
+  // const [sales, setSales] = useState([
+  //   { pedido: 1, status: 'pendente', data: '01/01/0000', valor: 1000 },
+  // ]);
 
-  // esse useEffect faz um GET de todas as compras do usuario e coloca dentro de "sales" com o setSales;
-  useEffect(() => {
+  const [sales, setSales] = useState([]);
+
+  const getSales = () => {
     const data = apiGetAllSales()
       .then((res) => res)
       .catch((err) => console.log(err));
 
-    // setSales(data);  // essa linha serve para enviar ao "sales" o que vem do nosso GET (envia um array de objetos)
+      setSales(data);
+  }
+
+  useEffect(() => {
+    getSales();
   }, []);
 
   // esse useEffect serve apenas para vizualizar o que o GET está colocando dentro do nosso array "sales"
