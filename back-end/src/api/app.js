@@ -4,8 +4,6 @@ const cors = require('cors');
 
 const app = express();
 
-app.use(bodyParser.json());
-app.use(cors());
 const http = require('http').createServer(app);
 const io = require('socket.io')(http, {
   cors: {
@@ -19,6 +17,10 @@ const { sellerRouter } = require('../routers/sellerRouter');
 const loginController = require('../controllers/login');
 const productsController = require('../controllers/products');
 const registerController = require('../controllers/register');
+
+app.use(bodyParser.json());
+app.use(cors());
+
 app.get('/coffee', (_req, res) => res.status(418).end());
 app.use('/login', loginController);
 app.use('/register', registerController);
