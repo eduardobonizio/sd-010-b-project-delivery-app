@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 
 const Login = () => {
   const [invalidPassword, setInvalidPassword] = useState(true);
@@ -6,8 +7,10 @@ const Login = () => {
   const [passwordInput, setPassword] = useState('');
   const [emailInput, setEmail] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [loginAllowed, setLoginAllowed] = useState(false);
 
   const validateEmail = (email) => {
+    setEmail(email);
     const regexEmail = /^[a-z0-9.]+@[a-z0-9]+\.([a-z]+){2,4}?$/i;
     if (regexEmail.test(email)) {
       setInvalidEmail(false);
@@ -19,6 +22,7 @@ const Login = () => {
   };
 
   const validatePassword = (password) => {
+    setPassword(password);
     const PasswordMinLength = 6;
     if (password.length >= PasswordMinLength) {
       setInvalidPassword(false);
@@ -29,8 +33,8 @@ const Login = () => {
     }
   };
 
-  const attemptLogin = () => {
-    fetch('http://localhost:3001/login', {
+  const attemptLogin = async () => {
+    const response = await fetch('http://localhost:3001/login', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -41,8 +45,16 @@ const Login = () => {
         password: passwordInput,
       }),
     });
-    setPassword('');
-    setEmail('');
+    const data = await response.json();
+    console.log(data);
+    if (data.message) {
+      setErrorMessage(data.message);
+    } else {
+      setPassword('');
+      setEmail('');
+      setLoginAllowed(true);
+    }
+    return data;
   };
 
   return (
@@ -82,6 +94,7 @@ const Login = () => {
         Cadastrar
       </button>
       <div data-testid="common_login__element-invalid-email">{ errorMessage }</div>
+      { loginAllowed && <Redirect to="/customer/products" /> }
     </div>
   );
 };
