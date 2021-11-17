@@ -3,8 +3,6 @@ import '../styles/header.css';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
-  console.log('pato');
-
   const renderHeader = () => (
     <header className="header">
       <nav className="header-nav-bar1">

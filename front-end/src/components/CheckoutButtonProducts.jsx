@@ -4,11 +4,9 @@ import { Link } from 'react-router-dom';
 import { Context } from '../provider/Provider';
 
 import addZeroes from '../helper/functions/addZeroes';
-// import { Context } from '../provider/Provider';
 
 const CheckoutButtonProducts = () => {
   const { totalOrder } = useContext(Context);
-  console.log('checkout', totalOrder, typeof totalOrder);
   return (
     <div className="checkout-div">
       <Link to="/customer/checkout">

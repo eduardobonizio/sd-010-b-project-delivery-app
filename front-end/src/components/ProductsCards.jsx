@@ -24,7 +24,6 @@ const ProductsCards = () => {
     const arr = orderInProgress.filter(({ id }) => id === el.id);
     const arrRest = orderInProgress.filter(({ id }) => id !== el.id);
     if (arr.length === 0) {
-      console.log('lenght 0', arr);
       return setOrderInProgress([
         ...orderInProgress, handleProductsObjectsToOrders(el),
       ]);
@@ -48,7 +47,6 @@ const ProductsCards = () => {
     const arrRest = orderInProgress.filter(({ id }) => id !== el.id);
 
     if (arrToRemove.length > 0 && arrToRemove[0].quantity) {
-      console.log(arrToRemove, 'arr to remove');
       setOrderInProgress(arrRest
         .concat(handleProductsObjectsToOrders(el, 'menos', arrToRemove[0].quantity)));
 
@@ -61,7 +59,6 @@ const ProductsCards = () => {
     if (orderInProgress.length < 1) return 0;
     const arr = orderInProgress.filter((data) => data.id === el.id);
     if (arr.length === 1) {
-      console.log('eu existo ');
       return arr[0].quantity;
     }
     return arr.length;
