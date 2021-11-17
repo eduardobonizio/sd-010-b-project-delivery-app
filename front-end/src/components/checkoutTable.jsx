@@ -1,4 +1,5 @@
 import React from 'react';
+import Address from './address';
 import Tbody from './Tbody';
 import Thead from './Thead';
 
@@ -8,6 +9,7 @@ function Table() {
       <Thead />
       <Tbody />
       <p data-testid="customer_checkout__element-order-total-price">total</p>
+      <Address />
     </table>
   );
 }
