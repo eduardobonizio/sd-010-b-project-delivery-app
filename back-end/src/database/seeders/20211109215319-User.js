@@ -30,7 +30,7 @@ module.exports = {
         name: "teste",
         email: "teste@gmail.com",
         password: "e10adc3949ba59abbe56e057f20f883e",
-        role: "custumer",
+        role: "customer",
       },
     ]);
   },
