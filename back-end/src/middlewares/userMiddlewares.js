@@ -2,6 +2,8 @@ const rescue = require('express-rescue');
 const md5 = require('md5');
 const User = require('../database/models/user');
 const regexEmail = require('../helpers/regexEmail');
+const { getUserByEmail, getUserByName } = require('../services/users');
+
 
 // Comments: Lista de erros
 const errors = {
@@ -45,10 +47,10 @@ const existsUser = rescue(async (req, res, next) => {
   const { name, email } = req.body;
 
   const findUserName = await getUserByName(name);
-  if (findUserName) return res.status(409).json({ message: `Nome já existe` });
+  if (findUserName) return res.status(409).json({ message: 'Nome já existe' });
 
   const findUserEmail = await getUserByEmail(email);
-  if (findUserEmail) return res.status(409).json({ message: `Email já existe` });
+  if (findUserEmail) return res.status(409).json({ message: 'Email já existe' });
 
   return next();
 })

@@ -1,10 +1,6 @@
 const express = require('express');
 const rescue = require('express-rescue');
-const md5 = require('md5');
-const { getUserByEmail,
-  getUserByName,
-  createUser,
-  } = require('../services/users');
+const { getUserByEmail } = require('../services/users');
 
 const userRouter = express.Router();
 

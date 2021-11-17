@@ -8,7 +8,7 @@ const getUserByEmail = async (email) => {
 const getUserByName = async (name) => {
   const user = await User.findOne({ where: { name } });
   return user;
-}
+};
 
 const createUser = async (name, email, password, role) => {
   const user = await User.create({ name, email, password, role });
