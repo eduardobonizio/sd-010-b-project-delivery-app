@@ -1,5 +1,6 @@
 const orderService = require("../services/orderService");
 
+const { getSellers } = require('../services/userService');
 const { getSaleById } = require("../services/checkoutService");
 const rescue = require("express-rescue");
 
@@ -26,8 +27,14 @@ const getOrderById = rescue(async (req, res) => {
     .json({ data: { total_price, sale_date, status } });
 });
 
+const getAllSellers = rescue(async (req, res) => {
+  const sellers = await getSellers();
+  return res.status(200).json(sellers);
+})
+
 module.exports = {
   getAllOrdersByUserId,
   getAllOrdersBySellerId,
   getOrderById,
+  getAllSellers
 };
