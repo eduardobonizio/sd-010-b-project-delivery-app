@@ -29,9 +29,9 @@ const createUser = async (req, res) => {
   if (emailResult || nameResult) {
     return res.status(409).json({ message: 'Email ou nome já cadastrados' });
   }
-  if (!name || !email || !registerPassword) {
-    return req.status(400).json({ message: 'Campos inválidos!' });
-  }
+  // if (!name || !email || !registerPassword) {
+  //   return req.status(400).json({ message: 'Campos inválidos!' });
+  // }
   const password = md5(registerPassword);
   try {
     const result = await createUserService({ name, email, password, role });
