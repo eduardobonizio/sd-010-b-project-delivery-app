@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import apiGetAllProducts from '../../services/products/customerProduct';
-import imageCerveja from '../../images/longs.jpg';
 import * as style from './styles';
 // import { setOnLocalStorage } from '../../helpers/localStorage';
 
@@ -16,7 +15,7 @@ function CardsProducts() {
   // console.log(inputQuantity);
   useEffect(() => {
     async function apiRequest() {
-      const response = await apiGetAllProducts();
+      const response = await apiGetAllProducts() || [];
       const newResponse = response.map((value) => ({
         ...value,
         quantity: 0,
@@ -61,13 +60,13 @@ function CardsProducts() {
               <style.TextPrice
                 data-testid={ `customer_products__element-card-price-${value.id}` }
               >
-                {`R$ ${value.price}`}
+                {value.price.replace('.', ',')}
               </style.TextPrice>
             </style.CotainerPrice>
 
             <style.ImageProduct
               data-testid={ `customer_products__img-card-bg-image-${value.id}` }
-              src={ imageCerveja }
+              src={ value.url_image }
               alt={ `Bebida é ${value.name}` }
             />
 
