@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import ProductCard from '../components/ProductCard';
-import cardFields from '../services/cardFields';
+// import cardFields from '../services/cardFields';
 
 import { useProductContext } from '../context/productContext';
 
@@ -21,7 +21,6 @@ function Products() {
       <div className="card__container">
         {products.map((el) => (
           <ProductCard
-            key={ el.id }
             key={ el.id }
             product={ el }
             handleQuantityInput={ handleQuantityInput }
