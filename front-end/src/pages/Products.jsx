@@ -6,8 +6,8 @@ import '../styles/Card.css';
 
 function Products() {
   const [products, setProducts] = useState([]);
-  console.log(products);
   useEffect(() => {
+    localStorage.setItem('carrinho', JSON.stringify([]));
     axios.get('http://localhost:3001/products').then((res) => {
       const resp = res.data;
       setProducts(resp);
