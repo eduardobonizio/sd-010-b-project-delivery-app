@@ -1,7 +1,7 @@
 const md5 = require('md5');
 const { User } = require('../../database/models');
 const { validLogin } = require('../../middlewares/loginValidations');
-// const { jwtLogin } = require('../../middlewares/auth/tokenJWT');
+const { jwtLogin } = require('../../middlewares/auth/tokenJWT');
 // const { serialize } = require('./utils/serialize');
 
 const messageError = (status, message) => ({
@@ -24,11 +24,14 @@ const loginService = async (user) => {
     throw messageError(404, '404 - Not found');
   }
   
-  // const payload = { email };
-  // const token = jwtLogin(payload);
-
+  const payload = { email };
+  const { name, email: emailUser, role } = validUser;
+  const token = jwtLogin(payload);
   // console.log(token);
-  return validUser;
+
+  const result = { name, email: emailUser, role, token };
+  // console.log(result);
+  return result;
 };
 
 module.exports = {
