@@ -6,6 +6,7 @@ import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
 import Login from './pages/Login';
 import CustomerCheckout from './pages/CustomerCheckout';
 import Register from './pages/Register';
+import CustomerProducts from './pages/CustomerProducts';
 // Components Imports
 import NavBar from './components/NavBar';
 // Providers Imports
@@ -45,7 +46,7 @@ function App() {
         { verifyAllowanceToRenderNavBar(allowedNavBarSellerPaths, 'seller') }
         { verifyAllowanceToRenderNavBar(allowedNavBarAdminPaths, 'admin') }
         <Switch>
-          <Route path="/customer/products" component={ Login } />
+          <Route path="/customer/products" component={ CustomerProducts } />
           <Route path="/customer/checkout" component={ CustomerCheckout } />
           <Route path="/login" component={ Login } />
           <Route path="/register" component={ Register } />

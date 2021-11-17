@@ -66,6 +66,7 @@ function Login() {
         <label htmlFor="password">
           Senha:
           <input
+            type="password"
             value={ password }
             onChange={ (e) => onChange(e.target.value, setPassword) }
             placeholder="Digite sua senha"
@@ -80,7 +81,6 @@ function Login() {
         onClick={ () => fetchUser() }
       >
         ENTRAR
-
       </button>
       <Link to="/register">
         <button

@@ -4,15 +4,24 @@ import PropTypes from 'prop-types';
 import { useLocation, useHistory } from 'react-router-dom';
 
 const customerLabelArray = [
-  { label: 'Produtos', route: '/customer/products' },
-  { label: 'Meus Pedidos', route: '/customer/checkout' },
+  { label: 'Produtos',
+    route: '/customer/products',
+    testid: 'customer_products__element-navbar-link-products' },
+  { label: 'Meus Pedidos',
+    route: '/customer/checkout',
+    testid: 'customer_products__element-navbar-link-orders' },
 ];
 
 const renderTabByuserRole = (userRole, history) => {
   if (userRole === 'customer') {
     return customerLabelArray
-      .map(({ label, route }) => (
-        <Tab key={ label } label={ label } onClick={ () => history.push(route) } />
+      .map(({ label, route, testid }) => (
+        <Tab
+          data-testid={ testid }
+          key={ label }
+          label={ label }
+          onClick={ () => history.push(route) }
+        />
       ));
   }
   if (userRole === 'seller') {
@@ -55,8 +64,21 @@ function NavBar({ username, userRole }) {
         { renderTabByuserRole(userRole, history) }
       </Tabs>
       <Stack direction="row" alignItems="center" spacing={ 2 }>
-        <Box><Typography>{username}</Typography></Box>
-        <Box><Button variant="contained">Sair</Button></Box>
+        <Box>
+          <Typography
+            data-testid="customer_products__element-navbar-user-full-name"
+          >
+            {username}
+          </Typography>
+        </Box>
+        <Box>
+          <Button
+            variant="contained"
+            data-testid="customer_products__element-navbar-link-logout"
+          >
+            Sair
+          </Button>
+        </Box>
       </Stack>
     </Stack>
   );
