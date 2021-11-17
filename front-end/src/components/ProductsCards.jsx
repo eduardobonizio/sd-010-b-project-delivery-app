@@ -61,7 +61,7 @@ const ProductsCards = () => {
     if (arr.length === 1) {
       return arr[0].quantity;
     }
-    return arr.length;
+    // return arr.length;
   };
 
   return (

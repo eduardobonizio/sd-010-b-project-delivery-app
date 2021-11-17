@@ -80,14 +80,16 @@ const Header = () => {
         >
           Ciclano da Silva
         </button>
-        <button
-          type="button"
-          data-testid="customer_products__element-navbar-link-logout"
-          className="btn-navbar btn-4"
-          onClick={ () => localStorage.clear() }
-        >
-          Sair
-        </button>
+        <Link to="/login">
+          <button
+            type="button"
+            data-testid="customer_products__element-navbar-link-logout"
+            className="btn-navbar btn-4"
+            onClick={ () => localStorage.clear() }
+          >
+            Sair
+          </button>
+        </Link>
       </nav>
     </header>
   );
