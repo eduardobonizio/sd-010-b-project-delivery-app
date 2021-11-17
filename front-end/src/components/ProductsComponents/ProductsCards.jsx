@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import { Context } from '../provider/Provider';
-import fixPrice from '../helper/functions/fixPrice';
-import '../styles/ProductsCards.css';
+import { Context } from '../../provider/Provider';
+import fixPrice from '../../helper/functions/fixPrice';
+import '../../styles/ProductsCards.css';
 
 const handleProductsObjectsToOrders = (el, signal = 'mais', quantity = 0) => {
   const { id, name, price, url } = el;

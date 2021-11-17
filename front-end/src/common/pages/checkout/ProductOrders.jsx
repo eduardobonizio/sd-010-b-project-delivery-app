@@ -1,5 +1,5 @@
 import React from 'react';
-import OrderContainer from '../../../components/OrderContainer';
+import CheckoutDetails from '../../../components/CheckDetailsComponents/CheckoutDetails';
 import { Context } from '../../../provider/Provider';
 
 function ProductOrders() {
@@ -8,7 +8,7 @@ function ProductOrders() {
   return (
     <div>
       {ordered.map((order) => (
-        <OrderContainer key={ order.id } order={ order } />
+        <CheckoutDetails key={ order.id } order={ order } />
       ))}
     </div>
   );

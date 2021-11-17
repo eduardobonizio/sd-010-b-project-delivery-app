@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import CheckoutProducts from './CheckoutProducts';
+import CheckoutProducts from '../ProductsComponents/CheckoutProducts';
 import PurshaseTotal from './PurchaseTotal';
 import PurchaseOrderBtn from './PurchaseOrderBtn';
 import DeliveryContainer from './DeliveryContainer';
-import { Context } from '../provider/Provider';
-import Header from './Header';
+import { Context } from '../../provider/Provider';
+import Header from '../ProductsComponents/Header';
 
 function CheckoutContainer() {
   const { orderInProgress } = React.useContext(Context);
@@ -38,7 +38,14 @@ function CheckoutContainer() {
       />
       <DeliveryContainer />
       <PurchaseOrderBtn />
-      <Link to="/customer/products">Voltar</Link>
+      <Link to="/customer/products">
+        <button
+          type="button"
+        >
+          Voltar
+        </button>
+
+      </Link>
     </div>
   );
 }

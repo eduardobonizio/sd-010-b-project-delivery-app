@@ -8,6 +8,7 @@ import './App.css';
 import Products from './common/pages/products/Products';
 import Checkout from './common/pages/checkout/Checkout';
 import ProductOrders from './common/pages/checkout/ProductOrders';
+import OrderDetails from './common/pages/orderDetailsClient/OrderDetails';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Route exact path="/register" component={ Register } />
       <Route exact path="/customer/checkout" component={ Checkout } />
       <Route exact path="/customer/orders" component={ ProductOrders } />
+      <Route exact path="/customer/orders" component={ OrderDetails } />
     </Switch>
   );
 }
