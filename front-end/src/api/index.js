@@ -3,14 +3,6 @@ import axios from 'axios';
 // const loginUrl = 'http://localhost:3001/login';
 // const registerUrl = 'http://localhost:3001/user/register';
 
-// const config = {
-//   Headers: {
-//     'Content-Type': 'application/json',
-//   },
-// };
-
-// https://pt.stackoverflow.com/q/365296/207241
-
 const API = axios.create({
   baseURL: 'http://localhost:3001',
   headers: {
