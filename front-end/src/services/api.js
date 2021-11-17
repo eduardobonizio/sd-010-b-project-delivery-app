@@ -16,3 +16,7 @@ export const register = async (body) => axios.post('http://localhost:3001/regist
 export const getProducts = async () => axios.get('http://localhost:3001/products', token())
   .then(({ data }) => data)
   .catch((err) => err.response);
+
+export const getSellers = async () => axios.get('http://localhost:3001/user/sellers', token())
+  .then(({ data }) => data)
+  .catch((err) => err.response);

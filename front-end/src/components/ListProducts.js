@@ -5,25 +5,38 @@ import { getStorage } from '../utils/localStorage';
 
 export default function ListProducts() {
   const [products, setProducts] = useState([]);
-  const [quantity, setQuantity] = useState(0);
   const [total, setTotal] = useState(0);
   const history = useHistory();
 
-  function setQuantityItems(target, price) {
-    if (target.innerText === '-' && quantity > 0) {
-      setTotal(total - price);
-      return setQuantity(quantity - 1);
+  function setQuantityItems(target, product) {
+    const { price, quant } = product;
+    const priceNumber = parseFloat(price);
+    const indexProduct = products.findIndex(({ id }) => id === product.id);
+    if (target.innerText === '-' && quant > 0) {
+      const valorFinal = parseFloat((total - priceNumber).toFixed(2));
+      products.splice(indexProduct, 1, { ...product, quant: quant - 1 });
+      setTotal(valorFinal);
+      return setProducts(products);
     }
     if (target.innerText === '+') {
-      setTotal(total + price);
-      return setQuantity(quantity + 1);
+      const valorFinal = parseFloat((priceNumber + total).toFixed(2));
+      products.splice(indexProduct, 1, { ...product, quant: quant + 1 });
+      setTotal(valorFinal);
+      return setProducts(products);
     }
-    return 0;
+    const quantidade = target.value.length !== 0 ? parseFloat(target.value) : 0;
+    const valorFinal = quantidade * priceNumber;
+    products.splice(indexProduct, 1, { ...product, quant: quantidade });
+    setTotal(parseFloat((valorFinal + total).toFixed(2)));
+    return setProducts(products);
   }
 
   useEffect(() => {
     if (!getStorage('user')) { history.push('/login'); }
-    getProducts().then(({ data }) => setProducts(data))
+    getProducts().then(({ data }) => {
+      const newObj = data.map((item) => ({ ...item, quant: 0 }));
+      setProducts(newObj);
+    })
       .catch((err) => { console.log(err); });
   }, [history]);
 
@@ -31,48 +44,53 @@ export default function ListProducts() {
     <>
       <h3>Products</h3>
 
-      {products && products.map(({ id, name, price, urlImage }) => (
-        <section key={ id } data-testid={ `customer_products__element-card-price-${id}` }>
-
+      {products && products.map((product) => (
+        <section
+          key={ product.id }
+          data-testid={ `customer_products__element-card-price-${product.id}` }
+        >
           <img
-            src={ urlImage }
-            alt={ name }
+            src={ product.urlImage }
+            alt={ product.name }
             style={ { width: '5rem' } }
-            data-testid={ `customer_products__img-card-bg-image-${id}` }
+            data-testid={ `customer_products__img-card-bg-image-${product.id}` }
           />
-          <span data-testid={ `customer_products__element-card-title-${id}` }>
-            {name}
-          </span>
+          <section>
+            <span data-testid={ `customer_products__element-card-title-${product.id}` }>
+              {product.name}
+            </span>
+          </section>
           <button
             type="button"
-            data-testid={ `customer_products__button-card-rm-item-${id}` }
-            onClick={ ({ target }) => setQuantityItems(target, price) }
+            data-testid={ `customer_products__button-card-rm-item-${product.id}` }
+            onClick={ ({ target }) => setQuantityItems(target, product) }
           >
             -
           </button>
           <input
             type="number"
-            value={ quantity }
+            value={ product.quant }
             min="0"
-            data-testid={ `customer_products__input-card-quantity-${id}` }
+            onChange={ ({ target }) => setQuantityItems(target, product) }
+            data-testid={ `customer_products__input-card-quantity-${product.id}` }
           />
 
           <button
             type="button"
-            data-testid={ `customer_products__button-card-add-item-${id}` }
-            onClick={ ({ target }) => setQuantityItems(target, price) }
+            data-testid={ `customer_products__button-card-add-item-${product.id}` }
+            onClick={ ({ target }) => setQuantityItems(target, product) }
           >
             +
           </button>
 
-          <li>{price}</li>
+          <li>{product.price}</li>
         </section>
 
       ))}
       <h2>
         Preço total é:
         {' '}
-        { total }
+        { total.toFixed(2) }
       </h2>
     </>
 

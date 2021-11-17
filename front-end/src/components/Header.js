@@ -28,18 +28,17 @@ export default function Header(props) {
           >
             {userName}
           </span>
-          {/* <span
-            data-testid="customer_products__element-navbar-link-logout"
-            onClick={ logoutUser }
-          > */}
-          <Link
-            data-testid="customer_products__element-navbar-link-logout"
-            onClick={ logoutUser }
-            to="/login"
+          <button
+            type="button"
           >
-            Sair
-          </Link>
-          {/* </span> */}
+            <Link
+              to="/login"
+              data-testid="customer_products__element-navbar-link-logout"
+              onClick={ () => logoutUser() }
+            >
+              Sair
+            </Link>
+          </button>
         </>
       );
     }

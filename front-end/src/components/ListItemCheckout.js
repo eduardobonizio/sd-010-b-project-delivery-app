@@ -1,19 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { getSellers } from '../services/api';
 
 export default function ListItemCheckout() {
   const userCheckout = [
-    { id: 1, name: 'Skol Lata 250ml', price: '2.20', quant: 2 },
-    { id: 2, name: 'Heineken 600ml', price: '7.50', quant: 3 },
-    { id: 3, name: 'Antarctica Pilsen 300ml', price: '2.49', quant: 1 },
-    { id: 4, name: 'Brahma 600ml', price: '7.50', quant: 2 },
+    { id: 1, idProduct: 0, name: 'Skol Lata 250ml', price: '2.20', quant: 2 },
+    { id: 2, idProduct: 1, name: 'Heineken 600ml', price: '7.50', quant: 3 },
+    { id: 3, idProduct: 2, name: 'Antarctica Pilsen 300ml', price: '2.49', quant: 1 },
+    { id: 4, idProduct: 3, name: 'Brahma 600ml', price: '7.50', quant: 2 },
   ];
 
   // const [total, setTotal] = useState([]);
+  const [sellers, setSellers] = useState([]);
 
   function itemTotal(Valor, Quantity) {
     const result = Valor * Quantity;
     return result;
   }
+  useEffect(() => {
+    getSellers()
+      .then(({ data }) => {
+        data.forEach((seller) => {
+          setSellers([...sellers, seller]);
+        });
+      });
+  }, []);
 
   function orderTotal() {
 
@@ -26,6 +36,7 @@ export default function ListItemCheckout() {
         <ul key={ i }>
           <li>
             <span
+              key={idProduct}
               className="itemId"
               data-testid={ `customer_checkout__element-order-table-item-number-${id}` }
             >
@@ -61,7 +72,7 @@ export default function ListItemCheckout() {
               className="removeItem"
               data-testid={ `customer_checkout__element-order-table-remove-${id}` }
               type="submit"
-              onClick={ () => deleteOneTask(id) }
+              onClick={ () => console.log('apagou') }
             >
               Remover
             </button>
@@ -81,7 +92,18 @@ export default function ListItemCheckout() {
         <label htmlFor="responsableSeller">
           <p>P. Vendedora Responsável:</p>
           <select>
-            <option data-testid="customer_checkout__select-seller"> Eu </option>
+            { sellers.length > 0 && sellers.map(({ id, name, email }) => (
+              <option
+                key={ id }
+                id={ email }
+                value={ name }
+                data-testid="customer_checkout__select-seller"
+              >
+                {' '}
+                {name}
+                {' '}
+              </option>
+            ))}
           </select>
         </label>
         <label htmlFor="address">
