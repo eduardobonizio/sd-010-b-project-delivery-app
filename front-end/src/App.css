@@ -1,4 +1,4 @@
-.App {
+/* .App {
   align-items: center;
   background: #0fa36b;
   color: #464646;
@@ -21,7 +21,7 @@
 .rocksGlass {
   animation: shake 1s infinite ease;
   max-height: 80vh;
-}
+} */
 
 @keyframes shake {
   0% {
@@ -70,4 +70,16 @@
   border: 1px solid black;
   border-radius: 2rem;
   padding: 2rem;
+}
+
+.prods-buys {
+  display: flex;
+  justify-content: space-between;
+  width: 20rem;
+}
+
+.name-logout {
+  display: flex;
+  justify-content: space-between;
+  width: 15rem;
 }
