@@ -1,24 +1,32 @@
 import React, { useEffect } from 'react';
-import Context from '../provider/Provider';
+import { Context } from '../provider/Provider';
 
 function ChooseSeller() {
-  const { chooseSeller, setChooseSeller } = React.useContext(Context);
+  const { sellers, setChooseSeller } = React.useContext(Context);
 
   useEffect(() => {
-    setChooseSeller(chooseSeller[0].name);
-  }, [chooseSeller, setChooseSeller]);
+    setChooseSeller(sellers[0].name);
+  }, []);
 
   return (
-    <select onChange={ (e) => setChooseSeller(e.target.value) }>
-      {chooseSeller.map((seller) => (
-        <option
-          key={ seller.id }
-          value={ seller.name }
-        >
-          {seller.name}
-        </option>
-      ))}
-    </select>
+    <label htmlFor="chooseSeller">
+      P. Vendedora Responsável
+      <select
+        id="chooseSeller"
+        name="chooseSeller"
+        data-testid="customer_checkout__select-seller"
+        onChange={ (e) => setChooseSeller(e.target.value) }
+      >
+        {sellers.map((sell) => (
+          <option
+            key={ sell.id }
+            value={ sell.name }
+          >
+            {sell.name}
+          </option>
+        ))}
+      </select>
+    </label>
   );
 }
 

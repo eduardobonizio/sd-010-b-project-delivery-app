@@ -1,9 +1,13 @@
+// container de detalhes do pedido
 import React from 'react';
 import Proptypes from 'prop-types';
-import Context from '../src/provider/Provider';
+import { Context } from '../provider/Provider';
+import addZeroes from '../helper/functions/addZeroes';
 
-function CheckoutProduct({ orderItem, index }) {
-  const { name, price, quantity } = orderItem;
+function CheckoutProduct({ order, index }) {
+  const { name, price, quantity } = order;
+  console.log(price);
+  console.log(quantity);
   const { removeProduct } = React.useContext(Context);
   return (
     <tr>
@@ -25,12 +29,12 @@ function CheckoutProduct({ orderItem, index }) {
       <td
         data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }
       >
-        {price}
+        {price.replace('.', ',')}
       </td>
       <td
         data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }
       >
-        {price * quantity}
+        {addZeroes(price * quantity)}
       </td>
       <td
         data-testid={ `customer_checkout__element-order-table-remove-${index}` }
@@ -47,7 +51,7 @@ function CheckoutProduct({ orderItem, index }) {
 }
 
 CheckoutProduct.propTypes = {
-  orderItem: Proptypes.shape({
+  order: Proptypes.shape({
     name: Proptypes.string.isRequired,
     price: Proptypes.number.isRequired,
     quantity: Proptypes.number.isRequired,

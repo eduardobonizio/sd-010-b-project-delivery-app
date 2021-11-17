@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 function OrderContainer({ order }) {
   const { id, saleDate, status, totalPrice } = order;
   return (
-    <div className="order-container">
+    <div>
       <ul>
         <li>{`Pedido: ${id}`}</li>
         <li>{`Fechamento: ${saleDate}`}</li>

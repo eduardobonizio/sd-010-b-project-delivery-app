@@ -1,6 +1,9 @@
-// const translateProductsToCamelCase = (id, name, price, url_image) => ({
-//   id, name, price, url,
-// });
+import axios from 'axios';
+
+const getPurchase = async (userId) => {
+  const response = await axios.get('http://localhost:3001/customer/orders', { userId });
+  return response;
+};
 
 const getAllProducts = async () => {
   const endpoint = 'http://localhost:3001/products';
@@ -23,4 +26,7 @@ const getAllProducts = async () => {
   return data.data;
 };
 
-export default getAllProducts;
+export {
+  getPurchase,
+  getAllProducts,
+};

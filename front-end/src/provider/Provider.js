@@ -3,19 +3,27 @@ import React, { createContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useLocation } from 'react-router-dom';
 import tokenHandler from '../helper/functions/tokenHandler';
-import getAllProducts from '../services/api';
+import { getAllProducts } from '../services/api';
 import translateToCamelCase from '../helper/functions/translateProductsToCamelCase';
 
 const Context = createContext();
+const seller = [
+  {
+    id: 1,
+    name: 'João',
+  },
+];
 
 const Provider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [orderInProgress, setOrderInProgress] = useState([]);
   const [totalOrder, setTotalOrder] = useState(0);
   const [dataUser, setDataUser] = useState({});
-  const [chooseSeller, setChooseSeller] = useState('');
+  const [sellers, setSellers] = useState(seller);
+  const [chooseSeller, setChooseSeller] = useState();
   const [purchaseAddress, setPurchaseAddress] = useState('');
   const [addressNumber, setAddressNumber] = useState('');
+  const [ordered, setOrdered] = useState([]);
   const location = useLocation();
   const history = useHistory();
 
@@ -57,6 +65,10 @@ const Provider = ({ children }) => {
     setAddressNumber,
     checkoutPurchase,
     removeProduct,
+    ordered,
+    setOrdered,
+    sellers,
+    setSellers,
   };
 
   const fetchProducts = async () => {
@@ -72,7 +84,17 @@ const Provider = ({ children }) => {
     const token = localStorage.getItem('token');
     tokenHandler(token, location, history);
     fetchProducts();
-  }, []);
+    const carrinho = localStorage.getItem('carrinho');
+    const price = localStorage.getItem('price');
+    setTotalOrder(JSON.parse(price) || 0);
+    setOrderInProgress(JSON.parse(carrinho) || []);
+  // }, []);
+  }, [history, location]);
+
+  useEffect(() => {
+    localStorage.setItem('carrinho', JSON.stringify(orderInProgress));
+    localStorage.setItem('price', JSON.stringify(totalOrder));
+  }, [orderInProgress, totalOrder]);
 
   return (
     <Context.Provider value={ context }>{children}</Context.Provider>
