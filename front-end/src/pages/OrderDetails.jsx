@@ -1,5 +1,6 @@
 import React from 'react';
 import NavBar from '../components/Navbar';
+import * as S from '../styles/Table';
 
 // Definição dos IDs
 const ID_ORDER = 'customer_order_details__element-order-details-label-order-id';
@@ -39,15 +40,15 @@ function OrderDetails() {
       </div>
 
       <body>
-        <table>
-          <tr>
-            <th>Item</th>
-            <th>Descrição</th>
-            <th>Quantidade</th>
-            <th>Valor Unitário</th>
-            <tr>Sub-total</tr>
-          </tr>
-        </table>
+        <S.table>
+          <S.tr>
+            <S.th>Item</S.th>
+            <S.th>Descrição</S.th>
+            <S.th>Quantidade</S.th>
+            <S.th>Valor Unitário</S.th>
+            <S.th>Sub-total</S.th>
+          </S.tr>
+        </S.table>
       </body>
 
     </div>
