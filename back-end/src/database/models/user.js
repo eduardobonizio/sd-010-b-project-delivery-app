@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignkey: 'user_id', as: 'user'
     });
     User.hasMany(models.Sale, {
-      foreignkey: 'sellerId', as: 'seller'
+      foreignkey: 'seller_id', as: 'seller'
     });
   }
   return User;
