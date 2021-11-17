@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import axios from 'axios';
 
 import RedirectToRegister from '../../components/RegisterComponents/RedirectToRegister';
@@ -8,8 +9,10 @@ import '../../styles/login.css';
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loginError, setLoginError] = useState(false);
   const [disabledBtn, setDisabledBtn] = useState(true);
+  const [loginError, setLoginError] = useState(false);
+  const [redirectPage, setRedirectPage] = useState('');
+  const [userLogged, setUserLogged] = useState(false);
 
   const validationEmailPwd = () => {
     const regex = /^[a-z0-9._]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
@@ -34,7 +37,19 @@ export default function Login() {
         password,
       },
     })
-      .then((data) => console.log(data, 'aaa'))
+      .then(({ data: userRole }) => {
+        switch (true) {
+        case (userRole === 'administrator'):
+          setRedirectPage('/admin/manage');
+          break;
+        case (userRole === 'seller'):
+          setRedirectPage('/seller/orders');
+          break;
+        default:
+          setRedirectPage('/customer/products');
+        }
+        setUserLogged(true);
+      })
       .catch(() => setLoginError(true));
   };
 
@@ -81,6 +96,9 @@ export default function Login() {
       {
         loginError
         && <span data-testid="common_login__element-invalid-email">Login Inválido!</span>
+      }
+      {
+        userLogged && <Redirect to={ redirectPage } />
       }
     </div>
   );
