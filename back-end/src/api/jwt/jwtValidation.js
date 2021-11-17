@@ -7,7 +7,7 @@ const jwtConfig = {
   algorithm: 'HS256',
 };
 
-const secret = process.env.JWT_SECRET;
+const secret = process.env.JWT_SECRET || 'superSeguro';
 
 const creatToken = (userId, displayName, email) => {
   const token = jwt.sign({ userId, displayName, email }, secret, jwtConfig);

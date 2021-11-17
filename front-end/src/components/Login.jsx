@@ -1,29 +1,35 @@
 import axios from 'axios';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import './App.css';
 
 import DeliveryContext from '../context/DeliveryContext';
 
 const Login = () => {
+  const [isValidPW, setIsValidPW] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
   const navigate = useNavigate();
-  const { email, setEmail, password, setPassword } = useContext(DeliveryContext);
+  const { email, setEmail, password, setPassword, validarEmail, validarSenha,
+  } = useContext(DeliveryContext);
 
-  const buttonLogin = async (event) => {
-    event.preventDefault();
+  useEffect(() => {
+    if (validarEmail(email) && validarSenha(password)) {
+      return setIsDisabled(false);
+    }
+    return setIsDisabled(true);
+  }, [email, password, validarEmail, validarSenha]);
+
+  const buttonLogin = async () => {
     try {
-      const { data: { token } } = await axios.post('http://localhost:3001/login/', { email, password });
-      localStorage.setItem('token', `${token}`);
-      navigate('/products');
+      const { data } = await axios.post('http://localhost:3001/login', { email, password });
+      localStorage.setItem('user', `${JSON.stringify(data)}`);
+      return navigate('/customer/products');
     } catch (error) {
+      setIsValidPW(true);
       return error;
     }
   };
 
-  const handleChange = ({ target }) => {
-    const { value, name } = target;
-    return name === 'email' ? setEmail(value) : setPassword(value);
-  };
+  const TEST_INVALID_EMAIL = 'common_login__element-invalid-email';
 
   return (
     <div className="App">
@@ -31,7 +37,7 @@ const Login = () => {
         <input
           data-testid="common_login__input-email"
           type="text"
-          onChange={ (event) => handleChange(event) }
+          onChange={ ({ target }) => setEmail(target.value) }
           name="email"
           value={ email }
           placeholder="E-mail"
@@ -40,15 +46,15 @@ const Login = () => {
           data-testid="common_login__input-password"
           type="text"
           name="password"
-          onChange={ (event) => handleChange(event) }
+          onChange={ ({ target }) => setPassword(target.value) }
           value={ password }
           placeholder="Password"
         />
         <button
           data-testid="common_login__button-login"
-          disabled={ false }
           type="button"
           onClick={ buttonLogin }
+          disabled={ isDisabled }
         >
           LOGIN
         </button>
@@ -59,6 +65,11 @@ const Login = () => {
         >
           Ainda não tenho conta
         </button>
+        {
+          isValidPW
+            ? <span data-testid={ TEST_INVALID_EMAIL }>Password ou E-mail invalido!</span>
+            : null
+        }
       </form>
     </div>
   );
