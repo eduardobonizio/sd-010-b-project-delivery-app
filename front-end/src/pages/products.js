@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/navbar';
 import ProductCard from '../components/productCard';
-import { getProducts } from '../services/products';
+import getProducts from '../services/products';
 
 function Products() {
   const [userObj, setUserObj] = useState({});
