@@ -10,11 +10,13 @@ import {
   ClientOrderDetails,
   OrderDetails,
   Home,
+  Details,
 } from './pages';
 
 function App() {
   return (
     <Routes>
+      <Route exact path="/customer/orders/:id" element={ <Details /> } />
       <Route exact path="/customer/orders" element={ <ClientOrderDetails /> } />
       <Route exact path="/customer/products" element={ <Products /> } />
       <Route exact path="/customer/checkout" element={ <Checkout /> } />
