@@ -13,6 +13,8 @@ function ProductList() {
     getAllProducts();
   }, []);
 
+  console.log(products);
+
   return (
     <div>
       {products.map((product) => (

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-
 import {
   Card,
   CardBody,
@@ -8,11 +7,12 @@ import {
   CardImgOverlay,
   CardTitle,
 } from 'reactstrap';
-import { useDelivery } from '../hooks/useDelivery';
+import { useCustomer } from '../hooks/useCustomer';
+import { formatSaveAndRenderPrice } from '../helpers/functions';
 
 function Cards({ product }) {
   // const prodBg = 'https://static.paodeacucar.com/img/uploads/1/241/693241.jpg';
-  const { handleTotalSale } = useDelivery();
+  const { handleTotalSale } = useCustomer();
   const [quantity, setQuantity] = useState(0);
 
   function handleAddQuantity() {
@@ -26,7 +26,6 @@ function Cards({ product }) {
 
   function handleSubQuantity() {
     setQuantity(quantity - 1);
-    console.log(product);
     const sale = {
       ...product,
       quantity: quantity - 1,
@@ -39,6 +38,12 @@ function Cards({ product }) {
       <button type="button" onClick={ handleAddQuantity }>
         add
       </button>
+      <input
+        type="text"
+        value={ quantity }
+        data-testid={ `customer_products__input-card-quantity-${product.id}` }
+        style={ { color: 'black' } }
+      />
       <button type="button" onClick={ handleSubQuantity }>
         remove
       </button>
@@ -55,7 +60,7 @@ function Cards({ product }) {
             <CardTitle
               data-testid={ `customer_products__element-card-price-${product.id}` }
             >
-              { `R$ ${product.price}` }
+              {formatSaveAndRenderPrice(product.price)}
             </CardTitle>
             <CardImgOverlay />
           </CardBody>
@@ -73,12 +78,6 @@ function Cards({ product }) {
             >
               -
             </button>
-            <p
-              data-testid={ `customer_products__input-card-quantity-${product.id}` }
-              style={ { color: 'black' } }
-            >
-              { quantity }
-            </p>
             <button
               type="button"
               className="btn btn-primary d-flex justify-content-center"

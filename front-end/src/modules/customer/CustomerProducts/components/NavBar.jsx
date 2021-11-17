@@ -1,8 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 function Navbar({ item1, item2, user }) {
+  const history = useHistory();
+
+  function handleLogout() {
+    localStorage.clear();
+    history.push('/login');
+  }
+
   return (
     <div className="row bg-primary d-flex">
       <div className="col p-4">
@@ -32,13 +39,14 @@ function Navbar({ item1, item2, user }) {
         </span>
       </div>
       <div className="col-1 bg-secondary p-4">
-        <button
-          type="button"
+        <Link
+          to="/login"
+          onClick={ handleLogout }
           className="btn btn-primary d-flex justify-content-center"
           data-testid="customer_products__element-navbar-link-logout"
         >
           Sair
-        </button>
+        </Link>
       </div>
     </div>
   );
