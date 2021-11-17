@@ -9,12 +9,14 @@ import Login from './pages/Login';
 import Checkout from './pages/Checkout';
 import Register from './pages/Register';
 import './App.css';
+import OrderDetails from './pages/OrderDetails';
 
 function App() {
   return (
     <Switch>
       <Route exact path="/customer/products" component={ Product } />
       <Route exact path="/customer/checkout" component={ Checkout } />
+      <Route exact path="/customer/orders/:id" component={ OrderDetails } />
       <Route exact path="/register" component={ Register } />
       <Route exact path="/login" component={ Login } />
       <Route exact path="/">
