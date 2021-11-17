@@ -1,12 +1,12 @@
 const rescue = require('express-rescue');
-const { Sale } = require('../../database/models');
+const salesProductsService = require('../services/salesProducts');
 
-const sales = rescue(async (req, res) => {
-  const result = await Sale.findAll();
+const getAll = rescue(async (req, res) => {
+  const result = await salesProductsService.getAll();
   if (!result) { return res.status(404).json({ message: 'deu merda corre!' }); }
   return res.status(200).json(result);
 });
 
 module.exports = {
-  sales,
+  getAll,
 };

@@ -6,9 +6,11 @@ import CardOrder from '../components/cardOrder';
 function OrderClient() {
   const [sales, setSales] = useState([]);
 
-  useEffect(async () => {
-    const salesUsers = await (await api.getAllSales()).data;
-    setSales(salesUsers);
+  useEffect(() => {
+    (async () => {
+      const salesUsers = await (await api.getAllSales()).data;
+      setSales(salesUsers);
+    })();
   }, [sales]);
 
   return (

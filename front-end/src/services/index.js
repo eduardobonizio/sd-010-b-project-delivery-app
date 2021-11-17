@@ -11,5 +11,6 @@ const api = axios.create({
 const create = (data) => api.post('/login', data);
 const getAll = (data) => api.get('/login', data);
 const getAllSales = () => api.get('/sales');
+const getAllSalesProducts = () => api.get('/checkout');
 
-export default { create, getAll, getAllSales };
+export default { create, getAll, getAllSales, getAllSalesProducts };
