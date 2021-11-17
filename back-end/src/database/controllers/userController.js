@@ -1,4 +1,4 @@
-const { getUserByEmailService, createUserService, getUserByNameService } = require('../services/userService');
+const { getUserByEmailService, createUserService, getUserByNameService } = require('../../services/userService');
 const md5 = require('md5');
 
 const getUserByEmail = async (req, res) => {

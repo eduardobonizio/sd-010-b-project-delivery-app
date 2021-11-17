@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ProductsContext from './ProductsContext';
 
 function UsersProvider({ children }) {
-  const contextValue = {
+  const [totalPrice, setTotalPrice] = useState(0);
 
+  const contextValue = {
+    totalPrice,
+    setTotalPrice,
   };
 
   return (

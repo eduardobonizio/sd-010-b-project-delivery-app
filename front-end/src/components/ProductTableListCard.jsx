@@ -4,7 +4,7 @@ import { Box } from '@mui/system';
 import PropTypes from 'prop-types';
 
 const ProductTableListCard = (
-  { index, description, quantity, pricePerUnit, removeBtn },
+  { index, description, quantity, pricePerUnit, removeBtn, testIdPreffix, onClick },
 ) => {
   const DESC_SIZE_W_REMOVEBTN = 7;
   const DESC_SIZE_WO_REVOMEBTN = 9;
@@ -14,15 +14,56 @@ const ProductTableListCard = (
 
   return (
     <Grid direction="row" alignItems="center" container columns={ 16 }>
-      <Grid item xs><Box textAlign="center">{ index }</Box></Grid>
-      <Grid item xs={ DESC_SIZE }><Box>{ description }</Box></Grid>
-      <Grid item xs={ 2 }><Box textAlign="center">{ quantity }</Box></Grid>
-      <Grid item xs={ 2 }><Box textAlign="center">{`R$ ${pricePerUnit}`}</Box></Grid>
-      <Grid item xs={ 2 }><Box textAlign="center">{`R$ ${totalPrice()}`}</Box></Grid>
+      <Grid item xs>
+        <Box
+          textAlign="center"
+          data-testid={ `${testIdPreffix}__element-order-table-item-number-${index}` }
+        >
+          { index + 1 }
+        </Box>
+      </Grid>
+      <Grid item xs={ DESC_SIZE }>
+        <Box data-testid={ `${testIdPreffix}__element-order-table-name-${index}` }>
+          { description }
+        </Box>
+      </Grid>
+      <Grid item xs={ 2 }>
+        <Box
+          textAlign="center"
+          data-testid={ `${testIdPreffix}__element-order-table-quantity-${index}` }
+        >
+          { quantity }
+        </Box>
+      </Grid>
+      <Grid item xs={ 2 }>
+        <Box
+          textAlign="center"
+          data-testid={ `${testIdPreffix}__element-order-table-unit-price-${index}` }
+        >
+          {`R$ ${pricePerUnit}`}
+        </Box>
+      </Grid>
+      <Grid item xs={ 2 }>
+        <Box
+          textAlign="center"
+          data-testid={ `${testIdPreffix}__element-order-table-sub-total-${index}` }
+        >
+          {`R$ ${totalPrice()}`}
+        </Box>
+      </Grid>
       {
         removeBtn
           ? (
-            <Grid item xs={ 2 }><Button>Remove</Button></Grid>
+            <Grid item xs={ 2 }>
+              <Button
+                data-testid={
+                  `${testIdPreffix}__element-order-table-remove-${index}`
+                }
+                onClick={ () => onClick(index) }
+              >
+                Remove
+              </Button>
+            </Grid>
           ) : null
       }
     </Grid>
@@ -31,6 +72,7 @@ const ProductTableListCard = (
 
 ProductTableListCard.defaultProps = {
   removeBtn: true,
+  onClick: false,
 };
 
 ProductTableListCard.propTypes = {
@@ -39,6 +81,8 @@ ProductTableListCard.propTypes = {
   quantity: PropTypes.number.isRequired,
   pricePerUnit: PropTypes.number.isRequired,
   removeBtn: PropTypes.bool,
+  testIdPreffix: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
 };
 
 export default ProductTableListCard;

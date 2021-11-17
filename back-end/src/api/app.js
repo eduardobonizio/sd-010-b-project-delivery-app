@@ -1,12 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const saleRouter = require('../routers/saleRouter');
 
 const { getUserByEmail, createUser } = require('../database/controllers/userController');
 
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
+app.use('/sale', saleRouter);
 
 app.get('/login', async (_req, res) => res.status(200).json({ message: 'LOGIN' }));
 
