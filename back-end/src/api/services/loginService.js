@@ -1,5 +1,4 @@
 const md5 = require('md5');
-// const { checkIfPasswordIsValid, getUser } = require('./validations/validation');
 const { User } = require('../../database/models');
 
 // const {ApiError} = require('../ut')
