@@ -1,25 +1,24 @@
 import React from 'react';
+import dataTestIdDict from '../../utils/dataTestIdDict';
 
-const dataTestIds = {
-  itemNumber: 'customer_checkout__element-order-table-item-number-',
-  name: 'customer_checkout__element-order-table-name-',
-  quantity: 'cutomer_checkout__element-order-table-quantity-',
-  unitPrice: 'customer_checkout__element-order-table-unit-price-',
-  subTotal: 'customer_checkout__element-order-table-sub-total-',
-  remove: 'customer_checkout__element-order-table-remove-',
-};
-
-const { itemNumber, name, quantity, unitPrice, subTotal, remove } = dataTestIds;
+const {
+  dataTestId22,
+  dataTestId23,
+  dataTestId24,
+  dataTestId25,
+  dataTestId26,
+  dataTestId27,
+} = dataTestIdDict;
 
 function ItemRow() {
   return (
     <div className="item-row">
-      <div data-testid={ itemNumber }>1</div>
-      <div data-testid={ name }>Salgadinho Torcida Churrasco</div>
-      <div data-testid={ quantity }>1</div>
-      <div data-testid={ unitPrice }>R$ 3,50</div>
-      <div data-testid={ subTotal }>R$ 10,50</div>
-      <div data-testid={ remove }>Remover</div>
+      <div data-testid={ dataTestId22 }>1</div>
+      <div data-testid={ dataTestId23 }>Salgadinho Torcida Churrasco</div>
+      <div data-testid={ dataTestId24 }>1</div>
+      <div data-testid={ dataTestId25 }>R$ 3,50</div>
+      <div data-testid={ dataTestId26 }>R$ 10,50</div>
+      <div data-testid={ dataTestId27 }>Remover</div>
     </div>
   );
 }
