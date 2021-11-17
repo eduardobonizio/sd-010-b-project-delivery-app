@@ -13,6 +13,7 @@ app.use('/', routes.login);
 app.use('/sales', routes.sales);
 app.use('/checkout', routes.salesProducts);
 app.use('/products', routes.product);
+app.use('/register', routes.register);
 app.get('/coffee', (_req, res) => res.status(418).end());
 
 module.exports = app;

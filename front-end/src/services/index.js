@@ -13,4 +13,5 @@ const getAll = (data) => api.get('/login', data);
 const getAllSales = () => api.get('/sales');
 const getAllSalesProducts = () => api.get('/checkout');
 
-export default { create, getAll, getAllSales, getAllSalesProducts };
+const register = (data) => api.post('/register', data);
+export default { create, getAll, getAllSales, getAllSalesProducts, register };
