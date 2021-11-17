@@ -64,21 +64,18 @@ function Register() {
           onChange={ ({ target }) => setPasswordRegister(target.value) }
           data-testid="common_register__input-password"
         />
-        <Link to="/customer/products">
-          <Button
-            className="register-button"
-            type="submit"
-            onClick={ () => register(nameUser, emailRegister, passwordRegister) }
-            data-testid="common_register__button-register"
-            disabled={
-              !(/^[^\s@]+@[^\s@]+\.[^\s@]+$/).test(emailRegister)
-          || passwordRegister.length <= passLength
-          || nameUser.length <= nameLength
-            }
-          >
-            CADASTRAR
-          </Button>
-        </Link>
+        <Button
+          className="register-button"
+          onClick={ () => register(nameUser, emailRegister, passwordRegister) }
+          data-testid="common_register__button-register"
+          disabled={
+            !(/^[^\s@]+@[^\s@]+\.[^\s@]+$/).test(emailRegister)
+        || passwordRegister.length <= passLength
+        || nameUser.length <= nameLength
+          }
+        >
+          CADASTRAR
+        </Button>
       </form>
       {errorMessage
           && (
