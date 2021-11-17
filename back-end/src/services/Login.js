@@ -1,8 +1,8 @@
-const { user } = require('../database/models');
 const crypto = require('crypto');
+const { user } = require('../database/models');
 
 const attemptLogin = async ({ email, password }) => {
-  const encryptedPassword = crypto.createHash('md5').update(password).digest("hex");
+  const encryptedPassword = crypto.createHash('md5').update(password).digest('hex');
 
   const loggedUser = await user.findOne({ where: { email, password: encryptedPassword } });
 
