@@ -2,9 +2,9 @@ import React, { useState, useEffect, useContext } from 'react';
 // import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import rockGlass from '../images/rockGlass.svg';
-import { setOnLocalStorage } from '../services/servicesLocalStorage';
-import { loginService } from '../services/servicesLogin';
-import Context from '../provider/Context';
+import { setOnLocalStorage } from '../services/helpers/servicesLocalStorage';
+import loginService from '../services/apis/servicesLogin';
+import Context from '../context/Context';
 
 function Login() {
   const history = useHistory();
@@ -27,7 +27,7 @@ function Login() {
     const passwordLength = password.length;
     const minPassword = 5;
 
-    if ((regex.test(email)) && (passwordLength > minPassword)) {
+    if (regex.test(email) && passwordLength > minPassword) {
       setDisableBtn(false);
     } else {
       setDisableBtn(true);
@@ -45,7 +45,7 @@ function Login() {
     const checkLogin = await loginService(login);
     if (checkLogin.message.id) {
       const { message } = checkLogin;
-      setOnLocalStorage('login_delivery', message);
+      setOnLocalStorage('user', message);
       setUser(message);
       history.push('/customer/products');
     }
@@ -62,7 +62,7 @@ function Login() {
       role: 'custumer',
       token: `${tokenPart1}${tokenPart2}`,
     };
-    setOnLocalStorage('login_delivery', message);
+    setOnLocalStorage('user', message);
     setUser(message);
     history.push('/customer/products');
   };
@@ -118,17 +118,11 @@ function Login() {
           Registrar novo usuario
         </button>
       </div>
-      <h2
-        data-testid="common_login__element-invalid-email"
-        hidden={ hidden }
-      >
+      <h2 data-testid="common_login__element-invalid-email" hidden={ hidden }>
         Email ou Senha invalidos
       </h2>
 
-      <button
-        type="button"
-        onClick={ atalho }
-      >
+      <button type="button" onClick={ atalho }>
         atalho
       </button>
     </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import NavBar from './component/navbar';
+import NavBar from '../components/Navbar';
 
 function MeusPedidos() {
   return (
