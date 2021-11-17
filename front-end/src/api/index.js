@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-// const loginUrl = 'http://localhost:3001/login';
-// const registerUrl = 'http://localhost:3001/user/register';
 
 const API = axios.create({
   baseURL: 'http://localhost:3001',
