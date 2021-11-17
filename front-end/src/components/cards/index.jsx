@@ -119,7 +119,7 @@ function CardsProducts() {
         <style.ButtonCart
           data-testid="customer_products__checkout-bottom-value"
         >
-          {`Ver Carrinho: R$ ${valueTotalProduct.toFixed(2)}`}
+          {`Ver Carrinho: R$ ${valueTotalProduct.toFixed(2).replace('.', ',')}`}
         </style.ButtonCart>
       </Link>
     </style.ContainerListCard>
