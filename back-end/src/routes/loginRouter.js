@@ -8,7 +8,8 @@ router.post('/', async (req, res) => {
 
   const user = await LoginService.logged(login, password);
 
-  if (!user) return res.status(404).send();
+  if (!user) return res.status(404).json({ message: 'login error' });
+  return res.status(200).send();
 });
 
 module.exports = router;

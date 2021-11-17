@@ -8,6 +8,7 @@ import '../../styles/login.css';
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loginError, setLoginError] = useState(false);
   const [disabledBtn, setDisabledBtn] = useState(true);
 
   const validationEmailPwd = () => {
@@ -24,6 +25,7 @@ export default function Login() {
   };
 
   const login = async () => {
+    setLoginError(false);
     await axios({
       method: 'post',
       url: 'http://localhost:3001/login',
@@ -32,15 +34,15 @@ export default function Login() {
         password,
       },
     })
-      .then((data) => console.log(data))
-      .catch((e) => console.error(e));
+      .then((data) => console.log(data, 'aaa'))
+      .catch(() => setLoginError(true));
   };
 
   useEffect(validationEmailPwd, [email, password]);
 
   return (
     <div className="login-content">
-      <form className="form-login" action="">
+      <form className="form-login">
         <div>
           <label className="label-login" htmlFor="email">
             Login
@@ -66,7 +68,7 @@ export default function Login() {
           </label>
           <button
             className="login-btn"
-            type="submit"
+            type="button"
             data-testid="common_login__button-login"
             disabled={ disabledBtn }
             onClick={ async () => login() }
@@ -76,12 +78,10 @@ export default function Login() {
           <RedirectToRegister />
         </div>
       </form>
-      <span
-        data-testid="common_login__element-invalid-email"
-        hidden
-      >
-        Erro!
-      </span>
+      {
+        loginError
+        && <span data-testid="common_login__element-invalid-email">Login Inválido!</span>
+      }
     </div>
   );
 }
