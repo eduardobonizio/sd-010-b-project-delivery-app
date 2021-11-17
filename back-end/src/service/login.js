@@ -4,7 +4,7 @@ const { User } = require('../database/models');
 
 const logged = async (email, passwordWithouCrypto) => {
   const password = md5(passwordWithouCrypto);
-  const user = User.findAll({
+  const user = await User.findAll({
     where: {
       [Op.and]: {
         email,

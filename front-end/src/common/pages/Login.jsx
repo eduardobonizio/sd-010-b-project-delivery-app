@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
 import RedirectToRegister from '../../components/RegisterComponents/RedirectToRegister';
 
 import '../../styles/login.css';
@@ -11,7 +13,6 @@ export default function Login() {
   const validationEmailPwd = () => {
     const regex = /^[a-z0-9._]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
     const Email = regex.test(email);
-    console.log(Email);
     const Pwd = password.length;
     const minPwdLength = 6;
 
@@ -20,6 +21,19 @@ export default function Login() {
     } else {
       setDisabledBtn(true);
     }
+  };
+
+  const login = async () => {
+    await axios({
+      method: 'post',
+      url: 'http://localhost:3001/login',
+      data: {
+        login: email,
+        password,
+      },
+    })
+      .then((data) => console.log(data))
+      .catch((e) => console.error(e));
   };
 
   useEffect(validationEmailPwd, [email, password]);
@@ -55,6 +69,7 @@ export default function Login() {
             type="submit"
             data-testid="common_login__button-login"
             disabled={ disabledBtn }
+            onClick={ async () => login() }
           >
             LOGIN
           </button>
