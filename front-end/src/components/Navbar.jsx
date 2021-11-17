@@ -4,7 +4,7 @@ function Navbar() {
   return (
     <nav>
       <span data-testid="customer_products__element-navbar-link-products">
-        Produt  os
+        Produtos
       </span>
       <span data-testid="customer_products__element-navbar-link-orders">
         Meus Pedidos
