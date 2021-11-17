@@ -1,7 +1,8 @@
 const rescue = require('express-rescue');
 const md5 = require('md5');
+const regexEmail = require('../../../helpers/regexEmail');
 const User = require('../database/models/user');
-const regexEmail = require('../helpers/regexEmail');
+
 const { getUserByEmail, getUserByName } = require('../services/users');
 
 // Comments: Lista de erros
