@@ -1,6 +1,4 @@
-import React, { useContext, useState,
-  //  useEffect
-} from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Context from '../context/Context';
 import * as S from '../styles/Produtos';
