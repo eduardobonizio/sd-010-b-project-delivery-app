@@ -7,8 +7,8 @@ const login = async (req, res) => {
       return res.status(user.err.status).json({ message: user.err.message });
     }
     return res.status(200).json(user);
-  } catch (err) {
-    return res.status(500).json({ message: err.message });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
   }
 };
 
@@ -19,12 +19,22 @@ const create = async (req, res) => {
       return res.status(token.err.status).json({ message: token.err.message });
     }
     res.status(201).json({ token });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const getAll = async (_req, res) => {
+  try {
+    const users = await userService.getAll();
+    return res.status(200).json(users);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
   }
 };
 
 module.exports = {
   create,
   login,
+  getAll,
 };

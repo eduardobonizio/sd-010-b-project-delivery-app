@@ -1,13 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { getUsers } from '../services/user';
 
 function Address() {
+  const [users, setUsers] = useState([]);
+
+  const fetchData = async () => {
+    const usersData = await getUsers();
+    const sellers = usersData.data.filter((user) => user.role === 'seller');
+    setUsers(sellers);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <main>
       <form>
         <div>
           <select data-testid="customer_checkout__select-seller">
-            vendedor
-            <option>fulano</option>
+            {users.map((user, index) => <option key={ index }>{ user.name }</option>)}
           </select>
         </div>
         <div>
