@@ -1,5 +1,3 @@
-const sales = require("./sales");
-
 module.exports = (sequelize, DataTypes) => {
   const salesProduct = sequelize.define('saleProduct', {
     quantity: DataTypes.INTEGER

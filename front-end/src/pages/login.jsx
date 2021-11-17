@@ -11,7 +11,7 @@ const Login = () => {
 
   const validateEmail = (email) => {
     setEmail(email);
-    const regexEmail = /^[a-z0-9.]+@[a-z0-9]+\.([a-z]+){2,4}?$/i;
+    const regexEmail = /\S+@\S+\.\S+/;
     if (regexEmail.test(email)) {
       setInvalidEmail(false);
       setErrorMessage('');

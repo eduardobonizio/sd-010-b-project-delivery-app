@@ -1,6 +1,9 @@
 import React from 'react';
-import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
+import { Route, BrowserRouter, Redirect, Switch } from 'react-router-dom';
+import Product from '../pages/customer/products';
+
 import Login from '../pages/login';
+import Register from '../pages/register';
 
 const Routes = () => (
   <BrowserRouter>
@@ -9,7 +12,10 @@ const Routes = () => (
         <Redirect to="/login" />
       </Route>
       <Route path="/login" component={ Login } />
+      <Route path="/register" component={ Register } />
+      <Route path="/customer/products" component={ Product } />
     </Switch>
   </BrowserRouter>
 );
+
 export default Routes;
