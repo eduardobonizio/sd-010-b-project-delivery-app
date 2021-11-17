@@ -1,5 +1,6 @@
 const express = require('express');
 const rescue = require('express-rescue');
+const md5 = require('md5');
 const { getUserByEmail,
   getUserByName,
   createUser,
@@ -22,7 +23,9 @@ userRouter.post('/register', rescue(async (req, res) => {
   const findUserEmail = await getUserByEmail(email);
   if (findUserName || findUserEmail) return res.status(409).json({ message: 'Usuário já existe' });
 
-  const create = await createUser(name, email, password, role);
+  const convertedPassword = md5(password);
+
+  const create = await createUser(name, email, convertedPassword, role);
   return res.status(201).json(create);
 }))
 
