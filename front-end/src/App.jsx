@@ -11,18 +11,16 @@ import OrderDetails from './pages/OrderDetails';
 
 function App() {
   return (
-    <div>
-      <Switch>
-        <Route exact path="/" render={ () => <Redirect to="/login" /> } />
-        <Route path="/login" component={ Login } />
-        <Route path="/register" component={ Register } />
-        <Route path="/customer/products" component={ Produtos } />
-        <Route path="/customer/meusPedidos" component={ MeusPedidos } />
-        <Route path="/customer/checkout" component={ Checkout } />
-        <Route path="/customer/orders/:idVenda" component={ OrderDetails } />
-        <Route path="/page404" component={ Page404 } />
-      </Switch>
-    </div>
+    <Switch>
+      <Route exact path="/" render={ () => <Redirect to="/login" /> } />
+      <Route path="/login" component={ Login } />
+      <Route path="/register" component={ Register } />
+      <Route path="/customer/products" component={ Produtos } />
+      <Route path="/customer/meusPedidos" component={ MeusPedidos } />
+      <Route path="/customer/checkout" component={ Checkout } />
+      <Route path="/customer/orders/:idVenda" component={ OrderDetails } />
+      <Route path="/page404" component={ Page404 } />
+    </Switch>
   );
 }
 
