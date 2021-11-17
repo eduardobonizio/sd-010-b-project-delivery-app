@@ -25,6 +25,7 @@ function CardsProducts() {
       //   quantity: Number(value.quantity),
       //   price: value.price,
       // }));
+      console.log('response', newResponse);
       setDataProducts(newResponse);
       // setInputQuantity(valueQuantity);
     }
