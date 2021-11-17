@@ -1,7 +1,7 @@
-import React from 'react';
+// import React from 'react';
 
-function ProductCard() {
+// function ProductCard() {
 
-}
+// }
 
-export default ProductCard;
+// export default ProductCard;
