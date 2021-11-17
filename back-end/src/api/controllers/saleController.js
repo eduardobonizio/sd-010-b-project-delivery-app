@@ -13,6 +13,17 @@ const getUserOrders = async (req, res, next) => {
   }
 };
 
+const getSaleInfo = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const saleInfo = await saleService.getSaleInfo(id);
+    return res.status(200).json(saleInfo);
+  } catch (e) {
+    next(e);
+  }
+};
+
 module.exports = {
   getUserOrders,
+  getSaleInfo,
 };

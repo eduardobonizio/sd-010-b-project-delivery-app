@@ -9,6 +9,12 @@ const getUserOrders = async (userId) => {
   }
 };
 
+const getSaleInfo = async (saleId) => {
+  const saleInfo = await Sale.findByPk(saleId);
+  return saleInfo;
+};
+
 module.exports = {
   getUserOrders,
+  getSaleInfo,
 };
