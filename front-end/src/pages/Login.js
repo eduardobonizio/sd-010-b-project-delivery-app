@@ -19,6 +19,7 @@ function Login() {
   const URL = 'http://localhost:3001/login';
   const history = useHistory();
   const passLength = 5;
+  const fiveSeconds = 5000;
 
   const login = async (email, password) => {
     try {
@@ -30,7 +31,7 @@ function Login() {
       setErrorMessage('Email or password are invalid');
       setTimeout(() => {
         setErrorMessage('');
-      } , 5000);
+      }, fiveSeconds);
     }
   };
 

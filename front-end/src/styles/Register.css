@@ -25,3 +25,8 @@
   margin-top: 5px;
   width: 100%;
 }
+
+.register-errorMessage {
+  color: red;
+  margin: 10px 0 0;
+}
