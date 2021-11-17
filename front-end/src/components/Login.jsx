@@ -29,33 +29,6 @@ const Login = () => {
     }
   };
 
-  // const validarEmail = (e) => {
-  //   const emailTester = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/i;
-
-  //   if (!emailTester.test(e)) return false;
-
-  //   return true;
-  // };
-
-  // const validarSenha = (senha) => {
-  //   const SENHA_LENGTH = 6;
-  //   console.log(senha);
-
-  //   if (senha.length < SENHA_LENGTH) {
-  //     return false;
-  //   }
-  //   return true;
-  // };
-
-  // const handleChange = ({ target }) => {
-  //   const { value, name } = target;
-  //   if (name === 'email') {
-  //     setEmail(value);
-  //   } else {
-  //     setPassword(value);
-  //   }
-  // };
-
   const TEST_INVALID_EMAIL = 'common_login__element-invalid-email';
 
   return (
