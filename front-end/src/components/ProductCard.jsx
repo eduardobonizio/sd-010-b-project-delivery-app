@@ -5,41 +5,43 @@ function ProductCard({ product, handleCart, handleQuantityInput, handleQuantity 
   const { id, name, price, urlImage } = product;
   return (
     <div className="product-card">
-      <p data-testid={ `customer_products__element-card-price-${id}` }>
-        R$
-        {' '}
-        {price.replace('.', ',')}
-      </p>
-      <img
-        data-testid={ `customer_products__img-card-bg-image-${id}` }
-        src={ urlImage }
-        alt="product"
-      />
-      <p data-testid={ `customer_products__element-card-title-${id}` }>{name}</p>
-      <div className="btns">
-        <button
-          data-testid={ `customer_products__button-card-rm-item-${id}` }
-          type="button"
-          name="subtract"
-          onClick={ (e) => handleCart(e, product) }
-        >
-          -
-        </button>
-        <input
-          data-testid={ `customer_products__input-card-quantity-${id}` }
-          type="number"
-          value={ handleQuantity(id) }
-          onChange={ (e) => handleQuantityInput(e, product) }
-          name="quantity"
+      <div key={ id }>
+        <p data-testid={ `customer_products__element-card-price-${id}` }>
+          R$
+          {' '}
+          {price.replace('.', ',')}
+        </p>
+        <img
+          data-testid={ `customer_products__img-card-bg-image-${id}` }
+          src={ urlImage }
+          alt="product"
         />
-        <button
-          data-testid={ `customer_products__button-card-add-item-${id}` }
-          type="button"
-          name="plus"
-          onClick={ (e) => handleCart(e, product) }
-        >
-          +
-        </button>
+        <p data-testid={ `customer_products__element-card-title-${id}` }>{name}</p>
+        <div className="btns">
+          <button
+            data-testid={ `customer_products__button-card-rm-item-${id}` }
+            type="button"
+            name="subtract"
+            onClick={ (e) => handleCart(e, product) }
+          >
+            -
+          </button>
+          <input
+            data-testid={ `customer_products__input-card-quantity-${id}` }
+            type="number"
+            value={ handleQuantity(id) }
+            onChange={ (e) => handleQuantityInput(e, product) }
+            name="quantity"
+          />
+          <button
+            data-testid={ `customer_products__button-card-add-item-${id}` }
+            type="button"
+            name="plus"
+            onClick={ (e) => handleCart(e, product) }
+          >
+            +
+          </button>
+        </div>
       </div>
     </div>
   );
