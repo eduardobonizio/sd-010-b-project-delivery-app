@@ -12,7 +12,7 @@ function App() {
     <ProductsProvider>
       <UsersProvider>
         <Switch>
-        <Route exact path="/customer/products" component={ CustumerProducts } />
+          <Route exact path="/customer/products" component={ CustumerProducts } />
           <Route path="/login" component={ Login } />
           <Route path="/register" component={ Register } />
           <Route exact path="/"><Redirect to="/login" /></Route>
