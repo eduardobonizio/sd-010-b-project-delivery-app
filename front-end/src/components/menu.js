@@ -20,7 +20,10 @@ export default function Menu() {
     <div className="flex flex-col items-center justify-center">
 
       <section className="flex flex-col items-center justify-center w-4/5 self-center mt-20">
-        <h1 className="text-4xl ix-blend-lighten my-8">Produtos</h1>
+        <div className="text-color-yellow">
+          <h1 className="text-4xl ix-blend-lighten mx-20 my-20 absolute z-10">Produtos</h1>
+          <img className="w-80 relative z-0 -my-2" src="/brush.svg" alt="Imagem da login" />
+        </div>
         <div className="flex flex-row items-center justify-center flex-wrap">
           {products.map((el) => (
             <DrinkCard product={ el } key={ el.name } />
