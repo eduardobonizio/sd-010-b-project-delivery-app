@@ -1,9 +1,11 @@
 import React from 'react';
 
-const Login = () => (
-  <main>
-    <h1>Seller orders</h1>
-  </main>
-);
+const SellerOrders = () => {
+  return (
+    <div>
+      <h1>Seller Orders</h1>
+    </div>
+  );
+}
 
-export default Login;
+export default SellerOrders;
