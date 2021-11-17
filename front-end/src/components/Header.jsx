@@ -18,11 +18,11 @@ function Header() {
           to="/"
           className="nav2"
         >
-          MEUS PRODUTOS
+          MEUS PEDIDOS
         </Link>
         <Link
           data-testid="customer_products__element-navbar-user-full-name"
-          to="/"
+          to="/customer/orders/:id"
           className="nav3"
         >
           CICRANO DA SILVA
