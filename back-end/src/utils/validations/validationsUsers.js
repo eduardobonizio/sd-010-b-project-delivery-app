@@ -9,7 +9,7 @@ const err = (statusCode) => ({ statusCode });
 const validateEmail = (email) => {
   if (!email) throw err(errorMessage.INVALID_ENTRIES);
 
-  const validEmail = /^[\w.]+@[a-z]+\.\w{2,3}$/g.test(email);
+  const validEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(email);
   if (!validEmail) throw err(errorMessage.INCORRECT_FORMAT);
 };
 
