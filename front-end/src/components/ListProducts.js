@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import { Context } from '../contexts/createContext';
 import { getProducts } from '../services/api';
 import { getStorage } from '../utils/localStorage';
 
 export default function ListProducts() {
-  const [products, setProducts] = useState([]);
-  const [total, setTotal] = useState(0);
+  const { products, setProducts, total, setTotal } = useContext(Context);
   const history = useHistory();
 
   function setQuantityItems(target, product) {
@@ -38,7 +38,7 @@ export default function ListProducts() {
       setProducts(newObj);
     })
       .catch((err) => { console.log(err); });
-  }, [history]);
+  }, [history, setProducts]);
 
   return (
     <>
@@ -47,7 +47,6 @@ export default function ListProducts() {
       {products && products.map((product) => (
         <section
           key={ product.id }
-          data-testid={ `customer_products__element-card-price-${product.id}` }
         >
           <img
             src={ product.urlImage }
@@ -83,15 +82,23 @@ export default function ListProducts() {
             +
           </button>
 
-          <li>{product.price}</li>
+          <li
+            data-testid={ `customer_products__element-card-price-${product.id}` }
+          >
+            {product.price}
+
+          </li>
         </section>
 
       ))}
-      <h2>
-        Preço total é:
+      <button
+        type="button"
+        onClick={ () => history.push('/customer/checkout') }
+      >
+        Ver carrinho:
         {' '}
-        { total.toFixed(2) }
-      </h2>
+        { `R$ ${total.toFixed(2)}` }
+      </button>
     </>
 
   );
