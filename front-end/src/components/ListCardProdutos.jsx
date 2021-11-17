@@ -10,7 +10,7 @@ function ListCardProdutos({ products }) {
 
   useEffect(() => {
     insertCart({ id, name, price, quantity });
-  }, [id, insertCart, name, price, quantity]);
+  }, [quantity]);
 
   const addItem = () => {
     setQuantity(quantity + 1);
@@ -74,7 +74,12 @@ function ListCardProdutos({ products }) {
 }
 
 ListCardProdutos.propTypes = {
-  products: PropTypes.objectOf.isRequired,
+  products: PropTypes.shape({
+    id: PropTypes.number,
+    price: PropTypes.string,
+    url_image: PropTypes.string,
+    name: PropTypes.string,
+  }).isRequired,
 };
 
 export default ListCardProdutos;

@@ -9,7 +9,7 @@ export default function Provider({ children }) {
   const [cart, setCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
 
-  const insertCart = async (eachItem) => {
+  const insertCart = (eachItem) => {
     const { id, name, price, quantity } = eachItem;
     if (cart.some((item) => item.id === id)) {
       const newCart = cart.map((item) => {
@@ -17,7 +17,6 @@ export default function Provider({ children }) {
         return item;
       });
       setCart(newCart);
-      console.log(cart);
     } else {
       cart.push(eachItem);
     }
@@ -28,7 +27,7 @@ export default function Provider({ children }) {
       (acc, { price, quantity }) => acc + price * quantity,
       0,
     );
-    console.log(valorTotal);
+
     setTotalPrice(valorTotal);
   }, [cart]);
 
