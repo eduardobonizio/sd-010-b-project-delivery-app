@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import DetailsAddress from '../components/DetailsAddress';
 import ListCheckoutProdutos from '../components/ListCheckoutProdutos';
 import NavBar from '../components/Navbar';
@@ -11,12 +11,13 @@ function Checkout() {
 
   useEffect(() => {
     const getSellers = async () => {
-      const token = getFromLocalStorage('user');
+      const { token } = getFromLocalStorage('user');
       const allSellers = await getAllSellers(token);
-      await setSellers(allSellers);
+      console.log(allSellers);
+      // await setSellers(allSellers);
     };
     getSellers();
-  }, [setSellers]);
+  }, [sellers, setSellers]);
 
   return (
     <div>

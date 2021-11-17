@@ -1,6 +1,7 @@
 const express = require('express');
 const validateJWT = require('../middleware/validateJWT');
-const { getAllOrdersBySellerId, getOrderById, getAllSellers } = require('../controllers/orderController');
+const { getAllOrdersBySellerId, getOrderById } = require('../controllers/orderController');
+const { getAllSellers } = require('../controllers/userController');
 
 const router = express.Router();
 

@@ -16,6 +16,11 @@ const createUser = async (body) => {
   return { status: 201, data: {id, name, email, role, token} }
 };
 
-const getSellers = async() =>  User.findAll({ where: { role: 'seller' } });
+const getSellers = async() => {
+  const [seller] = await User.findAll({ where: { role: 'seller' } });
+  const { id, name, email } = seller;
+  return {status: 200, data: { id, name, email } };
+} 
+  
 
 module.exports = { createUser, getSellers }
