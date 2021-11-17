@@ -11,20 +11,18 @@ const checkUser = async ({ name, email }) => {
   return true;
 };
 
-const registerUser = async ({ name, password, email }) => {
+const registerUser = async ({ name, password, email, role = 'user' }) => {
   const newPassword = md5(password);
 
   console.log(newPassword);
 
-  const register = await user.create({ name, password: newPassword, email });
+  const register = await user.create({ name, password: newPassword, email, role });
   
   console.log(register);
 
   if (!register) return false;
 
-  // return { name, email, password: newPassword, role: 'user' };
-
-  return register;
+  return { name, email, password: newPassword, role }; 
 };
 
 module.exports = {
