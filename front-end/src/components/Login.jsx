@@ -12,7 +12,6 @@ const Login = () => {
   } = useContext(DeliveryContext);
 
   useEffect(() => {
-    console.log('loop');
     if (validarEmail(email) && validarSenha(password)) {
       return setIsDisabled(false);
     }
@@ -23,11 +22,11 @@ const Login = () => {
     try {
       const { data } = await axios.post('http://localhost:3001/login', { email, password });
       localStorage.setItem('token', `${JSON.stringify(data)}`);
+      return navigate('/customer/products');
     } catch (error) {
       setIsValidPW(true);
       return error;
     }
-    return navigate('/customer/products');
   };
 
   // const validarEmail = (e) => {
@@ -48,14 +47,14 @@ const Login = () => {
   //   return true;
   // };
 
-  const handleChange = ({ target }) => {
-    const { value, name } = target;
-    if (name === 'email') {
-      setEmail(value);
-    } else {
-      setPassword(value);
-    }
-  };
+  // const handleChange = ({ target }) => {
+  //   const { value, name } = target;
+  //   if (name === 'email') {
+  //     setEmail(value);
+  //   } else {
+  //     setPassword(value);
+  //   }
+  // };
 
   const TEST_INVALID_EMAIL = 'common_login__element-invalid-email';
 
@@ -65,7 +64,7 @@ const Login = () => {
         <input
           data-testid="common_login__input-email"
           type="text"
-          onChange={ (event) => handleChange(event) }
+          onChange={ ({ target }) => setEmail(target.value) }
           name="email"
           value={ email }
           placeholder="E-mail"
@@ -74,7 +73,7 @@ const Login = () => {
           data-testid="common_login__input-password"
           type="text"
           name="password"
-          onChange={ (event) => handleChange(event) }
+          onChange={ ({ target }) => setPassword(target.value) }
           value={ password }
           placeholder="Password"
         />
