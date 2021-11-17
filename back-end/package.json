@@ -20,7 +20,7 @@
   "dependencies": {
     "@hapi/boom": "9.1.2",
     "@types/express": "4.17.11",
-    "body-parser": "1.19.0",
+    "body-parser": "^1.19.0",
     "cors": "2.8.5",
     "dotenv": "8.2.0",
     "express": "4.17.1",
@@ -41,6 +41,8 @@
     "nodemon": "2.0.4",
     "nyc": "15.1.0",
     "sequelize-cli": "6.2.0",
-    "sinon": "10.0.0"
+    "sequelize-test-helpers": "^1.4.2",
+    "sinon": "10.0.0",
+    "sinon-chai": "^3.7.0"
   }
 }
