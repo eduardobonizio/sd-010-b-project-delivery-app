@@ -1,6 +1,5 @@
 const rescue = require('express-rescue');
 const md5 = require('md5');
-const regexEmail = require('../../../helpers/regexEmail');
 const User = require('../database/models/user');
 
 const { getUserByEmail, getUserByName } = require('../services/users');
@@ -20,24 +19,6 @@ const validatePassword = rescue(async (req, res, next) => {
   
   if (md5(password) !== user.password) {
     return res.status(400).json({ message: errors.passwordWrong });
-  }
-
-  next();
-});
-
-const validateUser = rescue(async (req, res, next) => {
-  const { name, email, password } = req.body;
-
-  if (name.length < 8) {
-    return res.status(400).json({ message: errors.nameLength });
-  }
-  
-  if (!regexEmail(email)) {
-    return res.status(400).json({ message: errors.emailFormat });
-  }
-
-  if (password.length < 6) {
-    return res.status(400).json({ message: errors.passwordLength });
   }
 
   next();
