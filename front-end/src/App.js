@@ -7,7 +7,7 @@ import Register from './pages/Register';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       {/* <span className="logo">TRYBE</span> */}
       {/* <object className="rocksGlass" type="image/svg+xml" data={ rockGlass }>
         Glass
