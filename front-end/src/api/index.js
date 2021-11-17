@@ -18,6 +18,5 @@ export default { login, register };
 
 // export const login = (user) => axios.post(loginUrl, user, config);
 
-// export const register = (user) => axios.post(registerUrl, user, config);
 
 // export const teste = (user) => axios.post(loginUrl, user, config);
