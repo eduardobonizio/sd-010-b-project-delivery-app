@@ -10,6 +10,7 @@ function ListCardProdutos({ products }) {
 
   useEffect(() => {
     insertCart({ id, name, price, quantity });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [quantity]);
 
   const addItem = () => {
