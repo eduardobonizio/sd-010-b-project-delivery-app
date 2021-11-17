@@ -1,23 +1,25 @@
 import React from 'react';
+import dataTestIdDict from '../../utils/dataTestIdDict';
+import InputText from './InputText';
+import SellersSelect from './SellersSelect';
+
+const { dataTestId30, dataTestId31, dataTestId32 } = dataTestIdDict;
 
 function DeliveryDetails() {
   return (
     <div className="order-address-details">
       <div className="order-address-details-inputs">
-        <label htmlFor="sellers" className="order-address-details-field">
-          P. Vendedora Responsável
-          <select name="sellers" id="sellers" className="p-10">
-            <option value="fulana">Fulana pereira</option>
-          </select>
-        </label>
-        <label htmlFor="address" className="order-address-details-field">
-          Endereço
-          <input type="text" name="address" id="address" className="p-10" />
-        </label>
-        <label htmlFor="number" className="order-address-details-field">
-          Número
-          <input type="text" name="number" id="number" className="p-10" />
-        </label>
+        <SellersSelect sellers={ ['Fulana', 'Cicrano', 'Beltrano'] } />
+        <InputText
+          controlName="address"
+          fieldLabelName="Endereço"
+          dataTestId={ dataTestId30 }
+        />
+        <InputText
+          controlName="number"
+          fieldLabelName="Número"
+          dataTestId={ dataTestId31 }
+        />
       </div>
       <button type="submit">Finalizar pedido</button>
     </div>
