@@ -19,6 +19,9 @@ function App() {
       <Route path="/customer/meusPedidos" component={ MeusPedidos } />
       <Route path="/customer/checkout" component={ Checkout } />
       <Route path="/customer/orders/:idVenda" component={ OrderDetails } />
+      <Route path="/venda/pedidos" component={ MeusPedidos } />
+      <Route path="/page404" component={ Page404 } />
+      <Route path="/admin/gerenciamento" component={ Page404 } />
       <Route path="/page404" component={ Page404 } />
     </Switch>
   );

@@ -15,6 +15,8 @@ function Login() {
     password: '',
   });
 
+  // $#zebirita#$
+
   const redirect = () => {
     history.push('/register');
   };
@@ -41,30 +43,39 @@ function Login() {
     });
   };
 
+  const checkRole = (message) => {
+    setOnLocalStorage('user', message);
+    setUser(message);
+    if (message.role === 'seller') {
+      history.push('/venda/pedidos');
+    } else if (message.role === 'administrador') {
+      history.push('/admin/gerenciamento');
+    } else if (message.role === 'customer') {
+      history.push('/customer/products');
+    } else {
+      history.push('/');
+    }
+  };
+
   const handleClick = async () => {
     const checkLogin = await loginService(login);
     if (checkLogin.message.id) {
       const { message } = checkLogin;
-      setOnLocalStorage('user', message);
-      setUser(message);
-      history.push('/customer/products');
+      console.log(message);
+      checkRole(message);
     }
     setHidden(false);
   };
 
-  const atalho = () => {
-    const tokenPart1 = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.';
-    const tokenPart2 = 'eyJpZCI6NCwic…4OTB9.oyJ1J0jotGuP2De4xMkY2tm5gSsKiU9OI2BDR-HWvzA';
+  const atalho = (role) => {
     const message = {
       id: 4,
-      name: 'teste',
-      email: 'teste@gmail.com',
-      role: 'custumer',
-      token: `${tokenPart1}${tokenPart2}`,
+      name: 'Cliente Zé Birita',
+      email: 'zebirita@email.com',
+      role,
+      token: '1c37466c159755ce1fa181bd247cb925',
     };
-    setOnLocalStorage('user', message);
-    setUser(message);
-    history.push('/customer/products');
+    checkRole(message);
   };
 
   useEffect(() => {
@@ -122,8 +133,11 @@ function Login() {
         Email ou Senha invalidos
       </h2>
 
-      <button type="button" onClick={ atalho }>
-        atalho
+      <button type="button" onClick={ () => atalho('customer') }>
+        atalho customer
+      </button>
+      <button type="button" onClick={ () => atalho('seller') }>
+        atalho seller
       </button>
     </div>
   );
