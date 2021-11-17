@@ -53,7 +53,6 @@ export default function Login() {
   };
 
   const redirect = ({ role }) => {
-    console.log(role);
     switch (role) {
     case 'administrator': return window.location.replace('/customer/products');
     case 'customer': return window.location.replace('/customer/products');
@@ -67,8 +66,8 @@ export default function Login() {
     try {
       const user = state.$data;
       const { data } = await api.create(user);
-      localStorage.setItem('user', JSON.stringify(data.email));
-      redirect(data);
+      localStorage.setItem('user', JSON.stringify(data.data.email));
+      redirect(data.data);
     } catch (error) {
       setIsErr(true);
       console.log(error);
@@ -104,7 +103,6 @@ export default function Login() {
           />
         </label>
         <br />
-        {/* {state.$errors.password.map((data) => data.$message).join(',')} */}
         <br />
       </form>
 

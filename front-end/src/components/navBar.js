@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 function NavBar() {
   const email = JSON.parse(localStorage.getItem('user'));
-  console.log(email);
   return (
     <nav>
       <ul>

@@ -10,5 +10,6 @@ const api = axios.create({
 // const loginApi = async (email, password) => ;
 const create = (data) => api.post('/login', data);
 const getAll = (data) => api.get('/login', data);
+const getAllSales = () => api.get('/sales');
 
-export default { create, getAll };
+export default { create, getAll, getAllSales };

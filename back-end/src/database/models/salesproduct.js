@@ -8,14 +8,14 @@ module.exports = (sequelize, DataTypes) => {
     models.Sale.belongsTo(models.Product, {
       as: 'products',
       through: SalesProduct,
-      foreignKey: 'saleId',
-      otherKey: 'productId',
+      foreignKey: 'seller_id',
+      otherKey: 'id',
     });
-    models.Sale.belongsTo(models.Sale, {
+    models.Product.belongsTo(models.Sale, {
       as: 'sales',
       through: SalesProduct,
-      foreignKey: 'productId',
-      otherKey: 'saleId',
+      foreignKey: 'product_id',
+      otherKey: 'id',
     });
   }
   return SalesProduct;
