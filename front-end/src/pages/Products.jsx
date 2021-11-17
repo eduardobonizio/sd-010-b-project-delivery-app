@@ -9,11 +9,13 @@ function Products() {
 
   useEffect(() => {
     const getProducts = async () => {
-      setProducts(await axios.get('http://localhost:3001/products'));
+      const response = await axios.get('http://localhost:3001/products');
+      setProducts(response.data);
     };
     getProducts();
   }, []);
   console.log(products);
+
   return (
     <TopBar name={ name } />
   );
