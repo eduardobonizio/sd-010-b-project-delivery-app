@@ -4,7 +4,6 @@ const User = require('../database/models/user');
 const regexEmail = require('../helpers/regexEmail');
 const { getUserByEmail, getUserByName } = require('../services/users');
 
-
 // Comments: Lista de erros
 const errors = {
   passwordWrong: '"password" is wrong',
@@ -53,7 +52,7 @@ const existsUser = rescue(async (req, res, next) => {
   if (findUserEmail) return res.status(409).json({ message: 'Email já existe' });
 
   return next();
-})
+});
 
 module.exports = {
   validatePassword,
