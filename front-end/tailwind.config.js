@@ -21,7 +21,7 @@ module.exports = {
         'dark-color': '#100F0D',
       },
       animation: {
-        'bounce-slow': 'bounce 3s linear infinite',
+        'bounce-slow': 'bounce 1s linear infinite',
       } },
   },
   variants: {
