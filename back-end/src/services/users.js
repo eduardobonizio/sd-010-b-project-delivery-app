@@ -10,7 +10,7 @@ const getUserByName = async (name) => {
   return user;
 };
 
-const createUser = async (name, email, password, role) => {
+const createUser = async ({ name, email, password, role }) => {
   const user = await User.create({ name, email, password, role });
   return user;
 };
