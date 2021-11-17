@@ -1,9 +1,17 @@
 import React from 'react';
+import Navbar from '../components/navbar';
+import Table from '../components/checkoutTable';
 
-const Login = () => (
-  <main>
-    <h1>checkout</h1>
-  </main>
-);
+const Checkout = () => {
+  const userInfo = JSON.parse(localStorage.getItem('user'));
+  const { name } = userInfo;
 
-export default Login;
+  return (
+    <main>
+      <Navbar name={ name } products="Produtos" orders="Meus Pedidos" />
+      <Table />
+    </main>
+  );
+};
+
+export default Checkout;
