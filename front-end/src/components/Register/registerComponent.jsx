@@ -142,7 +142,7 @@ const RegisterComponent = () => {
           CADASTRAR
         </button>
       </div>
-      <div id="message-error">
+      <div className="message-error">
         <span
           data-testid="common_register__element-invalid_register"
         >
