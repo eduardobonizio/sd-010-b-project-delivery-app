@@ -16,7 +16,6 @@ const register = (user) => API.post('/user/register', user);
 
 export default { login, register };
 
-// export const login = (user) => axios.post(loginUrl, user, config);
 
 
 // export const teste = (user) => axios.post(loginUrl, user, config);
