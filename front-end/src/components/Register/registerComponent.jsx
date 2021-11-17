@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import md5 from 'crypto';
+import { Redirect } from 'react-router-dom';
 
 const RegisterComponent = () => {
+  const [loginAllowed, setLoginAllowed] = useState(false);
   const [name, setName] = useState({
     invalidName: true,
     fieldName: '',
@@ -47,6 +49,7 @@ const RegisterComponent = () => {
       setMsgError('*Invalid email');
     }
   };
+
   const handleChangePassword = ({ value }) => {
     const six = 6;
     if (value.length >= six) {
@@ -90,6 +93,7 @@ const RegisterComponent = () => {
       invalidPassword: true,
       fieldPassword: '',
     });
+    setLoginAllowed(true);
   });
 
   return (
@@ -145,6 +149,7 @@ const RegisterComponent = () => {
           { msgError }
         </span>
       </div>
+      { loginAllowed && <Redirect to="/customer/products" />}
     </section>
   );
 };
