@@ -13,9 +13,15 @@ const generateToken = (object) => {
   return jwt.sign({ data: payload }, secret, jwtConfiguration);
 };
 
+const verifyToken = (token) => {
+  const payload = jwt.verify(token, secret);
+  return payload;
+}; 
+
 const encode = (password) => md5(password);
 
 module.exports = {
 generateToken,
 encode,
+verifyToken,
 };

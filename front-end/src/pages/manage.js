@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import create from '../services/adm';
 // import { Link } from 'react-router-dom';
-// import Navbar from '../components/navbar';
+import Navbar from '../components/navbar';
 
 const Joi = require('joi');
 
@@ -38,16 +39,24 @@ function ManagePage() {
     validateLogin();
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const result = await create({ name: userName, email, password, role: type });
+    return result;
+  };
+
   useEffect(() => {
     validateLogin();
     console.log(type);
   }, [userName, email, type, password, validateLogin]);
 
+  const userInfo = JSON.parse(localStorage.getItem('user'));
+
   return (
     <div>
-      {/* <Navbar /> */}
+      <Navbar name={ userInfo.name } />
       <h4>Cadastrar novo usuário</h4>
-      <form>
+      <form onSubmit={ handleSubmit }>
         <label htmlFor="name-input">
           Nome
           <input

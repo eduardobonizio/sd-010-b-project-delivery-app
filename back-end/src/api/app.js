@@ -4,6 +4,7 @@ const cors = require('cors');
 const userRouter = require('../routes/user');
 const loginRouter = require('../routes/login');
 const productsRouter = require('../routes/products');
+const admRouter = require('../routes/adm');
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use('/images', express.static(path.join(__dirname, '../../../', './back-end/
 app.use('/login', loginRouter);
 app.use('/register', userRouter);
 app.use('/customer', productsRouter);
+app.use('/adm', admRouter);
 
 app.get('/coffee', (_req, res) => res.status(418).end());
 
