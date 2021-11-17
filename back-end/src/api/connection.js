@@ -1,10 +1,10 @@
 const mysql = require('mysql2/promise');
 require('dotenv').config();
 
-const host = process.env.MYSQL_HOST || 'localhost';
-const user = process.env.MYSQL_USER || 'thiagomarchini';
-const password = process.env.MYSQL_PASSWORD || 'tfdm1969';
-const database = process.env.MYSQL_DATABASE || 'delivery-app';
+const host = process.env.MYSQL_HOST;
+const user = process.env.MYSQL_USER;
+const password = process.env.MYSQL_PASSWORD;
+const database = process.env.MYSQL_DATABASE;
 
 const connection = mysql.createPool({
   host,

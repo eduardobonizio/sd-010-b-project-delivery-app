@@ -7,7 +7,8 @@ import EmailInput from '../components/EmailInput';
 import PasswordInput from '../components/PasswordInput';
 import NameInput from '../components/NameInput';
 import {
-  validateEmailFormat, validateName, validatePassword } from '../helpers/validation';
+  checkExistence, validateEmailFormat,
+  validateName, validatePassword } from '../helpers/validation';
 import './css/Register.css';
 
 function Register() {
@@ -26,12 +27,15 @@ function Register() {
 
   useEffect(() => {
     if (password && email && name) {
-      if (validateEmailFormat(email) && validatePassword(password)
-      && validateName(name)) {
-        setDisabled(false);
-      } else {
-        setDisabled(true);
-      }
+      checkExistence(email, name)
+        .then((exists) => {
+          if (validateEmailFormat(email) && validatePassword(password)
+          && validateName(name) && !exists) {
+            setDisabled(false);
+          } else {
+            setDisabled(true);
+          }
+        });
     }
   }, [email, name, password]);
 
