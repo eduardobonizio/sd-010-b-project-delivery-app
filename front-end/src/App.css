@@ -67,9 +67,14 @@
 }
 
 .product-card {
+  align-items: center;
   border: 1px solid black;
   border-radius: 2rem;
   padding: 2rem;
+}
+
+.product-card img {
+  width: 5rem;
 }
 
 .prods-buys {
