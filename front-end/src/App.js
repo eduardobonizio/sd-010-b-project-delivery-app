@@ -34,6 +34,7 @@ function App() {
         navbar={ <NavBar /> }
       />
       <CustomRoute path="/register" component={ Register } />
+      <CustomRoute path="/customer/checkout" element={ <div /> } />
       <Redirect from="/" to="/login" />
     </Switch>
   );
