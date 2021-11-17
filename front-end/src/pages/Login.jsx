@@ -52,6 +52,7 @@ function Login() {
     e.preventDefault();
     try {
       const { data: { user } } = await API.login({ email, password });
+      localStorage.setItem('user', JSON.stringify(user));
       redirect(user);
     } catch (err) {
       setError(err);

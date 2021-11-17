@@ -13,7 +13,7 @@
 .App > .logo {
   animation: shake 1.5s infinite ease;
   color: aliceblue;
-  font-family: Montserrat , sans-serif;
+  font-family: Montserrat, sans-serif;
   font-size: 3em;
   font-weight: 900;
 }
@@ -24,7 +24,6 @@
 }
 
 @keyframes shake {
-
   0% {
     transform: rotate(5deg);
   }
@@ -39,7 +38,6 @@
 }
 
 @keyframes clink {
-
   0% {
     transform: rotate(-10deg);
   }
@@ -51,4 +49,25 @@
   100% {
     transform: rotate(-10deg);
   }
+}
+
+.navbar {
+  align-items: center;
+  background-color: green;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2rem;
+}
+
+.card__container {
+  display: flex;
+  margin: 2rem;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.product-card {
+  border: 1px solid black;
+  border-radius: 2rem;
+  padding: 2rem;
 }

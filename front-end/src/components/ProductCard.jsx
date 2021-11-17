@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 function ProductCard({ product }) {
   const { id, name, price, urlImage } = product;
   return (
-    <div className="card__container">
+    <div className="product-card">
       <p data-testid={ `customer_products__element-card-price-${id}` }>{price}</p>
       <img
         data-testid={ `customer_products__img-card-bg-image-${id}` }
