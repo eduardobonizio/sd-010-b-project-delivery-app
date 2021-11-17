@@ -7,17 +7,16 @@ import getAllSellers from '../services/apis/getAllSellers';
 import { getFromLocalStorage } from '../services/helpers/servicesLocalStorage';
 
 function Checkout() {
-  const { sellers, setSellers } = useContext(Context);
+  const { setSellers } = useContext(Context);
 
   useEffect(() => {
     const getSellers = async () => {
       const { token } = getFromLocalStorage('user');
       const allSellers = await getAllSellers(token);
-      console.log(allSellers);
-      // await setSellers(allSellers);
+      setSellers(allSellers);
     };
     getSellers();
-  }, [sellers, setSellers]);
+  }, [setSellers]);
 
   return (
     <div>
@@ -28,7 +27,7 @@ function Checkout() {
       </div>
       <div>
         <h3>Detalhes e Endereço para Entrega</h3>
-        <DetailsAddress sellers={ sellers } />
+        <DetailsAddress />
       </div>
     </div>
   );

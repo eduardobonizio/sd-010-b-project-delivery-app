@@ -1,19 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-// import Context from '../context/Context';
+import React, { useContext } from 'react';
+// import PropTypes from 'prop-types';
+import Context from '../context/Context';
 
 const SELECT_SELLER = 'customer_checkout__select-seller';
 const INPUT_ADDRESS = 'customer_checkout__input-address';
 const INPUT_NUMBER = 'customer_checkout__input-addressNumber';
 const SUBMIT_ORDER = 'customer_checkout__button-submit-order';
 
-function DetailsAddress({ sellers }) {
-  // console.log(sellers);
+function DetailsAddress() {
+  const { sellers } = useContext(Context);
+  console.log(sellers);
   return (
     <form>
       <span>P. Vendedora responsavel</span>
       <select data-testid={ `${SELECT_SELLER}` }>
-        {sellers.map((seller, index) => <option key={ index }>{seller}</option>)}
+        {sellers.map((seller, index) => <option key={ index }>{seller.name}</option>)}
       </select>
       <span>Endereço</span>
       <input data-testid={ `${INPUT_ADDRESS}` } type="text" name="endereco" />
@@ -24,13 +25,13 @@ function DetailsAddress({ sellers }) {
   );
 }
 
-DetailsAddress.propTypes = {
-  sellers: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number,
-      name: PropTypes.string,
-      email: PropTypes.string,
-    }),
-  ).isRequired };
+// DetailsAddress.propTypes = {
+//   sellers: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       id: PropTypes.number,
+//       name: PropTypes.string,
+//       email: PropTypes.string,
+//     }),
+//   ).isRequired };
 
 export default DetailsAddress;
