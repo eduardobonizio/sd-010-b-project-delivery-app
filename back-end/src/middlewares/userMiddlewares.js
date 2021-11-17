@@ -38,6 +38,5 @@ const existsUser = rescue(async (req, res, next) => {
 
 module.exports = {
   validatePassword,
-  validateUser,
   existsUser,
 };
