@@ -1,12 +1,12 @@
 const express = require('express');
-const { getUserByEmail } = require('../database/controllers/userController');
+const { getUserByEmail } = require('../controllers/userController');
 const errorMiddleware = require('../middlewares/error');
 
 const router = express.Router();
 
 router
-  .get('/login', (_req, res) => res.status(200).json({ message: 'LOGIN' }))
-  .post('/login', getUserByEmail);
+  .get('/', (_req, res) => res.status(200).json({ message: 'LOGIN' }))
+  .post('/', getUserByEmail);
 
 router.use(errorMiddleware);
 

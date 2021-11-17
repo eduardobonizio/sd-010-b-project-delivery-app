@@ -2,9 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const saleRouter = require('../routers/saleRouter');
-const userRouter = require('../routers/saleRouter');
+const userRouter = require('../routers/userRouter');
 
-const { createUser } = require('../database/controllers/userController');
+const { createUser } = require('../controllers/userController');
 
 const app = express();
 app.use(bodyParser.json());
