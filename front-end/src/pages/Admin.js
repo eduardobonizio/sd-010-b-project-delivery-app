@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Joi from 'joi';
 import { useValidator } from 'react-joi';
+import api from '../services';
 
 export default function Admin() {
   const TWELVE = 12;
@@ -27,7 +28,8 @@ export default function Admin() {
   });
 
   const [isDisabled, setIsDisable] = useState(true);
-  // const [isErr, setIsErr] = useState(false);
+  const [role, setRole] = useState('customer');
+  const [isErr, setIsErr] = useState(false);
 
   useEffect(() => {
     const disabled = state.$all_source_errors.length !== 0;
@@ -58,6 +60,20 @@ export default function Admin() {
       ...old,
       password: e.target.value,
     }));
+  };
+
+  const updateRole = (e) => setRole(e.target.value);
+
+  const register = async () => {
+    try {
+      const info = { ...state.$data, role };
+      console.log(info);
+      await api.register(info);
+      // return window.location.replace('/customer/products');
+      // console.log(data);
+    } catch (error) {
+      setIsErr(true);
+    }
   };
 
   return (
@@ -108,10 +124,11 @@ export default function Admin() {
           <select
             name="type"
             data-testid="admin_manage__select-role"
+            onChange={ updateRole }
           >
-            <option value="client">Cliente</option>
+            <option defaultValue="customer">Cliente</option>
             <option value="seller">Vendedor</option>
-            <option value="admin">Admin</option>
+            <option value="administrator">Administrador</option>
           </select>
         </label>
 
@@ -122,10 +139,12 @@ export default function Admin() {
         name="register"
         data-testid="admin_manage__button-register"
         disabled={ isDisabled }
-        onClick={ validate }
+        onClick={ async () => { validate(); await register(); } }
       >
         CADASTRAR
       </button>
+
+      {isErr && <p>Erro: Email já cadastrado </p>}
     </>
   );
 }

@@ -11,4 +11,5 @@ const api = axios.create({
 const create = (data) => api.post('/login', data);
 const getAll = (data) => api.get('/login', data);
 const register = (data) => api.post('/register', data);
-export default { create, getAll, register };
+const registerByAdmin = (data) => api.post('/register', data);
+export default { create, getAll, register, registerByAdmin };
