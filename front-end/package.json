@@ -9,17 +9,18 @@
   "private": true,
   "scripts": {
     "with-env": "SKIP_PREFLIGHT_CHECK=true",
-    "start": "npm run with-env react-scripts start",
+    "start": "npm run with-env craco start",
     "start:build": "PORT=3000 ./node_modules/.bin/serve -s build",
-    "build": "npm run with-env react-scripts build",
-    "test": "npm run with-env react-scripts test -- --runInBand --detectOpenHandles --verbose",
-    "test:coverage": "npm run with-env react-scripts test -- --coverage",
-    "test:coverage:json": "npm run with-env react-scripts test -- --coverage --coverageReporters=\"json-summary\" --watchAll=false --testFailureExitCode=0 --detectOpenHandles --runInBand --forceExit",
-    "eject": "npm run with-env react-scripts eject",
+    "build": "npm run with-env craco build",
+    "test": "npm run with-env craco test -- --runInBand --detectOpenHandles --verbose",
+    "test:coverage": "npm run with-env craco test -- --coverage",
+    "test:coverage:json": "npm run with-env craco test -- --coverage --coverageReporters=\"json-summary\" --watchAll=false --testFailureExitCode=0 --detectOpenHandles --runInBand --forceExit",
+    "eject": "npm run with-env craco eject",
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json .",
     "lint:styles": "stylelint **/*.css --config .stylelintrc.json --ignore-disables --allow-empty-input"
   },
   "dependencies": {
+    "@craco/craco": "^6.4.0",
     "@testing-library/jest-dom": "5.14.1",
     "@testing-library/react": "11.2.7",
     "@testing-library/user-event": "12.8.3",
@@ -32,10 +33,13 @@
     "web-vitals": "1.1.2"
   },
   "devDependencies": {
+    "autoprefixer": "^9.8.8",
     "eslint-config-trybe-frontend": "1.2.1",
+    "postcss": "^7.0.39",
     "stylelint": "13.13.1",
     "stylelint-config-standard": "22.0.0",
-    "stylelint-order": "4.1.0"
+    "stylelint-order": "4.1.0",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
   },
   "browserslist": {
     "production": [
