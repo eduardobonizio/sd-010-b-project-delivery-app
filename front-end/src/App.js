@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import Login from './modules/login/Login';
 import Signup from './modules/signup/Signup';
 import SellerOrders from './modules/seller/sellerOrder/SellerOrders';
@@ -36,11 +36,6 @@ function App() {
         />
         <Route
           exact
-          path="/"
-          render={ (props) => <Login { ...props } /> }
-        />
-        <Route
-          exact
           path="/seller/orders"
           render={ (props) => <SellerOrders { ...props } /> }
         />
@@ -54,6 +49,7 @@ function App() {
           path="/admin/manage"
           render={ (props) => <Admin { ...props } /> }
         />
+        <Redirect from="/" to="/login" />
       </Switch>
     </div>
   );

@@ -41,14 +41,14 @@ const verifyDbUser = async (req, res, next) => {
 const verifyNameDB = async (req, res, next) => {
   const { name } = req.body;
   const db = await User.findOne({ where: { name } });
-  if (db) return res.status(401).json({ message: '"name" already exists' });
+  if (db) return res.status(409).json({ message: '"name" already exists' });
   next();
 };
 
 const verifyEmailDB = async (req, res, next) => {
   const { email } = req.body;
   const db = await User.findOne({ where: { email } });
-  if (db) return res.status(401).json({ message: '"email" already exists' });
+  if (db) return res.status(409).json({ message: '"email" already exists' });
   next();
 };
 

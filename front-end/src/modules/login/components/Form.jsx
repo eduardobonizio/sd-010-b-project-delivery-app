@@ -84,7 +84,7 @@ function Form() {
               name="email"
               value={ email }
               onChange={ (e) => setEmail(e.target.value) }
-              data-testid="common_login__input-password"
+              data-testid="common_login__input-email"
               className="form-control"
             />
           </div>

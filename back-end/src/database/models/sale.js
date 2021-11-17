@@ -9,10 +9,11 @@ const Sale = (sequelize, DataTypes) => {
     status: DataTypes.STRING(50),
   }, {
     timestamps: false,
+    tableName: 'sales',
   });
 
   Sale.associate = (models) => {
-    Sale.belongsTo(models.User, { foreignKey: 'id' });
+    Sale.belongsTo(models.User, { foreignKey: 'id', as: 'sales' });
     // Sale.belongsTo(models.Product, { through: 'SalesProducts' }); se der ruim descomenta
   };
   
