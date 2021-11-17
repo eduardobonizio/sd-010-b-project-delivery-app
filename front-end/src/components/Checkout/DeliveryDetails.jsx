@@ -21,7 +21,7 @@ function DeliveryDetails() {
           dataTestId={ dataTestId31 }
         />
       </div>
-      <button type="submit">Finalizar pedido</button>
+      <button type="submit" data-testid={ dataTestId32 }>Finalizar pedido</button>
     </div>
   );
 }
