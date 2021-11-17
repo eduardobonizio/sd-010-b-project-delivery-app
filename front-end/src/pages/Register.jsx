@@ -32,7 +32,7 @@ function Register() {
         data-testid="common_register__button-register"
         type="button"
         value="Cadastrar"
-        onClick={ () => handleClick() }
+        onClick={ ({ target }) => handleClick(target.value) }
       />
       { errorMsg ? <ErrorRegister /> : '' }
     </form>
