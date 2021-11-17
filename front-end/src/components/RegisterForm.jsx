@@ -42,7 +42,7 @@ function RegisterForm() {
         password: senha,
         email,
       });
-      navigate('/products');
+      navigate('/customer/products');
       console.log(data);
     } catch (err) {
       console.log(err);

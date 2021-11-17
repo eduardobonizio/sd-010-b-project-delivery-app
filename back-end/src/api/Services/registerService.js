@@ -22,7 +22,7 @@ const registerUser = async ({ name, password, email, role = 'user' }) => {
 
   if (!register) return false;
 
-  return { name, email, password: newPassword, role }; 
+  return { name, email, password: newPassword }; 
 };
 
 module.exports = {
