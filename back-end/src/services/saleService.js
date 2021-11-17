@@ -5,6 +5,12 @@ const getAll = async () => {
   return sales;
 };
 
+const postSale = async (body) => {
+  const { id } = await sale.create(body);
+  return id;
+};
+
 module.exports = {
   getAll,
+  postSale,
 };
