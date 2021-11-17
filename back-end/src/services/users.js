@@ -5,6 +5,12 @@ const getUserByEmail = async (email) => {
   return user;
 };
 
+const createCustomerUser = async ({ name, email, password, role }) => { 
+  const newUser = await User.create({ name, email, password, role });
+  return newUser;
+};
+
 module.exports = {
  getUserByEmail,
+ createCustomerUser,
 };

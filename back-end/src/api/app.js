@@ -1,5 +1,6 @@
 const express = require('express');
 const { productRouter } = require('../controllers/products');
+const { registerRouter } = require('../controllers/registerRouter');
 const { userRouter } = require('../controllers/users');
 
 const app = express();
@@ -11,6 +12,8 @@ app.use(express.json());
 app.use('/cliente', productRouter);
 
 app.use('/login', userRouter);
+
+app.use('/register', registerRouter);
 
 app.get('/', (_req, res) => res.redirect('/login'));
 
