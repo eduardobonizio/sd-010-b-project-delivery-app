@@ -17,6 +17,7 @@ export default function FormRegister() {
   async function submit(e) {
     e.preventDefault();
     const user = await register({ name, email, password: pass });
+    console.log(user);
     if (user.message) {
       setErr(true);
       return setTimeout(() => setErr(false), threeSecond);
