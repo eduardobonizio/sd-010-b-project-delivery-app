@@ -12,7 +12,7 @@ const jwtConfiguration = {
 const generateToken = (data) => jwt.sign({ data }, SECRET, jwtConfiguration);
 
 const validateToken = async (token) => {
-  if(!token) return { message: 'missing auth token' };
+  if (!token) return { message: 'missing auth token' };
   try {
     const { data } = jwt.verify(token, SECRET);
     const user = await getUserByName(data.name);
