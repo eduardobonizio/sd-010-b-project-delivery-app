@@ -13,13 +13,13 @@ export default function ListProducts() {
     const priceNumber = parseFloat(price);
     const indexProduct = products.findIndex(({ id }) => id === product.id);
     if (target.innerText === '-' && quant > 0) {
-      const valorFinal = total - priceNumber;
+      const valorFinal = parseFloat((total - priceNumber).toFixed(2));
       products.splice(indexProduct, 1, { ...product, quant: quant - 1 });
       setTotal(valorFinal);
       return setProducts(products);
     }
     if (target.innerText === '+') {
-      const valorFinal = priceNumber + total;
+      const valorFinal = parseFloat((priceNumber + total).toFixed(2));
       products.splice(indexProduct, 1, { ...product, quant: quant + 1 });
       setTotal(valorFinal);
       return setProducts(products);
@@ -30,7 +30,7 @@ export default function ListProducts() {
     }
     const valorFinal = quantidade * priceNumber;
     products.splice(indexProduct, 1, { ...product, quant: quantidade });
-    setTotal(valorFinal + total);
+    setTotal(parseFloat((valorFinal + total).toFixed(2)));
     return setProducts(products);
   }
 
@@ -93,7 +93,7 @@ export default function ListProducts() {
       <h2>
         Preço total é:
         {' '}
-        { total }
+        { total.toFixed(2) }
       </h2>
     </>
 
