@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router';
-import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 import { Form, Input, Button, notification } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import './loginForm.css';
+import '../Login/loginForm.css';
 import Logincontext from '../../context/LoginContext';
 
-function LoginForm() {
-  const history = useHistory();
+function FormRegister() {
   const { setUserData } = React.useContext(Logincontext);
   const [form] = Form.useForm();
   const [, forceUpdate] = React.useState({});
@@ -22,9 +20,10 @@ function LoginForm() {
 
   const onFinish = async (values) => {
     setUserData(values);
-    const { email, password } = values;
+    const { name, email, password } = values;
     try {
-      await axios.post('http://localhost:3001/login', {
+      await axios.post('http://localhost:3001/register', {
+        name,
         email,
         password,
       });
@@ -41,7 +40,7 @@ function LoginForm() {
     // const resp = await axios.get('http://localhost:3001/products');
     // console.log(password, email);
     notification[type]({
-      message: 'Login efetuado com sucesso!',
+      message: 'Cadastro efetuado com sucesso!',
       duration: 3,
     });
   };
@@ -52,11 +51,11 @@ function LoginForm() {
     );
   }
 
-  const redirectToRegister = () => history.push('/register');
-
   return (
     <section className="main-container">
-      {isError && (<p data-testid="common_login__element-invalid-email"> TESTE </p>)}
+      {isError && (
+        <p data-testid="common_register__element-invalid_register"> TESTE </p>
+      )}
       <section className="secondary-container">
         <Form
           form={ form }
@@ -64,6 +63,29 @@ function LoginForm() {
           className="login-form"
           onFinish={ onFinish }
         >
+          <Form.Item
+            colon
+            label="Nome"
+            name="name"
+            rules={ [
+              {
+                required: true,
+                message: 'Por favor, insira seu nome!',
+              },
+              {
+                min: 12,
+                message: 'Nome deve possui ao menos 12 caracteres.',
+              },
+              { type: 'string', message: 'Insira um nome válido!' },
+            ] }
+            hasFeedback
+          >
+            <Input
+              data-testid="common_register__input-name"
+              prefix={ <UserOutlined className="site-form-item-icon" /> }
+              placeholder="Seu nome"
+            />
+          </Form.Item>
           <Form.Item
             colon
             label="Login"
@@ -78,7 +100,7 @@ function LoginForm() {
             hasFeedback
           >
             <Input
-              data-testid="common_login__input-email"
+              data-testid="common_register__input-email"
               prefix={ <UserOutlined className="site-form-item-icon" /> }
               placeholder="email@trybeer.com"
             />
@@ -100,7 +122,7 @@ function LoginForm() {
             hasFeedback
           >
             <Input.Password
-              data-testid="common_login__input-password"
+              data-testid="common_register__input-password"
               prefix={ <LockOutlined className="site-form-item-icon" /> }
               type="password"
               placeholder="Senha"
@@ -110,7 +132,7 @@ function LoginForm() {
           <Form.Item shouldUpdate style={ { textAlign: 'center', marginBottom: 0 } }>
             {() => (
               <Button
-                data-testid="common_login__button-login"
+                data-testid="common_register__button-register"
                 style={ { backgroundColor: '#036b52' } }
                 onClick={ () => openNotificationWithIcon('success') }
                 block
@@ -122,25 +144,14 @@ function LoginForm() {
                   || !!form.getFieldsError().filter(({ errors }) => errors.length).length
                 }
               >
-                Login
+                Cadastrar
               </Button>
             )}
           </Form.Item>
         </Form>
-        <Button
-          data-testid="common_login__button-register"
-          type="default"
-          block
-          shape="round"
-          htmlType="submit"
-          className="login-form-button"
-          onClick={ () => redirectToRegister() }
-        >
-          Ainda não tenho cadastro
-        </Button>
       </section>
     </section>
   );
 }
 
-export default LoginForm;
+export default FormRegister;

@@ -16,7 +16,7 @@ module.exports = {
         onDelete: 'CASCADE',
       },
       price: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.DECIMAL(10,2),
         allowNull: false,
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
