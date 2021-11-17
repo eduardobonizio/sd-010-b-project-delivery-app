@@ -1,15 +1,14 @@
 const express = require('express');
 const rescue = require('express-rescue');
 const md5 = require('md5');
-const { createCustomerUser } = require('../services/users');
+const { createUser } = require('../services/users');
 
 const registerRouter = express.Router();
 
 registerRouter.post('/', rescue(async (req, res) => {
   const { name, email, password } = req.body;
-  const hashedPassword = md5(password);
-
-  await createCustomerUser({ name, email, password: hashedPassword, role: 'customer' });
+  
+  await createUser({ name, email, password: md5(password), role: 'customer' });
 
   return res.status(201).end();
 }));

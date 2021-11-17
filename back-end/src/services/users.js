@@ -5,12 +5,18 @@ const getUserByEmail = async (email) => {
   return user;
 };
 
-const createCustomerUser = async ({ name, email, password, role }) => { 
-  const newUser = await User.create({ name, email, password, role });
-  return newUser;
+const getUserByName = async (name) => {
+  const user = await User.findOne({ where: { name } });
+  return user;
+};
+
+const createUser = async ({ name, email, password, role }) => {
+  const user = await User.create({ name, email, password, role });
+  return user;
 };
 
 module.exports = {
  getUserByEmail,
- createCustomerUser,
+ getUserByName,
+ createUser,
 };
