@@ -92,7 +92,9 @@ export default function ListProducts() {
       ))}
       <button
         type="button"
+        data-testid="customer_products__button-cart"
         onClick={ () => history.push('/customer/checkout') }
+        disabled={ total < 1 }
       >
         Ver no carrinho:
         {' '}
