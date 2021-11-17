@@ -1,0 +1,6 @@
+.customer-orders__main-container {
+  display: grid;
+  grid-gap: 50px;
+  grid-template-columns: auto auto;
+  padding: 2% 5%;
+}
