@@ -6,6 +6,7 @@ import Context from './Context';
 
 function Provider({ children }) {
   const [value, setValue] = useState(0);
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState(false);
@@ -17,6 +18,8 @@ function Provider({ children }) {
   };
 
   const states = {
+    name,
+    setName,
     value,
     setValue,
     email,
