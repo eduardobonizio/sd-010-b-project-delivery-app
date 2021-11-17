@@ -1,5 +1,5 @@
 import React, { useContext, useState,
-  //  useEffect
+  useEffect,
 } from 'react';
 import PropTypes from 'prop-types';
 import Context from '../context/Context';
