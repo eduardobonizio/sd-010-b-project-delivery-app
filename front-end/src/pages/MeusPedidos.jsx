@@ -17,14 +17,23 @@ function MeusPedidos() {
     getPedidos();
   }, [setOrdersCustomer]);
 
+  const token = getFromLocalStorage('user');
+
   return (
     <div>
       <NavBar />
-      <S.contentMeusPedidos>
-        {ordersCustomer.map((order) => (
-          <CardMeusPedidos key={ order.id } orders={ order } />
-        ))}
-      </S.contentMeusPedidos>
+      <S.mainContainer>
+
+        <S.contentMeusPedidos>
+          {ordersCustomer.map((order) => (
+            <CardMeusPedidos
+              key={ order.id }
+              orders={ order }
+              token={ token }
+            />
+          ))}
+        </S.contentMeusPedidos>
+      </S.mainContainer>
     </div>
   );
 }
