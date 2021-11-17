@@ -7,7 +7,7 @@ import EmailInput from '../components/EmailInput';
 import PasswordInput from '../components/PasswordInput';
 import NameInput from '../components/NameInput';
 import {
-  checkExistence, validateEmailFormat,
+  validateEmailFormat,
   validateName, validatePassword } from '../helpers/validation';
 import './css/Register.css';
 
@@ -27,33 +27,32 @@ function Register() {
 
   useEffect(() => {
     if (password && email && name) {
-      checkExistence(email)
-        .then((exists) => {
-          if (validateEmailFormat(email) && validatePassword(password)
-          && validateName(name) && !exists) {
-            setDisabled(false);
-            setHidden(true);
-          } else {
-            setDisabled(true);
-            setHidden(false);
-          }
-        });
+      if (validateEmailFormat(email) && validatePassword(password)
+      && validateName(name)) {
+        setDisabled(false);
+      } else {
+        setDisabled(true);
+      }
     }
   }, [email, name, password]);
 
   const createUser = async () => {
-    const conflict = 409;
-    const response = await axios.post('http://localhost:3001/register', { name, email, password });
-    if (response.status === conflict) {
+    // const conflict = 409;
+    try {
+      const response = await axios.post('http://localhost:3001/register', { name, email, password });
+      const parsedResponse = response.data;
+      console.log('ResponseData', parsedResponse.data);
+      localStorage.setItem('name', parsedResponse.name);
+      localStorage.setItem('email', parsedResponse.email);
+      localStorage.setItem('role', parsedResponse.role);
+      localStorage.setItem('token', parsedResponse.token);
+      history.push('/customer/products');
+    } catch (e) {
+      console.log(e);
+      // if (response.status === conflict) {
       return setHidden(false);
+      // }
     }
-    const parsedResponse = response.data;
-    console.log(parsedResponse.data);
-    localStorage.setItem('name', parsedResponse.name);
-    localStorage.setItem('email', parsedResponse.email);
-    localStorage.setItem('role', parsedResponse.role);
-    localStorage.setItem('token', parsedResponse.token);
-    history.push('/customer/products');
   };
 
   return (
@@ -99,7 +98,12 @@ function Register() {
         </Row>
         <Row className="justify-content-md-center">
           <Col md="auto">
-            <span hidden={ hidden }>Usuário já existente!</span>
+            <span
+              data-testid="common_register__element-invalid_register"
+              hidden={ hidden }
+            >
+              Usuário já existente!
+            </span>
           </Col>
         </Row>
       </Form>

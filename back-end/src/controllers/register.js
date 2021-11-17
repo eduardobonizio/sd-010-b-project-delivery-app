@@ -29,7 +29,7 @@ router.post('/', async (req, res) => {
         token,
       });
     }
-    return res.status(409);
+    return res.status(409).send();
   } catch (e) {
     console.log(e);
   }
