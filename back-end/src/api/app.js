@@ -14,7 +14,7 @@ app.get('/coffee', (_req, res) => res.status(418).end());
 app.use('/customers', customerRouter);
 app.use('/login', loginRouter);
 app.use('/user', userRouter);
-app.use('/products', productsRouter);
+app.use('/product', productsRouter);
 app.use('/images', express.static('public'));
 app.use(error);
 

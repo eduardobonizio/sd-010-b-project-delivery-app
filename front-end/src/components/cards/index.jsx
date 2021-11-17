@@ -15,8 +15,7 @@ function CardsProducts() {
   // console.log(inputQuantity);
   useEffect(() => {
     async function apiRequest() {
-      const response = await apiGetAllProducts();
-
+      const response = await apiGetAllProducts() || [];
       const newResponse = response.map((value) => ({
         ...value,
         quantity: 0,
@@ -119,9 +118,14 @@ function CardsProducts() {
       }
       <Link to="/customer/checkout">
         <style.ButtonCart
-          data-testid="customer_products__checkout-bottom-value"
+          type="button"
+          disabled={ valueTotalProduct === 0 }
+          data-testid="customer_products__button-cart"
         >
-          {`${valueTotalProduct.toFixed(2).replace('.', ',')}`}
+          Ver Carrinho: R$
+          <style.TextTotalCart data-testid="customer_products__checkout-bottom-value">
+            {valueTotalProduct.toFixed(2).replace('.', ',')}
+          </style.TextTotalCart>
         </style.ButtonCart>
       </Link>
     </style.ContainerListCard>

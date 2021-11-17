@@ -119,8 +119,10 @@ export const ButtonCart = styled.button`
   font-weight: 800;
   font-size: 18px;
   color: #000;
-  :hover, :focus {
-  box-shadow: 0 0 10px 0 #4E9F3D inset, 0 0 10px 4px #4E9F3D;
-  color: #FFF;
-}
+`;
+
+export const TextTotalCart = styled.span`
+  font-weight: 800;
+  font-size: 18px;
+  color: #000;
 `;

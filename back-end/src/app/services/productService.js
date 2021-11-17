@@ -1,10 +1,26 @@
 const { Product } = require('../../database/models');
 
+const messageError = (status, message) => ({
+  status,
+  message,
+});
+
 const findAll = async () => {
-  const findAllProducts = await Product.findAll();
-  return findAllProducts;
+  const findAllProduct = await Product.findAll();
+  console.log('Entrei no Service: ', findAllProduct);
+
+  return findAllProduct;
+};
+
+const findById = async (id) => {
+  const findIdProduct = await Product.findByPk(id);
+
+  if (!findIdProduct) throw messageError(404, '404 - non-existent user');
+
+  return findIdProduct;
 };
 
 module.exports = {
   findAll,
+  findById,
 };
