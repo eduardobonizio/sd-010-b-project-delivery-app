@@ -1,13 +1,13 @@
-const { OK, INTERNAL_SERVER_ERROR, BAD_REQUEST } = require('http-status');
+const { OK, INTERNAL_SERVER_ERROR, NOT_FOUND } = require('http-status');
 const Login = require('../services/Login');
 
-const attempLogin = async (req, res) => {
+const attemptLogin = async (req, res) => {
   try {
     const { body: loginInfo } = req;
-    const result = await Login.attempLogin(loginInfo);
+    const result = await Login.attemptLogin(loginInfo);
 
     return result.message
-      ? res.status(BAD_REQUEST).json(result)
+      ? res.status(NOT_FOUND).json(result)
       : res.status(OK).json(result);
   } catch (error) {
     console.log(error);
@@ -15,4 +15,4 @@ const attempLogin = async (req, res) => {
   }
 };
 
-module.exports = { attempLogin };
+module.exports = { attemptLogin };

@@ -1,15 +1,10 @@
-const { user } = require('../database/models/users');
+const { user } = require('../database/models');
 const crypto = require('crypto');
 
-// crypto.createHash('md5').update(data).digest("hex");
+const attemptLogin = async ({ email, password }) => {
+  const encryptedPassword = crypto.createHash('md5').update(password).digest("hex");
 
-const attempLogin = async ({ email, password }) => {
-  const encryptedPassword = crypto.createHash('md5');
-  console.log(encryptedPassword);
-  console.log('1c37466c159755ce1fa181bd247cb925');
-
-  const loggedUser = await user.findOne({ where: { email, password } });
-  // console.log(loggedUser);
+  const loggedUser = await user.findOne({ where: { email, password: encryptedPassword } });
 
   if (!loggedUser) return { message: 'Invalid fields' };
   
@@ -17,5 +12,5 @@ const attempLogin = async ({ email, password }) => {
 };
 
 module.exports = {
-  attempLogin,
+  attemptLogin,
 };
