@@ -27,13 +27,15 @@ function Register() {
 
   useEffect(() => {
     if (password && email && name) {
-      checkExistence(email, name)
+      checkExistence(email)
         .then((exists) => {
           if (validateEmailFormat(email) && validatePassword(password)
           && validateName(name) && !exists) {
             setDisabled(false);
+            setHidden(true);
           } else {
             setDisabled(true);
+            setHidden(false);
           }
         });
     }

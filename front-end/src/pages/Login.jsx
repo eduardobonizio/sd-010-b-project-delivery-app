@@ -36,7 +36,7 @@ function Login() {
     try {
       const response = await axios.post('http://localhost:3001/login', { email, password });
       if (response.status === notFound) return setHideErrorMessage(false);
-      console.log(response);
+      console.log(response.data);
       const parsedResponse = response.data;
       localStorage.setItem('name', parsedResponse.name);
       localStorage.setItem('email', parsedResponse.email);

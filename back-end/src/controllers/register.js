@@ -19,17 +19,27 @@ router.post('/', async (req, res) => {
 
   try {
     const newUser = await User.findOne({ where: { email } });
-    console.log(newUser);
-    if (!newUser.data) {
+    if (!newUser) {
       const token = jwt.sign({ data: email }, secret, jwtConfig);
       User.create({ name, email, password: hashedPassword, role: 'customer' });
-      return res.status(201).json({ name, email, role: 'customer', token,
+      return res.status(201).json({
+        name,
+        email,
+        role: 'customer',
+        token,
       });
     }
     return res.status(409);
   } catch (e) {
     console.log(e);
   }
+});
+
+router.post('/check', async (req, res) => {
+  const { email } = req.body;
+  const checkExistence = await User.findOne({ where: { email } });
+  if (checkExistence.data) return res.status(409);
+  return res.status(200);
 });
 
 module.exports = router;
