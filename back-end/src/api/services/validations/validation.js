@@ -14,8 +14,6 @@ const checkIfUserExist = async ({ email, expectExist }) => {
   return user;
 };
 
-// const encryptPassword = (password) => crypto.createHash('md5').update(password).digest('hex');
-
 const checkIfPasswordIsValid = async (userPassword, password) => {
   const cryptoPassword = md5(password);
   const isValid = userPassword === cryptoPassword;
