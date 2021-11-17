@@ -1,5 +1,17 @@
 /* eslint-disable camelcase */
-const { dataIsRequired, dataIsUnauthorized } = require('../helpers/errorFunctions');
+const { 
+  dataIsRequired, 
+  dataIsUnauthorized, 
+  dataMustBeArray,
+  dataNotFound } = require('../helpers/errorFunctions');
+
+const {
+  DATA_IS_MISSING,
+} = require('../helpers/errorObjects');
+
+const {
+  saleProductsIdsToArray,
+} = require('../helpers/helperFunctions');
 // Using 'saleAlias' cuz eslint won't allow to use camel_case var, so can't create an object with camel_case key.
 const saleKeyValidation = (saleKey, saleAlias) => {
   if (!saleKey) return dataIsRequired(saleAlias);
@@ -43,6 +55,22 @@ const saleDataValidation = (saleData) => {
   return {};
 };
 
+const saleProductsDataValidation = async (productArray, fnHasProducts) => {
+  if (!productArray) return dataIsRequired('products');
+
+  if (!Array.isArray(productArray)) return dataMustBeArray('products');
+
+  const hasQtyAndId = productArray.every(({ quantity, product_id }) => quantity && product_id);
+  if (!hasQtyAndId) return DATA_IS_MISSING;
+  const productsIdArray = saleProductsIdsToArray(productArray);
+
+  const hasCategories = await fnHasProducts(productsIdArray);
+  if (!hasCategories) dataNotFound('product_ids', ' in products table');
+  
+  return { products: productArray };
+};
+
 module.exports = {
   saleDataValidation,
+  saleProductsDataValidation,
 };

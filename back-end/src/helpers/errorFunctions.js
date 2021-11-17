@@ -1,5 +1,6 @@
 const {
   STATUS_BAD_REQUEST,
+  NOT_FOUND,
 } = require('../utils/constants');
 
 const dataIsRequired = (data) => ({
@@ -16,7 +17,23 @@ const dataIsUnauthorized = (data) => ({
     },
   });
 
+const dataMustBeArray = (data) => ({
+  error: {
+    status: STATUS_BAD_REQUEST,
+    message: `"${data}" must be an array`,
+  },
+});
+
+const dataNotFound = (data, complement = '') => ({
+  error: {
+    status: NOT_FOUND,
+    message: `${data} not found${complement}`,
+  },
+});
+
 module.exports = {
   dataIsRequired,
   dataIsUnauthorized,
+  dataMustBeArray,
+  dataNotFound,
 };
