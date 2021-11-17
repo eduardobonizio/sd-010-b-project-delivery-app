@@ -12,4 +12,3 @@ const login = (user) => API.post('/login', user);
 const register = (user) => API.post('/user/register', user);
 
 export default { login, register };
-
