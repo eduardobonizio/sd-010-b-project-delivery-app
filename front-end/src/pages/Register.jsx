@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import Context from '../context/Context';
 import ErrorRegister from '../components/ErrorRegister';
 
 function Register() {
