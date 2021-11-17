@@ -6,7 +6,7 @@ function ChooseSeller() {
 
   useEffect(() => {
     setChooseSeller(sellers[0].name);
-  }, []);
+  }, [sellers, setChooseSeller]);
 
   return (
     <label htmlFor="chooseSeller">

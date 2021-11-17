@@ -4,17 +4,14 @@ import '../../../styles/Products.css';
 import ProductsCards from '../../../components/ProductsComponents/ProductsCards';
 import CheckBtnProducts from '../../../components/ProductsComponents/CheckBtnProducts';
 
-const Products = () => {
-  console.log('bah');
-  return (
-    <div className="main-div">
-      <Header />
-      <section className="main-section">
-        <ProductsCards />
-        <CheckBtnProducts />
-      </section>
-    </div>
-  );
-};
+const Products = () => (
+  <div className="main-div">
+    <Header />
+    <section className="main-section">
+      <ProductsCards />
+      <CheckBtnProducts />
+    </section>
+  </div>
+);
 
 export default Products;
