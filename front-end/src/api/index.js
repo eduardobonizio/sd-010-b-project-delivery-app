@@ -16,4 +16,3 @@ export default { login, register };
 
 
 
-// export const teste = (user) => axios.post(loginUrl, user, config);
