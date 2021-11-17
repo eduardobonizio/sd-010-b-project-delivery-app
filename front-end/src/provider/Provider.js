@@ -88,7 +88,6 @@ const Provider = ({ children }) => {
     const price = localStorage.getItem('price');
     setTotalOrder(JSON.parse(price) || 0);
     setOrderInProgress(JSON.parse(carrinho) || []);
-  // }, []);
   }, [history, location]);
 
   useEffect(() => {

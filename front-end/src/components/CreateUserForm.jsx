@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import CreateUserFormErrorMessages from './CreateUserFormErrorMessages';
 
 const defaultUser = {
   name: '',
@@ -65,6 +66,7 @@ const CreateUserForm = () => {
 
         </button>
       </form>
+      <CreateUserFormErrorMessages user={ user } />
     </section>
 
   );

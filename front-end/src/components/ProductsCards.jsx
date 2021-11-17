@@ -97,12 +97,12 @@ const ProductsCards = () => {
               >
                 -
               </button>
-              <p
+              <input
                 data-testid={ `customer_products__input-card-quantity-${el.id}` }
                 className="btn-handlers"
-              >
-                {handleQuantity(el)}
-              </p>
+                type="button"
+                value={ handleQuantity(el) }
+              />
               <button
                 type="button"
                 data-testid={ `customer_products__button-card-add-item-${el.id}` }
