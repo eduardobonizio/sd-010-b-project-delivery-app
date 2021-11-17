@@ -42,7 +42,7 @@ function Login() {
     switch (role) {
     case 'administrator': return history.push('/customer/products');
     case 'customer': return history.push('/customer/products');
-    case 'seller': return history.push('/customer/seller');
+    case 'seller': return history.push('/seller/orders');
     default:
       break;
     }
