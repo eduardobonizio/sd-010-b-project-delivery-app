@@ -46,7 +46,7 @@ export default function ListProducts() {
 
       {products && products.map((product) => (
         <section
-          key={ product.id }
+          // key={ product.id }
         >
           <img
             src={ product.urlImage }
