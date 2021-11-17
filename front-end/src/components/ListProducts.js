@@ -92,12 +92,12 @@ export default function ListProducts() {
       ))}
       <button
         type="button"
-        data-testid='customer_products__checkout-bottom-value'
         onClick={ () => history.push('/customer/checkout') }
       >
-        Ver carrinho:
-        {' '}
-        { `R$ ${total.toFixed(2)}` }
+        Ver no carrinho: {' '}
+        <span data-testid='customer_products__checkout-bottom-value'>
+          {total.toFixed(2).replace(/\./g, ',')}
+        </span>
       </button>
     </>
 
