@@ -1,20 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { GoPlus, GoDash } from 'react-icons/go';
+import DeliveryContext from '../context/DeliveryContext';
 import { updateProducts, deleteProducts } from '../utils/localStorage';
 import '../styles/Card.css';
 
 function Cards({ values }) {
   const [quantity, setQuantity] = useState(false);
+  const { totalSales, setTotalSales } = useContext(DeliveryContext);
   const { id, name, price, urlImage } = values;
+
+  const formatedNumber = (number) => Number(number.toFixed(2));
 
   const sumQuantity = () => {
     setQuantity(quantity + 1);
+    console.log(totalSales);
+    const result = formatedNumber(Number(price) + totalSales);
+    setTotalSales(result);
   };
 
   const subQuantity = () => {
-    if (quantity !== 0) {
+    if (quantity > 0) {
       setQuantity(quantity - 1);
+      const result = formatedNumber(totalSales - Number(price));
+      setTotalSales(result);
+      console.log(totalSales);
     }
   };
 
@@ -31,7 +41,7 @@ function Cards({ values }) {
     if (quantity === 0) {
       deleteProducts(id);
     }
-  }, [quantity]);
+  }, [id, name, price, quantity]);
 
   return (
     <div className="div-cards">
@@ -81,6 +91,7 @@ function Cards({ values }) {
 
 Cards.propTypes = {
   values: PropTypes.object,
+  totalSalesProduct: PropTypes.func,
 }.isRequired;
 
 export default Cards;
