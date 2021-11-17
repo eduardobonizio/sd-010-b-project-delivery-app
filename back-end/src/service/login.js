@@ -12,8 +12,7 @@ const logged = async (email, passwordWithouCrypto) => {
       },
     },
   });
-
-  return user.length > 0;
+  return user.length > 0 ? user[0].role : false;
 };
 
 module.exports = { logged };
