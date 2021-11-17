@@ -5,6 +5,7 @@ import AppContext from './AppContext';
 function AppProvider({ children }) {
   const [products, setProducts] = useState([]);
   const [dataUser, setDataUser] = useState({});
+  const [dataOrder, setDataOrder] = useState([]);
 
   useEffect(() => {
     const getProducts = () => {
@@ -20,6 +21,8 @@ function AppProvider({ children }) {
     products,
     dataUser,
     setDataUser,
+    dataOrder,
+    setDataOrder,
   };
 
   return (
