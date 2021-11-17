@@ -9,10 +9,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Admin from './modules/admin/Admin';
 import SellerOrderDetail from './modules/seller/sellerOrderDetail/SellerOrderDetail';
 import CustomerProducts from './modules/customer/CustomerProducts/CustomerProducts';
+import { DeliveryProvider } from './hooks/useDelivery';
 
 function App() {
   return (
-    <div className="container-fluid">
+    <DeliveryProvider className="container-fluid">
       <Switch>
         <Route
           exact
@@ -51,7 +52,7 @@ function App() {
         />
         <Redirect from="/" to="/login" />
       </Switch>
-    </div>
+    </DeliveryProvider>
   );
 }
 

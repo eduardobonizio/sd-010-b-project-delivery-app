@@ -1,7 +1,7 @@
 import React from 'react';
 import ProductList from './components/ProductList';
 import RedirectButton from '../../../components/RedirectButton';
-import Navbar from '../../../components/Navbar';
+import Navbar from './components/NavBar';
 
 function CustomerProducts() {
   const user = JSON.parse(localStorage.getItem('user'));
