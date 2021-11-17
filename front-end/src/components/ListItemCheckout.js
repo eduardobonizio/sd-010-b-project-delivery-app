@@ -23,7 +23,7 @@ export default function ListItemCheckout() {
           setSellers([...sellers, seller]);
         });
       });
-  }, []);
+  }, [sellers]);
 
   function orderTotal() {
 
@@ -36,7 +36,7 @@ export default function ListItemCheckout() {
         <ul key={ i }>
           <li>
             <span
-              key={idProduct}
+              key={ idProduct }
               className="itemId"
               data-testid={ `customer_checkout__element-order-table-item-number-${id}` }
             >
