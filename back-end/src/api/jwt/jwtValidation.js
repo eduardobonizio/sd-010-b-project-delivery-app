@@ -7,7 +7,7 @@ const jwtConfig = {
   algorithm: 'HS256',
 };
 
-const secret = process.env.JWT_SECRET;
+const secret = process.env.JWT_SECRET || 'superSeguro';
 
 const creatToken = (userId, displayName, email) => {
   const token = jwt.sign({ userId, displayName, email }, secret, jwtConfig);
@@ -19,9 +19,9 @@ const validateJwt = (token) => {
 
   try {
     const result = jwt.verify(token, secret);
-    return  result;
+    return result;
   } catch (error) {
-    return {  message: 'Expired or invalid token' };
+    return { message: 'Expired or invalid token' };
   }
 };
 
