@@ -42,8 +42,6 @@ function Login() {
       localStorage.setItem('user', JSON.stringify(data));
     } catch (e) {
       setErrorMessage(e.response.data.message);
-      console.log(e.response.data.message);
-
       setIsError(true);
     }
   };

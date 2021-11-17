@@ -4,6 +4,7 @@ import AppContext from './AppContext';
 
 function AppProvider({ children }) {
   const [products, setProducts] = useState([]);
+  const [dataUser, setDataUser] = useState({});
 
   useEffect(() => {
     const getProducts = () => {
@@ -17,6 +18,8 @@ function AppProvider({ children }) {
 
   const contextValue = {
     products,
+    dataUser,
+    setDataUser,
   };
 
   return (
