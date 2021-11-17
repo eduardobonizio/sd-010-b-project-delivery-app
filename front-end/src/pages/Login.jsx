@@ -1,15 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import Context from '../context/Context';
+import ErrorLogin from '../components/ErrorLogin';
 import rockGlass from '../images/rockGlass.svg';
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [isDisable, setIsDisable] = useState(true);
+  const {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    errorMsg,
+    handleClick,
+  } = useContext(Context);
+
   useEffect(() => {
     const isValid = () => {
       const validEmail = email.match(/[a-z]+@[a-z]+.com/g);
       const minLength = 6;
-      const validPassword = password.length > minLength;
+      const validPassword = password.length >= minLength;
       if (validEmail) {
         if (validPassword) {
           setIsDisable(false);
@@ -52,6 +61,7 @@ function Login() {
           type="button"
           data-testid="common_login__button-login"
           disabled={ isDisable }
+          onClick={ ({ target }) => handleClick(target.value) }
         >
           LOGIN
         </button>
@@ -61,9 +71,7 @@ function Login() {
         >
           Ainda não tenho conta
         </button>
-        <span data-testid="common_login__element-invalid-email">
-          Isso vai ficar oculto
-        </span>
+        { errorMsg ? <ErrorLogin /> : '' }
       </form>
     </>
   );
