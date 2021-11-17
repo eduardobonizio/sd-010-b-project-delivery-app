@@ -11,7 +11,7 @@ export default function ListProducts() {
   function setQuantityItems(target, product) {
     const { price, quant } = product;
     const priceNumber = parseFloat(price);
-    const indexProduct = products.indexOf(product);
+    const indexProduct = products.findIndex(({ id }) => id === product.id);
     if (target.innerText === '-' && quant > 0) {
       const valorFinal = total - priceNumber;
       products.splice(indexProduct, 1, { ...product, quant: quant - 1 });
@@ -24,7 +24,10 @@ export default function ListProducts() {
       setTotal(valorFinal);
       return setProducts(products);
     }
-    const quantidade = parseFloat(target.value);
+    let quantidade = parseFloat(target.value);
+    if (target.value.length === 0) {
+      quantidade = 0;
+    }
     const valorFinal = quantidade * priceNumber;
     products.splice(indexProduct, 1, { ...product, quant: quantidade });
     setTotal(valorFinal + total);
@@ -55,9 +58,11 @@ export default function ListProducts() {
             style={ { width: '5rem' } }
             data-testid={ `customer_products__img-card-bg-image-${product.id}` }
           />
-          <span data-testid={ `customer_products__element-card-title-${product.id}` }>
-            {product.name}
-          </span>
+          <section>
+            <span data-testid={ `customer_products__element-card-title-${product.id}` }>
+              {product.name}
+            </span>
+          </section>
           <button
             type="button"
             data-testid={ `customer_products__button-card-rm-item-${product.id}` }
