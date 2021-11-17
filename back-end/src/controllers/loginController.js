@@ -7,6 +7,7 @@
 
  const folderName = path.join(__dirname, '..', '..', 'jwt.evaluation.key');
  const secret = fs.readFileSync(folderName, 'utf8', (_err, data) => data);
+//  const secret = "secreto"
 
  const jwtConfig = {
   expiresIn: '30d',
