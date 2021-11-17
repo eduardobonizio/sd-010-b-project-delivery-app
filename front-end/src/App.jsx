@@ -9,6 +9,8 @@ import Checkout from './pages/Checkout';
 import Page404 from './pages/Page404';
 import OrderDetails from './pages/OrderDetails';
 
+import './App.css';
+
 function App() {
   return (
     <Switch>
