@@ -7,29 +7,24 @@ import * as style from './style';
 /* eslint-disable */  // excluir essa linha quando for enviar o requisito para merge ( essa linha desabilita o eslint para que ele nao quebre o projeto)
 
 export default function CustomerSales() {
-  const [sales, setSales] = useState([
-    { pedido: 1, status: 'pendente', data: '01/01/0000', valor: 1000 },
-  ]);
+  // const [sales, setSales] = useState([
+  //   { pedido: 1, status: 'pendente', data: '01/01/0000', valor: 1000 },
+  // ]);
 
-  // const [sales, setSales] = useState([]);
+  const [sales, setSales] = useState([]);
 
   const getSales = () => {
     const data = apiGetAllSales()
       .then((res) => res)
       .catch((err) => console.log(err));
 
-      console.log(data);
-
-      // setSales(data);
+    setSales(data);
   }
 
   useEffect(() => {
-    console.log(getSales());
-  }, []);
+    getSales();
 
-  useEffect(() => {
-    console.log(sales);
-  }, [sales]);
+  }, []);
 
   return (
     <>
@@ -41,26 +36,26 @@ export default function CustomerSales() {
               <style.DetailsCard key={ `card:${index}` }>
                 <p
                   key={ `pedido:${index}` }
-                  data-testid={ `customer_orders__element-order-id-${index}` }
+                  data-testid={ `customer_orders__element-order-id-${curr.id}` }
                 >
-                  { curr.pedido }
+                  { curr.id }
                 </p>
                 <p
                   key={ `status:${index}` }
-                  data-testid={ `customer_orders__element-delivery-status-${index}` }
+                  data-testid={ `customer_orders__element-delivery-status-${curr.id}` }
                 >
                   { curr.status }
                 </p>
                 <p
                   key={ `data:${index}` }
-                  data-testid={ `customer_orders__element-order-date-${index}` }
+                  data-testid={ `customer_orders__element-order-date-${curr.id}` }
                 >
-                  { curr.data }
+                  { curr.sale_date }
                 </p>
                 <p
-                  key={ `valor:${index}` }
+                  key={ `valor:${curr.id}` }
                 >
-                  { curr.valor }
+                  { curr.total_price }
                 </p>
               </style.DetailsCard>
             </Link>
