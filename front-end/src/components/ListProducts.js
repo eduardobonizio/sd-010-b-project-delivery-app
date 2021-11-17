@@ -92,6 +92,7 @@ export default function ListProducts() {
       ))}
       <button
         type="button"
+        data-testid='customer_products__checkout-bottom-value'
         onClick={ () => history.push('/customer/checkout') }
       >
         Ver carrinho:
