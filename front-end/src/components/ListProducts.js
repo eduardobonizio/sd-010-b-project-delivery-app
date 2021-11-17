@@ -47,7 +47,6 @@ export default function ListProducts() {
       {products && products.map((product) => (
         <section
           key={ product.id }
-          data-testid={ `customer_products__element-card-price-${product.id}` }
         >
           <img
             src={ product.urlImage }
@@ -83,7 +82,12 @@ export default function ListProducts() {
             +
           </button>
 
-          <li>{product.price}</li>
+          <li
+            data-testid={ `customer_products__element-card-price-${product.id}` }
+          >
+            {product.price}
+
+          </li>
         </section>
 
       ))}
