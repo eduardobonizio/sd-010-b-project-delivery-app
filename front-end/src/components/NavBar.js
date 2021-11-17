@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Nav } from 'react-bootstrap';
-import { Context } from '../context/ContextGlobal';
 import '../styles/NavBar.css';
 
 function NavBar() {
-/*   const { nameRegister } =  */useContext(Context);
+  const getUser = JSON.parse(localStorage.getItem('user'));
 
   return (
     <div>
@@ -22,7 +21,7 @@ function NavBar() {
             as="li"
             data-testid="customer_products__element-navbar-user-full-name"
           >
-            <Nav.Link eventKey="link-2" disabled>CLIENTE: JOÃO DA SILVA</Nav.Link>
+            <Nav.Link eventKey="link-2" disabled>{ getUser.name }</Nav.Link>
           </Nav.Item>
           <Nav.Item as="li" data-testid="customer_products__element-navbar-link-logout">
             <Nav.Link

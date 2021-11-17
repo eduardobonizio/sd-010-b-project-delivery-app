@@ -6,9 +6,8 @@ import '../styles/Register.css';
 
 function Register() {
   const {
-    errorRegister,
-    nameRegister,
-    setNameRegister,
+    errorMessage,
+    nameUser,
     emailRegister,
     setEmailRegister,
     passwordRegister,
@@ -23,7 +22,7 @@ function Register() {
       <form className="register-body">
         <h4 className="register-title">Nome</h4>
         <input
-          value={ nameRegister }
+          value={ nameUser }
           className="register-input"
           autoComplete="off"
           onChange={ ({ target }) => setNameRegister(target.value) }
@@ -58,7 +57,7 @@ function Register() {
           </Button>
         </Link>
       </form>
-      { errorRegister
+      { errorMessage
        && <span data-testid="common_register__element-invalid_register">{ error }</span>}
     </div>
   );

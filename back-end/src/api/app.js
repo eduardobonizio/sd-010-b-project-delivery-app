@@ -1,5 +1,6 @@
 const express = require('express');
 // const { Sale, User } = require('../database/models');
+const cors = require('cors');
 const errorMiddleware = require('./middlewares/errorMiddleware');
 const loginEmailValidate = require('./middlewares/loginEmailValidate');
 const loginPasswordValidate = require('./middlewares/loginPasswordValidate');
@@ -7,6 +8,7 @@ const { loginValidateService } = require('./services/userService');
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 app.post('/login', loginEmailValidate, loginPasswordValidate, async (req, res, next) => {
   const { email, password } = req.body;

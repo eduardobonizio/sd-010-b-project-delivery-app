@@ -1,11 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Nav } from 'react-bootstrap';
-import { Context } from '../context/ContextGlobal';
 import '../styles/NavBar.css';
 
 function NavBar3() {
-/*   const { nameRegister } =  */useContext(Context);
-
   return (
     <div>
       <Nav defaultActiveKey="/products" as="ul" className="navBar__container">

@@ -1,19 +1,38 @@
 import React, { useContext } from 'react';
 import { Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Context } from '../context/ContextGlobal';
 import Logo from '../images/logo.png';
 import '../styles/Login.css';
 
+const axios = require('axios');
+
 function Login() {
   const {
-    errorLogin,
+    errorMessage,
+    setErrorMessage,
     emailLogin,
     setEmailLogin,
     passwordLogin,
     setPasswordLogin } = useContext(Context);
 
+  const URL = 'http://localhost:3001/login';
+  const history = useHistory();
   const passLength = 5;
+
+  const login = async (email, password) => {
+    try {
+      const { data } = await axios.post(URL, { email, password });
+      localStorage.setItem('user', JSON.stringify(data));
+      history.push('/customer/products');
+    } catch (error) {
+      console.log(error);
+      setErrorMessage('Email or password are invalid');
+      setTimeout(() => {
+        setErrorMessage('');
+      } , 5000);
+    }
+  };
 
   return (
     <div className="login__container">
@@ -42,7 +61,7 @@ function Login() {
           <Button
             className="login-button1"
             variant="success"
-            type="submit"
+            onClick={ () => login(emailLogin, passwordLogin) }
             data-testid="common_login__button-login"
             disabled={
               !(/^[^\s@]+@[^\s@]+\.[^\s@]+$/).test(emailLogin)
@@ -60,8 +79,14 @@ function Login() {
             </Button>
           </Link>
         </form>
-        {errorLogin
-          && <span data-testid="common_login__element-invalid-email">{ error }</span>}
+        {errorMessage
+          && (
+            <p
+              className="login-errorMessage"
+              data-testid="common_login__element-invalid-email"
+            >
+              { errorMessage }
+            </p>)}
       </div>
     </div>
   );
