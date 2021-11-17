@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import DetailsAddress from '../components/DetailsAddress';
 import ListCheckoutProdutos from '../components/ListCheckoutProdutos';
 import NavBar from '../components/Navbar';
+import Context from '../context/Context';
+import getAllSellers from '../services/apis/getAllSellers';
+import { getFromLocalStorage } from '../services/helpers/servicesLocalStorage';
 
 function Checkout() {
+  const { sellers, setSellers } = useContext(Context);
+
+  useEffect(() => {
+    const getSellers = async () => {
+      const token = getFromLocalStorage('user');
+      const allSellers = await getAllSellers(token);
+      await setSellers(allSellers);
+    };
+    getSellers();
+  }, [setSellers]);
+
   return (
     <div>
       <NavBar />
@@ -13,7 +27,7 @@ function Checkout() {
       </div>
       <div>
         <h3>Detalhes e Endereço para Entrega</h3>
-        <DetailsAddress />
+        <DetailsAddress sellers={ sellers } />
       </div>
     </div>
   );

@@ -7,8 +7,9 @@ const removeItem = (itemId) => {
 };
 
 function ListCheckoutProdutos() {
-  const { cart, totalPrice } = useContext(Context);
   let count = 0;
+
+  const { cart, totalPrice } = useContext(Context);
 
   return (
     <div>
@@ -34,12 +35,14 @@ function ListCheckoutProdutos() {
                   <td>{product.quantity}</td>
                   <td>{product.price.replace('.', ',')}</td>
                   <td>{product.quantity * product.price}</td>
-                  <button
-                    type="button"
-                    onClick={ () => removeItem(product.id) }
-                  >
-                    Remover
-                  </button>
+                  <td>
+                    <button
+                      type="button"
+                      onClick={ () => removeItem(product.id) }
+                    >
+                      Remover
+                    </button>
+                  </td>
                 </tr>
               );
             }

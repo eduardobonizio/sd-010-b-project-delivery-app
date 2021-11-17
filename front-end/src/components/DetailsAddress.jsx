@@ -1,13 +1,14 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
+// import Context from '../context/Context';
 
-function DetailsAddress() {
+function DetailsAddress({ sellers }) {
+  console.log(sellers);
   return (
     <div>
       <span>P. Vendedora responsavel</span>
       <select>
-        <option>vendedor1</option>
-        <option>vendedor2</option>
+        {sellers.map((seller, index) => <option key={ index }>{seller}</option>)}
       </select>
       <span>Endereço</span>
       <input type="text" name="endereco" />
@@ -18,12 +19,12 @@ function DetailsAddress() {
   );
 }
 
-// DetailsAddress.propTypes = {
-//   product: PropTypes.shape({
-//     name: PropTypes.string,
-//     quantity: PropTypes.number,
-//     price: PropTypes.string,
-//   }).isRequired,
-// };
+DetailsAddress.propTypes = {
+  sellers: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    email: PropTypes.string,
+  }).isRequired,
+};
 
 export default DetailsAddress;
