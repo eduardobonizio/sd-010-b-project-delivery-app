@@ -5,8 +5,8 @@ const { User } = require('../database/models');
 const validations = require('../utils/validations');
 const generateToken = require('../utils/token');
 
-const createUser = async ({ name, email, password }) => {
-  await validations.createUser(name, email, password);
+const createUserCustomer = async ({ name, email, password }) => {
+  await validations.createUserCustomer(name, email, password);
 
   const newUser = await User.create({ name, email, password: md5(password), role: 'customer' });
 
@@ -23,4 +23,19 @@ const createUser = async ({ name, email, password }) => {
   return ({ status: httpStatus.CREATED, data });
 };
 
-module.exports = { createUser };
+const createUserAdmin = async ({ name, email, password, role }, userInfo) => {
+  await validations.createUserAdmin(name, email, password, role, userInfo);
+
+  const newUser = await User.create({ name, email, password: md5(password), role });
+
+  const data = [{ 
+      id: newUser.id, 
+      name,
+      email,
+      role,
+    }];
+
+  return ({ status: httpStatus.CREATED, data });
+};
+
+module.exports = { createUserCustomer, createUserAdmin };

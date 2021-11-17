@@ -9,7 +9,7 @@ const err = (statusCode) => ({ statusCode });
 const validateEmail = (email) => {
   if (!email) throw err(errorMessage.INVALID_ENTRIES);
 
-  const validEmail = /^[\w.]+@[a-z]+\.\w{2,3}$/g.test(email);
+  const validEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(email);
   if (!validEmail) throw err(errorMessage.INCORRECT_FORMAT);
 };
 
@@ -25,6 +25,18 @@ const validatePassword = (password) => {
 const validateName = (name) => {
   if (!name || name.length < 12) { 
     throw err(errorMessage.INVALID_ENTRIES); 
+  }
+};
+
+const validateRole = (role) => {
+  if (!role || role === '') { 
+    throw err(errorMessage.INVALID_ENTRIES); 
+  }
+};
+
+const validateUserInfo = (userInfo) => {
+  if (userInfo.role !== 'admin') { 
+    throw err(errorMessage.UNAUTHORIZED_ENTRIES); 
   }
 };
 
@@ -46,6 +58,8 @@ module.exports = {
   validateEmail,
   validatePassword,
   validateName,
+  validateRole,
+  validateUserInfo,
   confirmLogin,
   confirmUser,
 };

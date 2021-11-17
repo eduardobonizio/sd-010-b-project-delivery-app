@@ -6,4 +6,5 @@ module.exports = {
   LOGIN_INCORRECT: 'loginIncorrect',
   MISSING_TOKEN: 'missingToken',
   JWT_MALFORMED: 'jwtMalformed',
+  UNAUTHORIZED_ENTRIES: 'unauthorizedEntries',
 };
