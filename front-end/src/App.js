@@ -16,7 +16,7 @@ function App() {
       <Route exact path="/customer/products" component={ Product } />
       <Route exact path="/customer/checkout" component={ Checkout } />
       <Route exact path="/register" component={ Register } />
-      <Route path="/login" component={ Login } />
+      <Route exact path="/login" component={ Login } />
       <Route exact path="/">
         <Redirect to="/login" />
       </Route>

@@ -36,7 +36,7 @@ function Register() {
   }, [name, email, password, isDisable]);
 
   return (
-    <form action="submit">
+    <form action={ (event) => event.preventDefault() }>
       <input
         data-testid="common_register__input-name"
         type="text"
@@ -60,7 +60,7 @@ function Register() {
       />
       <input
         data-testid="common_register__button-register"
-        type="submit"
+        type="button"
         value="Cadastrar"
         disabled={ isDisable }
         onClick={ ({ target }) => handleClick(target.value) }
