@@ -27,8 +27,7 @@ export default function Provider({ children }) {
       (acc, { price, quantity }) => acc + price * quantity,
       0,
     );
-
-    setTotalPrice(valorTotal);
+    setTotalPrice(valorTotal.toFixed(2).replace('.', ','));
   }, [cart]);
 
   const context = {
