@@ -14,4 +14,3 @@ const register = (user) => API.post('/user/register', user);
 export default { login, register };
 
 
-
