@@ -1,34 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 function CardsProducts({ product }) {
+  const [quantity, setQuantity] = useState(0);
+  const { id, name, price } = product;
   return (
-    <div
-      data-testid={ `customer_products__element-card-price-${product.id}` }
+    <main
+      data-testid={ `customer_products__element-card-price-${id}` }
     >
-      <image src={ product.url_image } />
-      <h3>{ product.name }</h3>
-      <p>{ product.price }</p>
+      <p>{ `R$${price}` }</p>
+      <img src={ product.url_image } alt={ name } width="100px" />
+      <h3>{ name }</h3>
       <button
         type="button"
-        data-testid={ `customer_products__button-card-rm-item-${product.id}` }
+        data-testid={ `customer_products__button-card-rm-item-${id}` }
+        onClick={ quantity > 0 ? () => setQuantity(quantity - 1) : null }
       >
         -
-
       </button>
+      <span>{quantity}</span>
       <button
         type="button"
-        data-testid={ `customer_products__button-card-rm-item-${product.id}` }
+        data-testid={ `customer_products__button-card-rm-item-${id}` }
+        onClick={ () => setQuantity(quantity + 1) }
       >
         +
-
       </button>
-    </div>
+    </main>
   );
 }
 
 CardsProducts.propTypes = {
-  product: PropTypes.objectOf(PropTypes.string).isRequired,
+  product: PropTypes.shape({
+    name: PropTypes.string,
+    url_image: PropTypes.string,
+    price: PropTypes.string,
+    id: PropTypes.number,
+  }).isRequired,
 };
 
 export default CardsProducts;
