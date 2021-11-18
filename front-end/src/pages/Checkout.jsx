@@ -1,5 +1,4 @@
 import React from 'react';
-// import CheckoutItem from '../components/CheckoutItem';
 import NavBar from '../components/Navbar';
 import tableTitles from '../services/tableTitles';
 import FormDelivery from '../components/FormDelivery';
@@ -14,7 +13,17 @@ export default function Checkout() {
     handleSubTotal,
     handleRemoveProduct,
   } = useProductContext();
-  const uniqueCart = [...new Set(cart)];
+
+  const createUnique = () => {
+    let prod = {};
+    const unique = [...new Set(cart)];
+    const uniqueCart = [];
+    unique.forEach((el) => {
+      prod = { ...el, qty: handleQuantity(el.id) };
+      uniqueCart.push(prod);
+    });
+    return uniqueCart;
+  };
 
   return (
     <div>
@@ -28,7 +37,7 @@ export default function Checkout() {
           </tr>
         </thead>
         <tbody>
-          {uniqueCart.map((el, index) => (
+          {createUnique().map((el, index) => (
             <tr key={ el.id }>
               <td
                 data-testid={
@@ -45,7 +54,7 @@ export default function Checkout() {
               <td
                 data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
               >
-                {handleQuantity(el.id)}
+                {el.qty}
               </td>
               <td
                 data-testid={
@@ -79,7 +88,10 @@ export default function Checkout() {
         {handleTotalValue().replace('.', ',')}
       </p>
       <div className="delivery">
-        <FormDelivery total={ handleTotalValue().replace('.', ',') } />
+        <FormDelivery
+          total={ handleTotalValue().replace('.', ',') }
+          cart={ createUnique() }
+        />
       </div>
     </div>
   );

@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-// import { useHistory } from 'react-router-dom';
-// import API from '../api';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import APITOKEN from '../api';
 
-// COMPONENTE DO 21 QUE AINDA NÃO FOI RESOLVIDO
-
-export default function FormDelivery({ total }) {
-  const [state, setState] = useState({ address: '', number: '', seller: '' });
-  // const [user] = useState(() => JSON.parse(localStorage.getItem('user')));
-  // const [saleId, setSaleId] = useState(0);
-  // const history = useHistory();
+export default function FormDelivery({ total, cart }) {
+  const [state, setState] = useState({ deliveryAddress: '',
+    deliveryNumber: '',
+    sellerId: 2 });
+  const user = JSON.parse(localStorage.getItem('user'));
+  const history = useHistory();
 
   const handleInputValue = (e) => {
     const { name } = e.target;
@@ -18,19 +17,15 @@ export default function FormDelivery({ total }) {
 
   const handleCreateSale = async (e) => {
     e.preventDefault();
-    console.log(total);
+    const { token } = user;
 
-    // try {
-    // const id = await API.createSale({ userId: user.id,
-    //   sellerId: user.id,
-    //   totalPrice: total,
-    //   ...state,
-    // });
-    // setSaleId(id);
-    // history.push(`/customer/orders/${saleId}`);
-    // } catch (err) {
-    //   console.log(err);
-    // }
+    try {
+      const sale = await APITOKEN.createSale({
+        ...state, totalPrice: +total.replace(',', '.'), cart }, token);
+      history.push(`orders/${sale.data.id}`);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -40,7 +35,7 @@ export default function FormDelivery({ total }) {
         <select
           onClick={ handleInputValue }
           data-testid="customer_checkout__select-seller"
-          name="seller"
+          name="sellerId"
           id="vendedora"
         >
           <option value="fulana">Fulana</option>
@@ -51,7 +46,7 @@ export default function FormDelivery({ total }) {
         <input
           onChange={ handleInputValue }
           data-testid="customer_checkout__input-address"
-          name="address"
+          name="deliveryAddress"
           type="text"
         />
       </label>
@@ -59,7 +54,7 @@ export default function FormDelivery({ total }) {
         Número
         <input
           onChange={ handleInputValue }
-          name="number"
+          name="deliveryNumber"
           data-testid="customer_checkout__input-addressNumber"
           type="string"
         />
@@ -75,4 +70,5 @@ export default function FormDelivery({ total }) {
 
 FormDelivery.propTypes = {
   total: PropTypes.string.isRequired,
+  cart: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

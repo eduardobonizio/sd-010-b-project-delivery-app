@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-import API from '../api';
+import APIPOST from '../api';
 
 import { validateEmail, validatePassword } from '../util/valdations';
 
@@ -51,7 +51,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data: { user } } = await API.login({ email, password });
+      const { data: { user } } = await APIPOST.login({ email, password });
       localStorage.setItem('user', JSON.stringify(user));
       redirect(user);
     } catch (err) {

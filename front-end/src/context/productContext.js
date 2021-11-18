@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { node } from 'prop-types';
 
-import API from '../api';
+import APITOKEN from '../api';
 
 const ProductContext = createContext();
 
@@ -57,7 +57,7 @@ export default function ProductContextProvider({ children }) {
   };
 
   useEffect(() => {
-    API.getAll().then((res) => setProducts(res.data));
+    APITOKEN.getAllProducts().then((res) => setProducts(res.data));
   }, []);
 
   return (
