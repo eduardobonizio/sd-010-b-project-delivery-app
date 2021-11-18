@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import getProducts from '../services/products';
 
 function Tbody(props) {
+  const { getTotal } = props;
   const [products, setProducts] = useState([]);
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -30,7 +31,7 @@ function Tbody(props) {
     cartItems.splice(index, 1);
     localStorage.setItem('carrinho', JSON.stringify(cart));
     renderProducts(products);
-    props.getTotal();
+    getTotal();
   };
 
   useEffect(() => {
