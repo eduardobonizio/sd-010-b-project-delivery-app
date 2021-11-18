@@ -3,8 +3,8 @@ import { Context } from '../contexts/createContext';
 import { getSellers } from '../services/api';
 
 export default function ListItemCheckout() {
-  const { products, total } = useContext(Context);
-  // const [productsList, setProductsList] = useState([]);
+  const { products, setProducts, total, setTotal } = useContext(Context);
+  const [productsList, setProductsList] = useState([]);
 
   const [sellers, setSellers] = useState([]);
 
@@ -12,6 +12,7 @@ export default function ListItemCheckout() {
     const result = Valor * Quantity;
     return result;
   }
+
   useEffect(() => {
     getSellers()
       .then(({ data }) => {
@@ -19,7 +20,16 @@ export default function ListItemCheckout() {
           setSellers([...sellers, seller]);
         });
       });
-  }, [products, sellers]);
+  }, []);
+
+  useEffect(() => {
+    setProductsList(products.filter(({ quant }) => quant > 0));
+  }, [products]);
+
+  // function orderTotal() {
+  //   return productsList.filter((product) => product.quant > 0)
+  //     .reduce((acc, { price }) => acc + parseInt(price), 0);
+  // }
 
   return (
     <>
@@ -46,7 +56,7 @@ export default function ListItemCheckout() {
           </span>
         </li>
       </ul>
-      {products.filter((product) => product.quant > 0).map((product, i) => {
+      {productsList.map((product, i) => {
         const { id, name, price, quant } = product;
         return (
           <ul key={ id }>
@@ -54,43 +64,32 @@ export default function ListItemCheckout() {
               <span
                 key={ id }
                 className="itemId"
-                data-testid={
-                  `customer_checkout__element-order-table-item-number-${id}`
-                }
+                data-testid={ `customer_checkout__element-order-table-item-number-${id}` }
               >
                 {i}
               </span>
               <span
                 className="itemName"
-                data-testid={
-                  `customer_checkout__element-order-table-name-${id}`
-                }
+                data-testid={ `customer_checkout__element-order-table-name-${id}` }
               >
                 {name}
               </span>
               <span
                 className="itemQuantity"
-                data-testid={
-                  `customer_checkout__element-order-table-quantity-${id}`
-                }
+                data-testid={ `customer_checkout__element-order-table-quantity-${id}` }
               >
                 {quant}
               </span>
               <span
                 className="unitPrice"
-                data-testid={
-                  `customer_checkout__element-order-table-unit-price-${id}`
-                }
+                data-testid={ `customer_checkout__element-order-table-unit-price-${id}` }
               >
                 R$ :
                 {price}
               </span>
               <span
                 className="subtotalPrice"
-                data-testid={
-                  `customer_checkout__element-order-table-sub-total-${id}
-                  `
-                }
+                data-testid={ `customer_checkout__element-order-table-sub-total-${id}` }
               >
                 R$:
                 {itemTotal(price, quant)}
@@ -100,7 +99,11 @@ export default function ListItemCheckout() {
                 data-testid={ `customer_checkout__element-order-table-remove-${id}` }
                 type="submit"
                 onClick={ () => {
-                  console.log('apagou');
+                  const valorFinal = itemTotal(product.price, product.quant);
+                  setTotal(total - valorFinal);
+                  const newProduct = products.map((element) => (
+                    element === product ? { ...element, quant: 0 } : element));
+                  setProducts(newProduct);
                 } }
               >
                 Remover
@@ -115,7 +118,6 @@ export default function ListItemCheckout() {
         data-testid="customer_checkout__element-order-total-price"
       >
         Total: R$
-        {/* {orderTotal()} */}
         {total}
       </div>
       <form>
