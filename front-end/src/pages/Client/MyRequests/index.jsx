@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { apiGetAllSales } from '../../../services/salesProducts/apiRequestSalesProduct';
 import Header from '../../../components/navbar';
 import * as style from './style';
-/* eslint-disable */  // excluir essa linha quando for enviar o requisito para merge ( essa linha desabilita o eslint para que ele nao quebre o projeto)
 
 export default function CustomerSales() {
   // const [sales, setSales] = useState([
@@ -14,35 +13,34 @@ export default function CustomerSales() {
   const [sales, setSales] = useState([]);
 
   const getSales = () => {
-    const data = apiGetAllSales()
-      .then((res) => res)
+    apiGetAllSales()
+      .then((res) => setSales(res))
       .catch((err) => console.log(err));
-
-    setSales(data);
-  }
+  };
 
   useEffect(() => {
     getSales();
-
   }, []);
 
   return (
     <>
       <Header />
       <style.DetailsContainer>
-        {
-          sales.map((curr, index) => (
-            <Link key={ `link:${index}` } to={ `${index}` }>
+        { sales.length > 1
+          ? sales.map((curr, index) => (
+            <Link key={ `link:${index}` } to={ `${curr.id}` }>
               <style.DetailsCard key={ `card:${index}` }>
                 <p
                   key={ `pedido:${index}` }
                   data-testid={ `customer_orders__element-order-id-${curr.id}` }
                 >
+                  {console.log(curr.status)}
                   { curr.id }
                 </p>
                 <p
                   key={ `status:${index}` }
-                  data-testid={ `customer_orders__element-delivery-status-${curr.id}` }
+                  data-testid={ `customer_orders__element-delivery-status-
+                  ${curr.id}` }
                 >
                   { curr.status }
                 </p>
@@ -53,14 +51,13 @@ export default function CustomerSales() {
                   { curr.sale_date }
                 </p>
                 <p
-                  key={ `valor:${curr.id}` }
+                  key={ `valor:${curr.total_price}` }
                 >
                   { curr.total_price }
                 </p>
               </style.DetailsCard>
             </Link>
-          ))
-        }
+          )) : 'Carregando'}
       </style.DetailsContainer>
     </>
   );
