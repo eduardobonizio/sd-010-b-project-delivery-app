@@ -76,7 +76,7 @@ export const ButtonQuantitySubtract = styled.button`
 
 export const CotainerPrice = styled.div`
   position: absolute;
-  left: 0;
+  left: 10px;
   top: 10px;
   width: 80px;
   height: 30px;
