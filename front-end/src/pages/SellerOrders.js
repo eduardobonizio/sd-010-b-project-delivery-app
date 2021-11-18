@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import Aos from 'aos';
+
 import NavBar from '../components/navBar';
 import StatusCard from '../components/statusCard';
 import { fetchGetSalesByIdSeller } from '../services/saleAPI';
+import 'aos/dist/aos.css';
 
 export default function SellerOrders() {
   const [allOrders, setAllOrders] = useState([]);
+
+  useEffect(() => {
+    Aos.init({ duration: 800, once: true });
+  }, []);
 
   useEffect(() => {
     const getAllSales = async () => {
@@ -25,7 +32,7 @@ export default function SellerOrders() {
   return (
     <div>
       <NavBar isCustomer={ false } nameButtonOrder="Pedidos" linkOrder="/seller/orders" />
-      <div className="flex flex-wrap ml-52 mr-52 pt-44 items-center justify-start">
+      <div className="flex flex-wrap ml-52 mr-52 pt-44 items-center justify-center">
         {allOrders.length !== 0
           ? allOrders.map((el, index) => (
             <StatusCard

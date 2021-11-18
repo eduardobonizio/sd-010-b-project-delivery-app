@@ -34,6 +34,7 @@ export default function StatusCard({ order, type, linkDetail }) {
   }, [order.id]);
   return (
     <div
+      data-aos="fade-up"
       className="transition duration-300 ease-in-out transform m-10 hover:-translate-y-1
       hover:scale-105 shadow-lg"
     >

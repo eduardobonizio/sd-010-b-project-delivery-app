@@ -12,6 +12,7 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await handleFetchRegister(name, email, password);
+    console.log(res);
     localStorage.setItem('user', JSON.stringify(res));
     if (res.message) {
       setIsValidEntry(false);
