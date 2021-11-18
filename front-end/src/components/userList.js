@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-max-depth */
-/* eslint-disable max-len */
 import React, { useEffect, useState } from 'react';
 import fetchAllUsers from '../services/allUsersAPI';
 import deleteUsersAPI from '../services/deleteUsersAPI';
@@ -30,18 +28,13 @@ export default function Menu() {
         Lista de usuarios
       </h2>
       <ul>
-        <li className="flex justify-evenly my-5 mx-20">
-          <div className="flex justify-between items-center min-w-width-li">
-            <span>Item</span>
-            <span>Nome</span>
-            <span>Email</span>
-            <span>Tipo</span>
-          </div>
-        </li>
         { users.length > 1
           ? users.map((el) => (
             <li className="flex justify-evenly my-5 mx-20" key={ el.id }>
-              <div className="flex justify-between items-center min-w-width-li bg-yellow-color border-yellow-color border-2 rounded-lg">
+              <div
+                className="flex justify-between items-center min-w-width-li
+              bg-yellow-color border-yellow-color border-2 rounded-lg"
+              >
                 <span
                   className={ `${span} w-40` }
                   data-testid={ `admin_manage__element-user-table-item-number-${el.id}` }

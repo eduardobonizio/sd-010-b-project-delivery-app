@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-max-depth */
-/* eslint-disable max-len */
 import React, { useState } from 'react';
 import admRegisterAPI from '../services/admRegisterAPI';
 
@@ -37,7 +36,6 @@ export default function FormAdmin() {
     return true;
   };
 
-  const inputStyle = 'border-2 border-b-8 border-r-8 text-xl rounded-2xl border-yellow-color p-3';
   const h3 = 'text-xl ml-10';
   const label = 'flex flex-inline m-5 sm:';
 
@@ -51,7 +49,8 @@ export default function FormAdmin() {
           <h3 className={ h3 }>Nome</h3>
           <label className={ label } htmlFor>
             <input
-              className={ inputStyle }
+              className="border-2 border-b-8 border-r-8 text-xl rounded-2xl
+              border-yellow-color p-3"
               onChange={ ({ target }) => setName(target.value) }
               type="text"
               data-testid="admin_manage__input-name"
@@ -63,7 +62,8 @@ export default function FormAdmin() {
           <h3 className={ h3 }>Email</h3>
           <label className={ label } htmlFor>
             <input
-              className={ inputStyle }
+              className="border-2 border-b-8 border-r-8 text-xl rounded-2xl
+              border-yellow-color p-3"
               onChange={ ({ target }) => setEmail(target.value) }
               type="email"
               data-testid="admin_manage__input-email"
@@ -75,7 +75,8 @@ export default function FormAdmin() {
           <h3 className={ h3 }>Password</h3>
           <label className={ label } htmlFor>
             <input
-              className={ inputStyle }
+              className="border-2 border-b-8 border-r-8 text-xl rounded-2xl
+              border-yellow-color p-3"
               onChange={ ({ target }) => setPassword(target.value) }
               type="password"
               data-testid="admin_manage__input-password"
@@ -101,7 +102,8 @@ export default function FormAdmin() {
         disabled={ buttonActivation() }
         type="submit"
         data-testid="admin_manage__button-register"
-        className="px-7 py-2 text-black-color rounded-xl cursor-pointer bg-yellow-color self-end mr-60"
+        className="px-7 py-2 text-black-color rounded-xl cursor-pointer
+        bg-yellow-color self-end mr-60"
       >
         CADASTRAR
       </button>

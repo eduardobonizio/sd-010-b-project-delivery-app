@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 /* eslint-disable react/jsx-max-depth */
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
@@ -25,10 +24,18 @@ export default function StatusCard({ order, type, linkDetail }) {
     });
   }, [order.id]);
   return (
-    <div className="transition duration-300 ease-in-out transform m-10 hover:-translate-y-1 hover:scale-105 shadow-lg">
+    <div
+      className="transition duration-300 ease-in-out transform m-10 hover:-translate-y-1
+      hover:scale-105 shadow-lg"
+    >
       <Link to={ `${linkDetail}/${order.id}` }>
-        <div className="text-xl flex space-x-4 border-t-8 border-dark-color rounded-lg p-2">
-          <div className="flex flex-col bg-yellow-color rounded-lg pl-4 border-r-2 pr-4 items-center justify-center">
+        <div
+          className="text-xl flex space-x-4 border-t-8 border-dark-color rounded-lg p-2"
+        >
+          <div
+            className="flex flex-col bg-yellow-color rounded-lg pl-4 border-r-2 pr-4
+            items-center justify-center"
+          >
             <p>PEDIDO</p>
             <p
               data-testid={ `${type}_orders__element-order-id-${order.id}` }
@@ -46,7 +53,10 @@ export default function StatusCard({ order, type, linkDetail }) {
                   {status.toUpperCase()}
                 </p>
               </div>
-              <div className="border-l-2 pl-4 space-y-2 flex flex-col items-center justify-center">
+              <div
+                className="border-l-2 pl-4 space-y-2 flex flex-col items-center
+                justify-center"
+              >
                 <p
                   data-testid={ `${type}_orders__element-order-date-${order.id}` }
                 >

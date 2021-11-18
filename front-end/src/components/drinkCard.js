@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-max-depth */
-/* eslint-disable max-len */
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { AiFillMinusSquare, AiFillPlusSquare } from 'react-icons/ai';
@@ -28,8 +26,17 @@ function DrinkCard({ product }) {
   }, [quantity]);
 
   return (
-    <div data-aos="fade-up" data-aos-delay={ id * AOS_DEFAULT_DELAY } className="transition duration-300 ease-in-out transform bg-white rounded-2xl shadow-xl hover:-translate-y-1 hover:scale-105 border-t-4 border-dark-color flex flex-col mx-8 my-8 items-center w-72">
-      <div className="my-4 mx-4 bg-yellow-color flex flex-row self-start px-4 py-2 rounded-lg">
+    <div
+      data-aos="fade-up"
+      data-aos-delay={ id * AOS_DEFAULT_DELAY }
+      className="transition duration-300 ease-in-out transform bg-white rounded-2xl
+      shadow-xl hover:-translate-y-1 hover:scale-105 border-t-4 border-dark-color
+      flex flex-col mx-8 my-8 items-center w-72"
+    >
+      <div
+        className="my-4 mx-4 bg-yellow-color flex flex-row self-start px-4
+      py-2 rounded-lg"
+      >
         R$
         <div data-testid={ `customer_products__element-card-price-${id}` }>
           {price.replace('.', ',')}
@@ -42,7 +49,10 @@ function DrinkCard({ product }) {
         alt={ `Foto do produto ${name}` }
         data-testid={ `customer_products__img-card-bg-image-${id}` }
       />
-      <div className="flex flex-col items-center bg-yellow-color rounded-b-2xl py-6 w-full">
+      <div
+        className="flex flex-col items-center bg-yellow-color rounded-b-2xl
+      py-6 w-full"
+      >
         <span
           className="mb-4"
           data-testid={ `customer_products__element-card-title-${id}` }

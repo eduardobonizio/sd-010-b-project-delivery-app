@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React, { useEffect, useState } from 'react';
 import NavBar from '../components/navBar';
 import StatusCard from '../components/statusCard';
@@ -37,9 +36,16 @@ export default function SellerOrders() {
             />
           ))
           : (
-            <div className="w-full text-dark-color font-semibold text-2xl flex flex-col items-center">
+            <div
+              className="w-full text-dark-color font-semibold text-2xl flex flex-col
+              items-center"
+            >
               <p>Você não possui nenhuma venda.</p>
-              <img className="opacity-50 w-2/6" src="/semPedido.svg" alt="Imagem de Sem Pedido" />
+              <img
+                className="opacity-50 w-2/6"
+                src="/semPedido.svg"
+                alt="Imagem de Sem Pedido"
+              />
             </div>)}
       </div>
     </div>

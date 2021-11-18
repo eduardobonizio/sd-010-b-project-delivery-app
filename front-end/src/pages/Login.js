@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-max-depth */
-/* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
 import Aos from 'aos';
 
@@ -23,13 +21,22 @@ export default function Login() {
           </div>
         </div>
       </nav>
-      <div className="flex flex-col items-center justify-center invisible w-full h-0 min-h-screen pt-20 px-10 md:visible md:h-full">
+      <div
+        className="flex flex-col items-center justify-center invisible w-full
+      h-0 min-h-screen pt-20 px-10 md:visible md:h-full"
+      >
         <div className="flex items-center space-x-4">
           <div className="pr-8" data-aos="fade-right">
-            <img className="animate-bounce w-full" src="/tampa.svg" alt="Imagem de uma tampa" />
+            <img
+              className="animate-bounce w-full"
+              src="/tampa.svg"
+              alt="Imagem de uma tampa"
+            />
             <img className="w-full" src="/login.svg" alt="Imagem da login" />
           </div>
-          { isLogin ? <LoginForms registerFunc={ setIsLogin } /> : <RegisterForms registerFunc={ setIsLogin } />}
+          { isLogin
+            ? <LoginForms registerFunc={ setIsLogin } />
+            : <RegisterForms registerFunc={ setIsLogin } />}
         </div>
       </div>
     </div>
