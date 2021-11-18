@@ -17,7 +17,7 @@ function NavBar() {
           PRODUTO
         </S.buttonNav>
       </Link>
-      <Link to="/customer/meusPedidos">
+      <Link to="/customer/orders">
         <S.buttonNav
           type="button"
           data-testid="customer_products__element-navbar-link-orders"
