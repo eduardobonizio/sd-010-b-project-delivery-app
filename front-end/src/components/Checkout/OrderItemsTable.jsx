@@ -20,6 +20,11 @@ function OrdersItemsTable() {
     setCart(newCart);
   };
 
+  const getTotalPrice = () => {
+    const totalPrice = cart.reduce((acc, curr) => acc + curr.subTotal, 0);
+    return (!totalPrice) ? 0 : totalPrice.toFixed(2);
+  };
+
   return (
     <div className="order-items-table">
       <TableHeader headerItems={ headerItems } />
@@ -31,7 +36,7 @@ function OrdersItemsTable() {
           />
         )) }
       </div>
-      <div className="order-total-price">Total: R$ 21,00</div>
+      <div className="order-total-price">{`Total: R$ ${getTotalPrice()}`}</div>
     </div>
   );
 }
