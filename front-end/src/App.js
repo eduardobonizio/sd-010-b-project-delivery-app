@@ -6,11 +6,10 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Products from './pages/Products';
 
-import NavBar from './components/NavBar';
-
 import './App.css';
 import SellerOrder from './pages/SellerOrder';
 import AdminManage from './pages/AdminManage';
+import NavBar from './components/NavBar';
 
 function App() {
   return (
@@ -21,7 +20,7 @@ function App() {
       <CustomRoute
         path="/customer/products"
         component={ Products }
-        navbar={ <NavBar products={true} order="Meus pedidos" /> }
+        navbar={ <NavBar products order="Meus pedidos" /> }
       />
       <CustomRoute
         path="/seller/orders"
@@ -31,7 +30,7 @@ function App() {
       <CustomRoute
         path="/admin/manage"
         component={ AdminManage }
-        navbar={ <NavBar products={false} order="Gerenciar usuários" /> }
+        navbar={ <NavBar products={ false } order="Gerenciar usuários" /> }
       />
       <CustomRoute path="/register" component={ Register } />
       <Redirect from="/" to="/login" />
