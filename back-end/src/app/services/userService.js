@@ -25,14 +25,14 @@ const findById = async (id) => {
 const addUser = async (bodyCategory) => {
   const { error } = validUser.validate(bodyCategory);
   if (error) throw messageError(409, '409 - Conflict');
-  const { name, email, password, role } = bodyCategory;
+  const { name, email, password } = bodyCategory;
 
   const passwordHash = md5(password);
 
   const payload = { email };
   const token = jwtLogin(payload);
 
-  await User.create({ name, email, password: passwordHash, role });
+  await User.create({ name, email, password: passwordHash, role: 'customer' });
 
   return { token };
 };

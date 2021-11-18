@@ -14,7 +14,7 @@ export default function Register() {
   const tryRegister = async (e) => {
     e.preventDefault();
 
-    const register = await apiCreateUser({ name, email, password, role: 'customer' });
+    const register = await apiCreateUser({ name, email, password });
 
     if (register.token) navigate('../customer/products', { replace: true });
     // register
