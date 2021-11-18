@@ -1,7 +1,10 @@
 import axios from 'axios';
 
-const APIṔOST = axios.create({
-  baseURL: 'http://localhost:3001',
+
+// https://pt.stackoverflow.com/q/365296/207241
+
+const APIPOST = axios.create({
+  baseURL: 'http://localhost:3001/',
   headers: {
     'Content-type': 'application/json',
   },
@@ -20,8 +23,12 @@ const APITOKEN = (token) => {
 
 const fetchOrders = (token) => APITOKEN(token).get('/sale/user', {});
 
-const login = (user) => APIṔOST.post('/login', user);
+const createSale = (saleBody, token) => APITOKEN(token).post('/sale', saleBody);
 
-const register = (user) => APIṔOST.post('/user/register', user);
+const getAllProducts = () => APITOKEN().get('/products', {});
 
-export default { fetchOrders, login, register };
+const login = (user) => APIPOST.post('/login', user);
+
+const register = (user) => APIPOST.post('/user/register', user);
+
+export default { fetchOrders, login, register, getAllProducts, createSale };
