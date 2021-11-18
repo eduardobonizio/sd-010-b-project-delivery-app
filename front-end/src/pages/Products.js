@@ -7,7 +7,7 @@ import NavBar from '../components/navBar';
 
 export default function Products() {
   useEffect(() => {
-    Aos.init({ duration: 2000, once: true });
+    Aos.init({ duration: 1500, once: true });
   }, []);
   return (
     <>

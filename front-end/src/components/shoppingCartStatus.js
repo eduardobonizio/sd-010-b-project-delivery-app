@@ -18,7 +18,7 @@ function ShoppingCartStatus() {
     <>
       {shouldRedirect && <Redirect to="/customer/checkout" />}
       <button
-        className="bg-yellow-color px-10 py-3 mb-40 rounded-xl text-xl font-medium self-end my-10"
+        className="bg-yellow-color px-10 py-3 mb-40 rounded-xl text-xl font-medium self-end my-10 fixed top-20 right-1 z-50 shadow-lg"
         type="button"
         disabled={ totalPrice === 0 }
         onClick={ () => { handleClick(); } }
