@@ -5,47 +5,50 @@ import { useCustomer } from '../../../../hooks/useCustomer';
 function Sale({ product, index }) {
   const { productId, name, quantity, unitPrice, subTotal } = product;
   const { handleRemoveItemCart } = useCustomer();
+
   return (
-    <div>
-      <span
+    <tr>
+      <td
         data-testid={ `customer_checkout__element-order-table-item-number-${index}` }
       >
-        { productId }
-      </span>
-      <span
+        { (index + 1) }
+      </td>
+      <td
         data-testid={ `customer_checkout__element-order-table-name-${index}` }
       >
         { name }
-      </span>
-      <span
-        data-testid={ `cutomer_checkout__element-order-table-quantity-${index}` }
+      </td>
+      <td
+        data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
       >
         { quantity }
-      </span>
-      <span>
+      </td>
+      <td>
         R$
         <span
           data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }
         >
           { unitPrice }
         </span>
-      </span>
-      <span>
+      </td>
+      <td>
         R$
         <span
           data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }
         >
           { subTotal }
         </span>
-      </span>
-      <button
-        data-testid={ `customer_checkout__element-order-table-remove-${index}` }
-        type="button"
-        onClick={ () => handleRemoveItemCart(productId) }
-      >
-        REMOVER
-      </button>
-    </div>
+      </td>
+      <td>
+        <button
+          data-testid={ `customer_checkout__element-order-table-remove-${index}` }
+          type="button"
+          onClick={ () => handleRemoveItemCart(productId) }
+        >
+          REMOVER
+        </button>
+      </td>
+    </tr>
   );
 }
 

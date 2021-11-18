@@ -81,6 +81,7 @@ export default function Form() {
           onChange={ (e) => setDeliveryNumber(e.target.value) }
         />
         <button
+          data-testid="customer_checkout__button-submit-order"
           type="button"
           onClick={ handleFinalizeOrder }
         >
