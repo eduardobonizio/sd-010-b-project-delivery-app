@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 const path = require('path');
 const fs = require('fs');
 const userService = require('../services/userService');
-const generateToken = require('../../utils/generateToken');
 
 const secretKey = fs
   .readFileSync(
@@ -24,11 +23,11 @@ const loginUser = async (req, res) => {
 const createUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
-    await userService.createUser({ name, email, password });
+    const result = await userService.createUser({ name, email, password });
 
-    const token = await generateToken({ name, email, role: 'Customer' });
+    if(result.message) return res.status(status.CONFLICT).json(result)
 
-    return res.status(status.CREATED).json({ token, name, email, role: 'Customer' });
+    return res.status(status.CREATED).json(result);
   } catch (error) {
     return res.status(status.CONFLICT).json({ message: 'Usuário já cadastrado' });
   }

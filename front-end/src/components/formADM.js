@@ -1,6 +1,6 @@
-/* eslint-disable react/jsx-max-depth */
 import React, { useState } from 'react';
 import admRegisterAPI from '../services/admRegisterAPI';
+import SelectType from './selectType';
 
 export default function FormAdmin() {
   const [name, setName] = useState('');
@@ -37,7 +37,7 @@ export default function FormAdmin() {
   };
 
   const h3 = 'text-xl ml-10';
-  const label = 'flex flex-inline m-5 sm:';
+  const label = 'flex flex-inline m-5';
 
   return (
     <form
@@ -86,16 +86,7 @@ export default function FormAdmin() {
         </div>
         <div>
           <h3 className={ h3 }>Tipo</h3>
-          <label className={ label } htmlFor>
-            <select
-              className={ `${inputStyle} bg-white px-10` }
-              data-testid="admin_manage__select-role"
-              onChange={ ({ target }) => setRole(target.value) }
-            >
-              <option defaultValue value="customer">Cliente</option>
-              <option value="seller">Vendedor</option>
-            </select>
-          </label>
+          <SelectType role={ ({ target }) => setRole(target.value) } />
         </div>
       </div>
       <button

@@ -24,11 +24,13 @@ const existUser = async ({ email, password }) => {
 };
 
 const createUser = async ({ name, email, password }) => {
-  await user.create({
+  const createdUser = await user.create({
     name, email, password: cryptoPassword(password), role: 'Customer',
   });
+  const { id } = createdUser;
   const token = generateToken({ name, role: 'Customer', email });
-  return { name, email, role: 'Customer', token };
+
+  return { id, name, email, role: 'Customer', token };
 };
 
 const createUserByADM = async ({ name, email, password, role }) => {
