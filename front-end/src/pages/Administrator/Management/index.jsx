@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import isValidRegister from '../../../helpers/validRegister';
+import apiAdmCreateUser from '../../../services/register/apiRequestAdmRegister';
 
 export default function Management() {
   const [btnDisable, setBtnDisable] = useState(true);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [role, setRole] = useState('');
+
+  const tryRegister = async (e) => {
+    e.preventDefault();
+
+    const result = await apiAdmCreateUser({ name, email, password, role });
+    console.log(result);
+  };
 
   useEffect(() => {
     const isValid = isValidRegister(name, email, password);
@@ -33,16 +42,19 @@ export default function Management() {
           data-testid="admin_manage__input-password"
           onChange={ (e) => setPassword(e.target.value) }
         />
-        <select name="Tipo" id="tipo" data-testid="admin_manage__select-role">
-          <option>Select</option>
-          <option value="seller">seller</option>
-          <option value="customer">customer</option>
-          <option value="audi">Audi</option>
+        <select
+          data-testid="admin_manage__select-role"
+          onChange={ (e) => setRole(e.target.value) }
+        >
+          <option defaultValue>SELECIONE</option>
+          <option value="customer">Cliente</option>
+          <option value="seller">Vendedor</option>
         </select>
         <button
           type="submit"
           disabled={ btnDisable }
           data-testid="admin_manage__button-register"
+          onClick={ (e) => tryRegister(e) }
         >
           BOTÃO
         </button>

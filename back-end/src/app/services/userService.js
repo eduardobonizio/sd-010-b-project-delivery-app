@@ -37,10 +37,22 @@ const addUser = async (bodyCategory) => {
   return { token };
 };
 
+const adminAddUser = async (bodyCategory) => {
+  const { error } = validUser.validate(bodyCategory);
+  if (error) throw messageError(409, '409 - Conflict');
+  const { name, email, password, role } = bodyCategory;
+
+  const passwordHash = md5(password);
+
+  const result = await User.create({ name, email, password: passwordHash, role });
+  return result;
+};
+
 module.exports = {
   findAll,
   findById,
   addUser,
+  adminAddUser,
 };
 
 // Agradecimentos a >> https://stackoverflow.com/questions/27972271/sequelize-dont-return-password

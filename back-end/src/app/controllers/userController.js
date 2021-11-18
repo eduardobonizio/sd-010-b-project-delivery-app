@@ -16,8 +16,15 @@ const add = rescue(async (req, res) => {
   return res.status(201).json(result);
 });
 
+const adminAddUser = rescue(async (req, res) => {
+  const result = await userService.adminAddUser(req.body);
+  console.log('controller: ', result);
+  return res.status(201).json(result);
+});
+
 module.exports = {
   add,
+  adminAddUser,
   findAll,
   findById,
 };

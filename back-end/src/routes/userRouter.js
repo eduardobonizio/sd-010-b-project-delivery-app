@@ -13,4 +13,7 @@ router.route('/')
 router.route('/:id')
 .get(userController.findById);
 
+router.route('/admin')
+.post(userController.adminAddUser);
+
 module.exports = router;
