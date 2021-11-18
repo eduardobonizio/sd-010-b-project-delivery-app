@@ -1,5 +1,5 @@
 import React from 'react';
-import OrderContainer from '../../../components/OrderContainer';
+import OrderContainer from '../../components/OrderContainer';
 import { Context } from '../../../provider/Provider';
 
 function ProductOrders() {

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/header.css';
+import '../../../styles/header.css';
 import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
@@ -18,7 +18,6 @@ const Header = () => {
               className="btn-navbar btn-1"
             >
               PRODUTOS
-
             </button>
           </Link>
           <Link to="/customer/orders">
@@ -28,7 +27,6 @@ const Header = () => {
               className="btn-navbar btn-2"
             >
               MEUS PEDIDOS
-
             </button>
           </Link>
         </section>
@@ -45,7 +43,6 @@ const Header = () => {
             className="btn-navbar btn-2"
           >
             GERENCIAR USUÁRIOS
-
           </button>
           {/* </Link> */}
         </section>
@@ -60,9 +57,7 @@ const Header = () => {
           className="btn-navbar btn-2"
         >
           PEDIDOS
-
         </button>
-        {/* </Link> */}
       </section>
     );
   };

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Redirect } from 'react-router';
 import { Switch, Route } from 'react-router-dom';
-import Login from './common/pages/Login';
-import Register from './common/pages/Register';
+import Login from './common/pages/login/Login';
+import Register from './common/pages/register/Register';
 
 import './App.css';
 import Products from './common/pages/products/Products';

@@ -1,8 +1,8 @@
 // container de detalhes do pedido
 import React from 'react';
 import Proptypes from 'prop-types';
-import { Context } from '../provider/Provider';
-import addZeroes from '../helper/functions/addZeroes';
+import { Context } from '../../../provider/Provider';
+import addZeroes from '../../../helper/functions/addZeroes';
 
 function CheckoutProduct({ order, index }) {
   const { name, price, quantity } = order;
