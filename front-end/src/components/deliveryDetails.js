@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
@@ -67,49 +68,51 @@ export default function DeliveryDetails() {
   };
 
   return (
-    <form>
-      <h2>Detalhes e endereço para entrega</h2>
-      <label htmlFor="seller">
-        Pessoa Vendedora Responsável:
-        <select
-          id="seller"
-          name="seller"
-          type="text"
-          required
-          data-testid="customer_checkout__select-seller"
-          onClick={ ({ target: t }) => {
-            console.log(t.value);
-            updateState(t.name, Number(t.value));
-          } }
-        >
-          <option>Selecionar vendedor</option>
-          {sellers.map(({ name, id }) => (
-            <option key={ name } value={ id }>{name}</option>
-          ))}
-        </select>
-      </label>
-      <label htmlFor="address">
-        Endereço:
-        <input
-          id="address"
-          name="address"
-          type="text"
-          required
-          data-testid="customer_checkout__input-address"
-          onChange={ ({ target: t }) => { updateState(t.name, t.value); } }
-        />
-      </label>
-      <label htmlFor="address-number">
-        Número:
-        <input
-          id="address-number"
-          name="number"
-          type="number"
-          data-testid="customer_checkout__input-addressNumber"
-          required
-          onChange={ ({ target: t }) => { updateState(t.name, t.value); } }
-        />
-      </label>
+    <form className="m-20">
+      <h2 className="inline-block py-2 text-3xl border-b-2 border-yellow-color">Detalhes e endereço para entrega</h2>
+      <div className="flex mt-10">
+        <label className="flex flex-col" htmlFor="seller">
+          Pessoa Vendedora Responsável:
+          <select
+            id="seller"
+            name="seller"
+            type="text"
+            required
+            data-testid="customer_checkout__select-seller"
+            onClick={ ({ target: t }) => {
+              console.log(t.value);
+              updateState(t.name, Number(t.value));
+            } }
+          >
+            <option>Selecionar vendedor</option>
+            {sellers.map(({ name, id }) => (
+              <option key={ name } value={ id }>{name}</option>
+            ))}
+          </select>
+        </label>
+        <label htmlFor="address">
+          Endereço:
+          <input
+            id="address"
+            name="address"
+            type="text"
+            required
+            data-testid="customer_checkout__input-address"
+            onChange={ ({ target: t }) => { updateState(t.name, t.value); } }
+          />
+        </label>
+        <label htmlFor="address-number">
+          Número:
+          <input
+            id="address-number"
+            name="number"
+            type="number"
+            data-testid="customer_checkout__input-addressNumber"
+            required
+            onChange={ ({ target: t }) => { updateState(t.name, t.value); } }
+          />
+        </label>
+      </div>
       <button
         type="button"
         data-testid="customer_checkout__button-submit-order"

@@ -6,10 +6,10 @@ import DeliveryDetails from '../components/deliveryDetails';
 
 export default function Checkout() {
   return (
-    <>
+    <div>
       <NavBar isCustomer nameButtonOrder="Meus Pedidos" linkOrder="/customer/orders" />
       <OrderCheckout />
       <DeliveryDetails />
-    </>
+    </div>
   );
 }
