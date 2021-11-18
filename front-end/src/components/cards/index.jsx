@@ -18,22 +18,8 @@ function CardsProducts() {
 
   // console.log(inputQuantity);
   useEffect(() => {
-    async function apiRequest() {
-      const response = await apiGetAllProducts() || [];
-      const newResponse = response.map((value) => ({
-        ...value,
-        quantity: 0,
-      }));
-      // const valueQuantity = newResponse.map((value) => ({
-      //   name: value.name,
-      //   quantity: Number(value.quantity),
-      //   price: value.price,
-      // }));
-      setDataProducts(newResponse);
-      // setInputQuantity(valueQuantity);
-    }
-    apiRequest();
-  }, []);
+    setOnLocalStorage('cart', cartProduct);
+  }, [cartProduct]);
 
   function handleOnClick(index, event) {
     const { id } = event.target;
