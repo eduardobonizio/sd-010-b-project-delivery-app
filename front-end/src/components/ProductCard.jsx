@@ -3,7 +3,6 @@ import { ButtonUnstyled } from '@mui/core';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Box } from '@mui/system';
-// import Chip from '@mui/material/Chip';
 
 function ProductCard({ name, value, image, price, id }) {
   const [quantity, setQuantity] = useState(0);
@@ -49,15 +48,13 @@ function ProductCard({ name, value, image, price, id }) {
           >
             -
           </ButtonUnstyled>
+
           <input
             data-testid={ `customer_products__input-card-quantity-${id}` }
             value={ quantity }
+            className="customer_products__input-card-quantity"
           />
-          {/* <Chip
-            data-testid={ `customer_products__input-card-quantity-${id}` }
-            label={ quantity }
-            variant="outlined"
-          /> */}
+
           <ButtonUnstyled
             data-testid={ `customer_products__button-card-add-item-${id}` }
             onClick={ () => setQuantity(quantity + 1) }

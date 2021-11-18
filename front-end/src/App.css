@@ -23,19 +23,8 @@
   max-height: 80vh;
 }
 
-@keyframes shake {
-
-  0% {
-    transform: rotate(5deg);
-  }
-
-  50% {
-    transform: rotate(-5deg);
-  }
-
-  100% {
-    transform: rotate(5deg);
-  }
+.customer_products__input-card-quantity {
+  width: 10%;
 }
 
 @keyframes clink {
