@@ -3,19 +3,17 @@ import { Context } from '../contexts/createContext';
 import { getSellers } from '../services/api';
 
 export default function ListItemCheckout() {
-
   const { products, setProducts, total, setTotal } = useContext(Context);
- const [ productsList, setProductsList ] = useState([])
+  const [productsList, setProductsList] = useState([]);
 
-  // const [total, setTotal] = useState([]);
   const [sellers, setSellers] = useState([]);
 
   function itemTotal(Valor, Quantity) {
     const result = Valor * Quantity;
     return result;
   }
+
   useEffect(() => {
-    setProductsList(products)
     getSellers()
       .then(({ data }) => {
         data.forEach((seller) => {
@@ -24,74 +22,103 @@ export default function ListItemCheckout() {
       });
   }, []);
 
-  function orderTotal() {
- return productsList.filter((product) =>product.quant > 0
-).reduce((acc, {price})=> acc+parseInt(price),0)
-  }
+  useEffect(() => {
+    setProductsList(products.filter(({ quant }) => quant > 0));
+  }, [products]);
+
+  // function orderTotal() {
+  //   return productsList.filter((product) => product.quant > 0)
+  //     .reduce((acc, { price }) => acc + parseInt(price), 0);
+  // }
 
   return (
     <>
       <p>Finalizar Pedido:</p>
-      {productsList.filter((product) =>product.quant > 0
-      ).map((product, i) => {
-        const { id, name, price, quant} = product
+      <ul>
+        <li>
+          <span>
+            Item
+          </span>
+          <span>
+            Descrição
+          </span>
+          <span>
+            Quantidade
+          </span>
+          <span>
+            Valor Unitário
+          </span>
+          <span>
+            Sub-Total
+          </span>
+          <span>
+            Remover Item
+          </span>
+        </li>
+      </ul>
+      {productsList.map((product, i) => {
+        const { id, name, price, quant } = product;
         return (
-        <ul key={ i }>
-          <li>
-            <span
-              key={ id }
-              className="itemId"
-              data-testid={ `customer_checkout__element-order-table-item-number-${id}` }
-            >
-              {id}
-            </span>
-            <span
-              className="itemName"
-              data-testid={ `customer_checkout__element-order-table-name-${id}` }
-            >
-              {name}
-            </span>
-            <span
-              className="itemQuantity"
-              data-testid={ `cutomer_checkout__element-order-table-quantity-${id}` }
-            >
-              {quant}
-            </span>
-            <span
-              className="unitPrice"
-              data-testid={ `customer_checkout__element-order-table-unit-price-${id}` }
-            >
-              R$ :
-              {price}
-            </span>
-            <span
-              className="subtotalPrice"
-              data-testid={ `customer_checkout__element-order-table-sub-total-${id}` }
-            >
-              R$:
-              {itemTotal(price, quant)}
-            </span>
-            <button
-              className="removeItem"
-              data-testid={ `customer_checkout__element-order-table-remove-${id}` }
-              type="submit"
-              onClick={ (id) => { products.splice(id, 1, { ...product, quant: 0})
-              return setProducts(products);
-            }}
-            >
-              Remover
-            </button>
-          </li>
-        </ul>
-      )})}
+          <ul key={ i }>
+            <li>
+              <span
+                key={ id }
+                className="itemId"
+                data-testid={ `customer_checkout__element-order-table-item-number-${id}` }
+              >
+                {id}
+              </span>
+              <span
+                className="itemName"
+                data-testid={ `customer_checkout__element-order-table-name-${id}` }
+              >
+                {name}
+              </span>
+              <span
+                className="itemQuantity"
+                data-testid={ `cutomer_checkout__element-order-table-quantity-${id}` }
+              >
+                {quant}
+              </span>
+              <span
+                className="unitPrice"
+                data-testid={ `customer_checkout__element-order-table-unit-price-${id}` }
+              >
+                R$ :
+                {price}
+              </span>
+              <span
+                className="subtotalPrice"
+                data-testid={ `customer_checkout__element-order-table-sub-total-${id}` }
+              >
+                R$:
+                {itemTotal(price, quant)}
+              </span>
+              <button
+                className="removeItem"
+                data-testid={ `customer_checkout__element-order-table-remove-${id}` }
+                type="submit"
+                onClick={ () => {
+                  const valorFinal = itemTotal(product.price, product.quant);
+                  setTotal(total - valorFinal);
+                  const newProduct = products.map((element) => (
+                    element === product ? { ...element, quant: 0 } : element));
+                  setProducts(newProduct);
+                } }
+              >
+                Remover
+              </button>
+            </li>
+          </ul>
+        );
+      })}
 
       <div
         className="orderTotal"
         data-testid="customer_checkout__element-order-total-price"
       >
         Total: R$
-    {/* {orderTotal()} */}
-    {total}
+        {total}
       </div>
       <form>
         <p>Detalhes e Endereço para Entrega</p>
