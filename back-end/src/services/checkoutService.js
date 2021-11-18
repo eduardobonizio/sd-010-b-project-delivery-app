@@ -18,9 +18,7 @@ const createSale = async (body, user_id) => {
   return { status: 201, data: { id, sale_date }};
 };
 
-
 const getSaleById = async (id) => {
-  
   const data = await Sale.findOne({ 
     where: { id },
     include: [
