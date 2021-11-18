@@ -23,9 +23,7 @@ function DetailsAddress() {
   };
 
   const sendOrder = async () => {
-    // fetch no createSale
     const { token } = getFromLocalStorage('user');
-    // Falta o seller_id
     const saleData = {
       seller_id: sellerId,
       total_price: totalPrice.replace(',', '.'),
@@ -33,7 +31,6 @@ function DetailsAddress() {
       delivery_number: number,
       status: 'pendente' };
     await createSale(saleData, token);
-    // enviar para o bd: seller_id, total_price address number status
   };
 
   return (

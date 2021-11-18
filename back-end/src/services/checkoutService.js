@@ -1,7 +1,6 @@
 const { Sale, User } = require('../database/models');
 
 const createSale = async (body, user_id) => {
-  console.log(body);
   const { seller_id, total_price, delivery_address, delivery_number, status } = body;
   const dateNow = new Date();
   
