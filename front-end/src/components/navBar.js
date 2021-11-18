@@ -17,7 +17,7 @@ export default function NavBar({ isCustomer, nameButtonOrder, linkOrder }) {
   }, []);
 
   return (
-    <nav className="z-20 flex justify-between items-center text-xl fixed bg-white mb-15 max-w-full min-w-full font-medium shadow-md">
+    <nav className="z-20 flex justify-between items-center text-xl fixed bg-white mb-15 max-w-full min-w-full font-medium shadow-md top-0">
       <div className="relative flex items-center justify-between mx-10 h-16">
         <img className="cursor-pointer w-52" src="/logo.svg" alt="Imagem da logo" />
       </div>
