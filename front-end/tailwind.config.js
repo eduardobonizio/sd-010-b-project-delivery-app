@@ -22,6 +22,9 @@ module.exports = {
       },
       animation: {
         'bounce-slow': 'bounce 1s linear infinite',
+      },
+      minWidth: {
+        'width-li': '80%',
       } },
   },
   variants: {
