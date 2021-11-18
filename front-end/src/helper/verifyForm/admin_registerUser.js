@@ -30,13 +30,15 @@ export const validateIfFieldsAreCorrect = (data) => {
   if (name.length < nameLess) {
     errorArr.push(INVALID_NAME);
   }
-  if (password < less) {
+  if (password.length < less) {
     errorArr.push(INVALID_PASSWORD);
   }
   if (!email.match(mailFormat)) {
     errorArr.push(INVALID_EMAIL);
   }
-  if (errorArr[0] !== true) return errorArr;
+  console.log(errorArr, 'error arr');
+
+  if (errorArr.length > 1) return errorArr;
 
   return true;
 };

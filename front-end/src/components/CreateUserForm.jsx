@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import CreateUserFormErrorMessages from './CreateUserFormErrorMessages';
+import Batata from './CreateUserFormErrorMessages';
 
 const defaultUser = {
   name: '',
@@ -10,9 +10,9 @@ const defaultUser = {
 
 const CreateUserForm = () => {
   const [user, setUser] = useState(defaultUser);
-
+  const [errors, setErrors] = useState([]);
+  console.log(errors, 'errors');
   const handleChange = ({ target: { value, id } }) => {
-    console.log(value, id);
     setUser({ ...user, [id]: value });
   };
 
@@ -60,12 +60,16 @@ const CreateUserForm = () => {
         <button
           type="button"
           data-testid="admin_manage__button-register"
+          disabled={ errors.length > 0 }
         >
           CADASTRAR
-
         </button>
       </form>
-      <CreateUserFormErrorMessages user={ user } />
+      <Batata
+        user={ user }
+        errors={ errors }
+        setErrors={ setErrors }
+      />
     </section>
 
   );

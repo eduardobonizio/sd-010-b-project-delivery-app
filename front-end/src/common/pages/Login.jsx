@@ -27,6 +27,15 @@ export default function Login() {
     }
   };
 
+  const handleLocalStorage = (userRole, userName, userEmail, key) => {
+    localStorage.setItem('user', JSON.stringify({
+      name: userName,
+      email: userEmail,
+      role: userRole,
+      token: key,
+    }));
+  };
+
   const login = async () => {
     setLoginError(false);
     await axios({
@@ -37,7 +46,7 @@ export default function Login() {
         password,
       },
     })
-      .then(({ data: userRole }) => {
+      .then(({ data: { userRole, userName, userEmail, key } }) => {
         switch (true) {
         case (userRole === 'administrator'):
           setRedirectPage('/admin/manage');
@@ -48,9 +57,13 @@ export default function Login() {
         default:
           setRedirectPage('/customer/products');
         }
+        handleLocalStorage(userRole, userName, userEmail, key);
         setUserLogged(true);
       })
-      .catch(() => setLoginError(true));
+      .catch((e) => {
+        console.log(e);
+        setLoginError(true);
+      });
   };
 
   useEffect(validationEmailPwd, [email, password]);
