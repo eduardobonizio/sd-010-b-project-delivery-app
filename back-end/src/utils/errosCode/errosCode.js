@@ -40,4 +40,9 @@ module.exports = {
     status: httpStatus.NOT_FOUND,
     message: 'Incorrect format',
   },
+
+  unauthorizedEntries: {
+    status: httpStatus.UNAUTHORIZED,
+    message: 'Admin required',
+  },
 };

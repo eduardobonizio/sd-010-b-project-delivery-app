@@ -9,7 +9,7 @@ export const login = async (body) => axios.post('http://localhost:3001/login', b
   .then(({ data }) => data)
   .catch((err) => err.response.data);
 
-export const register = async (body) => axios.post('http://localhost:3001/register', body)
+export const register = async (body) => axios.post('http://localhost:3001/register/customer', body)
   .then(({ data }) => data)
   .catch((err) => err.response.data);
 
