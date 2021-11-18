@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-
 // https://pt.stackoverflow.com/q/365296/207241
 
 const APIPOST = axios.create({
