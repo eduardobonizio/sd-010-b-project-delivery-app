@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-max-depth */
+/* eslint-disable max-len */
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -28,24 +30,36 @@ export default function CustomerDetailOrder() {
   return (
     <div>
       <NavBar isCustomer nameButtonOrder="Meus Pedidos" linkOrder="/customer/orders" />
-      <p>Detalhe do pedido</p>
-      {sale.length !== 0 && (
-        <OrderNavBar
-          type="customer"
-          order={ { ...sale[0], sellerName: sale[2].name } }
-        />)}
+      <div className="m-20">
+        <h1 className="text-3xl border-b-2 border-yellow-color inline-block py-2">Detalhe do pedido</h1>
+        <div className="border mt-10 p-10 rounded-3xl shadow-md flex flex-col">
 
-      {sale.length !== 0 && (
-        <TableProducts
-          type="customer"
-          products={ sale }
-        />)}
-      {sale.length !== 0 && (
-        <p
-          data-testid="customer_order_details__element-order-total-price"
-        >
-          {sale[0].totalPrice && sale[0].totalPrice.replace('.', ',')}
-        </p>)}
+          {sale.length !== 0 && (
+            <OrderNavBar
+              type="customer"
+              order={ { ...sale[0], sellerName: sale[2].name } }
+            />)}
+
+          {sale.length !== 0 && (
+            <TableProducts
+              type="customer"
+              products={ sale }
+            />)}
+          {sale.length !== 0 && (
+            <div
+              className="bg-yellow-color self-end mt-10 py-2 px-8 rounded-md font-medium text-xl"
+              data-testid="customer_order_details__element-order-total-price"
+            >
+              Total: R$
+              <span
+                className="ml-1"
+                data-testid="customer_order_details__element-order-total-price"
+              >
+                {sale[0].totalPrice && sale[0].totalPrice.replace('.', ',')}
+              </span>
+            </div>)}
+        </div>
+      </div>
     </div>
   );
 }
