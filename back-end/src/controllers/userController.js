@@ -22,7 +22,6 @@ const getUserByEmail = async (req, res) => {
     const jwtConfig = { expiresIn: '1h', algorithm: 'HS256' };
     const token = jwt.sign({ data: result.dataValues }, secret, jwtConfig);
     const { password: dbPassword } = result;
-    console.log(dbPassword, md5(password));
     if (md5(password) === dbPassword) {
       delete result.dataValues.password;
       delete result.dataValues.id;

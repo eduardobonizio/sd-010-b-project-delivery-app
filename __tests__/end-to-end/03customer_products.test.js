@@ -77,7 +77,7 @@ describe(requirement(12), () => {
 });
 
 describe(requirement(13), () => {
-  test("O avaliador testará se o local storage contém os dados da pessoa usuária", async () => {
+  test.only("O avaliador testará se o local storage contém os dados da pessoa usuária", async () => {
     const { name, email } = user.customer();
 
     expect((await localStorage(page, "user")).name).toEqual(name);
@@ -85,7 +85,7 @@ describe(requirement(13), () => {
     expect((await localStorage(page, "user")).role).toEqual("customer");
   });
 
-  test("O avaliador testará se o nome do usuário, contido no local storage, também está na navbar", async () => {
+  test.only("O avaliador testará se o nome do usuário, contido no local storage, também está na navbar", async () => {
     await expect(page).toGetTextFromElement(
       customerProductsPage.element.navbar.userFullName,
       (
@@ -94,13 +94,13 @@ describe(requirement(13), () => {
     );
   });
 
-  test("O avaliador testará se o local storage contém um token válido", async () => {
+  test.only("O avaliador testará se o local storage contém um token válido", async () => {
     expect(
       !!jwt.verify((await localStorage(page, "user")).token, jwtKey)
     ).toEqual(true);
   });
 
-  test("O avaliador testará se o logout limpa os dados da pessoa usuária local storage", async () => {
+  test.only("O avaliador testará se o logout limpa os dados da pessoa usuária local storage", async () => {
     await expect(page).toClickOnElement({ selector: customerProductsPage.element.navbar.links.logout });
     await expect(page).toCompareURL(`${host}/login`);
     expect((await localStorage(page, "user"))).toBeUndefined();

@@ -35,12 +35,12 @@ const renderTabByuserRole = (userRole, history) => {
     );
   }
 };
-function NavBar({ username, userRole }) {
+function NavBar({ userRole }) {
   const [tabsValue, setTabsValue] = useState(0);
 
   const location = useLocation();
   const history = useHistory();
-
+  const username = JSON.parse(localStorage.getItem('user')).name;
   useEffect(() => {
     if (userRole === 'customer') {
       if (location.pathname === '/customer/products') setTabsValue(0);
@@ -53,6 +53,10 @@ function NavBar({ username, userRole }) {
     setTabsValue(newValue);
   };
 
+  const onLogout = () => {
+    localStorage.clear();
+    history.push('/');
+  };
   return (
     <Stack
       direction="row"
@@ -75,6 +79,7 @@ function NavBar({ username, userRole }) {
           <Button
             variant="contained"
             data-testid="customer_products__element-navbar-link-logout"
+            onClick={ onLogout }
           >
             Sair
           </Button>
@@ -85,7 +90,6 @@ function NavBar({ username, userRole }) {
 }
 
 NavBar.propTypes = {
-  username: PropTypes.string.isRequired,
   userRole: PropTypes.string.isRequired,
 };
 

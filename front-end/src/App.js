@@ -26,7 +26,7 @@ function App() {
       (element) => element === location.pathname,
     );
     return shouldRenderNavBar
-      ? <NavBar username="<username>" userRole={ userRole } />
+      ? <NavBar userRole={ userRole } />
       : null;
   };
 

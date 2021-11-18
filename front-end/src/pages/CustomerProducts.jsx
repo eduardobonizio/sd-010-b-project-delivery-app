@@ -20,17 +20,14 @@ const CustomerProducts = () => {
   return isLoading
     ? <span>Carregando...</span> : (
       <div>
-        {products.map(({ name, id, price, url_image: image }) => {
-          console.log(id, price, image);
-          return (<ProductCard
-            key={ id }
-            id={ id }
-            price={ `${price.replace('.', ',')}` }
-            image={ image }
-            name={ name }
-          />
-          );
-        })}
+        {products.map(({ name, id, price, url_image: image }) => (<ProductCard
+          key={ id }
+          id={ id }
+          price={ `${price.replace('.', ',')}` }
+          image={ image }
+          name={ name }
+        />
+        ))}
 
         <h1>Customer Products</h1>
 
