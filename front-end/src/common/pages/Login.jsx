@@ -43,6 +43,7 @@ export default function Login() {
           setRedirectPage('/admin/manage');
           break;
         case (userRole === 'seller'):
+
           setRedirectPage('/seller/orders');
           break;
         default:
