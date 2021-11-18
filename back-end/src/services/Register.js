@@ -23,9 +23,10 @@ const createUserCustomer = async ({ name, email, password }) => {
   return ({ status: httpStatus.CREATED, data });
 };
 
-const createUserAdmin = async ({ name, email, password, role }, userInfo) => {
-  await validations.createUserAdmin(name, email, password, role, userInfo);
-
+const createUserAdmin = async (newUserInfo, admInfo) => {
+  await validations.createUserAdmin(newUserInfo, admInfo);
+  
+  const { name, email, password, role } = admInfo;
   const newUser = await User.create({ name, email, password: md5(password), role });
 
   const data = [{ 

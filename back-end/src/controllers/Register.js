@@ -8,5 +8,5 @@ const createUserAdmin = async (req, res) => registerService.createUserAdmin(req.
 
 module.exports = {
   createUserCustomer,
-  createUserAdmin
+  createUserAdmin,
 };

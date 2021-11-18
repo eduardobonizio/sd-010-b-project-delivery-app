@@ -8,12 +8,13 @@ const createUserCustomer = async (name, email, password) => {
   await user.confirmUser(name, email);
 };
 
-const createUserAdmin = async (name, email, password, role, userInfo) => {
+const createUserAdmin = async (newUserInfo, admInfo) => {
+  const { name, email, password, role } = newUserInfo;
   user.validateName(name);
   user.validateEmail(email);
   user.validatePassword(password);
   user.validateRole(role);
-  user.validateUserInfo(userInfo);
+  user.validateUserInfo(admInfo);
   await user.confirmUser(name, email);
 };
 
