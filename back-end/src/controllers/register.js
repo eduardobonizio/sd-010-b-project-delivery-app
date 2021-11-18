@@ -1,10 +1,13 @@
 const md5 = require('md5');
 const express = require('express');
 const jwt = require('jsonwebtoken');
-require('dotenv/config');
+const fs = require('fs');
+const path = require('path');
 const { User } = require('../models');
 
-const secret = process.env.JWT_SECRET;
+const caminho = path.join(__dirname, '../../jwt.evaluation.key');
+console.log(caminho);
+const secret = fs.readFileSync(caminho).toString();
 
 const jwtConfig = {
   expiresIn: '2h',

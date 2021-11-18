@@ -1,15 +1,16 @@
 const express = require('express');
 const md5 = require('md5');
 const jwt = require('jsonwebtoken');
+const fs = require('fs');
+const path = require('path');
 const { User } = require('../models');
-require('dotenv/config');
 
-const secret = process.env.JWT_SECRET;
+const caminho = path.join(__dirname, '../../jwt.evaluation.key');
+console.log(caminho);
+const secret = fs.readFileSync(caminho).toString();
+console.log(secret); 
 
-const jwtConfig = {
-  expiresIn: '2h',
-  algorithm: 'HS256',
-};
+const jwtConfig = { expiresIn: '2h', algorithm: 'HS256' };
 
 const router = express.Router();
 
@@ -32,7 +33,7 @@ router.post('/', async (req, res) => {
     return res.status(404).json({ message: 'User not found' });
   } catch (e) {
     return res.status(404).json({ message: 'User not found' });
-    console.log(e);
+    // console.log(e);
   }
 });
 
