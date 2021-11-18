@@ -1,4 +1,4 @@
-const { Sale, User } = require('../database/models');
+const { Sale, User, Product } = require('../database/models');
 
 const createSale = async (body, user_id) => {
   // DÚVIDA userId e sellerID.
@@ -24,12 +24,12 @@ const getSaleById = async (id) => {
   const data = await Sale.findOne({ 
     where: { id },
     include: [
-      {model: User, as: 'user'},
-      {model: User, as: 'seller'}
-    ]
+      { model: User, as: 'user', attributes:{ exclude: ['email', 'password'] } },
+      { model: User, as: 'seller', attributes:{ exclude: ['email', 'password'] } },
+      { model: Product, as: 'productsSold', through: { attributes: [] } }
+    ],
+    attributes:{ exclude: ['user_id', 'seller_id'] }
   });
-  
-  console.log(data);
   
   if(!data) return { status: 404, data: { message: 'Venda não encontrada'}}
 
