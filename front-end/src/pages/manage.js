@@ -9,8 +9,9 @@ function ManagePage() {
   const [userName, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [type, setType] = useState('Vendedor');
+  const [type, setType] = useState('seller');
   const [button, setButton] = useState(true);
+  const [token, setToken] = useState('');
   const minPasswordLength = 6;
   const minNameLength = 12;
 
@@ -34,20 +35,23 @@ function ManagePage() {
     if (name === 'password') setPassword(value);
     if (name === 'type') setType(value);
 
-    console.log(value);
+    console.log(name, value);
 
     validateLogin();
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const result = await create({ name: userName, email, password, role: type });
+    const result = await create(
+      { token }, { name: userName, email, password, role: type },
+    );
     return result;
   };
 
   useEffect(() => {
     validateLogin();
-    console.log(type);
+    const user = JSON.parse(localStorage.getItem('user'));
+    setToken(user.token);
   }, [userName, email, type, password, validateLogin]);
 
   const userInfo = JSON.parse(localStorage.getItem('user'));
@@ -101,9 +105,9 @@ function ManagePage() {
             data-testid="admin_manage__select-role"
             onChange={ handleChange }
           >
-            <option value="vendedor">Vendedor</option>
-            <option value="cliente">Cliente</option>
-            <option value="adm">Administrador</option>
+            <option value="seller">Vendedor</option>
+            <option value="customer">Cliente</option>
+            <option value="administrator">Administrador</option>
           </select>
         </label>
         <button
@@ -114,6 +118,7 @@ function ManagePage() {
           Cadastrar
         </button>
       </form>
+      <p data-testid="admin_manage__element-invalid-register">erro</p>
     </div>
   );
 }
