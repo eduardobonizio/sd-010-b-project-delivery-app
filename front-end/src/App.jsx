@@ -14,7 +14,6 @@ import './App.css';
 function App() {
   return (
     <Switch>
-      <Route exact path="/" render={ () => <Redirect to="/login" /> } />
       <Route path="/login" component={ Login } />
       <Route path="/register" component={ Register } />
       <Route path="/customer/products" component={ Produtos } />
@@ -22,6 +21,7 @@ function App() {
       <Route path="/customer/checkout" component={ Checkout } />
       <Route path="/customer/orders/:idVenda" component={ OrderDetails } />
       <Route path="/page404" component={ Page404 } />
+      <Route path="/" render={ () => <Redirect to="/login" /> } />
     </Switch>
   );
 }
