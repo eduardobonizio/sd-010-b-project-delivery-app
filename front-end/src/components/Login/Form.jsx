@@ -109,6 +109,7 @@ function LoginForm() {
           <Form.Item shouldUpdate style={ { textAlign: 'center', marginBottom: 0 } }>
             {() => (
               <Button
+                style={ { backgroundColor: '#036b52' } }
                 data-testid="common_login__button-login"
                 block
                 shape="round"
