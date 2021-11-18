@@ -10,6 +10,7 @@ function Login() {
   const [password, setPassword] = useState('');
   const [button, setButton] = useState(true);
   const [token, setToken] = useState('');
+  const [role, setRole] = useState('');
   const minPasswordLength = 6;
 
   const loginSchema = Joi.object({
@@ -35,9 +36,17 @@ function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const logged = await loginUser({ email: login, password });
+    setRole(logged.data.role);
     localStorage.setItem('user', JSON.stringify(logged.data));
     localStorage.setItem('carrinho', JSON.stringify({}));
-    if (logged.data.token) setToken(logged.data.token);
+    // if (logged.data.token) setToken(logged.data.token);
+    setToken(logged.data.token);
+  };
+
+  const redirect = (roles) => {
+    if (roles === 'customer') return '/customer/products';
+    if (roles === 'seller') return '/seller/orders';
+    if (roles === 'administrator') return '/admin/manage';
   };
 
   useEffect(() => {
@@ -89,7 +98,7 @@ function Login() {
           </button>
         </Link>
         {token !== ''
-          ? <Redirect to={ { pathname: '/customer/products', state: token } } /> : null}
+          ? <Redirect to={ { pathname: redirect(role), state: token } } /> : null}
         <p id="error-msg" data-testid="common_login__element-invalid-email">erro</p>
       </form>
     </div>

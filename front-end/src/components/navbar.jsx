@@ -61,7 +61,7 @@ function Navbar(props) {
 
   const verifyUserRole = () => {
     if (role === 'customer') return renderCustomer();
-    if (role === 'admin') return renderAdmin();
+    if (role === 'administrator') return renderAdmin();
     if (role === 'seller') return renderSeller();
   };
 
