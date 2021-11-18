@@ -8,7 +8,7 @@ import ProductsContext from '../context/productContext';
 
 const INC_VALUE = 1;
 const DES_VALUE = -1;
-const AOS_DEFAULT_DELAY = 100;
+const AOS_DEFAULT_DELAY = 150;
 
 function DrinkCard({ product }) {
   const { id, name, price, url_image: urlImage } = product;
