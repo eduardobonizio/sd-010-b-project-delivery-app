@@ -7,15 +7,20 @@ import { getFromLocalStorage } from '../services/helpers/servicesLocalStorage';
 import * as C from '../styles/Table';
 // import * as P from '../styles/PageOrderDetails';
 
-// Definição dos IDs
+// Definição de constantes
 const ID_ORDER = 'customer_order_details__element-order-details-label-order-id';
 const NAME_SELLER = 'customer_order_details__element-order-details-label-seller-name';
 const ORDER_DATE = 'customer_order_details__element-order-details-label-order-date';
 const STATUS = 'customer_order_details__element-order-details-label-delivery-status';
 const CHECK_STAUS = 'customer_order_details__button-delivery-check';
+const DEFAULT_DATA_PRODUCTS = {
+  seller: { name: '' },
+  productsSold: [],
+  user: { name: '' },
+};
 
 function OrderDetails() {
-  const [productsDetails, setProductsDetails] = useState({});
+  const [productsDetails, setProductsDetails] = useState(DEFAULT_DATA_PRODUCTS);
   const { idVenda } = useParams();
   const { token } = getFromLocalStorage('user');
 
@@ -48,17 +53,19 @@ function OrderDetails() {
       <div>
         <div className="pedito-id">
           <span>pedido:</span>
-          <span data-testid={ ID_ORDER }> ID </span>
+          <span data-testid={ ID_ORDER }>{ productsDetails.id }</span>
         </div>
         <div className="pessoa-vendedora">
           <span>Vendedor:</span>
-          <span data-testid={ NAME_SELLER }> Name </span>
+          <span data-testid={ NAME_SELLER }>
+            { productsDetails.seller.name }
+          </span>
         </div>
         <div className="pedido-data">
-          <span data-testid={ ORDER_DATE }> data da venda </span>
+          <span data-testid={ ORDER_DATE }>{ productsDetails.sale_date }</span>
         </div>
         <div className="pedido-status">
-          <span data-testid={ STATUS }> status </span>
+          <span data-testid={ STATUS }>{ productsDetails.status }</span>
         </div>
         <div className="button-check-status">
           <button
