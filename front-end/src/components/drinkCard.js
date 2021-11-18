@@ -1,5 +1,8 @@
+/* eslint-disable react/jsx-max-depth */
+/* eslint-disable max-len */
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { AiFillMinusSquare, AiFillPlusSquare } from 'react-icons/ai';
 
 import ProductsContext from '../context/productContext';
 
@@ -24,40 +27,56 @@ function DrinkCard({ product }) {
   }, [quantity]);
 
   return (
-    <div>
-      <span data-testid={ `customer_products__element-card-price-${id}` }>
-        {price.replace('.', ',')}
-      </span>
+    <div className=" border-4 rounded-3xl border-black flex flex-col mx-8 my-8 shadow-sm items-center w-72 box-border">
+      <div className="my-4 mx-4 bg-yellow-color flex flex-row self-start px-4 py-2 rounded-lg">
+        R$
+        <div data-testid={ `customer_products__element-card-price-${id}` }>
+          {price.replace('.', ',')}
+        </div>
+
+      </div>
       <img
+        className="h-48"
         src={ urlImage }
         alt={ `Foto do produto ${name}` }
         data-testid={ `customer_products__img-card-bg-image-${id}` }
       />
-      <span data-testid={ `customer_products__element-card-title-${id}` }>
-        {name}
-      </span>
-      <button
-        type="button"
-        onClick={ () => { updateQuantity(DES_VALUE); } }
-        data-testid={ `customer_products__button-card-rm-item-${id}` }
-      >
-        -
-      </button>
-      <input
-        type="number"
-        value={ quantity }
-        min="0"
-        onChange={ ({ target }) => setQuantity(Number(target.value)) }
-        data-testid={ `customer_products__input-card-quantity-${id}` }
-      />
+      <div className="flex flex-col  items-center bg-yellow-color rounded-2xl py-6 w-full">
+        <span
+          className="mb-4"
+          data-testid={ `customer_products__element-card-title-${id}` }
+        >
+          {name}
+        </span>
+        <div className="flex flex-row justify-center">
 
-      <button
-        type="button"
-        onClick={ () => { updateQuantity(INC_VALUE); } }
-        data-testid={ `customer_products__button-card-add-item-${id}` }
-      >
-        +
-      </button>
+          <button
+            className="text-4xl"
+            type="button"
+            onClick={ () => { updateQuantity(DES_VALUE); } }
+            data-testid={ `customer_products__button-card-rm-item-${id}` }
+          >
+            <AiFillMinusSquare />
+          </button>
+          <input
+            className="w-1/5 text-center bg-yellow-color text-2xl"
+            type="number"
+            value={ quantity }
+            min="0"
+            onChange={ ({ target }) => setQuantity(Number(target.value)) }
+            data-testid={ `customer_products__input-card-quantity-${id}` }
+          />
+
+          <button
+            className="text-4xl"
+            type="button"
+            onClick={ () => { updateQuantity(INC_VALUE); } }
+            data-testid={ `customer_products__button-card-add-item-${id}` }
+          >
+            <AiFillPlusSquare />
+          </button>
+        </div>
+      </div>
     </div>
 
   );
