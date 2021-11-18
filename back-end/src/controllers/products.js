@@ -4,7 +4,7 @@ const { getProducts } = require('../services/products');
 
 const productRouter = express.Router();
 
-productRouter.get('/produto', rescue(async (req, res) => {
+productRouter.get('/products', rescue(async (req, res) => {
   const products = await getProducts();
 
   return res.status(200).json(products);
