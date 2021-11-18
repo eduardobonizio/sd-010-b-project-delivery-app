@@ -3,11 +3,12 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import rockGlass from '../images/rockGlass.svg';
 import { setOnLocalStorage } from '../services/helpers/servicesLocalStorage';
-import loginService from '../services/apis/servicesLogin';
 import Context from '../context/Context';
+import { loginService } from '../services/apis/servicesLogin';
 
 function Login() {
   const history = useHistory();
+  const { setUser } = useContext(Context);
   const [disableBtn, setDisableBtn] = useState(true);
   const [hidden, setHidden] = useState(true);
   const [login, setLogin] = useState({
@@ -22,7 +23,6 @@ function Login() {
   };
 
   // utilize o contexto aqui
-  const { setUser } = useContext(Context);
 
   const validateFields = ({ email, password }) => {
     const regex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
