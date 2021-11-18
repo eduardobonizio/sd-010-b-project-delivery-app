@@ -5,8 +5,11 @@ const validToken = (req, res, next) => {
   const isValid = jwt.validateJwt(authorization);
 
   if (isValid.message) {
-    return res.status(404).json(isValid.message);
+    return res.status(isValid.status).json(isValid.message);
   }
+
+  req.userId = isValid.userId;
+
   next();
 };
 
