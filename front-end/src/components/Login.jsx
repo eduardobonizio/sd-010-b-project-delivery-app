@@ -22,6 +22,7 @@ const Login = () => {
     try {
       const { data } = await axios.post('http://localhost:3001/login', { email, password });
       localStorage.setItem('user', `${JSON.stringify(data)}`);
+      setPassword('');
       return navigate('/customer/products');
     } catch (error) {
       setIsValidPW(true);
@@ -44,7 +45,7 @@ const Login = () => {
         />
         <input
           data-testid="common_login__input-password"
-          type="text"
+          type="password"
           name="password"
           onChange={ ({ target }) => setPassword(target.value) }
           value={ password }
