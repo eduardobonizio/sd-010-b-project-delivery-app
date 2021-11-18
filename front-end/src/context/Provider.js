@@ -8,6 +8,7 @@ export default function Provider({ children }) {
   const [allProducts, setAllProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [ordersCustomer, setOrdersCustomer] = useState([]);
   const [sellers, setSellers] = useState([]);
 
   const insertCart = (eachItem) => {
@@ -40,6 +41,8 @@ export default function Provider({ children }) {
     setCart,
     insertCart,
     totalPrice,
+    ordersCustomer,
+    setOrdersCustomer,
     sellers,
     setSellers,
   };

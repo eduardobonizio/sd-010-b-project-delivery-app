@@ -3,7 +3,10 @@ const { Sale, User, Product } = require('../database/models');
 const createSale = async (body, user_id) => {
   const { seller_id, total_price, delivery_address, delivery_number, status } = body;
   const dateNow = new Date();
-  
+  // const dia  = dateNow.getDate().toString().padStart(2, '0');
+  // const mes  = (dateNow.getMonth()+1).toString().padStart(2, '0');
+  // const ano  = dateNow.getFullYear();
+  // const dateFormat = `${dia}/${mes}/${ano}`;
   // criar a venda
   const payloadSale = { 
     user_id, seller_id, total_price, delivery_address, delivery_number, sale_date: dateNow, status 

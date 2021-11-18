@@ -32,6 +32,7 @@ function DetailsAddress() {
       delivery_address: address,
       delivery_number: number,
       status: 'Pendente' };
+    console.log(saleData, token);
     const sale = await createSale(saleData, token);
     const { id } = sale;
     history.push(`/customer/orders/${id}`);

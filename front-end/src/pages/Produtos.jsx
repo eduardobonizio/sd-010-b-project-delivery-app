@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { getFromLocalStorage } from '../services/helpers/servicesLocalStorage';
-import getAllProcuts from '../services/apis/getAllProducts';
+import { getAllProcuts } from '../services/apis/getCustomer';
 import NavBar from '../components/Navbar';
 import Context from '../context/Context';
 import CardProdutos from '../components/CardProdutos';
