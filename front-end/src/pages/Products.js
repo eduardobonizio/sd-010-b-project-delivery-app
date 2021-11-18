@@ -22,10 +22,7 @@ function Products() {
   }, [dataOrder]);
   return (
     <>
-      <header>
-        <Header />
-      </header>
-
+      <Header />
       <main>
         {products.map((product, index) => (
           <Card key={ index } product={ product } />
