@@ -1,16 +1,18 @@
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Products from './pages/Products';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/register" element={ <Register /> } />
-      <Route path="/login" element={ <Login /> } />
-      <Route path="/" element={ <Navigate to="/login" /> } />
-    </Routes>
+    <Switch>
+      <Route path="/customer/products" component={ Products } />
+      <Route path="/register" component={ Register } />
+      <Route path="/login" component={ Login } />
+      <Redirect strict from="/" to="/login" />
+    </Switch>
   );
 }
 

@@ -1,23 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Col, Container, Form, Image, Row } from 'react-bootstrap';
-import { setEmail, setPassword } from '../actions';
+import axios from 'axios';
 import EmailInput from '../components/EmailInput';
 import LoginButton from '../components/LoginButton';
 import PasswordInput from '../components/PasswordInput';
 import LoginErrorMessage from '../components/LoginErrorMessage';
 import RegisterButton from '../components/RegisterButton';
 import { validateEmailFormat, validatePassword } from '../helpers/validation';
-import './Login.css';
+import './css/Login.css';
 
 function Login() {
-  const dispatch = useDispatch();
   const [email, setStateEmail] = useState('');
   const [password, setStatePassword] = useState('');
   const [disabled, setDisable] = useState(true);
   const [hideErrorMessage, setHideErrorMessage] = useState(true);
-  const navigate = useNavigate();
+  const history = useHistory();
   const emailTestId = 'common_login__input-email';
   const passwordTestId = 'common_login__input-password';
   const title = 'Login';
@@ -32,13 +30,26 @@ function Login() {
     }
   }, [email, password]);
 
-  const dispatchOnSubmit = () => {
-    dispatch(setEmail(email));
-    dispatch(setPassword(password));
+  const dispatchOnSubmit = async () => {
+    const notFound = 404;
 
-    const fail = true;
-    if (fail) return setHideErrorMessage(!hideErrorMessage);
-    return navigate('/customer/products');
+    try {
+      console.log('Início');
+      const response = await axios.post('http://localhost:3001/login', { email, password });
+      console.log(response);
+      console.log('Fim');
+      if (response.status === notFound) return setHideErrorMessage(false);
+      console.log(response.data);
+      const parsedResponse = response.data;
+      localStorage.setItem('name', parsedResponse.name);
+      localStorage.setItem('email', parsedResponse.email);
+      localStorage.setItem('role', parsedResponse.role);
+      localStorage.setItem('token', parsedResponse.token);
+      history.push('/customer/products');
+    } catch (e) {
+      console.log(e);
+      setHideErrorMessage(false);
+    }
   };
 
   return (
