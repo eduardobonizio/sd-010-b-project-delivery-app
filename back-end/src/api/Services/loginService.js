@@ -21,6 +21,7 @@ const loginUser = async (body) => {
     email: login.email,
     role: login.role,
     token,
+    id: login.id,
   };
 };
 
