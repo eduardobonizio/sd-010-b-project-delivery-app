@@ -22,7 +22,7 @@ const getSaleById = async (id) => {
     include: [
       { model: User, as: 'user', attributes:{ exclude: ['email', 'password'] } },
       { model: User, as: 'seller', attributes:{ exclude: ['email', 'password'] } },
-      { model: Product, as: 'productsSold', through: { attributes: [] } }
+      { model: Product, as: 'productsSold', through: { attributes: ['quantity'] } }
     ],
     attributes:{ exclude: ['user_id', 'seller_id'] }
   });
