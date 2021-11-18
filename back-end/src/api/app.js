@@ -8,6 +8,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+app.use(express.static('public'));
+
 const login = require('../database/controller/loginController');
 const products = require('../database/controller/productController');
 const signUp = require('../database/controller/signUpController');
