@@ -108,7 +108,7 @@ const Provider = ({ children }) => {
 };
 
 Provider.propTypes = {
-  children: PropTypes.shape.isRequired,
+  children: PropTypes.element.isRequired,
 };
 
 export { Provider, Context };
