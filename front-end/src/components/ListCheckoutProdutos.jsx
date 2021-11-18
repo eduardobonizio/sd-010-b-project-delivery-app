@@ -33,31 +33,31 @@ function ListCheckoutProdutos() {
           </tr>
         </thead>
         <tbody>
-          {cart.map((product, index) => {
+          {cart.filter((product) => product.quantity > 0).map((product, index) => {
             if (product.quantity > 0) {
               count += 1;
               return (
                 <tr key={ index }>
                   <td
-                    data-testid={ `${ITEM_NUMBER + index}` }
+                    data-testid={ `${ITEM_NUMBER}${index}` }
                   >
                     {count}
                   </td>
-                  <td data-testid={ `${TABLE_NAME + index}` }>{product.name}</td>
-                  <td data-testid={ `${TABLE_QUANTITY + index}` }>{product.quantity}</td>
+                  <td data-testid={ `${TABLE_NAME}${index}` }>{product.name}</td>
+                  <td data-testid={ `${TABLE_QUANTITY}${index}` }>{product.quantity}</td>
                   <td
-                    data-testid={ `${TABLE_PRICE + index}` }
+                    data-testid={ `${TABLE_PRICE}${index}` }
                   >
                     {product.price.replace('.', ',')}
                   </td>
                   <td
-                    data-testid={ `${TABLE_SUB_TOTAL + index}` }
+                    data-testid={ `${TABLE_SUB_TOTAL}${index}` }
                   >
-                    {product.quantity * product.price}
+                    {(product.quantity * product.price).toFixed(2).replace('.', ',')}
                   </td>
                   <td>
                     <button
-                      data-testid={ `${TABLE_REMOVE + index}` }
+                      data-testid={ `${TABLE_REMOVE}${index}` }
                       type="button"
                       onClick={ () => removeItem(product.id) }
                     >
