@@ -7,6 +7,7 @@ import { Form, Input, Button, notification } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import './loginForm.css';
 import Logincontext from '../../context/LoginContext';
+// import { setOnLocalStorage } from './localStorage';
 
 function LoginForm() {
   const history = useHistory();
@@ -24,18 +25,20 @@ function LoginForm() {
     setUserData(values);
     const { email, password } = values;
     try {
-      await axios.post('http://localhost:3001/login', {
+      const respLogin = await axios.post('http://localhost:3001/login', {
         email,
         password,
       });
-      // console.log(respLogin);
+      const { data } = respLogin;
+      console.log('data', data);
+      const keys = Object.keys(data);
+      keys.forEach((key) => localStorage.setItem(key, data[key]));
+      // setOnLocalStorage(keys);
       setRedirect(true);
     } catch (error) {
       setIsError(true);
     }
   };
-
-  // console.log(values);
 
   const openNotificationWithIcon = (type) => {
     // const resp = await axios.get('http://localhost:3001/products');
