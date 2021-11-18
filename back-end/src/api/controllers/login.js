@@ -1,6 +1,6 @@
 const rescue = require('express-rescue');
-const loginService = require('../services/login');
 const jwt = require('jsonwebtoken');
+const loginService = require('../services/login');
 require('dotenv').config();
 
 const secret = process.env.SECRET;
