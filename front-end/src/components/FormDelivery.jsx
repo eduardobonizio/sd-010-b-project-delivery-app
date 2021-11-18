@@ -74,5 +74,5 @@ export default function FormDelivery({ total }) {
 }
 
 FormDelivery.propTypes = {
-  total: PropTypes.number.isRequired,
+  total: PropTypes.string.isRequired,
 };

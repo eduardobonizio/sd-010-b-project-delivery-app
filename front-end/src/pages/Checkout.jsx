@@ -61,13 +61,16 @@ export default function Checkout() {
               >
                 {handleSubTotal(el.id).replace('.', ',')}
               </td>
-              <button type="button" onClick={ () => handleRemoveProduct(el.id) }>
-                <td
+              <td>
+                <button
                   data-testid={ `customer_checkout__element-order-table-remove-${index}` }
+                  type="button"
+                  onClick={ () => handleRemoveProduct(el.id) }
                 >
                   X
-                </td>
-              </button>
+                </button>
+
+              </td>
             </tr>
           ))}
         </tbody>
