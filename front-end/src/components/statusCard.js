@@ -34,7 +34,10 @@ export default function StatusCard({ order, type, linkDetail }) {
     });
   }, [order.id]);
   return (
-    <div className="m-10 transition duration-300 ease-in-out transform shadow-lg hover:-translate-y-1 hover:scale-105">
+    <div
+      data-aos="fade-up"
+      className="m-10 transition duration-300 ease-in-out transform shadow-lg hover:-translate-y-1 hover:scale-105"
+    >
       <Link to={ `${linkDetail}/${order.id}` }>
         <div className="flex p-2 space-x-4 text-xl border-t-8 rounded-lg border-dark-color">
           <div className="flex flex-col items-center justify-center pl-4 pr-4 bg-gray-200 border-r-2 rounded-lg">
