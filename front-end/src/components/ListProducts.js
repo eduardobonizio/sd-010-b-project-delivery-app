@@ -81,11 +81,10 @@ export default function ListProducts() {
           >
             +
           </button>
-
           <li
             data-testid={ `customer_products__element-card-price-${product.id}` }
           >
-            {product.price}
+            {product.price.replace(/\./g, ',')}
 
           </li>
         </section>
@@ -93,11 +92,15 @@ export default function ListProducts() {
       ))}
       <button
         type="button"
+        data-testid="customer_products__button-cart"
         onClick={ () => history.push('/customer/checkout') }
+        disabled={ total < 1 }
       >
-        Ver carrinho:
+        Ver no carrinho:
         {' '}
-        { `R$ ${total.toFixed(2)}` }
+        <span data-testid="customer_products__checkout-bottom-value">
+          {total.toFixed(2).replace(/\./g, ',')}
+        </span>
       </button>
     </>
 
