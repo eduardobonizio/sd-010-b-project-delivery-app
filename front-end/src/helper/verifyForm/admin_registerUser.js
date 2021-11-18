@@ -17,7 +17,6 @@ export const validateIfFieldsAreFilled = (data) => {
 
 export const validateIfFieldsAreCorrect = (data) => {
   const { name, email, password } = data;
-  console.log(data);
 
   const mailFormat = /[a-z0-9]+@[a-z]+.com/g;
   const less = 6;
@@ -28,7 +27,7 @@ export const validateIfFieldsAreCorrect = (data) => {
     errorArr.push(fields);
   }
 
-  if (name < nameLess) {
+  if (name.length < nameLess) {
     errorArr.push(INVALID_NAME);
   }
   if (password < less) {
