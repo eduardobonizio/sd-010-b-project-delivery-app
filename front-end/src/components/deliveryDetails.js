@@ -6,7 +6,7 @@ import { fetchAllSellers } from '../services/userAPI';
 import postSale from '../services/saleAPI';
 
 const initialState = {
-  seller: 1,
+  seller: 0,
   address: '',
   number: 0,
 };
@@ -14,6 +14,7 @@ const initialState = {
 export default function DeliveryDetails() {
   const [checkoutInfo, setCheckoutInfo] = useState(initialState);
   const [sellers, setSellers] = useState([]);
+  const [isValidData, setIsValidData] = useState(false);
 
   const history = useHistory();
   const { totalPrice, productsInCart } = useContext(ProductsContext);
@@ -21,6 +22,23 @@ export default function DeliveryDetails() {
   const updateState = (name, value) => {
     setCheckoutInfo({ ...checkoutInfo, [name]: value });
   };
+
+  useEffect(() => {
+    const validateInput = () => {
+      const arrTest = Object.keys(initialState);
+
+      const validation = arrTest.map((el) => {
+        if (checkoutInfo[el] === initialState[el]) {
+          return false;
+        }
+        return true;
+      });
+
+      setIsValidData(validation.every((el) => el === true));
+    };
+
+    validateInput();
+  }, [checkoutInfo]);
 
   useEffect(() => {
     const getSellers = async () => {
@@ -59,14 +77,15 @@ export default function DeliveryDetails() {
           type="text"
           required
           data-testid="customer_checkout__select-seller"
-          onChange={ ({ target: t }) => { updateState(t.name, t.value); } }
+          onClick={ ({ target: t }) => {
+            console.log(t.value);
+            updateState(t.name, Number(t.value));
+          } }
         >
-          {sellers.map(({ name, id }, idx) => {
-            if (idx === 0) {
-              return <option key={ name } defaultValue value={ id }>{name}</option>;
-            }
-            return <option key={ name } value={ id }>{name}</option>;
-          })}
+          <option>Selecionar vendedor</option>
+          {sellers.map(({ name, id }) => (
+            <option key={ name } value={ id }>{name}</option>
+          ))}
         </select>
       </label>
       <label htmlFor="address">
@@ -95,6 +114,7 @@ export default function DeliveryDetails() {
         type="button"
         data-testid="customer_checkout__button-submit-order"
         onClick={ () => { finishSale(); } }
+        disabled={ !isValidData }
       >
         Finalizar Pedido
       </button>
