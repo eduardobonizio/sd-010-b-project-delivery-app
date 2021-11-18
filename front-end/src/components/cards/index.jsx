@@ -1,36 +1,20 @@
-/* eslint-disable react/jsx-no-bind */
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import apiGetAllProducts from '../../services/products/customerProduct';
+import MyContext from '../../context/Context';
+import { setOnLocalStorage } from '../../helpers/localStorage';
 import * as style from './styles';
-// import { setOnLocalStorage } from '../../helpers/localStorage';
 
 function CardsProducts() {
-  const [dataProducts, setDataProducts] = useState([]);
-  // const [inputQuantity, setInputQuantity] = useState([]);
+  const {
+    dataProducts,
+    setDataProducts,
+    totalPrice,
+    cartProduct,
+  } = useContext(MyContext);
 
-  const valueTotalProduct = dataProducts
-    .reduce((acc, curr) => acc + (curr.price * curr.quantity), 0);
-
-  // console.log(inputQuantity);
   useEffect(() => {
-    async function apiRequest() {
-      const response = await apiGetAllProducts() || [];
-      const newResponse = response.map((value) => ({
-        ...value,
-        quantity: 0,
-      }));
-      // const valueQuantity = newResponse.map((value) => ({
-      //   name: value.name,
-      //   quantity: Number(value.quantity),
-      //   price: value.price,
-      // }));
-      console.log('response', newResponse);
-      setDataProducts(newResponse);
-      // setInputQuantity(valueQuantity);
-    }
-    apiRequest();
-  }, []);
+    setOnLocalStorage('cart', cartProduct);
+  }, [cartProduct]);
 
   function handleOnClick(index, event) {
     const { id } = event.target;
@@ -119,12 +103,12 @@ function CardsProducts() {
       <Link to="/customer/checkout">
         <style.ButtonCart
           type="button"
-          disabled={ valueTotalProduct === 0 }
+          disabled={ totalPrice === 0 }
           data-testid="customer_products__button-cart"
         >
           Ver Carrinho: R$
           <style.TextTotalCart data-testid="customer_products__checkout-bottom-value">
-            {valueTotalProduct.toFixed(2).replace('.', ',')}
+            {totalPrice.toFixed(2).replace('.', ',')}
           </style.TextTotalCart>
         </style.ButtonCart>
       </Link>

@@ -49,6 +49,7 @@ export const ContainerPedidos = styled.div`
   justify-content: center;
   text-align: center;
   background: #3E7C17;
+  
   :hover {
       background: #D8E9A8;
       transform: scale(1.1);
@@ -63,7 +64,7 @@ export const ContainerName = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: #3E065F;
+  background: #9C528B;
 
   :hover {
       background: #D8E9A8;
@@ -79,7 +80,7 @@ export const ContainerLogout = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: #193498;
+  background: #2274A5;
 
   :hover {
       background: #D8E9A8;
