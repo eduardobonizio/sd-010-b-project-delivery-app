@@ -40,8 +40,8 @@ module.exports = {
      {
       id: 7,
       name: 'Becks 330ml',
-      price: 4.49,
-      url_image: 'http://localhost:3001/images/skol_beats_senses_313ml.jpg'
+      price: 4.99,
+      url_image: 'http://localhost:3001/images/becks_330ml.jpg'
      },
      {
       id: 8,
