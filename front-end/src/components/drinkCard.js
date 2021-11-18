@@ -8,6 +8,7 @@ import ProductsContext from '../context/productContext';
 
 const INC_VALUE = 1;
 const DES_VALUE = -1;
+const AOS_DEFAULT_DELAY = 100;
 
 function DrinkCard({ product }) {
   const { id, name, price, url_image: urlImage } = product;
@@ -27,7 +28,7 @@ function DrinkCard({ product }) {
   }, [quantity]);
 
   return (
-    <div className=" border-4 rounded-3xl border-black flex flex-col mx-8 my-8 shadow-sm items-center w-72 box-border">
+    <div className=" border-4 rounded-3xl border-black flex flex-col mx-8 my-8 shadow-sm items-center w-72 box-border" data-aos="fade-up" data-aos-delay={ id * AOS_DEFAULT_DELAY }>
       <div className="my-4 mx-4 bg-yellow-color flex flex-row self-start px-4 py-2 rounded-lg">
         R$
         <div data-testid={ `customer_products__element-card-price-${id}` }>
