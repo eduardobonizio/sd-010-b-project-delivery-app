@@ -41,8 +41,24 @@ function ProductCard() {
                   >
                     { prod.name }
                   </p>
+                  <button
+                    type="button"
+                    data-testid={ `customer_products__button-card-add-item-${prod.id}` }
+                  >
+                    +
+                  </button>
+                  <button
+                    type="button"
+                    data-testid={ `customer_products__button-card-rm-item-${prod.id}` }
+                  >
+                    -
+                  </button>
+                  <input
+                    data-testid={ `customer_products__input-card-quantity-${prod.id}` }
+                  />
                 </div>
               ))
+
           }
         </div>
       )}
