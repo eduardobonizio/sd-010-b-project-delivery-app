@@ -157,6 +157,7 @@ export default function ListItemCheckout() {
           className="submit-order"
           data-testid="customer_checkout__button-submit-order"
           type="submit"
+          onClick={ () => console.log('mandou') }
         >
           FINALIZAR PEDIDO
         </button>
