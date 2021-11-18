@@ -12,6 +12,8 @@ app.use(express.json());
 
 app.post('/createUser', userController.createUser);
 
+app.get('/products', getAllProducts);
+
 app.get('/', (_req, res) => res.status(200).send('Deu bom!'));
 
 app.post('/login', attemptLogin);
