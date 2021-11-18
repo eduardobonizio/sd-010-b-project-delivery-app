@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from '../../../components/Header';
-import CreateUserForm from '../../../components/CreateUserForm';
+import Header from '../../components/Header/Header';
+import CreateUserForm from '../../components/AdminComponents/CreateUserForm';
 
 const Admin = () => {
   console.log('bah');

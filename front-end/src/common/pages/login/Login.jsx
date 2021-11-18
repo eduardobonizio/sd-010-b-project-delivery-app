@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import axios from 'axios';
 
-import RedirectToRegister from '../../components/RegisterComponents/RedirectToRegister';
+import RedirectToRegister from
+  '../../components/RegisterComponents/RedirectToRegister';
 
-import '../../styles/login.css';
+import '../../../styles/login.css';
 
 export default function Login() {
   const [email, setEmail] = useState('');

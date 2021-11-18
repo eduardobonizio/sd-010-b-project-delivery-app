@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { Context } from '../provider/Provider';
-import addZeroes from '../helper/functions/addZeroes';
+import addZeroes from '../../../helper/functions/addZeroes';
+import { Context } from '../../../provider/Provider';
 
 function PurshaseTotal() {
   const { orderInProgress, totalOrder, setTotalOrder } = React.useContext(Context);

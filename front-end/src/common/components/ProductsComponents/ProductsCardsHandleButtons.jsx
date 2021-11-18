@@ -3,7 +3,7 @@ import React, { useState, useContext,
   useEffect,
 } from 'react';
 import PropTypes from 'prop-types';
-import { Context } from '../provider/Provider';
+import { Context } from '../../../provider/Provider';
 
 const ProductsCardsHandleButtons = ({ el }) => {
   const { setOrderInProgress, orderInProgress,

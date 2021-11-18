@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
-import { Context } from '../provider/Provider';
-import fixPrice from '../helper/functions/fixPrice';
-import '../styles/ProductsCards.css';
+import { Context } from '../../../provider/Provider';
+import fixPrice from '../../../helper/functions/fixPrice';
+import '../../../styles/ProductsCards.css';
 import ProductsCardsHandleButtons from './ProductsCardsHandleButtons';
+import CheckoutButtonProducts from '../CheckoutComponents/CheckoutButtonProducts';
 
 const ProductsCards = () => {
   const { products } = useContext(Context);
+  console.log(products, 'element ');
 
   return (
     <div className="div-mainDiv">
@@ -27,8 +29,8 @@ const ProductsCards = () => {
           <ProductsCardsHandleButtons el={ el } />
         </section>
       )) }
+      <CheckoutButtonProducts />
     </div>
   );
 };
-
 export default ProductsCards;
