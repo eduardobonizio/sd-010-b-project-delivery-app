@@ -4,7 +4,7 @@ const cors = require('cors');
 const routeLogin = require('./routes/login');
 const routeRegister = require('./routes/register');
 const routeProducts = require('./routes/products');
-const routeUsers = require('./routes/users');
+const routeUser = require('./routes/user');
 const routeSale = require('./routes/sale');
 // rotas
 
@@ -16,7 +16,7 @@ app.use(cors());
 app.use('/login', routeLogin);
 app.use('/register', routeRegister);
 app.use('/products', routeProducts);
-app.use('/users', routeUsers);
+app.use('/users', routeUser);
 app.use('/sales', routeSale);
 
 app.get('/coffee', (_req, res) => res.status(418).end());
