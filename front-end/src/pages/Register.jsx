@@ -17,7 +17,7 @@ function Register() {
 
   useEffect(() => {
     const isValid = () => {
-      const validEmail = email.match(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i);
+      const validEmail = email.match(/^[a-z0-9-_.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/ig);
       const minLength = 6;
       const maxLength = 12;
       const validName = name.length < maxLength;

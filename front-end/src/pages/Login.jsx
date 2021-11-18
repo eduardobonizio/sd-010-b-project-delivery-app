@@ -3,6 +3,8 @@ import Context from '../context/Context';
 import ErrorLogin from '../components/ErrorLogin';
 import rockGlass from '../images/rockGlass.svg';
 
+// const Joi = require('joi');
+
 function Login() {
   const [isDisable, setIsDisable] = useState(true);
   const {
@@ -16,7 +18,7 @@ function Login() {
 
   useEffect(() => {
     const isValid = () => {
-      const validEmail = email.match(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i);
+      const validEmail = email.match(/^[a-z0-9-_.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/ig);
       const minLength = 6;
       const validPassword = password.length >= minLength;
       if (validEmail) {
