@@ -35,7 +35,7 @@ const RegisterComponent = () => {
   };
 
   const handleChangeEmail = ({ value }) => {
-    const regexEmail = /^[a-z0-9.]+@[a-z0-9]+\.([a-z]+){2,4}?$/i;
+    const regexEmail = /\S+@\S+\.\S+/;
     if (regexEmail.test(value)) {
       setEmail({
         invalidEmail: false,
@@ -69,7 +69,7 @@ const RegisterComponent = () => {
   };
 
   const handleClick = (async () => {
-    await fetch('http://localhost:3001/createUser', {
+    const response = await fetch('http://localhost:3001/createUser', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -81,19 +81,26 @@ const RegisterComponent = () => {
         password: password.fieldPassword,
       }),
     });
-    setName({
-      invalidName: true,
-      fieldName: '',
-    });
-    setEmail({
-      invalidEmail: true,
-      fieldEmail: '',
-    });
-    setPassword({
-      invalidPassword: true,
-      fieldPassword: '',
-    });
-    setLoginAllowed(true);
+    const data = await response.json();
+    console.log(data);
+    if (data.message) {
+      setMsgError(data.message);
+    } else {
+      setName({
+        invalidName: true,
+        fieldName: '',
+      });
+      setEmail({
+        invalidEmail: true,
+        fieldEmail: '',
+      });
+      setPassword({
+        invalidPassword: true,
+        fieldPassword: '',
+      });
+      setLoginAllowed(true);
+    }
+    return data;
   });
 
   return (

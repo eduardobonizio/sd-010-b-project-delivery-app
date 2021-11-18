@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 const Login = () => {
   const [invalidPassword, setInvalidPassword] = useState(true);
@@ -87,12 +87,14 @@ const Login = () => {
       >
         Login
       </button>
-      <button
-        type="button"
-        data-testid="common_login__button-register"
-      >
-        Cadastrar
-      </button>
+      <Link to="/register">
+        <button
+          type="button"
+          data-testid="common_login__button-register"
+        >
+          Cadastrar
+        </button>
+      </Link>
       <div data-testid="common_login__element-invalid-email">{ errorMessage }</div>
       { loginAllowed && <Redirect to="/customer/products" /> }
     </div>
