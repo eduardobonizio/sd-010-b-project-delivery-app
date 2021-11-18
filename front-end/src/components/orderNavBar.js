@@ -1,3 +1,6 @@
+/* eslint-disable react/jsx-max-depth */
+/* eslint-disable max-len */
+
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 
@@ -64,7 +67,7 @@ export default function OrderNavBar({ order, type }) {
         </p>
         {type === 'customer' && (
           <button
-            className="px-8 py-1 bg-yellow-color rounded-md"
+            className="px-8 py-1 bg-yellow-color rounded-md transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 shadow-lg"
             data-testid="customer_order_details__button-delivery-check"
             disabled={ status !== 'Em Trânsito' }
             onClick={ () => changeStatusFunc('Entregue') }
@@ -75,6 +78,7 @@ export default function OrderNavBar({ order, type }) {
         {type === 'seller' && (
           <div>
             <button
+              className="px-8 py-1 bg-gray-500 rounded-md mr-10 text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 shadow-lg"
               data-testid="seller_order_details__button-preparing-check"
               disabled={ status !== 'Pendente' }
               onClick={ () => changeStatusFunc('Preparando') }
@@ -83,6 +87,7 @@ export default function OrderNavBar({ order, type }) {
               Preparar pedido
             </button>
             <button
+              className="px-8 py-1 bg-yellow-color rounded-md -lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 shadow-lg"
               data-testid="seller_order_details__button-dispatch-check"
               disabled={ status !== 'Preparando' }
               onClick={ () => changeStatusFunc('Em Trânsito') }

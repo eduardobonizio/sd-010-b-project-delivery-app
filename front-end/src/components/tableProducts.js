@@ -54,7 +54,7 @@ export default function TableProducts({ products, type }) {
                   `${type}_order_details__element-order-table-unit-price-${index}`
                 }
               >
-                <span className="bg-white py-2 px-8">
+                <span className="bg-white py-2 px-8 inline-block w-3/6 h-10">
                   {el.price}
                 </span>
               </td>
@@ -64,7 +64,7 @@ export default function TableProducts({ products, type }) {
                   `${type}_order_details__element-order-table-sub-total-${index}`
                 }
               >
-                <span className="bg-white py-2 px-8">
+                <span className="bg-white py-2 px-8 inline-block w-3/6 h-10">
 
                   {(parseFloat(products[1][index].quantity)
               * parseFloat(el.price).toFixed(2))}
