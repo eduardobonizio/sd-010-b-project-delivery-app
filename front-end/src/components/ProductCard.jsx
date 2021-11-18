@@ -23,7 +23,7 @@ function ProductCard() {
       { isLoading ? (
         <p>Carregando...</p>
       ) : (
-        <div className="card-container">
+        <div>
           {
             data.filter((el, index) => index <= ELEVEN)
               .map((prod) => (
@@ -31,8 +31,6 @@ function ProductCard() {
                   key={ prod }
                   data-testid={ `customer_products__element-card-price-${prod.id}` }
                 >
-                  {/* { console.log(prod.id) } */}
-                  {/* <Link to={ `/${typeFunc}/${data[index][idRecip]}` }> */}
                   <img
                     data-testid={ `customer_products__img-card-bg-image-${prod.id}` }
                     src={ prod.url_image }
@@ -43,7 +41,6 @@ function ProductCard() {
                   >
                     { prod.name }
                   </p>
-                  {/* </Link> */}
                 </div>
               ))
           }
