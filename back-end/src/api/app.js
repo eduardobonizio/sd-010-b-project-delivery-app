@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 // rotas 
 const routeLogin = require('./routes/login');
-const routeSales = require('./routes/sales');
+const routeSales = require('./routes/sale');
 const routeRegister = require('./routes/register');
 const routeProducts = require('./routes/products');
 // rotas

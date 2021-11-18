@@ -1,9 +1,9 @@
-const salesService = require('../Services/salesService');
+const saleService = require('../Services/saleService');
 
 const getAllSales = async (req, res) => {
   const { userId } = req;
 
-  const allSales = await salesService.getAllSales(userId);
+  const allSales = await saleService.getAllSales(userId);
 
   if (allSales.message) {
     return res.status(404).json(allSales.message);
