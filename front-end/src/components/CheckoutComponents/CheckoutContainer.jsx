@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import CheckoutProducts from '../ProductsComponents/CheckoutProducts';
+import CheckoutProducts from './CheckoutProducts';
 import PurshaseTotal from './PurchaseTotal';
 import PurchaseOrderBtn from './PurchaseOrderBtn';
 import DeliveryContainer from './DeliveryContainer';

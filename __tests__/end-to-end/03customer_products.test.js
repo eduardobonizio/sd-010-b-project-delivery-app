@@ -154,7 +154,7 @@ describe(requirement(14), () => {
   );
 });
 
-describe(requirement(15), () => {
+describe.only(requirement(15), () => {
   const itemList = action.customer.getRandomProducts();
   showCurrentCart(itemList, requirement(15));
 
@@ -216,7 +216,7 @@ describe(requirement(15), () => {
     await addItem(productId, quantity);
   });
 
-  test.only(`O avaliador testará se após a adição do item: \`${JSON.stringify(
+  test(`O avaliador testará se após a adição do item: \`${JSON.stringify(
     randomItem2
   )}\`, a remoção não resultará em quantidades negativas`, async () => {
     const { productId, quantity } = randomItem2;
