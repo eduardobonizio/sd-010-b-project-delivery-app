@@ -7,11 +7,11 @@ const secret = process.env.SECRET;
 const validateJWT = async (req, res, next) => {
   const token = req.headers.authorization;
 
-  if (!token) { return res.status(400).json({ message: 'missing auth token' }); }
+  if (!token) { return res.status(401).json({ message: 'missing auth token' }); }
 
   try {
     const decoded = jwt.verify(token, secret);
-    const user = await User.findOne({ email: decoded.data.email, password: decoded.data.password });
+    const user = await User.findOne({ where: { email: decoded.data.email, password: decoded.data.password } });
 
     if (!user) {
       return res.status(401).json({ message: 'Not Authorized' }); 
@@ -22,7 +22,7 @@ const validateJWT = async (req, res, next) => {
     next();
 
   } catch (_err) {
-    return res.status(402).json({ message: 'jwt malformed' });
+    return res.status(401).json({ message: 'jwt malformed' });
   }
 };
 

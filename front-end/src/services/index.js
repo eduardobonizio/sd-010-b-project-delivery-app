@@ -7,9 +7,15 @@ const api = axios.create({
   },
 });
 
+const config = (token) => ({
+  headers: {
+    authorization: token,
+  },
+});
+
 // const loginApi = async (email, password) => ;
 const create = (data) => api.post('/login', data);
 const getAll = (data) => api.get('/login', data);
-const getAllSales = () => api.get('/sales');
+const getAllSales = (tokenLogin) => api.get('/sales', config(tokenLogin));
 
 export default { create, getAll, getAllSales };

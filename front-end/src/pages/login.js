@@ -57,16 +57,19 @@ export default function Login() {
     case 'administrator': return window.location.replace('/customer/products');
     case 'customer': return window.location.replace('/customer/products');
     case 'seller': return window.location.replace('/customer/seller');
-      // case 'seller':
     default:
       break;
     }
   };
+
   const userLogin = async () => {
     try {
       const user = state.$data;
       const { data } = await api.create(user);
-      localStorage.setItem('user', JSON.stringify(data.data.email));
+      localStorage.setItem('user', JSON.stringify(
+        { nome: data.data.name, email: data.data.email, token: data.token },
+      ));
+      localStorage.setItem('products', JSON.stringify({}));
       redirect(data.data);
     } catch (error) {
       setIsErr(true);
