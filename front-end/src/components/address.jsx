@@ -40,7 +40,7 @@ function Address(props) {
           <label htmlFor="endereço">
             Endereço
             <input
-              data-testid=" customer_checkout__input-address"
+              data-testid="customer_checkout__input-address"
               type="text"
               name="address"
               onChange={ clickFuntion }

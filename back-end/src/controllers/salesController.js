@@ -12,8 +12,17 @@ const getSales = async (req, res) => {
 const postSale = async (req, res) => {
   try {
     const newSaleId = await saleService.postSale(req.body);
-    console.log(newSaleId);
     res.status(201).json(newSaleId);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const postProductSale = async (req, res) => {
+  console.log(req.body);
+  try {
+    await saleService.postProductSale(req.body);
+    res.status(201).json('newPostProductSale');
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -22,4 +31,5 @@ const postSale = async (req, res) => {
 module.exports = {
   getSales,
   postSale,
+  postProductSale,
 };
