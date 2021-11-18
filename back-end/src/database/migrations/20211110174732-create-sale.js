@@ -32,7 +32,7 @@ module.exports = {
       },
       totalPrice: {
         allowNull: false,
-        type: Sequelize.DECIMAL,
+        type: Sequelize.DECIMAL(10,2),
         field: 'total_price',
       },
       deliveryAddress: {
@@ -49,6 +49,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
         field: 'sale_date',
+        defaultValue: new Date(),
       },
       status: {
         allowNull: false,

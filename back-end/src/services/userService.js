@@ -61,10 +61,16 @@ const getAll = async () => {
   return users;
 };
 
+const findUserByEmail = async (email) => {
+  const { id } = await user.findOne({ where: { email } });
+  return id;
+};
+
 module.exports = {
   findUserName,
   login,
   findEmail,
   create,
   getAll,
+  findUserByEmail,
 };

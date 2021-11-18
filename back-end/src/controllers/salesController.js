@@ -12,6 +12,7 @@ const getSales = async (req, res) => {
 const postSale = async (req, res) => {
   try {
     const newSaleId = await saleService.postSale(req.body);
+    console.log(newSaleId);
     res.status(201).json(newSaleId);
   } catch (error) {
     res.status(500).json({ message: error.message });

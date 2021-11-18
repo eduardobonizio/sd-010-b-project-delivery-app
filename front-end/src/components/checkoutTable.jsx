@@ -27,24 +27,23 @@ function Table() {
 
     if (name === 'address') setAdress(value);
     if (name === 'number') setAdressNumber(value);
-    if (name === 'userName') setSellerId(value);
+    if (name === 'userName') setSellerId(parseInt(value, 10));
   };
 
   const postSale = async (e) => {
     e.preventDefault();
-    const { id } = JSON.parse(localStorage.getItem('user'));
+    const { email } = JSON.parse(localStorage.getItem('user'));
     const newSaleBody = {
-      userId: id,
+      email,
       sellerId,
-      totalPrice: total,
+      totalPrice: parseFloat(total),
       deliveryAddress: adress,
       deliveryNumber: adressNumber,
       status: 'Pendente',
     };
 
     const resp = await postSales(newSaleBody);
-    setSaleId(resp);
-    console.log('chamei');
+    setSaleId(resp.data);
     return setRedirect(true);
   };
 
