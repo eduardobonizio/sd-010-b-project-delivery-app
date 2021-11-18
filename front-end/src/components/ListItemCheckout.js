@@ -20,7 +20,7 @@ export default function ListItemCheckout() {
           setSellers([...sellers, seller]);
         });
       });
-  }, []);
+  }, [sellers]);
 
   useEffect(() => {
     setProductsList(products.filter(({ quant }) => quant > 0));
@@ -64,39 +64,37 @@ export default function ListItemCheckout() {
               <span
                 key={ id }
                 className="itemId"
-                data-testid={ `customer_checkout__element-order-table-item-number-${id}` }
+                data-testid={ `customer_checkout__element-order-table-item-number-${i}` }
               >
-                {i}
+                {i + 1}
               </span>
               <span
                 className="itemName"
-                data-testid={ `customer_checkout__element-order-table-name-${id}` }
+                data-testid={ `customer_checkout__element-order-table-name-${i}` }
               >
                 {name}
               </span>
               <span
                 className="itemQuantity"
-                data-testid={ `customer_checkout__element-order-table-quantity-${id}` }
+                data-testid={ `customer_checkout__element-order-table-quantity-${i}` }
               >
                 {quant}
               </span>
               <span
                 className="unitPrice"
-                data-testid={ `customer_checkout__element-order-table-unit-price-${id}` }
+                data-testid={ `customer_checkout__element-order-table-unit-price-${i}` }
               >
-                R$ :
-                {price}
+                {price.replace(/\./g, ',')}
               </span>
               <span
                 className="subtotalPrice"
-                data-testid={ `customer_checkout__element-order-table-sub-total-${id}` }
+                data-testid={ `customer_checkout__element-order-table-sub-total-${i}` }
               >
-                R$:
-                {itemTotal(price, quant)}
+                {itemTotal(price, quant).toFixed(2).replace(/\./g, ',')}
               </span>
               <button
                 className="removeItem"
-                data-testid={ `customer_checkout__element-order-table-remove-${id}` }
+                data-testid={ `customer_checkout__element-order-table-remove-${i}` }
                 type="submit"
                 onClick={ () => {
                   const valorFinal = itemTotal(product.price, product.quant);
@@ -117,20 +115,19 @@ export default function ListItemCheckout() {
         className="orderTotal"
         data-testid="customer_checkout__element-order-total-price"
       >
-        Total: R$
-        {total}
+        Total:
+        {total.toFixed(2).replace(/\./g, ',')}
       </div>
       <form>
         <p>Detalhes e Endereço para Entrega</p>
         <label htmlFor="responsableSeller">
           <p>P. Vendedora Responsável:</p>
-          <select>
+          <select data-testid="customer_checkout__select-seller">
             { sellers.length > 0 && sellers.map(({ id, name, email }) => (
               <option
                 key={ id }
                 id={ email }
                 value={ name }
-                data-testid="customer_checkout__select-seller"
               >
                 {' '}
                 {name}
