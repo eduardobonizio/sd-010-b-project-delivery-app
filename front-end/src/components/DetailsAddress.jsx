@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Context from '../context/Context';
 import createSale from '../services/apis/servicesSales';
 import { getFromLocalStorage } from '../services/helpers/servicesLocalStorage';
@@ -9,6 +10,7 @@ const INPUT_NUMBER = 'customer_checkout__input-addressNumber';
 const SUBMIT_ORDER = 'customer_checkout__button-submit-order';
 
 function DetailsAddress() {
+  const history = useHistory();
   const { sellers, totalPrice } = useContext(Context);
 
   const [address, setAddress] = useState('');
@@ -19,7 +21,7 @@ function DetailsAddress() {
     const { name, value } = event.target;
     if (name === 'address') setAddress(value);
     if (name === 'number') setNumber(value);
-    if (name === 'seller') setSellerId(event.target.value);
+    if (name === 'seller') setSellerId(value);
   };
 
   const sendOrder = async () => {
@@ -29,15 +31,17 @@ function DetailsAddress() {
       total_price: totalPrice.replace(',', '.'),
       delivery_address: address,
       delivery_number: number,
-      status: 'pendente' };
-    await createSale(saleData, token);
+      status: 'Pendente' };
+    const sale = await createSale(saleData, token);
+    const { id } = sale;
+    history.push(`/customer/orders/${id}`);
   };
 
   return (
     <form>
       <span>P. Vendedora responsavel:</span>
       <select
-        data-testid={ `${SELECT_SELLER}` }
+        data-testid={ SELECT_SELLER }
         name="seller"
         onChange={ (e) => handleChange(e) }
       >
@@ -52,20 +56,20 @@ function DetailsAddress() {
       </select>
       <span>Endereço</span>
       <input
-        data-testid={ `${INPUT_ADDRESS}` }
+        data-testid={ INPUT_ADDRESS }
         type="text"
         name="address"
         onChange={ (e) => handleChange(e) }
       />
       <span>Numero</span>
       <input
-        data-testid={ `${INPUT_NUMBER}` }
+        data-testid={ INPUT_NUMBER }
         type="text"
         name="number"
         onChange={ (e) => handleChange(e) }
       />
       <button
-        data-testid={ `${SUBMIT_ORDER}` }
+        data-testid={ SUBMIT_ORDER }
         type="button"
         onClick={ () => sendOrder() }
       >
