@@ -1,20 +1,32 @@
 const md5 = require('md5');
-const { getUserByEmailService, 
-  createUserService, getUserByNameService } = require('../services/userService');
+const fs = require('fs');
+const path = require('path');
+const jwt = require('jsonwebtoken');
+const { 
+  getUserByEmailService, 
+  createUserService, 
+  getUserByNameService } = require('../services/userService');
+
+let secret = fs
+  .readFileSync(path.resolve('jwt.evaluation.key'), { encoding: 'utf8', flag: 'r' });
+
+secret = secret.trim();
 
 const getUserByEmail = async (req, res) => {
   const { email, password } = req.body;
-  if (!email) {
-    return res.status(400).json({ message: 'Campo de email vazio' });
-  }
+  if (!email) return res.status(400).json({ message: 'Campo de email vazio' });
+  
   try {
-    const result = await getUserByEmailService(email);
-    if (result === null) {
-      return res.status(404).json({ message: 'Usuário nao existente' });
-    }
+    const result = await getUserByEmailService(email); 
+    if (result === null) return res.status(404).json({ message: 'Usuário nao existente' });
+    const jwtConfig = { expiresIn: '1h', algorithm: 'HS256' };
+    const token = jwt.sign({ data: result.dataValues }, secret, jwtConfig);
     const { password: dbPassword } = result;
+    console.log(dbPassword, md5(password));
     if (md5(password) === dbPassword) {
-      return res.status(200).json({ message: 'Logado com sucesso!' });
+      delete result.dataValues.password;
+      delete result.dataValues.id;
+      return res.status(200).json({ token, ...result.dataValues });
     }
     return res.status(401).json({ Message: 'Senha incorreta!' });
   } catch (err) {
@@ -29,9 +41,7 @@ const createUser = async (req, res) => {
   if (emailResult || nameResult) {
     return res.status(409).json({ message: 'Email ou nome já cadastrados' });
   }
-  // if (!name || !email || !registerPassword) {
-  //   return req.status(400).json({ message: 'Campos inválidos!' });
-  // }
+ 
   const password = md5(registerPassword);
   try {
     const result = await createUserService({ name, email, password, role });

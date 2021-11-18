@@ -50,7 +50,7 @@ describe(requirement(11), () => {
 describe(requirement(12), () => {
   const cardIds = products.state01.map((el) => el.id);
 
-  test.only("O avaliador testará os data-testids referentes aos card de cada produto",
+  test("O avaliador testará os data-testids referentes aos card de cada produto",
     async () => {
       for(const id of cardIds){
         await expect(page).toFindElement(
