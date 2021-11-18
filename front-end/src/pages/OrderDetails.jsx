@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import NavBar from '../components/Navbar';
 import getOrderDetails from '../services/apis/getOrders';
 import { getFromLocalStorage } from '../services/helpers/servicesLocalStorage';
@@ -25,6 +25,7 @@ const DEFAULT_DATA_PRODUCTS = {
 };
 
 function OrderDetails() {
+  const history = useHistory();
   const [productsDetails, setProductsDetails] = useState(DEFAULT_DATA_PRODUCTS);
   const { idVenda } = useParams();
   const { token } = getFromLocalStorage('user');
@@ -32,9 +33,13 @@ function OrderDetails() {
   useEffect(() => {
     (async () => {
       const response = await getOrderDetails(token, idVenda);
+      if (response.erro) {
+        history.push('/page404');
+        console.log(response);
+      }
       setProductsDetails(response);
     })();
-  }, [idVenda, token]);
+  }, [history, idVenda, token]);
 
   // components
   const theadOrderDetails = () => (
