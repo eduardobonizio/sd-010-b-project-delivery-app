@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -35,12 +34,29 @@ export default function RegisterForms({ registerFunc }) {
     return true;
   };
   return (
-    <div className="border-l-2 pl-28 border-gray-300 flex flex-col items-center justify-center max-w-lg p-10" data-aos="fade-left">
-      <svg xmlns="http://www.w3.org/2000/svg" className="w-24 h-24 text-yellow-color" viewBox="0 0 20 20" fill="currentColor">
-        <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+    <div
+      className="border-l-2 pl-28 border-gray-300 flex flex-col items-center
+      justify-center max-w-lg p-10"
+      data-aos="fade-left"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-24 h-24 text-yellow-color"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          fillRule="evenodd"
+          d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+          clipRule="evenodd"
+        />
       </svg>
       <p className="mt-6 text-4xl text-gray-800 ">Cadastrar uma conta</p>
-      <form data-testid="form-login" onSubmit={ handleSubmit } className="w-full mt-6 space-y-10">
+      <form
+        data-testid="form-login"
+        onSubmit={ handleSubmit }
+        className="w-full mt-6 space-y-10"
+      >
         <div className="py-2 space-y-2 border-b border-yellow-color">
           <p className="text-md ext-gray-800">Qual o seu nome?</p>
           <input
@@ -49,7 +65,8 @@ export default function RegisterForms({ registerFunc }) {
             data-testid="common_register__input-name"
             placeholder="seu nome"
             required
-            className="w-full px-2 py-1 mr-3 leading-tight text-gray-700 bg-transparent border-none appearance-none focus:outline-none"
+            className="w-full px-2 py-1 mr-3 leading-tight text-gray-700 bg-transparent
+            border-none appearance-none focus:outline-none"
           />
         </div>
         <div className="py-2 space-y-2 border-b border-yellow-color">
@@ -59,7 +76,8 @@ export default function RegisterForms({ registerFunc }) {
             type="email"
             data-testid="common_register__input-email"
             required
-            className="w-full px-2 py-1 mr-3 leading-tight text-gray-700 bg-transparent border-none appearance-none focus:outline-none"
+            className="w-full px-2 py-1 mr-3 leading-tight text-gray-700 bg-transparent
+            border-none appearance-none focus:outline-none"
             placeholder="nome@nome.com"
           />
         </div>
@@ -70,7 +88,8 @@ export default function RegisterForms({ registerFunc }) {
             type="password"
             data-testid="common_register__input-password"
             required
-            className="w-full px-2 py-1 mr-3 leading-tight text-gray-700 bg-transparent border-none appearance-none focus:outline-none"
+            className="w-full px-2 py-1 mr-3 leading-tight text-gray-700 bg-transparent
+            border-none appearance-none focus:outline-none"
             placeholder="•••••••••"
           />
         </div>
@@ -79,7 +98,8 @@ export default function RegisterForms({ registerFunc }) {
             disabled={ buttonActivation() }
             type="submit"
             data-testid="common_login__button-login"
-            className="flex px-2 py-1 text-sm text-black-color border-4 border-teal-500 rounded cursor-pointer bg-yellow-color"
+            className="flex px-2 py-1 text-sm text-black-color border-4 border-teal-500
+            rounded cursor-pointer bg-yellow-color"
           >
             Cadastrar
           </button>
@@ -87,7 +107,8 @@ export default function RegisterForms({ registerFunc }) {
           <button
             onClick={ () => registerFunc(true) }
             type="button"
-            className="flex px-2 py-1 text-sm text-yellow-color border-4 border-teal-500 rounded cursor-pointer bg-dark-color"
+            className="flex px-2 py-1 text-sm text-yellow-color border-4 border-teal-500
+            rounded cursor-pointer bg-dark-color"
           >
             Voltar
           </button>
