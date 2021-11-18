@@ -3,14 +3,21 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Aos from 'aos';
+
 import OrderNavBar from '../components/orderNavBar';
 import TableProducts from '../components/tableProducts';
 import fetchGetSaleProducts from '../services/saleProductsAPI';
 import NavBar from '../components/navBar';
+import 'aos/dist/aos.css';
 
 export default function SellerDetailOrder() {
   const [sale, setSale] = useState([]);
   const { id } = useParams();
+
+  useEffect(() => {
+    Aos.init({ duration: 1500, once: true });
+  }, []);
 
   useEffect(() => {
     const getSale = async () => {
@@ -31,7 +38,7 @@ export default function SellerDetailOrder() {
     <div>
       <NavBar isCustomer={ false } nameButtonOrder="Pedidos" linkOrder="/seller/orders" />
       <div className="m-20">
-        <h1 className="inline-block py-2 text-3xl border-b-2 border-yellow-color">Detalhe do pedido</h1>
+        <h1 className="inline-block py-2 text-3xl border-b-2 border-yellow-color" data-aos="fade-right">Detalhe do pedido</h1>
         <div className="flex flex-col p-10 mt-10 ml-20 mr-20 border shadow-md rounded-3xl">
 
           {sale.length !== 0 && (

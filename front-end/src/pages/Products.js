@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import Aos from 'aos';
 
-import 'aos/dist/aos.css';
 import Menu from '../components/menu';
 import NavBar from '../components/navBar';
+import 'aos/dist/aos.css';
 
 export default function Products() {
   useEffect(() => {

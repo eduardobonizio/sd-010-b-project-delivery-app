@@ -1,7 +1,8 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const tableHead = ['Item', 'Descrição', 'Quantidade', 'Valor Unitário', 'Sub-total'];
+const AOS_ANIMATION_DELAY = 150;
 
 export default function TableProducts({ products, type }) {
   return (
@@ -20,6 +21,8 @@ export default function TableProducts({ products, type }) {
         <tbody className="text-lg">
           {products[0].products.map((el, index) => (
             <tr
+              data-aos="fade-up"
+              data-aos-delay={ index * AOS_ANIMATION_DELAY }
               key={ el.id }
               className="border-t-8 border-b-8 border-white bg-yellow-color"
             >
