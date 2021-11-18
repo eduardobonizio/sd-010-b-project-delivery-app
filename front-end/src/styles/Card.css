@@ -72,7 +72,9 @@ button {
 }
 
 .quantity {
-  margin: 5px;
+  height: 10px;
+  text-align: center;
+  width: 30px;
 }
 
 .div-price {

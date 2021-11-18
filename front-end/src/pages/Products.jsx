@@ -18,21 +18,6 @@ function Products() {
     });
   }, []);
 
-  /* const totalSalesProduct = () => {
-    const productStore = JSON.parse(localStorage.getItem('carrinho'));
-    console.log(totalSales);
-    if (productStore.length > 0) {
-      const totalSum = productStore
-        .reduce((prev, curr) => prev.subTotal + curr.subTotal);
-      setTotalSales(totalSum);
-    }
-  }; */
-
-  /*  useEffect(() => {
-    totalSalesProduct();
-    setRefrex(0);
-  }, [refrex]); */
-
   return (
     <div className="div-main">
       <Header />
