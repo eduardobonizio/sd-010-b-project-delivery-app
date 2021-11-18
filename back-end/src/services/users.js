@@ -20,7 +20,7 @@ const createUser = async ({ name, email, password, role }) => {
 const loginUser = async ({ email, password }) => {
   const hashedPassword = md5(password);
   const user = await User.findOne({ where: { email, password: hashedPassword } });
-
+  console.log(user);
   if (user === null) return { message: 'Usuário não encontrado' };
 
   const token = generateToken(user.dataValues);

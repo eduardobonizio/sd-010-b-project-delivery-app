@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { loginUser } from '../services/user';
 
@@ -12,13 +12,14 @@ function Provider({ children }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState(false);
+  const history = useHistory();
 
   const handleClick = async (user) => {
-    if (!user.email || !user.password) setErrorMsg(true)
+    if (!user.email || !user.password) setErrorMsg(true);
     const userToken = await loginUser({ email, password });
+    localStorage.setItem('token', JSON.stringify(userToken.data.token));
     console.log(userToken);
-    // localStorage.setItem('userToken', data.token);
-    if (userToken) <Redirect to="/customer/products" />;
+    history.push({ pathname: '/customer/products' });
   };
 
   const states = {
