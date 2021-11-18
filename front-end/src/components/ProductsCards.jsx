@@ -56,12 +56,13 @@ const ProductsCards = () => {
   };
 
   const handleQuantity = (el) => {
-    if (orderInProgress.length < 1) return 0;
+    // if (orderInProgress.length < 1) return 0;
+    // console.log(orderInProgress, 'order in progress');
     const arr = orderInProgress.filter((data) => data.id === el.id);
     if (arr.length === 1) {
       return arr[0].quantity;
     }
-    // return arr.length;
+    return 0;
   };
 
   return (
@@ -100,8 +101,9 @@ const ProductsCards = () => {
               <input
                 data-testid={ `customer_products__input-card-quantity-${el.id}` }
                 className="btn-handlers"
-                type="button"
                 value={ handleQuantity(el) }
+                type="text"
+                onChange={ ({ target: { value } }) => setQuantityCard(value) }
               />
               <button
                 type="button"
@@ -115,7 +117,7 @@ const ProductsCards = () => {
             </div>
           </div>
         </section>
-      ))}
+      )) }
     </div>
   );
 };
