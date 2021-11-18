@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-// import PropTypes from 'prop-types';
 import Context from '../context/Context';
 
 const ITEM_NUMBER = 'customer_checkout__element-order-table-item-number-';
@@ -76,13 +75,5 @@ function ListCheckoutProdutos() {
     </div>
   );
 }
-
-// ListCheckoutProdutos.propTypes = {
-//   product: PropTypes.shape({
-//     name: PropTypes.string,
-//     quantity: PropTypes.number,
-//     price: PropTypes.string,
-//   }).isRequired,
-// };
 
 export default ListCheckoutProdutos;

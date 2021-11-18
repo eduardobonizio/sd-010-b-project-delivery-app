@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
-import DetailsAddress from '../components/DetailsAddress';
 import ListCheckoutProdutos from '../components/ListCheckoutProdutos';
+import DetailsAddress from '../components/DetailsAddress';
 import NavBar from '../components/Navbar';
 import Context from '../context/Context';
 import getAllSellers from '../services/apis/getAllSellers';
