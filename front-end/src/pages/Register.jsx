@@ -12,7 +12,7 @@ function Register() {
     password,
     setPassword,
     errorMsg,
-    handleClick,
+    handleClickRegister,
   } = useContext(Context);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ function Register() {
       const validEmail = email.match(/^[a-z0-9-_.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/ig);
       const minLength = 6;
       const maxLength = 12;
-      const validName = name.length < maxLength;
+      const validName = name.length > maxLength;
       const validPassword = password.length >= minLength;
 
       if (validName && validEmail) {
@@ -58,13 +58,14 @@ function Register() {
         placeholder="Entre com uma senha"
         onChange={ ({ target }) => setPassword(target.value) }
       />
-      <input
+      <button
         data-testid="common_register__button-register"
         type="button"
-        value="Cadastrar"
         disabled={ isDisable }
-        onClick={ ({ target }) => handleClick(target.value) }
-      />
+        onClick={ () => handleClickRegister() }
+      >
+        Cadastrar
+      </button>
       { errorMsg ? <ErrorRegister /> : '' }
     </form>
   );

@@ -14,8 +14,8 @@ const existsUser = rescue(async (req, res, next) => {
   if (findUserName) return res.status(409).json({ message: errors.nameAlreadyExistis });
 
   const findUserEmail = await getUserByEmail(email);
+  console.log(findUserEmail);
   if (findUserEmail) return res.status(409).json({ message: errors.emailAlreadyExistis });
-
   return next();
 });
 
