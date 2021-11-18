@@ -1,21 +1,30 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import '../styles/navBar.css';
 
-export default function NavBar() {
-  return (
-    <main className="navbar__container">
+export default function NavBar(props) {
+  const { products, order } = props;
+
+  function sectionProduct() {
+    return (
       <section
         className="navbar__container__products"
         data-testid="customer_products__element-navbar-link-products"
       >
         Produtos
-      </section>
+      </section>);
+  }
+
+  return (
+    <main className="navbar__container">
+      { products
+        ? sectionProduct() : null }
       <section
         className="navbar__container__orders"
         data-testid="customer_products__element-navbar-link-orders"
       >
-        Meus Pedidos
+        { order }
       </section>
       <section
         className="navbar__container__user"
@@ -32,3 +41,8 @@ export default function NavBar() {
     </main>
   );
 }
+
+NavBar.propTypes = {
+  products: PropTypes.bool,
+  order: PropTypes.string,
+}.isRequired;

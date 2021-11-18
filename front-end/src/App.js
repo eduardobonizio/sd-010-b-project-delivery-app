@@ -21,7 +21,7 @@ function App() {
       <CustomRoute
         path="/customer/products"
         component={ Products }
-        navbar={ <NavBar /> }
+        navbar={ <NavBar products={true} order="Meus pedidos" /> }
       />
       <CustomRoute
         path="/seller/orders"
@@ -31,7 +31,7 @@ function App() {
       <CustomRoute
         path="/admin/manage"
         component={ AdminManage }
-        navbar={ <NavBar /> }
+        navbar={ <NavBar products={false} order="Gerenciar usuários" /> }
       />
       <CustomRoute path="/register" component={ Register } />
       <Redirect from="/" to="/login" />
