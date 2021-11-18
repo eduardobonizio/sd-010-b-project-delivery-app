@@ -9,7 +9,7 @@ function DeliveryDetails() {
   return (
     <div className="order-address-details">
       <div className="order-address-details-inputs">
-        <SellersSelect sellers={ ['Fulana', 'Cicrano', 'Beltrano'] } />
+        <SellersSelect />
         <InputText
           controlName="address"
           fieldLabelName="Endereço"
