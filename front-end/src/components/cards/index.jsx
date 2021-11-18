@@ -1,13 +1,17 @@
-/* eslint-disable react/jsx-no-bind */
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import apiGetAllProducts from '../../services/products/customerProduct';
+import MyContext from '../../context/Context';
+import { setOnLocalStorage } from '../../helpers/localStorage';
 import * as style from './styles';
 // import { setOnLocalStorage } from '../../helpers/localStorage';
 
 function CardsProducts() {
-  const [dataProducts, setDataProducts] = useState([]);
-  // const [inputQuantity, setInputQuantity] = useState([]);
+  const {
+    dataProducts,
+    setDataProducts,
+    totalPrice,
+    cartProduct,
+  } = useContext(MyContext);
 
   const valueTotalProduct = dataProducts
     .reduce((acc, curr) => acc + (curr.price * curr.quantity), 0);
