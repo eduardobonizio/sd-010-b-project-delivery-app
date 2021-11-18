@@ -69,7 +69,7 @@ function Login() {
           type="button"
           data-testid="common_login__button-register"
         >
-          <a href="/register">Ainda não tenho conta</a>
+          Ainda não tenho conta
         </button>
         { errorMsg ? <ErrorLogin /> : '' }
       </form>
