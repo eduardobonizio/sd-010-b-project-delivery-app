@@ -41,7 +41,7 @@ function DrinkCard({ product }) {
         alt={ `Foto do produto ${name}` }
         data-testid={ `customer_products__img-card-bg-image-${id}` }
       />
-      <div className="flex flex-col  items-center bg-yellow-color rounded-2xl py-6 w-full">
+      <div className="flex flex-col items-center bg-yellow-color rounded-2xl py-6 w-full">
         <span
           className="mb-4"
           data-testid={ `customer_products__element-card-title-${id}` }
