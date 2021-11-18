@@ -1,13 +1,16 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import Login from './modules/login/Login';
 import Signup from './modules/signup/Signup';
-import ProductList from './modules/customer/ProductList';
-import Seller from './modules/seller/Seller';
-import ProductCheckout from './modules/customer/ProductCheckout';
+import SellerOrders from './modules/seller/sellerOrder/SellerOrders';
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Admin from './modules/admin/Admin';
+import SellerOrderDetail from './modules/seller/sellerOrderDetail/SellerOrderDetail';
+import CustomerProducts from './modules/customer/CustomerProducts/CustomerProducts';
+import CustomerCheckout from './modules/customer/CustomerCheckout/CustomerCheckout';
+import CustomerOrderDetail from
+  './modules/customer/CustomerOrderDetail/CustomerOrderDetail';
 
 function App() {
   return (
@@ -16,12 +19,17 @@ function App() {
         <Route
           exact
           path="/customer/products"
-          render={ (props) => <ProductList { ...props } /> }
+          render={ (props) => <CustomerProducts { ...props } /> }
         />
         <Route
           exact
           path="/customer/checkout"
-          render={ (props) => <ProductCheckout { ...props } /> }
+          render={ (props) => <CustomerCheckout { ...props } /> }
+        />
+        <Route
+          exact
+          path="/customer/orders/:id"
+          render={ (props) => <CustomerOrderDetail { ...props } /> }
         />
         <Route
           exact
@@ -35,19 +43,20 @@ function App() {
         />
         <Route
           exact
-          path="/"
-          render={ (props) => <Login { ...props } /> }
+          path="/seller/orders"
+          render={ (props) => <SellerOrders { ...props } /> }
         />
         <Route
           exact
-          path="/seller/orders"
-          render={ (props) => <Seller { ...props } /> }
+          path="/seller/orders/:id"
+          render={ (props) => <SellerOrderDetail { ...props } /> }
         />
         <Route
           exact
           path="/admin/manage"
           render={ (props) => <Admin { ...props } /> }
         />
+        <Redirect from="/" to="/login" />
       </Switch>
     </div>
   );

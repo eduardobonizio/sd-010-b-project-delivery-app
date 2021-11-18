@@ -1,15 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function User({ item, name, email, status, onDelete }) {
+function User({ item, name, email, roleUser, onDelete, index }) {
   console.log(onDelete);
   return (
     <div>
-      <span>{item}</span>
-      <span>{name}</span>
-      <span>{email}</span>
-      <span>{status}</span>
-      <button type="button">Excluir</button>
+      <span
+        data-testid={ `admin_manage__element-user-table-item-number-${index}` }
+      >
+        { item }
+      </span>
+      <span
+        data-testid={ `admin_manage__element-user-table-name--${index}` }
+      >
+        {name}
+      </span>
+      <span
+        data-testid={ `admin_manage__element-user-table-email-${index}` }
+      >
+        {email}
+      </span>
+      <span
+        data-testid={ `admin_manage__element-user-table-role-${index}` }
+      >
+        {roleUser}
+      </span>
+      <button
+        type="button"
+        data-testid={ `admin_manage__element-user-table-remove-${index}` }
+      >
+        Excluir
+      </button>
     </div>
   );
 }
@@ -17,9 +38,10 @@ function User({ item, name, email, status, onDelete }) {
 export default User;
 
 User.propTypes = {
+  index: PropTypes.number.isRequired,
   item: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
-  status: PropTypes.string.isRequired,
+  roleUser: PropTypes.string.isRequired,
   onDelete: PropTypes.func.isRequired,
 };

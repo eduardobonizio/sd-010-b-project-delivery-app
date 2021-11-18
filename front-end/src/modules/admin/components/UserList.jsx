@@ -13,10 +13,14 @@ function UserList() {
         <span>Excluir</span>
       </div>
       <div>
-        <User />
-        <User />
-        <User />
-        <User />
+        <User
+          index="1"
+          item="1"
+          name="José"
+          email="email@email.com"
+          roleUser="customer"
+          onDelete="função"
+        />
       </div>
     </div>
   );

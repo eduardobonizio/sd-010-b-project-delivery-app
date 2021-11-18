@@ -6,6 +6,8 @@ const app = express();
 
 const { loginController, register } = require('../controllers/loginController');
 const { getProducts } = require('../controllers/productsController');
+const { getSeller } = require('../controllers/usersController');
+const { createOrder, findOrder } = require('../controllers/Orders');
 const { 
   verifyName,
   verifyEmail,
@@ -25,6 +27,9 @@ app.post('/login', verifyEmail, verifyPassword, verifyDbUser, loginController);
 app.post('/register', 
 verifyName, verifyEmail, verifyPassword, verifyNameDB, verifyEmailDB, register);
 app.get('/products', getProducts);
+app.get('/sellers', getSeller);
+app.post('/neworder', createOrder);
+app.get('/oneorder/:id', findOrder);
 
 app.get('/coffee', (_req, res) => res.status(418).end());
 

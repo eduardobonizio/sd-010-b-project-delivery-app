@@ -5,6 +5,7 @@ const Product = (sequelize, DataTypes) => {
     urlImage: { type: DataTypes.STRING(200), field: 'url_image' }
   }, {
     timestamps: false,
+    tableName: 'products',
   });
 
   // Product.associate = (models) => {

@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import api from '../../../services/api';
 import './form.scss';
-import { validateEmail, validatePassword } from './functions';
+import { isValidateLogin } from '../../../helpers/validateLogin';
 
 function Form() {
   const history = useHistory();
+  const mountedRef = useRef(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isValidate, setIsValidade] = useState(true);
   const [isNotFound, setIsNotFound] = useState(false);
 
   useEffect(() => {
-    const isEmailChecked = validateEmail(email);
-    const isPasswordChecked = validatePassword(password);
+    const validateForm = isValidateLogin(email, password);
 
-    if (isEmailChecked && isPasswordChecked) {
+    if (validateForm) {
       setIsValidade(false);
     } else {
       setIsValidade(true);
@@ -53,7 +53,6 @@ function Form() {
         break;
       }
     } catch (error) {
-      console.log(error.response);
       setEmail('');
       setPassword('');
       return setIsNotFound(true);
@@ -68,6 +67,10 @@ function Form() {
     // adm@deliveryapp.com
     // --adm2@21!!--
   }
+
+  useEffect(() => {
+    mountedRef.current = false;
+  }, []);
 
   function handleRegister() {
     history.push('/register');
@@ -85,7 +88,7 @@ function Form() {
               name="email"
               value={ email }
               onChange={ (e) => setEmail(e.target.value) }
-              data-testid="common_login__input-password"
+              data-testid="common_login__input-email"
               className="form-control"
             />
           </div>
