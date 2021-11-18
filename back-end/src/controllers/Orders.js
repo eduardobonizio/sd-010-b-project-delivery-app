@@ -8,10 +8,12 @@ const sequelize = new Sequelize(config.development);
 const date = new Date();
 
 const createOrder = async (req, res) => {
-  const token = req.headers.authorization;
+  const token = req.headers.authorization;  
   const { sellerId, totalPrice, deliveryAddress, deliveryNumber, status, products } = req.body;
   // products será um array com os ids e suas quantidades
   const { email } = jwt.decode(token);
+  const verify = jwt.verify(token, 'secret_key');
+  console.log(verify);
   const { id } = await User.findOne({ where: { email } });
   const saleSaveDB = { 
     userId: id, sellerId, totalPrice, deliveryAddress, deliveryNumber, saleDate: date, status };

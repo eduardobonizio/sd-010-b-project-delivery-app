@@ -27,12 +27,13 @@ function RedirectButton() {
         type="button"
         disabled={ isDisable }
         onClick={ redirectCheckout }
+        style={ { position: 'fixed', bottom: '0', right: 0 } }
       >
-        <span
-          data-testid="customer_products__checkout-bottom-value"
-        >
+        <span>
           Ver carrinho: R$
-          { formatSaveAndRenderPrice(total) }
+          <span data-testid="customer_products__checkout-bottom-value">
+            { formatSaveAndRenderPrice(total) }
+          </span>
         </span>
       </button>
     </div>

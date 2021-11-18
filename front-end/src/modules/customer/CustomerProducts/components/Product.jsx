@@ -1,93 +1,88 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import {
-  Card,
-  CardBody,
-  CardImg,
-  CardImgOverlay,
-  CardTitle,
-} from 'reactstrap';
 import { useCustomer } from '../../../../hooks/useCustomer';
 import { formatSaveAndRenderPrice } from '../../../../helpers/functions';
 
 function Product({ product }) {
   // const prodBg = 'https://static.paodeacucar.com/img/uploads/1/241/693241.jpg';
-  const { handleTotalSale } = useCustomer();
+  const cart = JSON.parse(localStorage.getItem('cart'));
+  const { handleTotalSale, handleRemoveItemCart } = useCustomer();
   const [quantity, setQuantity] = useState(0);
 
-  function handleAddQuantity() {
-    setQuantity(quantity + 1);
-    const sale = {
-      ...product,
-      quantity: quantity + 1,
-    };
-    handleTotalSale(sale);
-  }
+  useEffect(() => {
+    if (cart) {
+      cart.forEach((prodId) => {
+        if (prodId.productId === product.id) {
+          setQuantity(prodId.quantity);
+        }
+      });
+    }
+  }, []);
 
-  function handleSubQuantity() {
-    setQuantity(quantity - 1);
-    const sale = {
-      ...product,
-      quantity: quantity - 1,
-    };
-    handleTotalSale(sale);
-  }
+  useEffect(() => {
+    if (quantity > 0) {
+      const numQtd = Number(quantity);
+      const sale = {
+        ...product,
+        quantity: numQtd,
+      };
+      setQuantity(numQtd);
+      return handleTotalSale(sale);
+    }
+    if (quantity === 0) {
+      handleRemoveItemCart(product.id);
+    }
+    if (quantity < 0) {
+      return setQuantity(0);
+    }
+  }, [quantity]);
 
   return (
-    <div className="row">
-      <button type="button" onClick={ handleAddQuantity }>
+    <div className="col" style={ { maxWidth: '250px', maxHeight: '250px' } }>
+      <button
+        type="button"
+        onClick={ () => setQuantity(quantity + 1) }
+        data-testid={ `customer_products__button-card-add-item-${product.id}` }
+      >
         add
       </button>
       <input
-        type="number"
-        value={ quantity }
+        className="form-control"
+        type="text"
+        value={ String(quantity) }
         data-testid={ `customer_products__input-card-quantity-${product.id}` }
         style={ { color: 'black' } }
-        readOnly
+        onChange={ (e) => setQuantity(e.target.value) }
       />
-      <button type="button" onClick={ handleSubQuantity }>
+      <button
+        type="button"
+        onClick={ () => setQuantity(quantity - 1) }
+        data-testid={ `customer_products__button-card-rm-item-${product.id}` }
+      >
         remove
       </button>
       <div className="col-2">
-        <Card inverse>
-          <CardImg
+        <div>
+          <img
             data-testid={ `customer_products__img-card-bg-image-${product.id}` }
-            alt="Card image cap"
+            alt={ product.name }
             src={ product.urlImage }
-            top
             width="100%"
           />
-          <CardBody>
-            <CardTitle
+          <div>
+            <div
               data-testid={ `customer_products__element-card-price-${product.id}` }
             >
               {formatSaveAndRenderPrice(product.price)}
-            </CardTitle>
-            <CardImgOverlay />
-          </CardBody>
-          <CardTitle
+            </div>
+          </div>
+          <div
             className="text-center mb-0"
             data-testid={ `customer_products__element-card-title-${product.id}` }
           >
             { product.name }
-          </CardTitle>
-          <CardBody className="d-flex">
-            <button
-              type="button"
-              className="btn btn-primary d-flex justify-content-center"
-              data-testid={ `customer_products__button-card-rm-item-${product.id}` }
-            >
-              -
-            </button>
-            <button
-              type="button"
-              className="btn btn-primary d-flex justify-content-center"
-              data-testid={ `customer_products__button-card-add-item-${product.id}` }
-            >
-              +
-            </button>
-          </CardBody>
-        </Card>
+          </div>
+        </div>
 
       </div>
     </div>

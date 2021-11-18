@@ -44,7 +44,6 @@ export default function Form() {
 
     const response = await api.post('/neworder', data, { headers });
     const { saleId } = response.data;
-
     history.push(`/customer/orders/${saleId}`);
 
     setDeliveryAddress('');

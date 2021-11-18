@@ -31,7 +31,6 @@ export function CustomerProvider({ children }) {
 
   function handleTotalSale(sale) {
     const formatSale = formatedSales(sale);
-
     const newSalesQuantity = [...sales];
     const findSale = newSalesQuantity
       .findIndex((indexSale) => (indexSale.productId === sale.id));
