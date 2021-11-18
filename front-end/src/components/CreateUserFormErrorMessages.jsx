@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 const CreateUserFormErrorMessages = ({ user }) => {
   const { name, email, password, role } = user;
-  console.log('bah', user);
   return (
     <ul>
       {name}

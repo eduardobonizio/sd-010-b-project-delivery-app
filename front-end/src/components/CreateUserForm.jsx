@@ -9,11 +9,9 @@ const defaultUser = {
 };
 
 const CreateUserForm = () => {
-  console.log('bah');
   const [user, setUser] = useState(defaultUser);
 
   const handleChange = ({ target: { value, id } }) => {
-    console.log(value, id);
     setUser({ ...user, [id]: value });
   };
 
