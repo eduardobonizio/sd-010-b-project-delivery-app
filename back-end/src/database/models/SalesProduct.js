@@ -3,7 +3,9 @@ module.exports = (sequelize, DataTypes) => {
     quantity: DataTypes.INTEGER,
   },
   {
-    timestamps: false
+    timestamps: false,
+    underscored: true,
+    tableName: 'salesProducts'
   });
   
   SaleProduct.associate = (models) => {
@@ -11,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       as: 'products',
       through: SaleProduct,
-      foreignKey: 'sale_id',
+      foreignKey: 'saleId',
       otherKey: 'productId',
     });
 
@@ -19,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       as: 'sales',
       through: SaleProduct,
-      foreignKey: 'id',
+      foreignKey: 'productId',
       otherKey: 'saleId',
     });
   }

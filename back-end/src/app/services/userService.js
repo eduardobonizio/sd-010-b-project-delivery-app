@@ -15,6 +15,7 @@ const findAll = async () => {
 };
 
 const findById = async (id) => {
+  console.log('entrei aqui');
   const findIdUser = await User.findByPk(id);
 
   if (!findIdUser) throw messageError(404, '404 - non-existent user');
