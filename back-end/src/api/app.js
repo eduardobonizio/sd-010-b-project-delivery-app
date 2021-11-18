@@ -5,7 +5,7 @@ const errorMiddleware = require('./middlewares/errorMiddleware');
 const emailValidate = require('./middlewares/emailValidate');
 const passwordValidate = require('./middlewares/passwordValidate');
 const nameValidate = require('./middlewares/nameValidate');
-const { loginValidateService, registerValidateService } = require('./services/userService');
+const { loginValidateService, registerValidateService, Product } = require('./services/userService');
 
 const app = express();
 app.use(express.json());
@@ -33,6 +33,11 @@ app.post('/register', emailValidate, passwordValidate, nameValidate, async (req,
   }  
 
   return res.status(201).json(registerData);
+});
+
+app.get('/customer/products', async (_req, res) => {
+  const data = await Product.findAll();
+ return res.status(200).json(data);
 });
 
 app.get('/coffee', (_req, res) => res.status(418).end());
