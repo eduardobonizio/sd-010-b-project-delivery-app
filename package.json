@@ -11,7 +11,6 @@
     "jest": "./node_modules/.bin/jest",
     "start": "./scripts/prepare-for-test.sh",
     "stop": "(pm2 stop all && pm2 delete all) | grep 'PM2'",
-    "aux": "(pm2 stop all && pm2 delete all) | grep 'PM2' && ./scripts/prepare-for-test.sh",
     "dev": "./scripts/prepare-for-dev.sh",
     "dev:prestart": "./scripts/prestart-dev.sh",
     "db:reset": "./scripts/reset-db-dev.sh",

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import APITOKEN from '../api/index';
 import OrderCard from '../components/OrderCard';
 
-function DetalhesVendedor() {
+function Orders() {
   const [ordersState, setOrdersState] = useState([]);
   useEffect(() => {
     const userInfo = JSON.parse(localStorage.getItem('user'));
@@ -10,6 +10,7 @@ function DetalhesVendedor() {
     APITOKEN.fetchOrders(token).then((data) => setOrdersState(data));
   }, [ordersState]);
 
+  console.log(ordersState);
   return (
     <div>
       <h1>Meus Pedidos</h1>
@@ -20,4 +21,4 @@ function DetalhesVendedor() {
   );
 }
 
-export default DetalhesVendedor;
+export default Orders;

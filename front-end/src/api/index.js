@@ -1,14 +1,27 @@
 import axios from 'axios';
 
-const API = axios.create({
+const APIṔOST = axios.create({
   baseURL: 'http://localhost:3001',
   headers: {
     'Content-type': 'application/json',
   },
 });
 
-const login = (user) => API.post('/login', user);
+const APITOKEN = (token) => {
+  const newApi = axios.create({
+    baseURL: 'http://localhost:3001',
+    headers: {
+      'Content-type': 'application/json',
+      Authorization: token,
+    },
+  });
+  return newApi;
+};
 
-const register = (user) => API.post('/user/register', user);
+const fetchOrders = (token) => APITOKEN(token).get('/sale/user', {});
 
-export default { login, register };
+const login = (user) => APIṔOST.post('/login', user);
+
+const register = (user) => APIṔOST.post('/user/register', user);
+
+export default { fetchOrders, login, register };
