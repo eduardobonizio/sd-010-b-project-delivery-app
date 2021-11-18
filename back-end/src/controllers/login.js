@@ -31,6 +31,7 @@ router.post('/', async (req, res) => {
     }
     return res.status(404).json({ message: 'User not found' });
   } catch (e) {
+    return res.status(404).json({ message: 'User not found' });
     console.log(e);
   }
 });

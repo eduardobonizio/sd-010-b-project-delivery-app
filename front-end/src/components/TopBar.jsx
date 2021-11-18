@@ -41,7 +41,7 @@ function TopBar(props) {
           </Navbar.Text>
           <Navbar.Text
             className="exit align-items-center"
-            data-testid="customer_products__element-navbar-user-full-name"
+            data-testid="customer_products__element-navbar-link-logout"
             href="/customer/orders"
           >
             Sair
