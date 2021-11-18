@@ -93,6 +93,13 @@ const Provider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem('carrinho', JSON.stringify(orderInProgress));
     localStorage.setItem('price', JSON.stringify(totalOrder));
+    const kart = orderInProgress.map(
+      ({ price, quantity }) => parseFloat(price) * quantity,
+    );
+    if (kart.length > 0) {
+      const value = kart.reduce((acc, curr) => acc + curr);
+      setTotalOrder(parseFloat(value.toFixed(2)));
+    }
   }, [orderInProgress, totalOrder]);
 
   return (

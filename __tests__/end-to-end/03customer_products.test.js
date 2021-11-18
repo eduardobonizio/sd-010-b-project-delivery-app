@@ -220,6 +220,7 @@ describe(requirement(15), () => {
     randomItem2
   )}\`, a remoção não resultará em quantidades negativas`, async () => {
     const { productId, quantity } = randomItem2;
+    console.log('id:', productId,  'quantidade:', quantity)
 
     await setItem(productId, quantity);
     await rmItem(productId, quantity);
