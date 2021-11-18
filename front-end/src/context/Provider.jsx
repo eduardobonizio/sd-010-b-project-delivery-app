@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { loginUser } from '../services/user';
 
 // ContextAPI
 import Context from './Context';
@@ -11,10 +13,12 @@ function Provider({ children }) {
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState(false);
 
-  const handleClick = (user) => {
-    if (!user.email || !user.password) {
-      setErrorMsg(true);
-    }
+  const handleClick = async (user) => {
+    if (!user.email || !user.password) setErrorMsg(true)
+    const userToken = await loginUser({ email, password });
+    console.log(userToken);
+    // localStorage.setItem('userToken', data.token);
+    if (userToken) <Redirect to="/customer/products" />;
   };
 
   const states = {
