@@ -1,10 +1,20 @@
 const user = require('./validationsUsers');
 const sale = require('./validationsSales');
 
-const createUser = async (name, email, password) => {
+const createUserCustomer = async (name, email, password) => {
   user.validateName(name);
   user.validateEmail(email);
   user.validatePassword(password);
+  await user.confirmUser(name, email);
+};
+
+const createUserAdmin = async (newUserInfo, admInfo) => {
+  const { name, email, password, role } = newUserInfo;
+  user.validateName(name);
+  user.validateEmail(email);
+  user.validatePassword(password);
+  user.validateRole(role);
+  user.validateUserInfo(admInfo);
   await user.confirmUser(name, email);
 };
 
@@ -30,4 +40,4 @@ const updateSale = (id, status) => {
   sale.validateStatus(status);
 };
 
-module.exports = { createUser, login, createSale, updateSale };
+module.exports = { createUserCustomer, createUserAdmin, login, createSale, updateSale };
