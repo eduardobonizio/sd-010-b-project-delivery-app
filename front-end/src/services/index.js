@@ -10,6 +10,10 @@ const api = axios.create({
 // const loginApi = async (email, password) => ;
 const create = (data) => api.post('/login', data);
 const getAll = (data) => api.get('/login', data);
+const getAllSales = () => api.get('/sales');
+const getAllSalesProducts = () => api.get('/checkout');
+
 const register = (data) => api.post('/register', data);
-const registerByAdmin = (data) => api.post('/register', data);
-export default { create, getAll, register, registerByAdmin };
+// const registerByAdmin = (data) => api.post('/register', data);
+// export default { create, getAll, register, registerByAdmin };
+export default { create, getAll, getAllSales, getAllSalesProducts, register };

@@ -8,9 +8,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      user_id: {
+      userId: {
         allowNull: false,
         defaultValue: 1,
+        primaryKey: true,
         type: Sequelize.INTEGER,
         field: 'user_id',
         onUpdate: 'CASCADE',
@@ -20,9 +21,10 @@ module.exports = {
           key: 'id',
         },
       }, 
-      seller_id: {
+      sellerId: {
         allowNull: false,
         defaultValue: 1,
+        primaryKey: true,
         type: Sequelize.INTEGER,
         field: 'seller_id',
         onUpdate: 'CASCADE',
@@ -36,7 +38,6 @@ module.exports = {
         type: Sequelize.DECIMAL(9,2),
       },
       delivery_address: {
-        // type: Sequelize.VARCHAR(100)
         type: Sequelize.STRING
       },
       delivery_number: {
@@ -50,10 +51,6 @@ module.exports = {
       status: {
         type: Sequelize.STRING
       },
-      // updatedAt: {
-      //   allowNull: false,
-      //   type: Sequelize.DATE
-      // }
     });
   },
   down: async (queryInterface, Sequelize) => {
