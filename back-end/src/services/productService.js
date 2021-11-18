@@ -7,6 +7,13 @@ const hasProductById = async (productsId) => {
   return true;
 };
 
+const getProducts = async () => {
+  const result = await Product.findAll();
+  if (!result) return false;
+  return result;
+};
+
 module.exports = {
   hasProductById,
+  getProducts,
 };

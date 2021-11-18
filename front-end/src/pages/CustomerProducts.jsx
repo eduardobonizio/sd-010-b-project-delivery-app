@@ -4,34 +4,37 @@ import getProducts from '../api/getProducts';
 import ProductCard from '../components/ProductCard';
 
 const CustomerProducts = () => {
-  const [isLoading, setIsloading] = useState(true);
+  const [isLoading, setIsloading] = useState(false);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    getProducts().then((res) => res.json())
-      .then((data) => setProducts(data));
+    setIsloading(true);
+    getProducts('customer').then((res) => res.data)
+      .then((data) => {
+        setProducts(data);
+      });
     setIsloading(false);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return !isLoading
-    ? (
+  return isLoading
+    ? <span>Carregando...</span> : (
       <div>
-        {products.map(({ id, price, image, description }) => (
-          <ProductCard key={ id }>
-            id=
-            {id}
-            price=
-            {`${price.replace('.', ',')}`}
-            image=
-            {image}
-            description=
-            {description}
-          </ProductCard>
-        ))}
+        {products.map(({ name, id, price, url_image: image }) => {
+          console.log(id, price, image);
+          return (<ProductCard
+            key={ id }
+            id={ id }
+            price={ `${price.replace('.', ',')}` }
+            image={ image }
+            name={ name }
+          />
+          );
+        })}
 
         <h1>Customer Products</h1>
 
-      </div>) : <span>Carregando...</span>;
+      </div>);
 };
 
 export default CustomerProducts;

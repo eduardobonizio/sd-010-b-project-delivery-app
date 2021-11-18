@@ -31,7 +31,7 @@ beforeEach(async () => {
 });
 
 describe(requirement(11), () => {
-  test.only("O avaliador testará a existência dos data-testids referentes ao navbar", async () => {
+  test("O avaliador testará a existência dos data-testids referentes ao navbar", async () => {
     await expect(page).toFindElement(
       customerProductsPage.element.navbar.links.products
     );
@@ -50,7 +50,7 @@ describe(requirement(11), () => {
 describe(requirement(12), () => {
   const cardIds = products.state01.map((el) => el.id);
 
-  test("O avaliador testará os data-testids referentes aos card de cada produto",
+  test.only("O avaliador testará os data-testids referentes aos card de cada produto",
     async () => {
       for(const id of cardIds){
         await expect(page).toFindElement(
