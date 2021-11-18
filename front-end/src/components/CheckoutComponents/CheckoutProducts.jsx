@@ -34,7 +34,7 @@ function CheckoutProduct({ order, index }) {
       <td
         data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }
       >
-        {addZeroes(price * quantity)}
+        {addZeroes((price * quantity))}
       </td>
       <td
         data-testid={ `customer_checkout__element-order-table-remove-${index}` }

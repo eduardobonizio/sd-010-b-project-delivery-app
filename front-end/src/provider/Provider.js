@@ -3,7 +3,7 @@ import React, { createContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useLocation } from 'react-router-dom';
 import tokenHandler from '../helper/functions/tokenHandler';
-import { getAllProducts } from '../services/api';
+import { getAllProducts, getPurchase } from '../services/api';
 import translateToCamelCase from '../helper/functions/translateProductsToCamelCase';
 
 const Context = createContext();
@@ -39,6 +39,7 @@ const Provider = ({ children }) => {
       products: orderInProgress,
     };
     console.log(checkoutKeys);
+    return history.push('/customer/order/1');
   }
 
   function removeProduct(productIndex) {
@@ -47,6 +48,12 @@ const Provider = ({ children }) => {
     );
     return setOrderInProgress(clearProduct);
   }
+
+  const getAllPurchase = async () => {
+    const { data } = await getPurchase(dataUser.id);
+    console.log(data);
+    setProducts(data);
+  };
 
   const context = {
     products,
@@ -69,6 +76,7 @@ const Provider = ({ children }) => {
     setOrdered,
     sellers,
     setSellers,
+    getAllPurchase,
   };
 
   const fetchProducts = async () => {

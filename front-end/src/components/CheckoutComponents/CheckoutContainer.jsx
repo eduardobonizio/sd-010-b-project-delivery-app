@@ -32,10 +32,7 @@ function CheckoutContainer() {
           }
         </tbody>
       </table>
-      <PurshaseTotal
-        text="Total"
-        data-testid="customer_checkout__element-order-total-price"
-      />
+      <PurshaseTotal />
       <DeliveryContainer />
       <PurchaseOrderBtn />
       <Link to="/customer/products">
