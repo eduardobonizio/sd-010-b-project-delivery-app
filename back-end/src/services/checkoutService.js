@@ -40,11 +40,3 @@ module.exports = {
   createSale,
   getSaleById,
 }
-
-
-/* const { seller_id, total_price, sale_date, status } = sales;
-  const seller = await User.findOne({ where: { id: seller_id } });
-  // falta retornar os produtos, acredito que seja feito através da tabela de junção
-  // nome do vendedor
-  const { name } = seller;
-  const data = { id, name, total_price, sale_date, status }; */
