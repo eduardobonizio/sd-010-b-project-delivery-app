@@ -12,8 +12,9 @@ const {
 } = dataTestIdDict;
 
 function ItemRow({ cartItem }) {
-  const { item, index } = cartItem;
+  const { item, index, functions } = cartItem;
   const { id, name, preco, quantity, subTotal } = item;
+  const { removeItem } = functions;
 
   return (
     <div className="item-row">
@@ -22,7 +23,13 @@ function ItemRow({ cartItem }) {
       <div data-testid={ `${dataTestId24}${index}` }>{quantity}</div>
       <div data-testid={ `${dataTestId25}${index}` }>{`R$ ${preco}`}</div>
       <div data-testid={ `${dataTestId26}${index}` }>{subTotal}</div>
-      <div data-testid={ `${dataTestId27}${index}` }>Remover</div>
+      <button
+        data-testid={ `${dataTestId27}${index}` }
+        type="button"
+        onClick={ () => removeItem(id) }
+      >
+        remover
+      </button>
     </div>
   );
 }
@@ -37,6 +44,9 @@ ItemRow.propTypes = {
       subTotal: PropTypes.number,
     }),
     index: PropTypes.number,
+    functions: PropTypes.shape({
+      removeItem: PropTypes.func,
+    }).isRequired,
   }).isRequired,
 };
 
