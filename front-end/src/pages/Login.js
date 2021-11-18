@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
@@ -37,13 +36,10 @@ function Login() {
     try {
       const { data } = await axios.post('http://localhost:3001/login', login);
 
-      console.log(data);
-      setIsRedirect(true);
       localStorage.setItem('user', JSON.stringify(data));
+      setIsRedirect(true);
     } catch (e) {
       setErrorMessage(e.response.data.message);
-      console.log(e.response.data.message);
-
       setIsError(true);
     }
   };
