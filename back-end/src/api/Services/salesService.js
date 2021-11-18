@@ -1,7 +1,6 @@
 const { sale } = require('../../database/models');
 
 const getAllSales = async (id) => {
-  console.log(id);
   const query = { where: { id } };
 
   const allSales = await sale.findAll(query);
