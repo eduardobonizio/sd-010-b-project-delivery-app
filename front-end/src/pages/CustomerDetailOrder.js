@@ -48,7 +48,6 @@ export default function CustomerDetailOrder() {
           {sale.length !== 0 && (
             <div
               className="self-end px-8 py-2 mt-10 text-xl font-medium rounded-md bg-yellow-color"
-              data-testid="customer_order_details__element-order-total-price"
             >
               Total: R$
               <span
