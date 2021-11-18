@@ -9,6 +9,15 @@ const getUserOrders = async (userId) => {
   }
 };
 
+const getSellerOrders = async (sellerId) => {
+  try {
+    const sellerOrders = await Sale.findAll({ where: { sellerId }});
+    return sellerOrders;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 const getSaleInfo = async (saleId) => {
   const saleInfo = await Sale.findByPk(saleId);
   return saleInfo;
@@ -17,4 +26,5 @@ const getSaleInfo = async (saleId) => {
 module.exports = {
   getUserOrders,
   getSaleInfo,
+  getSellerOrders,
 };

@@ -24,4 +24,6 @@ const login = (user) => APIṔOST.post('/login', user);
 
 const register = (user) => APIṔOST.post('/user/register', user);
 
-export default { fetchOrders, login, register };
+const fetchSellerOrders = (token) => APITOKEN(token).get('/sale/seller', {});
+
+export default { fetchOrders, login, register, fetchSellerOrders };

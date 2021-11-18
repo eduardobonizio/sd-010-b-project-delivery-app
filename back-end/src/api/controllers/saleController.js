@@ -13,6 +13,18 @@ const getUserOrders = async (req, res, next) => {
   }
 };
 
+const getSellerOrders = async (req, res, next) => {
+  try {
+    const { authorization } = req.headers;
+    const payload = validateToken(authorization);
+    const { id } = payload;
+    const result = await saleService.getSellerOrders(id);
+    return res.status(200).json(result);
+  } catch (e) {
+    next(e);
+  }
+};
+
 const getSaleInfo = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -26,4 +38,5 @@ const getSaleInfo = async (req, res, next) => {
 module.exports = {
   getUserOrders,
   getSaleInfo,
+  getSellerOrders,
 };

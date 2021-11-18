@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function NavbarVendedor({ name }) {
-  console.log('name :', name);
-  const { nome } = name;
-  console.log('nome :', nome);
+function NavbarVendedor() {
+  const nome = JSON.parse(localStorage.getItem('user')).name;
 
   return (
     <nav>

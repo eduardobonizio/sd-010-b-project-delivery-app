@@ -11,10 +11,6 @@ import DetalhesVendedor from './pages/DetalhesVendedor';
 function App() {
   return (
     <div className="App">
-      <span className="logo">TRYBE</span>
-      {/* <object className="rocksGlass" type="image/svg+xml" data={ rockGlass }>
-        Glass
-      </object> */}
       <Switch>
         <Route exact path="/">
           <Redirect to="/login" />
