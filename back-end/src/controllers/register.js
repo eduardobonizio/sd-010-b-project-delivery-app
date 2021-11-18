@@ -9,10 +9,7 @@ const caminho = path.join(__dirname, '../../jwt.evaluation.key');
 console.log(caminho);
 const secret = fs.readFileSync(caminho).toString();
 
-const jwtConfig = {
-  expiresIn: '2h',
-  algorithm: 'HS256',
-};
+const jwtConfig = { expiresIn: '2h', algorithm: 'HS256' };
 
 const router = express.Router();
 
