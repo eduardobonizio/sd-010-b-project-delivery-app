@@ -8,29 +8,35 @@ function CardsProducts({ product }) {
   const [obj, setObj] = useState({});
   const { id, name, price } = product;
 
-  const handleClick = (() => {
+  const handleClick = () => {
     setObj({ name, quantity, price, total: quantity * Number(price) });
-  });
+  };
   const updateOrder = () => {
     const filter = dataOrder.filter((e) => e.name !== name && e.quantity > 0);
     setDataOrder([...filter, obj]);
   };
   useEffect(() => {
     updateOrder();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [obj]);
 
   useEffect(() => {
     handleClick();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [quantity]);
   return (
-    <main
-      data-testid={ `customer_products__element-card-price-${id}` }
-    >
-      <p>{ `R$${price}` }</p>
-      <img src={ product.url_image } alt={ name } width="100px" />
-      <h3>{ name }</h3>
+    <main data-testid={ `customer_products__element-card-title-${id}` }>
+      <span>R$</span>
+      <p data-testid={ `customer_products__element-card-price-${id}` }>
+        {`${price.replace('.', ',')}`}
+      </p>
+      <img
+        src={ product.url_image }
+        alt={ name }
+        width="100px"
+        data-testid={ `customer_products__img-card-bg-image-${id}` }
+      />
+      <h3>{name}</h3>
       <button
         type="button"
         data-testid={ `customer_products__button-card-rm-item-${id}` }
@@ -38,20 +44,17 @@ function CardsProducts({ product }) {
       >
         -
       </button>
-      <span
+      <input
+        type="number"
         data-testid={ `customer_products__input-card-quantity-${id}` }
-      >
-        {quantity}
-
-      </span>
+        value={ String(quantity) }
+      />
       <button
-        name={ id }
         type="button"
-        data-testid={ `customer_products__button-card-rm-item-${id}` }
+        data-testid={ `customer_products__button-card-add-item-${id}` }
         onClick={ () => {
           setQuantity(quantity + 1);
         } }
-
       >
         +
       </button>

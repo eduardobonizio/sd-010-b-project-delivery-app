@@ -1,24 +1,48 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import Card from '../components/Card';
 import Header from '../components/Header';
 import AppContext from '../Context/AppContext';
 
 function Products() {
-  const { products } = useContext(AppContext);
-  console.log('Card', products);
+  const { products, dataOrder } = useContext(AppContext);
+  const [totalValue, setTotalValue] = useState(0);
+  const carTotal = () => {
+    const result = dataOrder
+      .reduce((previou, acc) => previou + acc.total, 0)
+      .toFixed(2)
+      .replace('.', ',');
 
+    setTotalValue(result);
+  };
+  useEffect(() => {
+    carTotal();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dataOrder]);
   return (
     <>
-      <Header />
       <header>
-        <h1>Card Component</h1>
+        <Header />
       </header>
 
       <main>
-        { products.map((product, index) => (
+        {products.map((product, index) => (
           <Card key={ index } product={ product } />
-        )) }
+        ))}
+        <Link to="/customer/checkout">
+          <button
+            type="button"
+            disabled={ totalValue === '0,00' }
+            data-testid="customer_products__button-cart"
+          >
+            <span data-testid="customer_products__checkout-bottom-value">
+              {`Ver carrinho - R$${totalValue}`}
 
+            </span>
+
+          </button>
+        </Link>
       </main>
     </>
   );
