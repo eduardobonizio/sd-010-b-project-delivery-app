@@ -20,7 +20,8 @@ router.post('/', async (req, res) => {
 
   try {
     const exists = await User.findOne({ where: { email } });
-    if (exists.dataValues.email === email && exists.dataValues.password === hashedPassword) {
+    if (exists && exists.dataValues.email === email
+      && exists.dataValues.password === hashedPassword) {
       return res.status(200).json({
         name: exists.dataValues.name,
         email: exists.dataValues.email,
@@ -28,9 +29,9 @@ router.post('/', async (req, res) => {
         token,
       });
     }
+    return res.status(404).json({ message: 'User not found' });
   } catch (e) {
     console.log(e);
-    return res.status(404).json({ message: 'User not found' });
   }
 });
 
