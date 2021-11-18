@@ -39,7 +39,7 @@ export default function FormAdmin() {
 
   const inputStyle = 'border-2 border-b-8 border-r-8 text-xl rounded-2xl border-yellow-color p-3';
   const h3 = 'text-xl ml-10';
-  const label = 'flex flex-inline m-5';
+  const label = 'flex flex-inline m-5 sm:';
 
   return (
     <form

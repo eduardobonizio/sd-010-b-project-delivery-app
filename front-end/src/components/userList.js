@@ -23,43 +23,52 @@ export default function Menu() {
     await deleteUsersAPI(evt);
   };
 
+  const span = 'h-10 items-center justify-center text-center pt-2';
   return (
     <section>
       <h2 className="inline-flex p-2 ml-20 mb-5 text-3xl border-b-2 border-yellow-color">
         Lista de usuarios
       </h2>
       <ul>
+        <li className="flex justify-evenly my-5 mx-20">
+          <div className="flex justify-between items-center min-w-width-li">
+            <span>Item</span>
+            <span>Nome</span>
+            <span>Email</span>
+            <span>Tipo</span>
+          </div>
+        </li>
         { users.length > 1
           ? users.map((el) => (
             <li className="flex justify-evenly my-5 mx-20" key={ el.id }>
-              <div className="flex justify-between items-center min-w-width-li bg-yellow-color space-x-2 border-yellow-color border-2 rounded-lg">
+              <div className="flex justify-between items-center min-w-width-li bg-yellow-color border-yellow-color border-2 rounded-lg">
                 <span
-                  className="px-10 py-3"
+                  className={ `${span} w-40` }
                   data-testid={ `admin_manage__element-user-table-item-number-${el.id}` }
                 >
                   { users.indexOf(el) + 1 }
                 </span>
                 <span
-                  className="px-10 py-3 bg-white"
+                  className={ `${span} w-80 m-auto bg-white` }
                   data-testid={ `admin_manage__element-user-table-name-${el.id}` }
                 >
-                  <p>{ el.name }</p>
+                  { el.name }
                 </span>
                 <span
-                  className="px-10 py-3 bg-white"
+                  className={ `${span} w-80 m-auto bg-white` }
                   data-testid={ `admin_manage__element-user-table-email-${el.id}` }
                 >
-                  <p>{ el.email }</p>
+                  { el.email }
                 </span>
                 <span
-                  className="px-10 py-3"
+                  className={ `${span} w-40` }
                   data-testid={ `admin_manage__element-user-table-role-${el.id}` }
                 >
-                  <p>{ el.role }</p>
+                  { el.role }
                 </span>
               </div>
               <button
-                className="bg-dark-color px-10 py-3 rounded-xl text-yellow-color"
+                className=" w-40 bg-dark-color rounded-xl text-yellow-color"
                 disabled={ userADM(el.role) }
                 onClick={ () => deleteUser(el.id) }
                 type="button"
