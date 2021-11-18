@@ -1,4 +1,5 @@
-const { sale, salesProduct } = require('../database/models');
+const { sale } = require('../database/models');
+const { salesProducts } = require('../database/models');
 const userService = require('./userService');
 
 const getAll = async () => {
@@ -17,8 +18,9 @@ const postSale = async ({
 
 const postProductSale = async (productArray) => {
   productArray.forEach(async (product) => {
-    await salesProduct.create(product);
+    await salesProducts.create(product);
   });
+  return 'Populei';
 };
 
 module.exports = {

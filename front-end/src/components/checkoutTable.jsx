@@ -50,9 +50,9 @@ function Table() {
       const totalPrice = carrinho[productId];
       const quant = totalPrice / uniPrice;
       const info = {
-        productId: Number(productId),
+        product_id: Number(productId),
         quantity: quant,
-        saleId: Number(sellId),
+        sale_id: Number(sellId),
       };
       arrayInfo.push(info);
     });

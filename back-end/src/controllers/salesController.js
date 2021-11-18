@@ -19,10 +19,10 @@ const postSale = async (req, res) => {
 };
 
 const postProductSale = async (req, res) => {
-  console.log(req.body);
+  console.log('body:', req.body);
   try {
-    await saleService.postProductSale(req.body);
-    res.status(201).json('newPostProductSale');
+    const newSales = await saleService.postProductSale(req.body);
+    res.status(201).json(newSales);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
