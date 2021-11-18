@@ -12,7 +12,7 @@ const getAllSales = async (id) => {
 const getSalesById = async (id) => {
   console.log(id, 'service');
   const saleById = await sale.findOne({
-    where: { id }
+    where: { id: 1 }
   })
 
   return saleById;

@@ -14,8 +14,8 @@ module.exports = {
         status: "pendente",
       },
       {
-        id: 3,
-        user_id: 1,
+        id: 2,
+        user_id: 3,
         seller_id: 1,
         total_price: 50.00,
         delivery_address: "aaaaa",
