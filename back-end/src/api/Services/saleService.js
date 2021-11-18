@@ -9,6 +9,16 @@ const getAllSales = async (id) => {
   return allSales;
 };
 
+const getSalesById = async (id) => {
+  console.log(id, 'service');
+  const saleById = await sale.findOne({
+    where: { id }
+  })
+
+  return saleById;
+}
+
 module.exports = {
   getAllSales,
+  getSalesById,
 };
