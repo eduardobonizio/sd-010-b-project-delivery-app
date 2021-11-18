@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-max-depth */
-/* eslint-disable max-len */
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
@@ -17,20 +15,29 @@ export default function NavBar({ isCustomer, nameButtonOrder, linkOrder }) {
   }, []);
 
   return (
-    <nav className="z-20 flex justify-between items-center text-xl fixed bg-white mb-15 max-w-full min-w-full font-medium shadow-md top-0">
+    <nav
+      className="z-20 flex justify-between items-center text-xl fixed bg-white
+      mb-15 max-w-full min-w-full font-medium shadow-md top-0"
+    >
       <div className="relative flex items-center justify-between mx-10 h-16">
         <img className="cursor-pointer w-52" src="/logo.svg" alt="Imagem da logo" />
       </div>
       { isCustomer
         && (
           <Link to="/customer/products">
-            <div className="bg-yellow-color text-lg mx-10 px-10 py-1 rounded-md" data-testid="customer_products__element-navbar-link-products">
+            <div
+              className="bg-yellow-color text-lg mx-10 px-10 py-1 rounded-md"
+              data-testid="customer_products__element-navbar-link-products"
+            >
               Produtos
             </div>
           </Link>)}
 
       <Link to={ linkOrder }>
-        <div className="bg-yellow-color text-lg ml-10 px-10 py-1 rounded-md" data-testid="customer_products__element-navbar-link-orders">
+        <div
+          className="bg-yellow-color text-lg ml-10 px-10 py-1 rounded-md"
+          data-testid="customer_products__element-navbar-link-orders"
+        >
           {nameButtonOrder}
         </div>
       </Link>
@@ -38,8 +45,17 @@ export default function NavBar({ isCustomer, nameButtonOrder, linkOrder }) {
         data-testid="customer_products__element-navbar-user-full-name"
         className="flex items-center mr-5 ml-auto"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 mx-2 text-lg text-yellow-color" viewBox="0 0 20 20" fill="currentColor">
-          <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-8 h-8 mx-2 text-lg text-yellow-color"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fillRule="evenodd"
+            d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+            clipRule="evenodd"
+          />
         </svg>
         {userData.name}
       </div>

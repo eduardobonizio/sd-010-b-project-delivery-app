@@ -21,38 +21,47 @@ export default function Menu() {
     await deleteUsersAPI(evt);
   };
 
+  const span = 'h-10 items-center justify-center text-center pt-2';
   return (
     <section>
-      <h2>Lista de usuarios</h2>
+      <h2 className="inline-flex p-2 ml-20 mb-5 text-3xl border-b-2 border-yellow-color">
+        Lista de usuarios
+      </h2>
       <ul>
         { users.length > 1
           ? users.map((el) => (
-            <li key={ el.id }>
-              <span
-                data-testid={ `admin_manage__element-user-table-item-number-${el.id}` }
+            <li className="flex justify-evenly my-5 mx-20" key={ el.id }>
+              <div
+                className="flex justify-between items-center min-w-width-li
+              bg-yellow-color border-yellow-color border-2 rounded-lg"
               >
-                { users.indexOf(el) + 1 }
-              </span>
-              { ' - ' }
-              <span
-                data-testid={ `admin_manage__element-user-table-name-${el.id}` }
-              >
-                { el.name }
-              </span>
-              { ' - ' }
-              <span
-                data-testid={ `admin_manage__element-user-table-email-${el.id}` }
-              >
-                { el.email }
-              </span>
-              { ' - ' }
-              <span
-                data-testid={ `admin_manage__element-user-table-role-${el.id}` }
-              >
-                { el.role }
-              </span>
-              { ' - ' }
+                <span
+                  className={ `${span} w-40` }
+                  data-testid={ `admin_manage__element-user-table-item-number-${el.id}` }
+                >
+                  { users.indexOf(el) + 1 }
+                </span>
+                <span
+                  className={ `${span} w-80 m-auto bg-white` }
+                  data-testid={ `admin_manage__element-user-table-name-${el.id}` }
+                >
+                  { el.name }
+                </span>
+                <span
+                  className={ `${span} w-80 m-auto bg-white` }
+                  data-testid={ `admin_manage__element-user-table-email-${el.id}` }
+                >
+                  { el.email }
+                </span>
+                <span
+                  className={ `${span} w-40` }
+                  data-testid={ `admin_manage__element-user-table-role-${el.id}` }
+                >
+                  { el.role }
+                </span>
+              </div>
               <button
+                className=" w-40 bg-dark-color rounded-xl text-yellow-color"
                 disabled={ userADM(el.role) }
                 onClick={ () => deleteUser(el.id) }
                 type="button"
