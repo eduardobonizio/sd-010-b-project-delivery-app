@@ -3,7 +3,7 @@ const fs = require('fs');
 
 const getSecret = () => fs.readFileSync(
   `${__dirname}/../../jwt.evaluation.key`,
-  { encoding: "utf-8" }
+  { encoding: 'utf-8' },
 ).trim();
 
 // Você pode deixar a função sem senha se quiser, ela vai pegar a senha dentro de jwt.evaluation.key automaticamente :)
