@@ -3,15 +3,15 @@ import './App.css';
 import { Route, Routes } from 'react-router-dom';
 
 import {
-  Login,
-  Register,
-  Products,
-  Checkout,
   ClientOrderDetails,
-  OrderDetails,
-  Home,
-  Details,
+  SellerOrder,
   Management,
+  Products,
+  Register,
+  Checkout,
+  Details,
+  Login,
+  Home,
 } from './pages';
 
 function App() {
@@ -22,7 +22,8 @@ function App() {
       <Route exact path="/customer/orders" element={ <ClientOrderDetails /> } />
       <Route exact path="/customer/products" element={ <Products /> } />
       <Route exact path="/customer/checkout" element={ <Checkout /> } />
-      <Route path="/seller/orders" element={ <OrderDetails /> } />
+      <Route path="/seller/orders" element={ <SellerOrder /> } />
+      {/* <Route path="/seller/orders/:id" element={ <OrderDetails /> } /> */}
       <Route path="/register" element={ <Register /> } />
       <Route path="/login" element={ <Login /> } />
       <Route path="/" element={ <Home /> } />

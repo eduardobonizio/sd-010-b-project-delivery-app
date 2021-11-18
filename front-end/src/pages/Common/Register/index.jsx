@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import apiCreateUser from '../../../services/register/apiRequestRegister';
 
+/* eslint-disable */
 export default function Register() {
   const [btnDisable, setBtnDisable] = useState(true);
   const [name, setName] = useState('');
