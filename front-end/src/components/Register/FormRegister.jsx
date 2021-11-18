@@ -8,6 +8,7 @@ import '../Login/loginForm.css';
 import Logincontext from '../../context/LoginContext';
 
 function FormRegister() {
+  const textButtonRegister = 'cadastrar';
   const { setUserData } = React.useContext(Logincontext);
   const [form] = Form.useForm();
   const [, forceUpdate] = React.useState({});
@@ -71,6 +72,7 @@ function FormRegister() {
               {
                 required: true,
                 message: 'Por favor, insira seu nome!',
+                whitespace: true,
               },
               {
                 min: 12,
@@ -88,7 +90,7 @@ function FormRegister() {
           </Form.Item>
           <Form.Item
             colon
-            label="Login"
+            label="Email"
             name="email"
             rules={ [
               {
@@ -144,7 +146,7 @@ function FormRegister() {
                   || !!form.getFieldsError().filter(({ errors }) => errors.length).length
                 }
               >
-                Cadastrar
+                {textButtonRegister.toUpperCase()}
               </Button>
             )}
           </Form.Item>
