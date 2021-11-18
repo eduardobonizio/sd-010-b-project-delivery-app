@@ -8,6 +8,7 @@ import AppContext from '../Context/AppContext';
 function Products() {
   const { products, dataOrder } = useContext(AppContext);
   const [totalValue, setTotalValue] = useState(0);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const carTotal = () => {
     const result = dataOrder
       .reduce((previou, acc) => previou + acc.total, 0)
@@ -18,7 +19,7 @@ function Products() {
   };
   useEffect(() => {
     carTotal();
-  }, [dataOrder]);
+  }, [carTotal, dataOrder]);
   return (
     <>
       <Header />
@@ -33,8 +34,7 @@ function Products() {
             data-testid="customer_products__button-cart"
           >
             <span data-testid="customer_products__checkout-bottom-value">
-              {`Ver carrinho - R$${totalValue}`}
-
+              {totalValue}
             </span>
 
           </button>

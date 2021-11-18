@@ -11,19 +11,20 @@ function CardsProducts({ product }) {
   const handleClick = () => {
     setObj({ name, quantity, price, total: quantity * Number(price) });
   };
+
   const updateOrder = () => {
     const filter = dataOrder.filter((e) => e.name !== name && e.quantity > 0);
     setDataOrder([...filter, obj]);
   };
+
   useEffect(() => {
     updateOrder();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [obj]);
 
   useEffect(() => {
     handleClick();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [quantity]);
+
   return (
     <main data-testid={ `customer_products__element-card-title-${id}` }>
       <span>R$</span>
@@ -48,7 +49,9 @@ function CardsProducts({ product }) {
         type="number"
         data-testid={ `customer_products__input-card-quantity-${id}` }
         value={ String(quantity) }
+        onChange={ (e) => setQuantity(e.target.value) }
       />
+      {console.log(quantity)}
       <button
         type="button"
         data-testid={ `customer_products__button-card-add-item-${id}` }
