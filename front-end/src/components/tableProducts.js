@@ -5,8 +5,8 @@ const tableHead = ['Item', 'Descrição', 'Quantidade', 'Valor Unitário', 'Sub-
 
 export default function TableProducts({ products, type }) {
   return (
-    <div>
-      <table className="w-full mt-20 text-center border-collapse">
+    <div className="mx-20">
+      <table className="w-full mt-20 text-center">
         <tr>
           {tableHead.map((el) => (
             <th
@@ -21,10 +21,10 @@ export default function TableProducts({ products, type }) {
           {products[0].products.map((el, index) => (
             <tr
               key={ el.id }
-              className="bg-yellow-color"
+              className="border-t-8 border-b-8 border-white bg-yellow-color"
             >
               <td
-                className=" rounded-l-lg py-2 my-10"
+                className="py-2 rounded-l-lg"
                 data-testid={
                   `${type}_order_details__element-order-table-item-number-${index}`
                 }
@@ -37,7 +37,7 @@ export default function TableProducts({ products, type }) {
                   `${type}_order_details__element-order-table-name-${index}`
                 }
               >
-                <span className="bg-white py-1 px-10 inline-block w-4/5">
+                <span className="inline-block w-4/5 px-10 py-1 bg-white">
                   {el.name}
                 </span>
               </td>
@@ -54,7 +54,7 @@ export default function TableProducts({ products, type }) {
                   `${type}_order_details__element-order-table-unit-price-${index}`
                 }
               >
-                <span className="bg-white py-2 px-8 inline-block w-3/6 h-10">
+                <span className="inline-block w-3/6 h-10 px-8 py-2 bg-white">
                   {el.price}
                 </span>
               </td>
@@ -64,7 +64,7 @@ export default function TableProducts({ products, type }) {
                   `${type}_order_details__element-order-table-sub-total-${index}`
                 }
               >
-                <span className="bg-white py-2 px-8 inline-block w-3/6 h-10">
+                <span className="inline-block w-3/6 h-10 px-8 py-2 bg-white">
 
                   {(parseFloat(products[1][index].quantity)
               * parseFloat(el.price).toFixed(2))}

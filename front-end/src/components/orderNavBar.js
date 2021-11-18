@@ -8,6 +8,17 @@ import socket from '../utils/socket/socketClient';
 
 export default function OrderNavBar({ order, type }) {
   const [status, setStatus] = useState(order.status);
+  const [bgColorStatus, setBgColorStatus] = useState('bg-red-400');
+
+  const aCaminho = 'Em Trânsito';
+
+  if (status === aCaminho) {
+    setBgColorStatus('bg-yellow-400');
+  } else if (status === 'Preparando') {
+    setBgColorStatus('bg-blue-400');
+  } else if (status === 'Entregue') {
+    setBgColorStatus('bg-green-400');
+  }
 
   const changeStatusFunc = (newStatus) => {
     const { id } = order;
@@ -58,7 +69,7 @@ export default function OrderNavBar({ order, type }) {
           {dateNow(order.saleDate)}
         </p>
         <p
-          className="mx-10 bg-blue-400 px-8 py-1 rounded-md"
+          className={ `px-8 ${bgColorStatus} py-1 mx-10 rounded-md` }
           data-testid={
             `${type}_order_details__element-order-details-label-delivery-status`
           }
@@ -67,7 +78,7 @@ export default function OrderNavBar({ order, type }) {
         </p>
         {type === 'customer' && (
           <button
-            className="px-8 py-1 bg-yellow-color rounded-md transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 shadow-lg"
+            className="px-8 py-1 transition duration-300 ease-in-out transform rounded-md shadow-lg bg-yellow-color hover:-translate-y-1 hover:scale-105"
             data-testid="customer_order_details__button-delivery-check"
             disabled={ status !== 'Em Trânsito' }
             onClick={ () => changeStatusFunc('Entregue') }
@@ -78,7 +89,7 @@ export default function OrderNavBar({ order, type }) {
         {type === 'seller' && (
           <div>
             <button
-              className="px-8 py-1 bg-gray-500 rounded-md mr-10 text-white transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 shadow-lg"
+              className="px-8 py-1 mr-10 text-white transition duration-300 ease-in-out transform bg-gray-500 rounded-md shadow-lg hover:-translate-y-1 hover:scale-105"
               data-testid="seller_order_details__button-preparing-check"
               disabled={ status !== 'Pendente' }
               onClick={ () => changeStatusFunc('Preparando') }
@@ -87,10 +98,10 @@ export default function OrderNavBar({ order, type }) {
               Preparar pedido
             </button>
             <button
-              className="px-8 py-1 bg-yellow-color rounded-md -lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 shadow-lg"
+              className="px-8 py-1 transition duration-300 ease-in-out transform rounded-md shadow-lg bg-yellow-color -lg hover:-translate-y-1 hover:scale-105"
               data-testid="seller_order_details__button-dispatch-check"
               disabled={ status !== 'Preparando' }
-              onClick={ () => changeStatusFunc('Em Trânsito') }
+              onClick={ () => changeStatusFunc(aCaminho) }
               type="button"
             >
               Saiu para entrega

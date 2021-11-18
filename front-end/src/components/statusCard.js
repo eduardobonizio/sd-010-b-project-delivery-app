@@ -8,6 +8,15 @@ import socket from '../utils/socket/socketClient';
 
 export default function StatusCard({ order, type, linkDetail }) {
   const [status, setStatus] = useState(order.status);
+  const [bgColorStatus, setBgColorStatus] = useState('bg-red-400');
+
+  if (status === 'Em Trânsito') {
+    setBgColorStatus('bg-yellow-400');
+  } else if (status === 'Preparando') {
+    setBgColorStatus('bg-blue-400');
+  } else if (status === 'Entregue') {
+    setBgColorStatus('bg-green-400');
+  }
 
   const dateNow = (date) => {
     const data = new Date(date);
@@ -25,10 +34,10 @@ export default function StatusCard({ order, type, linkDetail }) {
     });
   }, [order.id]);
   return (
-    <div className="transition duration-300 ease-in-out transform m-10 hover:-translate-y-1 hover:scale-105 shadow-lg">
+    <div className="m-10 transition duration-300 ease-in-out transform shadow-lg hover:-translate-y-1 hover:scale-105">
       <Link to={ `${linkDetail}/${order.id}` }>
-        <div className="text-xl flex space-x-4 border-t-8 border-dark-color rounded-lg p-2">
-          <div className="flex flex-col bg-yellow-color rounded-lg pl-4 border-r-2 pr-4 items-center justify-center">
+        <div className="flex p-2 space-x-4 text-xl border-t-8 rounded-lg border-dark-color">
+          <div className="flex flex-col items-center justify-center pl-4 pr-4 bg-gray-200 border-r-2 rounded-lg">
             <p>PEDIDO</p>
             <p
               data-testid={ `${type}_orders__element-order-id-${order.id}` }
@@ -39,21 +48,21 @@ export default function StatusCard({ order, type, linkDetail }) {
 
           <div className="flex flex-col space-y-4">
             <div className="flex space-x-4">
-              <div className="flex bg-gray-200 font-semibold items-center p-4 rounded-lg">
+              <div className={ `flex items-center p-4 font-semibold ${bgColorStatus} rounded-lg` }>
                 <p
                   data-testid={ `${type}_orders__element-delivery-status-${order.id}` }
                 >
                   {status.toUpperCase()}
                 </p>
               </div>
-              <div className="border-l-2 pl-4 space-y-2 flex flex-col items-center justify-center">
+              <div className="flex flex-col items-center justify-center pl-4 space-y-2 border-l-2">
                 <p
                   data-testid={ `${type}_orders__element-order-date-${order.id}` }
                 >
                   {dateNow(order.saleDate)}
                 </p>
                 <p
-                  className="border-t-2 w-full flex justify-center pt-2"
+                  className="flex justify-center w-full pt-2 border-t-2"
                   data-testid={ `${type}_orders__element-card-price-${order.id}` }
                 >
                   {order.totalPrice.replace('.', ',')}
@@ -61,7 +70,7 @@ export default function StatusCard({ order, type, linkDetail }) {
               </div>
             </div>
 
-            <div className="border-t-2 pt-1 w-full flex justify-end">
+            <div className="flex justify-end w-full pt-1 border-t-2">
               <p
                 data-testid={ `${type}_orders__element-card-address-${order.id}` }
               >
