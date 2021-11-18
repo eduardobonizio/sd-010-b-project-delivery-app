@@ -1,7 +1,6 @@
 const { SalesProduct, Product } = require('../../database/models');
 
 const findById = async (id) => {
-  console.log('entrei no service');
   try {
     const result = await SalesProduct.findAll({ where: { id },
 include: [{ model: Product, as: 'products', through: { attributes: [] } }] });
