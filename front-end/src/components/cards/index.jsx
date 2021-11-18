@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import MyContext from '../../context/Context';
 import { setOnLocalStorage } from '../../helpers/localStorage';
 import * as style from './styles';
-// import { setOnLocalStorage } from '../../helpers/localStorage';
 
 function CardsProducts() {
   const {
@@ -13,10 +12,6 @@ function CardsProducts() {
     cartProduct,
   } = useContext(MyContext);
 
-  const valueTotalProduct = dataProducts
-    .reduce((acc, curr) => acc + (curr.price * curr.quantity), 0);
-
-  // console.log(inputQuantity);
   useEffect(() => {
     setOnLocalStorage('cart', cartProduct);
   }, [cartProduct]);
