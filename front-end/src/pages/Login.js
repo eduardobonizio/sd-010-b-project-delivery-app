@@ -19,7 +19,7 @@ export default function Login() {
       <div className="flex flex-col items-center justify-center invisible w-full h-0 min-h-screen pt-20 px-10 md:visible md:h-full">
         <div className="flex items-center space-x-4">
           <div className="pr-8">
-            <img className="animate-bounce w-full" src="/tampa.svg" alt="Imagem de uma tampa" />
+            <img className="animate-bounce-slow w-full" src="/tampa.svg" alt="Imagem de uma tampa" />
             <img className="w-full" src="/login.svg" alt="Imagem da login" />
           </div>
           { isLogin ? <LoginForms registerFunc={ setIsLogin } /> : <RegisterForms registerFunc={ setIsLogin } />}
