@@ -8,9 +8,9 @@ const CreateUserFormErrorMessages = ({ user }) => {
 
   useEffect(() => {
     console.log('user', user);
+    const data = validateIfFieldsAreCorrect(user);
+    if (data[0] !== true) return setErrors(data);
   }, [user]);
-  // const { name, email, password, role } = user;
-  console.log('bah', user, validateIfFieldsAreCorrect, setErrors);
 
   return (
     <ul>

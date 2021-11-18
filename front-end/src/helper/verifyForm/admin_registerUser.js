@@ -4,7 +4,7 @@
 const INVALID_NAME = 'Nome inválido';
 const INVALID_PASSWORD = 'Senha inválido';
 const INVALID_EMAIL = 'E-mail inválido';
-const EMPTY_FIELDS = 'todos os campos devem estar preeenchidos';
+const EMPTY_FIELDS = 'Campos não preenchidos';
 
 export const validateIfFieldsAreFilled = (data) => {
   const { name, email, password, role } = data;
@@ -19,15 +19,24 @@ export const validateIfFieldsAreCorrect = (data) => {
   const { name, email, password } = data;
   console.log(data);
 
-  const mailFormat = /[a-z]+@[a-z]+.com/g;
+  const mailFormat = /[a-z0-9]+@[a-z]+.com/g;
   const less = 6;
-  validateIfFieldsAreFilled(data);
+  const errorArr = [];
+  const fields = validateIfFieldsAreFilled(data);
+  if (fields) {
+    errorArr.push(fields);
+  }
 
   if (name < less) {
-    return INVALID_NAME;
+    errorArr.push(INVALID_NAME);
   }
-  if (password < less) return INVALID_PASSWORD;
-  if (!email.match(mailFormat)) return INVALID_EMAIL;
+  if (password < less) {
+    errorArr.push(INVALID_PASSWORD);
+  }
+  if (!email.match(mailFormat)) {
+    errorArr.push(INVALID_EMAIL);
+  }
+  if (errorArr[0] !== true) return errorArr;
 
   return true;
 };
