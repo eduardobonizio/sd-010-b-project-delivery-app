@@ -2,10 +2,10 @@ const Sale = (sequelize, DataTypes) => {
   const sale = sequelize.define('sale', {
     userId: DataTypes.INTEGER,
     sellerId: DataTypes.INTEGER,
-    totalPrice: DataTypes.DECIMAL(9,2),
+    totalPrice: DataTypes.DECIMAL(10,2),
     deliveryAddress: DataTypes.STRING,
     deliveryNumber : DataTypes.STRING,
-    saleDate: new Date,
+    saleDate: DataTypes.DATE,
     status: DataTypes.STRING,
 
   }, 

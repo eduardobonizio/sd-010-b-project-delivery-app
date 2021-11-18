@@ -3,21 +3,23 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 function Navbar(props) {
-  const { name, products, orders } = props;
+  const userInfo = JSON.parse(localStorage.getItem('user'));
+  const { name } = props;
+  const { role } = userInfo;
 
   const clearStorage = () => {
     localStorage.removeItem('user');
     localStorage.removeItem('carrinho');
   };
 
-  return (
-    <nav>
+  const renderCustomer = () => (
+    <div>
       <div>
         <button
           type="button"
           data-testid="customer_products__element-navbar-link-products"
         >
-          { products }
+          Produtos
         </button>
       </div>
       <div>
@@ -25,9 +27,47 @@ function Navbar(props) {
           type="button"
           data-testid="customer_products__element-navbar-link-orders"
         >
-          { orders }
+          Meus Pedidos
         </button>
       </div>
+    </div>
+  );
+
+  const renderAdmin = () => (
+    <div>
+      <div>
+        <button
+          type="button"
+          data-testid="customer_products__element-navbar-link-orders"
+        >
+          Gerenciar Usuários
+        </button>
+      </div>
+    </div>
+  );
+
+  const renderSeller = () => (
+    <div>
+      <div>
+        <button
+          type="button"
+          data-testid="customer_products__element-navbar-link-orders"
+        >
+          Pedidos
+        </button>
+      </div>
+    </div>
+  );
+
+  const verifyUserRole = () => {
+    if (role === 'customer') return renderCustomer();
+    if (role === 'administrator') return renderAdmin();
+    if (role === 'seller') return renderSeller();
+  };
+
+  return (
+    <nav>
+      { verifyUserRole() }
       <div>
         <p data-testid="customer_products__element-navbar-user-full-name">{ name }</p>
       </div>
@@ -47,8 +87,6 @@ function Navbar(props) {
 
 Navbar.propTypes = {
   name: PropTypes.string.isRequired,
-  products: PropTypes.string.isRequired,
-  orders: PropTypes.string.isRequired,
 };
 
 export default Navbar;
