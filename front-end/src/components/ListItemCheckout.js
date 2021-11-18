@@ -13,7 +13,6 @@ export default function ListItemCheckout() {
     return result;
   }
   useEffect(() => {
-    setProductsList(products);
     getSellers()
       .then(({ data }) => {
         data.forEach((seller) => {
@@ -50,25 +49,21 @@ export default function ListItemCheckout() {
       {products.filter((product) => product.quant > 0).map((product, i) => {
         const { id, name, price, quant } = product;
         return (
-          <ul key={ i }>
+          <ul key={ id }>
             <li>
               <span
                 key={ id }
                 className="itemId"
                 data-testid={
-                  `customer_checkout__element-order-table-item-number-
-                   ${id - 1}
-                   `
+                  `customer_checkout__element-order-table-item-number-${id}`
                 }
               >
-                {id}
+                {i}
               </span>
               <span
                 className="itemName"
                 data-testid={
-                  `customer_checkout__element-order-table-name-
-                  ${id - 1}
-                  `
+                  `customer_checkout__element-order-table-name-${id}`
                 }
               >
                 {name}
@@ -76,9 +71,7 @@ export default function ListItemCheckout() {
               <span
                 className="itemQuantity"
                 data-testid={
-                  `cutomer_checkout__element-order-table-quantity-
-                  ${id - 1}
-                  `
+                  `customer_checkout__element-order-table-quantity-${id}`
                 }
               >
                 {quant}
@@ -86,9 +79,7 @@ export default function ListItemCheckout() {
               <span
                 className="unitPrice"
                 data-testid={
-                  `customer_checkout__element-order-table-unit-price-
-                  ${id - 1}
-                  `
+                  `customer_checkout__element-order-table-unit-price-${id}`
                 }
               >
                 R$ :
@@ -97,8 +88,7 @@ export default function ListItemCheckout() {
               <span
                 className="subtotalPrice"
                 data-testid={
-                  `customer_checkout__element-order-table-sub-total-
-                  ${id - 1}
+                  `customer_checkout__element-order-table-sub-total-${id}
                   `
                 }
               >
@@ -107,7 +97,7 @@ export default function ListItemCheckout() {
               </span>
               <button
                 className="removeItem"
-                data-testid={ `customer_checkout__element-order-table-remove-${id - 1}` }
+                data-testid={ `customer_checkout__element-order-table-remove-${id}` }
                 type="submit"
                 onClick={ () => {
                   console.log('apagou');
