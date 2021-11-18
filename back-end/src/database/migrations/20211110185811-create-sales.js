@@ -18,7 +18,7 @@ module.exports = {
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
-        primaryKey: true,
+        primaryKey: false,
         allowNull: false,
       },
       seller_id: {
@@ -31,13 +31,12 @@ module.exports = {
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
-        primaryKey: true,
+        primaryKey: false,
         allowNull: false,
       },
-     // seller_id
       total_price: {
         allowNull: false,
-        type: Sequelize.DECIMAL
+        type: Sequelize.DECIMAL(10,2)
       },
       delivery_address: {
         allowNull: false,
