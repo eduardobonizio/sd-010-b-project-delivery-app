@@ -1,13 +1,20 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { formatManipulatePrice, formatSaveAndRenderPrice } from '../helpers/functions';
+import {
+  formatManipulatePrice,
+  formatSaveAndRenderPrice,
+  formatedSales,
+} from '../helpers/functions';
 // import api from '../services/api';
 
 const CustomerContext = createContext();
 
 export function CustomerProvider({ children }) {
-  const [sales, setSales] = useState([]);
-  const [total, setTotal] = useState(0);
+  const initialSales = JSON.parse(localStorage.getItem('cart')) || [];
+  const initialTotal = JSON.parse(localStorage.getItem('total')) || 0;
+
+  const [sales, setSales] = useState(initialSales);
+  const [total, setTotal] = useState(initialTotal);
 
   useEffect(() => {
     const totalSales = sales
@@ -16,46 +23,45 @@ export function CustomerProvider({ children }) {
       ), 0);
 
     const formatedTotal = formatSaveAndRenderPrice(totalSales.toFixed(2));
-    const cartLocalStorage = {
-      products: sales,
-      total: formatedTotal,
-    };
     setTotal(formatedTotal);
-    localStorage.setItem('cart', JSON.stringify(cartLocalStorage));
+    localStorage.setItem('total', JSON.stringify(formatedTotal));
+
+    return () => setTotal(initialTotal);
   }, [sales]);
 
   function handleTotalSale(sale) {
-    const subTotalPrice = (sale.quantity * sale.price).toFixed(2);
-    const formatedSales = {
-      productId: sale.id,
-      name: sale.name,
-      quantity: sale.quantity,
-      unitPrice: formatSaveAndRenderPrice(sale.price),
-      subTotal: formatSaveAndRenderPrice(subTotalPrice),
-    };
+    const formatSale = formatedSales(sale);
+
     const newSalesQuantity = [...sales];
     const findSale = newSalesQuantity
       .findIndex((indexSale) => (indexSale.productId === sale.id));
 
     if (findSale >= 0) {
-      newSalesQuantity[findSale] = formatedSales;
+      newSalesQuantity[findSale] = formatSale;
       setSales(newSalesQuantity);
-      const cartLocalStorage = {
-        products: newSalesQuantity,
-        total,
-      };
-      localStorage.setItem('cart', JSON.stringify(cartLocalStorage));
+      localStorage.setItem('cart', JSON.stringify(newSalesQuantity));
       return;
     }
-    const cartLocalStorage = {
-      products: [...sales, formatedSales],
-      total,
-    };
-    localStorage.setItem('cart', JSON.stringify(cartLocalStorage));
-    return setSales([...sales, formatedSales]);
+
+    localStorage.setItem('cart', JSON.stringify([...sales, formatSale]));
+    return setSales([...sales, formatSale]);
   }
+
+  function handleRemoveItemCart(id) {
+    const removedProduct = sales.filter((sale) => sale.productId !== id);
+    setSales(removedProduct);
+    localStorage.setItem('cart', JSON.stringify(removedProduct));
+  }
+
   return (
-    <CustomerContext.Provider value={ { handleTotalSale, total } }>
+    <CustomerContext.Provider
+      value={
+        { handleRemoveItemCart,
+          handleTotalSale,
+          total,
+          sales }
+      }
+    >
       { children }
     </CustomerContext.Provider>
   );

@@ -1,24 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import Cards from '../../../../components/Cards';
+import Product from './Product';
 import api from '../../../../services/api';
 
 function ProductList() {
   const [products, setProducts] = useState([]);
 
+  async function getAllProducts() {
+    const response = await api.get('/products');
+    setProducts(response.data);
+  }
   useEffect(() => {
-    async function getAllProducts() {
-      const response = await api.get('/products');
-      setProducts(response.data);
-    }
     getAllProducts();
   }, []);
-
-  console.log(products);
 
   return (
     <div>
       {products.map((product) => (
-        <Cards key={ product.id } product={ product } />
+        <Product key={ product.id } product={ product } />
       ))}
     </div>
   );

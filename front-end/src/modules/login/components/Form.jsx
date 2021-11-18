@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import api from '../../../services/api';
 import './form.scss';
@@ -6,6 +6,7 @@ import { isValidateLogin } from '../../../helpers/validateLogin';
 
 function Form() {
   const history = useHistory();
+  const mountedRef = useRef(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isValidate, setIsValidade] = useState(true);
@@ -52,7 +53,6 @@ function Form() {
         break;
       }
     } catch (error) {
-      console.log(error.response);
       setEmail('');
       setPassword('');
       return setIsNotFound(true);
@@ -67,6 +67,10 @@ function Form() {
     // adm@deliveryapp.com
     // --adm2@21!!--
   }
+
+  useEffect(() => {
+    mountedRef.current = false;
+  }, []);
 
   function handleRegister() {
     history.push('/register');

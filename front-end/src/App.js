@@ -3,13 +3,14 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import Login from './modules/login/Login';
 import Signup from './modules/signup/Signup';
 import SellerOrders from './modules/seller/sellerOrder/SellerOrders';
-import ProductCheckout from './modules/customer/ProductCheckout';
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Admin from './modules/admin/Admin';
 import SellerOrderDetail from './modules/seller/sellerOrderDetail/SellerOrderDetail';
 import CustomerProducts from './modules/customer/CustomerProducts/CustomerProducts';
-// import { CustomerProvider } from './hooks/useCustomer';
+import CustomerCheckout from './modules/customer/CustomerCheckout/CustomerCheckout';
+import CustomerOrderDetail from
+  './modules/customer/CustomerOrderDetail/CustomerOrderDetail';
 
 function App() {
   return (
@@ -23,7 +24,12 @@ function App() {
         <Route
           exact
           path="/customer/checkout"
-          render={ (props) => <ProductCheckout { ...props } /> }
+          render={ (props) => <CustomerCheckout { ...props } /> }
+        />
+        <Route
+          exact
+          path="/customer/orders/:id"
+          render={ (props) => <CustomerOrderDetail { ...props } /> }
         />
         <Route
           exact

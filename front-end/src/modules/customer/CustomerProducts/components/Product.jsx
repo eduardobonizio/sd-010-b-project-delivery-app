@@ -7,10 +7,10 @@ import {
   CardImgOverlay,
   CardTitle,
 } from 'reactstrap';
-import { useCustomer } from '../hooks/useCustomer';
-import { formatSaveAndRenderPrice } from '../helpers/functions';
+import { useCustomer } from '../../../../hooks/useCustomer';
+import { formatSaveAndRenderPrice } from '../../../../helpers/functions';
 
-function Cards({ product }) {
+function Product({ product }) {
   // const prodBg = 'https://static.paodeacucar.com/img/uploads/1/241/693241.jpg';
   const { handleTotalSale } = useCustomer();
   const [quantity, setQuantity] = useState(0);
@@ -39,10 +39,11 @@ function Cards({ product }) {
         add
       </button>
       <input
-        type="text"
+        type="number"
         value={ quantity }
         data-testid={ `customer_products__input-card-quantity-${product.id}` }
         style={ { color: 'black' } }
+        readOnly
       />
       <button type="button" onClick={ handleSubQuantity }>
         remove
@@ -93,9 +94,9 @@ function Cards({ product }) {
   );
 }
 
-export default Cards;
+export default Product;
 
-Cards.propTypes = {
+Product.propTypes = {
   product: PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,

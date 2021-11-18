@@ -12,9 +12,11 @@ function RedirectButton() {
     if (total !== '0,00') return setIsDisable(false);
     setIsDisable(true);
   }, [total]);
+
   function redirectCheckout() {
     history.push('/customer/checkout');
   }
+
   return (
     <div
       className="d-grid gap-2 d-md-flex justify-content-md-end"
