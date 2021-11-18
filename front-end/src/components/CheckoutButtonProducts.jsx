@@ -14,6 +14,7 @@ const CheckoutButtonProducts = () => {
           type="button"
           className="checkout-btn"
           data-testid="customer_products__button-cart"
+          disabled={ !totalOrder > 0 }
         >
           Ver Carrinho: R$
           {' '}
