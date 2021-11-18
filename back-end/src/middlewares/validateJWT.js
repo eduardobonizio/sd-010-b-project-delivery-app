@@ -1,6 +1,7 @@
+require('dotenv').config();
 const jwt = require('jsonwebtoken');
 
-const SECRET = '123456';
+const SECRET = process.env.JWT_SECRET || '123456';
 
 const validateJWT = async (req, _res, next) => {
   const { authorization } = req.headers;
