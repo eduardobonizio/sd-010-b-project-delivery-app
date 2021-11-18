@@ -9,7 +9,9 @@ const loginUser = async (body) => {
 
   const newPassword = md5(password);
 
-  const login = await user.findOne({ where: { email, password: newPassword } });
+  const query = { where: { email, password: newPassword } };
+  
+  const login = await user.findOne(query);
   if (!login) return { message: 'email ou senha errado' };
 
   const userId = login.id;

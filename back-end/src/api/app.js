@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 // rotas 
 const routeLogin = require('./routes/login');
+const routeSales = require('./routes/sale');
 const routeRegister = require('./routes/register');
 const routeProducts = require('./routes/products');
 // rotas
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/login', routeLogin);
+app.use('/sales', routeSales);
 app.use('/register', routeRegister);
 app.use('/products', routeProducts);
 
