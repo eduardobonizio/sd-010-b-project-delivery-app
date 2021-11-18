@@ -8,6 +8,8 @@ export default function Provider({ children }) {
   const [allProducts, setAllProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [ordersCustomer, setOrdersCustomer] = useState([]);
+  const [sellers, setSellers] = useState([]);
 
   const insertCart = (eachItem) => {
     const { id, name, price, quantity } = eachItem;
@@ -27,8 +29,7 @@ export default function Provider({ children }) {
       (acc, { price, quantity }) => acc + price * quantity,
       0,
     );
-
-    setTotalPrice(valorTotal);
+    setTotalPrice(valorTotal.toFixed(2).replace('.', ','));
   }, [cart]);
 
   const context = {
@@ -40,6 +41,10 @@ export default function Provider({ children }) {
     setCart,
     insertCart,
     totalPrice,
+    ordersCustomer,
+    setOrdersCustomer,
+    sellers,
+    setSellers,
   };
 
   return <Context.Provider value={ context }>{children}</Context.Provider>;

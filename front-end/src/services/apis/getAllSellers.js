@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const getAllProcuts = async ({ token }) => {
-  const END_POINT = 'http://localhost:3001/customer/products';
+const getAllSellers = async (token) => {
+  const END_POINT = 'http://localhost:3001/seller/';
   try {
     const { data } = await axios.get(END_POINT, {
       headers: {
@@ -14,4 +14,4 @@ const getAllProcuts = async ({ token }) => {
   }
 };
 
-export default getAllProcuts;
+export default getAllSellers;

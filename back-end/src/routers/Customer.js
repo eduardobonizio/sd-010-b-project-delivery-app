@@ -9,8 +9,8 @@ const { getAllOrdersByUserId } = require("../controllers/orderController");
 
 const router = express.Router();
 
-router.get("/products", getAllProducts);
-router.get("/products/:id", getProductById);
+router.get("/products", validateJWT, getAllProducts);
+router.get("/products/:id", validateJWT, getProductById);
 
 
 router.get("/orders", validateJWT, getAllOrdersByUserId);
