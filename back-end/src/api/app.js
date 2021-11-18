@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const userController = require('../database/controllers/userControllers');
+const { getAllProducts } = require('../database/controllers/productControllers');
 const { attemptLogin } = require('../database/controllers/Login');
 
 const app = express();

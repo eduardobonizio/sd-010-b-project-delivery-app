@@ -1,7 +1,11 @@
 import React from 'react';
+import NavbarClient from '../../components/Navbar/navbarClientComponent';
+import '../../styles/navBarClient.css';
 
 const Product = () => (
-  <div><h3>Product</h3></div>
+  <header>
+    <NavbarClient />
+  </header>
 );
 
 export default Product;
