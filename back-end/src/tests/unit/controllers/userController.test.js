@@ -55,7 +55,7 @@ describe('User controller', () => {
       expect(resSpy.calledOnce).to.equal(true)
       expect(resSpy.calledWith(userByPk)).to.equal(true)
 
-      findUserByPk.restore()
+      findUserByPk.restore();
     });
   });
 });
