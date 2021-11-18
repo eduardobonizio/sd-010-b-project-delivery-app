@@ -16,7 +16,7 @@ function Login() {
 
   useEffect(() => {
     const isValid = () => {
-      const validEmail = email.match(/[a-z]+@[a-z]+.com/g);
+      const validEmail = email.match(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i);
       const minLength = 6;
       const validPassword = password.length >= minLength;
       if (validEmail) {

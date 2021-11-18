@@ -17,7 +17,7 @@ function Register() {
 
   useEffect(() => {
     const isValid = () => {
-      const validEmail = email.match(/[a-z]+@[a-z]+.com/g);
+      const validEmail = email.match(/^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i);
       const minLength = 6;
       const maxLength = 12;
       const validName = name.length < maxLength;
@@ -36,7 +36,7 @@ function Register() {
   }, [name, email, password, isDisable]);
 
   return (
-    <form action={ (event) => event.preventDefault() }>
+    <form action="">
       <input
         data-testid="common_register__input-name"
         type="text"
