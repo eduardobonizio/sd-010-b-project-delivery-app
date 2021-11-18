@@ -13,14 +13,15 @@ const CheckoutButtonProducts = () => {
         <button
           type="button"
           className="checkout-btn"
-          data-testid="customer_products__checkout-bottom-value"
+          data-testid="customer_products__button-cart"
         >
-          Ver Carrinho:
+          Ver Carrinho: R$
           {' '}
           <p
-            data-testid="customer_products__button-cart"
+            data-testid="customer_products__checkout-bottom-value"
+
           >
-            {`R$ ${addZeroes(totalOrder)}`}
+            {`${addZeroes(totalOrder)}`}
             {' '}
           </p>
         </button>
