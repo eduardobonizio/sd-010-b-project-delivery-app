@@ -21,18 +21,18 @@ const createSale = async (body, user_id) => {
 
 const getSaleById = async (id) => {
   
-  const sales = await Sale.findOne({ where: { id } });
+  const data = await Sale.findOne({ 
+    where: { id },
+    include: [
+      {model: User, as: 'user'},
+      {model: User, as: 'seller'}
+    ]
+  });
   
-  if(!sales) return { status: 404, data: { message: 'Venda não encontrada'}}
-  const { seller_id, total_price, sale_date, status } = sales;
+  console.log(data);
   
-  const seller = await User.findOne({ where: { id: seller_id } });
+  if(!data) return { status: 404, data: { message: 'Venda não encontrada'}}
 
-  // falta retornar os produtos, acredito que seja feito através da tabela de junção
-  
-  // nome do vendedor
-  const { name } = seller;
-  const data = { id, name, total_price, sale_date, status };
   return { status: 200, data };
 };
 
@@ -40,3 +40,11 @@ module.exports = {
   createSale,
   getSaleById,
 }
+
+
+/* const { seller_id, total_price, sale_date, status } = sales;
+  const seller = await User.findOne({ where: { id: seller_id } });
+  // falta retornar os produtos, acredito que seja feito através da tabela de junção
+  // nome do vendedor
+  const { name } = seller;
+  const data = { id, name, total_price, sale_date, status }; */
