@@ -15,8 +15,8 @@ const Routes = () => {
         ? <Redirect to="/login" />
         : null}
       <Route exact path="/register" component={ Register } />
+      <Route exact path="/customer/products" component={ Products } />
       <Route path="/" component={ Login } />
-      <Route path="/customer/products" component={ Products } />
 
     </Switch>
   );
