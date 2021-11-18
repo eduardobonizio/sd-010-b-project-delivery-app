@@ -2,12 +2,17 @@ import React, { useState, useEffect, useContext } from 'react';
 // import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import rockGlass from '../images/rockGlass.svg';
-import { setOnLocalStorage } from '../services/helpers/servicesLocalStorage';
-import loginService from '../services/apis/servicesLogin';
+import { setOnLocalStorage,
+  getFromLocalStorage,
+} from '../services/helpers/servicesLocalStorage';
 import Context from '../context/Context';
+import { loginService } from '../services/apis/servicesLogin';
 
 function Login() {
+  const token = getFromLocalStorage('user');
+  console.log(token);
   const history = useHistory();
+  const { setUser } = useContext(Context);
   const [disableBtn, setDisableBtn] = useState(true);
   const [hidden, setHidden] = useState(true);
   const [login, setLogin] = useState({
@@ -15,12 +20,13 @@ function Login() {
     password: '',
   });
 
+  // $#zebirita#$
+
   const redirect = () => {
     history.push('/register');
   };
 
   // utilize o contexto aqui
-  const { setUser } = useContext(Context);
 
   const validateFields = ({ email, password }) => {
     const regex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
@@ -41,38 +47,62 @@ function Login() {
     });
   };
 
+  const checkRole = (message) => {
+    setOnLocalStorage('user', message);
+    setUser(message);
+    if (message.role === 'seller') {
+      history.push('/venda/pedidos');
+    } else if (message.role === 'administrador') {
+      history.push('/admin/gerenciamento');
+    } else if (message.role === 'customer') {
+      history.push('/customer/products');
+    } else {
+      history.push('/');
+    }
+  };
+
   const handleClick = async () => {
     const checkLogin = await loginService(login);
     if (checkLogin.message.id) {
       const { message } = checkLogin;
-      setOnLocalStorage('user', message);
-      setUser(message);
-      history.push('/customer/products');
+      console.log(message);
+      checkRole(message);
     }
     setHidden(false);
   };
 
-  const atalho = () => {
-    const tokenPart1 = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.';
-    const tokenPart2 = 'eyJpZCI6NCwic…4OTB9.oyJ1J0jotGuP2De4xMkY2tm5gSsKiU9OI2BDR-HWvzA';
+  const atalho = (rolee) => {
     const message = {
       id: 4,
-      name: 'teste',
-      email: 'teste@gmail.com',
-      role: 'custumer',
-      token: `${tokenPart1}${tokenPart2}`,
+      name: 'Cliente Zé Birita',
+      email: 'zebirita@email.com',
+      role: rolee,
+      token: '1c37466c159755ce1fa181bd247cb925',
     };
-    setOnLocalStorage('user', message);
-    setUser(message);
-    history.push('/customer/products');
+    checkRole(message);
+  };
+
+  // useEffect(() => {
+  //   const { role } = getFromLocalStorage('user');
+  //   if (role === 'customer') history.push('/customer/products');
+  // });
+
+  const isLogin = () => {
+    checkRole(token);
   };
 
   useEffect(() => {
     validateFields(login);
   }, [login]);
+
+  // if(token) history.push('/customer/products')
+
   return (
     <div>
-      <span className="logo">TRYBE</span>
+      {token !== null
+        ? isLogin()
+        : <span className="logo">TRYBE</span>}
+      {/* <span className="logo">TRYBE</span> */}
       <object className="rocksGlass" type="image/svg+xml" data={ rockGlass }>
         Glass
       </object>
@@ -122,8 +152,11 @@ function Login() {
         Email ou Senha invalidos
       </h2>
 
-      <button type="button" onClick={ atalho }>
-        atalho
+      <button type="button" onClick={ () => atalho('customer') }>
+        atalho customer
+      </button>
+      <button type="button" onClick={ () => atalho('seller') }>
+        atalho seller
       </button>
     </div>
   );

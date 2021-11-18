@@ -6,13 +6,18 @@ import * as S from '../styles/MeusPedidos';
 function CardMeusPedidos({ orders, token }) {
   const history = useHistory();
   function detailOrder(id) {
-    history.push(`/customer/orders/details/${id}`);
+    history.push(`/customer/orders/${id}`);
   }
   const { role } = token;
 
   const { id, sale_date: saleDate, status,
     total_price: totalPrice,
     delivery_address: deliveryAddress } = orders;
+  const newDate = new Date(saleDate);
+  const dia = newDate.getDate().toString().padStart(2, '0');
+  const mes = (newDate.getMonth() + 1).toString().padStart(2, '0');
+  const ano = newDate.getFullYear();
+  const dateFormat = `${dia}/${mes}/${ano}`;
 
   return (
     <S.buttonMeusPedidos
@@ -29,12 +34,12 @@ function CardMeusPedidos({ orders, token }) {
         </S.statusPedido>
         <div>
           <S.textDate data-testid={ `customer_orders__element-order-date-${id}` }>
-            {saleDate}
+            {dateFormat}
           </S.textDate>
-          <S.textPrice>
-            R$
-            {' '}
-            {totalPrice}
+          <S.textPrice
+            data-testid={ `customer_orders__element-card-price-${id}` }
+          >
+            {totalPrice.replace('.', ',')}
           </S.textPrice>
         </div>
       </S.infoPedido>
