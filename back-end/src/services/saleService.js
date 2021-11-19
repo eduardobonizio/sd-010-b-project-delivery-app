@@ -13,9 +13,7 @@ const getSale = async ({ id }) => {
       { model: product, as: 'products' },
       { model: user, as: 'sellerId' },
     ],
-  },
-  );
-  
+  });
   return sales;
 };
 
@@ -29,8 +27,8 @@ const postSale = async ({
 };
 
 const postProductSale = async (productArray) => {
-  productArray.forEach(async (product) => {
-    await salesProducts.create(product);
+  productArray.forEach(async (prod) => {
+    await salesProducts.create(prod);
   });
   return 'Populei';
 };
