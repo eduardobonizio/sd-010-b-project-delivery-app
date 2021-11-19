@@ -6,7 +6,7 @@ const saleController = require('../Controllers/saleController');
 const { validToken } = require('../Middlewares/validarTokenMiddlewares');
 
 router.route('/')
-  .post(saleController.create)
+  .post(validToken, saleController.create)
   .get(validToken, saleController.getAllSales);
 
 module.exports = router;
