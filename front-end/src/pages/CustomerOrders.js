@@ -20,7 +20,7 @@ export default function CustomerOrders() {
     };
 
     getAllSales();
-  }, []);
+  }, [allOrders]);
 
   return (
     <div>

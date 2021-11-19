@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
@@ -69,14 +68,20 @@ export default function DeliveryDetails() {
 
   return (
     <form className="w-11/12 m-20">
-      <h2 className="inline-block py-2 text-3xl border-b-2 border-yellow-color">Detalhes e endereço para entrega</h2>
+      <h2
+        className="inline-block py-2 text-3xl border-b-2 border-yellow-color"
+      >
+        Detalhes e endereço para entrega
+
+      </h2>
       <div className="flex justify-between w-full pl-32 mt-16 pr-96">
         <label className="flex flex-col" htmlFor="seller">
           <p className="text-lg">
             Pessoa Vendedora Responsável:
           </p>
           <select
-            className="p-3 px-10 text-xl bg-white border-2 border-b-8 border-r-8 rounded-2xl border-yellow-color"
+            className="p-3 px-10 text-xl bg-white border-2 border-b-8 border-r-8
+            rounded-2xl border-yellow-color"
             id="seller"
             name="seller"
             type="text"
@@ -98,7 +103,8 @@ export default function DeliveryDetails() {
             Endereço:
           </p>
           <input
-            className="p-3 text-xl border-2 border-b-8 border-r-8 rounded-2xl border-yellow-color"
+            className="p-3 text-xl border-2 border-b-8 border-r-8 rounded-2xl
+            border-yellow-color"
             id="address"
             name="address"
             type="text"
@@ -110,7 +116,8 @@ export default function DeliveryDetails() {
         <label className="flex flex-col" htmlFor="address-number">
           <p className="text-lg">Número:</p>
           <input
-            className="p-3 text-xl border-2 border-b-8 border-r-8 rounded-2xl border-yellow-color"
+            className="p-3 text-xl border-2 border-b-8 border-r-8 rounded-2xl
+            border-yellow-color"
             id="address-number"
             name="number"
             type="number"

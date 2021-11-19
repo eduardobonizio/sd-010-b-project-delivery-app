@@ -3,6 +3,7 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import StatusCardFragment from './statusCardFragment';
 
 import socket from '../utils/socket/socketClient';
 
@@ -10,21 +11,23 @@ export default function StatusCard({ order, type, linkDetail }) {
   const [status, setStatus] = useState(order.status);
   const [bgColorStatus, setBgColorStatus] = useState('bg-red-400');
 
-  if (status === 'Em Trânsito') {
-    setBgColorStatus('bg-yellow-400');
-  } else if (status === 'Preparando') {
-    setBgColorStatus('bg-blue-400');
-  } else if (status === 'Entregue') {
-    setBgColorStatus('bg-green-400');
-  }
+  useEffect(() => {
+    if (status === 'Em Trânsito') {
+      setBgColorStatus('bg-yellow-400');
+    } else if (status === 'Preparando') {
+      setBgColorStatus('bg-blue-400');
+    } else if (status === 'Entregue') {
+      setBgColorStatus('bg-green-400');
+    }
+  }, [status]);
 
-  const dateNow = (date) => {
-    const data = new Date(date);
-    const dia = data.getDate().toString().padStart(2, '0');
-    const mes = (data.getMonth() + 1).toString().padStart(2, '0');
-    const ano = data.getFullYear();
-    return `${dia}/${mes}/${ano}`;
-  };
+  // const dateNow = (date) => {
+  //   const data = new Date(date);
+  //   const dia = data.getDate().toString().padStart(2, '0');
+  //   const mes = (data.getMonth() + 1).toString().padStart(2, '0');
+  //   const ano = data.getFullYear();
+  //   return `${dia}/${mes}/${ano}`;
+  // };
 
   useEffect(() => {
     socket.on('changeStatus', (newStatus) => {
@@ -46,7 +49,14 @@ export default function StatusCard({ order, type, linkDetail }) {
             </p>
           </div>
 
-          <div className="flex flex-col space-y-4">
+          <StatusCardFragment
+            bgColorStatus={ bgColorStatus }
+            order={ order }
+            type={ type }
+            status={ status }
+          />
+
+          {/* <div className="flex flex-col space-y-4">
             <div className="flex space-x-4">
               <div className={ `flex items-center p-4 font-semibold ${bgColorStatus} rounded-lg` }>
                 <p
@@ -77,7 +87,7 @@ export default function StatusCard({ order, type, linkDetail }) {
                 {`${order.deliveryAddress}`}
               </p>
             </div>
-          </div>
+          </div> */}
 
         </div>
       </Link>

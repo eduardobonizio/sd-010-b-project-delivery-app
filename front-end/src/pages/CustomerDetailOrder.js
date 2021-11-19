@@ -36,7 +36,10 @@ export default function CustomerDetailOrder() {
     <div>
       <NavBar isCustomer nameButtonOrder="Meus Pedidos" linkOrder="/customer/orders" />
       <div className="m-20">
-        <h1 className="text-3xl border-b-2 border-yellow-color inline-block py-2">
+        <h1
+          data-aos="fade-right"
+          className="text-3xl border-b-2 border-yellow-color inline-block py-2"
+        >
           Detalhe do pedido
         </h1>
         <div className="border mt-10 p-10 rounded-3xl shadow-md flex flex-col">

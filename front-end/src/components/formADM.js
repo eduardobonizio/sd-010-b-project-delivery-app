@@ -46,7 +46,10 @@ export default function FormAdmin() {
     >
       <div className="flex mt-5 m-2 justify-around">
         <div>
-          <h3 className={ h3 }>Nome</h3>
+          <h3 className={ h3 }>
+            Nome
+
+          </h3>
           <label className={ label } htmlFor>
             <input
               className="border-2 border-b-8 border-r-8 text-xl rounded-2xl
