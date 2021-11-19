@@ -1,11 +1,12 @@
 const express = require('express');
-// const { Sale, User } = require('../database/models');
 const cors = require('cors');
 const errorMiddleware = require('./middlewares/errorMiddleware');
 const emailValidate = require('./middlewares/emailValidate');
 const passwordValidate = require('./middlewares/passwordValidate');
 const nameValidate = require('./middlewares/nameValidate');
 const { loginValidateService, registerValidateService, Product } = require('./services/userService');
+
+const drinksRouter = require('./routers/drinksRouter');
 
 const app = express();
 app.use(express.json());
@@ -41,6 +42,7 @@ app.get('/customer/products', async (_req, res) => {
 });
 
 app.get('/coffee', (_req, res) => res.status(418).end());
+app.use(drinksRouter);
 
 app.use(errorMiddleware);
 
