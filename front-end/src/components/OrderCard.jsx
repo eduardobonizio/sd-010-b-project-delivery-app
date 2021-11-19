@@ -12,7 +12,7 @@ function OrderCard({ order }) {
       <div data-testid={ `customer_orders__element-delivery-status-${id}` }>
         {status}
       </div>
-      <div>
+      <div data-testid={ ` customer_orders__element-order-date-${id}` }>
         {saleDate}
       </div>
       <div>
