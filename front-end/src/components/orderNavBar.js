@@ -9,13 +9,15 @@ export default function OrderNavBar({ order, type }) {
 
   const aCaminho = 'Em Trânsito';
 
-  if (status === aCaminho) {
-    setBgColorStatus('bg-yellow-400');
-  } else if (status === 'Preparando') {
-    setBgColorStatus('bg-blue-400');
-  } else if (status === 'Entregue') {
-    setBgColorStatus('bg-green-400');
-  }
+  useEffect(() => {
+    if (status === aCaminho) {
+      setBgColorStatus('bg-yellow-400');
+    } else if (status === 'Preparando') {
+      setBgColorStatus('bg-blue-400');
+    } else if (status === 'Entregue') {
+      setBgColorStatus('bg-green-400');
+    }
+  }, [status]);
 
   const changeStatusFunc = (newStatus) => {
     const { id } = order;
