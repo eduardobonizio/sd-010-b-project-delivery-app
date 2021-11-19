@@ -15,12 +15,7 @@ function SalesList() {
 
   const saleDate = formatedDate(new Date(order.saleDate));
 
-  let totalPrice = 0.00;
-
-  if (order.saleItens) {
-    totalPrice = order.saleItens.reduce((acc, cur) => acc + cur.subTotal, 0);
-  }
-
+  console.log(order);
   useEffect(() => {
     async function getOrder() {
       setIsLoading(true);
@@ -43,9 +38,8 @@ function SalesList() {
           <span
             data-testid="customer_order_details__element-order-details-label-seller-name"
           >
-            Fulana Pereira
+            { order.sellerName }
           </span>
-          <span>Não veio do banco</span>
           <span
             data-testid="customer_order_details__element-order-details-label-order-date"
           >
@@ -83,7 +77,7 @@ function SalesList() {
         <p>
           R$
           <span data-testid="customer_order_details__element-order-total-price">
-            { formatSaveAndRenderPrice(totalPrice.toFixed(2)) }
+            { formatSaveAndRenderPrice(order.totalPrice) }
           </span>
         </p>
       </div>
