@@ -3,7 +3,6 @@ const formatDate = (date) => {
   const year = dateSplited[0];
   const month = dateSplited[1];
   const day = dateSplited[2].slice(0, 2);
-  console.log(dateSplited);
 
   return `${day}/${month}/${year}`;
 };
