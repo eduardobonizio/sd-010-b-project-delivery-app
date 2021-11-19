@@ -25,7 +25,8 @@ function Register() {
     history.push('/customer/products');
   };
 
-  const handleClick = async () => {
+  const handleClick = async (e) => {
+    e.preventDefault();
     const checkLogin = await sendNewUser(name, email, password);
     if (checkLogin.message.id) {
       const { message } = checkLogin;
@@ -66,45 +67,45 @@ function Register() {
   return (
     <div className="register">
       <h1>cadastro</h1>
-      {/* <form onSubmit={ handleClick }> */}
-      <label htmlFor="name">
-        <input
-          id="name"
-          type="text"
-          placeholder="Seu nome"
-          value={ name }
-          onChange={ ({ target: { value } }) => setName(value) }
-          data-testid="common_register__input-name"
-        />
-      </label>
-      <label htmlFor="email">
-        <input
-          id="email"
-          type="text"
-          placeholder="Seu-email@site.com.br"
-          value={ email }
-          onChange={ ({ target: { value } }) => setEmail(value) }
-          data-testid="common_register__input-email"
-        />
-      </label>
-      <label htmlFor="senha">
-        <input
-          type="password"
-          placeholder="******"
-          value={ password }
-          onChange={ ({ target: { value } }) => setPassword(value) }
-          data-testid="common_register__input-password"
-        />
-      </label>
-      <button
-        type="submit"
-        data-testid="common_register__button-register"
-        disabled={ disableBtn }
-        onClick={ handleClick }
-      >
-        Cadastrar
-      </button>
-      {/* </form> */}
+      <form onSubmit={ handleClick }>
+        <label htmlFor="name">
+          <input
+            id="name"
+            type="text"
+            placeholder="Seu nome"
+            value={ name }
+            onChange={ ({ target: { value } }) => setName(value) }
+            data-testid="common_register__input-name"
+          />
+        </label>
+        <label htmlFor="email">
+          <input
+            id="email"
+            type="text"
+            placeholder="Seu-email@site.com.br"
+            value={ email }
+            onChange={ ({ target: { value } }) => setEmail(value) }
+            data-testid="common_register__input-email"
+          />
+        </label>
+        <label htmlFor="senha">
+          <input
+            type="password"
+            placeholder="******"
+            value={ password }
+            onChange={ ({ target: { value } }) => setPassword(value) }
+            data-testid="common_register__input-password"
+          />
+        </label>
+        <button
+          type="submit"
+          data-testid="common_register__button-register"
+          disabled={ disableBtn }
+          // onClick={ handleClick }
+        >
+          Cadastrar
+        </button>
+      </form>
       {
         showMessage
         && (
