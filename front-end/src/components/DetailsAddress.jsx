@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Context from '../context/Context';
-import createSale from '../services/apis/servicesSales';
+import { createSale, createSaleProducts } from '../services/apis/servicesSales';
 import { getFromLocalStorage } from '../services/helpers/servicesLocalStorage';
 
 const SELECT_SELLER = 'customer_checkout__select-seller';
@@ -11,7 +11,7 @@ const SUBMIT_ORDER = 'customer_checkout__button-submit-order';
 
 function DetailsAddress() {
   const history = useHistory();
-  const { sellers, totalPrice } = useContext(Context);
+  const { sellers, totalPrice, cart } = useContext(Context);
 
   const [address, setAddress] = useState('');
   const [number, setNumber] = useState('');
@@ -24,6 +24,13 @@ function DetailsAddress() {
     if (name === 'seller') setSellerId(value);
   };
 
+  const filterCart = async (idSale, token) => {
+    cart.filter((product) => product.quantity > 0)
+      .forEach(({ id, quantity }) => {
+        createSaleProducts({ sale_id: idSale, product_id: id, quantity }, token);
+      });
+  };
+
   const sendOrder = async () => {
     const { token } = getFromLocalStorage('user');
     const saleData = {
@@ -32,9 +39,9 @@ function DetailsAddress() {
       delivery_address: address,
       delivery_number: number,
       status: 'Pendente' };
-    console.log(saleData, token);
     const sale = await createSale(saleData, token);
     const { id } = sale;
+    await filterCart(id, token);
     history.push(`/customer/orders/${id}`);
   };
 
