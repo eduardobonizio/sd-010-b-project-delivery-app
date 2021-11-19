@@ -22,7 +22,7 @@ const createOrder = async (req, res) => {
         { saleId: dataValues.id, productId: product.productId, quantity: product.quantity }
         ));
       await SaleProduct.bulkCreate(saleProduct, { transaction: t });
-      res.status(200).json({ saleId: dataValues.id });
+      res.status(201).json({ saleId: dataValues.id });
     });
     } catch (_error) {
       res.status(500).json({ message: 'Erro no geranciamento da transação no banco' });
