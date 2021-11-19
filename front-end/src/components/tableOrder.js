@@ -13,12 +13,17 @@ const tableHeader = [
 ];
 
 export default function TableOrder() {
-  const { productsInCart, totalPrice } = useContext(ProductsContext);
-  const cartItems = productsInCart.filter(({ quantity }) => quantity > 0);
+  const { totalPrice } = useContext(ProductsContext);
 
   return (
     <div className="mt-32 ml-20 mr-20">
-      <h2 className="inline-block py-2 text-3xl border-b-2 border-yellow-color">Finalizar Pedido</h2>
+      <h2
+        data-aos="fade-right"
+        className="inline-block py-2 text-3xl border-b-2 border-yellow-color"
+      >
+        Finalizar Pedido
+
+      </h2>
       <div className="ml-32 mr-32">
         <table className="w-full mt-20 text-center">
           <thead>
@@ -28,7 +33,7 @@ export default function TableOrder() {
               ))}
             </tr>
           </thead>
-          <TableOrderBody cartItems={ cartItems } />
+          <TableOrderBody />
         </table>
       </div>
       <div className="flex justify-end w-full pr-32">

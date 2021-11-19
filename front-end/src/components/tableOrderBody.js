@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
+
 import ProductsContext from '../context/productContext';
 
 const DATA_TESTID = {
@@ -12,13 +12,22 @@ const DATA_TESTID = {
   tableRemove: 'customer_checkout__element-order-table-remove-',
 };
 
-export default function TableOrderBody({ cartItems }) {
+const AOS_ANIMATION_DELAY = 150;
+
+export default function TableOrderBody() {
   const { removeCartItem } = useContext(ProductsContext);
+  const productsInCart = JSON.parse(localStorage.getItem('productsInCart'));
+  const cartItems = productsInCart.filter(({ quantity }) => quantity > 0);
 
   return (
     <tbody className="text-lg">
       {cartItems.map(({ name, price, quantity }, idx) => (
-        <tr key={ idx } className="border-t-8 border-b-8 border-white bg-yellow-color">
+        <tr
+          key={ idx }
+          data-aos="fade-up"
+          data-aos-delay={ idx * AOS_ANIMATION_DELAY }
+          className="border-t-8 border-b-8 border-white bg-yellow-color"
+        >
           <td className="py-2 rounded-l-lg" data-testid={ `${DATA_TESTID.itemNumber}${idx}` }>
             {idx + 1}
           </td>
@@ -59,7 +68,3 @@ export default function TableOrderBody({ cartItems }) {
     </tbody>
   );
 }
-
-TableOrderBody.propTypes = {
-  cartItems: PropTypes.arrayOf.isRequired,
-};
