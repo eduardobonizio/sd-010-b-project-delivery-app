@@ -1,12 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Context } from '../contexts/createContext';
-import { getSellers } from '../services/api';
+import { checkoutProducts, getSellers } from '../services/api';
 
 export default function ListItemCheckout() {
   const { products, setProducts, total, setTotal } = useContext(Context);
   const [productsList, setProductsList] = useState([]);
 
   const [sellers, setSellers] = useState([]);
+  const [address, setAddress] = useState({ address: '', number: 0 });
+  const [sellersId, setSellersId] = useState(0);
+  const history = useHistory();
 
   function itemTotal(Valor, Quantity) {
     const result = Valor * Quantity;
@@ -20,16 +24,47 @@ export default function ListItemCheckout() {
           setSellers([...sellers, seller]);
         });
       });
-  }, []);
+  }, [sellers]);
 
   useEffect(() => {
     setProductsList(products.filter(({ quant }) => quant > 0));
   }, [products]);
 
-  // function orderTotal() {
-  //   return productsList.filter((product) => product.quant > 0)
-  //     .reduce((acc, { price }) => acc + parseInt(price), 0);
-  // }
+  function getinfo({ target: { name, value } }) {
+    if (name === 'address') {
+      return setAddress({ ...address, address: value });
+    }
+    if (name === 'sellers') {
+      return setSellersId(value);
+    }
+    return setAddress({ ...address, number: value });
+  }
+
+  async function getorder(
+    productsOrder,
+    totalPrice,
+    deliveryAddress,
+    sellerId,
+  ) {
+    const cart = productsOrder.map(
+      ({ id, quant }) => ({ productId: id, quantity: quant }),
+    );
+
+    const objectOrder = {
+      sale: {
+        sellerId,
+        totalPrice,
+        deliveryAddress: deliveryAddress.address,
+        deliveryNumber: deliveryAddress.number,
+      },
+      cart,
+
+    };
+    console.log(objectOrder);
+    const { data } = await checkoutProducts(objectOrder);
+    console.log('idOrder', data);
+    return history.push(`localhost:3000/customer/orders/${data[0].saleId}`);
+  }
 
   return (
     <>
@@ -59,44 +94,42 @@ export default function ListItemCheckout() {
       {productsList.map((product, i) => {
         const { id, name, price, quant } = product;
         return (
-          <ul key={ i }>
+          <ul key={ id }>
             <li>
               <span
                 key={ id }
                 className="itemId"
-                data-testid={ `customer_checkout__element-order-table-item-number-${id}` }
+                data-testid={ `customer_checkout__element-order-table-item-number-${i}` }
               >
-                {id}
+                {i + 1}
               </span>
               <span
                 className="itemName"
-                data-testid={ `customer_checkout__element-order-table-name-${id}` }
+                data-testid={ `customer_checkout__element-order-table-name-${i}` }
               >
                 {name}
               </span>
               <span
                 className="itemQuantity"
-                data-testid={ `cutomer_checkout__element-order-table-quantity-${id}` }
+                data-testid={ `customer_checkout__element-order-table-quantity-${i}` }
               >
                 {quant}
               </span>
               <span
                 className="unitPrice"
-                data-testid={ `customer_checkout__element-order-table-unit-price-${id}` }
+                data-testid={ `customer_checkout__element-order-table-unit-price-${i}` }
               >
-                R$ :
-                {price}
+                {price.replace(/\./g, ',')}
               </span>
               <span
                 className="subtotalPrice"
-                data-testid={ `customer_checkout__element-order-table-sub-total-${id}` }
+                data-testid={ `customer_checkout__element-order-table-sub-total-${i}` }
               >
-                R$:
-                {itemTotal(price, quant)}
+                {itemTotal(price, quant).toFixed(2).replace(/\./g, ',')}
               </span>
               <button
                 className="removeItem"
-                data-testid={ `customer_checkout__element-order-table-remove-${id}` }
+                data-testid={ `customer_checkout__element-order-table-remove-${i}` }
                 type="submit"
                 onClick={ () => {
                   const valorFinal = itemTotal(product.price, product.quant);
@@ -117,20 +150,27 @@ export default function ListItemCheckout() {
         className="orderTotal"
         data-testid="customer_checkout__element-order-total-price"
       >
-        Total: R$
-        {total}
+        Total:
+        {total.toFixed(2).replace(/\./g, ',')}
       </div>
-      <form>
+      <form
+        onSubmit={ (event) => event.preventDefault() }
+      >
         <p>Detalhes e Endereço para Entrega</p>
         <label htmlFor="responsableSeller">
           <p>P. Vendedora Responsável:</p>
-          <select>
+          <select
+            name="sellers"
+            data-testid="customer_checkout__select-seller"
+            onChange={ getinfo }
+          >
+            <option selected> - </option>
             { sellers.length > 0 && sellers.map(({ id, name, email }) => (
               <option
-                key={ id }
-                id={ email }
-                value={ name }
-                data-testid="customer_checkout__select-seller"
+                key={ email }
+                id={ id }
+                value={ id }
+
               >
                 {' '}
                 {name}
@@ -143,21 +183,27 @@ export default function ListItemCheckout() {
           <p>Endereço</p>
           <input
             id="address"
+            name="address"
+            type="text"
             data-testid="customer_checkout__input-address"
+            onChange={ getinfo }
           />
         </label>
         <label htmlFor="addressNumber">
           <p>Número</p>
           <input
             id="addressNumber"
+            name="addressNumber"
+            type="text"
             data-testid="customer_checkout__input-addressNumber"
+            onChange={ getinfo }
           />
         </label>
         <button
           className="submit-order"
           data-testid="customer_checkout__button-submit-order"
           type="submit"
-          onClick={ () => console.log('mandou') }
+          onClick={ () => getorder(productsList, total, address, sellersId) }
         >
           FINALIZAR PEDIDO
         </button>
