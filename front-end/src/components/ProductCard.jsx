@@ -32,6 +32,7 @@ function ProductCard() {
                 >
                   { prod.price }
                   <img
+                    style={ { height: 200 } }
                     data-testid={ `customer_products__img-card-bg-image-${prod.id}` }
                     src={ prod.url_image }
                     alt={ prod.name }
