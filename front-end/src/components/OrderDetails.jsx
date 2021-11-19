@@ -1,33 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-// import axios from 'axios';
-// import Loading from './Loading';
+import axios from 'axios';
 
 function OrderDetails({ id }) {
-  const [productDetails] = useState([
-    { d: 3, description: 'legal', quantity: 3, unityValue: 7.90, total: 7.90 },
-    { d: 4, description: 'legal', quantity: 3, unityValue: 7.90, total: 7.90 }]);
-  console.log(productDetails);
-  // const [loading, setLoading] = useState(true);
+  const [saleDetails, setSaleDetails] = useState([]);
+  console.log(saleDetails);
+  const [loading, setLoading] = useState(true);
   console.log(id);
   const number3 = 3;
   const vendedor = 'Thiago Leite';
   const data = 'hoje';
   const status = 'entregue';
 
-  // useEffect(() => {
-  //   const fetchProductDetails = async () => {
-  //     const productInfo = await axios.get('http://google.com.br');
-  //     console.log(productInfo);
-  //     setProductDetails([{ id: 1, description: 'legal' }]);
-  //     setLoading(false);
-  //   };
-  //   fetchProductDetails();
-  // });
+  useEffect(() => {
+    const fetchProductDetails = async () => {
+      const productInfo = await axios.get('http://localhost:3001/sales/1');
+      setLoading(false);
+      setSaleDetails(productInfo);
+    };
+    fetchProductDetails();
+  });
 
-  // if (loading) {
-  //   return <Loading />;
-  // }
+  if (loading) {
+    return <span>Carregando conteúdo</span>;
+  }
 
   return (
     <main>
