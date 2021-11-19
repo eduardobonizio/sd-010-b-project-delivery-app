@@ -8,8 +8,8 @@ function CustomerOrders() {
   return (
     <OrderProvider>
       <Navbar
-        item1="PRODUTOS"
-        item2="MEUS PEDIDOS"
+        item1="Produtos"
+        item2="Meus pedidos"
         user={ user.name }
       />
     </OrderProvider>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { isValidateRegister } from '../../../helpers/validateRegister';
 import api from '../../../services/api';
+import logo from '../../../images/logo.png';
 
 function Form() {
   const history = useHistory();
@@ -54,8 +55,12 @@ function Form() {
   }
 
   return (
-    <div className="d-flex justify-content-center">
-      <div className="row d-flex flex-column bg-secondary py-4">
+    <div className="custom-login">
+      <div>
+        <img src={ logo } alt="logo" width="150" />
+        <h1 className="text-warning">TryBeer</h1>
+      </div>
+      <div>
         <p className="text-center">Cadastro</p>
         <div className="col">
           <span className="form-label">Nome</span>
