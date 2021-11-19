@@ -1,4 +1,6 @@
+import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import dataTestIdDict from '../../utils/dataTestIdDict';
 import InputText from './InputText';
 import SellersSelect from './SellersSelect';
@@ -11,6 +13,7 @@ function DeliveryDetails() {
     deliveryAddress: '',
     deliveryNumber: '',
   });
+  const navigate = useNavigate();
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
@@ -18,6 +21,39 @@ function DeliveryDetails() {
 
     const newDetails = { ...details, [name]: newValue };
     setDetails(newDetails);
+  };
+
+  const getTotalPrice = (cartItems) => {
+    const totalOrder = cartItems.reduce((acc, curr) => acc + curr.subTotal, 0);
+    return Number(totalOrder.toFixed(2));
+  };
+
+  const postSale = async (sale) => {
+    const { token } = JSON.parse(localStorage.getItem('user'));
+
+    const { data } = await axios.post(
+      'http://localhost:3001/sales',
+      { sale },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: token,
+        },
+      },
+    );
+    return data;
+  };
+
+  const handleCheckout = async () => {
+    const products = JSON.parse(localStorage.getItem('carrinho'));
+    const totalPrice = getTotalPrice(products);
+    const sale = { ...details, totalPrice, status: 'Pendente', products };
+    try {
+      const { saleId } = await postSale(sale);
+      navigate(`/customer/orders/${saleId}`);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
