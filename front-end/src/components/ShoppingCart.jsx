@@ -17,9 +17,9 @@ function shoppingCart({ totalSales, navigate }) {
       className="shopping-cart"
       disabled={ buttomStatus() }
       onClick={ () => navigate('/customer/checkout') }
-      data-testid={ `${ID.dataTestId21}` }
+      data-testid="customer_products__button-cart"
     >
-      {`Carrinho R$ ${formatedNumber}`}
+      <p data-testid={ `${ID.dataTestId21}` }>{`Carrinho R$ ${formatedNumber}`}</p>
     </button>
   );
 }
