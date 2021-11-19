@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const { sale, salesProducts } = require('../../database/models');
+const { sale, salesProduct } = require('../../database/models');
 
 const env = process.env.NODE_ENV || 'test';
 const config = require('../../database/config/config')[env];
@@ -20,7 +20,7 @@ const createSaleTransaction = async (payload) => sequelize.transaction(async (t)
 
     const salesProductsData = mapSalesProducts(products, saleId);
 
-    await salesProducts.bulkCreate(salesProductsData, { transaction: t });
+    await salesProduct.bulkCreate(salesProductsData, { transaction: t });
     return saleId;
   });
 
