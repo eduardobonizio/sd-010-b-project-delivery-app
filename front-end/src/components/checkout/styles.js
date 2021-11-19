@@ -50,8 +50,7 @@ export const Table = styled.table`
 
 export const TableTheader = styled.thead``;
 
-export const TableTbody = styled.tbody`
-`;
+export const TableTbody = styled.tbody``;
 
 export const TrTable = styled.tr`
   border: 1px #000 solid;
@@ -121,6 +120,12 @@ export const ValueTotal = styled.div`
   color: #FFF;
   font-size: 1.5rem;
   font-weight: 800;
+`;
+
+export const Form = styled.form`
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
 `;
 
 export const ContainerDetatailsOrder = styled.div`
