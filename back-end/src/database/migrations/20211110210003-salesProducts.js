@@ -10,8 +10,8 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         references: {
-          model: "sales",
-          key: "id",
+          model: 'sales',
+          key: 'id',
         },
       },
       product_id:{
@@ -21,8 +21,8 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         references: {
-          model: "products",
-          key: "id",
+          model: 'products',
+          key: 'id',
         },
       },
       quantity: {
