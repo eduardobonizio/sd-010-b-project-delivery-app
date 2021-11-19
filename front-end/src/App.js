@@ -5,6 +5,7 @@ import AppProvider from './Context/AppProvider';
 import Products from './pages/Products';
 import Login from './pages/Login';
 import './App.css';
+import PagesOrder from './pages/PagesOrder';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           </Route>
           <Route path="/login" component={ Login } />
           <Route path="/customer/products" component={ Products } />
+          <Route path="/customer/orders" component={ PagesOrder } />
         </Switch>
       </AppProvider>
     </div>
