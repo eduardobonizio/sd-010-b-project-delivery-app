@@ -12,7 +12,6 @@ function MyOrders() {
 
     const endPoint = 'http://localhost:3001/sales';
     const { data } = await axios.get(endPoint, { headers: { Authorization: token } });
-    console.log(data);
     return setSales(data);
   };
 
@@ -23,7 +22,7 @@ function MyOrders() {
   return (
     <>
       <Header />
-      <div>
+      <div className="boxPageOrder">
         {
           sales.map((sale) => <CardOrder key={ sale.id } sale={ sale } />)
         }

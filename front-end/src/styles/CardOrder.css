@@ -1,0 +1,98 @@
+.boxPageOrder {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 20px;
+  font-family: sans-serif;
+}
+
+.boxPageOrder a {
+  text-decoration: none;
+}
+
+.conteiner:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.conteiner {
+  display: grid;
+  grid-template-areas: 
+  "box1 box1"
+  "box2 box3"
+  "box2 box3"
+  "box2 box3"
+  "box2 box3";
+  border-radius: 5px;
+  grid-gap: 1px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  margin: 10px;
+}
+
+.status {
+  border-radius: 5px 5px 0px 0px;
+  grid-area: box1;
+  justify-content: center;
+}
+
+.saleId {
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+  background-color: rgba(0,0,0,0.16);
+  grid-area: box2;
+  border-radius: 0px 0px 0px 5px;
+}
+
+.saleId p {
+  font-size: 20px;
+  line-height: 0.1;
+ }
+
+.dataPrice {
+  background-color: rgba(0,0,0,0.16);
+  border-radius: 0px 0px 5px 0px;
+  grid-area: box3;
+}
+
+.pendente {
+  background-color: rgb(246, 224, 97);
+}
+
+.preparando {
+  background-color: rgb(177, 241, 117);
+}
+
+.entregue {
+  background-color: rgb(75, 149, 5);
+}
+
+.conteiner:hover {
+}
+
+.conteiner div {
+  padding: 15px;
+}
+
+/* .box a {
+  align-content: space-between;
+  display: flex;
+  flex-direction: row;
+} */
+
+.saleId {
+  align-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.status {
+  align-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.dataPrice {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
