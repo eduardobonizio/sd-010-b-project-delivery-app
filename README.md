@@ -2,7 +2,7 @@
 
 Ao iniciar este projeto, você concorda com as diretrizes do Código de Ética e Conduta e do Manual da Pessoa Estudante da Trybe.
 
----
+--- -
 
 # Boas vindas ao repositório do projeto App de Delivery!
 
@@ -164,28 +164,28 @@ O projeto em si é super divertido! Como dado no contexto, você vai criar uma p
 
 Para facilitar o entendimento, podemos dividir a aplicação em ** 4 fluxos principais**, **uma validação de status entre cliente e pessoa vendedora** e **cobertura de testes (`front-end` e `back-end`)**:
 
-- **Fluxo Comum** que compreende: 
-  - (1) Tela de Login (`01login.test`); 
+- **Fluxo Comum** que compreende:
+  - (1) Tela de Login (`01login.test`);
   - (2) Tela de Registro (`02register.test`).
 
-- **Fluxo do Cliente** que compreende: : 
-  - (3) Tela de Produtos (`03customer_products.test`); 
-  - (4) Tela de Checkout (`04customer_checkout.test`); 
-  - (5) Tela de Pedidos (`05customer_orders.test`); 
+- **Fluxo do Cliente** que compreende: :
+  - (3) Tela de Produtos (`03customer_products.test`);
+  - (4) Tela de Checkout (`04customer_checkout.test`);
+  - (5) Tela de Pedidos (`05customer_orders.test`);
   - (6) Tela de Detalhes do Pedido (`06customer_order_details.test`).
 
-- **Fluxo da Pessoa Vendedora** que compreende: 
-  - (7) Tela de Pedidos (`07seller_orders.test`); 
+- **Fluxo da Pessoa Vendedora** que compreende:
+  - (7) Tela de Pedidos (`07seller_orders.test`);
   - (8) Tela de Detalhes/Controle do Pedido (`08seller_order_details.test`).
 
-- **Validação do Status do Pedido** que compreende: 
-  - (9) Teste de status sem atualização em tempo real (`09customer_seller_status_sync.test`); 
+- **Validação do Status do Pedido** que compreende:
+  - (9) Teste de status sem atualização em tempo real (`09customer_seller_status_sync.test`);
   - (10) Teste de status com atualização em tempo real (`10customer_seller_socket_status_sync.test`).
 
-- **Fluxo da Pessoa Administradora** que compreende: 
+- **Fluxo da Pessoa Administradora** que compreende:
   - (11) Tela de gerenciamento de usuários (`11admin_manage_users.test`).
 
-- **Testes da aplicação** que compreende: 
+- **Testes da aplicação** que compreende:
   - (12) Testes de cobertura (`12coverage_tests.test`).
 
 
@@ -322,7 +322,7 @@ Você pode ler mais sobre os atributos `data-*` [neste link](https://developer.m
 - `test <nomes-dos-arquivos>`: Roda todos os testes (ou uma parte deles caso `<nomes-dos-arquivos>` seja definido) utilizando o **banco de dados de testes** (final `-test`);
   - *uso (na raiz do projeto): `npm test`, `npm test 01login 02register` ou ainda `npm run test 01 02`*
 
-- `test:dev <nomes-dos-arquivos>`: Roda todos os testes (ou uma parte deles caso `<nomes-dos-arquivos>` seja definido) utilizando o **banco de dados de desenvolvimento** (final `-dev`); 
+- `test:dev <nomes-dos-arquivos>`: Roda todos os testes (ou uma parte deles caso `<nomes-dos-arquivos>` seja definido) utilizando o **banco de dados de desenvolvimento** (final `-dev`);
   - *uso (na raiz do projeto): `npm run test:dev`, `npm run test:dev 01login 02register` ou ainda `npm test:dev 01 02`*;
 
 - `test:dev:open <nomes-dos-arquivos>`: Roda todos os testes (ou uma parte deles caso `<nomes-dos-arquivos>` seja definido) utilizando o **banco de dados de desenvolvimento** (final `-dev`), exemplo `npm test:dev:open 01login 02register` ou ainda `npm test:dev:open 01 02`; Esse teste deve mostrar abrir uma janela mostrando o comportamento das páginas;
@@ -334,7 +334,7 @@ Você pode ler mais sobre os atributos `data-*` [neste link](https://developer.m
 ## Preparando o campo e iniciando o projeto
 
 - ⚠️ **IMPORTANTE** ⚠️: O processo de avaliação completo **é bem demorado** (em torno de 20 minutos), por isso, **é importante que os testes sejam feitos por partes, localmente, antes de serem enviados para o avaliador!** Para isso, utilize os comandos de teste local (`npm run test:dev*`) apresentados em ["Scripts relevantes do `package.json` principal"](#scripts-relevantes-do-packagejson-principal)!
-  - Exemplo: Após terminar os requisitos do primeiro arquivo (`01login.test.js`), vc pode utilizar o comando `npm run test:dev 01` ou `npm run test:dev:open 01`(caso queira visualizar) para testar aquela parte do projeto. 
+  - Exemplo: Após terminar os requisitos do primeiro arquivo (`01login.test.js`), vc pode utilizar o comando `npm run test:dev 01` ou `npm run test:dev:open 01`(caso queira visualizar) para testar aquela parte do projeto.
   - Aqui, vocês também tem liberdade para utilizar os comandos `.only` ou `.skip` para validar testes específicos no avaliador local (pasta `./__tests__/end-to-end`), exemplo:
 ```js script
 /*
@@ -398,12 +398,12 @@ Esse projeto fornece por padrão o arquivo `.sequelizerc` em `.back-end` para co
 
 ## Componentização
 
-O nosso [protótipo](https://www.figma.com/file/cNKu41RhnPIgNqrbMTzmUI/Delivery-App-new-trybeer?node-id=977%3A391) possui um conjunto de **componentes base**. Isso é proposital e sugere que é fundamental que vocês componentizem o front-end de maneira que seja possível fazer o maior reaproveitamento possível de cada estrutura. 
+O nosso [protótipo](https://www.figma.com/file/cNKu41RhnPIgNqrbMTzmUI/Delivery-App-new-trybeer?node-id=977%3A391) possui um conjunto de **componentes base**. Isso é proposital e sugere que é fundamental que vocês componentizem o front-end de maneira que seja possível fazer o maior reaproveitamento possível de cada estrutura.
 
 É bom lembrar que um front-end em React com pouca componentização **gera muita manutenção no tempo e atrasa a entrega**. *Aqui, é aconselhável pensar utilizando um [modelo atômico](https://brasil.uxdesign.cc/atomic-design-redesenhando-os-entreg%C3%A1veis-de-designers-e-desenvolvedores-da8886c7258d) de desenvolvimento.*
 
 ## Data-testids
-O data-testid de cada elemento que será usado na avaliação do projeto está no arquivo [data-testids.md](data-testids.md) na raiz do projeto. Cada um desse elementos tem no [protótipo do figma](https://www.figma.com/file/cNKu41RhnPIgNqrbMTzmUI/Delivery-App-new-trybeer?node-id=977%3A391) um número, e nesse arquivo, o `data-testid` que deve ser atribuido ao valor de tal. 
+O data-testid de cada elemento que será usado na avaliação do projeto está no arquivo [data-testids.md](data-testids.md) na raiz do projeto. Cada um desse elementos tem no [protótipo do figma](https://www.figma.com/file/cNKu41RhnPIgNqrbMTzmUI/Delivery-App-new-trybeer?node-id=977%3A391) um número, e nesse arquivo, o `data-testid` que deve ser atribuido ao valor de tal.
 
 # Requisitos do projeto
 
@@ -623,7 +623,7 @@ O avaliador **buscará pelos elementos** fundamentais aos demais testes:
 
 - Se oriente pela seguinte tela do protótipo: [`Comum / Produtos`](https://www.figma.com/file/cNKu41RhnPIgNqrbMTzmUI/Delivery-App-new-trybeer?node-id=977%3A416);
 - Deve-se construir um total de `11` cards, cada um correspondente a um item da tabela produtos, conforme a tabela `products` do modelo em `db.example.sql`.
-- Os `data-testid` desses itens devem terminar com o id de cada produto, exemplo: 
+- Os `data-testid` desses itens devem terminar com o id de cada produto, exemplo:
   - `customer_products__element-card-price-1`; `customer_products__element-card-price-2`; ...; `customer_products__element-card-price-11`.
 
 **O que será avaliado**
@@ -744,7 +744,7 @@ Todos os testes desse arquivo:
 **O que será avaliado**
 
 - O avaliador testará os data-testids referentes aos itens do carrinho e demais elementos.
-  
+
 ---
 
 ####  18 - Desenvolva a tela de checkout do cliente de forma a possuir os dados corretos do carrinho e preço total
@@ -776,7 +776,7 @@ Todos os testes desse arquivo:
 
 **Observações técnicas**
 
-- Não se preocupe aqui em ter a tela de detalhes do pedido pronta; 
+- Não se preocupe aqui em ter a tela de detalhes do pedido pronta;
   - O que deve estar garantido, é que é possível ter acesso a uma rota `localhost:3000/customer/orders/<id>` no front, onde o `id` é retornado da requisição da venda;
 - Ao final do pedido (ao clicar no 'Botão de finalização do pedido'), a tela de checkout deve disparar uma requisição pra API, inserindo a venda e retornando o `id` da mesma, para utilização no redirecionamento.
 
@@ -835,7 +835,7 @@ Todos os testes desse arquivo:
 **Observações técnicas**
 
 - Se oriente pela seguinte tela do protótipo: [`Comum / Meus Pedidos`](https://www.figma.com/file/cNKu41RhnPIgNqrbMTzmUI/Delivery-App-new-trybeer?node-id=977%3A637);
-- Os `data-testid` desses itens devem terminar com o `id` de cada venda no banco, exemplo: 
+- Os `data-testid` desses itens devem terminar com o `id` de cada venda no banco, exemplo:
   - `customer_products__element-order-date-1`; `customer_products__element-order-date-2`; ...; `customer_products__element-order-date-x`.
 
 **O que será avaliado**
@@ -862,7 +862,7 @@ Todos os testes desse arquivo:
 
 **Observações técnicas**
 
-- Não se preocupe aqui em ter a tela de detalhes do pedido pronta; 
+- Não se preocupe aqui em ter a tela de detalhes do pedido pronta;
   - O que deve estar garantido, é que é possível ter acesso a uma rota `localhost:3000/customer/orders/<id>` no front;
 - Aqui, o acesso a cada item deve ser possível pelos cards na tela de pedidos;
 
@@ -933,7 +933,7 @@ Todos os testes desse arquivo:
 **Observações técnicas**
 
 - Se oriente pela seguinte tela do protótipo: [`P. Vend / Pedidos`](https://www.figma.com/file/cNKu41RhnPIgNqrbMTzmUI/Delivery-App-new-trybeer?node-id=982%3A372);
-- Os `data-testid` desses itens devem terminar com o `id` de cada venda no banco, exemplo: 
+- Os `data-testid` desses itens devem terminar com o `id` de cada venda no banco, exemplo:
   - `seller_orders__element-order-date-1`; `seller_orders__element-order-date-2`; ...; `seller_orders__element-order-date-x`.
 
 **O que será avaliado**
@@ -960,7 +960,7 @@ Todos os testes desse arquivo:
 
 **Observações técnicas**
 
-- Não se preocupe aqui em ter a tela de detalhes do pedido pronta; 
+- Não se preocupe aqui em ter a tela de detalhes do pedido pronta;
   - O que deve estar garantido, é que é possível ter acesso a uma rota `localhost:3000/seller/orders/<id>` no front;
 - Aqui, o acesso a cada item deve ser possível pelos cards na tela de pedidos;
 
@@ -1105,7 +1105,7 @@ Esse teste é similar ao anterior, porém assumindo a implementação do `socket
 - Pedidos da pessoa vendedora;
 - Detalhes do pedido da pessoa vendedora;
 ⚠️ **IMPORTANTE** ⚠️: Esse escopo deve ser respeitado para que isso não quebre demais testes ou interfira em páginas que não utilizam esse recurso.
-  - Dica: Utilize um **contexto específico** para inicialização do socket, cujo provedor contemple somente esse conjunto de páginas; 
+  - Dica: Utilize um **contexto específico** para inicialização do socket, cujo provedor contemple somente esse conjunto de páginas;
   - Esse contexto pode ter funções específicas para inicialização de `listeners`, emissão e recepção de eventos, e pode ser utilizado sob demanda por suas páginas.
 
 Todos os testes desse arquivo:
@@ -1292,8 +1292,8 @@ A cobertura de testes deve garantir que, tanto no `front-end` quanto no `back-en
 
 Antes de todos os testes, esse arquivo deve rodar, em ambas aplicações, o comando `test:coverage:json`.
 - Tanto no `front-end` quanto no `back-end`, esse comando deve gerar um arquivo de cobertura (`coverage`) específico para cada;
-- Serão coletados dos arquivos, os dados: 
-  - `pct` - porcentagem total da cobertura; 
+- Serão coletados dos arquivos, os dados:
+  - `pct` - porcentagem total da cobertura;
   - `skipped` - se algum teste foi pulado com `.only` ou `.skip`;
   - `covered` - quantas linhas foram cobertas no teste.
 
