@@ -1,0 +1,61 @@
+.orderCard * {
+  all: unset;
+}
+
+.orderCard {
+  all: initial;
+  background-color: #d9e0de;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+  padding: 2px;
+}
+
+.idOrder, .statusOrder, .dateValueOrder {
+  background-color: white;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 10px;
+}
+
+.idOrder {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 50px;
+
+  /* align-self: center; */
+}
+
+.statusOrder {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 110px;
+
+  /* align-self: center; */
+}
+
+.dateValueOrder {
+  background-color: #d9e0de;
+  padding: 0;
+}
+
+.dateOrder, .valueOrder {
+  align-items: center;
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.dateOrder {
+  margin-bottom: 5px;
+}
+
+.valueOrder {
+  margin-top: 5px;
+}

@@ -14,6 +14,15 @@ const createSale = async (saleData, productsArray) => {
     return id;
 };
 
+const allSalesByUser = async (id) => {
+  const userId = 'user_id';
+  const sales = await sale.findAll({
+    where: { [userId]: id },
+    attributes: ['id', 'total_price', 'sale_date', 'status'],
+  });
+  return sales;
+};
+
 const getSale = async (id) => {
     try {
         const result = await sale.findOne({ where: { id },
@@ -32,6 +41,7 @@ const getSale = async (id) => {
 module.exports = {
     createSale,
     getSale,
+    allSalesByUser,
 };
 
 // refatorar posteriormente para transação atômica (transaction)

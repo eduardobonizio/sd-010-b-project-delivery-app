@@ -1,0 +1,13 @@
+.Orders {
+  height: 100vh;
+  width: 100%;
+}
+
+.title {
+  text-align: center;
+}
+
+.CatalogOrdes {
+  display: flex;
+  flex-wrap: wrap;
+}

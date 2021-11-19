@@ -24,7 +24,14 @@ function Customer() {
     }
   };
 
+  const reloadUserData = (user) => {
+    setUserData(user);
+  };
+
   useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) reloadUserData(user);
+
     if (!userData) {
       getUserData(userEmail);
     }

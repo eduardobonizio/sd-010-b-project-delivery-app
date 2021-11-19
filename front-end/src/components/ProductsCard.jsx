@@ -20,6 +20,7 @@ export default function ProdutsCard({
     const arrValues = keysProducts.map((key) => aux[key].qtd * aux[key].price);
     const value = arrValues.reduce((acc, curr) => acc + curr);
     setTotalPrice(value.toFixed(2));
+  // eslint-disable-next-line
   }, [quantityCard]);
 
   const updateTotalPrice = {

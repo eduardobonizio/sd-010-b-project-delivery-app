@@ -19,14 +19,15 @@ export default function NavBar() {
       <button
         type="button"
         data-testid="customer_products__element-navbar-link-products"
+        onClick={ () => navigate('/customer/products') }
       >
         Produtos
-
       </button>
 
       <button
         type="button"
         data-testid="customer_products__element-navbar-link-orders"
+        onClick={ () => navigate('/customer/orders') }
       >
         Meus Pedidos
 
@@ -34,7 +35,6 @@ export default function NavBar() {
 
       <p data-testid="customer_products__element-navbar-user-full-name">
         { userData.name }
-
       </p>
 
       <button
@@ -43,7 +43,6 @@ export default function NavBar() {
         onClick={ resetLocal }
       >
         Sair
-
       </button>
     </nav>
   );
