@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import CreateUserFormErrorMessages from './CreateUserFormErrorMessages';
+import axios from 'axios';
+import ErrorMessages from './CreateUserFormErrorMessages';
 
 const defaultUser = {
   name: '',
@@ -10,9 +11,32 @@ const defaultUser = {
 
 const CreateUserForm = () => {
   const [user, setUser] = useState(defaultUser);
+  const [errors, setErrors] = useState([]);
+  const [alreadyExists, setAlreadyExists] = useState(false);
 
+  console.log(errors, 'errors');
   const handleChange = ({ target: { value, id } }) => {
     setUser({ ...user, [id]: value });
+  };
+
+  const registerUser = async () => {
+    const token = JSON.parse(localStorage.getItem('user'));
+    console.log(token.token, 'token');
+    await axios({
+      method: 'post',
+      url: 'http://localhost:3001/admin/manage/register',
+      data: {
+        name: user.name,
+        email: user.email,
+        password: user.password,
+        role: user.role,
+      },
+      headers: {
+        authorization: token.token,
+      },
+    })
+      .then(() => setAlreadyExists(false))
+      .catch(() => setAlreadyExists(true));
   };
 
   const renderRoleSelect = () => (
@@ -22,6 +46,10 @@ const CreateUserForm = () => {
       <option>seller</option>
       <option>customer</option>
     </select>
+  );
+
+  const renderAlreadyExist = () => (
+    <p data-testid="admin_manage__element-invalid-register">Usuário já existe</p>
   );
 
   return (
@@ -59,12 +87,18 @@ const CreateUserForm = () => {
         <button
           type="button"
           data-testid="admin_manage__button-register"
+          disabled={ errors.length > 0 }
+          onClick={ async () => registerUser() }
         >
           CADASTRAR
-
         </button>
       </form>
-      <CreateUserFormErrorMessages user={ user } />
+      {alreadyExists && renderAlreadyExist()}
+      <ErrorMessages
+        user={ user }
+        errors={ errors }
+        setErrors={ setErrors }
+      />
     </section>
 
   );

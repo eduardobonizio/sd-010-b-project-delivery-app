@@ -98,8 +98,9 @@ const Provider = ({ children }) => {
     );
     if (kart.length > 0) {
       const value = kart.reduce((acc, curr) => acc + curr);
-      setTotalOrder(parseFloat(value.toFixed(2)));
+      return setTotalOrder(parseFloat(value.toFixed(2)));
     }
+    return setTotalOrder(0);
   }, [orderInProgress, totalOrder]);
 
   return (
