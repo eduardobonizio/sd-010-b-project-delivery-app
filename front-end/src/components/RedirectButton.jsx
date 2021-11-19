@@ -23,7 +23,7 @@ function RedirectButton() {
     >
       <button
         data-testid="customer_products__button-cart"
-        className="btn btn-primary"
+        className="btn btn-warning"
         type="button"
         disabled={ isDisable }
         onClick={ redirectCheckout }

@@ -45,21 +45,17 @@ function Product({ product }) {
           <div
             data-testid={ `customer_products__element-card-price-${product.id}` }
           >
-            {formatSaveAndRenderPrice(`R$ ${product.price}`)}
+            {formatSaveAndRenderPrice(`${product.price}`)}
           </div>
         </div>
         <div
           className="col d-flex justify-content-center"
         >
-          <div
-            style={ {
-              backgroundImage: `url(${product.urlImage})`,
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-              backgroundSize: 'contain',
-              width: '100px',
-              height: '100px',
-            } }
+          <img
+            src={ product.urlImage }
+            alt="produto"
+            width="100"
+            data-testid={ `customer_products__img-card-bg-image-${product.id}` }
           />
         </div>
       </div>

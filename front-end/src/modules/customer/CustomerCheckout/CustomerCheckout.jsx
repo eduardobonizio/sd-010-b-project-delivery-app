@@ -1,6 +1,6 @@
 import React from 'react';
 import { CustomerProvider } from '../../../hooks/useCustomer';
-import Navbar from '../CustomerProducts/components/NavBar';
+import NavBar from '../../../components/navbar/NavBar';
 import Form from './components/Form';
 import SalesList from './components/SalesList';
 
@@ -9,9 +9,9 @@ function CustomerCheckout() {
 
   return (
     <CustomerProvider>
-      <Navbar
-        item1="PRODUTOS"
-        item2="MEUS PEDIDOS"
+      <NavBar
+        item1="Produtos"
+        item2="Meus pedidos"
         user={ user.name }
       />
       <SalesList />

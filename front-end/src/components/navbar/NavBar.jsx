@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link, useHistory } from 'react-router-dom';
 import './NavBar.scss';
 
-function Navbar({ item1, item2, user }) {
+function NavBar({ item1, item2, user }) {
   const history = useHistory();
 
   function handleLogout() {
@@ -13,28 +13,27 @@ function Navbar({ item1, item2, user }) {
 
   return (
     <div className="row d-flex customer-navbar">
-      <div className="col inner-customer-navbar">
+      <div className="col-3 inner-customer-navbar">
         <Link
           to="/customer/products"
           data-testid="customer_products__element-navbar-link-products"
         >
-          {item1}
+          {item1 || ''}
         </Link>
       </div>
-      <div className="col inner-customer-navbar">
+      <div className="col-3 inner-customer-navbar">
         <Link
           to="/customer/orders"
           data-testid="customer_products__element-navbar-link-orders"
         >
-          {item2}
+          {item2 || ''}
         </Link>
       </div>
-      <div className="col inner-customer-navbar" />
-      <div className="col inner-customer-navbar">
+      <div className="col-5 inner-customer-navbar">
         <span
           data-testid="customer_products__element-navbar-user-full-name"
         >
-          {user}
+          {user || ''}
         </span>
       </div>
       <div className="col-1 inner-customer-navbar">
@@ -51,10 +50,10 @@ function Navbar({ item1, item2, user }) {
   );
 }
 
-Navbar.propTypes = {
+NavBar.propTypes = {
   item1: PropTypes.string.isRequired,
   item2: PropTypes.string.isRequired,
   user: PropTypes.string.isRequired,
 };
 
-export default Navbar;
+export default NavBar;

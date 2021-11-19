@@ -1,6 +1,6 @@
 import React from 'react';
-import Navbar from '../CustomerProducts/components/NavBar';
 import OrdersList from './components/OrdersList';
+import NavBar from '../../../components/navbar/NavBar';
 import { OrderProvider } from '../../../hooks/useOrder';
 
 function CustomerOrders() {
@@ -8,9 +8,9 @@ function CustomerOrders() {
 
   return (
     <OrderProvider>
-      <Navbar
-        item1="PRODUTOS"
-        item2="MEUS PEDIDOS"
+      <NavBar
+        item1="Produtos"
+        item2="Meus pedidos"
         user={ user.name }
       />
       <OrdersList />
