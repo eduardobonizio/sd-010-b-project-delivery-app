@@ -1,20 +1,25 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import MyContext from '../../context/Context';
 import { setOnLocalStorage } from '../../helpers/localStorage';
 import * as style from './styles';
 
 function CardsProducts() {
+  const [totalPrice, setTotalPrice] = useState(0);
+
   const {
     dataProducts,
     setDataProducts,
-    totalPrice,
     cartProduct,
   } = useContext(MyContext);
 
   useEffect(() => {
+    const valueTotalProduct = dataProducts
+      .reduce((acc, curr) => acc + (curr.price * curr.quantity), 0);
+    setTotalPrice(valueTotalProduct);
     setOnLocalStorage('cart', cartProduct);
-  }, [cartProduct]);
+    setOnLocalStorage('totalCart', totalPrice);
+  }, [cartProduct, dataProducts, totalPrice]);
 
   function handleOnClick(index, event) {
     const { id } = event.target;
@@ -33,6 +38,13 @@ function CardsProducts() {
     const valuesDataProducts = [...dataProducts];
     valuesDataProducts[index][event.target.name] = Number(event.target.value);
     setDataProducts(valuesDataProducts);
+  }
+
+  function handleOnClickButtonCart() {
+    dataProducts.map((value) => ({
+      ...value,
+      [value.quantity]: 0,
+    }));
   }
 
   return (
@@ -105,6 +117,7 @@ function CardsProducts() {
           type="button"
           disabled={ totalPrice === 0 }
           data-testid="customer_products__button-cart"
+          onClick={ handleOnClickButtonCart }
         >
           Ver Carrinho: R$
           <style.TextTotalCart data-testid="customer_products__checkout-bottom-value">

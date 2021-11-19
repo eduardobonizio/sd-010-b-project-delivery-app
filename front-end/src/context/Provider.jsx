@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import apiGetAllProducts from '../services/products/customerProduct';
 import Context from './Context';
+import { getFromLocalStorage } from '../helpers/localStorage';
 
 export default function Provider({ children }) {
   const [dataProducts, setDataProducts] = useState([]);
   const [cartProduct, setCartProduct] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [subTotalProduct, setSubTotalProduct] = useState(0);
+  const [totalCart, setTotalCart] = useState(0);
 
   useEffect(() => {
     async function apiRequest() {
@@ -19,13 +19,7 @@ export default function Provider({ children }) {
       setDataProducts(newResponse);
     }
     apiRequest();
-  }, [subTotalProduct]);
-
-  useEffect(() => {
-    const valueTotalProduct = dataProducts
-      .reduce((acc, curr) => acc + (curr.price * curr.quantity), 0);
-    setTotalPrice(valueTotalProduct);
-  }, [dataProducts]);
+  }, []);
 
   useEffect(() => {
     const newArray = [];
@@ -43,14 +37,18 @@ export default function Provider({ children }) {
     setCartProduct(newArray);
   }, [dataProducts]);
 
+  useEffect(() => {
+    const totalCartProducts = getFromLocalStorage('totalCart');
+    setTotalCart(totalCartProducts);
+  }, []);
+
   const state = {
     cartProduct,
     setCartProduct,
     dataProducts,
     setDataProducts,
-    totalPrice,
-    setTotalPrice,
-    setSubTotalProduct,
+    totalCart,
+    setTotalCart,
   };
 
   return (

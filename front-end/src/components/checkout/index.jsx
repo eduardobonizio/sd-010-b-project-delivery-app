@@ -1,10 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import MyContext from '../../context/Context';
+import { getFromLocalStorage } from '../../helpers/localStorage';
 import * as styles from './styles';
 import TableCheckout from './TableCheckout';
 
 function CheckoutSales() {
-  const { totalPrice } = useContext(MyContext);
+  const { totalCart, setTotalCart } = useContext(MyContext);
+
+  const totalCartProducts = getFromLocalStorage('totalCart');
+
+  useEffect(() => {
+    setTotalCart(totalCartProducts);
+  }, [setTotalCart, totalCartProducts]);
+
   return (
     <styles.ContainerCheckout>
 
@@ -16,7 +24,7 @@ function CheckoutSales() {
         <TableCheckout />
 
         <styles.ValueTotal data-testid="customer_checkout__element-order-total-price">
-          {`Total: R$ ${(totalPrice).toFixed(2).replace('.', ',')}`}
+          {`Total: R$ ${(totalCart).toFixed(2).replace('.', ',')}`}
         </styles.ValueTotal>
       </styles.ContainerTable>
 
