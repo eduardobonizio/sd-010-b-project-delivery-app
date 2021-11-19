@@ -3,6 +3,7 @@ const saleService = require('../Services/saleService');
 const create = async (req, res) => {
   const { userId } = req;
   const { sale } = req.body;
+
   try {
     const saleId = await saleService.create({ ...sale, userId });
     return res.status(201).json({ saleId });
