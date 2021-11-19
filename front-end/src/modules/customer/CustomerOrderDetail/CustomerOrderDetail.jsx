@@ -1,7 +1,7 @@
 import React from 'react';
 import { OrderProvider } from '../../../hooks/useOrder';
 import Navbar from '../CustomerProducts/components/NavBar';
-import SalesList from './components/SaleList';
+import SalesList from './components/SalesList';
 
 export default function CustomerOrderDetail() {
   const user = JSON.parse(localStorage.getItem('user'));

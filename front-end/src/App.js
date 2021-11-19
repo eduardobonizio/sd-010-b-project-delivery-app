@@ -11,6 +11,7 @@ import CustomerProducts from './modules/customer/CustomerProducts/CustomerProduc
 import CustomerCheckout from './modules/customer/CustomerCheckout/CustomerCheckout';
 import CustomerOrderDetail from
   './modules/customer/CustomerOrderDetail/CustomerOrderDetail';
+import CustomerOrders from './modules/customer/CustomerOrders/CustomerOrders';
 
 function App() {
   return (
@@ -34,7 +35,7 @@ function App() {
         <Route
           exact
           path="/customer/orders"
-          render={ (props) => <CustomerOrderDetail { ...props } /> }
+          render={ (props) => <CustomerOrders { ...props } /> }
         />
         <Route
           exact

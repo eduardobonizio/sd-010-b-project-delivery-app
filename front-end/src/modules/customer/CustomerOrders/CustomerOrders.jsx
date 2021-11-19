@@ -1,10 +1,8 @@
 import React from 'react';
-import ProductList from './components/ProductList';
-import RedirectButton from '../../../components/RedirectButton';
-import Navbar from './components/NavBar';
+import Navbar from '../CustomerProducts/components/NavBar';
 import { OrderProvider } from '../../../hooks/useOrder';
 
-function CustomerProducts() {
+function CustomerOrders() {
   const user = JSON.parse(localStorage.getItem('user'));
 
   return (
@@ -18,4 +16,4 @@ function CustomerProducts() {
   );
 }
 
-export default CustomerProducts;
+export default CustomerOrders;

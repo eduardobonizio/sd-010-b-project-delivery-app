@@ -15,8 +15,11 @@ function SalesList() {
 
   const saleDate = formatedDate(new Date(order.saleDate));
 
-  const totalPrice = order.saleItens
-    ?.reduce((acc, cur) => acc + cur.subTotal, 0).toFixed(2) ?? '0,00';
+  let totalPrice = 0.00;
+
+  if (order.saleItens) {
+    totalPrice = order.saleItens.reduce((acc, cur) => acc + cur.subTotal, 0);
+  }
 
   useEffect(() => {
     async function getOrder() {
@@ -80,7 +83,7 @@ function SalesList() {
         <p>
           R$
           <span data-testid="customer_order_details__element-order-total-price">
-            { formatSaveAndRenderPrice(totalPrice) }
+            { formatSaveAndRenderPrice(totalPrice.toFixed(2)) }
           </span>
         </p>
       </div>
