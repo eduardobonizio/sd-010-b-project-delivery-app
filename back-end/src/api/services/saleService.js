@@ -34,8 +34,15 @@ const create = async (body) => {
 };
 
 const getProductsOfSale = async (saleId) => {
-  const productsInfo = await Sale.findOne({ where: { id: saleId }, include: [{ model: Product, as: 'products', through: { attributes: [] } }] });
-  return productsInfo;
+  const productsInfo = await Sale.findOne({ where: 
+    { id: saleId },
+    include: [{ model: Product, 
+                as: 'products',
+                through: { attributes: ['quantity'] } }] });
+  const seller = await productsInfo.getSeller();
+  console.log(productsInfo);
+  console.log(seller.User);
+  return { productsInfo, seller };
 };
 
 module.exports = {

@@ -22,15 +22,6 @@ module.exports = (sequelize, DataTypes) => {
     });
   };
 
-  // SalesProduct.associate = (models) => {
-  //   models.Product.belongsToMany(models.Sale, {
-  //     as: "sales",
-  //     through: SalesProduct,
-  //     foreignKey: "productId",
-  //     otherKey: "saleId",
-  //   });
-  // };
-
   return SalesProduct;
 };
 
