@@ -13,8 +13,10 @@ function Products() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const { token } = JSON.parse(localStorage.user);
+    const endPoint = 'http://localhost:3001/products';
     localStorage.setItem('carrinho', JSON.stringify([]));
-    axios.get('http://localhost:3001/products').then((res) => {
+    axios.get(endPoint, { headers: { Authorization: token } }).then((res) => {
       const resp = res.data;
       setProducts(resp);
     });
