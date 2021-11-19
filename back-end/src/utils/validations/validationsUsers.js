@@ -28,6 +28,18 @@ const validateName = (name) => {
   }
 };
 
+const validateRole = (role) => {
+  if (!role || role === '') { 
+    throw err(errorMessage.INVALID_ENTRIES); 
+  }
+};
+
+const validateUserInfo = (userInfo) => {
+  if (userInfo.role !== 'admin') { 
+    throw err(errorMessage.UNAUTHORIZED_ENTRIES); 
+  }
+};
+
 const confirmUser = async (name, email) => {
   const response = await User.findOne({ where: { [Op.or]: [{ email }, { name }] } });
   if (response) throw err(errorMessage.EMAIL_REGISTRED);
@@ -46,6 +58,8 @@ module.exports = {
   validateEmail,
   validatePassword,
   validateName,
+  validateRole,
+  validateUserInfo,
   confirmLogin,
   confirmUser,
 };
