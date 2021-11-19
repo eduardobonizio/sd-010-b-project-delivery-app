@@ -1,42 +1,65 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Header.css';
 
 function Header() {
+  const [nameStorage, setNameStorage] = useState('');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const nameLocalStorage = JSON.parse(localStorage.getItem('user'));
+    setNameStorage(nameLocalStorage.name);
+  }, []);
+
+  const leaveThePage = () => {
+    localStorage.clear();
+    navigate('/login');
+  };
+
   return (
     <header>
       <nav>
         <Link
-          data-testid="customer_products__element-navbar-link-products"
           to="/"
           className="nav1"
         >
-          PRODUTOS
+          <div data-testid="customer_products__element-navbar-link-products">
+            PRODUTOS
+          </div>
         </Link>
         <Link
-          data-testid="customer_products__element-navbar-link-orders"
           to="/"
           className="nav2"
         >
-          MEUS PRODUTOS
+          <div data-testid="customer_products__element-navbar-link-orders">
+            MEUS PRODUTOS
+          </div>
         </Link>
         <Link
-          data-testid="customer_products__element-navbar-user-full-name"
           to="/"
           className="nav3"
         >
-          CICRANO DA SILVA
+          <div data-testid="customer_products__element-navbar-user-full-name">
+            { nameStorage }
+          </div>
         </Link>
         <Link
-          data-testid="customer_products__element-navbar-link-logout"
           to="/"
           className="nav4"
+          onClick={ leaveThePage }
         >
-          Sair
+          <div data-testid="customer_products__element-navbar-link-logout">
+            Sair
+          </div>
         </Link>
       </nav>
     </header>
   );
 }
+
+Header.protoType = PropTypes.objectOf({
+  name: PropTypes.string,
+}).isRequired;
 
 export default Header;
