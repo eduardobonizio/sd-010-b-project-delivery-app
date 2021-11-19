@@ -11,9 +11,10 @@ const checkoutSale = rescue(async (req, res) => {
 });
 
 const saleDatails = rescue(async (req, res) => {
-  const { id: sale_id } = req.params;
+  const { id: saleId } = req.params;
+  const {id: idUser} = req.user
 
-  const sales = await checkoutService.getSaleById(sale_id);
+  const sales = await checkoutService.getSaleById(saleId, idUser);
   
   return res.status(sales.status).json(sales.data);
 });

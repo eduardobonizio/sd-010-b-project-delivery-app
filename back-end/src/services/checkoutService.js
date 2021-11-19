@@ -18,9 +18,9 @@ const createSale = async (body, user_id) => {
   return { status: 201, data: { id, sale_date }};
 };
 
-const getSaleById = async (id) => {
+const getSaleById = async (saleId, idUser) => {
   const data = await Sale.findOne({ 
-    where: { id },
+    where: { id: saleId, user_id: idUser  },
     include: [
       { model: User, as: 'user', attributes:{ exclude: ['email', 'password'] } },
       { model: User, as: 'seller', attributes:{ exclude: ['email', 'password'] } },
