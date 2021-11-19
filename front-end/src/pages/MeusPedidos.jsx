@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import NavBar from '../components/Navbar';
 import { getFromLocalStorage } from '../services/helpers/servicesLocalStorage';
-import { getAllOrders } from '../services/apis/getCustomer';
+import getAllOrders from '../services/apis/getOrders';
 import Context from '../context/Context';
 import CardMeusPedidos from '../components/CardMeusPedidos';
 import * as S from '../styles/MeusPedidos';
@@ -16,14 +16,12 @@ function MeusPedidos() {
     };
     getPedidos();
   }, [setOrdersCustomer]);
-
   const token = getFromLocalStorage('user');
 
   return (
     <div>
       <NavBar />
       <S.mainContainer>
-
         <S.contentMeusPedidos>
           {ordersCustomer.map((order) => (
             <CardMeusPedidos
