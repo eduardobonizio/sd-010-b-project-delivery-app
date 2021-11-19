@@ -41,10 +41,12 @@ function Login() {
       if (response.status === notFound) return setHideErrorMessage(false);
       console.log(response.data);
       const parsedResponse = response.data;
-      localStorage.setItem('name', parsedResponse.name);
-      localStorage.setItem('email', parsedResponse.email);
-      localStorage.setItem('role', parsedResponse.role);
-      localStorage.setItem('token', parsedResponse.token);
+      localStorage.setItem('user', {
+        name: parsedResponse.name,
+        email: parsedResponse.email,
+        role: parsedResponse.role,
+        token: parsedResponse.token,
+      });
       history.push('/customer/products');
     } catch (e) {
       console.log(e);

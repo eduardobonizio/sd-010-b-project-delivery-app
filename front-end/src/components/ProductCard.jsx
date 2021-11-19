@@ -18,10 +18,13 @@ function ProductCard({ id, name, price, urlImage }) {
         >
           { name }
         </Card.Title>
-        <Card.Text
-          data-testid={ `customer_products__element-card-price-${id}` }
-        >
-          { `R$ ${price}` }
+        <Card.Text>
+          R$
+          <span
+            data-testid={ `customer_products__element-card-price-${id}` }
+          >
+            { price.toString().split('.').join(',') }
+          </span>
         </Card.Text>
         <InputGroup className="sm-3">
           <Button
