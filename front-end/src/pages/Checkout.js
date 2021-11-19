@@ -8,8 +8,10 @@ export default function Checkout() {
   return (
     <div>
       <NavBar isCustomer nameButtonOrder="Meus Pedidos" linkOrder="/customer/orders" />
-      <OrderCheckout />
-      <DeliveryDetails />
+      <div className="max-w-full">
+        <OrderCheckout />
+        <DeliveryDetails />
+      </div>
     </div>
   );
 }

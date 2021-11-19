@@ -68,12 +68,15 @@ export default function DeliveryDetails() {
   };
 
   return (
-    <form className="m-20">
+    <form className="w-11/12 m-20">
       <h2 className="inline-block py-2 text-3xl border-b-2 border-yellow-color">Detalhes e endereço para entrega</h2>
-      <div className="flex mt-10">
+      <div className="flex justify-between w-full pl-32 mt-16 pr-96">
         <label className="flex flex-col" htmlFor="seller">
-          Pessoa Vendedora Responsável:
+          <p className="text-lg">
+            Pessoa Vendedora Responsável:
+          </p>
           <select
+            className="p-3 px-10 text-xl bg-white border-2 border-b-8 border-r-8 rounded-2xl border-yellow-color"
             id="seller"
             name="seller"
             type="text"
@@ -90,9 +93,12 @@ export default function DeliveryDetails() {
             ))}
           </select>
         </label>
-        <label htmlFor="address">
-          Endereço:
+        <label className="flex flex-col" htmlFor="address">
+          <p className="text-lg">
+            Endereço:
+          </p>
           <input
+            className="p-3 text-xl border-2 border-b-8 border-r-8 rounded-2xl border-yellow-color"
             id="address"
             name="address"
             type="text"
@@ -101,9 +107,10 @@ export default function DeliveryDetails() {
             onChange={ ({ target: t }) => { updateState(t.name, t.value); } }
           />
         </label>
-        <label htmlFor="address-number">
-          Número:
+        <label className="flex flex-col" htmlFor="address-number">
+          <p className="text-lg">Número:</p>
           <input
+            className="p-3 text-xl border-2 border-b-8 border-r-8 rounded-2xl border-yellow-color"
             id="address-number"
             name="number"
             type="number"
@@ -113,14 +120,17 @@ export default function DeliveryDetails() {
           />
         </label>
       </div>
-      <button
-        type="button"
-        data-testid="customer_checkout__button-submit-order"
-        onClick={ () => { finishSale(); } }
-        disabled={ !isValidData }
-      >
-        Finalizar Pedido
-      </button>
+      <div className="flex justify-end w-full mt-10 pr-96">
+        <button
+          type="button"
+          className="w-64 px-8 py-2 mt-10 text-xl font-medium rounded-md bg-yellow-color"
+          data-testid="customer_checkout__button-submit-order"
+          onClick={ () => { finishSale(); } }
+          disabled={ !isValidData }
+        >
+          Finalizar Pedido
+        </button>
+      </div>
     </form>
   );
 }
