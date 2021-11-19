@@ -10,7 +10,6 @@ import { loginService } from '../services/apis/servicesLogin';
 
 function Login() {
   const token = getFromLocalStorage('user');
-  console.log(token);
   const history = useHistory();
   const { setUser } = useContext(Context);
   const [disableBtn, setDisableBtn] = useState(true);
@@ -51,7 +50,7 @@ function Login() {
     setOnLocalStorage('user', message);
     setUser(message);
     if (message.role === 'seller') {
-      history.push('/venda/pedidos');
+      history.push('/seller/orders');
     } else if (message.role === 'administrador') {
       history.push('/admin/gerenciamento');
     } else if (message.role === 'customer') {
@@ -65,7 +64,6 @@ function Login() {
     const checkLogin = await loginService(login);
     if (checkLogin.message.id) {
       const { message } = checkLogin;
-      console.log(message);
       checkRole(message);
     }
     setHidden(false);

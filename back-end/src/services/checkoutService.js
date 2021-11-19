@@ -1,18 +1,14 @@
-const { Sale, User } = require('../database/models');
+const { Sale, User, SalesProduct } = require('../database/models');
 
 const createSale = async (body, user_id) => {
   const { seller_id, total_price, delivery_address, delivery_number, status } = body;
   const dateNow = new Date();
-  // const dia  = dateNow.getDate().toString().padStart(2, '0');
-  // const mes  = (dateNow.getMonth()+1).toString().padStart(2, '0');
-  // const ano  = dateNow.getFullYear();
-  // const dateFormat = `${dia}/${mes}/${ano}`;
-  // criar a venda
-  const payloadSale = { 
+  
+  const payloadSale = {
     user_id, seller_id, total_price, delivery_address, delivery_number, sale_date: dateNow, status 
   }
   const { dataValues } = await Sale.create(payloadSale);
-
+  // sale_id, product_id, quantity
   // retorna data e id da venda
   const { id, sale_date } = dataValues;
   return { status: 201, data: { id, sale_date }};
@@ -36,7 +32,13 @@ const getSaleById = async (id) => {
   return { status: 200, data };
 };
 
+const generateSaleProduct = async (body) => {
+  const data = await SalesProduct.create(body);
+  return { status: 201, data };
+}
+
 module.exports = {
   createSale,
   getSaleById,
+  generateSaleProduct,
 }

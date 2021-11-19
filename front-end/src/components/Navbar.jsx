@@ -10,7 +10,7 @@ function NavBar() {
 
   const checkRole = () => {
     const { role } = User;
-    console.log(role);
+
     if (role === 'customer') {
       return (
         <div>
