@@ -37,5 +37,5 @@ const registerValidateService = async (name, email, password) => {
 module.exports = {
   loginValidateService,
   registerValidateService,
-  Product
+  Product,
 };
