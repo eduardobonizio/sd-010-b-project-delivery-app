@@ -102,7 +102,7 @@ function Table() {
       <p>{adress}</p>
       <p>{adressNumber}</p>
       <p>{sellerId}</p>
-      <Thead />
+      <Thead removeBtn />
       <Tbody getTotal={ getTotal } />
       <p data-testid="customer_checkout__element-order-total-price">{ total }</p>
       <Address clickFuntion={ onClick } postFunction={ postSale } />
