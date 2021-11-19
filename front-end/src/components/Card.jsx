@@ -19,10 +19,12 @@ function CardsProducts({ product }) {
 
   useEffect(() => {
     updateOrder();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [obj]);
 
   useEffect(() => {
     handleClick();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [quantity]);
 
   return (
