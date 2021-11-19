@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Header.css';
 
 function Header() {
   const [nameStorage, setNameStorage] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const nameLocalStorage = JSON.parse(localStorage.getItem('user'));
     setNameStorage(nameLocalStorage.name);
   }, []);
+
+  const leaveThePage = () => {
+    localStorage.clear();
+    navigate('/login');
+  };
 
   return (
     <header>
@@ -41,6 +47,7 @@ function Header() {
         <Link
           to="/"
           className="nav4"
+          onClick={ leaveThePage }
         >
           <div data-testid="customer_products__element-navbar-link-logout">
             Sair
