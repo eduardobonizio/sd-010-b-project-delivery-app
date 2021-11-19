@@ -6,6 +6,7 @@ import SalesList from './components/SalesList';
 
 function CustomerCheckout() {
   const user = JSON.parse(localStorage.getItem('user'));
+
   return (
     <CustomerProvider>
       <Navbar

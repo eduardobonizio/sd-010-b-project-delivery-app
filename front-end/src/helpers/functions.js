@@ -18,3 +18,7 @@ export function formatedSales(sale) {
 
   return format;
 }
+
+export function formatedDate(date) {
+  return (`${date.getDate()}/${(date.getMonth() + 1)}/${date.getFullYear()}`);
+}

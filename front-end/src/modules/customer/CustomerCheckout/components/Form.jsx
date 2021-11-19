@@ -14,6 +14,7 @@ export default function Form() {
   const [deliveryAddress, setDeliveryAddress] = useState('');
   const [deliveryNumber, setDeliveryNumber] = useState('');
   // https://stackoverflow.com/questions/56450975/to-fix-cancel-all-subscriptions-and-asynchronous-tasks-in-a-useeffect-cleanup-f
+
   useEffect(() => {
     async function getSellers() {
       const response = await api.get('/sellers');
@@ -41,14 +42,19 @@ export default function Form() {
       'Content-Type': 'application/json',
       Authorization: user.token,
     };
-
+    const num = 500;
     const response = await api.post('/neworder', data, { headers });
     const { saleId } = response.data;
-    history.push(`/customer/orders/${saleId}`);
+    localStorage.removeItem('cart');
+    localStorage.removeItem('total');
 
     setDeliveryAddress('');
     setDeliveryNumber('');
     setSelectSeller(sellers[0]);
+
+    setTimeout(() => {
+      history.push(`/customer/orders/${saleId}`);
+    }, num);
   }
 
   useEffect(() => {

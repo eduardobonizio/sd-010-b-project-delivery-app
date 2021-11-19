@@ -25,8 +25,6 @@ export function CustomerProvider({ children }) {
     const formatedTotal = formatSaveAndRenderPrice(totalSales.toFixed(2));
     setTotal(formatedTotal);
     localStorage.setItem('total', JSON.stringify(formatedTotal));
-
-    return () => setTotal(initialTotal);
   }, [sales]);
 
   function handleTotalSale(sale) {

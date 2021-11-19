@@ -5,7 +5,6 @@ import { formatSaveAndRenderPrice } from '../../../../helpers/functions';
 import './Product.scss';
 
 function Product({ product }) {
-  console.log(product);
   // const prodBg = 'https://static.paodeacucar.com/img/uploads/1/241/693241.jpg';
   const cart = JSON.parse(localStorage.getItem('cart'));
   const { handleTotalSale, handleRemoveItemCart } = useCustomer();
