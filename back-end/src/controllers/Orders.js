@@ -32,8 +32,10 @@ const createOrder = async (req, res) => {
 const findOrder = async (req, res) => {
   const { id } = req.params;
   const saleItens = [];
-  const { dataValues: { userId, saleDate, status } } = await Sale.findOne({ where: { id } });
+  const { dataValues: { 
+    userId, saleDate, status, sellerId } } = await Sale.findOne({ where: { id } });
   const searchUser = await User.findOne({ where: { id: userId } });
+  const sellerName = await User.findOne({ where: { id: sellerId } });
   const saleProds = await SaleProduct.findAll({ where: { saleId: id } });
   const searchProds = await Product.findAll();
   saleProds.forEach(({ productId, quantity }) => {
@@ -41,8 +43,9 @@ const findOrder = async (req, res) => {
     const obj = { name, unitPrice: price, subTotal: price * quantity, quantity };
     saleItens.push(obj);
   });
-  const saleObj = { 
-    id, userName: searchUser.name, saleDate, status, saleItens };
+  const total = saleItens.reduce((acc, next) => acc.subTotal + next.subTotal);
+  const saleObj = {
+    id, userName: searchUser.name, sellerName: sellerName.name, saleDate, status, totalPrice: total, saleItens };
   res.status(200).json(saleObj);
 };
 
