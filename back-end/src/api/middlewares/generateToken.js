@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
     const { email } = req.body;
     const dataUser = await User.findOne({ where: { email } });
 
-    const secretKey = fs.readFileSync('jwt.evaluation.key', 'utf-8');
+    const secretKey = fs.readFileSync('jwt.evaluation.key', 'utf-8').trim();
     
     const jwtConfig = {
       expiresIn: '1d',
