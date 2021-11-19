@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import APITOKEN from '../api/index';
 import OrderCard from '../components/OrderCard';
+import Navbar from '../components/Navbar';
 
 function Orders() {
   const [ordersState, setOrdersState] = useState([]);
@@ -11,6 +12,7 @@ function Orders() {
   }, []);
   return (
     <div>
+      <Navbar />
       <h1>Meus Pedidos</h1>
       {
         ordersState.map((order) => <OrderCard key={ order.id } order={ order } />)
