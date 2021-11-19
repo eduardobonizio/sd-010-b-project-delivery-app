@@ -5,15 +5,17 @@ import * as styles from './styles';
 
 function TableCheckout() {
   return (
-    <styles.Table>
-      <styles.TableTheader>
-        <HeaderTable />
-      </styles.TableTheader>
+    <styles.Overflow>
+      <styles.Table>
+        <styles.TableTheader>
+          <HeaderTable />
+        </styles.TableTheader>
 
-      <styles.TableTbody>
-        <BodyTable />
-      </styles.TableTbody>
-    </styles.Table>
+        <styles.TableTbody>
+          <BodyTable />
+        </styles.TableTbody>
+      </styles.Table>
+    </styles.Overflow>
   );
 }
 
