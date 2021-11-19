@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable react/jsx-max-depth */
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
@@ -33,19 +34,10 @@ export default function StatusCard({ order, type, linkDetail }) {
     });
   }, [order.id]);
   return (
-    <div
-      data-aos="fade-up"
-      className="transition duration-300 ease-in-out transform m-10 hover:-translate-y-1
-      hover:scale-105 shadow-lg"
-    >
+    <div className="m-10 transition duration-300 ease-in-out transform shadow-lg hover:-translate-y-1 hover:scale-105">
       <Link to={ `${linkDetail}/${order.id}` }>
-        <div
-          className="text-xl flex space-x-4 border-t-8 border-dark-color rounded-lg p-2"
-        >
-          <div
-            className="flex flex-col bg-yellow-color rounded-lg pl-4 border-r-2 pr-4
-            items-center justify-center"
-          >
+        <div className="flex p-2 space-x-4 text-xl border-t-8 rounded-lg border-dark-color">
+          <div className="flex flex-col items-center justify-center pl-4 pr-4 bg-gray-200 border-r-2 rounded-lg">
             <p>PEDIDO</p>
             <p
               data-testid={ `${type}_orders__element-order-id-${order.id}` }
@@ -56,21 +48,14 @@ export default function StatusCard({ order, type, linkDetail }) {
 
           <div className="flex flex-col space-y-4">
             <div className="flex space-x-4">
-              <div
-                className={
-                  `flex items-center p-4 font-semibold ${bgColorStatus} rounded-lg`
-                }
-              >
+              <div className={ `flex items-center p-4 font-semibold ${bgColorStatus} rounded-lg` }>
                 <p
                   data-testid={ `${type}_orders__element-delivery-status-${order.id}` }
                 >
                   {status.toUpperCase()}
                 </p>
               </div>
-              <div
-                className="border-l-2 pl-4 space-y-2 flex flex-col items-center
-                justify-center"
-              >
+              <div className="flex flex-col items-center justify-center pl-4 space-y-2 border-l-2">
                 <p
                   data-testid={ `${type}_orders__element-order-date-${order.id}` }
                 >
