@@ -4,6 +4,17 @@ import { Link } from 'react-router-dom';
 
 function OrderCard({ order }) {
   const { id, saleDate, status, totalPrice } = order;
+
+  // const dd = String(saleDate.getDate()).padStart(2, '0');
+  // const mm = String(saleDate.getMonth() + 1).padStart(2, '0'); // January is 0!
+  // const yyyy = saleDate.getFullYear();
+  // const hh = String(saleDate.getHours()).padStart(2, '0');
+  // const minu = String(saleDate.getMinutes()).padStart(2, '0');
+
+  // saleDate = `${dd}/${mm}/${yyyy} ${hh}:${minu}`;
+
+  const newDate = saleDate.split('T')[0].split('-').reverse().join('/');
+
   return (
     <Link to={ `/customer/orders/${id}` }>
       <div data-testid={ `customer_orders__element-order-id-${id}` }>
@@ -12,11 +23,11 @@ function OrderCard({ order }) {
       <div data-testid={ `customer_orders__element-delivery-status-${id}` }>
         {status}
       </div>
-      <div data-testid={ ` customer_orders__element-order-date-${id}` }>
-        {saleDate}
+      <div data-testid={ `customer_orders__element-order-date-${id}` }>
+        {newDate}
       </div>
       <div data-testid={ `customer_orders__element-card-price-${id}` }>
-        {`R$ ${totalPrice}`}
+        {`${totalPrice.replace('.', ',')}` }
       </div>
     </Link>
   );
