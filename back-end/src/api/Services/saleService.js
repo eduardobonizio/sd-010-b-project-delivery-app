@@ -29,10 +29,7 @@ const create = async (salePayload) => {
     const result = await createSaleTransaction(salePayload);
     return result;
   } catch (error) {
-    console.log(error.message);
-    // return 'deu ruim';
-    // throw new Error(error.message);
-    return error.message;
+    throw new Error(error);
   }
 };
 
