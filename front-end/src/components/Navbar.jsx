@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Context from '../context/Context';
 import * as S from '../styles/Navbar';
-// import { removeLocalStorage } from '../services/helpers/servicesLocalStorage';
+import { removeLocalStorage } from '../services/helpers/servicesLocalStorage';
 
 function NavBar() {
   const history = useHistory();
@@ -10,7 +10,7 @@ function NavBar() {
 
   const checkRole = () => {
     const { role } = User;
-    console.log(role);
+
     if (role === 'customer') {
       return (
         <div>
@@ -22,7 +22,7 @@ function NavBar() {
               PRODUTO
             </S.buttonNav>
           </Link>
-          <Link to="/customer/meusPedidos">
+          <Link to="/customer/orders">
             <S.buttonNav
               type="button"
               data-testid="customer_products__element-navbar-link-orders"
@@ -80,6 +80,7 @@ function NavBar() {
         <S.buttonNav
           type="button"
           data-testid="customer_products__element-navbar-link-logout"
+          onClick={ () => removeLocalStorage('user') }
         >
           SAIR
         </S.buttonNav>

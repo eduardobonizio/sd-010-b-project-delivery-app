@@ -2,11 +2,14 @@ import React, { useState, useEffect, useContext } from 'react';
 // import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import rockGlass from '../images/rockGlass.svg';
-import { setOnLocalStorage } from '../services/helpers/servicesLocalStorage';
+import { setOnLocalStorage,
+  getFromLocalStorage,
+} from '../services/helpers/servicesLocalStorage';
 import Context from '../context/Context';
 import { loginService } from '../services/apis/servicesLogin';
 
 function Login() {
+  const token = getFromLocalStorage('user');
   const history = useHistory();
   const { setUser } = useContext(Context);
   const [disableBtn, setDisableBtn] = useState(true);
@@ -47,7 +50,7 @@ function Login() {
     setOnLocalStorage('user', message);
     setUser(message);
     if (message.role === 'seller') {
-      history.push('/venda/pedidos');
+      history.push('/seller/orders');
     } else if (message.role === 'administrador') {
       history.push('/admin/gerenciamento');
     } else if (message.role === 'customer') {
@@ -61,29 +64,43 @@ function Login() {
     const checkLogin = await loginService(login);
     if (checkLogin.message.id) {
       const { message } = checkLogin;
-      console.log(message);
       checkRole(message);
     }
     setHidden(false);
   };
 
-  const atalho = (role) => {
+  const atalho = (rolee) => {
     const message = {
       id: 4,
       name: 'Cliente Zé Birita',
       email: 'zebirita@email.com',
-      role,
+      role: rolee,
       token: '1c37466c159755ce1fa181bd247cb925',
     };
     checkRole(message);
   };
 
+  // useEffect(() => {
+  //   const { role } = getFromLocalStorage('user');
+  //   if (role === 'customer') history.push('/customer/products');
+  // });
+
+  const isLogin = () => {
+    checkRole(token);
+  };
+
   useEffect(() => {
     validateFields(login);
   }, [login]);
+
+  // if(token) history.push('/customer/products')
+
   return (
     <div>
-      <span className="logo">TRYBE</span>
+      {token !== null
+        ? isLogin()
+        : <span className="logo">TRYBE</span>}
+      {/* <span className="logo">TRYBE</span> */}
       <object className="rocksGlass" type="image/svg+xml" data={ rockGlass }>
         Glass
       </object>

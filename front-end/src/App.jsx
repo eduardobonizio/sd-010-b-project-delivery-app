@@ -16,10 +16,10 @@ function App() {
       <Route path="/login" component={ Login } />
       <Route path="/register" component={ Register } />
       <Route path="/customer/products" component={ Produtos } />
-      <Route path="/customer/meusPedidos" component={ MeusPedidos } />
-      <Route path="/customer/checkout" component={ Checkout } />
       <Route path="/customer/orders/:idVenda" component={ OrderDetails } />
-      <Route path="/venda/pedidos" component={ MeusPedidos } />
+      <Route path="/customer/orders" component={ MeusPedidos } />
+      <Route path="/seller/orders" component={ MeusPedidos } />
+      <Route path="/customer/checkout" component={ Checkout } />
       <Route path="/page404" component={ Page404 } />
       <Route path="/admin/gerenciamento" component={ Page404 } />
       <Route path="/page404" component={ Page404 } />
