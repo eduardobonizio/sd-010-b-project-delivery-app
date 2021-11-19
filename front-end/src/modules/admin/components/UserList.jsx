@@ -1,16 +1,27 @@
 import React from 'react';
 import User from './User';
+import './User.scss';
 
 function UserList() {
   return (
-    <div>
-      <h5>Lista de usuários</h5>
-      <div>
-        <span>Item</span>
-        <span>Nome</span>
-        <span>E-mail</span>
-        <span>Tipo</span>
-        <span>Excluir</span>
+    <div className="user-list">
+      <h3>Lista de usuários</h3>
+      <div className="row">
+        <div className="col">
+          <span>Item</span>
+        </div>
+        <div className="col">
+          <span>Nome</span>
+        </div>
+        <div className="col">
+          <span>E-mail</span>
+        </div>
+        <div className="col">
+          <span>Tipo</span>
+        </div>
+        <div className="col">
+          <span>Excluir</span>
+        </div>
       </div>
       <div>
         <User

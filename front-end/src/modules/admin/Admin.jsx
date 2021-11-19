@@ -7,13 +7,17 @@ function Admin() {
   const user = JSON.parse(localStorage.getItem('user'));
 
   return (
-    <div>
+    <div className="row justify-content-center">
       <NavBar
-        item1="GERENCIAR USUÁRIOS"
+        item1="Gerenciar usuários"
         user={ user.name }
       />
-      <Form />
-      <UserList />
+      <div className="col-3">
+        <Form />
+      </div>
+      <div className="col-8">
+        <UserList />
+      </div>
     </div>
   );
 }
