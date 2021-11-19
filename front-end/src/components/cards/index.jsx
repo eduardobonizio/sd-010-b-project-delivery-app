@@ -40,13 +40,6 @@ function CardsProducts() {
     setDataProducts(valuesDataProducts);
   }
 
-  function handleOnClickButtonCart() {
-    dataProducts.map((value) => ({
-      ...value,
-      [value.quantity]: 0,
-    }));
-  }
-
   return (
     <style.ContainerListCard>
       {
@@ -117,7 +110,6 @@ function CardsProducts() {
           type="button"
           disabled={ totalPrice === 0 }
           data-testid="customer_products__button-cart"
-          onClick={ handleOnClickButtonCart }
         >
           Ver Carrinho: R$
           <style.TextTotalCart data-testid="customer_products__checkout-bottom-value">

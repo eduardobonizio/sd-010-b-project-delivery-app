@@ -5,7 +5,7 @@ import * as styles from './styles';
 import TableCheckout from './TableCheckout';
 
 function CheckoutSales() {
-  const { totalCart, setTotalCart } = useContext(MyContext);
+  const { setTotalCart } = useContext(MyContext);
 
   const totalCartProducts = getFromLocalStorage('totalCart');
 
@@ -24,7 +24,7 @@ function CheckoutSales() {
         <TableCheckout />
 
         <styles.ValueTotal data-testid="customer_checkout__element-order-total-price">
-          {`Total: R$ ${(totalCart).toFixed(2).replace('.', ',')}`}
+          {`Total: R$ ${(totalCartProducts).toFixed(2).replace('.', ',')}`}
         </styles.ValueTotal>
       </styles.ContainerTable>
 
