@@ -17,7 +17,7 @@ export const getProducts = async () => axios.get('http://localhost:3001/products
   .then(({ data }) => data)
   .catch((err) => err.response);
 
-  export const getSellers = async () => axios.get('http://localhost:3001/user/sellers', token())
+export const getSellers = async () => axios.get('http://localhost:3001/user/sellers', token())
   .then(({ data }) => data)
   .catch((err) => err.response);
 
@@ -28,4 +28,3 @@ export const checkoutProducts = async (body) => axios.post('http://localhost:300
 export const getOrders = async () => axios.get('http://localhost:3001/sales', token())
   .then(({ data }) => data)
   .catch((err) => err.response);
-
