@@ -22,6 +22,11 @@ function Products() {
   }, [carTotal, dataOrder]);
   return (
     <>
+      <Link to="/customer/orders">
+        <div>
+          Order
+        </div>
+      </Link>
       <Header />
       <main>
         {products.map((product, index) => (

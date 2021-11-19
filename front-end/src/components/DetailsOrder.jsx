@@ -10,54 +10,39 @@ function DetailsOrder({ isRemoveBtn }) {
     setDataOrder(result);
   };
 
-  return(
-    <>
-      <table>
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>Descrição</th>
-            <th>Quantidade</th>
-            <th>Valor Unitário</th>
-            <th>Sub-Total</th>
-            { isRemoveBtn && <th>Remover Item</th> }
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Descrição</th>
+          <th>Quantidade</th>
+          <th>Valor Unitário</th>
+          <th>Sub-Total</th>
+          {isRemoveBtn && <th>Remover Item</th>}
+        </tr>
+      </thead>
+      <tbody>
+        {dataOrder.length !== 0
+        && dataOrder.map(({ name, quantity, price, total }, index) => (
+          <tr key={ name }>
+            <td>{index + 1}</td>
+            <td>{name}</td>
+            <td>{quantity}</td>
+            <td>{Number(price).toFixed(2).toString().replace('.', ',')}</td>
+            <td>{Number(total).toFixed(2).toString().replace('.', ',')}</td>
+            {isRemoveBtn && (
+              <td>
+                <button type="button" name={ name } onClick={ handleChange }>
+                  Remover
+                </button>
+              </td>
+            )}
           </tr>
-        </thead>
-        <tbody>
-          { dataOrder.length !== 0 && dataOrder
-            .map(({ name, quantity, price, total }, index) => (
-              <tr key={ name }>
-                <td>
-                  { index + 1 }
-                </td>
-                <td>
-                  { name }
-                </td>
-                <td>
-                  { quantity }
-                </td>
-                <td>
-                  { price }
-                </td>
-                <td>
-                  { total }
-                </td>
-                { isRemoveBtn && 
-                  <td>
-                    <button
-                      type="button"
-                      name={ name }
-                      onClick={ handleChange }
-                    >
-                      Remover
-                    </button>
-                  </td> }
-              </tr>
-            ))}
-        </tbody>
-      </table>
-    </>
-  )
+        ))}
+      </tbody>
+    </table>
+  );
 }
 
 DetailsOrder.propTypes = {
