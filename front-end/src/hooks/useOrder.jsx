@@ -15,6 +15,8 @@ const OrderContext = createContext();
 export function OrderProvider({ children }) {
   const [customerOrders, setCustomerOrders] = useState([]);
   const [customerSingleOrder, setCustomerSingleOrder] = useState([]);
+  const [sellerOrders, setSellerOrders] = useState([]);
+  const [sellerSingleOrder, setSellerSingleOrder] = useState([]);
 
   // useEffect(() => {
   //   const client = socketIOClient(URL);
@@ -32,7 +34,14 @@ export function OrderProvider({ children }) {
   return (
     <OrderContext.Provider
       value={
-        { customerOrders, setCustomerOrders, customerSingleOrder, setCustomerSingleOrder }
+        { customerOrders,
+          setCustomerOrders,
+          customerSingleOrder,
+          setCustomerSingleOrder,
+          sellerOrders,
+          setSellerOrders,
+          sellerSingleOrder,
+          setSellerSingleOrder }
       }
     >
       { children }
