@@ -14,6 +14,29 @@ const makeCrypt = (payload, secret = getSecret()) => {
   return token;
 };
 
+const validateToken = async (req, res, next) => {
+  const token = req.headers.authorization;
+  const segredo = await getSecret();
+
+  if (!token) {
+    return res.status(401).json({ message: 'missing auth token' });
+    }
+    const decoded = jwt.verify(token, segredo);
+    try {
+      const userWithoutPassword = {
+        userEmail: decoded.user.email,
+        userRole: decoded.user.role,
+        userName: decoded.user.name,
+      };
+        req.user = userWithoutPassword;
+
+        next();
+      } catch (err) {
+  return res.status(401).json({ err: 'deu ruim :/' });
+}
+};
+
 module.exports = {
   makeCrypt,
+  validateToken,
 };

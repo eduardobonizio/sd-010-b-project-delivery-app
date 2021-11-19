@@ -15,6 +15,7 @@ router.post('/', async (req, res) => {
   const { role, email, name } = user;
   
   const data = makeCrypt({ user });
+  console.log(data, 'token');
   
   return res.status(200).json({ userRole: role, userEmail: email, userName: name, key: data });
 });
