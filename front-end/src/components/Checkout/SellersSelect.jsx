@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import dataTestIdDict from '../../utils/dataTestIdDict';
 
 const { dataTestId29 } = dataTestIdDict;
 
-function SellersSelect() {
+function SellersSelect({ handleChange }) {
   const [sellers, setSellers] = useState([]);
 
   const getAllSellers = async () => {
@@ -24,7 +25,14 @@ function SellersSelect() {
   return (
     <label htmlFor="sellers" className="order-address-details-field">
       P. Vendedora Responsável
-      <select name="sellers" id="sellers" className="p-10" data-testid={ dataTestId29 }>
+      <select
+        name="sellerId"
+        id="sellers"
+        className="p-10"
+        data-testid={ dataTestId29 }
+        onChange={ handleChange }
+      >
+        <option value="">selecione a pessoa vendedora</option>
         {sellers.map(({ id, name }) => (
           <option key={ id } value={ id }>{name}</option>
         ))}
@@ -32,5 +40,9 @@ function SellersSelect() {
     </label>
   );
 }
+
+SellersSelect.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+};
 
 export default SellersSelect;
