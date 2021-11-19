@@ -9,13 +9,15 @@ export default function StatusCard({ order, type, linkDetail }) {
   const [status, setStatus] = useState(order.status);
   const [bgColorStatus, setBgColorStatus] = useState('bg-red-400');
 
-  if (status === 'Em Trânsito') {
-    setBgColorStatus('bg-yellow-400');
-  } else if (status === 'Preparando') {
-    setBgColorStatus('bg-blue-400');
-  } else if (status === 'Entregue') {
-    setBgColorStatus('bg-green-400');
-  }
+  useEffect(() => {
+    if (status === 'Em Trânsito') {
+      setBgColorStatus('bg-yellow-400');
+    } else if (status === 'Preparando') {
+      setBgColorStatus('bg-blue-400');
+    } else if (status === 'Entregue') {
+      setBgColorStatus('bg-green-400');
+    }
+  }, [status]);
 
   const dateNow = (date) => {
     const data = new Date(date);
