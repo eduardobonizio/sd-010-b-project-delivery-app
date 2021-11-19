@@ -4,8 +4,12 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Box } from '@mui/system';
 
-function ProductCard({ name, value, image, price, id }) {
+function ProductCard({ name, image, price, id }) {
   const [quantity, setQuantity] = useState(0);
+  const onChange = (element, setState) => {
+    const { value: qnt } = element.target;
+    setState(qnt);
+  };
   return (
     // TODO: Remove inline styles
     <Box style={ { width: '200px' } }>
@@ -29,9 +33,8 @@ function ProductCard({ name, value, image, price, id }) {
         <Typography
           data-testid={ `customer_products__element-card-price-${id}` }
         >
-          {value}
+          {price}
         </Typography>
-        <Typography>{price}</Typography>
         <Stack
           direction="row"
           justifyContent="center"
@@ -53,6 +56,7 @@ function ProductCard({ name, value, image, price, id }) {
             data-testid={ `customer_products__input-card-quantity-${id}` }
             value={ quantity }
             className="customer_products__input-card-quantity"
+            onChange={ (e) => onChange(e, setQuantity) }
           />
 
           <ButtonUnstyled
@@ -69,7 +73,6 @@ function ProductCard({ name, value, image, price, id }) {
 }
 
 ProductCard.propTypes = {
-  value: PropTypes.number.isRequired,
   price: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
