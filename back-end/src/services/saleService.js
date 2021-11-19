@@ -1,9 +1,21 @@
-const { sale } = require('../database/models');
+const { sale, product, user } = require('../database/models');
 const { salesProducts } = require('../database/models');
 const userService = require('./userService');
 
 const getAll = async () => {
   const sales = await sale.findAll();
+  return sales;
+};
+
+const getSale = async ({ id }) => {
+  const sales = await sale.findOne({ where: { id } }, { 
+    include: [ 
+      { model: product, as: 'products' },
+      { model: user, as: 'sellerId' },
+    ],
+  },
+  );
+  
   return sales;
 };
 
@@ -25,6 +37,7 @@ const postProductSale = async (productArray) => {
 
 module.exports = {
   getAll,
+  getSale,
   postSale,
   postProductSale,
 };
