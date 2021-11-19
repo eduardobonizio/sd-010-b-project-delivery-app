@@ -11,7 +11,7 @@ function Register() {
     setEmail,
     password,
     setPassword,
-    errorMsg,
+    // errorMsg,
     handleClickRegister,
   } = useContext(Context);
 
@@ -66,7 +66,7 @@ function Register() {
       >
         Cadastrar
       </button>
-      { errorMsg ? <ErrorRegister /> : '' }
+      <ErrorRegister />
     </form>
   );
 }
