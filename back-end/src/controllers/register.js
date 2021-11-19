@@ -20,7 +20,7 @@ router.post('/', async (req, res) => {
   try {
     const user = await User.create({ name, email, password: hashedPassword, role: 'customer' });
     console.log('user', user);
-    if(user){
+    if (user) {
       const token = jwt.sign({ data: email }, secret, jwtConfig);
       return res.status(201).json({
         name,
