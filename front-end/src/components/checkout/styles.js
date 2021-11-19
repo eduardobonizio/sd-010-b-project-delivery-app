@@ -16,11 +16,28 @@ export const ContainerTable = styled.div`
   width: 100%;
   height: 250px;
   border-radius: 5px;
+  margin-bottom: 20px;
   border: solid 0.5px #B8B8B8;
+  filter: drop-shadow(0px 1px 0px rgba(0, 0, 0, 0.2));
+`;
+
+export const Overflow = styled.div`
+  height: 165px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  filter: drop-shadow(0px 1px 0px rgba(0, 0, 0, 0.2));
+  overflow: auto;
+  
+::-webkit-scrollbar {
+    width: 15px;
+    background: #F4F4F4;
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background: #DAD7D7;
+    border-radius: 5px;
+}
 `;
 
 export const Table = styled.table`
@@ -28,6 +45,7 @@ export const Table = styled.table`
   border-collapse: separate;
   border-spacing: 0 8px;
   font-weight: 900;
+  overflow-x: scroll;
 `;
 
 export const TableTheader = styled.thead``;
@@ -57,21 +75,24 @@ export const TdTable = styled.td`
   :nth-child(3) {
     background: #3E7C17;
     text-align: center;
+    color: #FFF
   }
 
   :nth-child(4) {
     background: #9C528B;
     text-align: center;
+    color: #FFF
   }
   :nth-child(5) {
     background: #2274A5;
     text-align: center;
+    color: #FFF
   }
 `;
 
 export const TitleHeader = styled.th`
   color: #000;
-  font-size: 12px;
+  font-size: 16px;
   text-align: left;
 `;
 
@@ -92,20 +113,71 @@ export const ValueTotal = styled.div`
   right: 10px;
   width: 200px;
   height: 50px;
-  background:   #3E7C17;
+  background:   #1DB954;
   border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #FFF;
-  font-size: 28px;
-  font-weight: 900;
+  font-size: 1.5rem;
+  font-weight: 800;
 `;
 
-export const InputSelectSalesman = styled.select``;
+export const ContainerDetatailsOrder = styled.div`
+  width: 100%;
+  height: 160px;
+  border-radius: 5px;
+  border: solid 0.5px #B8B8B8;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  filter: drop-shadow(0px 1px 0px rgba(0, 0, 0, 0.2));
+`;
 
-export const InputAddress = styled.input``;
+export const Label = styled.label`
+  font-size: 16px;
+  font-weight: 600;
+`;
 
-export const InputAddressNumber = styled.input``;
+export const InputSelectSalesman = styled.select`
+  width: 20vw;
+  height: 6vh;
+  border-radius: 5px;
+  font-size: 16px;
+  padding-left: 5px;
+  border: none;
+  background: rgba(192, 192, 192, 0.3);
+`;
 
-export const ButtonFinishOrder = styled.button``;
+export const InputAddress = styled.input`
+  width: 35vw;
+  height: 6vh;
+  border-radius: 5px;
+  font-size: 1.3rem;
+  padding-left: 5px;
+  border: none;
+  background: rgba(192, 192, 192, 0.3);
+`;
+
+export const InputAddressNumber = styled.input`
+  width: 20vw;
+  height: 6vh;
+  border-radius: 5px;
+  font-size: 1.3rem;
+  padding-left: 5px;
+  border: none;
+  background: rgba(192, 192, 192, 0.3);
+`;
+
+export const ButtonFinishOrder = styled.button`
+  position: absolute;
+  bottom: 6px;
+  width: 20vw;
+  height: 5vh;
+  background: #1DB954;
+  border-radius: 5px;
+  border: none;
+  font-weight: 800;
+  color: #FFF;
+  font-size: 14px;
+`;
