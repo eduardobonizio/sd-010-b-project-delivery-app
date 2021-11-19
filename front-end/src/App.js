@@ -33,6 +33,11 @@ function App() {
         />
         <Route
           exact
+          path="/customer/orders"
+          render={ (props) => <CustomerOrderDetail { ...props } /> }
+        />
+        <Route
+          exact
           path="/register"
           render={ (props) => <Signup { ...props } /> }
         />

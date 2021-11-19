@@ -15,7 +15,7 @@ function Navbar({ item1, item2, user }) {
     <div className="row d-flex customer-navbar">
       <div className="col inner-customer-navbar">
         <Link
-          to="/login"
+          to="/customer/products"
           data-testid="customer_products__element-navbar-link-products"
         >
           {item1}
@@ -23,7 +23,7 @@ function Navbar({ item1, item2, user }) {
       </div>
       <div className="col inner-customer-navbar">
         <Link
-          to="/login"
+          to="/customer/orders"
           data-testid="customer_products__element-navbar-link-orders"
         >
           {item2}
