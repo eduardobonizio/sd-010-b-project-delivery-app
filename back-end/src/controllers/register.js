@@ -29,10 +29,9 @@ router.post('/', async (req, res) => {
         token,
       });
     }
-
-    return res.status(409).send();
   } catch (e) {
     console.log(e);
+    return res.status(409).send();
   }
 });
 
