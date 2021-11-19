@@ -4,11 +4,12 @@ import { Redirect } from 'react-router-dom';
 import ProductsContext from '../context/productContext';
 
 function ShoppingCartStatus() {
-  const { totalPrice } = useContext(ProductsContext);
+  const { totalPrice, productsInCart } = useContext(ProductsContext);
   const [shouldRedirect, setShouldRedirect] = useState(false);
 
   const handleClick = () => {
     if (totalPrice > 0) {
+      localStorage.setItem('productsInCart', JSON.stringify(productsInCart));
       setShouldRedirect(true);
     }
   };
