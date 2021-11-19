@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
-import { useHistory, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import NavBar from '../components/Navbar';
 import getOrderDetails from '../services/apis/getOrders';
 import { getFromLocalStorage } from '../services/helpers/servicesLocalStorage';
 import * as T from '../styles/Table';
 import * as P from '../styles/PageOrderDetails';
+import formatDate from '../services/helpers/formatDate';
 
 // Definição de constantes
 const ID_ORDER = 'customer_order_details__element-order-details-label-order-id';
@@ -17,29 +18,27 @@ const ITEM = 'customer_order_details__element-order-table-item-number-'; // inde
 const NAME = 'customer_order_details__element-order-table-name-'; // index
 const QUANTITY = 'customer_order_details__element-order-table-quantity-'; // index
 const SUB_TOTAL = 'customer_order_details__element-order-table-sub-total-'; // index
-const TOTAL_PRICE = 'customer_order_details__element-order-total-price-'; // index
+const UNIT_PRICE = 'customer_order_details__element-order-table-unit-price-'; // index
+const TOTAL_PRICE = 'customer_order_details__element-order-total-price';
 const DEFAULT_DATA_PRODUCTS = {
   seller: { name: '' },
   productsSold: [],
   user: { name: '' },
+  sale_date: '',
+  total_price: '',
 };
 
 function OrderDetails() {
-  const history = useHistory();
   const [productsDetails, setProductsDetails] = useState(DEFAULT_DATA_PRODUCTS);
   const { idVenda } = useParams();
   const { token } = getFromLocalStorage('user');
-
+  console.log(productsDetails);
   useEffect(() => {
     (async () => {
       const response = await getOrderDetails(token, idVenda);
-      if (response.erro) {
-        history.push('/page404');
-        console.log(response);
-      }
-      setProductsDetails(response);
+      if (!response.erro) setProductsDetails(response);
     })();
-  }, [history, idVenda, token]);
+  }, [idVenda, token]);
 
   // components
   const theadOrderDetails = () => (
@@ -58,8 +57,8 @@ function OrderDetails() {
         <T.td data-testid={ ITEM + index }>{index + 1}</T.td>
         <T.td data-testid={ NAME + index }>{name}</T.td>
         <T.td data-testid={ QUANTITY + index }>{quantity}</T.td>
-        <T.td data-testid={ SUB_TOTAL + index }>{price}</T.td>
-        <T.td data-testid={ TOTAL_PRICE + index }>{quantity * price}</T.td>
+        <T.td data-testid={ UNIT_PRICE + index }>{price.replace('.', ',')}</T.td>
+        <T.td data-testid={ SUB_TOTAL + index }>{quantity * price}</T.td>
       </T.tr>
     ),
   );
@@ -80,7 +79,9 @@ function OrderDetails() {
           </span>
         </div>
         <div className="pedido-data">
-          <span data-testid={ ORDER_DATE }>{ productsDetails.sale_date }</span>
+          <span data-testid={ ORDER_DATE }>
+            { formatDate(productsDetails.sale_date) }
+          </span>
         </div>
         <div className="pedido-status">
           <span data-testid={ STATUS }>{ productsDetails.status }</span>
@@ -88,6 +89,7 @@ function OrderDetails() {
         <div className="button-check-status">
           <button
             type="button"
+            disabled
             data-testid={ CHECK_STAUS }
           >
             MARCAR COMO ENTREGUE
@@ -109,7 +111,9 @@ function OrderDetails() {
       {/* Não sei onde esta o data-testId 46 */}
       <P.divTotalPrice>
         <span>Total:</span>
-        <span>{productsDetails.total_price}</span>
+        <span data-testid={ TOTAL_PRICE }>
+          {productsDetails.total_price.replace('.', ',')}
+        </span>
       </P.divTotalPrice>
 
     </P.divPageOrderDetails>
