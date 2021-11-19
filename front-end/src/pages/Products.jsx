@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import TopBar from '../components/TopBar';
+import ProductCard from '../components/ProductCard';
 import './css/Products.css';
 
 function Products() {
@@ -18,7 +19,18 @@ function Products() {
   console.log(products);
 
   return (
-    <TopBar name={ name } />
+    <>
+      <TopBar name={ name } />
+      <div className="products-container">
+        { products.map((product) => (<ProductCard
+          key={ product.id }
+          id={ product.id }
+          name={ product.name }
+          price={ product.price }
+          urlImage={ product.urlImage }
+        />))}
+      </div>
+    </>
   );
 }
 

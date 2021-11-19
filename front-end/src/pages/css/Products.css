@@ -32,6 +32,13 @@
   padding-left: 20px;
 }
 
+.products-container {
+  border: 1px solid red;
+  display: flex;
+  flex-flow: row wrap;
+  margin-top: 50px;
+}
+
 .products {
   background-color: #2fc18c;
   margin: 0;
