@@ -44,8 +44,20 @@ const create = async (req, res, next) => {
   }
 };
 
+const getProductsOfSale = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const productsInfo = await saleService.getProductsOfSale(id);
+    return res.status(200).json(productsInfo);
+  } catch (e) {
+    console.log(e.message);
+    next(e);
+  }
+};
+
 module.exports = {
   getUserOrders,
   getSaleInfo,
   create,
+  getProductsOfSale,
 };

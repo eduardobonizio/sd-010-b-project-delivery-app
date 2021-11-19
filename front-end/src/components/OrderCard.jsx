@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 function OrderCard({ order }) {
   const { id, saleDate, status, totalPrice } = order;
+
   const newDate = saleDate.split('T')[0].split('-').reverse().join('/');
 
   return (
