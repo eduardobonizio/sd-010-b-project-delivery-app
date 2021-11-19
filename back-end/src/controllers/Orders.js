@@ -33,7 +33,7 @@ const findOrder = async (req, res) => {
   const { id } = req.params;
   const saleItens = [];
   const { dataValues: { 
-    userId, saleDate, status, sellerId } } = await Sale.findOne({ where: { id } });
+    userId, saleDate, status, sellerId, totalPrice } } = await Sale.findOne({ where: { id } });
   const searchUser = await User.findOne({ where: { id: userId } });
   const sellerName = await User.findOne({ where: { id: sellerId } });
   const saleProds = await SaleProduct.findAll({ where: { saleId: id } });
@@ -43,9 +43,8 @@ const findOrder = async (req, res) => {
     const obj = { name, unitPrice: price, subTotal: price * quantity, quantity };
     saleItens.push(obj);
   });
-  const total = saleItens.reduce((acc, next) => acc.subTotal + next.subTotal);
   const saleObj = {
-    id, userName: searchUser.name, sellerName: sellerName.name, saleDate, status, totalPrice: total, saleItens };
+    id, userName: searchUser.name, sellerName: sellerName.name, saleDate, status, totalPrice, saleItens };
   res.status(200).json(saleObj);
 };
 
