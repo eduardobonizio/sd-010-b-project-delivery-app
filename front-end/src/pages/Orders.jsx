@@ -7,10 +7,8 @@ function Orders() {
   useEffect(() => {
     const userInfo = JSON.parse(localStorage.getItem('user'));
     const { token } = userInfo;
-    APITOKEN.fetchOrders(token).then((data) => setOrdersState(data));
-  }, [ordersState]);
-
-  console.log(ordersState);
+    APITOKEN.fetchOrders(token).then((data) => setOrdersState(data.data));
+  }, []);
   return (
     <div>
       <h1>Meus Pedidos</h1>

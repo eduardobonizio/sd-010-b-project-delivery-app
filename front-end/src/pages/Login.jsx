@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useHistory, Link, Redirect } from 'react-router-dom';
 import APIPOST from '../api';
 
 import { validateEmail, validatePassword } from '../util/valdations';
@@ -10,7 +10,18 @@ function Login() {
   const [email, setEmail] = useState('');
   const [emailIsValid, setEmailIsValid] = useState(false);
   const [error, setError] = useState(null);
+  const [shouldRedirect, setshouldRedirect] = useState(false);
   const history = useHistory();
+
+  useEffect(() => {
+    const userInfo = JSON.parse(localStorage.getItem('user'));
+    if (userInfo) {
+      const { token } = userInfo;
+      if (token) {
+        setshouldRedirect(true);
+      }
+    }
+  }, []);
 
   const savePassword = (p) => {
     setPassword(p);
@@ -61,6 +72,9 @@ function Login() {
 
   return (
     <div>
+      {
+        shouldRedirect ? <Redirect to="customer/products" /> : ''
+      }
       <h1>App de Delivery</h1>
       <form onSubmit={ handleSubmit }>
         <label htmlFor="email">

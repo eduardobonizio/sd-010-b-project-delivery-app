@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 function OrderCard({ order }) {
   const { id, saleDate, status, totalPrice } = order;
   return (
-    <div>
+    <Link to={ `/customer/orders/${id}` }>
       <div data-testid={ `customer_orders__element-order-id-${id}` }>
         {id}
       </div>
@@ -17,7 +18,7 @@ function OrderCard({ order }) {
       <div>
         {`R$ ${totalPrice}`}
       </div>
-    </div>
+    </Link>
   );
 }
 

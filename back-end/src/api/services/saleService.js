@@ -1,9 +1,8 @@
 const { Sale, SalesProduct } = require('../../database/models');
 
-
 const getUserOrders = async (userId) => {
   try {
-    const userOrders = await Sale.findAll({ where: userId });
+    const userOrders = await Sale.findAll({ where: { userId } });
     return userOrders;
   } catch (e) {
     console.log(e);
@@ -14,7 +13,6 @@ const getSaleInfo = async (saleId) => {
   const saleInfo = await Sale.findByPk(saleId);
   return saleInfo;
 };
-
 
 const create = async (body) => {
   const { cart } = body;
