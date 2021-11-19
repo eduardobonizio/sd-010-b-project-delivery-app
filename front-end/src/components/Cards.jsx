@@ -60,9 +60,9 @@ function Cards({ values }) {
       <div className="div-image">
         <div
           className="div-price"
-          data-testid={ `${ID.dataTestId16}${id}` }
         >
-          {`R$ ${price}`}
+          <p>R$ </p>
+          <p data-testid={ `${ID.dataTestId16}${id}` }>{`${price.replace('.', ',')}`}</p>
         </div>
         <img
           data-testid={ `${ID.dataTestId17}${id}` }
@@ -71,8 +71,8 @@ function Cards({ values }) {
         />
       </div>
       <div className="div-p-buttons">
-        <div className="div-p" data-testid={ `${ID.dataTestId15}${id}` }>
-          <p>{ name }</p>
+        <div className="div-p">
+          <p data-testid={ `${ID.dataTestId15}${id}` }>{ name }</p>
         </div>
         <div className="div-buttons">
           <button

@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import '../styles/Header.css';
 
 function Header() {
+  const [nameStorage, setNameStorage] = useState('');
+
+  useEffect(() => {
+    const nameLocalStorage = JSON.parse(localStorage.getItem('user'));
+    setNameStorage(nameLocalStorage.name);
+  }, []);
+
   return (
     <header>
       <nav>
@@ -27,7 +35,7 @@ function Header() {
           className="nav3"
         >
           <div data-testid="customer_products__element-navbar-user-full-name">
-            CICRANO DA SILVA
+            { nameStorage }
           </div>
         </Link>
         <Link
@@ -42,5 +50,9 @@ function Header() {
     </header>
   );
 }
+
+Header.protoType = PropTypes.objectOf({
+  name: PropTypes.string,
+}).isRequired;
 
 export default Header;
