@@ -9,22 +9,23 @@ import { formatedDate, formatSaveAndRenderPrice } from '../../../../helpers/func
 const TEST_STATUS = 'customer_order_details__element-order-details-label-delivery-status';
 
 function SalesList() {
-  const { setOrder, order } = useOrder();
+  const { setCustomerSingleOrder, customerSingleOrder } = useOrder();
   const { id } = useParams();
-  const [ísLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const saleDate = formatedDate(new Date(order.saleDate));
-
-  console.log(order);
   useEffect(() => {
     async function getOrder() {
       setIsLoading(true);
       const response = await api.get(`/oneorder/${id}`);
-      setOrder(response.data);
+      setCustomerSingleOrder(response.data);
       setIsLoading(false);
     }
     getOrder();
   }, []);
+
+  if (isLoading) {
+    return (<p>Carregando...</p>);
+  }
 
   return (
     <div>
@@ -33,20 +34,20 @@ function SalesList() {
           <span
             data-testid="customer_order_details__element-order-details-label-order-id"
           >
-            { order.id }
+            { customerSingleOrder.id }
           </span>
           <span
             data-testid="customer_order_details__element-order-details-label-seller-name"
           >
-            { order.sellerName }
+            { customerSingleOrder.sellerName }
           </span>
           <span
             data-testid="customer_order_details__element-order-details-label-order-date"
           >
-            { saleDate }
+            { formatedDate(new Date(customerSingleOrder.saleDate)) }
           </span>
           <span data-testid={ TEST_STATUS }>
-            { order.status }
+            { customerSingleOrder.status }
           </span>
           <button
             data-testid="customer_order_details__button-delivery-check"
@@ -64,9 +65,9 @@ function SalesList() {
             <th>Valor-unitário</th>
             <th>Sub-total</th>
           </tr>
-          {ísLoading
+          {isLoading
             ? <p>Carregando...</p>
-            : order.saleItens.map((product, index) => (
+            : customerSingleOrder.saleItens.map((product, index) => (
               <Sale
                 key={ index }
                 product={ product }
@@ -77,7 +78,7 @@ function SalesList() {
         <p>
           R$
           <span data-testid="customer_order_details__element-order-total-price">
-            { formatSaveAndRenderPrice(order.totalPrice) }
+            { formatSaveAndRenderPrice(customerSingleOrder.totalPrice) }
           </span>
         </p>
       </div>
