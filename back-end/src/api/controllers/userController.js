@@ -25,7 +25,7 @@ const createUser = async (req, res) => {
     const { name, email, password } = req.body;
     const result = await userService.createUser({ name, email, password });
 
-    if(result.message) return res.status(status.CONFLICT).json(result)
+    if (result.message) return res.status(status.CONFLICT).json(result);
 
     return res.status(status.CREATED).json(result);
   } catch (error) {
