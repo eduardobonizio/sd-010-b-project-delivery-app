@@ -27,7 +27,6 @@ const createSaleTransaction = async (payload) => sequelize.transaction(async (t)
 const create = async (salePayload) => {
   try {
     const result = await createSaleTransaction(salePayload);
-    console.log(result);
     return result;
   } catch (error) {
     console.log(error.message);
