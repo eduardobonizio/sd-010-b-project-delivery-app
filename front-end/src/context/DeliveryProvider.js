@@ -5,6 +5,7 @@ import DeliveryContext from './DeliveryContext';
 const DeliveryProvider = ({ children }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [totalSales, setTotalSales] = useState(0);
 
   const validarNome = (nome) => {
     const NAME_LENGTH = 12;
@@ -40,6 +41,8 @@ const DeliveryProvider = ({ children }) => {
     setEmail,
     password,
     setPassword,
+    totalSales,
+    setTotalSales,
   };
 
   return (
