@@ -8,12 +8,14 @@ const getAll = async () => {
 };
 
 const getSale = async ({ id }) => {
-  const sales = await sale.findOne({ where: { id } }, { 
+  const sales = await sale.findByPk(id, { 
     include: [ 
-      { model: product, as: 'products' },
-      { model: user, as: 'sellerId' },
+      { model: product, as: 'products', through: { attributes: [] } },
+      { model: user, as: 'customer' },
+      { model: user, as: 'seller' },
     ],
   });
+  console.log(sales);
   return sales;
 };
 
