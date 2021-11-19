@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useEffect, useState } from 'react';
 import NavBar from '../components/navBar';
 import StatusCard from '../components/statusCard';
@@ -25,7 +26,7 @@ export default function CustomerOrders() {
   return (
     <div>
       <NavBar isCustomer nameButtonOrder="Meus Pedidos" linkOrder="/customer/orders" />
-      <div className="flex flex-wrap ml-52 mr-52 pt-44 items-center justify-start">
+      <div className="flex flex-wrap items-center justify-start ml-40 mr-40 pt-44">
         {allOrders.length !== 0
           ? allOrders.map((el, index) => (
             <StatusCard
@@ -37,12 +38,11 @@ export default function CustomerOrders() {
           ))
           : (
             <div
-              className="w-full text-dark-color font-semibold text-2xl flex flex-col
-              items-center"
+              className="flex flex-col items-center w-full text-2xl font-semibold text-dark-color"
             >
               <p>Você não possui nenhum pedido.</p>
               <img
-                className="opacity-50 w-2/6"
+                className="w-2/6 opacity-50"
                 src="/semPedido.svg"
                 alt="Imagem de Sem Pedido"
               />

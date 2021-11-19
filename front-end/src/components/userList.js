@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useEffect, useState } from 'react';
 import fetchAllUsers from '../services/allUsersAPI';
 import deleteUsersAPI from '../services/deleteUsersAPI';
@@ -27,8 +28,7 @@ export default function Menu() {
   return (
     <section>
       <h2
-        data-aos="fade-right"
-        className="inline-flex p-2 ml-20 mb-5 text-3xl border-b-2 border-yellow-color"
+        className="inline-flex p-2 mt-4 mb-5 ml-20 text-3xl border-b-2 border-yellow-color"
       >
         Lista de usuarios
       </h2>
@@ -39,12 +39,11 @@ export default function Menu() {
               data-aos="fade-up"
               data-aos-delay={ idx * AOS_ANIMATION_DELAY }
               data-aos-duration="1000"
-              className="flex justify-evenly my-5 mx-20"
+              className="flex mx-20 my-5 justify-evenly"
               key={ el.id }
             >
               <div
-                className="flex justify-between items-center min-w-width-li
-              bg-yellow-color border-yellow-color border-2 rounded-lg"
+                className="flex items-center justify-between border-2 rounded-lg min-w-width-li bg-yellow-color border-yellow-color"
               >
                 <span
                   className={ `${span} w-40` }
@@ -72,7 +71,7 @@ export default function Menu() {
                 </span>
               </div>
               <button
-                className=" w-40 bg-dark-color rounded-xl text-yellow-color"
+                className="w-40 bg-dark-color rounded-xl text-yellow-color"
                 disabled={ userADM(el.role) }
                 onClick={ () => deleteUser(el.id) }
                 type="button"

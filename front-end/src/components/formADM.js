@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useState } from 'react';
 import admRegisterAPI from '../services/admRegisterAPI';
 import SelectType from './selectType';
@@ -42,18 +43,16 @@ export default function FormAdmin() {
   return (
     <form
       onSubmit={ handleSubmit }
-      className="flex flex-col"
+      className="flex flex-col ml-16 mr-16"
     >
-      <div className="flex mt-5 m-2 justify-around">
+      <div className="flex justify-around m-2 mt-10">
         <div>
           <h3 className={ h3 }>
             Nome
-
           </h3>
           <label className={ label } htmlFor>
             <input
-              className="border-2 border-b-8 border-r-8 text-xl rounded-2xl
-              border-yellow-color p-3"
+              className="p-3 text-xl border-2 border-b-8 border-r-8 focus:outline-none rounded-2xl border-yellow-color"
               onChange={ ({ target }) => setName(target.value) }
               type="text"
               data-testid="admin_manage__input-name"
@@ -65,8 +64,7 @@ export default function FormAdmin() {
           <h3 className={ h3 }>Email</h3>
           <label className={ label } htmlFor>
             <input
-              className="border-2 border-b-8 border-r-8 text-xl rounded-2xl
-              border-yellow-color p-3"
+              className="p-3 text-xl border-2 border-b-8 border-r-8 focus:outline-none rounded-2xl border-yellow-color"
               onChange={ ({ target }) => setEmail(target.value) }
               type="email"
               data-testid="admin_manage__input-email"
@@ -78,8 +76,7 @@ export default function FormAdmin() {
           <h3 className={ h3 }>Password</h3>
           <label className={ label } htmlFor>
             <input
-              className="border-2 border-b-8 border-r-8 text-xl rounded-2xl
-              border-yellow-color p-3"
+              className="p-3 text-xl border-2 border-b-8 border-r-8 focus:outline-none rounded-2xl border-yellow-color"
               onChange={ ({ target }) => setPassword(target.value) }
               type="password"
               data-testid="admin_manage__input-password"
@@ -96,8 +93,7 @@ export default function FormAdmin() {
         disabled={ buttonActivation() }
         type="submit"
         data-testid="admin_manage__button-register"
-        className="px-7 py-2 text-black-color rounded-xl cursor-pointer
-        bg-yellow-color self-end mr-60"
+        className="self-end py-2 mt-4 mr-20 rounded-md cursor-pointer px-7 text-black-color bg-yellow-color"
       >
         CADASTRAR
       </button>

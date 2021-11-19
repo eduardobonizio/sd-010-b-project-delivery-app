@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -52,8 +53,7 @@ export default function LoginForms({ registerFunc }) {
   };
   return (
     <div
-      className="border-l-2 pl-28 border-gray-300 flex flex-col items-center
-      justify-center max-w-lg p-10"
+      className="flex flex-col items-center justify-center max-w-lg p-10 border-l-2 border-gray-300 pl-28"
       data-aos="fade-left"
     >
       <svg
@@ -78,8 +78,7 @@ export default function LoginForms({ registerFunc }) {
             type="email"
             data-testid="common_login__input-email"
             required
-            className="w-full px-2 py-1 mr-3 leading-tight text-gray-700 bg-transparent
-            border-none appearance-none focus:outline-none"
+            className="w-full px-2 py-1 mr-3 leading-tight text-gray-700 bg-transparent border-none appearance-none focus:outline-none"
             placeholder="nome@nome.com"
           />
         </div>
@@ -91,8 +90,7 @@ export default function LoginForms({ registerFunc }) {
             type="password"
             data-testid="common_login__input-password"
             required
-            className="w-full px-2 py-1 mr-3 leading-tight text-gray-700 bg-transparent
-            border-none appearance-none focus:outline-none"
+            className="w-full px-2 py-1 mr-3 leading-tight text-gray-700 bg-transparent border-none appearance-none focus:outline-none"
             placeholder="•••••••••"
           />
         </div>
@@ -101,8 +99,7 @@ export default function LoginForms({ registerFunc }) {
             disabled={ buttonActivation() }
             type="submit"
             data-testid="common_login__button-login"
-            className="flex px-2 py-1 text-sm text-black-color border-4 border-teal-500
-            rounded cursor-pointer bg-yellow-color"
+            className="flex px-2 py-1 text-sm border-4 border-teal-500 rounded cursor-pointer text-black-color bg-yellow-color"
           >
             Login
           </button>
@@ -111,8 +108,7 @@ export default function LoginForms({ registerFunc }) {
             onClick={ () => registerFunc(false) }
             type="button"
             data-testid="common_login__button-register"
-            className="flex px-2 py-1 text-sm text-yellow-color border-4 border-teal-500
-            rounded cursor-pointer bg-dark-color"
+            className="flex px-2 py-1 text-sm border-4 border-teal-500 rounded cursor-pointer text-yellow-color bg-dark-color"
           >
             Não possuo cadastro
           </button>
@@ -120,7 +116,10 @@ export default function LoginForms({ registerFunc }) {
         </div>
         { !isValidEntry
               && (
-                <span data-testid="common_login__element-invalid-email">
+                <span
+                  className="mt-20"
+                  data-testid="common_login__element-invalid-email"
+                >
                   Usuário não encontrado
                 </span>
               )}

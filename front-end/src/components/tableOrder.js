@@ -15,13 +15,12 @@ export default function TableOrder() {
   const { totalPrice } = useContext(ProductsContext);
 
   return (
-    <div className="mt-32 ml-20 mr-20">
+    <div className="ml-20 mr-20 mt-28">
       <h2
         data-aos="fade-right"
         className="inline-block py-2 text-3xl border-b-2 border-yellow-color"
       >
         Finalizar Pedido
-
       </h2>
       <div className="ml-32 mr-32">
         <table className="w-full mt-20 text-center">

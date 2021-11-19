@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -38,11 +39,11 @@ export default function CustomerDetailOrder() {
       <div className="m-20">
         <h1
           data-aos="fade-right"
-          className="text-3xl border-b-2 border-yellow-color inline-block py-2"
+          className="inline-block py-2 mt-8 text-3xl border-b-2 border-yellow-color"
         >
           Detalhe do pedido
         </h1>
-        <div className="border mt-10 p-10 rounded-3xl shadow-md flex flex-col">
+        <div className="flex flex-col p-10 mt-10 border shadow-md rounded-3xl">
 
           {sale.length !== 0 && (
             <OrderNavBar
@@ -57,8 +58,7 @@ export default function CustomerDetailOrder() {
             />)}
           {sale.length !== 0 && (
             <div
-              className="bg-yellow-color self-end mt-10 py-2 px-8 rounded-md font-medium
-              text-xl"
+              className="self-end px-8 py-2 mt-10 text-xl font-medium rounded-md bg-yellow-color"
             >
               Total: R$
               <span

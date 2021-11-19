@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useEffect, useState } from 'react';
 import Aos from 'aos';
 
@@ -32,7 +33,7 @@ export default function SellerOrders() {
   return (
     <div>
       <NavBar isCustomer={ false } nameButtonOrder="Pedidos" linkOrder="/seller/orders" />
-      <div className="flex flex-wrap ml-52 mr-52 pt-44 items-center justify-center">
+      <div className="flex flex-wrap items-center justify-start ml-40 mr-40 pt-44">
         {allOrders.length !== 0
           ? allOrders.map((el, index) => (
             <StatusCard
@@ -44,12 +45,11 @@ export default function SellerOrders() {
           ))
           : (
             <div
-              className="w-full text-dark-color font-semibold text-2xl flex flex-col
-              items-center"
+              className="flex flex-col items-center w-full text-2xl font-semibold text-dark-color"
             >
               <p>Você não possui nenhuma venda.</p>
               <img
-                className="opacity-50 w-2/6"
+                className="w-2/6 opacity-50"
                 src="/semPedido.svg"
                 alt="Imagem de Sem Pedido"
               />

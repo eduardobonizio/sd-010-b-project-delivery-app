@@ -1,13 +1,13 @@
+/* eslint-disable max-len */
 import PropTypes from 'prop-types';
 import React from 'react';
 
 export default function SelectType(props) {
   const { setRole } = props;
   return (
-    <label className="flex flex-inline m-5" htmlFor>
+    <label className="flex m-5 flex-inline" htmlFor>
       <select
-        className="border-2 border-b-8 border-r-8 text-xl rounded-2xl
-        border-yellow-color p-3 bg-white px-10"
+        className="p-3 px-10 text-xl bg-white border-2 border-b-8 border-r-8 cursor-pointer focus:outline-none rounded-2xl border-yellow-color"
         data-testid="admin_manage__select-role"
         onChange={ setRole }
       >

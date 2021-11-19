@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
@@ -76,19 +77,17 @@ export default function DeliveryDetails() {
       </h2>
       <div className="flex justify-between w-full pl-32 mt-16 pr-96">
         <label className="flex flex-col" htmlFor="seller">
-          <p className="text-lg">
-            Pessoa Vendedora Responsável:
+          <p className="mb-2 text-xl">
+            Pessoa Vendedora Responsável
           </p>
           <select
-            className="p-3 px-10 text-xl bg-white border-2 border-b-8 border-r-8
-            rounded-2xl border-yellow-color"
+            className="p-3 text-xl bg-white border-2 border-b-8 border-r-8 cursor-pointer w-80 focus:outline-none rounded-2xl border-yellow-color"
             id="seller"
             name="seller"
             type="text"
             required
             data-testid="customer_checkout__select-seller"
             onClick={ ({ target: t }) => {
-              console.log(t.value);
               updateState(t.name, Number(t.value));
             } }
           >
@@ -99,28 +98,28 @@ export default function DeliveryDetails() {
           </select>
         </label>
         <label className="flex flex-col" htmlFor="address">
-          <p className="text-lg">
-            Endereço:
+          <p className="mb-2 text-xl">
+            Endereço
           </p>
           <input
-            className="p-3 text-xl border-2 border-b-8 border-r-8 rounded-2xl
-            border-yellow-color"
+            className="p-3 text-xl border-2 border-b-8 border-r-8 w-96 focus:outline-none rounded-2xl border-yellow-color"
             id="address"
             name="address"
             type="text"
             required
             data-testid="customer_checkout__input-address"
+            placeholder="Digite o enedereço para entrega."
             onChange={ ({ target: t }) => { updateState(t.name, t.value); } }
           />
         </label>
         <label className="flex flex-col" htmlFor="address-number">
-          <p className="text-lg">Número:</p>
+          <p className="mb-2 text-xl">Número</p>
           <input
-            className="p-3 text-xl border-2 border-b-8 border-r-8 rounded-2xl
-            border-yellow-color"
+            className="p-3 text-xl border-2 border-b-8 border-r-8 w-60 focus:outline-none rounded-2xl border-yellow-color"
             id="address-number"
             name="number"
             type="number"
+            placeholder="Digite o número."
             data-testid="customer_checkout__input-addressNumber"
             required
             onChange={ ({ target: t }) => { updateState(t.name, t.value); } }

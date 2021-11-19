@@ -15,8 +15,7 @@ export default function Admin() {
     <>
       <NavBar nameButtonOrder="Gerenciar Usuários" linkOrder="/admin/manage" />
       <h2
-        data-aos="fade-right"
-        className="inline-flex pt-20 p-2 ml-20 text-3xl border-b-2 border-yellow-color"
+        className="inline-flex p-2 ml-20 text-3xl border-b-2 pt-28 border-yellow-color"
       >
         Cadastrar novo usuario
       </h2>

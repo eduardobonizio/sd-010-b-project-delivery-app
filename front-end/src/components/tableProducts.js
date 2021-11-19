@@ -70,7 +70,7 @@ export default function TableProducts({ products, type }) {
                 <span className="inline-block w-4/5 h-10 px-8 py-2 bg-white">
 
                   {(parseFloat(products[1][index].quantity)
-              * parseFloat(el.price).toFixed(2))}
+              * parseFloat(el.price)).toFixed(2).replace('.', ',')}
                 </span>
               </td>
             </tr>
