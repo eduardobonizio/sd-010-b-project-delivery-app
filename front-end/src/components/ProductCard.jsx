@@ -28,8 +28,10 @@ function ProductCard() {
               .map((prod) => (
                 <div
                   key={ prod }
-                  data-testid={ `customer_products__element-card-price-${prod.id}` }
                 >
+                  <div
+                    data-testid={ `customer_products__element-card-price-${prod.id}` }
+                  />
                   { prod.price }
                   <img
                     data-testid={ `customer_products__img-card-bg-image-${prod.id}` }
