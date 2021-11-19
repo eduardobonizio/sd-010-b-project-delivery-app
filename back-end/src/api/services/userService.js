@@ -30,7 +30,7 @@ const registerValidateService = async (name, email, password) => {
   }
 
   const userData = await User.create({ name, email, password: hashPassword, role: 'customer' });  
-  
+
   return userData;
 };
 
