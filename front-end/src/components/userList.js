@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import fetchAllUsers from '../services/allUsersAPI';
 import deleteUsersAPI from '../services/deleteUsersAPI';
 
+const AOS_ANIMATION_DELAY = 150;
+
 export default function Menu() {
   const [users, setUsers] = useState([]);
 
@@ -24,13 +26,22 @@ export default function Menu() {
   const span = 'h-10 items-center justify-center text-center pt-2';
   return (
     <section>
-      <h2 className="inline-flex p-2 ml-20 mb-5 text-3xl border-b-2 border-yellow-color">
+      <h2
+        data-aos="fade-right"
+        className="inline-flex p-2 ml-20 mb-5 text-3xl border-b-2 border-yellow-color"
+      >
         Lista de usuarios
       </h2>
-      <ul>
+      <ul className="mb-40">
         { users.length > 1
-          ? users.map((el) => (
-            <li className="flex justify-evenly my-5 mx-20" key={ el.id }>
+          ? users.map((el, idx) => (
+            <li
+              data-aos="fade-up"
+              data-aos-delay={ idx * AOS_ANIMATION_DELAY }
+              data-aos-duration="1000"
+              className="flex justify-evenly my-5 mx-20"
+              key={ el.id }
+            >
               <div
                 className="flex justify-between items-center min-w-width-li
               bg-yellow-color border-yellow-color border-2 rounded-lg"
