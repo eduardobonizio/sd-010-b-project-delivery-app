@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import api from '../../../services/api';
-import './form.scss';
 import { isValidateLogin } from '../../../helpers/validateLogin';
+import logo from '../../../images/logo.png';
+import '../login.scss';
 
 function Form() {
   const history = useHistory();
@@ -77,8 +78,17 @@ function Form() {
   }
 
   return (
-    <div>
-      <form action="" className="flex-column align-items-center custom-form p-4">
+    <div
+      className="row custom-login"
+    >
+      <div className="col text-center">
+        <img src={ logo } alt="logo" width="150" />
+        <h1 className="text-warning">TryBeer</h1>
+      </div>
+      <form
+        action=""
+        className="col"
+      >
         <div className="row d-flex flex-column">
           <div className="col">
             <p>E-mail</p>

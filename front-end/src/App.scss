@@ -1,5 +1,11 @@
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
 
+
+.container-fluid {
+  background-color: #FCFCFC;
+  height: 100vh;
+  // border: solid 3px red;
+}
 .custom-card {
   border: solid 1px #000;
   border-radius: 4px;
