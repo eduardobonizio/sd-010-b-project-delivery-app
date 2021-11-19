@@ -56,8 +56,18 @@ export default function ProductContextProvider({ children }) {
     setCart(newCart);
   };
 
+  const serialize = (prods) => {
+    let prod = {};
+    const newProducts = [];
+    prods.forEach((el) => {
+      prod = { ...el, qty: 0 };
+      newProducts.push(prod);
+    });
+    setProducts(newProducts);
+  };
+
   useEffect(() => {
-    APITOKEN.getAllProducts().then((res) => setProducts(res.data));
+    APITOKEN.getAllProducts().then((res) => serialize(res.data));
   }, []);
 
   return (

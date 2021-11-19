@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 
 function OrderCard({ order }) {
   const { id, saleDate, status, totalPrice } = order;
+  const newDate = saleDate.split('T')[0].split('-').reverse().join('/');
+
   return (
     <Link to={ `/customer/orders/${id}` }>
       <div data-testid={ `customer_orders__element-order-id-${id}` }>
@@ -12,11 +14,11 @@ function OrderCard({ order }) {
       <div data-testid={ `customer_orders__element-delivery-status-${id}` }>
         {status}
       </div>
-      <div>
-        {saleDate}
+      <div data-testid={ `customer_orders__element-order-date-${id}` }>
+        {newDate}
       </div>
-      <div>
-        {`R$ ${totalPrice}`}
+      <div data-testid={ `customer_orders__element-card-price-${id}` }>
+        {`${totalPrice.replace('.', ',')}` }
       </div>
     </Link>
   );

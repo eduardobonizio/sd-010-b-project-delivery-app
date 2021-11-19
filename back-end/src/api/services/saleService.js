@@ -16,7 +16,7 @@ const getSaleInfo = async (saleId) => {
 
 const create = async (body) => {
   const { cart } = body;
-  
+
   const sale = await Sale.create({
     userId: body.userId,
     deliveryAddress: body.deliveryAddress,
@@ -25,11 +25,11 @@ const create = async (body) => {
     totalPrice: body.totalPrice,
     status: 'Pendente',
   });
-  
+
   cart.forEach(async (el) => {
     await SalesProduct.create({ saleId: sale.id, productId: el.id, quantity: el.qty });
   });
-  
+
   return sale;
 };
 
