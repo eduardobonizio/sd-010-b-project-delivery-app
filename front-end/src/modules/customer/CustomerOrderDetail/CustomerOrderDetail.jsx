@@ -1,6 +1,6 @@
 import React from 'react';
 import { OrderProvider } from '../../../hooks/useOrder';
-import Navbar from '../CustomerProducts/components/NavBar';
+import NavBar from '../../../components/navbar/NavBar';
 import SalesList from './components/SalesList';
 
 export default function CustomerOrderDetail() {
@@ -8,7 +8,7 @@ export default function CustomerOrderDetail() {
 
   return (
     <OrderProvider>
-      <Navbar
+      <NavBar
         item1="Produtos"
         item2="Meus pedidos"
         user={ user.name }

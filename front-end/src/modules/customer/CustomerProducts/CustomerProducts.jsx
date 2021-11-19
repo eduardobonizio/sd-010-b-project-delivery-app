@@ -1,7 +1,7 @@
 import React from 'react';
 import ProductList from './components/ProductList';
 import RedirectButton from '../../../components/RedirectButton';
-import Navbar from './components/NavBar';
+import NavBar from '../../../components/navbar/NavBar';
 import { CustomerProvider } from '../../../hooks/useCustomer';
 
 function CustomerProducts() {
@@ -9,7 +9,7 @@ function CustomerProducts() {
 
   return (
     <CustomerProvider>
-      <Navbar
+      <NavBar
         item1="Produtos"
         item2="Meus pedidos"
         user={ user.name }
