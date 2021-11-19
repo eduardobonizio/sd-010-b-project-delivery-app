@@ -19,7 +19,6 @@ function ProductCard() {
 
   return (
     <div>
-      { console.log(data) }
       { isLoading ? (
         <p>Carregando...</p>
       ) : (

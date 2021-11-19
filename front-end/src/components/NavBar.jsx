@@ -1,10 +1,31 @@
-import React from 'react';
+import { React, useEffect, useState } from 'react';
+import { Redirect } from 'react-router';
 // import { Link } from 'react-router-dom';
 
 import { Layout, Menu } from 'antd';
 
 function NavBar() {
   const { Header } = Layout;
+  const [local, setLocal] = useState([]);
+  const [logout, setLogout] = useState(false);
+
+  useEffect(() => {
+    const getStorage = localStorage.getItem('user');
+    const userName = JSON.parse(getStorage);
+    setLocal(userName);
+  }, []);
+
+  const logOut = () => {
+    localStorage.removeItem('user');
+    setLogout(true);
+  };
+
+  if (logout) {
+    return (
+      <Redirect to="/login" />
+    );
+  }
+
   return (
     <Header style={ { position: 'fixed', zIndex: 1, width: '100%' } }>
       <div className="logo" />
@@ -27,12 +48,15 @@ function NavBar() {
           key="usuario"
           data-testid="customer_products__element-navbar-user-full-name"
         >
-          USERNAME
+          {
+            local.name
+          }
 
         </Menu.Item>
         <Menu.Item
           key="logout"
           data-testid="customer_products__element-navbar-link-logout"
+          onClick={ () => logOut() }
         >
           SAIR
 

@@ -20,6 +20,8 @@ function LoginForm() {
   const [redirect, setRedirect] = useState(false);
 
   React.useEffect(() => {
+    // localStorage.setItem('user', JSON
+    //   .stringify({ name: '', email: '', token: '', id: '', role: '' }));
     forceUpdate({});
   }, []);
 
@@ -27,10 +29,12 @@ function LoginForm() {
     setUserData(values);
     const { email, password } = values;
     try {
-      await axios.post('http://localhost:3001/login', {
+      const respLogin = await axios.post('http://localhost:3001/login', {
         email,
         password,
       });
+      const { data } = respLogin;
+      localStorage.setItem('user', JSON.stringify(data));
       setRedirect(true);
     } catch (error) {
       setIsError(true);
