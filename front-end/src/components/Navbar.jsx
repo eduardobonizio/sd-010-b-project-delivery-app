@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function Navbar({ item1, item2, item3, user }) {
   return (
-    <div className="row bg-primary d-flex">
+    <div className="row d-flex">
       <div className="col p-4">
         <span className="d-flex justify-content-center">{item1}</span>
       </div>
@@ -14,10 +14,10 @@ function Navbar({ item1, item2, item3, user }) {
         <span className="d-flex justify-content-center">{item3}</span>
       </div>
       <div className="col p-4" />
-      <div className="col p-4 bg-info">
+      <div className="col p-4">
         <span className="d-flex justify-content-center">{user}</span>
       </div>
-      <div className="col-1 bg-secondary p-4">
+      <div className="col-1 p-4">
         <button
           type="button"
           className="btn btn-primary d-flex justify-content-center"
