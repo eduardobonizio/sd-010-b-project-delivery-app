@@ -4,7 +4,7 @@ import { Button, Card, Form, InputGroup } from 'react-bootstrap';
 import './css/ProductCard.css';
 
 function ProductCard(props) {
-  const { product: { id, name, price, urlImage }, setCart, cart } = props;
+  const { product: { id, name, price, urlImage, quantity }, setCart, cart } = props;
   const addOne = (cardId) => {
     const elementId = `input-${cardId}`;
     const input = document.getElementById(elementId);
@@ -107,7 +107,7 @@ function ProductCard(props) {
             } }
             type="integer"
             placeholder="0"
-            defaultValue="0"
+            defaultValue={ quantity }
           />
           <Button
             id={ id }
@@ -126,6 +126,7 @@ function ProductCard(props) {
 ProductCard.propTypes = {
   product: Proptypes.shape({
     id: Proptypes.number,
+    quantity: Proptypes.number,
     name: Proptypes.string,
     price: Proptypes.string,
     urlImage: Proptypes.string,
