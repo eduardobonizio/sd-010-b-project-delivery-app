@@ -1,10 +1,8 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import tableTitles from '../services/orderTableTitles';
 
-// eslint-disable-next-line react/prop-types
 function OrderProductsTable({ products }) {
-  // tableTitles.pop();
   console.log(products);
   return (
     <table>
@@ -30,5 +28,9 @@ function OrderProductsTable({ products }) {
     </table>
   );
 }
+
+OrderProductsTable.propTypes = {
+  products: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default OrderProductsTable;
