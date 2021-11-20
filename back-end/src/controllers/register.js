@@ -18,10 +18,10 @@ router.post('/', async (req, res) => {
   const hashedPassword = md5(password);
 
   try {
-    const newUser = await User.findOne({ where: { email } });
-    if (!newUser) {
+    const user = await User.create({ name, email, password: hashedPassword, role: 'customer' });
+    console.log('user', user);
+    if (user) {
       const token = jwt.sign({ data: email }, secret, jwtConfig);
-      User.create({ name, email, password: hashedPassword, role: 'customer' });
       return res.status(201).json({
         name,
         email,
@@ -29,9 +29,8 @@ router.post('/', async (req, res) => {
         token,
       });
     }
-    return res.status(409).send();
   } catch (e) {
-    console.log(e);
+    return res.status(409).send();
   }
 });
 
