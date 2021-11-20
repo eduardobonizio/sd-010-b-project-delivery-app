@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import TopBar from '../components/TopBar';
-import ProductCard from '../components/ProductCard';
+import CheckoutProductCard from '../components/CheckoutProductCard';
 import CartTotal from '../components/CartTotal';
 import './css/Products.css';
 
@@ -35,7 +35,7 @@ function Products() {
       <div className="products-container">
         {
           cart && cart.map((product) => (
-            <ProductCard
+            <CheckoutProductCard
               key={ product.key }
               product={ product }
               setCart={ setCart }
