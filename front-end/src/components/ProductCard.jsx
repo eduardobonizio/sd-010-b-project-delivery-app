@@ -1,13 +1,11 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
 import React from 'react';
 import Proptypes from 'prop-types';
 import { Button, Card, Form, InputGroup } from 'react-bootstrap';
 import './css/ProductCard.css';
 
 function ProductCard(props) {
-  const { product: { id, name, price, urlImage }, setCart, cart } = props;
-
+  const { product, product: { id, name, price, urlImage }, setCart, cart } = props;
+  console.log(product);
   const addOne = (cardId) => {
     const elementId = `input-${cardId}`;
     const input = document.getElementById(elementId);
@@ -128,5 +126,16 @@ function ProductCard(props) {
     </Card>
   );
 }
+
+ProductCard.propTypes = {
+  product: Proptypes.shape({
+    id: Proptypes.number,
+    name: Proptypes.string,
+    price: Proptypes.string,
+    urlImage: Proptypes.string,
+  }).isRequired,
+  setCart: Proptypes.func.isRequired,
+  cart: Proptypes.arrayOf(Proptypes.object).isRequired,
+};
 
 export default ProductCard;
