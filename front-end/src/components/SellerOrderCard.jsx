@@ -12,16 +12,19 @@ function OrderCard({ order }) {
       <div data-testid={ `seller_orders__element-order-id-${id}` }>
         {id}
       </div>
-      <div data-testid={ `seller_orders__element-delivery-status-${status}` }>
+      <button
+        type="button"
+        data-testid={ `seller_orders__element-delivery-status-${id}` }
+      >
         {status}
-      </div>
-      <div data-testid={ `seller_orders__element-order-date-${saleDate}` }>
+      </button>
+      <div data-testid={ `seller_orders__element-order-date-${id}` }>
         {newDate}
       </div>
-      <div data-testid={ `seller_orders__element-card-price-${totalPrice}` }>
+      <div data-testid={ `seller_orders__element-card-price-${id}` }>
         {`${totalPrice.replace('.', ',')}` }
       </div>
-      <div data-testid={ `seller_orders__element-card-address-${deliveryAddress}` }>
+      <div data-testid={ `seller_orders__element-card-address-${id}` }>
         {`${deliveryAddress}, ${deliveryNumber}`}
       </div>
     </Link>

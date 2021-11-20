@@ -19,31 +19,41 @@ function OrderDetails() {
     });
   }, [params.id]);
 
-  const { productsInfo, seller } = saleInfo;
+  const { productsInfo } = saleInfo;
+  console.log(productsInfo);
+  console.log('sim');
   return (
     <div>
       <NavBar />
       <h1>Detalhes do Pedido</h1>
       <span data-testid="seller_order_details__element-order-details-label-order-id">
         {params.id}
+        {' '}
       </span>
-      <span data-testid="seller_order_details__element-order-details-label-seller-name">
+      {/* <span data-testid="seller_order_details__element-order-details-label-seller-name">
         {seller.name}
-      </span>
+      </span> */}
       <span data-testid="seller_order_details__element-order-details-label-order-date">
         {productsInfo.saleDate ? formateDate(productsInfo.saleDate) : ''}
       </span>
-      <span
+      <button
+        type="button"
         data-testid="seller_order_details__element-order-details-label-delivery-status"
       >
         {productsInfo.status}
-      </span>
+      </button>
       <button
-        disabled
-        data-testid="seller_order_details__button-delivery-check"
+        data-testid="seller_order_details__button-preparing-check"
         type="button"
       >
-        Marcar como entregue
+        Preparar Pedido
+      </button>
+      <button
+        disabled
+        data-testid="seller_order_details__button-dispatch-check"
+        type="button"
+      >
+        Saiu para entrega
       </button>
       {
         isFetched ? <OrderProductsTable products={ productsInfo.products } /> : ''

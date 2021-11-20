@@ -13,8 +13,6 @@ function Orders() {
     APITOKEN.fetchOrders(token).then((data) => setOrdersState(data.data));
   }, []);
 
-  console.log(ordersState);
-
   return (
     <div>
       <h1>Meus Pedidos</h1>
