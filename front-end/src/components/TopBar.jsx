@@ -1,6 +1,7 @@
 import React from 'react';
 import { Image, Navbar } from 'react-bootstrap';
 import Proptypes from 'prop-types';
+import LogoutButton from './LoggouButton';
 
 function TopBar(props) {
   const { name } = props;
@@ -44,7 +45,7 @@ function TopBar(props) {
             data-testid="customer_products__element-navbar-link-logout"
             href="/customer/orders"
           >
-            Sair
+            <LogoutButton />
           </Navbar.Text>
         </Navbar.Collapse>
       </Navbar.Collapse>
