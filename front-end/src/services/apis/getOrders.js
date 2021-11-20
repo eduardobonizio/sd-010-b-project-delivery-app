@@ -1,21 +1,18 @@
 import axios from 'axios';
 
-const getOrderDetails = async (token, id) => {
-  const END_POINT = `http://localhost:3001/customer/orders/details/${id}`;
-
+const getAllOrders = async (Authorization) => {
+  const { role, token } = Authorization;
+  const URL_ORDER = `http://localhost:3001/${role}/orders`;
   try {
-    const { data } = await axios.get(END_POINT, {
+    const { data } = await axios.get(URL_ORDER, {
       headers: {
         Authorization: token,
       },
     });
     return data;
   } catch (error) {
-    return {
-      erro: true,
-      message: error.message,
-    };
+    console.log(error.message);
   }
 };
 
-export default getOrderDetails;
+export default getAllOrders;

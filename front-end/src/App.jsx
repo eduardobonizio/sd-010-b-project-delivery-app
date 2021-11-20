@@ -19,6 +19,7 @@ function App() {
       <Route path="/customer/products" component={ Produtos } />
       <Route path="/customer/orders/:idVenda" component={ OrderDetails } />
       <Route path="/customer/orders" component={ MeusPedidos } />
+      <Route path="/seller/orders" component={ MeusPedidos } />
       <Route path="/customer/checkout" component={ Checkout } />
       <Route path="/page404" component={ Page404 } />
       <Route path="/admin/gerenciamento" component={ Page404 } />

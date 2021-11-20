@@ -19,8 +19,17 @@ const saleDatails = rescue(async (req, res) => {
   return res.status(sales.status).json(sales.data);
 });
 
+const createSaleProduct = rescue(async(req, res) => {
+  const { body } = req;
+
+  const saleProduct = await checkoutService.generateSaleProduct(body);
+
+  return res.status(saleProduct.status).json(saleProduct.data);
+});
+
 module.exports = { 
   checkoutSale,
   saleDatails,
+  createSaleProduct,
 };
 

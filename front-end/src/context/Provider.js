@@ -10,6 +10,7 @@ export default function Provider({ children }) {
   const [totalPrice, setTotalPrice] = useState(0);
   const [ordersCustomer, setOrdersCustomer] = useState([]);
   const [sellers, setSellers] = useState([]);
+  const [eachProducts, setEachProducts] = useState([]);
 
   const insertCart = (eachItem) => {
     const { id, name, price, quantity } = eachItem;
@@ -45,6 +46,8 @@ export default function Provider({ children }) {
     setOrdersCustomer,
     sellers,
     setSellers,
+    eachProducts,
+    setEachProducts,
   };
 
   return <Context.Provider value={ context }>{children}</Context.Provider>;
