@@ -6,7 +6,7 @@ import CartTotal from '../components/CartTotal';
 import './css/Products.css';
 
 function Products() {
-  const name = localStorage.getItem('name');
+  const { name } = JSON.parse(localStorage.getItem('user'));
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState();
   const [cartTotal, setCartTotal] = useState(0);
