@@ -1,21 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import ID from '../utils/dataTestIdDict';
 import '../styles/CardOrder.css';
 
 function Order({ sale }) {
-  const [colorStatus, setColorStatus] = useState('pendente');
+  // const [colorStatus, setColorStatus] = useState('pendente');
   // const [valueStatus, setValueStatus] = useState('Pendente');
 
+  let colorStatus = 'pendente';
+
   if (sale.status === 'Pedente') {
-    setColorStatus('pedente');
+    colorStatus = 'pedente';
   }
   if (sale.status === 'Preparando') {
-    setColorStatus('Preparando');
+    colorStatus = 'preparando';
   }
   if (sale.status === 'Entregue') {
-    setColorStatus('Entregue');
+    colorStatus = 'entregue';
   }
 
   return (

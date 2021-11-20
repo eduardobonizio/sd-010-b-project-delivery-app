@@ -21,7 +21,7 @@ module.exports = {
         delivery_address: "aaaaa",
         delivery_number: "222",
         sale_date: "2000/10/01",
-        status: "pendente",
+        status: "Pendente",
       },
       {
         id: 3,
@@ -31,7 +31,17 @@ module.exports = {
         delivery_address: "aaaaa",
         delivery_number: "222",
         sale_date: "2000/10/01",
-        status: "Pendente",
+        status: "Entregue",
+      },
+      {
+        id: 4,
+        user_id: 3,
+        seller_id: 1,
+        total_price: 250.00,
+        delivery_address: "aaaaa",
+        delivery_number: "222",
+        sale_date: "2000/10/01",
+        status: "Preparando",
       },
     ]);
   },
