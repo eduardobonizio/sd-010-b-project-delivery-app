@@ -5,6 +5,10 @@ import './ProductsList.scss';
 const TEST_STATUS = 'seller_order_details__element-order-details-label-delivery-status';
 
 function ProductsList() {
+  function handleUpdateStatus() {
+    // data ainda vai ser definido;
+    emitUpdateOrder(data);
+  }
   return (
     <div>
       <div className="conteiner border">
@@ -26,12 +30,14 @@ function ProductsList() {
           <button
             type="button"
             data-testid="seller_order_details__button-preparing-check"
+            onClick={ handleUpdateStatus }
           >
             PREPARAR PEDIDO
           </button>
           <button
             type="button"
             data-testid="seller_order_details__button-dispatch-check"
+            onClick={ handleUpdateStatus }
           >
             SAIU PARA ENTREGA
           </button>

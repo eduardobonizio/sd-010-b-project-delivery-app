@@ -19,3 +19,9 @@ export function updateOrders(orders, data, setOrders) {
     setOrders(updateStatusOrder);
   }
 }
+
+export function updateSingleOrder(sigleOrder, data, setSingleOrder) {
+  const updateStatusOrder = { ...sigleOrder };
+  updateStatusOrder.status = data.status;
+  setSingleOrder(updateStatusOrder);
+}

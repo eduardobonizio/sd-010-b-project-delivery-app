@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
-// import { updateOrders } from './functions/helpers';
+// import { updateOrders, updateSingleOrder } from './functions/helpers';
 // import socketIOClient from 'socket.io-client';
 
 // const URL = 'http://localhost:3001';
@@ -15,18 +15,27 @@ const OrderContext = createContext();
 
 export function OrderProvider({ children }) {
   const [customerOrders, setCustomerOrders] = useState([]);
-  const [customerSingleOrder, setCustomerSingleOrder] = useState([]);
+  const [customerSingleOrder, setCustomerSingleOrder] = useState({});
   const [sellerOrders, setSellerOrders] = useState([]);
   const [sellerSingleOrder, setSellerSingleOrder] = useState([]);
 
   // useEffect(() => {
   //   const client = socketIOClient(URL);
 
-  //   client.on('updateStatus', (data) => {
-  //     updateOrders(customerOrders, data, setCustomerOrders);
-  //     updateOrders(sellerOrders, data, setSellerOrders);
+  //   client.on('updateStatus', ({ userId, sellerId, status }) => {
+  //     const dataCustomer = { userId, status };
+  //     const dataSeller = { sellerId, status };
+  //     updateOrders(customerOrders, dataCustomer, setCustomerOrders);
+  //     updateSingleOrder(customerSingleOrder, dataCustomer, setCustomerSingleOrder);
+  //     updateOrders(sellerOrders, dataSeller, setSellerOrders);
+  //     updateSingleOrder(sellerSingleOrder, dataSeller, setSellerSingleOrder);
   //   });
   // }, []);
+
+  function emitUpdateOrder(data) {
+    const client = socketIOClient(URL);
+    client.emit('updateStatus', data);
+  }
 
   return (
     <OrderContext.Provider
@@ -38,7 +47,8 @@ export function OrderProvider({ children }) {
           sellerOrders,
           setSellerOrders,
           sellerSingleOrder,
-          setSellerSingleOrder }
+          setSellerSingleOrder,
+          emitUpdateOrder }
       }
     >
       { children }

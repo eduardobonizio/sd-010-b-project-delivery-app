@@ -9,10 +9,10 @@ import { getCustomerOrderApi } from '../../../../api/customer';
 const TEST_STATUS = 'customer_order_details__element-order-details-label-delivery-status';
 
 function SalesList() {
-  const { setCustomerSingleOrder, customerSingleOrder } = useOrder();
+  const { setCustomerSingleOrder, customerSingleOrder, emitUpdateOrder } = useOrder();
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(true);
-
+  console.log(customerSingleOrder);
   useEffect(() => {
     async function getOrder() {
       setIsLoading(true);
@@ -22,6 +22,11 @@ function SalesList() {
     }
     getOrder();
   }, []);
+
+  function handleUpdateStatus() {
+    // data ainda vai ser definido;
+    emitUpdateOrder(data);
+  }
 
   return (
     <div>
@@ -49,6 +54,7 @@ function SalesList() {
             data-testid="customer_order_details__button-delivery-check"
             type="button"
             disabled
+            onClick={ handleUpdateStatus }
           >
             MARCAR COMO ENTREGUE
           </button>
