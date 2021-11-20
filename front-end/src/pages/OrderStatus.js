@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-// import socket from 'socket.io-client';
 import Header from '../components/Header';
 import { getOrders } from '../services/api';
 import { getStorage } from '../utils/localStorage';
@@ -8,7 +7,6 @@ import { getStorage } from '../utils/localStorage';
 export default function OrderStatus() {
   const [orders, setOrders] = useState([]);
 
-  // socket.emit('status', {id,  })
   useEffect(() => getOrders().then(({ data }) => {
     setOrders(data);
   }), []);
@@ -21,6 +19,7 @@ export default function OrderStatus() {
         yourOrder="MEUS PEDIDOS"
         userName={ getStorage('user').name }
       />
+
       {orders.length && orders.map(({ id, status, saleData, totalPrice }) => {
         console.log(id);
         return (
