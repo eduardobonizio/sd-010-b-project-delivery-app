@@ -1,8 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function Thead() {
+function Thead(props) {
+  const { removeBtn } = props;
   const keys = [
-    'Item', 'Descrição', 'Quantidade', 'Valor Unitário', 'Sub-total', 'Remover Item'];
+    'Item', 'Descrição', 'Quantidade', 'Valor Unitário', 'Sub-total'];
+  if (removeBtn) keys.push('Remover Item');
 
   return (
     <thead>
@@ -12,5 +15,9 @@ function Thead() {
     </thead>
   );
 }
+
+Thead.propTypes = {
+  removeBtn: PropTypes.bool.isRequired,
+};
 
 export default Thead;

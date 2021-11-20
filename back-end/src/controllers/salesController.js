@@ -9,6 +9,15 @@ const getSales = async (req, res) => {
   }
 };
 
+const getSalesById = async (req, res) => {
+  try {
+    const sale = await saleService.getSale(req.params);
+    res.status(200).json(sale);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 const postSale = async (req, res) => {
   try {
     const newSaleId = await saleService.postSale(req.body);
@@ -30,6 +39,7 @@ const postProductSale = async (req, res) => {
 
 module.exports = {
   getSales,
+  getSalesById,
   postSale,
   postProductSale,
 };

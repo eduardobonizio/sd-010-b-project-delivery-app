@@ -4,6 +4,8 @@ const apiUrl = 'http://localhost:3001';
 
 export const getSales = () => axios.get(`${apiUrl}/sales`);
 
+export const getSale = (id) => axios.get(`${apiUrl}/sales/${id}`);
+
 export const postSales = (data, token) => axios.post(`${apiUrl}/sales`, data, {
   headers: { Authorization: token },
 });

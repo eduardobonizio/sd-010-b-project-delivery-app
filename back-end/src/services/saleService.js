@@ -1,9 +1,21 @@
-const { sale } = require('../database/models');
+const { sale, product, user } = require('../database/models');
 const { salesProducts } = require('../database/models');
 const userService = require('./userService');
 
 const getAll = async () => {
   const sales = await sale.findAll();
+  return sales;
+};
+
+const getSale = async ({ id }) => {
+  const sales = await sale.findByPk(id, { 
+    include: [ 
+      { model: product, as: 'products', through: { attributes: [] } },
+      { model: user, as: 'customer' },
+      { model: user, as: 'seller' },
+    ],
+  });
+  console.log(sales);
   return sales;
 };
 
@@ -17,14 +29,15 @@ const postSale = async ({
 };
 
 const postProductSale = async (productArray) => {
-  productArray.forEach(async (product) => {
-    await salesProducts.create(product);
+  productArray.forEach(async (prod) => {
+    await salesProducts.create(prod);
   });
   return 'Populei';
 };
 
 module.exports = {
   getAll,
+  getSale,
   postSale,
   postProductSale,
 };

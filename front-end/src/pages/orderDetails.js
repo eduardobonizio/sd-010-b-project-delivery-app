@@ -1,9 +1,16 @@
 import React from 'react';
+import Navbar from '../components/navbar';
+import OrderDetailTable from '../components/orderDetailTable';
 
-const Login = () => (
-  <main>
-    <h1>detalhes dos pedidos</h1>
-  </main>
-);
+const OrderDetails = () => {
+  const { name, role } = JSON.parse(localStorage.getItem('user'));
 
-export default Login;
+  return (
+    <main>
+      <Navbar name={ name } role={ role } />
+      <OrderDetailTable />
+    </main>
+  );
+};
+
+export default OrderDetails;
