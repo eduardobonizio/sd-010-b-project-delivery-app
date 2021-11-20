@@ -11,7 +11,6 @@ function OrderDetails() {
   const [saleInfo, setsaleInfo] = useState({
     productsInfo: {}, seller: {} });
   const [isFetched, setisFetched] = useState(false);
-  // const [status, setStatus] = useState('');
 
   const params = useParams();
 
@@ -24,19 +23,6 @@ function OrderDetails() {
     });
   }, [params.id, saleInfo.productsInfo.status, setStatus]);
 
-  // const handleSaleStatus = (e) => {
-  // return
-  // const { name } = e.target;
-  // const currStatus = name === 'delivery' ? 'Em Trânsito' : 'Preparando';
-
-  // try {
-  //   const res = await APITOKEN.updateSaleStatus(params.id, currStatus);
-  //   if (res) handleStatus(currStatus);
-  // } catch (err) {
-  //   console.log(err);
-  // }
-  // };
-
   const { productsInfo } = saleInfo;
 
   return (
@@ -47,9 +33,6 @@ function OrderDetails() {
         {params.id}
         {' '}
       </span>
-      {/* <span data-testid="seller_order_details__element-order-details-label-seller-name">
-        {seller.name}
-      </span> */}
       <span data-testid="seller_order_details__element-order-details-label-order-date">
         {productsInfo.saleDate ? formateDate(productsInfo.saleDate) : ''}
       </span>

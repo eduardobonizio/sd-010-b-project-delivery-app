@@ -1,6 +1,7 @@
 const express = require('express');
 const { create } = require('../controllers/saleController');
-const { getUserOrders, getSaleInfo, getProductsOfSale, updateSaleStatus } = require('../controllers/saleController');
+const { getUserOrders, getSaleInfo, getProductsOfSale,
+  updateSaleStatus } = require('../controllers/saleController');
 
 const router = express.Router();
 

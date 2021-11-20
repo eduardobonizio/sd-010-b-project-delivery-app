@@ -21,7 +21,6 @@ function OrderDetails() {
       setStatus(saleInfo.productsInfo.status);
     });
   }, [params.id, saleInfo.productsInfo.status, setStatus]);
-  console.log('no order details');
 
   const { productsInfo, seller } = saleInfo;
   return (

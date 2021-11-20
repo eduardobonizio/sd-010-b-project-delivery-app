@@ -3,7 +3,11 @@ const { Sale, SalesProduct, Product } = require('../../database/models');
 const getUserOrders = async (userId, role) => {
   try {
     let userOrders = [];
-    if (role === 'seller') { userOrders = await Sale.findAll({ where: { sellerId: userId } }); } else userOrders = await Sale.findAll({ where: { userId } });
+    if (role === 'seller') {
+      userOrders = await Sale.findAll({
+        where: { sellerId: userId },
+      });
+    } else userOrders = await Sale.findAll({ where: { userId } });
     return userOrders;
   } catch (e) {
     console.log(e);
