@@ -2,9 +2,10 @@ import React from 'react';
 import { Image, Navbar } from 'react-bootstrap';
 import Proptypes from 'prop-types';
 import LogoutButton from './LogoutButton';
+import CartTotal from './CartTotal';
 
 function TopBar(props) {
-  const { name } = props;
+  const { name, cartTotal } = props;
 
   return (
     <Navbar variant="dark" className="navbar">
@@ -32,6 +33,9 @@ function TopBar(props) {
         >
           MEUS PEDIDOS
         </Navbar.Text>
+
+        <CartTotal cartTotal={ cartTotal } />
+
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text
             className="name align-items-center"
@@ -55,6 +59,7 @@ function TopBar(props) {
 
 TopBar.propTypes = {
   name: Proptypes.string.isRequired,
+  cartTotal: Proptypes.number.isRequired,
 };
 
 export default TopBar;

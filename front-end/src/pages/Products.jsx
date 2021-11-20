@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Col, Container, Row } from 'react-bootstrap';
 import TopBar from '../components/TopBar';
 import ProductCard from '../components/ProductCard';
-import CartTotal from '../components/CartTotal';
+// import CartTotal from '../components/CartTotal';
 import './css/Products.css';
 
 function Products() {
@@ -36,12 +36,12 @@ function Products() {
 
   return (
     <>
-      <TopBar name={ name } />
+      <TopBar name={ name } cartTotal={ cartTotal } />
       <Container fluid>
         <Row>
           {
             cart && cart.map((product) => (
-              <Col key={ product.key }>
+              <Col key={ product.key } style={ { padding: '0px' } }>
                 <ProductCard
                   product={ product }
                   setCart={ setCart }
@@ -52,7 +52,7 @@ function Products() {
           }
         </Row>
       </Container>
-      <CartTotal cartTotal={ cartTotal } />
+      {/* <CartTotal cartTotal={ cartTotal } /> */}
     </>
   );
 }
