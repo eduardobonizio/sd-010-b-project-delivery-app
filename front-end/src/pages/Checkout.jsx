@@ -7,7 +7,7 @@ import '../styles/Checkout.css';
 function Checkout() {
   return (
     <>
-      <Header />
+      <Header userRole="customer" />
       <div className="checkout-container">
         <div className="checkout-orders">
           <h3>Finalizar pedido</h3>
