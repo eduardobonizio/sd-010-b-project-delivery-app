@@ -1,3 +1,4 @@
+const { StatusCodes } = require('http-status-codes');
 const { registerValidateService } = require('../services/userService');
 
 const registerController = async (req, res, next) => {
@@ -9,7 +10,7 @@ const registerController = async (req, res, next) => {
     return next(registerData.err);
   }  
 
-  return res.status(201).json(registerData);
+  return res.status(StatusCodes.CREATED).json(registerData);
 };
 
 module.exports = { registerController };
