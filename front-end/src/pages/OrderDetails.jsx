@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { useParams } from 'react-router';
 import NavBar from '../components/Navbar';
-import getOrderDetails from '../services/apis/getOrders';
+import getOrderDetails from '../services/apis/getOrderDetails';
 import { getFromLocalStorage } from '../services/helpers/servicesLocalStorage';
 import * as T from '../styles/Table';
 import * as P from '../styles/PageOrderDetails';
