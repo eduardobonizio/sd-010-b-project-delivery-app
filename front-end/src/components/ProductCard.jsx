@@ -48,20 +48,20 @@ function ProductCard(props) {
 
   const changeCart = (cardId, value) => {
     let inputValue = value;
-    const idArray = cardId.split('-');
+    const idArray = cardId.split('-')[1] - 1;
     if (value.isNaN) {
       inputValue = 0;
     }
 
-    setCart({
-      ...cart,
-      [idArray[1]]: {
-        price: cart[idArray[1]].price,
-        quantity: parseInt(inputValue, 10),
-        name: cart[cardId].name,
-        urlImage: cart[cardId].urlImage,
-      },
-    });
+    const newCart = [...cart];
+    newCart[idArray] = {
+      id,
+      price,
+      quantity: parseInt(inputValue, 10),
+      name,
+      urlImage,
+    };
+    setCart(newCart);
   };
 
   return (
