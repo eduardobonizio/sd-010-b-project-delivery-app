@@ -55,9 +55,21 @@ const getProductsOfSale = async (req, res, next) => {
   }
 };
 
+const updateSaleStatus = async (req, res, next) => {
+  const { id } = req.params;
+  const { status } = req.body;
+  try {
+    const sale = await saleService.updateSaleStatus(id, status);
+    return res.status(200).json(sale);
+  } catch (e) {
+    next(e);
+  }
+};
+
 module.exports = {
   getUserOrders,
   getSaleInfo,
   create,
+  updateSaleStatus,
   getProductsOfSale,
 };

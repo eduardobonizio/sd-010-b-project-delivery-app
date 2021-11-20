@@ -3,8 +3,7 @@ const { Sale, SalesProduct, Product } = require('../../database/models');
 const getUserOrders = async (userId, role) => {
   try {
     let userOrders = [];
-    if (role === 'seller') userOrders = await Sale.findAll({ where: { sellerId: userId } });
-    else userOrders = await Sale.findAll({ where: { userId } });
+    if (role === 'seller') { userOrders = await Sale.findAll({ where: { sellerId: userId } }); } else userOrders = await Sale.findAll({ where: { userId } });
     return userOrders;
   } catch (e) {
     console.log(e);
@@ -50,9 +49,15 @@ const getProductsOfSale = async (saleId) => {
   return { productsInfo, seller };
 };
 
+const updateSaleStatus = async (id, status) => {
+  const sale = await Sale.update({ status }, { where: { id } });
+  return sale;
+};
+
 module.exports = {
   getUserOrders,
   getSaleInfo,
   create,
-getProductsOfSale,
+  updateSaleStatus,
+  getProductsOfSale,
 };

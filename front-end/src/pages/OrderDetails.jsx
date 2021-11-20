@@ -3,8 +3,10 @@ import { useParams } from 'react-router-dom';
 import NavBar from '../components/Navbar';
 import APITOKEN from '../api/index';
 import OrderProductsTable from '../components/OrderProductsTable';
+import { useProductContext } from '../context/productContext';
 
 function OrderDetails() {
+  const { status, handleSaleStatus, setStatus } = useProductContext();
   const [saleInfo, setsaleInfo] = useState({
     productsInfo: {}, seller: {} });
   const [isFetched, setisFetched] = useState(false);
@@ -13,12 +15,13 @@ function OrderDetails() {
 
   const formateDate = (date) => date.split('T')[0].split('-').reverse().join('/');
   useEffect(() => {
-    console.log('alow');
     APITOKEN.fetchSaleInfo(params.id).then((response) => {
       setsaleInfo(response.data);
       setisFetched(true);
+      setStatus(saleInfo.productsInfo.status);
     });
-  }, [params.id]);
+  }, [params.id, saleInfo.productsInfo.status, setStatus]);
+  console.log('no order details');
 
   const { productsInfo, seller } = saleInfo;
   return (
@@ -37,12 +40,14 @@ function OrderDetails() {
       <span
         data-testid="customer_order_details__element-order-details-label-delivery-status"
       >
-        {productsInfo.status}
+        {status}
       </span>
       <button
-        disabled
+        disabled={ status !== 'Em Trânsito' }
         data-testid="customer_order_details__button-delivery-check"
         type="button"
+        name="delivired"
+        onClick={ (e) => handleSaleStatus(e, params.id) }
       >
         Marcar como entregue
       </button>

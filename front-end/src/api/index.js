@@ -32,9 +32,12 @@ const register = (user) => APIPOST.post('/user/register', user);
 
 const fetchSaleInfo = (id) => APITOKEN().get(`/sale/products/${id}`, {});
 
+const updateSaleStatus = (id, status) => APITOKEN().put(`/sale/${id}`, { status });
+
 export default { fetchOrders,
   login,
   register,
   getAllProducts,
   createSale,
-  fetchSaleInfo };
+  fetchSaleInfo,
+  updateSaleStatus };

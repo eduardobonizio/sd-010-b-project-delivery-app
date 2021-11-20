@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 
 export default function NavBar() {
   const history = useHistory();
-  const [user] = useState(() => localStorage.getItem('user'));
-  let currUser = '';
-  if (user) currUser = JSON.parse(user);
+  const user = JSON.parse(localStorage.getItem('user')) || '';
 
   const handleLogout = () => {
     localStorage.clear();
@@ -18,7 +16,7 @@ export default function NavBar() {
       <div className="prods-buys">
         <h3 data-testid="customer_products__element-navbar-link-products">PRODUTOS</h3>
         <Link
-          to="orders"
+          to={ user.role === 'customer' ? '/customer/orders' : '/seller/orders' }
           data-testid="customer_products__element-navbar-link-orders"
         >
           MEUS PEDIDOS
@@ -26,7 +24,7 @@ export default function NavBar() {
       </div>
       <div className="name-logout">
         <h3 data-testid="customer_products__element-navbar-user-full-name">
-          {currUser.name}
+          {user.name}
         </h3>
         <button
           data-testid="customer_products__element-navbar-link-logout"

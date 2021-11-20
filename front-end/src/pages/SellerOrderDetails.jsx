@@ -1,13 +1,17 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import NavBar from '../components/Navbar';
 import APITOKEN from '../api/index';
 import OrderProductsTable from '../components/OrderProductsTable';
+import { useProductContext } from '../context/productContext';
 
 function OrderDetails() {
+  const { status, handleSaleStatus, setStatus } = useProductContext();
   const [saleInfo, setsaleInfo] = useState({
     productsInfo: {}, seller: {} });
   const [isFetched, setisFetched] = useState(false);
+  // const [status, setStatus] = useState('');
 
   const params = useParams();
 
@@ -16,12 +20,25 @@ function OrderDetails() {
     APITOKEN.fetchSaleInfo(params.id).then((response) => {
       setsaleInfo(response.data);
       setisFetched(true);
+      setStatus(saleInfo.productsInfo.status);
     });
-  }, [params.id]);
+  }, [params.id, saleInfo.productsInfo.status, setStatus]);
+
+  // const handleSaleStatus = (e) => {
+  // return
+  // const { name } = e.target;
+  // const currStatus = name === 'delivery' ? 'Em Trânsito' : 'Preparando';
+
+  // try {
+  //   const res = await APITOKEN.updateSaleStatus(params.id, currStatus);
+  //   if (res) handleStatus(currStatus);
+  // } catch (err) {
+  //   console.log(err);
+  // }
+  // };
 
   const { productsInfo } = saleInfo;
-  console.log(productsInfo);
-  console.log('sim');
+
   return (
     <div>
       <NavBar />
@@ -40,18 +57,23 @@ function OrderDetails() {
         type="button"
         data-testid="seller_order_details__element-order-details-label-delivery-status"
       >
-        {productsInfo.status}
+        {status}
       </button>
       <button
+        disabled={ status !== 'Pendente' }
         data-testid="seller_order_details__button-preparing-check"
         type="button"
+        onClick={ (e) => handleSaleStatus(e, params.id) }
+        name="preparing"
       >
         Preparar Pedido
       </button>
       <button
-        disabled
+        disabled={ status !== 'Preparando' }
         data-testid="seller_order_details__button-dispatch-check"
         type="button"
+        onClick={ (e) => handleSaleStatus(e, params.id) }
+        name="transit"
       >
         Saiu para entrega
       </button>

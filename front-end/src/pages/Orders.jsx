@@ -3,6 +3,7 @@ import { useLocation } from 'react-router';
 import APITOKEN from '../api/index';
 import OrderCard from '../components/OrderCard';
 import SellerOrderCard from '../components/SellerOrderCard';
+import NavBar from '../components/Navbar';
 
 function Orders() {
   const [ordersState, setOrdersState] = useState([]);
@@ -15,6 +16,7 @@ function Orders() {
 
   return (
     <div>
+      <NavBar />
       <h1>Meus Pedidos</h1>
       {
         ordersState.map((order) => (path.includes('seller')
