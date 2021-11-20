@@ -13,7 +13,11 @@ function Products() {
   useEffect(() => {
     const getProducts = async () => {
       const response = await axios.get('http://localhost:3001/products');
-      setCart(response.data);
+      const productsWithQuantity = response.data.map((e) => {
+        e.quantity = 0;
+        return e;
+      });
+      setCart(productsWithQuantity);
     };
     getProducts();
   }, []);

@@ -112,10 +112,7 @@ function ProductCard(props) {
           <Button
             id={ id }
             data-testid={ `customer_products__button-card-add-item-${id}` }
-            onClick={ (e) => {
-              console.log(e.target.id);
-              return addOne(e.target.id);
-            } }
+            onClick={ (e) => addOne(e.target.id) }
             variant="success"
           >
             +
