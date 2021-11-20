@@ -6,6 +6,7 @@ const middlewareError = require('../middlewares/error');
 const loginRoute = require('../routes/loginRoute');
 const userRegisterRoute = require('../routes/userRegisterRoute');
 const productsRoute = require('../routes/productsRoute');
+const saleProductsRoute = require('../routes/saleProductsRoute');
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(cors());
 app.use('/login', loginRoute);
 app.use('/register', userRegisterRoute);
 app.use('/products', productsRoute);
+app.use('/saleProducts', saleProductsRoute);
 
 app.use(middlewareError);
 
