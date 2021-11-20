@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     status: DataTypes.STRING,
   },
   {
-    underscored: true,
     timestamps: false,
+    underscored: true,
   });
 
   sale.associate = (models) => {

@@ -1,5 +1,18 @@
 const saleService = require('../Services/saleService');
 
+const create = async (req, res) => {
+  const { userId } = req;
+  const { sale } = req.body;
+
+  try {
+    const saleId = await saleService.create({ ...sale, userId });
+    return res.status(201).json({ saleId });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).send('Erro interno');
+  }
+};
+
 const getAllSales = async (req, res) => {
   const { userId } = req;
 
@@ -13,5 +26,6 @@ const getAllSales = async (req, res) => {
 };
 
 module.exports = {
+  create,
   getAllSales,
 };

@@ -1,0 +1,11 @@
+.shopping-cart {
+  background-color: #216b53;
+  border: none;
+  border-radius: 5px;
+  bottom: 1px;
+  height: 40px;
+  outline: none;
+  position: fixed;
+  right: 1px;
+  width: auto;
+}

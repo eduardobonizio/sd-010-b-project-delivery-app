@@ -1,0 +1,87 @@
+.checkout-container {
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: 1fr;
+  grid-template-rows: 2fr 1fr;
+  height: 87vh;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.checkout-orders {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-items-table {
+  border: 1px solid black;
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0fr 2fr 0.5fr;
+  height: 80%;
+  padding: 10px 15px;
+}
+
+.table-header {
+  align-items: center;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 0.25fr 2fr 0.5fr 0.5fr 0.5fr 0.5fr;
+  grid-template-rows: 1fr;
+  height: 30px;
+  justify-items: center;
+}
+
+.item-row {
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 7px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 0.25fr 2fr 0.5fr 0.5fr 0.5fr 0.5fr;
+  grid-template-rows: 1fr;
+  height: 30px;
+  justify-items: center;
+  margin-bottom: 8px;
+}
+
+.item-row div {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+}
+
+.order-total-price {
+  background-color: #216b53;
+  border-radius: 6px;
+  color: white;
+  font-size: 30px;
+  font-weight: 600;
+  justify-self: end;
+  padding: 10px;
+}
+
+.order-address-details {
+  border: 1px solid black;
+  padding: 5px 10px;
+}
+
+.order-address-details-inputs {
+  column-gap: 15px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 0.8fr 1.4fr 0.8fr;
+  grid-template-rows: 1fr;
+}
+
+.order-address-details-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.p-10 {
+  padding: 10px;
+}

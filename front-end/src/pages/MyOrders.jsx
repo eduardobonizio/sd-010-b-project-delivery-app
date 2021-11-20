@@ -1,13 +1,13 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import CardOrder from '../components/CardOrder';
+// import axios from 'axios';
+import React from 'react';
+// import React, { useEffect, useState } from 'react';
+// import CardOrder from '../components/CardOrder';
 import Header from '../components/Header';
 
 function MyOrders() {
-  const [sales, setSales] = useState([]);
+  /* const [sales, setSales] = useState([]);
 
   // const getAllSales = async () => {
-  //   // eslint-disable-next-line
   //   const { token } = JSON.parse(localStorage.user);
   //   const endPoint = 'http://localhost:3001/sales';
   //   const { data } = await axios.get(endPoint, { headers: { Authorization: token } });
@@ -32,6 +32,14 @@ function MyOrders() {
         {
           sales.map((sale) => <CardOrder key={ sale.id } sale={ sale } />)
         }
+      </div>
+    </>
+  ); */
+  return (
+    <>
+      <Header />
+      <div>
+        apague o return sem comentário e remova os comentários do arquivo xD
       </div>
     </>
   );
