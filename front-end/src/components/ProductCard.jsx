@@ -1,9 +1,13 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import React from 'react';
 import Proptypes from 'prop-types';
 import { Button, Card, Form, InputGroup } from 'react-bootstrap';
 import './css/ProductCard.css';
 
-function ProductCard({ id, name, price, urlImage, setCart, cart }) {
+function ProductCard(props) {
+  const { product: { id, name, price, urlImage }, setCart, cart } = props;
+
   const addOne = (cardId) => {
     const elementId = `input-${cardId}`;
     const input = document.getElementById(elementId);
@@ -13,15 +17,15 @@ function ProductCard({ id, name, price, urlImage, setCart, cart }) {
     } else {
       input.value = 1;
     }
-    setCart({
-      ...cart,
-      [cardId]: {
-        price: cart[cardId].price,
-        quantity: parseInt(input.value, 10),
-        name: cart[cardId].name,
-        urlImage: cart[cardId].urlImage,
-      },
-    });
+    const newCart = [...cart];
+    newCart[cardId - 1] = {
+      id,
+      price,
+      quantity: parseInt(input.value, 10),
+      name,
+      urlImage,
+    };
+    setCart(newCart);
   };
 
   const removeOne = (cardId) => {
@@ -34,15 +38,15 @@ function ProductCard({ id, name, price, urlImage, setCart, cart }) {
     } else {
       input.value = 0;
     }
-    setCart({
-      ...cart,
-      [cardId]: {
-        price: cart[cardId].price,
-        quantity: parseInt(input.value, 10),
-        name: cart[cardId].name,
-        urlImage: cart[cardId].urlImage,
-      },
-    });
+    const newCart = [...cart];
+    newCart[cardId - 1] = {
+      id,
+      price,
+      quantity: parseInt(input.value, 10),
+      name,
+      urlImage,
+    };
+    setCart(newCart);
   };
 
   const changeCart = (cardId, value) => {
@@ -106,12 +110,15 @@ function ProductCard({ id, name, price, urlImage, setCart, cart }) {
             } }
             type="integer"
             placeholder="0"
-            defaultValue={ Object.keys(cart).length > 0 ? cart[id].quantity : 0 }
+            defaultValue="0"
           />
           <Button
             id={ id }
             data-testid={ `customer_products__button-card-add-item-${id}` }
-            onClick={ (e) => addOne(e.target.id) }
+            onClick={ (e) => {
+              console.log(e.target.id);
+              return addOne(e.target.id);
+            } }
             variant="success"
           >
             +
@@ -121,14 +128,5 @@ function ProductCard({ id, name, price, urlImage, setCart, cart }) {
     </Card>
   );
 }
-
-ProductCard.propTypes = {
-  id: Proptypes.number.isRequired,
-  name: Proptypes.string.isRequired,
-  price: Proptypes.string.isRequired,
-  urlImage: Proptypes.string.isRequired,
-  setCart: Proptypes.func.isRequired,
-  cart: Proptypes.objectOf(Proptypes.object).isRequired,
-};
 
 export default ProductCard;
