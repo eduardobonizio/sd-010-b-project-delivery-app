@@ -1,11 +1,14 @@
 import React from 'react';
 import DetailsOrder from '../components/DetailsOrder';
 import Total from '../components/Total';
+import Header from '../components/Header';
 
 function PageOrder() {
   return (
     <>
-      <h1>Cheguei</h1>
+      <header>
+        <Header />
+      </header>
       <DetailsOrder isRemoveBtn />
       <Total />
     </>

@@ -10,6 +10,29 @@ function DetailsOrder({ isRemoveBtn }) {
     setDataOrder(result);
   };
 
+  const dataTesteIdItemNumber = isRemoveBtn
+    ? 'customer_checkout__element-order-table-item-number-'
+    : 'customer_order_details__element-order-table-item-number-';
+
+  const dataTesteIdName = isRemoveBtn
+    ? 'customer_checkout__element-order-table-name-'
+    : 'customer_order_details__element-order-table-name-';
+
+  const dataTesteIdQuantidade = isRemoveBtn
+    ? 'cutomer_checkout__element-order-table-quantity-'
+    : 'customer_order_details__element-order-table-quantity-';
+
+  const dataTesteIdSubTotal = isRemoveBtn
+    ? 'customer_checkout__element-order-table-sub-total-'
+    : 'customer_order_details__element-order-table-sub-total';
+
+  const dataTesteIdPrice = isRemoveBtn
+    ? 'customer_checkout__element-order-table-unit-price-'
+    : 'customer_order_details__element-order-total-price-';
+
+  const dataTesteIdRemoverItem = isRemoveBtn
+    && 'customer_checkout__element-order-table-remove-';
+
   return (
     <table>
       <thead>
@@ -26,14 +49,39 @@ function DetailsOrder({ isRemoveBtn }) {
         {dataOrder.length !== 0
         && dataOrder.map(({ name, quantity, price, total }, index) => (
           <tr key={ name }>
-            <td>{index + 1}</td>
-            <td>{name}</td>
-            <td>{quantity}</td>
-            <td>{Number(price).toFixed(2).toString().replace('.', ',')}</td>
-            <td>{Number(total).toFixed(2).toString().replace('.', ',')}</td>
+            <td
+              data-testid={ `${dataTesteIdItemNumber}${index + 1}` }
+            >
+              {index + 1}
+            </td>
+            <td
+              data-testid={ `${dataTesteIdName}${index + 1}` }
+            >
+              {name}
+            </td>
+            <td
+              data-testid={ `${dataTesteIdQuantidade}${index + 1}` }
+            >
+              {quantity}
+            </td>
+            <td
+              data-testid={ `${dataTesteIdSubTotal}${index + 1}` }
+            >
+              {Number(price).toFixed(2).toString().replace('.', ',')}
+            </td>
+            <td
+              data-testid={ `${dataTesteIdPrice}${index + 1}` }
+            >
+              {Number(total).toFixed(2).toString().replace('.', ',')}
+            </td>
             {isRemoveBtn && (
               <td>
-                <button type="button" name={ name } onClick={ handleChange }>
+                <button
+                  type="button"
+                  data-testid={ `${dataTesteIdRemoverItem}${index + 1}` }
+                  name={ name }
+                  onClick={ handleChange }
+                >
                   Remover
                 </button>
               </td>
