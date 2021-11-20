@@ -21,7 +21,7 @@ function ItemRow({ cartItem }) {
 
   return (
     <div className="item-row">
-      <div data-testid={ `${dataTestId22}${index}` }>{id}</div>
+      <div data-testid={ `${dataTestId22}${index}` }>{ index + 1 }</div>
       <div data-testid={ `${dataTestId23}${index}` }>{name}</div>
       <div data-testid={ `${dataTestId24}${index}` }>{quantity}</div>
       <div data-testid={ `${dataTestId25}${index}` }>{newPrice}</div>
