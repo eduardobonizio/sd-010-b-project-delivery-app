@@ -19,7 +19,7 @@ function MyOrders() {
 
   return (
     <>
-      <Header />
+      <Header userRole="customer" />
       <div className="boxPageOrder">
         {
           sales.map((sale) => <CardOrder key={ sale.id } sale={ sale } />)
