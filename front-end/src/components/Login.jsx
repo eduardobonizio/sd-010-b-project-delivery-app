@@ -12,11 +12,15 @@ const Login = () => {
   } = useContext(DeliveryContext);
 
   useEffect(() => {
+    if (localStorage.user) {
+      return navigate('/customer/products');
+    }
+
     if (validarEmail(email) && validarSenha(password)) {
       return setIsDisabled(false);
     }
     return setIsDisabled(true);
-  }, [email, password, validarEmail, validarSenha]);
+  }, [email, navigate, password, validarEmail, validarSenha]);
 
   const buttonLogin = async () => {
     try {

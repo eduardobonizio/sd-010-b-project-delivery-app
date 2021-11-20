@@ -21,7 +21,7 @@ function Header() {
     <header>
       <nav>
         <Link
-          to="/"
+          to="/login"
           className="nav1"
         >
           <div data-testid="customer_products__element-navbar-link-products">
@@ -29,7 +29,7 @@ function Header() {
           </div>
         </Link>
         <Link
-          to="/"
+          to="/customer/orders"
           className="nav2"
         >
           <div data-testid="customer_products__element-navbar-link-orders">
@@ -37,7 +37,7 @@ function Header() {
           </div>
         </Link>
         <Link
-          to="/"
+          to="/login"
           className="nav3"
         >
           <div data-testid="customer_products__element-navbar-user-full-name">
@@ -45,7 +45,7 @@ function Header() {
           </div>
         </Link>
         <Link
-          to="/"
+          to="/login"
           className="nav4"
           onClick={ leaveThePage }
         >
