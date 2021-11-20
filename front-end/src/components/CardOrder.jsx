@@ -29,9 +29,9 @@ function Order({ sale }) {
         >
           { sale.status }
         </div>
-        <div className="saleId" data-testid={ ID.dataTestId33 }>
+        <div className="saleId">
           <p>Pedido</p>
-          <p>{ sale.id }</p>
+          <p data-testid={ ID.dataTestId33 }>{ sale.id }</p>
         </div>
         <div className="dataPrice">
           <div data-testid={ ID.dataTestId35 }>{ sale.saleDate }</div>
