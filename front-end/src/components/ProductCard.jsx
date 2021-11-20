@@ -30,7 +30,7 @@ function ProductCard() {
                   key={ prod }
                   data-testid={ `customer_products__element-card-price-${prod.id}` }
                 >
-                  { prod.price }
+                  { prod.price.replace(/\./, ',') }
                   <img
                     style={ { height: 200 } }
                     data-testid={ `customer_products__img-card-bg-image-${prod.id}` }
@@ -56,6 +56,7 @@ function ProductCard() {
                   </button>
                   <input
                     data-testid={ `customer_products__input-card-quantity-${prod.id}` }
+                    value="0"
                   />
                 </div>
               ))
