@@ -1,4 +1,4 @@
-const { Sale, SalesProduct, Product } = require("../../database/models");
+const { Sale, SalesProduct, Product } = require('../../database/models');
 
 const getUserOrders = async (userId) => {
   try {
@@ -23,7 +23,7 @@ const create = async (body) => {
     deliveryNumber: body.deliveryNumber,
     sellerId: body.sellerId,
     totalPrice: body.totalPrice,
-    status: "Pendente",
+    status: 'Pendente',
   });
 
   cart.forEach(async (el) => {
@@ -41,7 +41,7 @@ const getProductsOfSale = async (saleId) => {
   const productsInfo = await Sale.findOne({
     where: { id: saleId },
     include: [
-      { model: Product, as: "products", through: { attributes: ["quantity"] } },
+      { model: Product, as: 'products', through: { attributes: ['quantity'] } },
     ],
   });
   const seller = await productsInfo.getSeller();
@@ -52,5 +52,5 @@ module.exports = {
   getUserOrders,
   getSaleInfo,
   create,
-  getProductsOfSale,
+getProductsOfSale,
 };
