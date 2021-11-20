@@ -9,11 +9,14 @@ function CartTotal({ cartTotal }) {
   return (
     <div
       className="floating-total"
+      data-testid="customer_products__checkout-bottom-value"
+      disabled={ cartTotal <= 0 }
     >
       Ver Carrinho: R$
       <button
         type="button"
-        data-testid="customer_products__checkout-bottom-value"
+        data-testid="customer_products__button-cart"
+        disabled={ cartTotal <= 0 }
         onClick={ redirectToCart }
       >
         { ` ${cartTotal.toFixed(2).toString().split('.').join(',')}` }
