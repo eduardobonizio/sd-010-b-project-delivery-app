@@ -26,7 +26,9 @@ function AppProvider({ children }) {
   };
 
   return (
-    <AppContext.Provider value={ { ...contextValue } }>
+    <AppContext.Provider
+      value={ { ...contextValue } }
+    >
       {children}
     </AppContext.Provider>
   );

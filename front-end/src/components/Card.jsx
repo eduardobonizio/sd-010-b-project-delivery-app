@@ -51,7 +51,6 @@ function CardsProducts({ product }) {
         value={ String(quantity) }
         onChange={ (e) => setQuantity(e.target.value) }
       />
-      {console.log(quantity)}
       <button
         type="button"
         data-testid={ `customer_products__button-card-add-item-${id}` }
