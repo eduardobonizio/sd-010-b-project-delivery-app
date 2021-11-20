@@ -77,7 +77,7 @@ function ProductCard(props) {
       <Card.Body>
         <Card.Title
           data-testid={ `customer_products__element-card-title-${id}` }
-          style={ { fontSize: '1.2em' } }
+          style={ { fontSize: '5px' } }
         >
           { name }
         </Card.Title>
