@@ -37,8 +37,9 @@ function ProductCard(props) {
     } else {
       input.value = 0;
     }
+    const indexOfProduct = cart.indexOf(product);
     const newCart = [...cart];
-    newCart[cardId - 1] = {
+    newCart[indexOfProduct] = {
       id,
       price,
       quantity: parseInt(input.value, 10),
@@ -51,6 +52,7 @@ function ProductCard(props) {
   const changeCart = (cardId, value) => {
     let inputValue = value;
     const idArray = cardId.split('-')[1] - 1;
+    console.log(idArray);
     if (value.isNaN) {
       inputValue = 0;
     }
