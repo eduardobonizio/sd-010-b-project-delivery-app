@@ -31,7 +31,6 @@ function Products() {
 
   return (
     <>
-      {console.log(Array.isArray(cart))}
       <TopBar name={ name } />
       <div className="products-container">
         {
