@@ -5,6 +5,17 @@ function OrderCart(props) {
   const { order } = props;
   const { id: orderNum, saleDate, totalPrice, status } = order;
 
+  const convertDate = (dateComplete) => {
+    const onlyDate = dateComplete.split('T')[0];
+    const [year, month, day] = onlyDate.split('-');
+    return `${day}/${month}/${year}`;
+  };
+
+  const convertPrice = (price) => {
+    const convert = price.replace(/\./, ',');
+    return convert;
+  };
+
   return (
     <div>
       <div>
@@ -25,9 +36,13 @@ function OrderCart(props) {
         <p
           data-testid={ `customer_orders__element-order-date-${orderNum}` }
         >
-          {saleDate}
+          {convertDate(saleDate)}
         </p>
-        <p>{totalPrice}</p>
+        <p
+          data-testid={ `customer_orders__element-card-price-${orderNum}` }
+        >
+          {convertPrice(totalPrice)}
+        </p>
       </div>
     </div>
   );
