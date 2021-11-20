@@ -40,7 +40,6 @@ function Register() {
     try {
       const response = await axios.post('http://localhost:3001/register', { name, email, password });
       const parsedResponse = response.data;
-      console.log('ResponseData', parsedResponse.data);
       localStorage.setItem('user', {
         name: parsedResponse.name,
         email: parsedResponse.email,
