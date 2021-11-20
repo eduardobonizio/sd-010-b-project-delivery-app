@@ -30,7 +30,7 @@ OrderCard.propTypes = {
     id: PropTypes.number,
     saleDate: PropTypes.string,
     status: PropTypes.string,
-    totalPrice: PropTypes.number,
+    totalPrice: PropTypes.string,
   }).isRequired,
 };
 

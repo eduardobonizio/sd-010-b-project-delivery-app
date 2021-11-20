@@ -5,8 +5,8 @@ const getUserOrders = async (req, res, next) => {
   try {
     const { authorization } = req.headers;
     const payload = validateToken(authorization);
-    const { id } = payload;
-    const result = await saleService.getUserOrders(id);
+    const { id, role } = payload;
+    const result = await saleService.getUserOrders(id, role);
     return res.status(200).json(result);
   } catch (e) {
     next(e);
