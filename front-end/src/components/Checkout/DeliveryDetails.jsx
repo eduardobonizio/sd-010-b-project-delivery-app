@@ -47,7 +47,8 @@ function DeliveryDetails() {
   const handleCheckout = async () => {
     const products = JSON.parse(localStorage.getItem('carrinho'));
     const totalPrice = getTotalPrice(products);
-    const sale = { ...details, totalPrice, status: 'Pendente', products };
+    const saleDate = new Date();
+    const sale = { ...details, totalPrice, saleDate, status: 'Pendente', products };
     try {
       const { saleId } = await postSale(sale);
       navigate(`/customer/orders/${saleId}`);
