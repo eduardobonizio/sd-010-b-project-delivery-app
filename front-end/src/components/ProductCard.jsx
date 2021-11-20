@@ -3,7 +3,9 @@ import Proptypes from 'prop-types';
 import { Button, Card, Form, InputGroup } from 'react-bootstrap';
 import './css/ProductCard.css';
 
-function ProductCard({ id, name, price, urlImage, setCart, cart }) {
+function ProductCard(props) {
+  const { product, product: { id, name, price, urlImage, quantity },
+    setCart, cart } = props;
   const addOne = (cardId) => {
     const elementId = `input-${cardId}`;
     const input = document.getElementById(elementId);
@@ -13,13 +15,16 @@ function ProductCard({ id, name, price, urlImage, setCart, cart }) {
     } else {
       input.value = 1;
     }
-    setCart({
-      ...cart,
-      [cardId]: {
-        price: cart[cardId].price,
-        quantity: parseInt(input.value, 10),
-      },
-    });
+    const indexOfProduct = cart.indexOf(product);
+    const newCart = [...cart];
+    newCart[indexOfProduct] = {
+      id,
+      price,
+      quantity: parseInt(input.value, 10),
+      name,
+      urlImage,
+    };
+    setCart(newCart);
   };
 
   const removeOne = (cardId) => {
@@ -32,33 +37,37 @@ function ProductCard({ id, name, price, urlImage, setCart, cart }) {
     } else {
       input.value = 0;
     }
-    setCart({
-      ...cart,
-      [cardId]: {
-        price: cart[cardId].price,
-        quantity: parseInt(input.value, 10),
-      },
-    });
+    const newCart = [...cart];
+    newCart[cardId - 1] = {
+      id,
+      price,
+      quantity: parseInt(input.value, 10),
+      name,
+      urlImage,
+    };
+    setCart(newCart);
   };
 
   const changeCart = (cardId, value) => {
     let inputValue = value;
-    const idArray = cardId.split('-');
+    const idArray = cardId.split('-')[1] - 1;
     if (value.isNaN) {
       inputValue = 0;
     }
 
-    setCart({
-      ...cart,
-      [idArray[1]]: {
-        price: cart[idArray[1]].price,
-        quantity: parseInt(inputValue, 10),
-      },
-    });
+    const newCart = [...cart];
+    newCart[idArray] = {
+      id,
+      price,
+      quantity: parseInt(inputValue, 10),
+      name,
+      urlImage,
+    };
+    setCart(newCart);
   };
 
   return (
-    <Card>
+    <Card style={ { width: '8rem' } }>
       <Card.Img
         className={ `card-image card-image-${id}` }
         data-testid={ `customer_products__img-card-bg-image-${id}` }
@@ -100,7 +109,7 @@ function ProductCard({ id, name, price, urlImage, setCart, cart }) {
             } }
             type="integer"
             placeholder="0"
-            defaultValue="0"
+            defaultValue={ quantity }
           />
           <Button
             id={ id }
@@ -117,12 +126,15 @@ function ProductCard({ id, name, price, urlImage, setCart, cart }) {
 }
 
 ProductCard.propTypes = {
-  id: Proptypes.number.isRequired,
-  name: Proptypes.string.isRequired,
-  price: Proptypes.string.isRequired,
-  urlImage: Proptypes.string.isRequired,
+  product: Proptypes.shape({
+    id: Proptypes.number,
+    quantity: Proptypes.number,
+    name: Proptypes.string,
+    price: Proptypes.string,
+    urlImage: Proptypes.string,
+  }).isRequired,
   setCart: Proptypes.func.isRequired,
-  cart: Proptypes.objectOf(Proptypes.object).isRequired,
+  cart: Proptypes.arrayOf(Proptypes.object).isRequired,
 };
 
 export default ProductCard;

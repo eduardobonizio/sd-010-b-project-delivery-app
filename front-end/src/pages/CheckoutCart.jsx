@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import TopBar from '../components/TopBar';
 import ProductCard from '../components/ProductCard';
 import CartTotal from '../components/CartTotal';
@@ -11,15 +10,12 @@ function Products() {
   const [cartTotal, setCartTotal] = useState(0);
 
   useEffect(() => {
-    const getProducts = async () => {
-      const response = await axios.get('http://localhost:3001/products');
-      const productsWithQuantity = response.data.map((e) => {
-        e.quantity = 0;
-        return e;
-      });
-      setCart(productsWithQuantity);
+    const getLocalStorageCartItens = async () => {
+      const localCart = JSON.parse(localStorage.getItem('cart'));
+      const olyItensInCart = localCart.filter((e) => e.quantity > 0);
+      setCart(olyItensInCart);
     };
-    getProducts();
+    getLocalStorageCartItens();
   }, []);
 
   useEffect(() => {
