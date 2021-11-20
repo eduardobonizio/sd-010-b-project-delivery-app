@@ -35,7 +35,11 @@ function OrdersItemsTable() {
         { cart.map((item, index) => (
           <ItemRow
             key={ index }
-            cartItem={ { item, index, functions: { removeItem } } }
+            cartItem={ {
+              item,
+              index,
+              functions: { removeItem, replaceDecimalSeparator },
+            } }
           />
         )) }
       </div>
