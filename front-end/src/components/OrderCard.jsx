@@ -5,14 +5,6 @@ import { Link } from 'react-router-dom';
 function OrderCard({ order }) {
   const { id, saleDate, status, totalPrice } = order;
 
-  // const dd = String(saleDate.getDate()).padStart(2, '0');
-  // const mm = String(saleDate.getMonth() + 1).padStart(2, '0'); // January is 0!
-  // const yyyy = saleDate.getFullYear();
-  // const hh = String(saleDate.getHours()).padStart(2, '0');
-  // const minu = String(saleDate.getMinutes()).padStart(2, '0');
-
-  // saleDate = `${dd}/${mm}/${yyyy} ${hh}:${minu}`;
-
   const newDate = saleDate.split('T')[0].split('-').reverse().join('/');
 
   return (
