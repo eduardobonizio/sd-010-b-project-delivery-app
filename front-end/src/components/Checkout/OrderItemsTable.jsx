@@ -20,6 +20,8 @@ function OrdersItemsTable() {
     setCart(newCart);
   };
 
+  const replaceDecimalSeparator = (value) => value.replace('.', ',');
+
   const getTotalPrice = () => {
     const totalPrice = cart.reduce((acc, curr) => acc + curr.subTotal, 0);
     return (!totalPrice) ? 0 : totalPrice.toFixed(2);
