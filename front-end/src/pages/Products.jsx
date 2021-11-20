@@ -25,6 +25,8 @@ function Products() {
       emptyCart[product.id] = {
         price: parseFloat(product.price),
         quantity: 0,
+        name: product.name,
+        urlImage: product.urlImage,
       };
     });
     setCart(emptyCart);
