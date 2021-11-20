@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import TopBar from '../components/TopBar';
 import CheckoutProductCard from '../components/CheckoutProductCard';
-import CartTotal from '../components/CartTotal';
+import CheckoutCartTotal from '../components/CheckoutCartTotal';
 import './css/Products.css';
 
 function Products() {
@@ -44,7 +44,7 @@ function Products() {
           ))
         }
       </div>
-      <CartTotal cartTotal={ cartTotal } />
+      <CheckoutCartTotal cartTotal={ cartTotal } />
     </>
   );
 }
