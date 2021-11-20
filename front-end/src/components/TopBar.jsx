@@ -7,7 +7,7 @@ function TopBar(props) {
   const { name } = props;
 
   return (
-    <Navbar variant="dark" fixed="top" className="navbar">
+    <Navbar variant="dark" className="navbar">
       <Navbar.Collapse className="justify-content-start">
         <Navbar.Brand className="logo">
           <Image
