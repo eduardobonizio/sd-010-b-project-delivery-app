@@ -1,12 +1,13 @@
 import React from 'react';
 import { Image, Navbar } from 'react-bootstrap';
 import Proptypes from 'prop-types';
+import LogoutButton from './LogoutButton';
 
 function TopBar(props) {
   const { name } = props;
 
   return (
-    <Navbar variant="dark" fixed="top" className="navbar">
+    <Navbar variant="dark" className="navbar">
       <Navbar.Collapse className="justify-content-start">
         <Navbar.Brand className="logo">
           <Image
@@ -44,7 +45,7 @@ function TopBar(props) {
             data-testid="customer_products__element-navbar-link-logout"
             href="/customer/orders"
           >
-            Sair
+            <LogoutButton />
           </Navbar.Text>
         </Navbar.Collapse>
       </Navbar.Collapse>
