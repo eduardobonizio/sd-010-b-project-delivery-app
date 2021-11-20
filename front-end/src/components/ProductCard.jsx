@@ -65,7 +65,7 @@ function ProductCard(props) {
   };
 
   return (
-    <Card>
+    <Card style={ { width: '8rem' } }>
       <Card.Img
         className={ `card-image card-image-${id}` }
         data-testid={ `customer_products__img-card-bg-image-${id}` }
