@@ -39,14 +39,18 @@ function OrderDetails() {
       >
         {productsInfo.status}
       </span>
-      <button data-testid="customer_order_details__button-delivery-check" type="button">
+      <button
+        disabled
+        data-testid="customer_order_details__button-delivery-check"
+        type="button"
+      >
         Marcar como entregue
       </button>
       {
         isFetched ? <OrderProductsTable products={ productsInfo.products } /> : ''
       }
       <p data-testid="customer_order_details__element-order-total-price">
-        {productsInfo.totalPrice}
+        {isFetched && productsInfo.totalPrice.replace('.', ',')}
       </p>
     </div>
   );
