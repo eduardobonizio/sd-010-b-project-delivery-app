@@ -10,13 +10,9 @@ const mapSalesProducts = (products, saleId) =>
   products.map(({ quantity, id }) => ({ productId: id, saleId, quantity }));
 
 const createSaleTransaction = async (payload) => sequelize.transaction(async (t) => {
-    const {
-      userId, sellerId, totalPrice, deliveryAddress, deliveryNumber, status, products,
-    } = payload;
+    const { products, ...saleTablePayload } = payload;
 
-    const { id: saleId } = await sale.create({
-      userId, sellerId, totalPrice, deliveryAddress, deliveryNumber, status,
-    }, { transaction: t });
+    const { id: saleId } = await sale.create({ ...saleTablePayload }, { transaction: t });
 
     const salesProductsData = mapSalesProducts(products, saleId);
 
