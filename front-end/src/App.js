@@ -10,11 +10,11 @@ import CheckoutCart from './components/CheckoutCart';
 function App() {
   return (
     <Switch>
-      <Redirect strict from="/" to="/login" />
       <Route path="/login" component={ Login } />
       <Route path="/register" component={ Register } />
       <PrivateRoute path="/customer/products" component={ Products } />
       <PrivateRoute path="/customer/checkout" component={ CheckoutCart } />
+      <Redirect strict from="/" to="/login" />
     </Switch>
   );
 }
