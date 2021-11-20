@@ -1,0 +1,34 @@
+.card-img-top {
+  height: 10rem;
+  margin: auto;
+  width: 10rem;
+}
+
+.card-image-1 {
+  margin: auto;
+  width: 6rem;
+}
+
+.card-title {
+  margin: auto;
+  text-align: center;
+}
+
+.card-text {
+  margin: auto;
+  text-align: center;
+}
+
+.card-body {
+  margin-bottom: 0;
+}
+
+.card {
+  margin: auto;
+  width: 20rem;
+}
+
+.input-group {
+  margin: auto;
+  width: 7rem;
+}

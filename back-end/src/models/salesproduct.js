@@ -1,8 +1,9 @@
 const SalesProduct = (sequelize, DataTypes) => {
-  const salesProduct = sequelize.define('salesProduct', {
+  const salesProduct = sequelize.define('SalesProduct', {
     quantity: { type: DataTypes.INTEGER, allowNull: false },
   }, {
     timestamps: false,
+    tableName: 'salesProducts',
   });
 
   salesProduct.associate = (models) => {

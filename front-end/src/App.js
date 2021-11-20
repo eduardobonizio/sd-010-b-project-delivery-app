@@ -1,15 +1,21 @@
 import React from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
-import rockGlass from './images/rockGlass.svg';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Products from './pages/Products';
+import PrivateRoute from './components/PrivateRoute';
+import CheckoutCart from './pages/CheckoutCart';
 
 function App() {
   return (
-    <div className="App">
-      <span className="logo">TRYBE</span>
-      <object className="rocksGlass" type="image/svg+xml" data={ rockGlass }>
-        Glass
-      </object>
-    </div>
+    <Switch>
+      <Route path="/login" component={ Login } />
+      <Route path="/register" component={ Register } />
+      <PrivateRoute path="/customer/products" component={ Products } />
+      <PrivateRoute path="/customer/checkout" component={ CheckoutCart } />
+      <Redirect strict from="/" to="/login" />
+    </Switch>
   );
 }
 
