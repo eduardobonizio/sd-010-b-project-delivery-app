@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, Navbar } from 'react-bootstrap';
 import Proptypes from 'prop-types';
-import LogoutButton from './LoggouButton';
+import LogoutButton from './LogoutButton';
 
 function TopBar(props) {
   const { name } = props;
