@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Col, Container, Row } from 'react-bootstrap';
 import TopBar from '../components/TopBar';
 import ProductCard from '../components/ProductCard';
 import CartTotal from '../components/CartTotal';
@@ -36,18 +37,21 @@ function Products() {
   return (
     <>
       <TopBar name={ name } />
-      <div className="products-container">
-        {
-          cart && cart.map((product) => (
-            <ProductCard
-              key={ product.key }
-              product={ product }
-              setCart={ setCart }
-              cart={ cart }
-            />
-          ))
-        }
-      </div>
+      <Container fluid>
+        <Row>
+          {
+            cart && cart.map((product) => (
+              <Col key={ product.key } style={ { padding: '0px' } }>
+                <ProductCard
+                  product={ product }
+                  setCart={ setCart }
+                  cart={ cart }
+                />
+              </Col>
+            ))
+          }
+        </Row>
+      </Container>
       <CartTotal cartTotal={ cartTotal } />
     </>
   );

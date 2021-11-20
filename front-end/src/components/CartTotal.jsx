@@ -1,5 +1,5 @@
 import React from 'react';
-import './css/CartTotal.css';
+// import './css/CartTotal.css';
 import Proptypes from 'prop-types';
 import { useHistory } from 'react-router';
 
@@ -11,6 +11,7 @@ function CartTotal({ cartTotal }) {
       className="floating-total"
       data-testid="customer_products__checkout-bottom-value"
       disabled={ cartTotal <= 0 }
+      style={ { marginLeft: '5px' } }
     >
       Ver Carrinho: R$
       <button

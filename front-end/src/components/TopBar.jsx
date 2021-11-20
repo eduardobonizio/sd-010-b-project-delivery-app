@@ -32,6 +32,7 @@ function TopBar(props) {
         >
           MEUS PEDIDOS
         </Navbar.Text>
+
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text
             className="name align-items-center"
