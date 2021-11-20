@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link, useNavigate } from 'react-router-dom';
+import dataTestId from '../utils/dataTestIdDict';
 import '../styles/Header.css';
 
-function Header() {
+const { dataTestId11, dataTestId12, dataTestId13, dataTestId14 } = dataTestId;
+
+function Header({ userRole }) {
   const [nameStorage, setNameStorage] = useState('');
   const navigate = useNavigate();
 
@@ -17,49 +20,56 @@ function Header() {
     navigate('/login');
   };
 
+  const customer = () => (
+    <>
+      <div data-testid={ dataTestId11 }>
+        <Link to="/customer/products">PRODUTOS</Link>
+      </div>
+      <div data-testid={ dataTestId12 }>
+        <Link to="/customer/orders">MEUS PRODUTOS</Link>
+      </div>
+    </>
+  );
+
+  const seller = () => (
+    <div data-testid={ dataTestId12 }>
+      <Link to="/seller/orders">PEDIDOS</Link>
+    </div>
+  );
+
+  const administrator = () => (
+    <div data-testid={ dataTestId12 }>
+      <Link to="/admin/manage">GERENCIAR USUÁRIOS</Link>
+    </div>
+  );
+
+  const headerComponents = {
+    customer,
+    seller,
+    administrator,
+  };
+
   return (
     <header>
       <nav>
-        <Link
-          to="/"
-          className="nav1"
+        { headerComponents[userRole]() }
+        <div
+          data-testid={ dataTestId13 }
+          style={ { gridColumnStart: 4 } }
+          className="purple"
         >
-          <div data-testid="customer_products__element-navbar-link-products">
-            PRODUTOS
-          </div>
-        </Link>
-        <Link
-          to="/"
-          className="nav2"
-        >
-          <div data-testid="customer_products__element-navbar-link-orders">
-            MEUS PRODUTOS
-          </div>
-        </Link>
-        <Link
-          to="/"
-          className="nav3"
-        >
-          <div data-testid="customer_products__element-navbar-user-full-name">
-            { nameStorage }
-          </div>
-        </Link>
-        <Link
-          to="/"
-          className="nav4"
-          onClick={ leaveThePage }
-        >
-          <div data-testid="customer_products__element-navbar-link-logout">
-            Sair
-          </div>
-        </Link>
+          <Link to="/">{ nameStorage }</Link>
+        </div>
+        <div data-testid={ dataTestId14 } className="blue">
+          <Link to="/" onClick={ leaveThePage }>Sair</Link>
+        </div>
       </nav>
     </header>
   );
 }
 
-Header.protoType = PropTypes.objectOf({
-  name: PropTypes.string,
-}).isRequired;
+Header.propTypes = {
+  userRole: PropTypes.string.isRequired,
+};
 
 export default Header;
