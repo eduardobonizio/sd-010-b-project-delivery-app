@@ -32,7 +32,7 @@ function OrderDetails() {
   const [productsDetails, setProductsDetails] = useState(DEFAULT_DATA_PRODUCTS);
   const { idVenda } = useParams();
   const { token } = getFromLocalStorage('user');
-  console.log(productsDetails);
+
   useEffect(() => {
     (async () => {
       const response = await getOrderDetails(token, idVenda);
