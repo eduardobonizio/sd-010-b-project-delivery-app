@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function OrderCart(props) {
   const { order } = props;
-  const { id: orderNum, orderDate, orderTotal, orderStatus } = order;
+  const { id: orderNum, saleDate, totalPrice, status } = order;
 
   return (
     <div>
@@ -18,16 +18,16 @@ function OrderCart(props) {
         <h3
           data-testid={ `customer_orders__element-delivery-status-${orderNum}` }
         >
-          {orderStatus}
+          {status}
         </h3>
       </div>
       <div>
         <p
           data-testid={ `customer_orders__element-order-date-${orderNum}` }
         >
-          {orderDate}
+          {saleDate}
         </p>
-        <p>{orderTotal}</p>
+        <p>{totalPrice}</p>
       </div>
     </div>
   );
@@ -36,10 +36,9 @@ function OrderCart(props) {
 OrderCart.propTypes = {
   order: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    orderNum: PropTypes.number.isRequired,
-    orderDate: PropTypes.string.isRequired,
-    orderTotal: PropTypes.string.isRequired,
-    orderStatus: PropTypes.string.isRequired,
+    saleDate: PropTypes.string.isRequired,
+    totalPrice: PropTypes.string.isRequired,
+    status: PropTypes.string.isRequired,
   }).isRequired,
 };
 
