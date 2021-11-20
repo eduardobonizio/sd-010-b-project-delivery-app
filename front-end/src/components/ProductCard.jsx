@@ -18,6 +18,8 @@ function ProductCard({ id, name, price, urlImage, setCart, cart }) {
       [cardId]: {
         price: cart[cardId].price,
         quantity: parseInt(input.value, 10),
+        name: cart[cardId].name,
+        urlImage: cart[cardId].urlImage,
       },
     });
   };
@@ -37,6 +39,8 @@ function ProductCard({ id, name, price, urlImage, setCart, cart }) {
       [cardId]: {
         price: cart[cardId].price,
         quantity: parseInt(input.value, 10),
+        name: cart[cardId].name,
+        urlImage: cart[cardId].urlImage,
       },
     });
   };
@@ -53,6 +57,8 @@ function ProductCard({ id, name, price, urlImage, setCart, cart }) {
       [idArray[1]]: {
         price: cart[idArray[1]].price,
         quantity: parseInt(inputValue, 10),
+        name: cart[cardId].name,
+        urlImage: cart[cardId].urlImage,
       },
     });
   };
