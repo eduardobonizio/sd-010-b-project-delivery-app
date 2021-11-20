@@ -6,9 +6,7 @@ const path = require('path');
 const { User } = require('../models');
 
 const caminho = path.join(__dirname, '../../jwt.evaluation.key');
-console.log(caminho);
-const secret = fs.readFileSync(caminho).toString();
-console.log(secret); 
+const secret = fs.readFileSync(caminho).toString().trim();
 
 const jwtConfig = { expiresIn: '2h', algorithm: 'HS256' };
 
