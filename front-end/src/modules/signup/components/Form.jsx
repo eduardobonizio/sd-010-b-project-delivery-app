@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { isValidateRegister } from '../../../helpers/validateRegister';
-import api from '../../../services/api';
 import logo from '../../../images/logo.png';
+import { createUserApi } from '../../../api/user';
 
 function Form() {
   const history = useHistory();
@@ -27,17 +27,8 @@ function Form() {
 
     try {
       const dataRegister = { email, password, name };
-      await api.post('/register', dataRegister);
 
-      const dataLogin = { email, password };
-      const loginResponse = await api.post('/login', dataLogin);
-
-      const dataLocalStorage = {
-        name: loginResponse.data.name,
-        email: loginResponse.data.email,
-        role: loginResponse.data.role,
-        token: loginResponse.data.token,
-      };
+      const dataLocalStorage = await createUserApi(dataRegister);
 
       localStorage.setItem('user', JSON.stringify(dataLocalStorage));
 

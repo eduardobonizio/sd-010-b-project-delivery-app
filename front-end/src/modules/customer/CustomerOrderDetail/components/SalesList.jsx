@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Sale from './Sale';
 import './SaleList.scss';
-import api from '../../../../services/api';
 import { useOrder } from '../../../../hooks/useOrder';
 import { formatedDate, formatSaveAndRenderPrice } from '../../../../helpers/functions';
+import { getCustomerOrderApi } from '../../../../api/customer';
 
 const TEST_STATUS = 'customer_order_details__element-order-details-label-delivery-status';
 
@@ -16,16 +16,12 @@ function SalesList() {
   useEffect(() => {
     async function getOrder() {
       setIsLoading(true);
-      const response = await api.get(`/oneorder/${id}`);
-      setCustomerSingleOrder(response.data);
+      const order = await getCustomerOrderApi(id);
+      setCustomerSingleOrder(order);
       setIsLoading(false);
     }
     getOrder();
   }, []);
-
-  if (isLoading) {
-    return (<p>Carregando...</p>);
-  }
 
   return (
     <div>

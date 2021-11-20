@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { getAllProductsApi } from '../../../../api/customer';
 import Product from './Product';
-import api from '../../../../services/api';
 
 function ProductList() {
   const [products, setProducts] = useState([]);
 
-  async function getAllProducts() {
-    const response = await api.get('/products');
-    setProducts(response.data);
+  async function getProducts() {
+    const respProducts = await getAllProductsApi();
+    setProducts(respProducts);
   }
   useEffect(() => {
-    getAllProducts();
+    getProducts();
   }, []);
 
   return (

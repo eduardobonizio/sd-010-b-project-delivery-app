@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import api from '../../../../services/api';
 import { useCustomer } from '../../../../hooks/useCustomer';
 import { formatManipulatePrice } from '../../../../helpers/functions';
+import { getAllSellersApi, newOrderApi } from '../../../../api/customer';
 
 export default function Form() {
+  const HALF_SECOND = 500;
   const history = useHistory();
   const mountedRef = useRef(true);
   const user = JSON.parse(localStorage.getItem('user'));
@@ -17,18 +18,21 @@ export default function Form() {
 
   useEffect(() => {
     async function getSellers() {
-      const response = await api.get('/sellers');
-      setSellers(response.data);
-      setSelectSeller(response.data[0]);
+      const respSellers = await getAllSellersApi();
+      console.log(respSellers);
+      setSellers(respSellers);
+      setSelectSeller(respSellers[0]);
     }
     getSellers();
   }, []);
 
   async function handleFinalizeOrder(event) {
     event.preventDefault();
+
     const products = sales.map((sale) => ({
       productId: sale.productId, quantity: sale.quantity,
     }));
+
     const data = {
       sellerId: selectSeller.id,
       totalPrice: Number(formatManipulatePrice(total)),
@@ -38,13 +42,8 @@ export default function Form() {
       status: 'Pendente',
     };
 
-    const headers = {
-      'Content-Type': 'application/json',
-      Authorization: user.token,
-    };
-    const num = 500;
-    const response = await api.post('/neworder', data, { headers });
-    const { saleId } = response.data;
+    const saleId = await newOrderApi(user.token, data);
+
     localStorage.removeItem('cart');
     localStorage.removeItem('total');
 
@@ -54,7 +53,7 @@ export default function Form() {
 
     setTimeout(() => {
       history.push(`/customer/orders/${saleId}`);
-    }, num);
+    }, HALF_SECOND);
   }
 
   useEffect(() => {

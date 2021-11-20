@@ -1,11 +1,9 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
-  formatManipulatePrice,
-  formatSaveAndRenderPrice,
   formatedSales,
 } from '../helpers/functions';
-// import api from '../services/api';
+import { sumTotalPrice } from './functions/helpers';
 
 const CustomerContext = createContext();
 
@@ -17,14 +15,9 @@ export function CustomerProvider({ children }) {
   const [total, setTotal] = useState(initialTotal);
 
   useEffect(() => {
-    const totalSales = sales
-      .reduce((acc, cur) => acc + (
-        cur.quantity * formatManipulatePrice(cur.unitPrice)
-      ), 0);
-
-    const formatedTotal = formatSaveAndRenderPrice(totalSales.toFixed(2));
-    setTotal(formatedTotal);
-    localStorage.setItem('total', JSON.stringify(formatedTotal));
+    const totalPrice = sumTotalPrice(sales);
+    setTotal(totalPrice);
+    localStorage.setItem('total', JSON.stringify(totalPrice));
   }, [sales]);
 
   function handleTotalSale(sale) {

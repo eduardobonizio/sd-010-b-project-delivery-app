@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
-import api from '../../../services/api';
 import { isValidateLogin } from '../../../helpers/validateLogin';
 import logo from '../../../images/logo.png';
 import '../login.scss';
+import { loginApi } from '../../../api/user';
+import redirectUser from './helpres';
 
 function Form() {
   const history = useHistory();
@@ -31,29 +32,14 @@ function Form() {
         email,
         password,
       };
-      const response = await api.post('/login', data);
-      const dataLocalStorage = {
-        name: response.data.name,
-        email: response.data.email,
-        role: response.data.role,
-        token: response.data.token,
-      };
+
+      const dataLocalStorage = await loginApi(data);
+
       localStorage.setItem('user', JSON.stringify(dataLocalStorage));
-      switch (response.data.role) {
-      case 'customer':
-        history.push('/customer/products');
-        break;
-      case 'seller':
-        history.push('/seller/orders');
-        break;
-      case 'administrator':
-        history.push('/admin/manage');
-        break;
-      default:
-        history.push('/');
-        break;
-      }
+
+      redirectUser(dataLocalStorage.role, history);
     } catch (error) {
+      console.log(error);
       setEmail('');
       setPassword('');
       return setIsNotFound(true);

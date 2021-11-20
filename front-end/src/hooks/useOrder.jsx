@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
+// import { updateOrders } from './functions/helpers';
 // import socketIOClient from 'socket.io-client';
 
 // const URL = 'http://localhost:3001';
@@ -22,12 +23,8 @@ export function OrderProvider({ children }) {
   //   const client = socketIOClient(URL);
 
   //   client.on('updateStatus', (data) => {
-  //     const updateStatusOrder = [...customerOrders];
-  //     const findOrder = updateStatusOrder.findIndex((order) => order.id === data.id);
-  //     if (findOrder >= 0) {
-  //       updateStatusOrder[findOrder] = data.status;
-  //       setCustomerOrders(updateStatusOrder);
-  //     }
+  //     updateOrders(customerOrders, data, setCustomerOrders);
+  //     updateOrders(sellerOrders, data, setSellerOrders);
   //   });
   // }, []);
 
