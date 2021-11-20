@@ -31,7 +31,6 @@ function Products() {
 
   return (
     <>
-      {console.log('cart', cart)}
       <TopBar name={ name } />
       <div className="products-container">
         {
