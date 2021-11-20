@@ -34,22 +34,18 @@ function Login() {
     const notFound = 404;
 
     try {
-      console.log('Início');
       const response = await axios.post('http://localhost:3001/login', { email, password });
-      console.log(response);
-      console.log('Fim');
       if (response.status === notFound) return setHideErrorMessage(false);
-      console.log(response.data);
       const parsedResponse = response.data;
-      localStorage.setItem('user', {
+      const user = {
         name: parsedResponse.name,
         email: parsedResponse.email,
         role: parsedResponse.role,
         token: parsedResponse.token,
-      });
+      };
+      localStorage.setItem('user', JSON.stringify(user));
       history.push('/customer/products');
     } catch (e) {
-      console.log(e);
       setHideErrorMessage(false);
     }
   };
