@@ -4,8 +4,7 @@ import { Button, Card, Form, InputGroup } from 'react-bootstrap';
 import './css/ProductCard.css';
 
 function ProductCard(props) {
-  const { product, product: { id, name, price, urlImage }, setCart, cart } = props;
-  console.log(product);
+  const { product: { id, name, price, urlImage }, setCart, cart } = props;
   const addOne = (cardId) => {
     const elementId = `input-${cardId}`;
     const input = document.getElementById(elementId);
