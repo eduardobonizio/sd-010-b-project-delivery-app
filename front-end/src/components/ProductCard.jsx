@@ -100,7 +100,7 @@ function ProductCard({ id, name, price, urlImage, setCart, cart }) {
             } }
             type="integer"
             placeholder="0"
-            defaultValue="0"
+            defaultValue={ Object.keys(cart).length > 0 ? cart[id].quantity : 0 }
           />
           <Button
             id={ id }
