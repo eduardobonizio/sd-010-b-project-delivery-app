@@ -31,19 +31,10 @@ function Login() {
   }, [email, password]);
 
   const dispatchOnSubmit = async () => {
-    const notFound = 404;
-
     try {
       const response = await axios.post('http://localhost:3001/login', { email, password });
-      if (response.status === notFound) return setHideErrorMessage(false);
-      const parsedResponse = response.data;
-      const user = {
-        name: parsedResponse.name,
-        email: parsedResponse.email,
-        role: parsedResponse.role,
-        token: parsedResponse.token,
-      };
-      localStorage.setItem('user', JSON.stringify(user));
+      const { data } = response;
+      localStorage.setItem('user', JSON.stringify(data));
       history.push('/customer/products');
     } catch (e) {
       setHideErrorMessage(false);
