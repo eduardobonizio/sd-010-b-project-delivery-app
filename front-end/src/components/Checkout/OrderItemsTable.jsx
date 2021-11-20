@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import TableHeader from './TableHeader';
 import ItemRow from './ItemRow';
+import dataTestIdDict from '../../utils/dataTestIdDict';
+
+const { dataTestId28 } = dataTestIdDict;
 
 const headerItems = [
   'Item', 'Descrição', 'Quantidade', 'Valor unitário', 'Sub-total', 'Remover item',
@@ -43,7 +46,9 @@ function OrdersItemsTable() {
           />
         )) }
       </div>
-      <div className="order-total-price">{`Total: R$ ${getTotalPrice()}`}</div>
+      <div className="order-total-price" data-testid={ dataTestId28 }>
+        {`${getTotalPrice()}`}
+      </div>
     </div>
   );
 }
