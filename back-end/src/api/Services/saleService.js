@@ -20,9 +20,9 @@ const createSaleTransaction = async (payload) => sequelize.transaction(async (t)
     return saleId;
   });
 
-const create = async (salePayload) => {
+const create = async (reqPayload) => {
   try {
-    const result = await createSaleTransaction(salePayload);
+    const result = await createSaleTransaction(reqPayload);
     return result;
   } catch (error) {
     throw new Error(error);
