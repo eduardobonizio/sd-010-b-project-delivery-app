@@ -1,6 +1,6 @@
 import React from 'react';
 import NavBar from '../../../components/navbar/NavBar';
-import ListProducts from './components/ListProducts';
+import ProductsList from './components/ProductsList';
 
 function SellerOrderDetail() {
   const user = JSON.parse(localStorage.getItem('user'));
@@ -11,7 +11,8 @@ function SellerOrderDetail() {
         item1="PEDIDOS"
         user={ user.name }
       />
-      <ListProducts />
+      <h3>Detalhe do pedido</h3>
+      <ProductsList />
     </>
   );
 }

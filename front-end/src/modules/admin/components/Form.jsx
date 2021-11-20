@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { addUserApi } from '../../../api/admin';
 import { isValidateRegister } from '../../../helpers/validateRegister';
+import { useAdmin } from '../../../hooks/useAdmin';
 import './Form.scss';
 
+export const user = JSON.parse(localStorage.getItem('user'));
+
 function Form() {
+  const { addUser } = useAdmin();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -18,7 +23,7 @@ function Form() {
     }
   }, [email, password, name]);
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     const data = {
       name,
@@ -26,7 +31,9 @@ function Form() {
       password,
       role,
     };
-    console.log(data);
+    const respUser = await addUserApi(data, user.token);
+    addUser(respUser);
+
     setName('');
     setEmail('');
     setPassword('');

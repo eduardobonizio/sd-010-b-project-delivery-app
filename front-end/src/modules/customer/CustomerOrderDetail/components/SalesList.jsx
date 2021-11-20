@@ -63,13 +63,14 @@ function SalesList() {
           </tr>
           {isLoading
             ? <p>Carregando...</p>
-            : customerSingleOrder.saleItens.map((product, index) => (
+            : (customerSingleOrder.saleItens.map((product, index) => (
               <Sale
                 key={ index }
                 product={ product }
                 index={ index }
               />
-            ))}
+            ))
+            )}
         </table>
         <p>
           R$

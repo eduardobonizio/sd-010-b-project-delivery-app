@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useAdmin } from '../../../hooks/useAdmin';
 
-function User({ item, name, email, roleUser, onDelete, index }) {
-  console.log(onDelete);
+function User({ item, name, email, roleUser, index }) {
+  const { removeUser } = useAdmin();
+
   return (
     <div className="row user-item">
       <div className="col">
@@ -38,6 +40,7 @@ function User({ item, name, email, roleUser, onDelete, index }) {
           type="button"
           className="btn btn-warning w-100"
           data-testid={ `admin_manage__element-user-table-remove-${index}` }
+          onClick={ () => removeUser(index) } // trocar para id
         >
           Excluir
         </button>
@@ -54,5 +57,4 @@ User.propTypes = {
   name: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   roleUser: PropTypes.string.isRequired,
-  onDelete: PropTypes.func.isRequired,
 };
