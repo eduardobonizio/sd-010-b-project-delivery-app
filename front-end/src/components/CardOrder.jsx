@@ -19,26 +19,28 @@ function Order({ sale }) {
   if (sale.status === 'Entregue') {
     colorStatus = 'entregue';
   }
+  const data = new Date(sale.saleDate).toLocaleDateString('pt-BR', { timeZone: 'UTC' });
 
   return (
     <Link className="boxOrder" to={ `/customer/orders/${sale.id}` }>
       <div className="conteiner">
         <div
           className={ `status ${colorStatus}` }
-          data-testid={ ID.dataTestId34 }
+          data-testid={ `${ID.dataTestId34}${sale.id}` }
         >
           { sale.status }
         </div>
         <div className="saleId">
           <p>Pedido</p>
-          <p data-testid={ ID.dataTestId33 }>{ sale.id }</p>
+          <p data-testid={ `${ID.dataTestId33}${sale.id}` }>{ sale.id }</p>
         </div>
         <div className="dataPrice">
-          <div data-testid={ ID.dataTestId35 }>{ sale.saleDate }</div>
-          <div>
-            R$
-            {' '}
-            { sale.totalPrice }
+          <div data-testid={ `${ID.dataTestId35}${sale.id}` }>{ data }</div>
+          <div className="divPrice">
+            <p>R$</p>
+            <p data-testid={ `customer_orders__element-card-price-${sale.id}` }>
+              { sale.totalPrice.replace('.', ',') }
+            </p>
           </div>
         </div>
       </div>

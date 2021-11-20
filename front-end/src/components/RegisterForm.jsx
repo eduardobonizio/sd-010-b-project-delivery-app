@@ -43,7 +43,8 @@ function RegisterForm() {
         email,
       });
       const { role, token } = data;
-      localStorage.setItem('user', `${JSON.stringify({ nome, email, role, token })}`);
+      localStorage.setItem('user', `${JSON
+        .stringify({ name: nome, email, role, token })}`);
       navigate('/customer/products');
     } catch (err) {
       console.log(err);

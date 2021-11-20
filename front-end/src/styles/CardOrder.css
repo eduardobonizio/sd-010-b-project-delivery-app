@@ -45,7 +45,18 @@
 .saleId p {
   font-size: 20px;
   line-height: 0.1;
- }
+}
+
+.divPrice {
+  display: flex;
+  font-size: 20px;
+  line-height: 0.1;
+  padding: 1px;
+}
+
+.divPrice p {
+  padding-right: 5px;
+}
 
 .dataPrice {
   background-color: rgba(0,0,0,0.16);
