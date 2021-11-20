@@ -14,15 +14,18 @@ const {
 function ItemRow({ cartItem }) {
   const { item, index, functions } = cartItem;
   const { id, name, preco, quantity, subTotal } = item;
-  const { removeItem } = functions;
+  const { removeItem, replaceDecimalSeparator } = functions;
+
+  const newPrice = replaceDecimalSeparator(preco);
+  const newSubTotal = replaceDecimalSeparator(subTotal.toFixed(2));
 
   return (
     <div className="item-row">
       <div data-testid={ `${dataTestId22}${index}` }>{id}</div>
       <div data-testid={ `${dataTestId23}${index}` }>{name}</div>
       <div data-testid={ `${dataTestId24}${index}` }>{quantity}</div>
-      <div data-testid={ `${dataTestId25}${index}` }>{`R$ ${preco}`}</div>
-      <div data-testid={ `${dataTestId26}${index}` }>{subTotal}</div>
+      <div data-testid={ `${dataTestId25}${index}` }>{newPrice}</div>
+      <div data-testid={ `${dataTestId26}${index}` }>{newSubTotal}</div>
       <button
         data-testid={ `${dataTestId27}${index}` }
         type="button"
@@ -46,6 +49,7 @@ ItemRow.propTypes = {
     index: PropTypes.number,
     functions: PropTypes.shape({
       removeItem: PropTypes.func,
+      replaceDecimalSeparator: PropTypes.func,
     }).isRequired,
   }).isRequired,
 };
