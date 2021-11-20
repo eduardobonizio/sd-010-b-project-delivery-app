@@ -30,4 +30,11 @@ const login = (user) => APIPOST.post('/login', user);
 
 const register = (user) => APIPOST.post('/user/register', user);
 
-export default { fetchOrders, login, register, getAllProducts, createSale };
+const fetchSaleInfo = (id) => APITOKEN().get(`/sale/products/${id}`, {});
+
+export default { fetchOrders,
+  login,
+  register,
+  getAllProducts,
+  createSale,
+  fetchSaleInfo };
