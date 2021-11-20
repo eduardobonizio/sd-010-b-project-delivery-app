@@ -58,10 +58,10 @@ function Header({ userRole }) {
           style={ { gridColumnStart: 4 } }
           className="purple"
         >
-          <Link to="/">{ nameStorage }</Link>
+          <Link to="/login">{ nameStorage }</Link>
         </div>
         <div data-testid={ dataTestId14 } className="blue">
-          <Link to="/" onClick={ leaveThePage }>Sair</Link>
+          <Link to="/login" onClick={ leaveThePage }>Sair</Link>
         </div>
       </nav>
     </header>
