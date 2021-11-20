@@ -4,8 +4,7 @@ import tableTitles from '../services/orderTableTitles';
 
 // eslint-disable-next-line react/prop-types
 function OrderProductsTable({ products }) {
-  // tableTitles.pop();
-  console.log(products);
+
   return (
     <table>
       <thead>
