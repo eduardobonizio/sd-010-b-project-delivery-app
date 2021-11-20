@@ -7,7 +7,7 @@ import { Context } from '../context/ContextGlobal';
 function CustomerProducts() {
   const { products, setProducts } = useContext(Context);
 
-  const URL = 'http://localhost:3001/customer/products';
+  const URL = 'http://localhost:3001/all-products';
 
   useEffect(() => {
     const getAllProducts = async () => {

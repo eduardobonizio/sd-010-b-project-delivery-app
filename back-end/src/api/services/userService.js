@@ -1,7 +1,7 @@
 const { StatusCodes } = require('http-status-codes');
 const { Op } = require('sequelize');
 const md5 = require('md5');
-const { User, Product } = require('../../database/models');
+const { User } = require('../../database/models');
 
 const loginValidateService = async (email, password) => {
   const hashPassword = md5(password);
@@ -37,5 +37,4 @@ const registerValidateService = async (name, email, password) => {
 module.exports = {
   loginValidateService,
   registerValidateService,
-  Product,
 };

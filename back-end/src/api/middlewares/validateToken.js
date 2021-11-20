@@ -14,7 +14,7 @@ module.exports = (req, res, next) => {
     jwt.verify(token, secretKey);
   } catch (error) {
       console.log(error);
-      res.status(StatusCodes.UNAUTHORIZED).json({ error: error.message });
+      next({ status: StatusCodes.UNAUTHORIZED, message: error.message, code: 'invalid_data' });
   }
   
   next();
