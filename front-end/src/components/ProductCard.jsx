@@ -1,7 +1,7 @@
 import React from 'react';
 import Proptypes from 'prop-types';
-import { Button, Card, Col, Form, InputGroup } from 'react-bootstrap';
-import './css/ProductCard.css';
+import { Button, Card, Form, InputGroup } from 'react-bootstrap';
+// import './css/ProductCard.css';
 
 function ProductCard(props) {
   const { product, product: { id, name, price, urlImage, quantity },
@@ -67,62 +67,62 @@ function ProductCard(props) {
   };
 
   return (
-    <Col>
-      <Card>
-        <Card.Img
-          data-testid={ `customer_products__img-card-bg-image-${id}` }
-          variant="top"
-          src={ urlImage }
-        />
-        <Card.Body>
-          <Card.Title
-            data-testid={ `customer_products__element-card-title-${id}` }
+    <Card style={ { width: '10rem', height: '325px' } }>
+      <Card.Img
+        data-testid={ `customer_products__img-card-bg-image-${id}` }
+        variant="top"
+        src={ urlImage }
+        style={ { height: '158px' } }
+      />
+      <Card.Body>
+        <Card.Title
+          data-testid={ `customer_products__element-card-title-${id}` }
+          style={ { fontSize: '1.2em' } }
+        >
+          { name }
+        </Card.Title>
+        <Card.Text>
+          R$
+          <span
+            data-testid={ `customer_products__element-card-price-${id}` }
           >
-            { name }
-          </Card.Title>
-          <Card.Text>
-            R$
-            <span
-              data-testid={ `customer_products__element-card-price-${id}` }
-            >
-              { price.toString().split('.').join(',') }
-            </span>
-          </Card.Text>
-          <InputGroup className="sm-3">
-            <Button
-              id={ id }
-              data-testid={ `customer_products__button-card-rm-item-${id}` }
-              variant="success"
-              onClick={ (e) => removeOne(e.target.id) }
-            >
-              -
-            </Button>
-            <Form.Control
-              as="input"
-              size="sm"
-              min="0"
-              max="99"
-              id={ `input-${id}` }
-              data-testid={ `customer_products__input-card-quantity-${id}` }
-              onChange={ (e) => {
-                changeCart(e.target.id, e.target.value);
-              } }
-              type="integer"
-              placeholder="0"
-              defaultValue={ quantity }
-            />
-            <Button
-              id={ id }
-              data-testid={ `customer_products__button-card-add-item-${id}` }
-              onClick={ (e) => addOne(e.target.id) }
-              variant="success"
-            >
-              +
-            </Button>
-          </InputGroup>
-        </Card.Body>
-      </Card>
-    </Col>
+            { price.toString().split('.').join(',') }
+          </span>
+        </Card.Text>
+        <InputGroup className="sm-3">
+          <Button
+            id={ id }
+            data-testid={ `customer_products__button-card-rm-item-${id}` }
+            variant="success"
+            onClick={ (e) => removeOne(e.target.id) }
+          >
+            -
+          </Button>
+          <Form.Control
+            as="input"
+            size="sm"
+            min="0"
+            max="99"
+            id={ `input-${id}` }
+            data-testid={ `customer_products__input-card-quantity-${id}` }
+            onChange={ (e) => {
+              changeCart(e.target.id, e.target.value);
+            } }
+            type="integer"
+            placeholder="0"
+            defaultValue={ quantity }
+          />
+          <Button
+            id={ id }
+            data-testid={ `customer_products__button-card-add-item-${id}` }
+            onClick={ (e) => addOne(e.target.id) }
+            variant="success"
+          >
+            +
+          </Button>
+        </InputGroup>
+      </Card.Body>
+    </Card>
   );
 }
 

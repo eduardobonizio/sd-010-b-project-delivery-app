@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Container, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import TopBar from '../components/TopBar';
 import ProductCard from '../components/ProductCard';
 import CartTotal from '../components/CartTotal';
@@ -41,12 +41,13 @@ function Products() {
         <Row>
           {
             cart && cart.map((product) => (
-              <ProductCard
-                key={ product.key }
-                product={ product }
-                setCart={ setCart }
-                cart={ cart }
-              />
+              <Col key={ product.key }>
+                <ProductCard
+                  product={ product }
+                  setCart={ setCart }
+                  cart={ cart }
+                />
+              </Col>
             ))
           }
         </Row>
