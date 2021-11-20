@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Col, Container, Row } from 'react-bootstrap';
 import TopBar from '../components/TopBar';
 import ProductCard from '../components/ProductCard';
-// import CartTotal from '../components/CartTotal';
+import CartTotal from '../components/CartTotal';
 import './css/Products.css';
 
 function Products() {
@@ -36,7 +36,7 @@ function Products() {
 
   return (
     <>
-      <TopBar name={ name } cartTotal={ cartTotal } />
+      <TopBar name={ name } />
       <Container fluid>
         <Row>
           {
@@ -52,7 +52,7 @@ function Products() {
           }
         </Row>
       </Container>
-      {/* <CartTotal cartTotal={ cartTotal } /> */}
+      <CartTotal cartTotal={ cartTotal } />
     </>
   );
 }
