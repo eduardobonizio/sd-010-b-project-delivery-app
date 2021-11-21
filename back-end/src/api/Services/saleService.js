@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const { sale, salesProduct } = require('../../database/models');
+const { sale, salesProduct, product } = require('../../database/models');
 
 const env = process.env.NODE_ENV || 'test';
 const config = require('../../database/config/config')[env];
@@ -38,7 +38,26 @@ const getAllSales = async (id) => {
   return allSales;
 };
 
+const getById = async (id) => {
+  const salesDetails = await sale.findByPk(
+    id,
+    {
+      attributes: ['id', 'saleDate', 'status', 'totalPrice'],
+      include: {
+        model: product,
+        as: 'products',
+        through: {
+          attributes: [],
+        },
+      },
+    },
+  );
+
+  return salesDetails;
+};
+
 module.exports = {
   create,
   getAllSales,
+  getById,
 };

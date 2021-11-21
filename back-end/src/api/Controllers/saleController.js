@@ -25,7 +25,19 @@ const getAllSales = async (req, res) => {
   return res.status(201).json(allSales);
 };
 
+const getById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const salesDetails = await saleService.getById(id);
+    return res.status(200).json(salesDetails);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send('Erro interno');
+  }
+};
+
 module.exports = {
   create,
   getAllSales,
+  getById,
 };
