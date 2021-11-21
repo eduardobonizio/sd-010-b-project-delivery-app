@@ -109,7 +109,7 @@ function CheckoutProductCard(props) {
           <span
             data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }
           >
-            { (price * quantity).toFixed(2) }
+            { (price * quantity).toFixed(2).toString().split('.').join(',') }
           </span>
         </Card.Text>
         <InputGroup className="sm-3">
