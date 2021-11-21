@@ -19,11 +19,8 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   Sale.associate = (models) => {
-    Sale.belongsTo(
-      models.User,
-      { foreingKey: "user_id", as: "user" },
-      { foreingKey: "seller_id", as: "seller" }
-    );
+    Sale.belongsTo(models.User,{ foreingKey: "user_id", as: "user" });
+    Sale.belongsTo(models.User,{ foreingKey: "seller_id", as: "seller" });
   };
   return Sale;
 };
