@@ -37,12 +37,14 @@ function Products() {
 
   const finishSale = async () => {
     const { token } = JSON.parse(localStorage.getItem('user'));
-    const sendSale = {
+    const newSale = {
       token,
       totalPrice: cartTotal,
       products: cart,
+      address,
+      addressNumber,
     };
-    const saleId = await axios.post('http://localhost:3001/customer/checkout', sendSale);
+    const saleId = await axios.post('http://localhost:3001/customer/checkout', newSale);
     console.log(saleId);
     // const tempSaleIdToKeepDoingProject = 1;
     // history.push(`/customer/orders/${tempSaleIdToKeepDoingProject}`);
