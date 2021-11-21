@@ -1,6 +1,8 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router';
+import axios from 'axios';
 import AppContext from './AppContext';
 
 function AppProvider({ children }) {
@@ -15,6 +17,8 @@ function AppProvider({ children }) {
   const [dataOrder, setDataOrder] = useState([]);
   const [error, setError] = useState(null);
 
+  const history = useHistory();
+
   const getProducts = () => {
     const url = 'http://localhost:3001/products';
     fetch(url)
@@ -23,15 +27,14 @@ function AppProvider({ children }) {
       .catch((e) => setError(e));
   };
 
-  const registerUser = () => {
+  const registerUser = async () => {
     const url = 'http://localhost:3001/register';
-    fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(dataUser),
-    })
-      .then((res) => console.log(res))
-      .catch((e) => setError(e));
+    try {
+      await axios.post(url, dataUser);
+      history.push('customer/products');
+    } catch (e) {
+      setError(e.response.data.message);
+    }
   };
 
   const validateDataUser = () => {
@@ -59,20 +62,17 @@ function AppProvider({ children }) {
     getProducts();
   }, []);
 
-  useEffect(() => {
-    validateDataUser();
-  }, [dataUser]);
-
   const contextValue = {
     products,
     dataUser,
-    setDataUser,
+    validUser,
+    error,
     dataOrder,
+    setDataUser,
     setDataOrder,
     registerUser,
     changeUserState,
-    validUser,
-    error,
+    validateDataUser,
   };
 
   return (

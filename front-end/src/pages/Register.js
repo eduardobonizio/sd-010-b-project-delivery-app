@@ -1,10 +1,18 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import AppContext from '../Context/AppContext';
 
 function Register() {
-  const { changeUserState, validUser, error, registerUser } = useContext(AppContext);
+  const {
+    changeUserState,
+    validUser,
+    error,
+    registerUser,
+    validateDataUser,
+  } = useContext(AppContext);
+
+  useEffect(() => {
+    validateDataUser();
+  }, [changeUserState, validateDataUser]);
 
   return (
     <div>
@@ -45,7 +53,7 @@ function Register() {
       <button
         type="button"
         data-testid="common_register__button-register"
-        onClick={ async () => { registerUser(); } }
+        onClick={ registerUser }
         disabled={ !validUser }
       >
         Cadastrar
