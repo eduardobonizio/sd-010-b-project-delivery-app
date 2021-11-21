@@ -81,10 +81,9 @@ function Login() {
       >
         Login
       </button>
-
-      <Link to="/register" data-testid="common_login__button-register">
-        Ainda não tenho conta
-      </Link>
+      <button type="button" data-testid="common_login__button-register">
+        <Link to="/register">Ainda não tenho conta</Link>
+      </button>
 
       {isError && <div data-testid={ lintChato }>{errorMessage}</div>}
     </div>

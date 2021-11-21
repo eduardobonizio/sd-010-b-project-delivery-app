@@ -1,62 +1,10 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useContext } from 'react';
+import AppContext from '../Context/AppContext';
 
 function Register() {
-  const [register, setRegister] = useState({
-    name: '',
-    email: '',
-    password: '',
-    role: 'cliente',
-  });
-  const [disableBtn, setDisableBtn] = useState(true);
-  const [isError, setIsError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-
-  const validateData = () => {
-    // Ref- https://pt.stackoverflow.com/questions/1386/express%C3%A3o-regular-para-valida%C3%A7%C3%A3o-de-e-mail
-    const validation = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
-    const MIN_LEN_PASS = 6;
-    const MIN_LEN_NAME = 12;
-
-    if (
-      validation.test(register.email)
-      && register.password.length >= MIN_LEN_PASS
-      && register.name.length >= MIN_LEN_NAME
-    ) {
-      setDisableBtn(false);
-    } else {
-      setDisableBtn(true);
-    }
-  };
-
-  const changeState = ({ target: { name, value } }) => {
-    setRegister({ ...register, [name]: value });
-    validateData();
-  };
-
-  const lintChato = 'common_register__element-invalid-email';
-
-  useEffect(() => {
-    validateData();
-  }, [register, validateData]);
-
-  const getApi = async () => {
-    try {
-      const { data } = await axios.post(
-        'http://localhost:3001/register',
-        register,
-      );
-
-      console.log(data);
-      localStorage.setItem('user', JSON.stringify(data));
-    } catch (e) {
-      setErrorMessage(e.response.data.message);
-      console.log(e.response.data.message);
-
-      setIsError(true);
-    }
-  };
+  const { changeUserState, validUser, error, registerUser } = useContext(AppContext);
 
   return (
     <div>
@@ -69,8 +17,7 @@ function Register() {
           id="name-register"
           name="name"
           data-testid="common_register__input-name"
-          onChange={ changeState }
-          value={ register.name }
+          onChange={ changeUserState }
         />
       </label>
       <label htmlFor="email-register">
@@ -80,7 +27,7 @@ function Register() {
           id="email-register"
           name="email"
           data-testid="common_register__input-email"
-          onChange={ changeState }
+          onChange={ changeUserState }
         />
       </label>
 
@@ -91,20 +38,24 @@ function Register() {
           id="password-register"
           name="password"
           data-testid="common_register__input-password"
-          onChange={ changeState }
+          onChange={ changeUserState }
         />
       </label>
 
       <button
         type="button"
         data-testid="common_register__button-register"
-        onClick={ () => getApi() }
-        disabled={ disableBtn }
+        onClick={ async () => { registerUser(); } }
+        disabled={ !validUser }
       >
-        Register
+        Cadastrar
       </button>
 
-      {isError && <div data-testid={ lintChato }>{errorMessage}</div>}
+      {error && (
+        <div data-testid="common_register__element-invalid_registers">
+          {error}
+        </div>
+      )}
     </div>
   );
 }
