@@ -15,11 +15,14 @@ function CheckoutDeliveryData(props) {
               P. Vendedora Responsável:
             </span>
           </div>
-          <Dropdown.Toggle variant="success" id="dropdown-basic">
-            Dropdown Button
-          </Dropdown.Toggle>
 
-          <Dropdown.Menu data-testid="customer_checkout__select-seller">
+          <select name="select" data-testid="customer_checkout__select-seller">
+            <option value="valor1" selected>Fulana pereira</option>
+            <option value="valor2">Valor 2</option>
+            <option value="valor3">Valor 3</option>
+          </select>
+
+          <Dropdown.Menu>
             <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
             <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
             <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
