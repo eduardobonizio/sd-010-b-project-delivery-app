@@ -11,7 +11,7 @@ function AppProvider({ children }) {
     name: '',
     email: '',
     password: '',
-    role: 'Cliente',
+    role: 'customer',
   });
   const [validUser, setValidUser] = useState(false);
   const [dataOrder, setDataOrder] = useState([]);

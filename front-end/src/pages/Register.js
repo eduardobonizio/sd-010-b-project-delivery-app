@@ -60,7 +60,7 @@ function Register() {
       </button>
 
       {error && (
-        <div data-testid="common_register__element-invalid_registers">
+        <div data-testid="common_register__element-invalid_register">
           {error}
         </div>
       )}
