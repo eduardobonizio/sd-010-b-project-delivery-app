@@ -3,7 +3,7 @@ import { Container, Dropdown, Form } from 'react-bootstrap';
 import Proptypes from 'prop-types';
 
 function CheckoutDeliveryData(props) {
-  const { finishSale } = props;
+  const { finishSale, setAddress, setAddressNumber } = props;
 
   return (
     <Container>
@@ -29,7 +29,7 @@ function CheckoutDeliveryData(props) {
             type="text"
             data-testid="customer_checkout__input-address"
             onChange={ () => {
-            // setStatePassword(e.target.value);
+              setAddress(e.target.value);
             } }
           />
         </Form.Label>
@@ -40,7 +40,7 @@ function CheckoutDeliveryData(props) {
             data-testid="customer_checkout__input-addressNumber"
             type="number"
             onChange={ () => {
-            // setStatePassword(e.target.value);
+              setAddressNumber(e.target.value);
             } }
           />
         </Form.Label>
@@ -62,4 +62,6 @@ export default CheckoutDeliveryData;
 
 CheckoutDeliveryData.propTypes = {
   finishSale: Proptypes.func.isRequired,
+  setAddressNumber: Proptypes.func.isRequired,
+  setAddress: Proptypes.func.isRequired,
 };

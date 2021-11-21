@@ -11,6 +11,8 @@ function Products() {
   const { name } = JSON.parse(localStorage.getItem('user'));
   const [cart, setCart] = useState();
   const [cartTotal, setCartTotal] = useState(0);
+  const [address, setAddress] = useState('');
+  const [addressNumber, setAddressNumber] = useState('');
   // const history = useHistory();
 
   useEffect(() => {
@@ -71,9 +73,12 @@ function Products() {
         <CheckoutCartTotal cartTotal={ cartTotal } />
       </div>
       <div>Detalhes e Endereço para Entrega</div>
-      <CheckoutDeliveryData finishSale={ finishSale } />
+      <CheckoutDeliveryData
+        setAddressNumber={ setAddressNumber }
+        setAddress={ setAddress }
+        finishSale={ finishSale }
+      />
     </>
   );
 }
-
 export default Products;
