@@ -1,4 +1,4 @@
-const { Sale, User, SalesProduct } = require('../database/models');
+const { Sale, User, SalesProduct, Product } = require('../database/models');
 
 const createSale = async (body, user_id) => {
   const { seller_id, total_price, delivery_address, delivery_number, status } = body;
