@@ -38,7 +38,7 @@ function Products() {
   const finishSale = async () => {
     const { token } = JSON.parse(localStorage.getItem('user'));
     const newSale = {
-      token,
+      authorization: token,
       totalPrice: cartTotal,
       products: cart,
       address,
