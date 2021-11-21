@@ -9,6 +9,7 @@ function Login() {
   const [errorMessage, setErrorMessage] = useState('');
   const [isRedirect, setIsRedirect] = useState(false);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const validateData = () => {
     // Ref- https://pt.stackoverflow.com/questions/1386/express%C3%A3o-regular-para-valida%C3%A7%C3%A3o-de-e-mail
     const validation = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
