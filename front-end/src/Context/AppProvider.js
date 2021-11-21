@@ -7,13 +7,14 @@ function AppProvider({ children }) {
   const [dataUser, setDataUser] = useState({});
   const [dataOrder, setDataOrder] = useState([]);
 
+  const getProducts = () => {
+    const url = 'http://localhost:3001/products';
+    fetch(url)
+      .then((response) => response.json())
+      .then((response) => setProducts(response.products));
+  };
+
   useEffect(() => {
-    const getProducts = () => {
-      const url = 'http://localhost:3001/products';
-      fetch(url)
-        .then((response) => response.json())
-        .then((response) => setProducts(response.products));
-    };
     getProducts();
   }, []);
 

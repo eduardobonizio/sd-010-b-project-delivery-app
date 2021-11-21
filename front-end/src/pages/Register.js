@@ -1,21 +1,29 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
-import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
-function Login() {
-  const [login, setLogin] = useState({ email: '', password: '' });
+function Register() {
+  const [register, setRegister] = useState({
+    name: '',
+    email: '',
+    password: '',
+    role: 'cliente',
+  });
   const [disableBtn, setDisableBtn] = useState(true);
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [isRedirect, setIsRedirect] = useState(false);
 
   const validateData = () => {
     // Ref- https://pt.stackoverflow.com/questions/1386/express%C3%A3o-regular-para-valida%C3%A7%C3%A3o-de-e-mail
     const validation = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
     const MIN_LEN_PASS = 6;
+    const MIN_LEN_NAME = 12;
 
-    if (validation.test(login.email) && login.password.length >= MIN_LEN_PASS) {
+    if (
+      validation.test(register.email)
+      && register.password.length >= MIN_LEN_PASS
+      && register.name.length >= MIN_LEN_NAME
+    ) {
       setDisableBtn(false);
     } else {
       setDisableBtn(true);
@@ -23,72 +31,82 @@ function Login() {
   };
 
   const changeState = ({ target: { name, value } }) => {
-    setLogin({ ...login, [name]: value });
+    setRegister({ ...register, [name]: value });
     validateData();
   };
 
-  const lintChato = 'common_login__element-invalid-email';
+  const lintChato = 'common_register__element-invalid-email';
 
   useEffect(() => {
     validateData();
-  }, [login, validateData]);
+  }, [register, validateData]);
 
   const getApi = async () => {
     try {
-      const { data } = await axios.post('http://localhost:3001/login', login);
+      const { data } = await axios.post(
+        'http://localhost:3001/register',
+        register,
+      );
 
+      console.log(data);
       localStorage.setItem('user', JSON.stringify(data));
-      setIsRedirect(true);
     } catch (e) {
       setErrorMessage(e.response.data.message);
+      console.log(e.response.data.message);
+
       setIsError(true);
     }
   };
 
   return (
     <div>
-      {isRedirect && <Redirect to="/customer/products" />}
+      <h1>Register page</h1>
 
-      <h1>Login page</h1>
-
-      <label htmlFor="email-login">
-        Login
+      <label htmlFor="name-register">
+        Nome
+        <input
+          type="text"
+          id="name-register"
+          name="name"
+          data-testid="common_register__input-name"
+          onChange={ changeState }
+          value={ register.name }
+        />
+      </label>
+      <label htmlFor="email-register">
+        Email
         <input
           type="email"
-          id="email-login"
+          id="email-register"
           name="email"
-          data-testid="common_login__input-email"
+          data-testid="common_register__input-email"
           onChange={ changeState }
         />
       </label>
 
-      <label htmlFor="password-login">
+      <label htmlFor="password-register">
         Senha
         <input
           type="password"
-          id="password-login"
+          id="password-register"
           name="password"
-          data-testid="common_login__input-password"
+          data-testid="common_register__input-password"
           onChange={ changeState }
         />
       </label>
 
       <button
         type="button"
-        data-testid="common_login__button-login"
+        data-testid="common_register__button-register"
         onClick={ () => getApi() }
         disabled={ disableBtn }
       >
-        Login
+        Register
       </button>
-
-      <Link to="/register" data-testid="common_login__button-register">
-        Ainda não tenho conta
-      </Link>
 
       {isError && <div data-testid={ lintChato }>{errorMessage}</div>}
     </div>
   );
 }
 
-export default Login;
+export default Register;

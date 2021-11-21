@@ -5,6 +5,7 @@ import AppProvider from './Context/AppProvider';
 import Products from './pages/Products';
 import Login from './pages/Login';
 import './App.css';
+import Register from './pages/Register';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Redirect to="/login" />
           </Route>
           <Route path="/login" component={ Login } />
+          <Route path="/register" component={ Register } />
           <Route path="/customer/products" component={ Products } />
         </Switch>
       </AppProvider>
