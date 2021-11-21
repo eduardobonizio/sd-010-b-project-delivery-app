@@ -1,15 +1,7 @@
 const md5 = require('md5');
 const express = require('express');
-const jwt = require('jsonwebtoken');
-const fs = require('fs');
-const path = require('path');
 const { User } = require('../models');
-
-const caminho = path.join(__dirname, '../../jwt.evaluation.key');
-console.log(caminho);
-const secret = fs.readFileSync(caminho).toString();
-
-const jwtConfig = { expiresIn: '2h', algorithm: 'HS256' };
+const { newJwtToken } = require('../helpers/jwt');
 
 const router = express.Router();
 
@@ -19,9 +11,8 @@ router.post('/', async (req, res) => {
 
   try {
     const user = await User.create({ name, email, password: hashedPassword, role: 'customer' });
-    console.log('user', user);
     if (user) {
-      const token = jwt.sign({ data: email }, secret, jwtConfig);
+      const token = await newJwtToken(email);
       return res.status(201).json({
         name,
         email,
