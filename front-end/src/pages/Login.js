@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
@@ -10,7 +9,7 @@ function Login() {
   const [errorMessage, setErrorMessage] = useState('');
   const [isRedirect, setIsRedirect] = useState(false);
 
-  const validateData = () => {
+  const validateData = useCallback(() => {
     // Ref- https://pt.stackoverflow.com/questions/1386/express%C3%A3o-regular-para-valida%C3%A7%C3%A3o-de-e-mail
     const validation = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
     const MIN_LEN_PASS = 6;
@@ -20,7 +19,7 @@ function Login() {
     } else {
       setDisableBtn(true);
     }
-  };
+  }, [login.email, login.password.length]);
 
   const changeState = ({ target: { name, value } }) => {
     setLogin({ ...login, [name]: value });
