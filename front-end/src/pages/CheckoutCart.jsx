@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router';
-// import axios from 'axios';
+// import { useHistory } from 'react-router';
+import axios from 'axios';
 import TopBar from '../components/TopBar';
 import CheckoutProductCard from '../components/CheckoutProductCard';
 import CheckoutCartTotal from '../components/CheckoutCartTotal';
@@ -11,7 +11,7 @@ function Products() {
   const { name } = JSON.parse(localStorage.getItem('user'));
   const [cart, setCart] = useState();
   const [cartTotal, setCartTotal] = useState(0);
-  const history = useHistory();
+  // const history = useHistory();
 
   useEffect(() => {
     const getLocalStorageCartItens = async () => {
@@ -34,10 +34,24 @@ function Products() {
   }, [cart]);
 
   const finishSale = async () => {
-    const saleId = (() => 'Mandar dados dos produtos para a API finalizar a venda'); // axios.post();
+    const { token } = JSON.parse(localStorage.getItem('user'));
+    const sendSale = {
+      token,
+      totalPrice: cartTotal,
+      products: cart,
+    };
+    const saleId = await axios.post('http://localhost:3001/customer/checkout', sendSale);
     console.log(saleId);
-    const tempSaleIdToKeepDoingProject = 1;
-    history.push(`/customer/orders/${tempSaleIdToKeepDoingProject}`);
+    // const tempSaleIdToKeepDoingProject = 1;
+    // history.push(`/customer/orders/${tempSaleIdToKeepDoingProject}`);
+
+    // front total_price
+    // front delivery_address
+    // front?jwt? user_id
+    // back delivery_number
+    // back sale_date
+    // back status
+    // back? seller_id
   };
 
   return (
