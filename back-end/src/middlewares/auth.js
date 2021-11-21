@@ -1,6 +1,4 @@
-const jwt = require('jsonwebtoken');
-
-const secret = 'mySuperPassword';
+const { isTokenValid } = require('../helpers/jwt');
 
 const UNAUTHORIZED = 401;
 
@@ -14,8 +12,8 @@ const auth = async (req, res, next) => {
   }
 
   try {
-    const decodification = jwt.verify(authorization, secret);
-    req.user = decodification.data;
+    const { data } = isTokenValid(authorization);
+    req.user = data;
     next();
   } catch (err) {
     return res.status(UNAUTHORIZED).json({
