@@ -12,8 +12,14 @@ function MyOrder() {
 
   return (
     <>
-      {orders.map(({ total_price, status, sale_date }, index) => (
-        <Order total_price={total_price} status={status} sale_date={sale_date} id={ index } key={ index } />
+      {orders.map((e, index) => (
+        <Order
+          total_price
+          status
+          sale_date
+          id={ index }
+          key={ index }
+        />
       ))}
     </>
   );
