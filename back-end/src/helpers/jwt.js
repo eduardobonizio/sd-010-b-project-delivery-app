@@ -10,7 +10,13 @@ const jwtConfig = { expiresIn: '2h', algorithm: 'HS256' };
 
 const newJwtToken = async (email) => jwt.sign({ data: email }, secret, jwtConfig);
 
-const isTokenValid = async (token) => jwt.verify(token, secret);
+const isTokenValid = async (token) => {
+  try {
+    jwt.verify(token, secret);
+  } catch (e) {
+    throw new Error(e);
+  }
+};
 
 module.exports = {
   secret,
