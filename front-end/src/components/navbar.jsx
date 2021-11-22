@@ -23,12 +23,14 @@ function Navbar(props) {
         </button>
       </div>
       <div>
-        <button
-          type="button"
-          data-testid="customer_products__element-navbar-link-orders"
-        >
-          Meus Pedidos
-        </button>
+        <Link to="/customer/orders">
+          <button
+            type="button"
+            data-testid="customer_products__element-navbar-link-orders"
+          >
+            Meus Pedidos
+          </button>
+        </Link>
       </div>
     </div>
   );
