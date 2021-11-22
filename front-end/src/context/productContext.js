@@ -8,6 +8,8 @@ const ProductContext = createContext();
 export default function ProductContextProvider({ children }) {
   const [cart, setCart] = useState([]);
   const [products, setProducts] = useState([]);
+  const [status, setStatus] = useState('');
+
   localStorage.setItem('cart', JSON.stringify(cart));
 
   const handleQuantityInput = ({ target }, prod) => {
@@ -56,8 +58,32 @@ export default function ProductContextProvider({ children }) {
     setCart(newCart);
   };
 
+  const serialize = (prods) => {
+    let prod = {};
+    const newProducts = [];
+    prods.forEach((el) => {
+      prod = { ...el, qty: 0 };
+      newProducts.push(prod);
+    });
+    setProducts(newProducts);
+  };
+
+  const handleSaleStatus = async (e, id) => {
+    const { name } = e.target;
+    let currStatus = '';
+    if (name === 'transit') currStatus = 'Em Trânsito';
+    if (name === 'delivired') currStatus = 'Entregue';
+    if (name === 'preparing') currStatus = 'Preparando';
+    try {
+      const res = await APITOKEN.updateSaleStatus(id, currStatus);
+      if (res) setStatus(currStatus);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
-    APITOKEN.getAllProducts().then((res) => setProducts(res.data));
+    APITOKEN.getAllProducts().then((res) => serialize(res.data));
   }, []);
 
   return (
@@ -70,7 +96,11 @@ export default function ProductContextProvider({ children }) {
         handleTotalValue,
         handleQuantity,
         handleSubTotal,
-        handleRemoveProduct } }
+        handleRemoveProduct,
+        status,
+        setStatus,
+        handleSaleStatus,
+      } }
     >
       {children}
     </ProductContext.Provider>
@@ -82,7 +112,8 @@ export function useProductContext() {
 
   const { cart, setCart, products,
     handleQuantityInput, handleCart,
-    handleTotalValue, handleQuantity, handleSubTotal, handleRemoveProduct } = context;
+    handleTotalValue, handleQuantity, handleSubTotal,
+    handleRemoveProduct, status, setStatus, handleSaleStatus } = context;
   return { cart,
     setCart,
     products,
@@ -92,6 +123,10 @@ export function useProductContext() {
     handleQuantity,
     handleSubTotal,
     handleRemoveProduct,
+    status,
+    setStatus,
+    handleSaleStatus,
+
   };
 }
 

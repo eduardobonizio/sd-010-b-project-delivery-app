@@ -22,38 +22,47 @@ function OrderDetails() {
     });
   }, [params.id, saleInfo.productsInfo.status, setStatus]);
 
-  const { productsInfo, seller } = saleInfo;
+  const { productsInfo } = saleInfo;
+
   return (
     <div>
       <NavBar />
       <h1>Detalhes do Pedido</h1>
-      <span data-testid="customer_order_details__element-order-details-label-order-id">
+      <span data-testid="seller_order_details__element-order-details-label-order-id">
         {params.id}
+        {' '}
       </span>
-      <span data-testid="customer_order_details__element-order-details-label-seller-name">
-        {seller.name}
-      </span>
-      <span data-testid="customer_order_details__element-order-details-label-order-date">
+      <span data-testid="seller_order_details__element-order-details-label-order-date">
         {productsInfo.saleDate ? formateDate(productsInfo.saleDate) : ''}
       </span>
-      <span
-        data-testid="customer_order_details__element-order-details-label-delivery-status"
+      <button
+        type="button"
+        data-testid="seller_order_details__element-order-details-label-delivery-status"
       >
         {status}
-      </span>
+      </button>
       <button
-        disabled={ status !== 'Em Trânsito' }
-        data-testid="customer_order_details__button-delivery-check"
+        disabled={ status !== 'Pendente' }
+        data-testid="seller_order_details__button-preparing-check"
         type="button"
-        name="delivired"
         onClick={ (e) => handleSaleStatus(e, params.id) }
+        name="preparing"
       >
-        Marcar como entregue
+        Preparar Pedido
+      </button>
+      <button
+        disabled={ status !== 'Preparando' }
+        data-testid="seller_order_details__button-dispatch-check"
+        type="button"
+        onClick={ (e) => handleSaleStatus(e, params.id) }
+        name="transit"
+      >
+        Saiu para entrega
       </button>
       {
         isFetched ? <OrderProductsTable products={ productsInfo.products } /> : ''
       }
-      <p data-testid="customer_order_details__element-order-total-price">
+      <p data-testid="seller_order_details__element-order-total-price">
         {isFetched && productsInfo.totalPrice.replace('.', ',')}
       </p>
     </div>

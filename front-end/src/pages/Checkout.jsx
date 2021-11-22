@@ -78,7 +78,6 @@ export default function Checkout() {
                 >
                   X
                 </button>
-
               </td>
             </tr>
           ))}

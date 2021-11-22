@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-// https://pt.stackoverflow.com/q/365296/207241
-
 const APIPOST = axios.create({
   baseURL: 'http://localhost:3001/',
   headers: {
@@ -32,9 +30,12 @@ const register = (user) => APIPOST.post('/user/register', user);
 
 const fetchSaleInfo = (id) => APITOKEN().get(`/sale/products/${id}`, {});
 
+const updateSaleStatus = (id, status) => APITOKEN().put(`/sale/${id}`, { status });
+
 export default { fetchOrders,
   login,
   register,
   getAllProducts,
   createSale,
-  fetchSaleInfo };
+  fetchSaleInfo,
+  updateSaleStatus };

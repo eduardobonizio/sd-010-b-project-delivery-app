@@ -2,8 +2,6 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import ProductCard from '../components/ProductCard';
-// import cardFields from '../services/cardFields';
-
 import { useProductContext } from '../context/productContext';
 
 function Products() {

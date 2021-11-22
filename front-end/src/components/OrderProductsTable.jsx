@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import tableTitles from '../services/orderTableTitles';
 
 function OrderProductsTable({ products }) {
-  console.log(products);
   return (
     <table>
       <thead>
