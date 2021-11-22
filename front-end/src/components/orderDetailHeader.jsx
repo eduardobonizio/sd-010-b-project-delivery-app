@@ -1,27 +1,27 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function OrderDetailHeader() {
-  const order = { id: 3, sellerId: 'fulana', saleDate: '19/11/2021', status: 'Pendente' };
-  const { id, sellerId, saleDate, status } = order;
+function OrderDetailHeader(props) {
+  const { orderDetail } = props;
+  const { id, seller, saleDate, status } = orderDetail;
+  const date = new Date(saleDate).toLocaleDateString();
 
   return (
     <header>
       <p
-        data-testid={
-          `customer_order_details__element-order-details-label-order-${id}`
-        }
+        data-testid="customer_order_details__element-order-details-label-order-id"
       >
         { `000${id}` }
       </p>
       <p
         data-testid="customer_order_details__element-order-details-label-seller-name"
       >
-        { `P.Vend: ${sellerId}` }
+        { `P.Vend: ${seller.name}` }
       </p>
       <p
         data-testid="customer_order_details__element-order-details-label-order-date"
       >
-        { saleDate }
+        { date }
       </p>
       <p
         data-testid="
@@ -29,11 +29,18 @@ function OrderDetailHeader() {
       >
         { status }
       </p>
-      <p data-testid="customer_order_details__button-delivery-check">
-        <button type="button">Marcar como entregue</button>
-      </p>
+      <button
+        data-testid="customer_order_details__button-delivery-check"
+        type="button"
+      >
+        Marcar como entregue
+      </button>
     </header>
   );
 }
+
+OrderDetailHeader.propTypes = {
+  orderDetail: PropTypes.objectOf(PropTypes.object).isRequired,
+};
 
 export default OrderDetailHeader;

@@ -1,13 +1,23 @@
-import React from 'react';
-// import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
-function OrderDetailsTbody() {
-  const items = [{ id: 1, name: 'cerveja', quantity: 2, price: '2.99', total: '5.00' }];
+function OrderDetailsTbody(props) {
+  const [loading, setLoading] = useState(true);
+  const { orderDetail, quantity } = props;
+  const { products } = orderDetail;
 
+  const totalProdPrice = (price, index) => (
+    (quantity[index].quantity * price).toFixed(2).toString().replace(/\./, ','));
+
+  useEffect(() => {
+    setLoading(false);
+  }, [quantity]);
+
+  if (loading) return <p>Carregando</p>;
   return (
     <tbody>
-      {
-        items.map((prod, index) => (
+      { products.length > 1 && quantity.length > 1
+        ? products.map((prod, index) => (
           <tr key={ index }>
             <td
               data-testid={
@@ -26,7 +36,7 @@ function OrderDetailsTbody() {
                 `customer_order_details__element-order-table-quantity-${index}`
               }
             >
-              {prod.quantity}
+              {quantity[index].quantity}
             </td>
             <td
               data-testid={
@@ -38,17 +48,19 @@ function OrderDetailsTbody() {
             <td
               data-testid={ `customer_order_details__element-order-total-price-${index}` }
             >
-              {prod.total.replace(/\./, ',')}
+              {totalProdPrice(prod.price, index)}
             </td>
           </tr>
         ))
-      }
+        : null }
     </tbody>
   );
 }
 
-// Tbody.propTypes = {
-//   getTotal: PropTypes.func.isRequired,
-// };
+OrderDetailsTbody.propTypes = {
+  orderDetail: PropTypes.objectOf(PropTypes.object).isRequired,
+  products: PropTypes.arrayOf(PropTypes.object).isRequired,
+  quantity: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default OrderDetailsTbody;

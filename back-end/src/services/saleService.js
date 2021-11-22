@@ -15,11 +15,15 @@ const getSale = async ({ id }) => {
       { model: user, as: 'seller' },
     ],
   });
-  console.log(sales);
-  return sales;
+  const teste = Promise.all(sales.products.map(async (prod) => {
+    return await salesProducts.findOne({ where: { sale_id: id, product_id: prod.id}});
+  }));
+
+  const prodSale = await teste;
+  return { sales, prodSale };
 };
 
-const postSale = async ({ 
+const postSale = async ({  
   email, sellerId, totalPrice, deliveryAddress, deliveryNumber, status }) => {
   const userId = await userService.findUserByEmail(email);
   const saleDate = new Date();
