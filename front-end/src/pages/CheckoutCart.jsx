@@ -36,19 +36,23 @@ function Products() {
   }, [cart]);
 
   const finishSale = async () => {
-    try{
-    const { token } = JSON.parse(localStorage.getItem('user'));
-    const newSale = {
-      authorization: token,
-      totalPrice: cartTotal,
-      products: cart,
-      address,
-      addressNumber,
-    };
-    const saleId = await axios.post('http://localhost:3001/customer/checkout', newSale);
-    console.log(saleId);
-    // const tempSaleIdToKeepDoingProject = 1;
-    // history.push(`/customer/orders/${tempSaleIdToKeepDoingProject}`);
+    try {
+      const { token } = JSON.parse(localStorage.getItem('user'));
+      const config = {
+        headers: {
+          authorization: token,
+        },
+      };
+      const newSale = {
+        totalPrice: cartTotal,
+        products: cart,
+        address,
+        addressNumber,
+      };
+      const saleId = await axios.post('http://localhost:3001/customer/checkout', config, newSale);
+      console.log(saleId);
+      // const tempSaleIdToKeepDoingProject = 1;
+      // history.push(`/customer/orders/${tempSaleIdToKeepDoingProject}`);
 
     // front total_price
     // front delivery_address
@@ -57,9 +61,9 @@ function Products() {
     // back sale_date
     // back status
     // back? seller_id
-  }catch(e){
-    console.log(e);
-  }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
