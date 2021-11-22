@@ -16,6 +16,13 @@ const addNewSale = async (objeto) => {
     return saleAdded;
 };
 
+const getAllSales = async () => {
+    const sales = await Sale.findAll();
+
+    return sales;
+};
+
 module.exports = {
     addNewSale,
+    getAllSales,
 };
