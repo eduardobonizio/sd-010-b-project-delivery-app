@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import Context from '../context/Context';
 import ErrorLogin from '../components/ErrorLogin';
 import rockGlass from '../images/rockGlass.svg';
@@ -11,12 +12,12 @@ function Login() {
     password,
     setPassword,
     errorMsg,
-    handleClick,
+    handleClickLogin,
   } = useContext(Context);
 
   useEffect(() => {
     const isValid = () => {
-      const validEmail = email.match(/[a-z]+@[a-z]+.com/g);
+      const validEmail = email.match(/^[a-z0-9-_.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/ig);
       const minLength = 6;
       const validPassword = password.length >= minLength;
       if (validEmail) {
@@ -61,7 +62,7 @@ function Login() {
           type="button"
           data-testid="common_login__button-login"
           disabled={ isDisable }
-          onClick={ ({ target }) => handleClick(target.value) }
+          onClick={ ({ target }) => handleClickLogin(target.value) }
         >
           LOGIN
         </button>
@@ -69,7 +70,9 @@ function Login() {
           type="button"
           data-testid="common_login__button-register"
         >
-          Ainda não tenho conta
+          <Link to="/register">
+            Ainda não tenho conta
+          </Link>
         </button>
         { errorMsg ? <ErrorLogin /> : '' }
       </form>

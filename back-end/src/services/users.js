@@ -14,14 +14,14 @@ const getUserByName = async (name) => {
 
 const createUser = async ({ name, email, password, role }) => {
   const user = await User.create({ name, email, password, role });
-  return user;
+  const token = generateToken(user.dataValues);
+  return { name, email, token, role };
 };
 
 const loginUser = async ({ email, password }) => {
   const hashedPassword = md5(password);
   const user = await User.findOne({ where: { email, password: hashedPassword } });
-
-  if (!user) return { message: 'Usuário não encontrado' };
+  if (user === null) return { message: 'Usuário não encontrado' };
 
   const token = generateToken(user.dataValues);
   const { name, role } = user.dataValues;

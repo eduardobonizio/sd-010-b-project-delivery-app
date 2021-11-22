@@ -7,7 +7,7 @@ const userRouter = express.Router();
 userRouter.post('/', rescue(async (req, res) => {
   const login = await loginUser(req.body);
 
-  if (login.err) return res.status(404).json(login.err);
+  if (login.message) return res.status(404).json(login.message);
   return res.status(200).json(login);
 }));
 
