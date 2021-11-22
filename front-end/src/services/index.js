@@ -17,5 +17,7 @@ const config = (token) => ({
 const create = (data) => api.post('/login', data);
 const getAll = (data) => api.get('/login', data);
 const getAllSales = (tokenLogin) => api.get('/sales', config(tokenLogin));
+const getAllSalesProducts = () => api.get('/checkout');
 
-export default { create, getAll, getAllSales };
+const register = (data) => api.post('/register', data);
+export default { create, getAll, getAllSales, getAllSalesProducts, register };

@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     price: DataTypes.DECIMAL(4, 2),
     urlImage: DataTypes.STRING,
-  }, { timestamps: false, tableName: 'products' });
+  }, { timestamps: false, tableName: 'products', underscored:true });
 
   return Product;
 };

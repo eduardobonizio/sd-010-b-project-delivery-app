@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Joi from 'joi';
 import { useValidator } from 'react-joi';
+import { Link } from 'react-router-dom';
 import api from '../services';
 import NotFound from '../components/notFound';
 
@@ -26,7 +27,6 @@ export default function Login() {
 
   const [isDisabled, setIsDisable] = useState(true);
   const [isErr, setIsErr] = useState(false);
-  // const [user, setUser] = useState({});
 
   useEffect(() => {
     const disabled = state.$all_source_errors.length !== 0;
@@ -120,14 +120,16 @@ export default function Login() {
 
       </button>
 
-      <button
-        type="button"
-        name="noAccount"
-        data-testid="common_login__button-register"
-      >
-        Ainda não tenho conta
+      <Link to="/register">
+        <button
+          type="button"
+          name="noAccount"
+          data-testid="common_login__button-register"
+        >
+          Ainda não tenho conta
 
-      </button>
+        </button>
+      </Link>
 
       {isErr && <NotFound />}
     </>

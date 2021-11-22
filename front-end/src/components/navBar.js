@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function NavBar() {
-  const { email } = JSON.parse(localStorage.getItem('user'));
+  const { nome } = JSON.parse(localStorage.getItem('user'));
+
   return (
     <nav>
       <ul>
@@ -21,7 +22,7 @@ function NavBar() {
         <div>
           <Link to="/customer/products">
             <li data-testid="customer_products__element-navbar-user-full-name">
-              { email }
+              { nome }
             </li>
           </Link>
           <Link to="/login">

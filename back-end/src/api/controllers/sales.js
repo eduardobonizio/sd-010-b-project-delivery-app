@@ -1,5 +1,5 @@
 const rescue = require('express-rescue');
-const { Sale, User } = require('../../database/models');
+const { Sale } = require('../../database/models');
 
 const sales = rescue(async (req, res) => {
   const { id } = req.user;

@@ -8,9 +8,11 @@ function OrderClient() {
   const user = JSON.parse(localStorage.getItem('user'));
   const tokenUser = user.token;
 
-  useEffect(async () => {
-    const salesUsers = await (await api.getAllSales(tokenUser)).data;
-    setSales(salesUsers);
+  useEffect(() => {
+    (async () => {
+      const salesUsers = await (await api.getAllSales(tokenUser)).data;
+      setSales(salesUsers);
+    })();
   }, []);
 
   return (
