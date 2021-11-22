@@ -12,9 +12,9 @@ const auth = async (req, res, next) => {
   }
 
   try {
-    const { data } = isTokenValid(authorization);
+    const { data } = await isTokenValid(authorization);
     req.user = data;
-    return next();
+    next();
   } catch (err) {
     return res.status(UNAUTHORIZED).json({
       message: 'Expired or invalid token',
