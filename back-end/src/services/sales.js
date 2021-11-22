@@ -2,19 +2,17 @@ const { Sale } = require('../database/models');
 
 const addNewSale = async (objeto) => {
     const { obj, id } = objeto;
-    const date = new Date();
-    const { sellerId, totalPrice, deliveryAddress, deliveryNumber } = obj;
+    console.log('Obj', obj);
+    // const date = new Date();
+    // console.log(date);
     const saleAdded = await Sale.create({
         userId: id,
-        sellerId,
-        totalPrice,
-        deliveryAddress,
-        deliveryNumber,
-        saleDate: date.toLocaleString(),
+        ...obj,
+        saleDate: Date.now(),
         status: 'Pendente',
     });
 
-    return saleAdded;
+    return saleAdded.dataValues;
 };
 
 const getAllSales = async () => {

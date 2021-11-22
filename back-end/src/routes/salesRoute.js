@@ -6,7 +6,7 @@ const { validateJWT } = require('../middlewares/validateJWT');
 const router = express.Router();
 
 router.route('/')
-    .get(salesController.getSales)
-    .post(validateJWT, salesController.addSale);
+    .post(validateJWT, salesController.addSale)
+    .get(salesController.getSales);
 
 module.exports = router;
