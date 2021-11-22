@@ -1,5 +1,7 @@
 const saleService = require('../Services/saleService');
 
+const internalServerErrorMessage = 'Erro interno';
+
 const create = async (req, res) => {
   const { userId } = req;
   const { sale } = req.body;
@@ -9,7 +11,7 @@ const create = async (req, res) => {
     return res.status(201).json({ saleId });
   } catch (error) {
     console.log(error.message);
-    return res.status(500).send('Erro interno');
+    return res.status(500).send(internalServerErrorMessage);
   }
 };
 
@@ -32,7 +34,7 @@ const getById = async (req, res) => {
     return res.status(200).json(salesDetails);
   } catch (error) {
     console.log(error);
-    return res.status(500).send('Erro interno');
+    return res.status(500).send(internalServerErrorMessage);
   }
 };
 
@@ -44,7 +46,7 @@ const updateSaleStatus = async (req, res) => {
     return res.status(204).end();
   } catch (error) {
     console.log(error);
-    return res.status(500).send('Erro interno');
+    return res.status(500).send(internalServerErrorMessage);
   }
 };
 
