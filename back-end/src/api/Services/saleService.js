@@ -38,22 +38,38 @@ const getAllSales = async (id) => {
   return allSales;
 };
 
+const formatResponseContent = (dataToFormatted) => {
+  const { products, ...saleRestProps } = dataToFormatted.toJSON();
+
+  const newProducts = products.map((prod) => {
+    const { salesProduct: { quantity }, ...prodRest } = prod;
+    return { ...prodRest, quantity };
+  });
+
+  return { ...saleRestProps, products: newProducts };
+};
+
 const getById = async (id) => {
-  const salesDetails = await sale.findByPk(
+  const saleFound = await sale.findByPk(
     id,
     {
       attributes: ['id', 'saleDate', 'status', 'totalPrice'],
       include: {
         model: product,
         as: 'products',
-        through: {
-          attributes: [],
+        attributes: {
+          exclude: ['url_image'],
         },
+        through: {
+          attributes: ['quantity'], 
+        }, 
       },
     },
   );
 
-  return salesDetails;
+  const newSalePayload = formatResponseContent(saleFound);
+
+  return newSalePayload;
 };
 
 const updateSaleStatus = async ({ id, status }) => sale.update({ status }, { where: { id } });
