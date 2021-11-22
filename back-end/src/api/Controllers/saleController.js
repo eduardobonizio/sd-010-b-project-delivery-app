@@ -36,8 +36,21 @@ const getById = async (req, res) => {
   }
 };
 
+const updateSaleStatus = async (req, res) => {
+  const { id } = req.params;
+  const { status } = req.body;
+  try {
+    await saleService.updateSaleStatus({ id, status });    
+    return res.status(204).end();
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send('Erro interno');
+  }
+};
+
 module.exports = {
   create,
   getAllSales,
   getById,
+  updateSaleStatus,
 };
