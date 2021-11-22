@@ -11,8 +11,9 @@ router.post('/', async (req, res) => {
 
   try {
     const user = await User.create({ name, email, password: hashedPassword, role: 'customer' });
+
     if (user) {
-      const token = await newJwtToken(email);
+      const token = await newJwtToken(email, user.id);
       return res.status(201).json({
         name,
         email,

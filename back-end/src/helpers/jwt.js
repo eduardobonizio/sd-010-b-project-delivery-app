@@ -8,7 +8,7 @@ const secret = fs.readFileSync(caminho).toString().trim();
 
 const jwtConfig = { expiresIn: '2h', algorithm: 'HS256' };
 
-const newJwtToken = async (email) => jwt.sign({ data: email }, secret, jwtConfig);
+const newJwtToken = async (email, id) => jwt.sign({ data: { email, id } }, secret, jwtConfig);
 
 const isTokenValid = async (token) => {
   try {
