@@ -1,5 +1,5 @@
 const express = require('express');
-const auth = require('registry-auth-token');
+const auth = require('../middlewares/auth');
 
 const customerRouter = express.Router();
 
