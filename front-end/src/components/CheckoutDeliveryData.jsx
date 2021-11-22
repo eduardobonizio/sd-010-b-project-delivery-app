@@ -28,7 +28,7 @@ function CheckoutDeliveryData(props) {
             placeholder="Travessa teceira da Castanheira, Bairro Murici"
             type="text"
             data-testid="customer_checkout__input-address"
-            onChange={ () => {
+            onChange={ (e) => {
               setAddress(e.target.value);
             } }
           />
@@ -39,7 +39,7 @@ function CheckoutDeliveryData(props) {
             placeholder="198"
             data-testid="customer_checkout__input-addressNumber"
             type="number"
-            onChange={ () => {
+            onChange={ (e) => {
               setAddressNumber(e.target.value);
             } }
           />
@@ -51,7 +51,6 @@ function CheckoutDeliveryData(props) {
         // disabled={ cartTotal <= 0 }
         onClick={ finishSale }
       >
-        {console.log(typeof finishSale)}
         FINALIZAR PEDIDO
       </button>
     </Container>
