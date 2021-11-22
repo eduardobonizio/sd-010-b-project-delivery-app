@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 function Login() {
@@ -9,7 +9,7 @@ function Login() {
   const [errorMessage, setErrorMessage] = useState('');
   const [isRedirect, setIsRedirect] = useState(false);
 
-  const validateData = () => {
+  const validateData = useCallback(() => {
     // Ref- https://pt.stackoverflow.com/questions/1386/express%C3%A3o-regular-para-valida%C3%A7%C3%A3o-de-e-mail
     const validation = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
     const MIN_LEN_PASS = 6;
@@ -19,7 +19,7 @@ function Login() {
     } else {
       setDisableBtn(true);
     }
-  };
+  }, [login.email, login.password.length]);
 
   const changeState = ({ target: { name, value } }) => {
     setLogin({ ...login, [name]: value });
@@ -46,7 +46,7 @@ function Login() {
 
   return (
     <div>
-      { isRedirect && <Redirect to="/customer/products" />}
+      {isRedirect && <Redirect to="/customer/products" />}
 
       <h1>Login page</h1>
 
@@ -80,16 +80,11 @@ function Login() {
       >
         Login
       </button>
-
-      <button
-        type="button"
-        data-testid="common_login__button-register"
-      >
-        Ainda não tenho conta
+      <button type="button" data-testid="common_login__button-register">
+        <Link to="/register">Ainda não tenho conta</Link>
       </button>
 
-      { isError && <div data-testid={ lintChato }>{ errorMessage }</div> }
-
+      {isError && <div data-testid={ lintChato }>{errorMessage}</div>}
     </div>
   );
 }
