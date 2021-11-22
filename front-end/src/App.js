@@ -6,6 +6,7 @@ import Products from './pages/Products';
 import Login from './pages/Login';
 import './App.css';
 import PagesOrder from './pages/PagesOrder';
+import Checkout from './pages/Checkout';
 import PagesOrderDetails from './pages/PagesOrderDetails';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           </Route>
           <Route path="/login" component={ Login } />
           <Route path="/customer/products" component={ Products } />
+          <Route path="/customer/checkout" component={ Checkout } />
           <Route path="/customer/orders" component={ PagesOrder } />
           <Route path="/customer/orders/:id" component={ PagesOrderDetails } />
         </Switch>
