@@ -36,6 +36,7 @@ function Products() {
   }, [cart]);
 
   const finishSale = async () => {
+    try{
     const { token } = JSON.parse(localStorage.getItem('user'));
     const newSale = {
       authorization: token,
@@ -56,6 +57,9 @@ function Products() {
     // back sale_date
     // back status
     // back? seller_id
+  }catch(e){
+    console.log(e);
+  }
   };
 
   return (
