@@ -1,15 +1,13 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Redirect } from 'react-router';
+import React, { useState, useEffect } from 'react';
+// import { Redirect } from 'react-router';
 import axios from 'axios';
 import NavBar from '../../components/NavBar';
 import ProductCard from '../../components/ProductCard';
-import Logincontext from '../../context/LoginContext';
+import ButtonSeeCart from '../../components/ButtonSeeCart';
 
 function Products() {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
-  const [redirect, setRedirect] = useState(false);
-  const { totalPrice } = useContext(Logincontext);
 
   if (localStorage.getItem('carrinho') === null) {
     localStorage.setItem('carrinho', '0');
@@ -23,23 +21,16 @@ function Products() {
       });
   }, []);
 
-  const handleClick = () => {
-    setRedirect(true);
-  };
-
-  if (redirect) {
-    return (
-      <Redirect to="/login" />
-    );
-  }
-
   return (
     <div>
       <NavBar />
       { isLoading ? (
         <p>Carregando...</p>
       ) : (
-        <div id="deck">
+        <div
+          id="deck"
+          style={ { display: 'flex', flexWrap: 'wrap', padding: '80px 30px' } }
+        >
           {data.map(({ id, name, url_image: image, price }) => (
             <ProductCard
               key={ id }
@@ -51,14 +42,7 @@ function Products() {
           ))}
         </div>
       )}
-      <button
-        type="button"
-        data-testid="customer_products__checkout-bottom-value"
-        value={ totalPrice.toFixed(2) }
-        onClick={ handleClick }
-      >
-        { totalPrice.toFixed(2).replace('.', ',') }
-      </button>
+      <ButtonSeeCart />
     </div>
   );
 }

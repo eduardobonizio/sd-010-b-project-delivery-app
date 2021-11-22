@@ -62,51 +62,53 @@ function ProductCard({ id, name, image, price }) {
   };
 
   return (
-    <div
-      key={ id }
-      data-testid={ `customer_products__element-card-price-${id}` }
-    >
-      { price.replace('.', ',') }
-      <img
-        style={ { height: 200 } }
-        data-testid={ `customer_products__img-card-bg-image-${id}` }
-        src={ image }
-        alt={ name }
-      />
-      <p
-        data-testid={ `customer_products__element-card-title-${id}` }
+    <section style={ { width: '160px', margin: 20 } }>
+      <div
+        key={ id }
+        data-testid={ `customer_products__element-card-price-${id}` }
       >
-        {name}
-      </p>
-      <button
-        type="button"
-        data-testid={ `customer_products__button-card-add-item-${id}` }
-        onClick={ () => addOne(price) }
-      >
-        +
-      </button>
-      <button
-        type="button"
-        data-testid={ `customer_products__button-card-rm-item-${id}` }
-        onClick={ () => subOne(price) }
-      >
-        -
-      </button>
-      <input
-        data-testid={ `customer_products__input-card-quantity-${id}` }
-        value={ valueInput }
-        onChange={ (event) => handleChange(event, price) }
-        onClick={ (e) => { e.target.value = ''; } }
-      />
-    </div>
+        { price.replace('.', ',') }
+        <img
+          style={ { height: 200 } }
+          data-testid={ `customer_products__img-card-bg-image-${id}` }
+          src={ image }
+          alt={ name }
+        />
+        <p
+          data-testid={ `customer_products__element-card-title-${id}` }
+        >
+          {name}
+        </p>
+        <button
+          type="button"
+          data-testid={ `customer_products__button-card-add-item-${id}` }
+          onClick={ () => addOne(price) }
+        >
+          +
+        </button>
+        <button
+          type="button"
+          data-testid={ `customer_products__button-card-rm-item-${id}` }
+          onClick={ () => subOne(price) }
+        >
+          -
+        </button>
+        <input
+          data-testid={ `customer_products__input-card-quantity-${id}` }
+          value={ valueInput }
+          onChange={ (event) => handleChange(event, price) }
+          onClick={ (e) => { e.target.value = ''; } }
+        />
+      </div>
+    </section>
   );
 }
 
 ProductCard.propTypes = {
-  id: PropTypes.number,
-  name: PropTypes.string,
-  image: PropTypes.string,
-  price: PropTypes.number,
-}.isRequired;
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+};
 
 export default ProductCard;
