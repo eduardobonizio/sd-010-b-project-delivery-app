@@ -1,15 +1,14 @@
 const express = require('express');
 const rescue = require('express-rescue');
-const { getUserByEmail } = require('../services/users');
+const { loginUser } = require('../services/users');
 
 const userRouter = express.Router();
 
 userRouter.post('/', rescue(async (req, res) => {
-  const { email } = req.body;
-  const user = await getUserByEmail(email);
+  const login = await loginUser(req.body);
 
-  if (!user) return res.status(404).json({ message: 'Usuário não encontrado' });
-  return res.status(200).json(user);
+  if (login.message) return res.status(404).json(login.message);
+  return res.status(200).json(login);
 }));
 
 module.exports = { userRouter };
