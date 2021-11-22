@@ -7,14 +7,12 @@ import Thead from './Thead';
 
 function OrderDetailsTable(props) {
   const [orderDetail, setOrderDetail] = useState({});
-  const [quantity, setQuantity] = useState({});
   const [loading, setLoading] = useState(true);
 
   const { id } = props;
   const getOrderDetails = async (orderId) => {
     const response = await getSale(orderId);
-    setOrderDetail(response.data.sales);
-    setQuantity(response.data.prodSale);
+    setOrderDetail(response.data);
     setLoading(false);
   };
 
@@ -29,10 +27,10 @@ function OrderDetailsTable(props) {
       <OrderDetailHeader orderDetail={ orderDetail } />
       <table>
         <Thead />
-        <OrderDetailsTbody orderDetail={ orderDetail } quantity={ quantity } />
+        <OrderDetailsTbody orderDetail={ orderDetail } />
       </table>
       <p
-        data-testid="customer_checkout__element-order-total-price"
+        data-testid="customer_order_details__element-order-total-price"
       >
         { orderDetail.totalPrice.replace(/\./, ',') }
       </p>

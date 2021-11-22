@@ -10,17 +10,12 @@ const getAll = async () => {
 const getSale = async ({ id }) => {
   const sales = await sale.findByPk(id, { 
     include: [ 
-      { model: product, as: 'products', through: { attributes: [] } },
+      { model: product, as: 'products' },
       { model: user, as: 'customer' },
       { model: user, as: 'seller' },
     ],
   });
-  const teste = Promise.all(sales.products.map(async (prod) => {
-    return await salesProducts.findOne({ where: { sale_id: id, product_id: prod.id}});
-  }));
-
-  const prodSale = await teste;
-  return { sales, prodSale };
+  return sales;
 };
 
 const postSale = async ({  

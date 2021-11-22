@@ -24,14 +24,14 @@ function OrderDetailHeader(props) {
         { date }
       </p>
       <p
-        data-testid="
-          customer_order_details__element-order-details-label-delivery-status"
+        data-testid="customer_order_details__element-order-details-label-delivery-status"
       >
         { status }
       </p>
       <button
         data-testid="customer_order_details__button-delivery-check"
         type="button"
+        disabled
       >
         Marcar como entregue
       </button>
