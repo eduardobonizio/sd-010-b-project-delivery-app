@@ -49,7 +49,7 @@ function Products() {
         address,
         addressNumber,
       };
-      const saleId = await axios.post('http://localhost:3001/customer/checkout', config, newSale);
+      const saleId = await axios.post('http://localhost:3001/customer/checkout', newSale, config);
       console.log(saleId);
       // const tempSaleIdToKeepDoingProject = 1;
       // history.push(`/customer/orders/${tempSaleIdToKeepDoingProject}`);
