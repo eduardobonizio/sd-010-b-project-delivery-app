@@ -17,6 +17,8 @@ function NavBar() {
 
   const logOut = () => {
     localStorage.removeItem('user');
+    localStorage.removeItem('carrinho');
+
     setLogout(true);
   };
 
