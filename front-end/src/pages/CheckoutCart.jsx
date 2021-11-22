@@ -5,7 +5,6 @@ import TopBar from '../components/TopBar';
 import CheckoutProductCard from '../components/CheckoutProductCard';
 import CheckoutCartTotal from '../components/CheckoutCartTotal';
 import CheckoutDeliveryData from '../components/CheckoutDeliveryData';
-import './css/Products.css';
 
 function Products() {
   const { name } = JSON.parse(localStorage.getItem('user'));
@@ -69,7 +68,7 @@ function Products() {
   return (
     <>
       <TopBar name={ name } />
-      <div className="products-container">
+      <div style={ { display: 'flex' } }>
         {
           cart && cart.map((product) => (
             <CheckoutProductCard
