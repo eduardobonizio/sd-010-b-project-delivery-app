@@ -15,16 +15,19 @@ export default function Header(props) {
         <>
           <span
             data-testid="customer_products__element-navbar-link-products"
+            className="pageName"
           >
             {pageName}
           </span>
           <span
             data-testid="customer_products__element-navbar-link-orders"
+            className="yourOrder"
           >
             MEUS PEDIDOS
           </span>
           <span
             data-testid="customer_products__element-navbar-user-full-name"
+            className="UserName"
           >
             {userName}
           </span>
@@ -34,6 +37,7 @@ export default function Header(props) {
             <Link
               to="/login"
               data-testid="customer_products__element-navbar-link-logout"
+              className="logoutPage"
               onClick={ () => logoutUser() }
             >
               Sair
@@ -41,7 +45,35 @@ export default function Header(props) {
           </button>
         </>
       );
-    }
+    } else {
+      return(
+    <>
+          <span
+            data-testid="customer_products__element-navbar-link-orders"
+            className="pageName"
+          >
+           {pageName}
+          </span>
+          <span
+            data-testid="customer_products__element-navbar-user-full-name"
+            className="userName"
+          >
+            {userName}
+          </span>
+          <button
+            type="button"
+          >
+            <Link
+              to="/login"
+              data-testid="customer_products__element-navbar-link-logout"
+              className="logoutPage"
+              onClick={ () => logoutUser() }
+            >
+              Sair
+            </Link>
+          </button>
+        </>
+      )}
   }
   return (
     <header>

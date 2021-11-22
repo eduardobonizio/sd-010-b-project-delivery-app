@@ -20,6 +20,11 @@ export default function FormLogin() {
       return setTimeout(() => setErr(false), threeSecond);
     }
     createStorage('user', user.data[0]);
+    if ("something" === "admin"){
+      return history.push('/admin/manage')
+    } else if ("" === "seller") {
+      return history.push('/seller/orders')
+    }
     history.push('/customer/products');
   }
 
