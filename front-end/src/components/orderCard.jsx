@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 function OrderCart(props) {
   const { order } = props;
@@ -18,32 +19,34 @@ function OrderCart(props) {
 
   return (
     <div>
-      <div>
-        <h3
-          data-testid={ `customer_orders__element-order-id-${orderNum}` }
-        >
-          {`Pedido ${orderNum}`}
-        </h3>
-      </div>
-      <div>
-        <h3
-          data-testid={ `customer_orders__element-delivery-status-${orderNum}` }
-        >
-          {status}
-        </h3>
-      </div>
-      <div>
-        <p
-          data-testid={ `customer_orders__element-order-date-${orderNum}` }
-        >
-          {convertDate(saleDate)}
-        </p>
-        <p
-          data-testid={ `customer_orders__element-card-price-${orderNum}` }
-        >
-          {convertPrice(totalPrice)}
-        </p>
-      </div>
+      <Link to={ `/customer/orders/${orderNum}` }>
+        <div>
+          <h3
+            data-testid={ `customer_orders__element-order-id-${orderNum}` }
+          >
+            {`Pedido ${orderNum}`}
+          </h3>
+        </div>
+        <div>
+          <h3
+            data-testid={ `customer_orders__element-delivery-status-${orderNum}` }
+          >
+            {status}
+          </h3>
+        </div>
+        <div>
+          <p
+            data-testid={ `customer_orders__element-order-date-${orderNum}` }
+          >
+            {convertDate(saleDate)}
+          </p>
+          <p
+            data-testid={ `customer_orders__element-card-price-${orderNum}` }
+          >
+            {convertPrice(totalPrice)}
+          </p>
+        </div>
+      </Link>
     </div>
   );
 }
