@@ -23,6 +23,7 @@ function ProductCard({ id, name, image, price }) {
   const handleChange = (event, priceProduct) => {
     const numPrice = parseFloat(priceProduct);
     const { target } = event;
+    console.log(target.value);
     setValueInput(target.value);
     const newValue = numPrice * target.value;
     const valueCar = JSON.parse(localStorage.getItem('carrinho'));
@@ -36,7 +37,8 @@ function ProductCard({ id, name, image, price }) {
     const valueCar = JSON.parse(localStorage.getItem('carrinho'));
     // console.log(typeof valueCar);
     // console.log(typeof numPrice);
-    const newValue = valueInput + 1;
+    const newValue = parseInt(valueInput, 10) + 1;
+    // const newValue = valueInput + 1;
     setValueInput(newValue);
     const currentTotalValue = (valueCar + numPrice);
     setTotalPrice(currentTotalValue);
@@ -46,9 +48,12 @@ function ProductCard({ id, name, image, price }) {
   const subOne = (priceProduct) => {
     const numPrice = parseFloat(priceProduct);
     const valueCar = JSON.parse(localStorage.getItem('carrinho'));
+    console.log(valueInput);
     if (valueInput === 0) {
-      return setValueInput(0);
+      console.log('entrou aqui');
+      return 0;
     }
+    // let newValue = 0;
     const newValue = valueInput - 1;
     setValueInput(newValue);
     const currentTotalValue = (valueCar - numPrice);
@@ -91,14 +96,8 @@ function ProductCard({ id, name, image, price }) {
         data-testid={ `customer_products__input-card-quantity-${id}` }
         value={ valueInput }
         onChange={ (event) => handleChange(event, price) }
+        onClick={ (e) => { e.target.value = ''; } }
       />
-      {/* <button
-                    type="button"
-                    data-testid="customer_products__checkout-bottom-value"
-                  >
-                    Ver carrinho: R$
-                    { totalValue }
-          </button> */}
     </div>
   );
 }
