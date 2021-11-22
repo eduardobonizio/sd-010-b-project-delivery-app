@@ -10,8 +10,8 @@ function Products() {
   const { name } = JSON.parse(localStorage.getItem('user'));
   const [cart, setCart] = useState();
   const [cartTotal, setCartTotal] = useState(0);
-  const [address, setAddress] = useState('');
-  const [addressNumber, setAddressNumber] = useState('');
+  const [deliveryAddress, setDeliveryAddress] = useState('');
+  const [deliveryNumber, setDeliveryNumber] = useState('');
   // const history = useHistory();
 
   useEffect(() => {
@@ -45,8 +45,8 @@ function Products() {
       const newSale = {
         totalPrice: cartTotal,
         products: cart,
-        address,
-        addressNumber,
+        deliveryAddress,
+        deliveryNumber,
       };
       const saleId = await axios.post('http://localhost:3001/customer/checkout', newSale, config);
       console.log(saleId);
@@ -83,8 +83,8 @@ function Products() {
       </div>
       <div>Detalhes e Endereço para Entrega</div>
       <CheckoutDeliveryData
-        setAddressNumber={ setAddressNumber }
-        setAddress={ setAddress }
+        setDeliveryNumber={ setDeliveryNumber }
+        setDeliveryAddress={ setDeliveryAddress }
         finishSale={ finishSale }
       />
     </>
