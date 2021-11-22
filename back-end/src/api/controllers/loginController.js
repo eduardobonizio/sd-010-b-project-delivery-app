@@ -6,8 +6,9 @@ const login = async (req, res, next) => {
 
   try {
     const user = await loginService.login({ email, password });
+    const { name, role } = user;
     const token = generateToken(user);
-    return res.status(200).json({ user: { name: user.name, email, role: user.role, token } });
+    return res.status(200).json({ user: { name, email, role, token } });
   } catch (e) {
     next(e);
   }

@@ -13,7 +13,7 @@ const getUserOrders = async (req, res, next) => {
   }
 };
 
-const getSaleInfo = async (req, res, next) => {
+const getSale = async (req, res, next) => {
   try {
     const { id } = req.params;
     const saleInfo = await saleService.getSaleInfo(id);
@@ -23,12 +23,12 @@ const getSaleInfo = async (req, res, next) => {
   }
 };
 
-const create = async (req, res, next) => {
+const createSale = async (req, res, next) => {
   try {
     const { totalPrice, deliveryAddress, deliveryNumber, sellerId, cart } = req.body;
     const { authorization } = req.headers;
-    const user = validateToken(authorization);
-    const { id } = user;
+    const payload = validateToken(authorization);
+    const { id } = payload;
 
     const saleId = await saleService.create({
       userId: id,
@@ -44,7 +44,7 @@ const create = async (req, res, next) => {
   }
 };
 
-const getProductsOfSale = async (req, res, next) => {
+const getSaleInfo = async (req, res, next) => {
   try {
     const { id } = req.params;
     const productsInfo = await saleService.getProductsOfSale(id);
@@ -57,7 +57,7 @@ const getProductsOfSale = async (req, res, next) => {
 
 module.exports = {
   getUserOrders,
+  getSale,
+  createSale,
   getSaleInfo,
-  create,
-  getProductsOfSale,
 };
