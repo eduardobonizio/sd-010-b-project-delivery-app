@@ -14,7 +14,7 @@ const auth = async (req, res, next) => {
   try {
     const { data } = isTokenValid(authorization);
     req.user = data;
-    next();
+    return next();
   } catch (err) {
     return res.status(UNAUTHORIZED).json({
       message: 'Expired or invalid token',
@@ -22,4 +22,4 @@ const auth = async (req, res, next) => {
   }
 };
 
-module.exports = { auth };
+module.exports = auth;
