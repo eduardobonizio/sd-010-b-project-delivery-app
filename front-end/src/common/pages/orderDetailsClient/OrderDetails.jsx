@@ -2,13 +2,13 @@ import React from 'react';
 import CheckoutDetails from '../../../components/CheckDetailsComponents/CheckoutDetails';
 import Header from '../../../components/ProductsComponents/CheckBtnProducts';
 import { Context } from '../../../provider/Provider';
-import { getPurchase } from '../../../services/api';
+import { postPurchase } from '../../../services/api';
 
 function OrderDetails() {
   const { dataUser, totalOrder, setTotalOrder } = React.useContext(Context);
 
   async function handleCheckout() {
-    const checkout = await getPurchase(dataUser.token);
+    const checkout = await postPurchase(dataUser.token);
     setTotalOrder(checkout);
   }
 

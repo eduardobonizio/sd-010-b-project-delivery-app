@@ -2,8 +2,7 @@ const { Product } = require('../database/models');
 
 const getAllProductsService = async () => {
   const products = await Product.findAll();
-  console.log(Product, 'ba', products);
-  return products;
+  return products.map((product) => product.dataValues);
 };
 
 module.exports = { getAllProductsService };

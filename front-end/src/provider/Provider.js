@@ -3,7 +3,7 @@ import React, { createContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useLocation } from 'react-router-dom';
 import tokenHandler from '../helper/functions/tokenHandler';
-import { getAllProducts, getPurchase } from '../services/api';
+import { getAllProducts, postPurchase } from '../services/api';
 import translateToCamelCase from '../helper/functions/translateProductsToCamelCase';
 
 const Context = createContext();
@@ -27,19 +27,28 @@ const Provider = ({ children }) => {
   const location = useLocation();
   const history = useHistory();
 
-  function checkoutPurchase() {
-    const checkoutKeys = {
-      userId: dataUser.id,
-      sellerId: chooseSeller.id,
+  async function checkoutPurchase() {
+    const listItem = orderInProgress.map((item) => {
+      const revisedItem = item;
+      revisedItem.productId = item.id;
+      delete revisedItem.id;
+      delete revisedItem.name;
+      delete revisedItem.price;
+      return revisedItem;
+    });
+    const checkoutObj = {
+      sellerId: Number(chooseSeller),
       totalPrice: totalOrder,
       deliveryAddress: purchaseAddress,
       deliveryNumber: addressNumber,
       saleDate: new Date(),
       status: 'Pendente',
-      products: orderInProgress,
+      products: listItem,
     };
-    console.log(checkoutKeys);
-    return history.push('/customer/order/1');
+    const newPurchase = await postPurchase(checkoutObj, dataUser.token);
+    setOrderInProgress([]);
+    setTotalOrder(0);
+    return history.push(`/customer/orders/${newPurchase.id}`);
   }
 
   function removeProduct(productIndex) {

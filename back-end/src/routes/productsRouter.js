@@ -1,7 +1,7 @@
 const express = require('express');
 
 const router = express.Router();
-const productsService = require('../services/productsServices');
+const productsService = require('../service/productsServices');
 
 router.get('/', async (req, res) => {
   const products = await productsService.getAllProductsService();

@@ -5,25 +5,42 @@ import PurshaseTotal from './PurchaseTotal';
 import PurchaseOrderBtn from './PurchaseOrderBtn';
 import DeliveryContainer from './DeliveryContainer';
 import { Context } from '../../provider/Provider';
-import Header from '../ProductsComponents/Header';
 
 function CheckoutContainer() {
   const { orderInProgress } = React.useContext(Context);
-  console.log('order', orderInProgress);
-  return (
+
+  const heading = () => (
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Descrição</th>
+        <th>Quantidade</th>
+        <th>Valor Unitário</th>
+        <th>Subtotal</th>
+        <th>Remover</th>
+      </tr>
+    </thead>
+  );
+
+  return orderInProgress === 0 ? (
     <div>
-      <Header />
-      Finalizar Pedido
+      <h1>Carrinho Vazio</h1>
+      <Link to="/customer/products">
+        Voltar
+      </Link>
+    </div>
+  ) : (
+    <div>
       <table>
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>Descrição</th>
-            <th>Quantidade</th>
-            <th>Valor Unitário</th>
-            <th>Subtotal</th>
-          </tr>
-        </thead>
+        <colgroup>
+          <col span="1" style={ { width: '10%' } } />
+          <col />
+          <col span="1" style={ { width: '20%' } } />
+          <col span="1" style={ { width: '20%' } } />
+          <col span="1" style={ { width: '20%' } } />
+          <col span="1" style={ { width: '20%' } } />
+        </colgroup>
+        { heading() }
         <tbody>
           {
             orderInProgress.map((order, index) => (
@@ -36,12 +53,7 @@ function CheckoutContainer() {
       <DeliveryContainer />
       <PurchaseOrderBtn />
       <Link to="/customer/products">
-        <button
-          type="button"
-        >
-          Voltar
-        </button>
-
+        Voltar
       </Link>
     </div>
   );
