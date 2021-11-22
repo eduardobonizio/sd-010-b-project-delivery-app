@@ -12,7 +12,7 @@ const newJwtToken = async (email) => jwt.sign({ data: email }, secret, jwtConfig
 
 const isTokenValid = async (token) => {
   try {
-    jwt.verify(token, secret);
+    return jwt.verify(token, secret);
   } catch (e) {
     throw new Error(e);
   }
