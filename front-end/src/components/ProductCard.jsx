@@ -12,13 +12,10 @@ function ProductCard({ id, name, image, price }) {
   const { setTotalPrice } = useContext(Logincontext);
   // const ELEVEN = 11;
 
-  // useEffect(() => {
-  //   axios.get('http://localhost:3001/products')
-  //     .then((result) => {
-  //       setIsLoading(false);
-  //       setData(result.data);
-  //     });
-  // }, []);
+  useEffect(() => {
+    const shoppingCart = localStorage.getItem('carrinho');
+    return shoppingCart;
+  }, []);
 
   const handleChange = (event, priceProduct) => {
     const numPrice = parseFloat(priceProduct);
@@ -61,7 +58,7 @@ function ProductCard({ id, name, image, price }) {
       key={ id }
       data-testid={ `customer_products__element-card-price-${id}` }
     >
-      { price.replace('.', ',') }
+      {price.replace('.', ',')}
       <img
         style={ { height: 200 } }
         data-testid={ `customer_products__img-card-bg-image-${id}` }
@@ -92,13 +89,16 @@ function ProductCard({ id, name, image, price }) {
         value={ valueInput }
         onChange={ (event) => handleChange(event, price) }
       />
+      <p>
+        { shoppingCart }
+      </p>
       {/* <button
-                    type="button"
-                    data-testid="customer_products__checkout-bottom-value"
-                  >
-                    Ver carrinho: R$
-                    { totalValue }
-          </button> */}
+                  type="button"
+                  data-testid="customer_products__checkout-bottom-value"
+                >
+                  Ver carrinho: R$
+                  { totalValue }
+        </button> */}
     </div>
   );
 }
