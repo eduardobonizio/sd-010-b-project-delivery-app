@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 function OrderDetailHeader(props) {
   const { orderDetail } = props;
   const { id, seller, saleDate, status } = orderDetail;
-  const date = new Date(saleDate).toLocaleDateString();
+  /** SOURCE https://stackoverflow.com/questions/22719346/tolocaledatestring-is-not-returning-dd-mm-yyyy-format */
+  const date = new Date(saleDate).toLocaleDateString('en-GB', {
+    month: '2-digit', day: '2-digit', year: 'numeric' });
 
   return (
     <header>
