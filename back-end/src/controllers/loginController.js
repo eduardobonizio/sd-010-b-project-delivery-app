@@ -33,8 +33,9 @@ const register = async (req, res) => {
     await User.create({ name, email, password, role: 'customer' });
     return res.status(201).json({ message: 'Created' });
   }
-  await User.create({ name, email, password, role });
-  return res.status(201).json({ message: 'Created' });
+  const create = await User.create({ name, email, password, role });
+  return res.status(201).json({ 
+    id: create.id, name: create.name, email: create.email, role: create.role });
 };
 
 module.exports = { loginController, register };
