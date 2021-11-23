@@ -1,14 +1,14 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 
 function RegisterButton() {
-  const navigate = useNavigate();
+  const history = useHistory();
 
   return (
     <Button
       variant="warning"
-      onClick={ () => navigate('/register') }
+      onClick={ () => history.push('/register') }
       data-testid="common_login__button-register"
       type="button"
     >

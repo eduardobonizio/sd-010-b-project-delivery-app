@@ -16,9 +16,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DECIMAL(4,2)
       },
-      url_image: {
+      urslImage: {
         allowNull: false,
-        type: Sequelize.STRING(200)
+        type: Sequelize.STRING(200),
+        field: "url_image",
       }
     });
   },

@@ -1,23 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Col, Container, Form, Image, Row } from 'react-bootstrap';
-import { setEmail, setPassword } from '../actions';
+import axios from 'axios';
 import EmailInput from '../components/EmailInput';
 import LoginButton from '../components/LoginButton';
 import PasswordInput from '../components/PasswordInput';
 import LoginErrorMessage from '../components/LoginErrorMessage';
 import RegisterButton from '../components/RegisterButton';
 import { validateEmailFormat, validatePassword } from '../helpers/validation';
-import './Login.css';
+import './css/Login.css';
 
 function Login() {
-  const dispatch = useDispatch();
   const [email, setStateEmail] = useState('');
   const [password, setStatePassword] = useState('');
   const [disabled, setDisable] = useState(true);
   const [hideErrorMessage, setHideErrorMessage] = useState(true);
-  const navigate = useNavigate();
+  const history = useHistory();
   const emailTestId = 'common_login__input-email';
   const passwordTestId = 'common_login__input-password';
   const title = 'Login';
@@ -32,13 +30,15 @@ function Login() {
     }
   }, [email, password]);
 
-  const dispatchOnSubmit = () => {
-    dispatch(setEmail(email));
-    dispatch(setPassword(password));
-
-    const fail = true;
-    if (fail) return setHideErrorMessage(!hideErrorMessage);
-    return navigate('/customer/products');
+  const dispatchOnSubmit = async () => {
+    try {
+      const response = await axios.post('http://localhost:3001/login', { email, password });
+      const { data } = response;
+      localStorage.setItem('user', JSON.stringify(data));
+      history.push('/customer/products');
+    } catch (e) {
+      setHideErrorMessage(false);
+    }
   };
 
   return (
