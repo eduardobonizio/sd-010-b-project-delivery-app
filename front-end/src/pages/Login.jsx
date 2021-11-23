@@ -35,7 +35,7 @@ function Login() {
     if (alreadyLoggedIn && alreadyLoggedIn.role === 'customer') {
       history.push('/customer/products');
     }
-  }, []);
+  });
 
   const dispatchOnSubmit = async () => {
     try {
