@@ -185,4 +185,5 @@ export const ButtonFinishOrder = styled.button`
   font-weight: 800;
   color: #FFF;
   font-size: 14px;
+  cursor: pointer;
 `;
