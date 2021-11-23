@@ -30,4 +30,9 @@ const validateJWT = async (req, res, next) => {
   }
 };
 
-module.exports = validateJWT;
+const getUserByToken = (token) => {
+  const decoded = jwt.verify(token, secret);
+  return decoded;
+};
+
+module.exports = { validateJWT, getUserByToken };

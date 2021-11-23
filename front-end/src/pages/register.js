@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Joi from 'joi';
 import { useValidator } from 'react-joi';
-// import api from '../services';
+import api from '../services';
 import userLogin from '../services/authLogin';
 
 export default function Register() {
@@ -62,15 +62,11 @@ export default function Register() {
     }));
   };
 
-  // const userRegister = async () => {
-  //   try {
-  //     const info = state.$data;
-  //     await api.register(info);
-  //     return window.location.replace('/customer/products');
-  //   } catch (error) {
-  //     setIsErr(true);
-  //   }
-  // };
+  const userRegister = async () => {
+    const info = state.$data;
+    await api.register(info);
+    // return window.location.replace('/customer/products');
+  };
 
   return (
     <>
@@ -122,7 +118,11 @@ export default function Register() {
         name="registerButton"
         data-testid="common_register__button-register"
         disabled={ isDisabled }
-        onClick={ async () => { validate(); await userLogin(state, setIsErr); } }
+        onClick={ async () => {
+          validate();
+          await userRegister();
+          await userLogin(state, setIsErr);
+        } }
       >
         CADASTRAR
 

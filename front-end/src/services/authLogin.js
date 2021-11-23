@@ -1,6 +1,7 @@
 import api from '.';
 
 const redirect = ({ role }) => {
+  if (!role) role = 'customer';
   switch (role) {
   case 'administrator': return window.location.replace('/admin/manage');
   case 'customer': return window.location.replace('/customer/products');

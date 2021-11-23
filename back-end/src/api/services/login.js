@@ -6,6 +6,8 @@ const login = async ({ email, password }) => {
   const result = await User.findOne(
     { where: { email, password: hash } },
     );
+    console.log(result);
+    if (!result) return null;
   const { id, name, role } = result;
   return { id, name, email, role }; 
 };
