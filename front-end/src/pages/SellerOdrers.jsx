@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
-import CardOrder from '../components/CardOrder';
+import CardOrder from '../components/CardOrderCustomer';
 
 function SellerOrders() {
   const [sales, setSales] = useState([]);

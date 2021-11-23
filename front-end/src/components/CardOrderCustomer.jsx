@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import ID from '../utils/dataTestIdDict';
 import '../styles/CardOrder.css';
 
-function Order({ sale, seller }) {
+function CardOrderCustomer({ sale }) {
   // const [colorStatus, setColorStatus] = useState('pendente');
   // const [valueStatus, setValueStatus] = useState('Pendente');
 
@@ -21,12 +21,6 @@ function Order({ sale, seller }) {
   }
 
   const data = new Date(sale.saleDate).toLocaleDateString('pt-BR', { timeZone: 'UTC' });
-
-  const renderAddress = () => (
-    <div>
-      { sale.deliveryAddress }
-    </div>
-  );
 
   return (
     <Link className="boxOrder" to={ `/customer/orders/${sale.id}` }>
@@ -50,16 +44,15 @@ function Order({ sale, seller }) {
             </p>
           </div>
         </div>
-        {seller ? renderAddress() : false}
       </div>
     </Link>
   );
 }
 
-Order.propTypes = PropTypes.objectOf({
+CardOrderCustomer.propTypes = PropTypes.objectOf({
   id: PropTypes.number,
   date: PropTypes.string,
   totalPrice: PropTypes.number,
 }).isRequired;
 
-export default Order;
+export default CardOrderCustomer;

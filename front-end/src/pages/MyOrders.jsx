@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import CardOrder from '../components/CardOrder';
+import CardOrderCustomer from '../components/CardOrderCustomer';
 import Header from '../components/Header';
 
 function MyOrders() {
@@ -22,7 +22,7 @@ function MyOrders() {
       <Header userRole="customer" />
       <div className="boxPageOrder">
         {
-          sales.map((sale) => <CardOrder key={ sale.id } sale={ sale } />)
+          sales.map((sale) => <CardOrderCustomer key={ sale.id } sale={ sale } />)
         }
       </div>
     </>
