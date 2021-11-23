@@ -4,9 +4,10 @@ import { Card } from 'react-bootstrap';
 
 function OrderCard({ id, status, date, totalPrice }) {
   const dateArray = date.split('-');
-  const formattedDate = `${dateArray[2][0]}${dateArray[2][1]}/
-  ${dateArray[1][0]}${dateArray[1][1]}/
-  ${dateArray[0][0]}${dateArray[0][1]}${dateArray[0][2]}${dateArray[0][3]}`;
+  const year = `${dateArray[0][0]}${dateArray[0][1]}${dateArray[0][2]}${dateArray[0][3]}`;
+  const month = `${dateArray[1][0]}${dateArray[1][1]}`;
+  const day = ` ${dateArray[2][0]}${dateArray[2][1]}`;
+  const formattedDate = `${day}/${month}/${year}`;
   return (
     <>
       <Card.Title
@@ -33,7 +34,7 @@ function OrderCard({ id, status, date, totalPrice }) {
       <Card.Text>
         R$
         <span
-          data-testid={ `customer_orders__element-card-price-${id}` }
+          data-testid={ `customer_orders__element-order-totalvalue-${id}` }
         >
           { totalPrice.toString().split('.').join(',') }
         </span>
