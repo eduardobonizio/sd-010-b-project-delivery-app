@@ -31,13 +31,19 @@ export default function AdminForm() {
       body: JSON.stringify({ name, email, password, role }),
     };
 
-    fetch('http://localhost:3001/users/register', requestOptions)
+    fetch('http://localhost:3001/users/adm/register', requestOptions)
       .then((res) => res.json())
       .then((data) => setUserStatus(data));
   }
 
   React.useEffect(() => {
-    console.log(userStatus);
+    const span = document.getElementById('invalid-message');
+    span.innerHTML = userStatus.message;
+    if (userStatus.message !== '') {
+      span.style.visibility = 'visible';
+    } else {
+      span.style.visibility = 'hidden';
+    }
   }, [userStatus]);
 
   return (

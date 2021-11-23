@@ -16,6 +16,8 @@ function NavBar(props) {
       </section>);
   }
 
+  const user = JSON.parse(localStorage.getItem('user'));
+
   return (
     <main className="navbar__container">
       <section className="navbar__left__container">
@@ -34,7 +36,7 @@ function NavBar(props) {
           className="navbar__container__user"
           data-testid="customer_products__element-navbar-user-full-name"
         >
-          Cicrano da Silva
+          {user.name}
         </section>
         <section
           className="navbar__container__logout"
