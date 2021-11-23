@@ -20,6 +20,13 @@ function Login() {
   const passwordTestId = 'common_login__input-password';
   const title = 'Login';
 
+  const redirect = {
+    to: {
+      customer: () => history.push('/customer/products'),
+      seller: () => history.push('/seller/orders'),
+    },
+  };
+
   useEffect(() => {
     if (password && email) {
       if (validateEmailFormat(email) && validatePassword(password)) {
@@ -32,8 +39,9 @@ function Login() {
 
   useEffect(() => {
     const alreadyLoggedIn = JSON.parse(localStorage.getItem('user'));
-    if (alreadyLoggedIn && alreadyLoggedIn.role === 'customer') {
-      history.push('/customer/products');
+    if (alreadyLoggedIn) {
+      const { role } = alreadyLoggedIn;
+      redirect.to[role]();
     }
   });
 
@@ -42,7 +50,7 @@ function Login() {
       const response = await axios.post('http://localhost:3001/login', { email, password });
       const { data } = response;
       localStorage.setItem('user', JSON.stringify(data));
-      history.push('/customer/products');
+      redirect.to.customer();
     } catch (e) {
       setHideErrorMessage(false);
     }

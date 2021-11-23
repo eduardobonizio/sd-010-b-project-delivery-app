@@ -18,6 +18,8 @@ function App() {
       <PrivateRoute path="/customer/checkout" component={ CheckoutCart } />
       <PrivateRoute path="/customer/orders/:id" component={ ListSaleById } />
       <PrivateRoute path="/customer/orders" component={ ListOrders } />
+      <PrivateRoute path="/customer/orders" component={ ListOrders } />
+      <PrivateRoute path="/seller/orders" component={ ListOrders } />
       <Redirect strict from="/" to="/login" />
     </Switch>
   );
