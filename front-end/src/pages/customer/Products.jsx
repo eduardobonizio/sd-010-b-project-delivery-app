@@ -7,6 +7,7 @@ import ButtonSeeCart from '../../components/ButtonSeeCart';
 
 function Products() {
   const [isLoading, setIsLoading] = useState(true);
+  // const { productId } = useContext(Logincontext);
   const [data, setData] = useState([]);
 
   if (localStorage.getItem('carrinho') === null) {
@@ -31,7 +32,7 @@ function Products() {
           id="deck"
           style={ { display: 'flex', flexWrap: 'wrap', padding: '80px 30px' } }
         >
-          {data.map(({ id, name, url_image: image, price }) => (
+          { data.map(({ id, name, url_image: image, price }) => (
             <ProductCard
               key={ id }
               id={ id }

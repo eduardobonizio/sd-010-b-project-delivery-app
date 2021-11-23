@@ -10,6 +10,7 @@ import Logincontext from '../context/LoginContext';
 function ProductCard({ id, name, image, price }) {
   const [valueInput, setValueInput] = useState(0);
   const { setTotalPrice } = useContext(Logincontext);
+  const { arrayProducts, setArrayProducts } = useContext(Logincontext);
   // const ELEVEN = 11;
 
   // useEffect(() => {
@@ -21,6 +22,7 @@ function ProductCard({ id, name, image, price }) {
   // }, []);
 
   const handleChange = (event, priceProduct) => {
+    setArrayProducts
     const numPrice = parseFloat(priceProduct);
     const { target } = event;
     console.log(target.value);
@@ -33,12 +35,10 @@ function ProductCard({ id, name, image, price }) {
   };
 
   const addOne = (priceProduct) => {
+    setArrayProducts([...arrayProducts, { id, name, price }]);
     const numPrice = parseFloat(priceProduct);
     const valueCar = JSON.parse(localStorage.getItem('carrinho'));
-    // console.log(typeof valueCar);
-    // console.log(typeof numPrice);
     const newValue = parseInt(valueInput, 10) + 1;
-    // const newValue = valueInput + 1;
     setValueInput(newValue);
     const currentTotalValue = (valueCar + numPrice);
     setTotalPrice(currentTotalValue);
@@ -46,9 +46,10 @@ function ProductCard({ id, name, image, price }) {
   };
 
   const subOne = (priceProduct) => {
+    const productToSubtract = arrayProducts.filter((product) => product.id !== id);
+    setArrayProducts(productToSubtract);
     const numPrice = parseFloat(priceProduct);
     const valueCar = JSON.parse(localStorage.getItem('carrinho'));
-    console.log(valueInput);
     if (valueInput === 0) {
       console.log('entrou aqui');
       return 0;
@@ -78,6 +79,7 @@ function ProductCard({ id, name, image, price }) {
           data-testid={ `customer_products__element-card-title-${id}` }
         >
           {name}
+          {console.log(arrayProducts)}
         </p>
         <button
           type="button"
