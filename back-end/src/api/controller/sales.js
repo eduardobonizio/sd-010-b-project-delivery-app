@@ -4,12 +4,11 @@ const addPurchase = async (req, res) => {
   try {
     const purchase = req.body;
     const { products } = purchase;
-    const addSale = await Sale.addSale(purchase);
-    console.log(addSale);
-    const newPurchase = await Sale.addPurchase(products);
+    const { id } = await Sale.addSale(purchase);
+    const newPurchase = await Sale.addPurchase(products, id);
     return res.status(201).json(newPurchase);
   } catch (error) {
-    console.log(error, 'error');
+    console.log(error);
     return res.status(500).json(error);
   }
 };

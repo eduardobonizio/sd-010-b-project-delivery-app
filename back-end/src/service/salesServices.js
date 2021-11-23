@@ -4,18 +4,18 @@ const addSale = async (saleInfo) => {
   const sale = saleInfo;
   delete sale.products;
   const data = await Sale.create(sale);
-  console.log(data.id, 'data');
   return data;
 };
 
-const addPurchase = async (products) => {
-  console.log(products);
+const addPurchase = async (products, saleId) => {
   const data = await Promise.all(products.map(async ({ productId, quantity }) => {
-    SalesProducts.create({
-      ProductId: productId,
+    return SalesProducts.create({
+      sale_id: saleId,
+      product_id: productId,
       quantity,
     });
   }));
+  
   return data;
 };
 
