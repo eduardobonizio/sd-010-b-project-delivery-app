@@ -2,7 +2,6 @@ const { Sale, SalesProduct } = require('../models');
 
 const insertIntoSalesProduct = async (products, saleId) => {
   await products.forEach(async (product) => {
-    console.log(product.id, product.quantity);
     await SalesProduct.create({
       saleId,
       productId: product.id,
