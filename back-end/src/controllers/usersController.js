@@ -14,4 +14,16 @@ const getOrders = async (req, res) => {
   res.status(200).json(result);
 };
 
-module.exports = { getSeller, getOrders };
+const getUsers = async (_req, res) => {
+  const resultDB = await User.findAll({ attributes: ['name', 'email', 'role'] });
+  const results = resultDB.filter((users) => users.role !== 'administrator');
+  res.status(200).json(results);
+};
+
+const deleteUsers = async (req, res) => {
+  const { email } = req.body;
+  await User.destroy({ where: { email } });
+  res.status(204).send();
+};
+
+module.exports = { getSeller, getOrders, getUsers, deleteUsers };
