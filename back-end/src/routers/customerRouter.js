@@ -7,13 +7,15 @@ const customerRouter = express.Router();
 customerRouter.get('/products');
 
 customerRouter.post('/checkout', auth, async (req, res) => {
-  const { body } = req;
+  try {
+    const { body } = req;
 
-  const newSale = await createNewSale(body);
+    const { id } = await createNewSale(body);
 
-  // console.log('newSale', newSale);
-
-  return res.status(200).send(newSale);
+    return res.status(200).send({ saleId: id });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 customerRouter.get('/orders');
