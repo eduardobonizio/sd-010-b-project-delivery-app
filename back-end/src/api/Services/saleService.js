@@ -1,4 +1,4 @@
-const { sale } = require('../../database/models');
+const { sale, salesProduct, product } = require('../../database/models');
 
 const getAllSales = async (id) => {
   const query = { where: { id } };
@@ -10,13 +10,23 @@ const getAllSales = async (id) => {
 };
 
 const getSalesById = async (id) => {
-  console.log(id, 'service');
-  const saleById = await sale.findOne({
-    where: { id: 1 }
-  })
+  const saleById = await salesProduct.findOne(
+    {
+      include: [{
+        where: { sale_id: id },
+        model: sale,
+        as: 'sale',
+      },
+      {
+        model: product,
+        as: 'product',
+        through: { attributes: [] },
+      }],
+    },
+  );
 
   return saleById;
-}
+};
 
 module.exports = {
   getAllSales,

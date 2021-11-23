@@ -16,10 +16,10 @@ function OrderDetails({ id }) {
     const fetchProductDetails = async () => {
       const productInfo = await axios.get('http://localhost:3001/sales/1');
       setLoading(false);
-      setSaleDetails(productInfo);
+      setSaleDetails([{ productInfo }]);
     };
     fetchProductDetails();
-  });
+  }, []);
 
   if (loading) {
     return <span>Carregando conteúdo</span>;
@@ -31,20 +31,6 @@ function OrderDetails({ id }) {
       <div>
         {`PEDIDO ${number3}; Vendedor(a): ${vendedor}; Data ${data} ${status}`}
         <button type="button">MARCAR COMO ENTREGUE</button>
-      </div>
-      <div>
-        {
-          productDetails.map((product) => (
-            // eslint-disable-next-line max-len
-            <span key={ product.d }>
-              <span>{product.d}</span>
-              <span>{product.description}</span>
-              <span>{product.quantity}</span>
-              <span>{product.unityValue}</span>
-              <span>{product.total}</span>
-            </span>
-          ))
-        }
       </div>
     </main>
   );
