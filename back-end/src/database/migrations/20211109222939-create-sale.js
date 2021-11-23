@@ -22,7 +22,9 @@ module.exports = {
       },
       sale_date: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW,
+
       },
       status: {
         allowNull: false,
