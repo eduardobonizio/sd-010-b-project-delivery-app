@@ -9,17 +9,17 @@ import * as P from '../styles/PageOrderDetails';
 import formatDate from '../services/helpers/formatDate';
 
 // Definição de constantes
-const ID_ORDER = 'customer_order_details__element-order-details-label-order-id';
-const NAME_SELLER = 'customer_order_details__element-order-details-label-seller-name';
-const ORDER_DATE = 'customer_order_details__element-order-details-label-order-date';
-const STATUS = 'customer_order_details__element-order-details-label-delivery-status';
-const CHECK_STAUS = 'customer_order_details__button-delivery-check';
-const ITEM = 'customer_order_details__element-order-table-item-number-'; // index
-const NAME = 'customer_order_details__element-order-table-name-'; // index
-const QUANTITY = 'customer_order_details__element-order-table-quantity-'; // index
-const SUB_TOTAL = 'customer_order_details__element-order-table-sub-total-'; // index
-const UNIT_PRICE = 'customer_order_details__element-order-table-unit-price-'; // index
-const TOTAL_PRICE = 'customer_order_details__element-order-total-price';
+const ID_ORDER = '_order_details__element-order-details-label-order-id';
+const NAME_SELLER = '_order_details__element-order-details-label-seller-name';
+const ORDER_DATE = '_order_details__element-order-details-label-order-date';
+const STATUS = '_order_details__element-order-details-label-delivery-status';
+const CHECK_STAUS = '_order_details__button-delivery-check';
+const ITEM = '_order_details__element-order-table-item-number-'; // index
+const NAME = '_order_details__element-order-table-name-'; // index
+const QUANTITY = '_order_details__element-order-table-quantity-'; // index
+const SUB_TOTAL = '_order_details__element-order-table-sub-total-'; // index
+const UNIT_PRICE = '_order_details__element-order-table-unit-price-'; // index
+const TOTAL_PRICE = '_order_details__element-order-total-price';
 const DEFAULT_DATA_PRODUCTS = {
   seller: { name: '' },
   productsSold: [],
@@ -31,7 +31,7 @@ const DEFAULT_DATA_PRODUCTS = {
 function OrderDetails() {
   const [productsDetails, setProductsDetails] = useState(DEFAULT_DATA_PRODUCTS);
   const { idVenda } = useParams();
-  const { token } = getFromLocalStorage('user');
+  const { token, role } = getFromLocalStorage('user');
 
   useEffect(() => {
     (async () => {
@@ -54,11 +54,11 @@ function OrderDetails() {
   const tbodyOrderDetails = (productsSolded) => productsSolded.map(
     ({ name, SalesProduct: { quantity }, price }, index) => (
       <T.tr key={ index }>
-        <T.td data-testid={ ITEM + index }>{index + 1}</T.td>
-        <T.td data-testid={ NAME + index }>{name}</T.td>
-        <T.td data-testid={ QUANTITY + index }>{quantity}</T.td>
-        <T.td data-testid={ UNIT_PRICE + index }>{price.replace('.', ',')}</T.td>
-        <T.td data-testid={ SUB_TOTAL + index }>{quantity * price}</T.td>
+        <T.td data-testid={ role + ITEM + index }>{index + 1}</T.td>
+        <T.td data-testid={ role + NAME + index }>{name}</T.td>
+        <T.td data-testid={ role + QUANTITY + index }>{quantity}</T.td>
+        <T.td data-testid={ role + UNIT_PRICE + index }>{price.replace('.', ',')}</T.td>
+        <T.td data-testid={ role + SUB_TOTAL + index }>{quantity * price}</T.td>
       </T.tr>
     ),
   );
@@ -70,27 +70,27 @@ function OrderDetails() {
       <P.divOrderDetail>
         <div className="pedito-id">
           <span>pedido:</span>
-          <span data-testid={ ID_ORDER }>{ productsDetails.id }</span>
+          <span data-testid={ role + ID_ORDER }>{ productsDetails.id }</span>
         </div>
         <div className="pessoa-vendedora">
           <span>Vendedor:</span>
-          <span data-testid={ NAME_SELLER }>
+          <span data-testid={ role + NAME_SELLER }>
             { productsDetails.seller.name }
           </span>
         </div>
         <div className="pedido-data">
-          <span data-testid={ ORDER_DATE }>
+          <span data-testid={ role + ORDER_DATE }>
             { formatDate(productsDetails.sale_date) }
           </span>
         </div>
         <div className="pedido-status">
-          <span data-testid={ STATUS }>{ productsDetails.status }</span>
+          <span data-testid={ role + STATUS }>{ productsDetails.status }</span>
         </div>
         <div className="button-check-status">
           <button
             type="button"
             disabled
-            data-testid={ CHECK_STAUS }
+            data-testid={ role + CHECK_STAUS }
           >
             MARCAR COMO ENTREGUE
           </button>
@@ -111,7 +111,7 @@ function OrderDetails() {
       {/* Não sei onde esta o data-testId 46 */}
       <P.divTotalPrice>
         <span>Total:</span>
-        <span data-testid={ TOTAL_PRICE }>
+        <span data-testid={ role + TOTAL_PRICE }>
           {productsDetails.total_price.replace('.', ',')}
         </span>
       </P.divTotalPrice>
