@@ -27,7 +27,6 @@ const loginService = async (user) => {
   const payload = { email };
   const { id, name, email: emailUser, role } = validUser;
   const token = jwtLogin(payload);
-  // console.log(token);
 
   const result = { id, name, email: emailUser, role, token };
   return result;
