@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import io from 'socket.io-client';
 import { useHistory } from 'react-router-dom';
 import Context from '../context/Context';
 import { createSale, createSaleProducts } from '../services/apis/servicesSales';
@@ -31,6 +32,8 @@ function DetailsAddress() {
       });
   };
 
+  const socket = io('http://localhost:3001');
+
   const sendOrder = async () => {
     const { token } = getFromLocalStorage('user');
     const saleData = {
@@ -41,9 +44,12 @@ function DetailsAddress() {
       status: 'Pendente' };
     const sale = await createSale(saleData, token);
     const { id } = sale;
+    socket.emit('venda', { status: saleData.status });
     await filterCart(id, token);
     history.push(`/customer/orders/${id}`);
   };
+
+  socket.on('confirmacaoVenda', (message) => console.log(message));
 
   return (
     <form>
