@@ -35,7 +35,7 @@ const validateRole = (role) => {
 };
 
 const validateUserInfo = (userInfo) => {
-  if (userInfo.role !== 'admin') { 
+  if (userInfo.role !== 'administrator') { 
     throw err(errorMessage.UNAUTHORIZED_ENTRIES); 
   }
 };
