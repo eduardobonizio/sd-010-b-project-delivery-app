@@ -6,7 +6,7 @@ const app = express();
 
 const { loginController, register } = require('../controllers/loginController');
 const { getProducts } = require('../controllers/productsController');
-const { getSeller } = require('../controllers/usersController');
+const { getSeller, getOrders } = require('../controllers/usersController');
 const { createOrder, findOrder } = require('../controllers/Orders');
 const { 
   verifyName,
@@ -30,6 +30,7 @@ app.get('/products', getProducts);
 app.get('/sellers', getSeller);
 app.post('/neworder', createOrder);
 app.get('/oneorder/:id', findOrder);
+app.get('/allorders', getOrders);
 
 app.get('/coffee', (_req, res) => res.status(418).end());
 

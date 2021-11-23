@@ -43,7 +43,6 @@ const findOrder = async (req, res) => {
     const obj = { name, unitPrice: price, subTotal: price * quantity, quantity };
     saleItens.push(obj);
   });
-  const total = saleItens.reduce((acc, next) => acc.subTotal + next.subTotal);
   const saleObj = {
     id, userName: searchUser.name, sellerName: sellerName.name, saleDate, status, totalPrice, saleItens };
   res.status(200).json(saleObj);
