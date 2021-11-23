@@ -8,9 +8,15 @@ const getSeller = async (_req, res) => {
 
 const getOrders = async (req, res) => {
   const token = req.headers.authorization;
-  const { email } = jwt.decode(token);
+  const { email, role } = jwt.decode(token);
   const { id } = await User.findOne({ where: { email } });
-  const result = await Sale.findAll({ where: { userId: id } });
+
+  if (role === 'customer') {
+    const result = await Sale.findAll({ where: { userId: id } });
+    res.status(200).json(result);
+  }
+
+  const result = await Sale.findAll({ where: { sellerId: id } });
   res.status(200).json(result);
 };
 
@@ -23,7 +29,7 @@ const getUsers = async (_req, res) => {
 const deleteUsers = async (req, res) => {
   const { email } = req.body;
   await User.destroy({ where: { email } });
-  res.status(204).send();
+  res.status(200).json({message: 'ok'});
 };
 
 module.exports = { getSeller, getOrders, getUsers, deleteUsers };

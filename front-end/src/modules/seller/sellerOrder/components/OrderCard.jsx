@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { formatedDate, formatSaveAndRenderPrice } from '../../../../helpers/functions';
+import { formatedDate } from '../../../../helpers/functions';
 
 export default function OrderCard({ order }) {
+  const address = `${order.deliveryAddress}, ${order.deliveryNumber}`;
   return (
     <Link className="border d-flex w-50" to={ `/seller/orders/${order.id}` }>
       <div className="m-4">
@@ -24,21 +25,21 @@ export default function OrderCard({ order }) {
           <p
             data-testid={ `seller_orders__element-order-date-${order.id}` }
           >
-            { formatedDate(order.date) }
+            { formatedDate(new Date(order.saleDate)) }
           </p>
           <p>
             R$
             <span
               data-testid={ `seller_orders__element-card-price-${order.id}` }
             >
-              { formatSaveAndRenderPrice(order.price.toFixed(2)) }
+              { order.totalPrice }
             </span>
           </p>
           <p>
             <span
               data-testid={ `seller_orders__element-card-price-${order.id}` }
             >
-              { order.address }
+              { address }
             </span>
           </p>
         </div>
@@ -51,8 +52,9 @@ OrderCard.propTypes = {
   order: PropTypes.shape({
     id: PropTypes.number.isRequired,
     status: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-    address: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
+    saleDate: PropTypes.string.isRequired,
+    deliveryAddress: PropTypes.string.isRequired,
+    deliveryNumber: PropTypes.string.isRequired,
+    totalPrice: PropTypes.number.isRequired,
   }).isRequired,
 };

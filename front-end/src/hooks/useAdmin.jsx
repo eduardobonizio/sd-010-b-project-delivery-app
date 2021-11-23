@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
+import { removeUserApi } from '../api/admin';
 
 const AdminContext = createContext();
 
@@ -10,8 +11,9 @@ export function AdminProvider({ children }) {
     setUsers([...users, user]);
   }
 
-  function removeUser(id) {
-    const removedUser = users.filter((user) => user.id === id);
+  async function removeUser(email) {
+    await removeUserApi(email);
+    const removedUser = users.filter((user) => user.email !== email);
     setUsers(removedUser);
   }
 

@@ -22,7 +22,6 @@ export default function OrdersList() {
     allOrders();
   }, []);
 
-  console.log(customerOrders);
   return (
     <div className="d-flex flex-wrap">
       {customerOrders.map((order) => <OrderCard key={ order.id } order={ order } />)}

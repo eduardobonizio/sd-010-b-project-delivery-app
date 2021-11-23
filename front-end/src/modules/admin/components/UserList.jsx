@@ -1,21 +1,21 @@
-import React from 'react';
-// import { getAllUsersApi, removeUserApi } from '../../../api/admin';
-// import { useAdmin } from '../../../hooks/useAdmin';
+import React, { useEffect } from 'react';
+import { getAllUsersApi } from '../../../api/admin';
+import { useAdmin } from '../../../hooks/useAdmin';
 import User from './User';
 import './User.scss';
 
 function UserList() {
-  // const { users, setUsers } = useAdmin();
-  // const user = JSON.parse(localStorage.getItem('user'));
+  const { users, setUsers } = useAdmin();
+  const user = JSON.parse(localStorage.getItem('user'));
 
-  // async function getUsers() {
-  //   const respUsers = await getAllUsersApi(user.token);
-  //   setUsers(respUsers);
-  // }
+  async function getUsers() {
+    const respUsers = await getAllUsersApi(user.token);
+    setUsers(respUsers);
+  }
 
-  // useEffect(() => {
-  //   getUsers();
-  // },[]);
+  useEffect(() => {
+    getUsers();
+  }, []);
 
   return (
     <div className="user-list">
@@ -38,13 +38,15 @@ function UserList() {
         </div>
       </div>
       <div>
-        <User
-          index="1"
-          item="1"
-          name="José"
-          email="email@email.com"
-          roleUser="customer"
-        />
+        {users.map((oneUser, index) => (
+          <User
+            key={ index }
+            index={ index }
+            item={ index }
+            name={ oneUser.name }
+            email={ oneUser.email }
+            roleUser={ oneUser.role }
+          />))}
       </div>
     </div>
   );

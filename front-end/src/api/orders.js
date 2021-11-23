@@ -10,7 +10,7 @@ export async function getAllOrdersApi(token) {
     'Content-Type': 'application/json',
     Authorization: token,
   };
-  console.log(headers.Authorization);
-  const response = await api.get('/allorders', headers);
+
+  const response = await api.get('/allorders', { headers });
   return response.data;
 }
