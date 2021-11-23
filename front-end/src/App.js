@@ -8,6 +8,7 @@ import PrivateRoute from './components/PrivateRoute';
 import CheckoutCart from './pages/CheckoutCart';
 import ListSaleById from './pages/ListSaleById';
 import ListOrders from './pages/ListOrders';
+import SellerOrders from './pages/SellerOrders';
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
       <PrivateRoute path="/customer/orders/:id" component={ ListSaleById } />
       <PrivateRoute path="/customer/orders" component={ ListOrders } />
       <PrivateRoute path="/customer/orders" component={ ListOrders } />
-      <PrivateRoute path="/seller/orders" component={ ListOrders } />
+      <PrivateRoute path="/seller/orders" component={ SellerOrders } />
       <Redirect strict from="/" to="/login" />
     </Switch>
   );
