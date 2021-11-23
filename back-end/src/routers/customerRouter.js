@@ -12,7 +12,7 @@ customerRouter.post('/checkout', auth, async (req, res) => {
 
     const { id } = await createNewSale(body);
 
-    return res.status(200).send({ saleId: id });
+    return res.status(201).send({ saleId: id });
   } catch (error) {
     console.log(error);
   }
