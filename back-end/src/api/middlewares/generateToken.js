@@ -19,7 +19,11 @@ module.exports = async (req, res) => {
 
     const token = jwt.sign({ payload: { name, role, email } }, secretKey, jwtConfig);
 
-    res.status(StatusCodes.CREATED).json({ name, role, email, token });
+    let statusNow = StatusCodes.OK;
+
+    if (req.body.name) statusNow = StatusCodes.CREATED;
+
+    res.status(statusNow).json({ name, role, email, token });
   } catch (error) {
     console.log(error);
   }
