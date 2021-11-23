@@ -8,6 +8,11 @@ import MeusPedidos from './pages/MeusPedidos';
 import Checkout from './pages/Checkout';
 import Page404 from './pages/Page404';
 import OrderDetails from './pages/OrderDetails';
+import io from 'socket.io-client';
+
+const socket = io('http://localhost:3001');
+
+socket.on('connect', () => console.log('entrei'));
 
 import './App.css';
 
