@@ -6,6 +6,7 @@ function AppProvider({ children }) {
   const [products, setProducts] = useState([]);
   const [dataUser, setDataUser] = useState({});
   const [dataOrder, setDataOrder] = useState([]);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     const getProducts = () => {
@@ -23,6 +24,8 @@ function AppProvider({ children }) {
     setDataUser,
     dataOrder,
     setDataOrder,
+    total,
+    setTotal,
   };
 
   return (

@@ -2,12 +2,12 @@ import React, { useState, useEffect, useContext } from 'react';
 import AppContext from '../Context/AppContext';
 
 function FooterCheckout() {
-  const { dataOrder } = useContext(AppContext);
-
+  const { total } = useContext(AppContext);
   const [sellers, setSellers] = useState([]);
+
   const [sale, setSale] = useState({
     sellerId: '',
-    totalPrice: '',
+    totalPrice: total,
     deliveryAddress: '',
     deliveryNumber: '',
   });
@@ -15,25 +15,25 @@ function FooterCheckout() {
   // const toke = localStorage.getItem('user');
   // console.log(toke.tolen);
 
-  useEffect(() => {
-    fetch('http://localhost:3001/users/search?role=seller')
-      .then((response) => response.json())
-      .then((response) => setSellers(response));
-  });
-
-  useEffect(() => {
-    const getTotal = () => {
-      const result = dataOrder.reduce((prev, curren) => prev + Number(curren.total), 0)
-        .toFixed(2).replace('.', ',');
-      return result;
-    };
-    setSale({ ...sale, totalPrice: getTotal() });
-  }, [dataOrder, sale]);
+  // useEffect(() => {
+  //   const getTotal = () => {
+  //     const result = dataOrder.reduce((prev, curren) => prev + Number(curren.total), 0)
+  //       .toFixed(2).replace('.', ',');
+  //     return result;
+  //   };
+  //   setSale({ ...sale, totalPrice: getTotal() });
+  // }, [dataOrder, sale]);
 
   const handleChange = ({ target: { name, value } }) => {
     console.log(value);
     setSale({ ...sale, [name]: value });
   };
+
+  useEffect(() => {
+    fetch('http://localhost:3001/users/search?role=seller')
+      .then((response) => response.json())
+      .then((response) => setSellers(response));
+  }, []);
 
   // const handleSubmit = () => {
   //   const url = 'http://localhost:3000/sales';
@@ -58,7 +58,6 @@ function FooterCheckout() {
         <form>
           <label htmlFor="seller">
             P. Vendedora Responsável
-            <br />
             <select
               name="sellerId"
               id="seller"
