@@ -28,11 +28,7 @@ const Provider = ({ children }) => {
   const history = useHistory();
 
   async function checkoutPurchase() {
-<<<<<<< HEAD
-    console.log('entrei aq :)');
-=======
     const user = JSON.parse(localStorage.getItem('user'));
->>>>>>> 528ad7297d27edcc090cb2d9c5232cc96ac99699
     const listItem = orderInProgress.map((item) => {
       const revisedItem = item;
       revisedItem.productId = item.id;
