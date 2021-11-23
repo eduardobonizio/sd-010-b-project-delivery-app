@@ -1,7 +1,7 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const secret = require('fs')
-  .readFileSync('jwt.evaluation.key', { encoding: 'utf-8' })
+  .readFileSync('jwt.evaluation.key', { encoding: 'utf-8' });
   
 const { User } = require('../../database/models');
 
