@@ -5,8 +5,8 @@ const { Sale, User, SaleProduct, Product } = require('../database/models');
 const config = require('../database/config/config');
 
 const sequelize = new Sequelize(config.development);
-const date = new Date();
-
+const date = new Date().toLocaleString("en-EU", {timeZone: "Europe/London"})
+// https://stackoverflow.com/questions/439630/create-a-date-with-a-set-timezone-without-using-a-string-representation
 const createOrder = async (req, res) => {
   const token = req.headers.authorization;  
   const { sellerId, totalPrice, deliveryAddress, deliveryNumber, status, products } = req.body;
