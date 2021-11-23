@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import ID from '../utils/dataTestIdDict';
-import '../styles/CardOrder.css';
+import '../styles/CardOrderCustomer.css';
 
 function CardOrderCustomer({ sale }) {
   // const [colorStatus, setColorStatus] = useState('pendente');

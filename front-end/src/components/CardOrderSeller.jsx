@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import ID from '../utils/dataTestIdDict';
-import '../styles/CardOrder.css';
+import '../styles/CardOrderSeller.css';
 
 function CardOrderSeller({ sale }) {
   // const [colorStatus, setColorStatus] = useState('pendente');
@@ -24,7 +24,7 @@ function CardOrderSeller({ sale }) {
 
   return (
     <Link className="boxOrder" to={ `/seller/orders/${sale.id}` }>
-      <div className="conteinerSeller">
+      <div className="conteiner">
         <div
           className={ `status ${colorStatus}` }
           data-testid={ `${ID.dataTestId49}${sale.id}` }
@@ -36,7 +36,9 @@ function CardOrderSeller({ sale }) {
           <p data-testid={ `${ID.dataTestId48}${sale.id}` }>{ sale.id }</p>
         </div>
         <div className="dataPrice">
-          <div data-testid={ `${ID.dataTestId50}${sale.id}` }>{ data }</div>
+          <div data-testid={ `${ID.dataTestId50}${sale.id}` }>
+            <p>{ data }</p>
+          </div>
           <div className="divPrice">
             <p>R$</p>
             <p data-testid={ `${ID.dataTestId51}${sale.id}` }>
@@ -44,8 +46,11 @@ function CardOrderSeller({ sale }) {
             </p>
           </div>
         </div>
-        <div className="address" data-testid={ `${ID.dataTestId52}${sale.id}` }>
-          { sale.deliveryAddress }
+        <div className="address">
+          <p data-testid={ `${ID.dataTestId52}${sale.id}` }>
+            {`${sale.deliveryAddress}, `}
+          </p>
+          <p data-testid={ `${ID.dataTestId52}${sale.id}` }>{ sale.deliveryNumber }</p>
         </div>
       </div>
     </Link>
