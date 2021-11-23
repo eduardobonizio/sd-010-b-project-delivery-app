@@ -11,8 +11,8 @@ export async function getAll(url) {
   return data;
 }
 
-export async function postAll(url, object) {
-  const { data } = await axiosInstance.post(url, object);
+export async function postAll(url, object, token) {
+  const { data } = await axiosInstance.post(url, object, token);
   return data;
 }
 

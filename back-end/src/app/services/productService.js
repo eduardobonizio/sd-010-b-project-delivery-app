@@ -7,7 +7,6 @@ const messageError = (status, message) => ({
 
 const findAll = async () => {
   const findAllProduct = await Product.findAll();
-  console.log('Entrei no Service: ', findAllProduct);
 
   return findAllProduct;
 };

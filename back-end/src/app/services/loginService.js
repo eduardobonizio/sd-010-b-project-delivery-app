@@ -25,12 +25,10 @@ const loginService = async (user) => {
   }
   
   const payload = { email };
-  const { name, email: emailUser, role } = validUser;
+  const { id, name, email: emailUser, role } = validUser;
   const token = jwtLogin(payload);
-  // console.log(token);
 
-  const result = { name, email: emailUser, role, token };
-  // console.log(result);
+  const result = { id, name, email: emailUser, role, token };
   return result;
 };
 

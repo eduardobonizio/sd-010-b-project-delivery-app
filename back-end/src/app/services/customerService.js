@@ -14,7 +14,23 @@ const getById = async (id) => {
   return findId;
 };
 
+const createSalles = async (sale) => {
+  const { userId, sellerId, totalPrice, deliveryAddress, deliveryNumber } = sale;
+  const newSalle = await Sale.create({
+    userId,
+    sellerId,
+    totalPrice,
+    deliveryAddress,
+    deliveryNumber,
+    saleDate: Date.now(),
+    status: 'Pendente',
+  });
+
+  return newSalle;
+};
+
 module.exports = {
   getAll,
   getById,
+  createSalles,
 };
