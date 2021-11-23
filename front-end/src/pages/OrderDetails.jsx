@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import io from 'socket.io-client';
 
 import { useParams } from 'react-router';
 import NavBar from '../components/Navbar';
@@ -34,6 +35,7 @@ function OrderDetails() {
   const [productsDetails, setProductsDetails] = useState(DEFAULT_DATA_PRODUCTS);
   const { idVenda } = useParams();
   const { token, role } = getFromLocalStorage('user');
+  const socket = io('http://localhost:3001');
 
   useEffect(() => {
     (async () => {
@@ -80,6 +82,7 @@ function OrderDetails() {
         type="button"
         data-testid={ role + PREPARING_CHECK }
         disabled={ productsDetails.status !== 'Pendente' }
+        onClick={ () => socket.emit('preparando', { idVenda, status: 'Preparando' }) }
       >
         PREPARAR PEDIDO
       </button>

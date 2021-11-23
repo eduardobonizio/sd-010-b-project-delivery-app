@@ -42,8 +42,14 @@ const generateSaleProduct = async (body) => {
   return { status: 201, data };
 }
 
+const updateStatusSale = async (id, status) => {
+  const [data] = await Sale.update({ status }, { where: { id } } );
+  return data;
+}
+
 module.exports = {
   createSale,
   getSaleById,
   generateSaleProduct,
+  updateStatusSale,
 }

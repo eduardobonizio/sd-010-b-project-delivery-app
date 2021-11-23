@@ -21,7 +21,7 @@ const io = require("socket.io")(http,{
   }
 });
 
-require('../sockets/ping')(io);
+require('../sockets/status')(io);
 
 app.use('/images', express.static(path.join(__dirname, '..', '..', 'public','images')));
 

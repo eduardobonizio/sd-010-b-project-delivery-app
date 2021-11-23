@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { io } from 'socket.io-client';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import * as S from '../styles/MeusPedidos';
 
 function CardMeusPedidos({ orders, token }) {
   const history = useHistory();
+  const socket = io('http://localhost:3001');
 
   const { role } = token;
   const { id, sale_date: saleDate, status,
     total_price: totalPrice,
     delivery_address: deliveryAddress } = orders;
+  const [newStatus, setNewStatus] = useState(status);
   const newDate = new Date(saleDate);
   const dia = newDate.getDate().toString().padStart(2, '0');
   const mes = (newDate.getMonth() + 1).toString().padStart(2, '0');
@@ -20,6 +23,12 @@ function CardMeusPedidos({ orders, token }) {
   function detailOrder(idUser) {
     history.push(`/${role}/orders/${idUser}`);
   }
+
+  socket.on('preparandoPedido', (data) => {
+    if (data[0] === id) {
+      setNewStatus(data[1]);
+    }
+  });
 
   return (
     <S.buttonMeusPedidos
@@ -32,7 +41,7 @@ function CardMeusPedidos({ orders, token }) {
       </div>
       <S.infoPedido>
         <S.statusPedido data-testid={ `${role}_orders__element-delivery-status-${id}` }>
-          <S.textStatus>{status}</S.textStatus>
+          <S.textStatus>{newStatus}</S.textStatus>
         </S.statusPedido>
         <div>
           <S.textDate data-testid={ `${role}_orders__element-order-date-${id}` }>
