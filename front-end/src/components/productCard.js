@@ -14,11 +14,13 @@ function ProductCard(props) {
   const setProducts = (quant, produto) => {
     const total = quant * price;
     const getProduct = JSON.parse(localStorage.getItem('products'));
-    const currProds = { ...getProduct,
-      [produto]: {
-        total, price, quant,
-      } };
-    localStorage.setItem('products', JSON.stringify(currProds));
+    // const currProds = [getProduct,
+    //   {
+    //     name: produto, total, price, quantity: quant,
+    //   }];
+    const temp = [];
+    temp.push(getProduct, { name: produto, total, price, quantity: quant });
+    localStorage.setItem('products', JSON.stringify(temp));
   };
 
   const alterValue = (quanty, prodName) => {
