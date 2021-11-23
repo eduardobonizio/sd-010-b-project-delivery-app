@@ -15,10 +15,12 @@ const router = express.Router();
 router.post('/', async (req, res) => {
   const { email, password } = req.body;
   const hashedPassword = md5(password);
-  const token = jwt.sign({ data: email }, secret, jwtConfig);
-
+  
   try {
     const exists = await User.findOne({ where: { email } });
+
+    const token = jwt.sign({ data: { email, id: exists.id } }, secret, jwtConfig);
+
     if (exists && exists.dataValues.email === email
       && exists.dataValues.password === hashedPassword) {
       return res.status(200).json({
