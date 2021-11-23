@@ -9,10 +9,11 @@ import Checkout from './pages/Checkout';
 import Page404 from './pages/Page404';
 import OrderDetails from './pages/OrderDetails';
 
+import './App.css';
+
 function App() {
   return (
     <Switch>
-      <Route exact path="/" render={ () => <Redirect to="/login" /> } />
       <Route path="/login" component={ Login } />
       <Route path="/register" component={ Register } />
       <Route path="/customer/products" component={ Produtos } />
@@ -23,6 +24,7 @@ function App() {
       <Route path="/page404" component={ Page404 } />
       <Route path="/admin/gerenciamento" component={ Page404 } />
       <Route path="/page404" component={ Page404 } />
+      <Route path="/" render={ () => <Redirect to="/login" /> } />
     </Switch>
   );
 }
