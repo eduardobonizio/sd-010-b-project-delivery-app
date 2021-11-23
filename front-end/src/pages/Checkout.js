@@ -8,7 +8,7 @@ export default function Checkout() {
     <>
       <Header
         pageName="PRODUTOS"
-        yourOrder="MEUS PEDIDOS"
+        yourOrder
         userName={ getStorage('user').name }
       />
       <ListItemCheckout />

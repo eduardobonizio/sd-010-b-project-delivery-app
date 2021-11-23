@@ -24,3 +24,11 @@ export const getSellers = async () => axios.get('http://localhost:3001/user/sell
 export const checkoutProducts = async (body) => axios.post('http://localhost:3001/sales', body, token())
   .then(({ data }) => data)
   .catch((err) => err.response);
+
+export const getUserList = async () => axios.get('http://localhost:3001/user/all', token())
+  .then(({ data }) => data)
+  .catch((err) => err.response);
+
+export const registerUser = async (body) => axios.post('http://localhost:3001/register/admin', body, token())
+  .then(({ data }) => data)
+  .catch((err) => err.response);
