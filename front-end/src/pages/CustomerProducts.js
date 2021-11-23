@@ -7,11 +7,13 @@ import { Context } from '../context/ContextGlobal';
 function CustomerProducts() {
   const { products, setProducts } = useContext(Context);
 
-  const URL = 'http://localhost:3001/customer/products';
+  const URL = 'http://localhost:3001/all-products';
 
   useEffect(() => {
     const getAllProducts = async () => {
-      const { data } = await axios.get(URL);
+      const userStorage = localStorage.getItem('user');
+      const { data } = await axios.get(URL,
+        { headers: { Authorization: JSON.parse(userStorage).token } });
       setProducts(data.map((product) => ({ ...product, quantity: 0 })));
     };
 
@@ -21,7 +23,8 @@ function CustomerProducts() {
   const increase = (id) => {
     setProducts(
       products
-        .map((prod) => prod.id === id && { ...prod, quantity: prod.quantity + 1 }),
+        .map((prod) => (prod.id === id
+          ? { ...prod, quantity: prod.quantity + 1 } : prod)),
     );
   };
 
@@ -29,7 +32,8 @@ function CustomerProducts() {
     if (quantity > 0) {
       setProducts(
         products
-          .map((prod) => (prod.id === id && { ...prod, quantity: prod.quantity - 1 })),
+          .map((prod) => (prod.id === id
+            ? { ...prod, quantity: prod.quantity - 1 } : prod)),
       );
     }
   };

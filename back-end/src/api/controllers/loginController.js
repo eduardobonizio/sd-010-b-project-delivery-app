@@ -1,6 +1,6 @@
 const { loginValidateService } = require('../services/userService');
 
-const loginController = async (req, res, next) => {
+const loginController = async (req, _res, next) => {
   const { email, password } = req.body;
 
   const loginData = await loginValidateService(email, password);
@@ -9,7 +9,7 @@ const loginController = async (req, res, next) => {
     return next(loginData.err);
   }  
 
-  return res.status(200).json(loginData);
+  next();
 };
 
 module.exports = { loginController };

@@ -9,7 +9,7 @@ const registerController = async (req, res, next) => {
     return next(registerData.err);
   }  
 
-  return res.status(201).json(registerData);
+  next();
 };
 
 module.exports = { registerController };
