@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const { sale, salesProduct } = require('../../database/models');
+const { sale, salesProduct, product } = require('../../database/models');
 
 const env = process.env.NODE_ENV || 'test';
 const config = require('../../database/config/config')[env];
@@ -38,7 +38,45 @@ const getAllSales = async (id) => {
   return allSales;
 };
 
+const formatResponseContent = (dataToFormatted) => {
+  const { products, ...saleRestProps } = dataToFormatted.toJSON();
+
+  const newProducts = products.map((prod) => {
+    const { salesProduct: { quantity }, ...prodRest } = prod;
+    return { ...prodRest, quantity };
+  });
+
+  return { ...saleRestProps, products: newProducts };
+};
+
+const getById = async (id) => {
+  const saleFound = await sale.findByPk(
+    id,
+    {
+      attributes: ['id', 'saleDate', 'status', 'totalPrice'],
+      include: {
+        model: product,
+        as: 'products',
+        attributes: {
+          exclude: ['url_image'],
+        },
+        through: {
+          attributes: ['quantity'], 
+        }, 
+      },
+    },
+  );
+
+  const newSalePayload = formatResponseContent(saleFound);
+
+  return newSalePayload;
+};
+
+const updateSaleStatus = async ({ id, status }) => sale.update({ status }, { where: { id } });
+
 module.exports = {
   create,
   getAllSales,
+  getById,
+  updateSaleStatus,
 };
