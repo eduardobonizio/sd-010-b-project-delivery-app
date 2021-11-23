@@ -22,14 +22,13 @@ function Provider({ children }) {
   const handleClickLogin = async (user) => {
     if (!user.email || !user.password) setErrorMsg(true);
     const { data } = await loginUser({ email, password });
-    setToken(data.token);
+    setToken(data);
   };
 
   const handleClickRegister = async () => {
     const create = await createUser({ name, email, password });
-    console.log(create);
     if (!create) return setErrorMsg(true);
-    setToken(create.data.token);
+    setToken(create.data);
     return create;
   };
 
