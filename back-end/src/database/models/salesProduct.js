@@ -4,24 +4,21 @@ module.exports = (sequelize, DataTypes) => {
     product_id: DataTypes.INTEGER,
     quantity: DataTypes.INTEGER,
   }, {
-    tableName: 'sale_product',
+    tableName: 'saleProduct',
     timestamps: false,
     underscored: true,
   });
 
   salesProduct.associate = function (models) {
     models.Sale.belongsToMany(models.Product, {
-      as: 'product',
+      as: 'products',
       
       through: salesProduct,
-      otherKey: 'saleId'
     });
 
     models.Product.belongsToMany(models.Sale, {
-      as: 'sale',
-      foreignKey: 'saleId',
+      as: 'sales',
       through: salesProduct,
-      otherKey: 'productId' 
     });
   };
   return salesProduct;

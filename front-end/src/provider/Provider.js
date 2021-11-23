@@ -51,9 +51,10 @@ const Provider = ({ children }) => {
       products: listItem,
     };
     const newPurchase = await postPurchase(checkoutObj, dataUser.token);
+    console.log(newPurchase, 'batatao', newPurchase.data.data);
     setOrderInProgress([]);
     setTotalOrder(0);
-    return history.push(`/customer/orders/${newPurchase.id}`);
+    return history.push(`/customer/orders/${newPurchase.data.data[0].SaleId}`);
   }
 
   function removeProduct(productIndex) {

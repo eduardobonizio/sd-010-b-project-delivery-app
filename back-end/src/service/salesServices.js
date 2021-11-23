@@ -8,12 +8,15 @@ const addSale = async (saleInfo) => {
 };
 
 const addPurchase = async (products, saleId) => {
-  const data = await Promise.all(products.map(async ({ productId, quantity }) =>  SalesProducts.create({
-      sale_id: saleId,
-      product_id: productId,
-      quantity,
-    });
-  ));
+  const data = await Promise
+  .all(products.map(async (el) => 
+    // console.log('sale_id', el, typeof saleId, saleId);
+      SalesProducts.create({
+      SaleId: saleId,
+      ProductId: el.productId,
+      quantity: el.quantity,
+    })));
+  console.log(data, 'data lindo');
   
   return data;
 };
