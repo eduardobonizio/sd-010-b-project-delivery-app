@@ -4,10 +4,12 @@ import { getSale } from '../services/sales';
 import OrderDetailHeader from './orderDetailHeader';
 import OrderDetailsTbody from './orderDetailsTbody';
 import Thead from './Thead';
+import SellerOrderHeader from './sellerOrderHeader';
 
 function OrderDetailsTable(props) {
   const [orderDetail, setOrderDetail] = useState({});
   const [loading, setLoading] = useState(true);
+  const [loggedUser, setLoggedUser] = useState('');
 
   const { id } = props;
   const getOrderDetails = async (orderId) => {
@@ -16,18 +18,28 @@ function OrderDetailsTable(props) {
     setLoading(false);
   };
 
+  const saveLogin = () => {
+    if (localStorage.getItem('user')) {
+      const user = JSON.parse(localStorage.getItem('user'));
+      setLoggedUser(user);
+    }
+  };
+
   useEffect(() => {
     getOrderDetails(id);
+    saveLogin();
   }, [loading]);
 
   if (loading) return <p>Carregando</p>;
 
   return (
     <main>
-      <OrderDetailHeader orderDetail={ orderDetail } />
+      {loggedUser.role === 'customer'
+        ? <OrderDetailHeader orderDetail={ orderDetail } />
+        : <SellerOrderHeader orderDetail={ orderDetail } />}
       <table>
         <Thead />
-        <OrderDetailsTbody orderDetail={ orderDetail } />
+        <OrderDetailsTbody role={ loggedUser.role } orderDetail={ orderDetail } />
       </table>
       <p
         data-testid="customer_order_details__element-order-total-price"
