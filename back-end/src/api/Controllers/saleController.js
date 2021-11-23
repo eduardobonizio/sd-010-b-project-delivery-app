@@ -14,9 +14,9 @@ const create = async (req, res) => {
 };
 
 const getAllSales = async (req, res) => {
-  const { userId } = req;
+  const { userId, role } = req;
 
-  const allSales = await saleService.getAllSales(userId);
+  const allSales = await saleService.getAllSales(userId, role);
 
   if (allSales.message) {
     return res.status(404).json(allSales.message);

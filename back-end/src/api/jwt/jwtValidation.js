@@ -9,8 +9,8 @@ const jwtConfig = {
 
 const secret = process.env.JWT_SECRET || 'secret_key';
 
-const creatToken = (userId, displayName, email) => {
-  const token = jwt.sign({ userId, displayName, email }, secret, jwtConfig);
+const creatToken = (userId, role) => {
+  const token = jwt.sign({ userId, role }, secret, jwtConfig);
   return token;
 };
 
