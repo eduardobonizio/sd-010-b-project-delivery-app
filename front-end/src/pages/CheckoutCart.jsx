@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-// import { useHistory } from 'react-router';
+import { useHistory } from 'react-router';
 import axios from 'axios';
 import TopBar from '../components/TopBar';
 import CheckoutProductCard from '../components/CheckoutProductCard';
@@ -12,7 +12,7 @@ function Products() {
   const [cartTotal, setCartTotal] = useState(0);
   const [deliveryAddress, setDeliveryAddress] = useState('');
   const [deliveryNumber, setDeliveryNumber] = useState('');
-  // const history = useHistory();
+  const history = useHistory();
 
   useEffect(() => {
     const getLocalStorageCartItens = async () => {
@@ -48,10 +48,8 @@ function Products() {
         deliveryAddress,
         deliveryNumber,
       };
-      const saleId = await axios.post('http://localhost:3001/customer/checkout', newSale, config);
-      console.log(saleId);
-      // const tempSaleIdToKeepDoingProject = 1;
-      // history.push(`/customer/orders/${tempSaleIdToKeepDoingProject}`);
+      const { data: { saleId } } = await axios.post('http://localhost:3001/customer/checkout', newSale, config);
+      history.push(`/customer/orders/${saleId}`);
 
     // front total_price
     // front delivery_address
