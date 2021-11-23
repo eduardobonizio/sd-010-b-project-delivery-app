@@ -2,7 +2,9 @@ require('dotenv').config();
 const rescue = require('express-rescue');
 const jwt = require('jsonwebtoken');
 
-const secret = process.env.JWT_SECRET;
+const secret = require('fs')
+  .readFileSync('jwt.evaluation.key', { encoding: 'utf-8' })
+  .trim();
 
 const messageError = (status, message) => ({
   status,
