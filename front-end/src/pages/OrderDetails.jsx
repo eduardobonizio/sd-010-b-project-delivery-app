@@ -98,9 +98,10 @@ function OrderDetails() {
   );
 
   const buttonDispachCheck = () => (
-    <div className="button-check-status">
+    <div className="button-dispatch-check">
       <button
         type="button"
+        disabled
         data-testid={ role + DISPACH_CHECK }
       >
         SAIU PARA ENTREGA
