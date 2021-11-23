@@ -2,6 +2,12 @@ import React from 'react';
 import { useEffect, useState } from 'react/cjs/react.development';
 import api from '../services';
 
+const orderTable = 'customer_checkout__element-order-table-item-number-';
+const nameTable = 'customer_checkout__element-order-table-name-';
+const quantityTable = 'customer_checkout__element-order-table-quantity-';
+const unitPriceTable = 'customer_checkout__element-order-table-unit-price-';
+const subTotalTable = 'customer_checkout__element-order-table-sub-total-';
+const removeTable = 'customer_checkout__element-order-table-remove-';
 export default function Checkout() {
   const [salesProducts, setSalesProducts] = useState([]);
   useEffect(() => {
@@ -27,13 +33,17 @@ export default function Checkout() {
         <tbody>
           {salesProducts.map(({ products }) => products
             .map(({ name, price, SalesProducts: { quantity } }, index) => (
-              <tr key={ name } data-testid={ `element-order-table-name-${index}` }>
-                <td>{index}</td>
-                <td>{name}</td>
-                <td>{quantity}</td>
-                <td>{price}</td>
-                <td>{(quantity * price).toFixed(2)}</td>
-                <td>Remover</td>
+              <tr key={ name }>
+                <td data-testid={ `${orderTable}${index}` }>{index}</td>
+                <td data-testid={ `${nameTable}${index}` }>{name}</td>
+                <td data-testid={ `${quantityTable}${index}` }>{quantity}</td>
+                <td data-testid={ `${unitPriceTable}${index}` }>{price}</td>
+                <td
+                  data-testid={ `${subTotalTable}${index}` }
+                >
+                  {(quantity * price).toFixed(2)}
+                </td>
+                <td data-testid={ `${removeTable}${index}` }>Remover</td>
               </tr>
             )))}
         </tbody>
