@@ -9,7 +9,7 @@ function OrderDetailsTable(props) {
   const [orderDetail, setOrderDetail] = useState({});
   const [loading, setLoading] = useState(true);
 
-  const { id } = props;
+  const { id, role } = props;
   const getOrderDetails = async (orderId) => {
     const response = await getSale(orderId);
     setOrderDetail(response.data);
@@ -24,13 +24,13 @@ function OrderDetailsTable(props) {
 
   return (
     <main>
-      <OrderDetailHeader orderDetail={ orderDetail } />
+      <OrderDetailHeader role={ role } orderDetail={ orderDetail } />
       <table>
         <Thead />
-        <OrderDetailsTbody orderDetail={ orderDetail } />
+        <OrderDetailsTbody role={ role } orderDetail={ orderDetail } />
       </table>
       <p
-        data-testid="customer_order_details__element-order-total-price"
+        data-testid={ `${role}_order_details__element-order-total-price` }
       >
         { orderDetail.totalPrice.replace(/\./, ',') }
       </p>
@@ -40,6 +40,7 @@ function OrderDetailsTable(props) {
 
 OrderDetailsTable.propTypes = {
   id: PropTypes.string.isRequired,
+  role: PropTypes.string.isRequired,
 };
 
 export default OrderDetailsTable;

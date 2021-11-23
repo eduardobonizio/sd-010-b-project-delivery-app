@@ -9,7 +9,7 @@ const OrderDetails = (props) => {
   return (
     <main>
       <Navbar name={ name } role={ role } />
-      <OrderDetailTable id={ id } />
+      <OrderDetailTable role={ role } id={ id } />
     </main>
   );
 };
