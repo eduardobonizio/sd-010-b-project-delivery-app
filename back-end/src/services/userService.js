@@ -15,7 +15,7 @@ const createUser = async (name, email, password) => {
   }
 };
 
-const findUserByEmail = async (email) => {
+const findUserByEmail = async ({ email }) => {
   try {
     const user = await User.findOne({ where: { email } });
     return user;
