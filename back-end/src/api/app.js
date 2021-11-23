@@ -32,7 +32,7 @@ app.post('/neworder', createOrder);
 app.get('/oneorder/:id', findOrder);
 app.get('/allorders', getOrders);
 app.get('/allusersadm', getUsers);
-app.delete('/deleteuser', deleteUsers);
+app.delete('/deleteuser/:id', deleteUsers);
 
 app.get('/coffee', (_req, res) => res.status(418).end());
 

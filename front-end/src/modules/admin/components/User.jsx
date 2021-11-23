@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useAdmin } from '../../../hooks/useAdmin';
 
-function User({ item, name, email, roleUser, index }) {
+function User({ item, name, email, roleUser, index, id }) {
   const { removeUser } = useAdmin();
 
   return (
@@ -11,7 +11,7 @@ function User({ item, name, email, roleUser, index }) {
         <span
           data-testid={ `admin_manage__element-user-table-item-number-${index}` }
         >
-          { item }
+          { item + 1 }
         </span>
       </div>
       <div className="col">
@@ -40,7 +40,7 @@ function User({ item, name, email, roleUser, index }) {
           type="button"
           className="btn btn-warning w-100"
           data-testid={ `admin_manage__element-user-table-remove-${index}` }
-          onClick={ () => removeUser(index) } // trocar para id
+          onClick={ () => removeUser(id) }
         >
           Excluir
         </button>
@@ -57,4 +57,5 @@ User.propTypes = {
   name: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   roleUser: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
 };

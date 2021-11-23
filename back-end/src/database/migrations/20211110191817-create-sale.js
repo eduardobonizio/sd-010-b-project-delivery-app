@@ -37,12 +37,16 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: { model: 'users', key: 'id' },
         field: 'user_id',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       },
       sellerId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: { model: 'users', key: 'id' },
         field: 'seller_id',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       },
     });
   },
