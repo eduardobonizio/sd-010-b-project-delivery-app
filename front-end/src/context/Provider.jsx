@@ -23,9 +23,10 @@ export default function Provider({ children }) {
 
   useEffect(() => {
     const newArray = [];
-    dataProducts.map(({ name, quantity, price }) => {
+    dataProducts.map(({ id, name, quantity, price }) => {
       if (quantity > 0) {
         newArray.push({
+          id,
           name,
           quantity,
           price: Number(price),
