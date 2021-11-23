@@ -28,17 +28,25 @@ const Provider = ({ children }) => {
   const history = useHistory();
 
   async function checkoutPurchase() {
+<<<<<<< HEAD
     console.log('entrei aq :)');
+=======
+    const user = JSON.parse(localStorage.getItem('user'));
+>>>>>>> 528ad7297d27edcc090cb2d9c5232cc96ac99699
     const listItem = orderInProgress.map((item) => {
       const revisedItem = item;
       revisedItem.productId = item.id;
+      // revisedItem.userId = user.userId;
       delete revisedItem.id;
       delete revisedItem.name;
       delete revisedItem.price;
+      delete revisedItem.url;
       return revisedItem;
     });
+    console.log(listItem);
     const checkoutObj = {
-      sellerId: Number(chooseSeller),
+      userId: user.userId,
+      sellerId: 1,
       totalPrice: totalOrder,
       deliveryAddress: purchaseAddress,
       deliveryNumber: addressNumber,

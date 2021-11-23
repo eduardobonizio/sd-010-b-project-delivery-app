@@ -9,15 +9,16 @@ router.post('/', async (req, res) => {
   const { login, password } = req.body;
 
   const user = await LoginService.logged(login, password);
-  
+    
   if (!user) return res.status(404).json({ message: 'login error' });
   
-  const { role, email, name } = user;
+  const { id, role, email, name } = user;
   
   const data = makeCrypt({ user });
-  console.log(data, 'token');
-  
-  return res.status(200).json({ userRole: role, userEmail: email, userName: name, key: data });
+    
+  return res.status(200).json({
+    userId: id, userRole: role, userEmail: email, userName: name, key: data,
+   });
 });
 
 module.exports = router;

@@ -27,8 +27,11 @@ export default function Login() {
     }
   };
 
-  const handleLocalStorage = (userRole, userName, userEmail, key) => {
+  const handleLocalStorage = (user) => {
+    console.log(user);
+    const { userRole, userName, userEmail, key, userId } = user;
     localStorage.setItem('user', JSON.stringify({
+      userId,
       name: userName,
       email: userEmail,
       role: userRole,
@@ -46,18 +49,18 @@ export default function Login() {
         password,
       },
     })
-      .then(({ data: { userRole, userName, userEmail, key } }) => {
+      .then(({ data }) => {
         switch (true) {
-        case (userRole === 'administrator'):
+        case (data.userRole === 'administrator'):
           setRedirectPage('/admin/manage');
           break;
-        case (userRole === 'seller'):
+        case (data.userRole === 'seller'):
           setRedirectPage('/seller/orders');
           break;
         default:
           setRedirectPage('/customer/products');
         }
-        handleLocalStorage(userRole, userName, userEmail, key);
+        handleLocalStorage(data);
         setUserLogged(true);
       })
       .catch((e) => {
