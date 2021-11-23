@@ -7,8 +7,8 @@ export default function AdminForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('seller');
-  const [userStatus, setUserStatus] = useState({ message: '', redirect: false });
+  const [, setRole] = useState('seller');
+  const [userStatus] = useState({ message: '', redirect: false });
 
   function validateLogin() {
     const emailRegex = /^[A-Za-z0-9_.]+@[a-zA-Z_]+?\.[a-zA-Z_.]{2,7}$/;
@@ -20,7 +20,7 @@ export default function AdminForm() {
     return validation;
   }
 
-/*   function registerUser(e) {
+  /*   function registerUser(e) {
     e.preventDefault();
     const requestOptions = {
       headers: {
