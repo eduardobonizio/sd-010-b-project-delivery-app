@@ -16,6 +16,7 @@ function SellerOrders() {
   useEffect(() => {
     getAllSales();
   }, []);
+  const seller = 'seller';
 
   return (
     <>
@@ -25,6 +26,7 @@ function SellerOrders() {
           sales.map((sale) => (<CardOrderSeller
             key={ sale.id }
             sale={ sale }
+            seller={ seller }
           />))
         }
       </div>

@@ -23,7 +23,7 @@ function CardOrderSeller({ sale }) {
   const data = new Date(sale.saleDate).toLocaleDateString('pt-BR', { timeZone: 'UTC' });
 
   return (
-    <Link className="boxOrder" to={ `/customer/orders/${sale.id}` }>
+    <Link className="boxOrder" to={ `/seller/orders/${sale.id}` }>
       <div className="conteinerSeller">
         <div
           className={ `status ${colorStatus}` }
@@ -36,9 +36,7 @@ function CardOrderSeller({ sale }) {
           <p data-testid={ `${ID.dataTestId48}${sale.id}` }>{ sale.id }</p>
         </div>
         <div className="dataPrice">
-          <div data-testid={ `${ID.dataTestId50}${sale.id}` }>{
-           data
-           }</div>
+          <div data-testid={ `${ID.dataTestId50}${sale.id}` }>{ data }</div>
           <div className="divPrice">
             <p>R$</p>
             <p data-testid={ `${ID.dataTestId51}${sale.id}` }>
