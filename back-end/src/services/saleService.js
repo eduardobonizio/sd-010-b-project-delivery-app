@@ -10,16 +10,15 @@ const getAll = async () => {
 const getSale = async ({ id }) => {
   const sales = await sale.findByPk(id, { 
     include: [ 
-      { model: product, as: 'products', through: { attributes: [] } },
+      { model: product, as: 'products' },
       { model: user, as: 'customer' },
       { model: user, as: 'seller' },
     ],
   });
-  console.log(sales);
   return sales;
 };
 
-const postSale = async ({ 
+const postSale = async ({  
   email, sellerId, totalPrice, deliveryAddress, deliveryNumber, status }) => {
   const userId = await userService.findUserByEmail(email);
   const saleDate = new Date();

@@ -1,13 +1,17 @@
-import React from 'react';
-// import PropTypes from 'prop-types';
+import React, {} from 'react';
+import PropTypes from 'prop-types';
 
-function OrderDetailsTbody() {
-  const items = [{ id: 1, name: 'cerveja', quantity: 2, price: '2.99', total: '5.00' }];
+function OrderDetailsTbody(props) {
+  const { orderDetail } = props;
+  const { products } = orderDetail;
+
+  const totalProdPrice = (price, qtd) => (
+    (qtd * price).toFixed(2).toString().replace(/\./, ','));
 
   return (
     <tbody>
-      {
-        items.map((prod, index) => (
+      { products.length > 1
+        ? products.map((prod, index) => (
           <tr key={ index }>
             <td
               data-testid={
@@ -26,7 +30,7 @@ function OrderDetailsTbody() {
                 `customer_order_details__element-order-table-quantity-${index}`
               }
             >
-              {prod.quantity}
+              {prod.salesProducts.quantity}
             </td>
             <td
               data-testid={
@@ -38,17 +42,18 @@ function OrderDetailsTbody() {
             <td
               data-testid={ `customer_order_details__element-order-total-price-${index}` }
             >
-              {prod.total.replace(/\./, ',')}
+              {totalProdPrice(prod.price, prod.salesProducts.quantity)}
             </td>
           </tr>
         ))
-      }
+        : null }
     </tbody>
   );
 }
 
-// Tbody.propTypes = {
-//   getTotal: PropTypes.func.isRequired,
-// };
+OrderDetailsTbody.propTypes = {
+  orderDetail: PropTypes.objectOf(PropTypes.object).isRequired,
+  products: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default OrderDetailsTbody;

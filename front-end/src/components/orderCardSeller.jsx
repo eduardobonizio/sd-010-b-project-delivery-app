@@ -4,7 +4,14 @@ import { Link } from 'react-router-dom';
 
 function OrderCart(props) {
   const { order } = props;
-  const { id: orderNum, saleDate, totalPrice, status } = order;
+  const {
+    id: orderNum,
+    saleDate,
+    totalPrice,
+    status,
+    deliveryAddress,
+    deliveryNumber,
+  } = order;
 
   const convertDate = (dateComplete) => {
     const onlyDate = dateComplete.split('T')[0];
@@ -17,33 +24,38 @@ function OrderCart(props) {
     return convert;
   };
 
+  console.log(order);
+
   return (
     <div>
-      <Link to={ `/customer/orders/${orderNum}` }>
+      <Link to={ `/seller/orders/${orderNum}` }>
         <div>
           <h3
-            data-testid={ `customer_orders__element-order-id-${orderNum}` }
+            data-testid={ `seller_orders__element-order-id-${orderNum}` }
           >
             {`Pedido ${orderNum}`}
           </h3>
         </div>
         <div>
           <h3
-            data-testid={ `customer_orders__element-delivery-status-${orderNum}` }
+            data-testid={ `seller_orders__element-delivery-status-${orderNum}` }
           >
             {status}
           </h3>
         </div>
         <div>
           <p
-            data-testid={ `customer_orders__element-order-date-${orderNum}` }
+            data-testid={ `seller_orders__element-order-date-${orderNum}` }
           >
             {convertDate(saleDate)}
           </p>
           <p
-            data-testid={ `customer_orders__element-card-price-${orderNum}` }
+            data-testid={ `seller_orders__element-card-price-${orderNum}` }
           >
             {convertPrice(totalPrice)}
+          </p>
+          <p data-testid={ `seller_orders__element-card-address-${orderNum}` }>
+            {`${deliveryAddress} ${deliveryNumber}`}
           </p>
         </div>
       </Link>
@@ -57,6 +69,8 @@ OrderCart.propTypes = {
     saleDate: PropTypes.string.isRequired,
     totalPrice: PropTypes.string.isRequired,
     status: PropTypes.string.isRequired,
+    deliveryAddress: PropTypes.string.isRequired,
+    deliveryNumber: PropTypes.string.isRequired,
   }).isRequired,
 };
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 import { loginUser } from '../services/user';
+import redirect from '../utils/loginRedirect';
 
 const Joi = require('joi');
 
@@ -11,7 +12,9 @@ function Login() {
   const [button, setButton] = useState(true);
   const [token, setToken] = useState('');
   const [role, setRole] = useState('');
+  const [loggedUser, setLoggedUser] = useState('');
   const minPasswordLength = 6;
+  // const exactUserObjLength = 4;
 
   const loginSchema = Joi.object({
     login: Joi.string().email({ tlds: { allow: false } }).required(),
@@ -22,6 +25,14 @@ function Login() {
     const { error } = loginSchema.validate({ login, password });
     if (!error) setButton(false);
     else setButton(true);
+  };
+
+  const saveLogin = () => {
+    if (localStorage.getItem('user')) {
+      const user = JSON.parse(localStorage.getItem('user'));
+      setLoggedUser(user);
+    }
+    console.log(token);
   };
 
   const handleChange = (e) => {
@@ -43,16 +54,15 @@ function Login() {
     setToken(logged.data.token);
   };
 
-  const redirect = (roles) => {
-    if (roles === 'customer') return '/customer/products';
-    if (roles === 'seller') return '/seller/orders';
-    if (roles === 'administrator') return '/admin/manage';
-  };
-
   useEffect(() => {
     validateLogin();
-  }, [login, password, validateLogin]);
+  }, [login, password]);
 
+  useEffect(() => {
+    saveLogin();
+  }, []);
+
+  if (loggedUser !== '') return <Redirect to="/customer/products" />;
   return (
     <div>
       <form onSubmit={ handleSubmit }>
