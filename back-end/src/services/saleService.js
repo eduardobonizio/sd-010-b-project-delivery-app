@@ -26,9 +26,9 @@ const createNewSale = async (body) => {
   return newSale;
 };
 
-const getOrders = async (user) => {
+const getOrders = async (userId) => {
   try {
-    const orders = await Sale.findAll({ where: { email: user } });
+    const orders = await Sale.findAll({ where: { userId } });
     return orders;
   } catch (e) {
     console.log(e);

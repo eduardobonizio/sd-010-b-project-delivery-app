@@ -20,7 +20,7 @@ customerRouter.post('/checkout', auth, async (req, res) => {
 
 customerRouter.get('/orders', auth, async (req, res) => {
   const { user } = req.body;
-  const orders = await getOrders(user);
+  const orders = await getOrders(user.id);
   if (orders) return res.status(200).json(orders);
   return res.status(404).json({ message: 'No orders found' });
 });

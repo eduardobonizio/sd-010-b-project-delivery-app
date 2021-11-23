@@ -16,8 +16,8 @@ function App() {
       <Route path="/register" component={ Register } />
       <PrivateRoute path="/customer/products" component={ Products } />
       <PrivateRoute path="/customer/checkout" component={ CheckoutCart } />
-      <PrivateRoute path="/customer/orders" component={ ListOrders } />
       <PrivateRoute path="/customer/orders/:id" component={ ListSaleById } />
+      <PrivateRoute path="/customer/orders" component={ ListOrders } />
       <Redirect strict from="/" to="/login" />
     </Switch>
   );
