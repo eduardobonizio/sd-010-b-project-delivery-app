@@ -4,8 +4,6 @@ import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
   const location = useLocation();
-  console.log('minha location', location
-    .pathname, location.pathname.includes('customer'));
 
   const checkHeaderPath = () => {
     if (location.pathname.includes('customer')) {
@@ -78,7 +76,7 @@ const Header = () => {
           className="btn-navbar btn-3"
 
         >
-          Ciclano da Silva
+          { JSON.parse(localStorage.getItem('user')).name }
         </button>
         <Link to="/login">
           <button

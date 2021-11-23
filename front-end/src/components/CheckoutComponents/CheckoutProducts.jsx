@@ -6,8 +6,6 @@ import addZeroes from '../../helper/functions/addZeroes';
 
 function CheckoutProduct({ order, index }) {
   const { name, price, quantity } = order;
-  console.log(price);
-  console.log(quantity);
   const { removeProduct } = React.useContext(Context);
   return (
     <tr>

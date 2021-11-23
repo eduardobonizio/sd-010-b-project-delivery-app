@@ -3,12 +3,12 @@ const Sale = require('../../service/salesServices');
 const addPurchase = async (req, res) => {
   try {
     const purchase = req.body;
-    const { id: userId } = req.user;
-    purchase.userId = userId;
-    const newPurchase = await Sale.addPurchase(purchase);
-    console.log(newPurchase, 'newPurchase');
+    const { products } = purchase;
+    const addSale = await Sale.addSale(purchase);
+    const newPurchase = await Sale.addPurchase(products);
     return res.status(201).json(newPurchase);
   } catch (error) {
+    console.log(error, 'error');
     return res.status(500).json(error);
   }
 };

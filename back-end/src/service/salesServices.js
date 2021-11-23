@@ -1,9 +1,16 @@
-const { User, Product, Sales, SalesProducts } = require('../database/models');
+const { User, Product, Sale, SalesProducts } = require('../database/models');
 
-const addPurchase = async (saleId, products) => {
+const addSale = async (saleInfo) => {
+  const sale = saleInfo;
+  delete sale.products;
+  const data = await Sale.create(sale);
+  console.log(data.id, 'data');
+  return data;
+};
+
+const addPurchase = async (products) => {
   const data = await Promise.all(products.map(async ({ productId, quantity }) => {
     SalesProducts.create({
-      SaleId: saleId,
       ProductId: productId,
       quantity,
     });
@@ -12,7 +19,7 @@ const addPurchase = async (saleId, products) => {
 };
 
 const setPurchaseById = async (id) => {
-  const { dataValues: purchaseById } = await Sales.findByPk(id, {
+  const { dataValues: purchaseById } = await Sale.findByPk(id, {
     include: [{
       model: User, as: 'user', attributes: { exclude: ['id', 'password', 'role'] },
     }, {
@@ -32,25 +39,27 @@ as: 'products',
   return purchaseById;
 };
 
-const newPurchase = async ({ products, emptyProducts }) => {
-  const { dataValues: purchase } = await Sales.create({
-    ...emptyProducts,
-  });
-  await addPurchase(purchase.id, products);
-  const purchaseDone = await setPurchaseById(purchase.id);
-  return purchaseDone;
-};
+// const newPurchase = async ({ products, emptyProducts }) => {
+//   const { dataValues: purchase } = await Sales.create({
+//     ...emptyProducts,
+//   });
+//   await addPurchase(purchase.id, products);
+//   const purchaseDone = await setPurchaseById(purchase.id);
+//   return purchaseDone;
+// };
 
-const getPurchaseById = async (purchaseId, userId) => {
-  const purchaseById = await setPurchaseById(purchaseId);
-  if (purchaseById.userId === userId || purchaseById.sellerId === userId) {
-    return purchaseById;
-  }
-  return { error: 'Unauthorized user' };
-};
+// const getPurchaseById = async (purchaseId, userId) => {
+//   const purchaseById = await setPurchaseById(purchaseId);
+//   if (purchaseById.userId === userId || purchaseById.sellerId === userId) {
+//     return purchaseById;
+//   }
+//   return { error: 'Unauthorized user' };
+// };
 
 module.exports = {
-  newPurchase,
+  addPurchase,
+  // newPurchase,
   setPurchaseById,
-  getPurchaseById,
+  // getPurchaseById,
+  addSale,
 };

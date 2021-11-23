@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { validateIfFieldsAreCorrect } from '../helper/verifyForm/admin_registerUser';
 
-const CreateUserFormErrorMessages = ({ user }) => {
-  const { name, email, password, role } = user;
-  console.log('bah', user);
+const CreateUserFormErrorMessages = ({ user, errors, setErrors }) => {
+  useEffect(() => {
+    const data = validateIfFieldsAreCorrect(user);
+    console.log('data', data);
+    if (data !== true) return setErrors(data.filter((el) => el !== true));
+    return setErrors([]);
+  }, [setErrors, user]);
+
   return (
     <ul>
-      {name}
-      {email}
-      {password}
-      {role}
+      { errors.length > 0 && errors.map((el, index) => (
+        <li key={ index }>{el}</li>
+      ))}
     </ul>
   );
 };
@@ -23,4 +28,6 @@ CreateUserFormErrorMessages.propTypes = {
     password: PropTypes.string,
     role: PropTypes.string,
   }).isRequired,
+  errors: PropTypes.arrayOf(PropTypes.string).isRequired,
+  setErrors: PropTypes.func.isRequired,
 };
