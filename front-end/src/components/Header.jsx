@@ -60,8 +60,15 @@ function Header({ userRole }) {
         >
           <Link to="/login">{ nameStorage }</Link>
         </div>
-        <div data-testid={ dataTestId14 } className="blue">
-          <Link to="/login" onClick={ leaveThePage }>Sair</Link>
+        <div className="blue">
+          <Link
+            data-testid={ dataTestId14 }
+            to="/login"
+            onClick={ leaveThePage }
+          >
+            Sair
+
+          </Link>
         </div>
       </nav>
     </header>

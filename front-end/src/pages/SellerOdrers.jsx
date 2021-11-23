@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import CardOrderCustomer from '../components/CardOrderCustomer';
 import Header from '../components/Header';
+import CardOrderSeller from '../components/CardOrderSeller';
 
-function MyOrders() {
+function SellerOrders() {
   const [sales, setSales] = useState([]);
 
   const getAllSales = async () => {
@@ -16,17 +16,22 @@ function MyOrders() {
   useEffect(() => {
     getAllSales();
   }, []);
+  const seller = 'seller';
 
   return (
     <>
-      <Header userRole="customer" />
+      <Header userRole="seller" />
       <div className="boxPageOrder">
         {
-          sales.map((sale) => <CardOrderCustomer key={ sale.id } sale={ sale } />)
+          sales.map((sale) => (<CardOrderSeller
+            key={ sale.id }
+            sale={ sale }
+            seller={ seller }
+          />))
         }
       </div>
     </>
   );
 }
 
-export default MyOrders;
+export default SellerOrders;

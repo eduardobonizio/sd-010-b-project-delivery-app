@@ -16,7 +16,7 @@ const loginUser = async (body) => {
 
   const userId = login.id;
 
-  const token = jwt.creatToken(userId);
+  const token = jwt.creatToken(userId, login.role);
 
   return { 
     name: login.name,
