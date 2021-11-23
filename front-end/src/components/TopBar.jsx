@@ -25,14 +25,15 @@ function TopBar(props) {
         >
           PRODUTOS
         </Navbar.Text>
-        <Navbar.Text
-          className="orders align-items-center"
-          data-testid="customer_products__element-navbar-link-orders"
-          href="/customer/orders"
-        >
-          MEUS PEDIDOS
-        </Navbar.Text>
-
+        <a href="/customer/orders">
+          <Navbar.Text
+            className="orders align-items-center"
+            data-testid="customer_products__element-navbar-link-orders"
+            href="/customer/orders"
+          >
+            MEUS PEDIDOS
+          </Navbar.Text>
+        </a>
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text
             className="name align-items-center"

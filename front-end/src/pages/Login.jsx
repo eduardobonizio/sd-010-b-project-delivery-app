@@ -30,6 +30,13 @@ function Login() {
     }
   }, [email, password]);
 
+  useEffect(() => {
+    const alreadyLoggedIn = JSON.parse(localStorage.getItem('user'));
+    if (alreadyLoggedIn && alreadyLoggedIn.role === 'customer') {
+      history.push('/customer/products');
+    }
+  });
+
   const dispatchOnSubmit = async () => {
     try {
       const response = await axios.post('http://localhost:3001/login', { email, password });

@@ -1,6 +1,6 @@
 const express = require('express');
 const auth = require('../middlewares/auth');
-const { createNewSale } = require('../services/saleService');
+const { createNewSale, getOrders } = require('../services/saleService');
 
 const customerRouter = express.Router();
 
@@ -18,7 +18,12 @@ customerRouter.post('/checkout', auth, async (req, res) => {
   }
 });
 
-customerRouter.get('/orders');
+customerRouter.get('/orders', auth, async (req, res) => {
+  const { user } = req.body;
+  const orders = await getOrders(user.id);
+  if (orders) return res.status(200).json(orders);
+  return res.status(404).json({ message: 'No orders found' });
+});
 
 customerRouter.post('/order/:id', auth, async (req, res) => {
   console.log('Rota para retorno de uma ordem de compra');

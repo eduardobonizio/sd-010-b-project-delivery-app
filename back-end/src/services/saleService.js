@@ -12,20 +12,31 @@ const insertIntoSalesProduct = async (products, saleId) => {
 
 const createNewSale = async (body) => {
   const { products, user, totalPrice, deliveryAddress, deliveryNumber, sellerId } = body;
-    const newSale = await Sale.create({
-      userId: user.id,
-      totalPrice,
-      deliveryAddress,
-      deliveryNumber,
-      status: 'Pendente',
-      sellerId,
-    });
+  const newSale = await Sale.create({
+    userId: user.id,
+    totalPrice,
+    deliveryAddress,
+    deliveryNumber,
+    status: 'Pendente',
+    sellerId,
+  });
 
-    await insertIntoSalesProduct(products, newSale.id);
+  await insertIntoSalesProduct(products, newSale.id);
 
-    return newSale;
+  return newSale;
+};
+
+const getOrders = async (userId) => {
+  try {
+    const orders = await Sale.findAll({ where: { userId } });
+    return orders;
+  } catch (e) {
+    console.log(e);
+    return null;
+  }
 };
 
 module.exports = {
   createNewSale,
+  getOrders,
 };
