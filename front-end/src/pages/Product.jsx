@@ -1,12 +1,12 @@
 import React from 'react';
 import NavBar from '../components/NavBar';
-import Card from '../components/Card';
+import CardList from '../components/Card';
 
 function Product() {
   return (
     <main>
       <NavBar />
-      <Card />
+      <CardList />
     </main>
   );
 }
