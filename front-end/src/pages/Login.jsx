@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom';
+import setLoginLocalStorage from '../helpers/setLoginLocalStorage';
 
 function Login() {
   const history = useHistory();
@@ -13,25 +14,6 @@ function Login() {
   const onChange = (value, setState) => {
     setIsEmailInvalid(false);
     setState(value);
-  };
-  const fetchUser = () => {
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: login, password }),
-    };
-    fetch('http://localhost:3001/login', requestOptions)
-      .then((response) => {
-        if (response.ok === false) {
-          setIsEmailInvalid(true);
-        } else {
-          response.json().then((data) => {
-            localStorage.setItem('user', JSON.stringify(data));
-            history.push('/customer/products');
-          });
-        }
-      })
-      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
@@ -53,6 +35,7 @@ function Login() {
         <label htmlFor="username">
           Email:
           <input
+            autoComplete
             value={ login }
             onChange={ (e) => onChange(e.target.value, setLogin) }
             placeholder="email@tryber.com"
@@ -74,7 +57,7 @@ function Login() {
         data-testid="common_login__button-login"
         disabled={ loginButtonDisabled }
         type="button"
-        onClick={ () => fetchUser() }
+        onClick={ () => setLoginLocalStorage({ login, password, history }) }
       >
         ENTRAR
       </button>
