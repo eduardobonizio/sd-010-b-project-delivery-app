@@ -1,12 +1,12 @@
 const express = require('express');
 const { findAllUsers, findUserByPk } = require('../controllers/userController');
-const { jwtValidation } = require('../middlewares/jwtValidation');
+const auth = require('../middlewares/auth');
 
 const adminRouter = express.Router();
 
-adminRouter.get('/manage', jwtValidation, findAllUsers);
+adminRouter.get('/manage', auth, findAllUsers);
 
-adminRouter.post('manage/:id', jwtValidation, findUserByPk);
+adminRouter.post('manage/:id', auth, findUserByPk);
 
 module.exports = {
   adminRouter,
