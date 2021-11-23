@@ -42,7 +42,9 @@ function Products() {
           ))}
         </div>
       )}
-      <ButtonSeeCart />
+      <div style={ { display: 'flex', flexDirection: 'row-reverse' } }>
+        <ButtonSeeCart />
+      </div>
     </div>
   );
 }
