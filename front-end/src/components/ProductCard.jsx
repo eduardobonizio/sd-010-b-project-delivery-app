@@ -82,7 +82,6 @@ ProductCard.propTypes = {
     name: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
     urlImage: PropTypes.string.isRequired,
-    qty: PropTypes.number.isRequired,
   }).isRequired,
   handleCart: PropTypes.func.isRequired,
   handleQuantityInput: PropTypes.func.isRequired,

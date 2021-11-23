@@ -97,31 +97,31 @@ export default function ProductContextProvider({ children }) {
     return total.toFixed(2);
   };
 
-  const handleQuantity = (prodId) => {
-    const prod = cart.filter((el) => el.id === prodId);
-    return prod.length;
-  };
+  // const handleQuantity = (prodId) => {
+  //   const prod = cart.filter((el) => el.id === prodId);
+  //   return prod.length;
+  // };
 
-  const handleSubTotal = (id) => {
-    const elements = cart.filter((el) => el.id === id);
-    const subttoal = elements.reduce((acc, curr) => acc + +curr.price, 0);
-    return subttoal.toFixed(2);
-  };
+  // const handleSubTotal = (id) => {
+  //   const elements = cart.filter((el) => el.id === id);
+  //   const subttoal = elements.reduce((acc, curr) => acc + +curr.price, 0);
+  //   return subttoal.toFixed(2);
+  // };
 
   const handleRemoveProduct = (id) => {
     const newCart = cart.filter((el) => el.id !== id);
     setCart(newCart);
   };
 
-  const serialize = (prods) => {
-    let prod = {};
-    const newProducts = [];
-    prods.forEach((el) => {
-      prod = { ...el, qty: 0 };
-      newProducts.push(prod);
-    });
-    setProducts(newProducts);
-  };
+  // const serialize = (prods) => {
+  //   let prod = {};
+  //   const newProducts = [];
+  //   prods.forEach((el) => {
+  //     prod = { ...el, qty: 0 };
+  //     newProducts.push(prod);
+  //   });
+  //   setProducts(newProducts);
+  // };
 
   const handleSaleStatus = async (e, id) => {
     const { name } = e.target;
@@ -138,7 +138,7 @@ export default function ProductContextProvider({ children }) {
   };
 
   useEffect(() => {
-    APITOKEN.getAllProducts().then((res) => serialize(res.data));
+    APITOKEN.getAllProducts().then((res) => setProducts(res.data));
   }, []);
 
   return (
@@ -149,8 +149,6 @@ export default function ProductContextProvider({ children }) {
         handleQuantityInput,
         handleCart,
         handleTotalValue,
-        handleQuantity,
-        handleSubTotal,
         handleRemoveProduct,
         status,
         setStatus,
@@ -167,7 +165,7 @@ export function useProductContext() {
 
   const { cart, setCart, products,
     handleQuantityInput, handleCart,
-    handleTotalValue, handleQuantity, handleSubTotal,
+    handleTotalValue,
     handleRemoveProduct, status, setStatus, handleSaleStatus } = context;
   return { cart,
     setCart,
@@ -175,8 +173,6 @@ export function useProductContext() {
     handleQuantityInput,
     handleCart,
     handleTotalValue,
-    handleQuantity,
-    handleSubTotal,
     handleRemoveProduct,
     status,
     setStatus,

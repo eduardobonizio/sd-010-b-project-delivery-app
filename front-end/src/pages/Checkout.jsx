@@ -9,21 +9,9 @@ export default function Checkout() {
   const {
     cart,
     handleTotalValue,
-    handleQuantity,
-    handleSubTotal,
+    // handleSubTotal,
     handleRemoveProduct,
   } = useProductContext();
-
-  const createUnique = () => {
-    let prod = {};
-    const unique = [...new Set(cart)];
-    const uniqueCart = [];
-    unique.forEach((el) => {
-      prod = { ...el, qty: handleQuantity(el.id) };
-      uniqueCart.push(prod);
-    });
-    return uniqueCart;
-  };
 
   return (
     <div>
@@ -37,7 +25,7 @@ export default function Checkout() {
           </tr>
         </thead>
         <tbody>
-          {createUnique().map((el, index) => (
+          {cart.map((el, index) => (
             <tr key={ el.id }>
               <td
                 data-testid={
@@ -68,7 +56,7 @@ export default function Checkout() {
                   `customer_checkout__element-order-table-sub-total-${index}`
                 }
               >
-                {handleSubTotal(el.id).replace('.', ',')}
+                {(el.price * el.qty).toFixed(2).replace('.', ',')}
               </td>
               <td>
                 <button
@@ -89,7 +77,7 @@ export default function Checkout() {
       <div className="delivery">
         <FormDelivery
           total={ handleTotalValue().replace('.', ',') }
-          cart={ createUnique() }
+          cart={ cart }
         />
       </div>
     </div>

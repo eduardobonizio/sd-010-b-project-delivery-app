@@ -21,6 +21,7 @@ function OrderDetails() {
   useEffect(() => {
     APITOKEN.fetchSaleInfo(params.id).then((response) => {
       setsaleInfo(response.data);
+      console.log(response.data);
       setisFetched(true);
       setStatus(saleInfo.productsInfo.status);
     });
@@ -51,19 +52,22 @@ function OrderDetails() {
       >
         {status}
       </span>
-      {role === 'seller' ? (
-        <ButtonsSellerOrderDetails
-          status={ status }
-          id={ params.id }
-          handleSaleStatus={ handleSaleStatus }
-        />
-      ) : (
-        <ButtonCustomerOrderDetails
-          status={ status }
-          id={ params.id }
-          handleSaleStatus={ handleSaleStatus }
-        />
-      )}
+      <div>
+
+        {role === 'seller' ? (
+          <ButtonsSellerOrderDetails
+            status={ status }
+            id={ params.id }
+            handleSaleStatus={ handleSaleStatus }
+          />
+        ) : (
+          <ButtonCustomerOrderDetails
+            status={ status }
+            id={ params.id }
+            handleSaleStatus={ handleSaleStatus }
+          />
+        )}
+      </div>
       {
         isFetched ? <OrderProductsTable products={ productsInfo.products } /> : ''
       }
