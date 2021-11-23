@@ -1,8 +1,6 @@
 import axios from 'axios';
 
-// https://pt.stackoverflow.com/q/365296/207241
-
-const APIPOST = axios.create({
+const API = axios.create({
   baseURL: 'http://localhost:3001/',
   headers: {
     'Content-type': 'application/json',
@@ -24,15 +22,15 @@ const fetchOrders = (token) => APITOKEN(token).get('/sale/user', {});
 
 const createSale = (saleBody, token) => APITOKEN(token).post('/sale', saleBody);
 
-const getAllProducts = () => APITOKEN().get('/products', {});
+const getAllProducts = () => API.get('/products', {});
 
-const login = (user) => APIPOST.post('/login', user);
+const login = (user) => API.post('/login', user);
 
-const register = (user) => APIPOST.post('/user/register', user);
+const register = (user) => API.post('/user/register', user);
 
-const fetchSaleInfo = (id) => APITOKEN().get(`/sale/products/${id}`, {});
+const fetchSaleInfo = (id) => API.get(`/sale/products/${id}`, {});
 
-const updateSaleStatus = (id, status) => APITOKEN().put(`/sale/${id}`, { status });
+const updateSaleStatus = (id, status) => API.put(`/sale/${id}`, { status });
 
 export default { fetchOrders,
   login,

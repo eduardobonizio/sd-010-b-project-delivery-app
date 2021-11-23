@@ -14,58 +14,67 @@ export default function ProductContextProvider({ children }) {
 
   const handleQuantityInput = ({ target }, prod) => {
     const { value } = target;
-    const arr = cart.filter((el) => el.id !== prod.id);
-    for (let i = 0; i < +value; i += 1) {
-      arr.push(prod);
+    if (+value > 0) {
+      let manipulateCart = [...cart];
+      const indexOfProd = manipulateCart.findIndex((p) => p.id === prod.id);
+      if (indexOfProd >= 0) {
+        manipulateCart[indexOfProd].qty = +value;
+        setCart(manipulateCart);
+      } else {
+        manipulateCart = [...cart, { ...prod, qty: +value }];
+        setCart(manipulateCart);
+      }
+    } else {
+      let manipulateCart = [...cart];
+      manipulateCart = manipulateCart.filter((p) => p.id !== prod.id);
+      setCart(manipulateCart);
     }
-    setCart(arr);
+  };
+
+  const addProduct = (prod) => {
+    const existingProductIndex = cart.findIndex((p) => p.id === prod.id);
+    if (existingProductIndex >= 0) {
+      const manipulateCart = [...cart];
+      const produto = manipulateCart.find((p) => p.id === prod.id);
+      if (produto) produto.qty += 1;
+      setCart(manipulateCart);
+    } else {
+      setCart([...cart, { ...prod, qty: 1 }]);
+    }
+  };
+
+  const removeProduct = (prod) => {
+    const index = cart.findIndex((el) => el.id === prod.id);
+    const newArr = [...cart];
+    if (index >= 0) {
+      const produto = newArr.find((p) => p.id === prod.id);
+      if (produto && produto.qty < 2) {
+        newArr.splice(index, 1);
+      }
+      if (produto && produto.qty >= 2) produto.qty -= 1;
+      setCart(newArr);
+    }
   };
 
   const handleCart = ({ target }, prod) => {
     const { name } = target;
     if (name === 'plus') {
-      setCart([...cart, prod]);
+      addProduct(prod);
     } else {
-      const index = cart.findIndex((el) => el.id === prod.id);
-      const newArr = [...cart];
-      if (index >= 0) {
-        newArr.splice(index, 1);
-        setCart(newArr);
-      }
+      removeProduct(prod);
     }
   };
 
   const handleTotalValue = () => {
     const zero = 0;
     if (!cart.length) return zero.toFixed(2);
-    const total = cart.reduce((acc, curr) => acc + +curr.price, 0);
+    const total = cart.reduce((acc, curr) => acc + +curr.price * +curr.qty, 0);
     return total.toFixed(2);
-  };
-
-  const handleQuantity = (prodId) => {
-    const prod = cart.filter((el) => el.id === prodId);
-    return prod.length;
-  };
-
-  const handleSubTotal = (id) => {
-    const elements = cart.filter((el) => el.id === id);
-    const subTotal = elements.reduce((acc, curr) => acc + +curr.price, 0);
-    return subTotal.toFixed(2);
   };
 
   const handleRemoveProduct = (id) => {
     const newCart = cart.filter((el) => el.id !== id);
     setCart(newCart);
-  };
-
-  const serialize = (prods) => {
-    let prod = {};
-    const newProducts = [];
-    prods.forEach((el) => {
-      prod = { ...el, qty: 0 };
-      newProducts.push(prod);
-    });
-    setProducts(newProducts);
   };
 
   const handleSaleStatus = async (e, id) => {
@@ -83,7 +92,7 @@ export default function ProductContextProvider({ children }) {
   };
 
   useEffect(() => {
-    APITOKEN.getAllProducts().then((res) => serialize(res.data));
+    APITOKEN.getAllProducts().then((res) => setProducts(res.data));
   }, []);
 
   return (
@@ -94,8 +103,6 @@ export default function ProductContextProvider({ children }) {
         handleQuantityInput,
         handleCart,
         handleTotalValue,
-        handleQuantity,
-        handleSubTotal,
         handleRemoveProduct,
         status,
         setStatus,
@@ -112,7 +119,7 @@ export function useProductContext() {
 
   const { cart, setCart, products,
     handleQuantityInput, handleCart,
-    handleTotalValue, handleQuantity, handleSubTotal,
+    handleTotalValue,
     handleRemoveProduct, status, setStatus, handleSaleStatus } = context;
   return { cart,
     setCart,
@@ -120,8 +127,6 @@ export function useProductContext() {
     handleQuantityInput,
     handleCart,
     handleTotalValue,
-    handleQuantity,
-    handleSubTotal,
     handleRemoveProduct,
     status,
     setStatus,

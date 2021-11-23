@@ -1,10 +1,14 @@
-const { validateUserData } = require('./validations/userValidation');
-const { createUser } = require('./validations/validation');
+const md5 = require('md5');
+const { User } = require('../../database/models');
+const { validateUserData, checkIfUserExist } = require('./validations/userValidation');
 
-const register = async (body) => {
-  await validateUserData(body);
-  const user = await createUser(body);
-  return user;
+const register = async (userInfo) => {
+  await validateUserData(userInfo);
+  const { name, email, password } = userInfo;
+  await checkIfUserExist({ email, expectExist: false });
+  const cryptPass = md5(password);
+  const newUser = await User.create({ name, email, password: cryptPass, role: 'customer' });
+  return newUser;
 };
 
 module.exports = {

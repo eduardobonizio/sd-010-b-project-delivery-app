@@ -9,7 +9,7 @@ import {
   validateEmail,
   validatePassword,
   validateName,
-} from '../util/valdations';
+} from '../util/userValidations';
 
 function Register() {
   const [state, setState] = useState({ name: '', email: '', password: '' });
