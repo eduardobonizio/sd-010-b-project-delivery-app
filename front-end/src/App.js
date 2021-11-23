@@ -20,8 +20,8 @@ function App() {
           <Route path="/login" component={ Login } />
           <Route path="/customer/products" component={ Products } />
           <Route path="/customer/checkout" component={ Checkout } />
-          <Route path="/customer/orders" component={ PagesOrder } />
-          <Route path="/customer/orders/:id" component={ PagesOrderDetails } />
+          <Route exact path="/customer/orders" component={ PagesOrder } />
+          <Route exact path="/customer/orders/:id" component={ PagesOrderDetails } />
         </Switch>
       </AppProvider>
     </div>

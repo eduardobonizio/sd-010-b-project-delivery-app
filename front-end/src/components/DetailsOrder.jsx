@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import AppContext from '../Context/AppContext';
 
 function DetailsOrder({ isRemoveBtn }) {
-  const { dataOrder, setDataOrder } = useContext(AppContext);
+  const { dataOrder, setDataOrder, dataSeler } = useContext(AppContext);
 
   const handleChange = ({ target: { name } }) => {
     const result = dataOrder.filter((el) => el.name !== name);
     setDataOrder(result);
   };
+
+  const map = isRemoveBtn ? dataOrder : dataSeler[0].products;
 
   const dataTesteIdItemNumber = isRemoveBtn
     ? 'customer_checkout__element-order-table-item-number-'
@@ -37,7 +39,7 @@ function DetailsOrder({ isRemoveBtn }) {
     <table>
       <thead>
         <tr>
-          <th>Item</th>
+          <th>{ console.log(map) }</th>
           <th>Descrição</th>
           <th>Quantidade</th>
           <th>Valor Unitário</th>
@@ -46,9 +48,9 @@ function DetailsOrder({ isRemoveBtn }) {
         </tr>
       </thead>
       <tbody>
-        {dataOrder.length !== 0
-        && dataOrder.map(({ name, quantity, price, total }, index) => (
-          <tr key={ name }>
+        {map.length !== 0
+        && map.map((element, index) => (
+          <tr key={ console.log(element) }>
             <td
               data-testid={ `${dataTesteIdItemNumber}${index + 1}` }
             >
@@ -57,29 +59,30 @@ function DetailsOrder({ isRemoveBtn }) {
             <td
               data-testid={ `${dataTesteIdName}${index + 1}` }
             >
-              {name}
+              { element.name }
             </td>
             <td
               data-testid={ `${dataTesteIdQuantidade}${index + 1}` }
             >
-              {quantity}
-            </td>
-            <td
-              data-testid={ `${dataTesteIdSubTotal}${index + 1}` }
-            >
-              {Number(price).toFixed(2).toString().replace('.', ',')}
+              { element.quantity || element.SalesProduct.quantity }
             </td>
             <td
               data-testid={ `${dataTesteIdPrice}${index + 1}` }
             >
-              {Number(total).toFixed(2).toString().replace('.', ',')}
+              {Number(element.price).toFixed(2).toString().replace('.', ',')}
+            </td>
+            <td
+              data-testid={ `${dataTesteIdSubTotal}${index + 1}` }
+            >
+              {Number(total || (element.SalesProduct.quantity * element.price))
+                .toFixed(2).toString().replace('.', ',')}
             </td>
             {isRemoveBtn && (
               <td>
                 <button
                   type="button"
                   data-testid={ `${dataTesteIdRemoverItem}${index + 1}` }
-                  name={ name }
+                  name={ element.name }
                   onClick={ handleChange }
                 >
                   Remover

@@ -6,6 +6,7 @@ function AppProvider({ children }) {
   const [products, setProducts] = useState([]);
   const [dataUser, setDataUser] = useState({});
   const [dataOrder, setDataOrder] = useState([]);
+  const [dataSeler, setDataSeler] = useState([]);
 
   useEffect(() => {
     const getProducts = () => {
@@ -23,6 +24,8 @@ function AppProvider({ children }) {
     setDataUser,
     dataOrder,
     setDataOrder,
+    dataSeler,
+    setDataSeler,
   };
 
   return (

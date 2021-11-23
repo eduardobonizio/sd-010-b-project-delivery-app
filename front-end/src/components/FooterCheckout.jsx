@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useContext } from 'react';
 import AppContext from '../Context/AppContext';
 
@@ -28,7 +29,7 @@ function FooterCheckout() {
       return result;
     };
     setSale({ ...sale, totalPrice: getTotal() });
-  }, [dataOrder, sale]);
+  }, []);
 
   const handleChange = ({ target: { name, value } }) => {
     console.log(value);

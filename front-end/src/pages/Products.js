@@ -20,6 +20,7 @@ function Products() {
   useEffect(() => {
     carTotal();
   }, [carTotal, dataOrder]);
+
   return (
     <>
       <Link to="/customer/orders">
