@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken');
 const md5 = require('md5');
+const fs = require('fs');
 
-const secret = 'secret_key';
+const secret = fs.readFileSync('jwt.evaluation.key', 'utf-8');
 
 const jwtConfiguration = {
   expiresIn: '15d',
@@ -10,11 +11,11 @@ const jwtConfiguration = {
 
 const generateToken = (object) => {
   const payload = object;
-  return jwt.sign({ data: payload }, secret, jwtConfiguration);
+  return jwt.sign({ data: payload }, secret.trim(), jwtConfiguration);
 };
 
 const verifyToken = (token) => {
-  const payload = jwt.verify(token, secret);
+  const payload = jwt.verify(token, secret.trim());
   return payload;
 }; 
 
