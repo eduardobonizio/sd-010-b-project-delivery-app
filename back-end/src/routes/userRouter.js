@@ -1,5 +1,5 @@
 const express = require('express');
-
+const { validToken } = require('../middlewares/auth/validJWT');
 const userController = require('../app/controllers/userController');
 
 const router = express.Router();
@@ -14,6 +14,6 @@ router.route('/:id')
 .get(userController.findById);
 
 router.route('/admin')
-.post(userController.adminAddUser);
+.post(validToken, userController.adminAddUser);
 
 module.exports = router;
