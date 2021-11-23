@@ -27,11 +27,14 @@ const loginController = async (req, res) => {
 };
 
 const register = async (req, res) => {
-  const { name, email } = req.body;
+  const { name, email, role } = req.body;
   const password = md5(req.body.password);
-   
-  await User.create({ name, email, password, role: 'customer' });
-  res.status(201).json({ message: 'Created' });
+  if (!role) {
+    await User.create({ name, email, password, role: 'customer' });
+    return res.status(201).json({ message: 'Created' });
+  }
+  await User.create({ name, email, password, role });
+  return res.status(201).json({ message: 'Created' });
 };
 
 module.exports = { loginController, register };
