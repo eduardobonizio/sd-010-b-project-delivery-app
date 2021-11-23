@@ -1,6 +1,16 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 function NavBar() {
+  const history = useHistory();
+  const user = JSON.parse(localStorage.getItem('user'));
+  const { name } = user;
+
+  const logout = () => {
+    history.push({ pathname: '/' });
+    localStorage.clear();
+  };
+
   return (
     <header>
       <button
@@ -19,11 +29,12 @@ function NavBar() {
         type="button"
         data-testid="customer_products__element-navbar-user-full-name"
       >
-        Cicrano da Silva
+        { name }
       </button>
       <button
         type="button"
         data-testid="customer_products__element-navbar-link-logout"
+        onClick={ logout }
       >
         Sair
       </button>
