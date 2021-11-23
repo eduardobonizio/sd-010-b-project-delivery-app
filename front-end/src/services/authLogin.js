@@ -18,8 +18,9 @@ const userLogin = async (state, setIsErr) => {
     console.log(data);
     localStorage.setItem('user', JSON.stringify(
       {
-        nome: data.data.name,
+        name: data.data.name,
         email: data.data.email,
+        role: data.data.role,
         id: data.data.id,
         token: data.token },
     ));
