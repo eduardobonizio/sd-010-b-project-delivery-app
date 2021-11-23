@@ -13,7 +13,7 @@ function OrderClient() {
       const salesUsers = await (await api.getAllSales(tokenUser)).data;
       setSales(salesUsers);
     })();
-  }, []);
+  }, [tokenUser]);
 
   return (
     <>
