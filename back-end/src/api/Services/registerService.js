@@ -1,4 +1,6 @@
 const md5 = require('md5');
+const jwt = require('../jwt/jwtValidation');
+
 const { user } = require('../../database/models');
 
 const checkUser = async ({ name, email }) => {
@@ -11,7 +13,7 @@ const checkUser = async ({ name, email }) => {
   return true;
 };
 
-const registerUser = async ({ name, password, email, role = 'user' }) => {
+const registerUser = async ({ name, password, email, role = 'customer' }) => {
   const newPassword = md5(password);
 
   console.log(newPassword);
@@ -22,7 +24,11 @@ const registerUser = async ({ name, password, email, role = 'user' }) => {
 
   if (!register) return false;
 
-  return { name, email, password: newPassword }; 
+  const userId = register.id;
+
+  const token = jwt.creatToken(userId);
+
+  return { name, email, password: newPassword, token, role }; 
 };
 
 module.exports = {

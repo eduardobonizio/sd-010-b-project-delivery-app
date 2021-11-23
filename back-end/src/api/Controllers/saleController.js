@@ -1,5 +1,20 @@
 const saleService = require('../Services/saleService');
 
+const internalServerErrorMessage = 'Erro interno';
+
+const create = async (req, res) => {
+  const { userId } = req;
+  const { sale } = req.body;
+
+  try {
+    const saleId = await saleService.create({ ...sale, userId });
+    return res.status(201).json({ saleId });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).send(internalServerErrorMessage);
+  }
+};
+
 const getAllSales = async (req, res) => {
   const { userId } = req;
 
@@ -12,15 +27,32 @@ const getAllSales = async (req, res) => {
   return res.status(201).json(allSales);
 };
 
-const getSalesById = async (req, res) => {
+const getById = async (req, res) => {
   const { id } = req.params;
-    
-  const sale = await saleService.getSalesById(id);
+  try {
+    const salesDetails = await saleService.getById(id);
+    return res.status(200).json(salesDetails);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send(internalServerErrorMessage);
+  }
+};
 
-  return res.status(200).json(sale);
+const updateSaleStatus = async (req, res) => {
+  const { id } = req.params;
+  const { status } = req.body;
+  try {
+    await saleService.updateSaleStatus({ id, status });    
+    return res.status(204).end();
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send(internalServerErrorMessage);
+  }
 };
 
 module.exports = {
+  create,
   getAllSales,
-  getSalesById,
+  getById,
+  updateSaleStatus,
 };

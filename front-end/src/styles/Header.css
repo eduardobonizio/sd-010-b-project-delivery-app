@@ -1,8 +1,9 @@
 nav {
+  background-color: #216b53;
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr 0.5fr;
+  grid-template-columns: 0.75fr 0.75fr 1fr 0.75fr 0.5fr;
   grid-template-rows: 1fr;
-  height: 80px;
+  height: 60px;
 }
 
 nav a {
@@ -14,21 +15,10 @@ nav a {
   text-decoration: none;
 }
 
-.nav1 {
-  background-color: #44c18c;
-  color: black;
-}
-
-.nav2 {
-  background-color: #216b53;
-  justify-content: flex-start;
-  padding-left: 30px;
-}
-
-.nav3 {
+.purple {
   background-color: #463f81;
 }
 
-.nav4 {
+.blue {
   background-color: #187cf9;
 }

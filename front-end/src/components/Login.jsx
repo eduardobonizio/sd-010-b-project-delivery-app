@@ -12,16 +12,21 @@ const Login = () => {
   } = useContext(DeliveryContext);
 
   useEffect(() => {
+    if (localStorage.user) {
+      return navigate('/customer/products');
+    }
+
     if (validarEmail(email) && validarSenha(password)) {
       return setIsDisabled(false);
     }
     return setIsDisabled(true);
-  }, [email, password, validarEmail, validarSenha]);
+  }, [email, navigate, password, validarEmail, validarSenha]);
 
   const buttonLogin = async () => {
     try {
       const { data } = await axios.post('http://localhost:3001/login', { email, password });
       localStorage.setItem('user', `${JSON.stringify(data)}`);
+      setPassword('');
       return navigate('/customer/products');
     } catch (error) {
       setIsValidPW(true);
@@ -44,7 +49,7 @@ const Login = () => {
         />
         <input
           data-testid="common_login__input-password"
-          type="text"
+          type="password"
           name="password"
           onChange={ ({ target }) => setPassword(target.value) }
           value={ password }

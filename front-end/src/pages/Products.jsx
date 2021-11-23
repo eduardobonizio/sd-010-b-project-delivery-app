@@ -24,7 +24,7 @@ function Products() {
 
   return (
     <div className="div-main">
-      <Header />
+      <Header userRole="customer" />
       <main>
         {products.map((product) => (<Cards
           key={ product.id }
