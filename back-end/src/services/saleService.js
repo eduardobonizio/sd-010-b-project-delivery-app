@@ -36,7 +36,18 @@ const getOrders = async (userId) => {
   }
 };
 
+const getOrderByPk = async (userId, id) => {
+  try {
+    const order = await Sale.findByPk(id, { where: { userId } });
+    return order;
+  } catch (e) {
+    console.log(e);
+    return null;
+  }
+};
+
 module.exports = {
   createNewSale,
   getOrders,
+  getOrderByPk,
 };
