@@ -1,7 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-function ProductCard({ product, handleCart, handleQuantityInput, handleQuantity }) {
+function ProductCard({ product, handleCart, handleQuantityInput }) {
+  const [qty, setQty] = useState(0);
+  const handleChange = (e) => {
+    const { target: { value, name } } = e;
+    if (name === 'subtract' && qty <= 0) {
+      setQty(0);
+    } else {
+      switch (name) {
+      case 'subtract':
+        setQty(qty - 1);
+        break;
+      case 'plus':
+        setQty(qty + 1);
+        break;
+      default:
+        setQty(+value);
+        break;
+      }
+    }
+  };
   const { id, name, price, urlImage } = product;
   return (
     <div className="product-card">
@@ -22,22 +41,32 @@ function ProductCard({ product, handleCart, handleQuantityInput, handleQuantity 
             data-testid={ `customer_products__button-card-rm-item-${id}` }
             type="button"
             name="subtract"
-            onClick={ (e) => handleCart(e, product) }
+            onClick={ (e) => {
+              handleCart(e, product);
+              handleChange(e);
+            } }
           >
             -
           </button>
           <input
             data-testid={ `customer_products__input-card-quantity-${id}` }
             type="number"
-            value={ handleQuantity(id) }
-            onChange={ (e) => handleQuantityInput(e, product) }
+            min="0"
+            value={ qty }
+            onChange={ (e) => {
+              handleQuantityInput(e, product);
+              handleChange(e);
+            } }
             name="quantity"
           />
           <button
             data-testid={ `customer_products__button-card-add-item-${id}` }
             type="button"
             name="plus"
-            onClick={ (e) => handleCart(e, product) }
+            onClick={ (e) => {
+              handleCart(e, product);
+              handleChange(e);
+            } }
           >
             +
           </button>
@@ -53,10 +82,10 @@ ProductCard.propTypes = {
     name: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
     urlImage: PropTypes.string.isRequired,
+    qty: PropTypes.number.isRequired,
   }).isRequired,
   handleCart: PropTypes.func.isRequired,
   handleQuantityInput: PropTypes.func.isRequired,
-  handleQuantity: PropTypes.func.isRequired,
 };
 
 export default ProductCard;

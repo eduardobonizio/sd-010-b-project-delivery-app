@@ -2,36 +2,48 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-function OrderCard({ order }) {
-  const { id, saleDate, status, totalPrice } = order;
+function OrderCard({ order, role }) {
+  const { id, saleDate, status, totalPrice, deliveryAddress, deliveryNumber } = order;
 
-  const newDate = saleDate.split('T')[0].split('-').reverse().join('/');
+  const formatedDate = saleDate.split('T')[0].split('-').reverse().join('/');
 
   return (
-    <Link to={ `/customer/orders/${id}` }>
-      <div data-testid={ `customer_orders__element-order-id-${id}` }>
+    <Link to={ `/${role}/orders/${id}` }>
+      <div data-testid={ `${role}_orders__element-order-id-${id}` }>
         {id}
       </div>
-      <div data-testid={ `customer_orders__element-delivery-status-${id}` }>
+      <button
+        type="button"
+        data-testid={ `${role}_orders__element-delivery-status-${id}` }
+      >
         {status}
+      </button>
+      <div data-testid={ `${role}_orders__element-order-date-${id}` }>
+        {formatedDate}
       </div>
-      <div data-testid={ `customer_orders__element-order-date-${id}` }>
-        {newDate}
-      </div>
-      <div data-testid={ `customer_orders__element-card-price-${id}` }>
+      <div data-testid={ `${role}_orders__element-card-price-${id}` }>
         {`${totalPrice.replace('.', ',')}` }
       </div>
+      {role === 'seller' ? (
+        <div data-testid={ `seller_orders__element-card-address-${id}` }>
+          {`${deliveryAddress}, ${deliveryNumber}`}
+        </div>
+      ) : null}
     </Link>
   );
 }
 
 OrderCard.propTypes = {
   order: PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
     saleDate: PropTypes.string,
     status: PropTypes.string,
     totalPrice: PropTypes.string,
+    deliveryNumber: PropTypes.string,
+    deliveryAddress: PropTypes.string,
+
   }).isRequired,
+  role: PropTypes.string.isRequired,
 };
 
 export default OrderCard;

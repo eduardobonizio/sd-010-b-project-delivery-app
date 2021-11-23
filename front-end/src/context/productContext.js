@@ -14,26 +14,81 @@ export default function ProductContextProvider({ children }) {
 
   const handleQuantityInput = ({ target }, prod) => {
     const { value } = target;
-    const arr = cart.filter((el) => el.id !== prod.id);
-    for (let i = 0; i < +value; i += 1) {
-      arr.push(prod);
+    console.log(value);
+    if (+value > 0) {
+      let manipulateCart = [...cart];
+      const indexOfProd = manipulateCart.findIndex((p) => p.id === prod.id);
+      if (indexOfProd >= 0) {
+        manipulateCart[indexOfProd].qty = +value;
+        setCart(manipulateCart);
+      } else {
+        manipulateCart = [...cart, { ...prod, qty: +value }];
+        setCart(manipulateCart);
+      }
+    } else {
+      let manipulateCart = [...cart];
+      manipulateCart = manipulateCart.filter((p) => p.id !== prod.id);
+      setCart(manipulateCart);
     }
-    setCart(arr);
+  };
+
+  // const handleQuantityInput = ({ target }, prod) => {
+  //   const { value } = target;
+  //   const arr = cart.filter((el) => el.id !== prod.id);
+  //   for (let i = 0; i < +value; i += 1) {
+  //     arr.push(prod);
+  //   }
+  //   setCart(arr);
+  // };
+
+  const addProduct = (prod) => {
+    const existingProductIndex = cart.findIndex((p) => p.id === prod.id);
+    if (existingProductIndex >= 0) {
+      const manipulateCart = [...cart];
+      const produto = manipulateCart.find((p) => p.id === prod.id);
+      if (produto) produto.qty += 1;
+      setCart(manipulateCart);
+    } else {
+      setCart([...cart, { ...prod, qty: 1 }]);
+    }
+  };
+
+  const removeProduct = (prod) => {
+    const index = cart.findIndex((el) => el.id === prod.id);
+    const newArr = [...cart];
+    if (index >= 0) {
+      const produto = newArr.find((p) => p.id === prod.id);
+      if (produto && produto.qty < 2) {
+        newArr.splice(index, 1);
+      }
+      if (produto && produto.qty >= 2) produto.qty -= 1;
+      console.log(newArr);
+      setCart(newArr);
+    }
   };
 
   const handleCart = ({ target }, prod) => {
     const { name } = target;
     if (name === 'plus') {
-      setCart([...cart, prod]);
+      addProduct(prod);
     } else {
-      const index = cart.findIndex((el) => el.id === prod.id);
-      const newArr = [...cart];
-      if (index >= 0) {
-        newArr.splice(index, 1);
-        setCart(newArr);
-      }
+      removeProduct(prod);
     }
   };
+
+  // const handleCart = ({ target }, prod) => {
+  //   const { name } = target;
+  //   if (name === 'plus') {
+  //     setCart([...cart, prod]);
+  //   } else {
+  //     const index = cart.findIndex((el) => el.id === prod.id);
+  //     const newArr = [...cart];
+  //     if (index >= 0) {
+  //       newArr.splice(index, 1);
+  //       setCart(newArr);
+  //     }
+  //   }
+  // };
 
   const handleTotalValue = () => {
     const zero = 0;

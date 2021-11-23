@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, Link, Redirect } from 'react-router-dom';
-import APIPOST from '../api';
+import API from '../api';
 
-import { validateEmail, validatePassword } from '../util/valdations';
+import { validateEmail, validatePassword } from '../util/userValidations';
 
 function Login() {
   const [passwordIsValid, setPasswordIsValid] = useState(false);
@@ -10,7 +10,7 @@ function Login() {
   const [email, setEmail] = useState('');
   const [emailIsValid, setEmailIsValid] = useState(false);
   const [error, setError] = useState(null);
-  const [shouldRedirect, setshouldRedirect] = useState(false);
+  const [shouldRedirect, setShouldRedirect] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
@@ -18,33 +18,25 @@ function Login() {
     if (userInfo) {
       const { token } = userInfo;
       if (token) {
-        setshouldRedirect(true);
+        setShouldRedirect(true);
       }
     }
   }, []);
-
-  const savePassword = (p) => {
-    setPassword(p);
-  };
 
   const handlePasswordChange = (event) => {
     const {
       target: { value },
     } = event;
-    savePassword(value);
+    setPassword(value);
     const passwordValidation = validatePassword(value);
     setPasswordIsValid(passwordValidation);
-  };
-
-  const saveEmail = (e) => {
-    setEmail(e);
   };
 
   const handleEmailChange = (event) => {
     const {
       target: { value },
     } = event;
-    saveEmail(value);
+    setEmail(value);
     const emailValidation = validateEmail(value);
     setEmailIsValid(emailValidation);
   };
@@ -62,7 +54,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data: { user } } = await APIPOST.login({ email, password });
+      const { data: { user } } = await API.login({ email, password });
       localStorage.setItem('user', JSON.stringify(user));
       redirect(user);
     } catch (err) {
