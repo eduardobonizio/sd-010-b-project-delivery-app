@@ -28,16 +28,21 @@ const Provider = ({ children }) => {
   const history = useHistory();
 
   async function checkoutPurchase() {
+    const user = JSON.parse(localStorage.getItem('user'));
     const listItem = orderInProgress.map((item) => {
       const revisedItem = item;
       revisedItem.productId = item.id;
+      // revisedItem.userId = user.userId;
       delete revisedItem.id;
       delete revisedItem.name;
       delete revisedItem.price;
+      delete revisedItem.url;
       return revisedItem;
     });
+    console.log(listItem);
     const checkoutObj = {
-      sellerId: Number(chooseSeller),
+      userId: user.userId,
+      sellerId: 1,
       totalPrice: totalOrder,
       deliveryAddress: purchaseAddress,
       deliveryNumber: addressNumber,
