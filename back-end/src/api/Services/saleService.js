@@ -50,9 +50,9 @@ const formatResponseContent = (dataToFormatted) => {
 };
 
 const getById = async (id) => {
-  const saleFound = await sale.findAll(
+  const saleFound = await sale.findByPk(
+    id,
     {
-      where: { id },
       attributes: ['id', 'saleDate', 'status', 'totalPrice'],
       include: [{
         model: product,
@@ -61,7 +61,7 @@ const getById = async (id) => {
           exclude: ['url_image'],
         },
         through: {
-          attributes: ['quantity', 'sale_id', 'user_id'],
+          attributes: ['quantity'],
         },
       },
       {
@@ -72,9 +72,9 @@ const getById = async (id) => {
     },
   );
 
-  // const newSalePayload = formatResponseContent(saleFound);
+  const newSalePayload = formatResponseContent(saleFound);
 
-  return saleFound;
+  return newSalePayload;
 };
 
 const updateSaleStatus = async ({ id, status }) => sale.update({ status }, { where: { id } });
