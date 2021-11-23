@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     delivery_number: DataTypes.STRING(50),
     sale_date: { type: DataTypes.DATE, defaultValue: DataTypes.NOW, },
     status: DataTypes.STRING(50),
-  }, { timestamps: false, tableName: 'sales' });
+  }, { underscored: true, timestamps: false, tableName: 'sales' });
   Sales.associate = (models) => {
     models.sales.belongsTo(models.users, { foreignKey: 'user_id', as: 'user' });
     models.sales.belongsTo(models.users, { foreignKey: 'seller_id', as: 'seller' });

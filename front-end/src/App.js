@@ -5,6 +5,7 @@ import CustomRoute from './Routes';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Products from './pages/Products';
+import CustomerOrders from './pages/CustomerOrders';
 
 import NavBar from './components/NavBar';
 
@@ -34,6 +35,12 @@ function App() {
         navbar={ <NavBar /> }
       />
       <CustomRoute path="/register" component={ Register } />
+      <CustomRoute path="/customer/checkout" element={ <div /> } />
+      <CustomRoute
+        navbar={ <NavBar /> }
+        path="/customer/orders"
+        component={ CustomerOrders }
+      />
       <Redirect from="/" to="/login" />
     </Switch>
   );
