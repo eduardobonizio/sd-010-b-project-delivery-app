@@ -22,6 +22,19 @@
   margin: 10px;
 }
 
+.conteinerSeller {
+  border-radius: 5px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16) , 0 3px 6px rgba(0, 0, 0, 0.23);
+  display: grid;
+  grid-gap: 1px;
+  grid-template-areas: 'box1 box1'
+    'box2 box3'
+    'box2 box3'
+    'box2 box3'
+    'box4 box4';
+  margin: 10px;
+}
+
 .conteiner:hover {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25) , 0 10px 10px rgba(0, 0, 0, 0.22);
 }
@@ -70,6 +83,10 @@
   display: flex;
   flex-direction: column;
   grid-area: box3;
+}
+
+.address {
+  grid-area: box4;
 }
 
 .pendente {
