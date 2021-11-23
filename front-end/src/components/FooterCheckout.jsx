@@ -2,31 +2,25 @@ import React, { useState, useEffect, useContext } from 'react';
 import AppContext from '../Context/AppContext';
 
 function FooterCheckout() {
-  const { total } = useContext(AppContext);
+  const { total, dataOrder } = useContext(AppContext);
   const [sellers, setSellers] = useState([]);
+  const [saleId, setSaleId] = useState('');
+  console.log(saleId);
+  console.log('dataOrder', dataOrder);
 
   const [sale, setSale] = useState({
     sellerId: '',
-    totalPrice: total,
+    totalPrice: '',
     deliveryAddress: '',
     deliveryNumber: '',
   });
 
-  // const toke = localStorage.getItem('user');
-  // console.log(toke.tolen);
-
-  // useEffect(() => {
-  //   const getTotal = () => {
-  //     const result = dataOrder.reduce((prev, curren) => prev + Number(curren.total), 0)
-  //       .toFixed(2).replace('.', ',');
-  //     return result;
-  //   };
-  //   setSale({ ...sale, totalPrice: getTotal() });
-  // }, [dataOrder, sale]);
+  const { token } = localStorage.getItem('user');
+  console.log(token);
 
   const handleChange = ({ target: { name, value } }) => {
     console.log(value);
-    setSale({ ...sale, [name]: value });
+    setSale({ ...sale, [name]: value, totalPrice: total });
   };
 
   useEffect(() => {
@@ -35,21 +29,35 @@ function FooterCheckout() {
       .then((response) => setSellers(response));
   }, []);
 
-  // const handleSubmit = () => {
-  //   const url = 'http://localhost:3000/sales';
-  //   const header = {
-  //     method: 'POST',
-  //     body: JSON.stringify(sale),
-  //     // authorization:
-  //     headers: new Headers({
-  //       'Content-Type': 'application/json',
-  //       Accept: 'application/json',
-  //     }),
-  //   };
-  //   fetch(url, header)
-  //     .then(() => getTasks())
-  //     .catch((err) => console.log('Erro aqui', err));
-  // };
+  const handleSubmit = async () => {
+    const contentType = 'application/json';
+    const url = 'http://localhost:3000/sales';
+    const header1 = {
+      method: 'POST',
+      body: JSON.stringify(sale),
+      authorization: token,
+      headers: new Headers({
+        'Content-Type': contentType,
+        Accept: contentType,
+      }),
+    };
+    await fetch(url, header1)
+      .then((response) => response.json(response))
+      .then((response) => setSaleId(response.id))
+      .catch((err) => console.log('Erro aqui', err));
+
+    await dataOrder.forEach((order) => {
+      fetch('http://localhost:3000/saleProducts', {
+        method: 'POST',
+        body: JSON.stringify({ saleId, productId: order.id, quantity: order.quantity }),
+        authorization: token,
+        headers: new Headers({
+          'Content-Type': contentType,
+          Accept: contentType,
+        }),
+      }).catch((err) => console.log('Erro aqui', err));
+    });
+  };
 
   return (
     <div>
@@ -66,7 +74,7 @@ function FooterCheckout() {
               { sellers.map((seller, index) => (
                 <option
                   key={ index }
-                  value={ seller.id }
+                  value="20"
                 >
                   { seller.name }
 
@@ -92,6 +100,7 @@ function FooterCheckout() {
               onChange={ (e) => handleChange(e) }
             />
           </label>
+          <button type="button" onClick={ handleSubmit }>Finalizar Venda</button>
         </form>
       </div>
     </div>

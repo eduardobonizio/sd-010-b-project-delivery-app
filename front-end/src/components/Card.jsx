@@ -9,7 +9,7 @@ function CardsProducts({ product }) {
   const { id, name, price } = product;
 
   const handleClick = () => {
-    setObj({ name, quantity, price, total: quantity * Number(price) });
+    setObj({ id, name, quantity, price, total: quantity * Number(price) });
   };
 
   const updateOrder = () => {
