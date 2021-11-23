@@ -5,6 +5,7 @@ const addPurchase = async (req, res) => {
     const purchase = req.body;
     const { products } = purchase;
     const addSale = await Sale.addSale(purchase);
+    console.log(addSale);
     const newPurchase = await Sale.addPurchase(products);
     return res.status(201).json(newPurchase);
   } catch (error) {

@@ -9,6 +9,7 @@ const addSale = async (saleInfo) => {
 };
 
 const addPurchase = async (products) => {
+  console.log(products);
   const data = await Promise.all(products.map(async ({ productId, quantity }) => {
     SalesProducts.create({
       ProductId: productId,
