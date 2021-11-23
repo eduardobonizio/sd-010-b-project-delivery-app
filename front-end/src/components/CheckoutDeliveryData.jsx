@@ -3,7 +3,7 @@ import { Container, Dropdown, Form } from 'react-bootstrap';
 import Proptypes from 'prop-types';
 
 function CheckoutDeliveryData(props) {
-  const { finishSale } = props;
+  const { finishSale, setDeliveryAddress, setDeliveryNumber, setSellerId } = props;
 
   return (
     <Container>
@@ -16,17 +16,15 @@ function CheckoutDeliveryData(props) {
             </span>
           </div>
 
-          <select name="select" data-testid="customer_checkout__select-seller">
-            <option value="valor1" selected>Fulana pereira</option>
-            <option value="valor2">Valor 2</option>
-            <option value="valor3">Valor 3</option>
+          <select
+            onChange={ (e) => setSellerId(e.target.value) }
+            name="select"
+            data-testid="customer_checkout__select-seller"
+          >
+            <option value="1" selected>Fulana pereira</option>
+            <option value="2">Valor 2</option>
+            <option value="3">Valor 3</option>
           </select>
-
-          <Dropdown.Menu>
-            <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-            <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-            <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-          </Dropdown.Menu>
         </Dropdown>
         <Form.Label>
           Endereço
@@ -34,8 +32,8 @@ function CheckoutDeliveryData(props) {
             placeholder="Travessa teceira da Castanheira, Bairro Murici"
             type="text"
             data-testid="customer_checkout__input-address"
-            onChange={ () => {
-            // setStatePassword(e.target.value);
+            onChange={ (e) => {
+              setDeliveryAddress(e.target.value);
             } }
           />
         </Form.Label>
@@ -45,8 +43,8 @@ function CheckoutDeliveryData(props) {
             placeholder="198"
             data-testid="customer_checkout__input-addressNumber"
             type="number"
-            onChange={ () => {
-            // setStatePassword(e.target.value);
+            onChange={ (e) => {
+              setDeliveryNumber(e.target.value);
             } }
           />
         </Form.Label>
@@ -57,7 +55,6 @@ function CheckoutDeliveryData(props) {
         // disabled={ cartTotal <= 0 }
         onClick={ finishSale }
       >
-        {console.log(typeof finishSale)}
         FINALIZAR PEDIDO
       </button>
     </Container>
@@ -68,4 +65,7 @@ export default CheckoutDeliveryData;
 
 CheckoutDeliveryData.propTypes = {
   finishSale: Proptypes.func.isRequired,
+  setDeliveryNumber: Proptypes.func.isRequired,
+  setDeliveryAddress: Proptypes.func.isRequired,
+  setSellerId: Proptypes.func.isRequired,
 };

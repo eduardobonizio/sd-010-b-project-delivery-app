@@ -1,10 +1,8 @@
-const jwt = require('jsonwebtoken');
-
-const secret = 'mySuperPassword';
+const { isTokenValid } = require('../helpers/jwt');
 
 const UNAUTHORIZED = 401;
 
-const jwtValidation = async (req, res, next) => {
+const auth = async (req, res, next) => {
   const { authorization } = req.headers;
 
   if (!authorization) {
@@ -14,8 +12,8 @@ const jwtValidation = async (req, res, next) => {
   }
 
   try {
-    const decodification = jwt.verify(authorization, secret);
-    req.user = decodification.data;
+    const { data } = await isTokenValid(authorization);
+    req.body.user = data;
     next();
   } catch (err) {
     return res.status(UNAUTHORIZED).json({
@@ -24,4 +22,4 @@ const jwtValidation = async (req, res, next) => {
   }
 };
 
-module.exports = { jwtValidation };
+module.exports = auth;
