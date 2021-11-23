@@ -5,13 +5,15 @@ import CardOrder from '../components/cardOrder';
 
 function OrderClient() {
   const [sales, setSales] = useState([]);
+  const user = JSON.parse(localStorage.getItem('user'));
+  const tokenUser = user.token;
 
   useEffect(() => {
     (async () => {
-      const salesUsers = await (await api.getAllSales()).data;
+      const salesUsers = await (await api.getAllSales(tokenUser)).data;
       setSales(salesUsers);
     })();
-  }, [sales]);
+  }, []);
 
   return (
     <>

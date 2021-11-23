@@ -1,0 +1,33 @@
+import api from '.';
+
+const redirect = ({ role }) => {
+  switch (role) {
+  case 'administrator': return window.location.replace('/admin/manage');
+  case 'customer': return window.location.replace('/customer/products');
+  case 'seller': return window.location.replace('/customer/seller');
+  default:
+    break;
+  }
+};
+
+const userLogin = async (state, setIsErr) => {
+  try {
+    const user = state.$data;
+    const { data } = await api.create(user);
+    console.log(data);
+    localStorage.setItem('user', JSON.stringify(
+      {
+        nome: data.data.name,
+        email: data.data.email,
+        id: data.data.id,
+        token: data.token },
+    ));
+    localStorage.setItem('products', JSON.stringify({}));
+    redirect(data.data);
+  } catch (error) {
+    setIsErr(true);
+    console.log(error);
+  }
+};
+
+export default userLogin;

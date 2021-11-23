@@ -11,7 +11,6 @@ function ProdCartButton({ totalPrice }) {
     if (newPrice.length === min) return `${newPrice}0`;
     return newPrice;
   };
-  console.log(totalPrice);
 
   return (
     <div>
