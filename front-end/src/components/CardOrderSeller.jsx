@@ -50,7 +50,7 @@ function CardOrderSeller({ sale }) {
           <p data-testid={ `${ID.dataTestId52}${sale.id}` }>
             {`${sale.deliveryAddress}, `}
           </p>
-          <p data-testid={ `${ID.dataTestId52}${sale.id}` }>{ sale.deliveryNumber }</p>
+          <p>{ sale.deliveryNumber }</p>
         </div>
       </div>
     </Link>
