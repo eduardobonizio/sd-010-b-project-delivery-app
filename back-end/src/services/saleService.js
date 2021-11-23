@@ -1,7 +1,7 @@
 const { Sale, SalesProduct } = require('../database/models');
 const { hasProductById } = require('./productService');
-const { 
-  saleDataValidation, 
+const {
+  saleDataValidation,
   saleProductsDataValidation } = require('../validations/saleValidation');
 
 const hasProducts = async (productsId) => {
@@ -18,7 +18,7 @@ const createProductSale = async (saleProduct) => {
 
 const createProductSaleByArray = async (arrayOfProducts, saleId) => {
   const tempSaleId = 'sale_id';
-  const arrayOfPromises = arrayOfProducts.map((product) => 
+  const arrayOfPromises = arrayOfProducts.map((product) =>
     createProductSale({ ...product, [tempSaleId]: saleId }));
 
   Promise.all(arrayOfPromises);
@@ -26,13 +26,13 @@ const createProductSaleByArray = async (arrayOfProducts, saleId) => {
 
 const createSale = async (saleData) => {
   const thisSaleData = saleData;
-  
+
   const dataValidateError = saleDataValidation(saleData);
   if (dataValidateError.error) return dataValidateError;
 
   const saleProductIds = await saleProductsDataValidation(saleData.products, hasProducts);
   if (saleProductIds.error) return saleProductIds;
-  
+
   delete thisSaleData.products;
   const { id } = await Sale.create({ ...thisSaleData });
   createProductSaleByArray(saleProductIds.products, id);
@@ -40,6 +40,21 @@ const createSale = async (saleData) => {
   return newSale;
 };
 
+const getOrderById = async (id) => {
+  const result = await Sale.find(id);
+  return result;
+};
+
+const getOrderAll = async () => {};
+const getSallesAll = async () => {};
+const updateOrderStatus = async () => {};
+const updateSalesStatus = async () => {};
+
 module.exports = {
   createSale,
+  getOrderById,
+  getOrderAll,
+  getSallesAll,
+  updateOrderStatus,
+  updateSalesStatus,
 };
