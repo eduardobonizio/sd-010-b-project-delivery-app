@@ -36,7 +36,7 @@ function OrderCard({ id, status, date, totalPrice }) {
       <Card.Text>
         R$
         <span
-          data-testid={ `customer_orders__element-card-price-${id}` }
+          data-testid={ `customer_orders__element-order-totalvalue-${id}` }
         >
           { totalPrice.toString().split('.').join(',') }
         </span>
