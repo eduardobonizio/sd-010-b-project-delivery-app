@@ -94,21 +94,22 @@ function FormAdmin() {
           className="submit-order"
           data-testid="admin_manage__button-register"
           type="submit"
-          onClick={ () => userRegisterDataBase(userRegister)}
-          disabled={ !(/[a-z0-9]+@[a-z0-9]+\.[a-z0-9]{2,3}(\.[a-z0-9]+)?$/.test(userRegister.email))
+          onClick={ () => userRegisterDataBase(userRegister) }
+          disabled={ !(/[a-z0-9]+@[a-z0-9]+\.[a-z0-9]{2,3}(\.[a-z0-9]+)?$/
+            .test(userRegister.email))
           || userRegister.password.length < PassLength
           || userRegister.name.length < NameLength }
         >
           Cadastrar
         </button>
         { err && (
-        <p
-          className="message-error"
-          data-testid="admin_manage__element-invalid-register"
-        >
-          Login já é cadastrado
+          <p
+            className="message-error"
+            data-testid="admin_manage__element-invalid-register"
+          >
+            Login já é cadastrado
 
-        </p>) }
+          </p>) }
       </form>
       <p>Lista de usuários:</p>
       <ul>
