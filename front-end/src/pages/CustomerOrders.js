@@ -6,16 +6,19 @@ import OrderCard from '../components/OrderCard';
 import '../styles/customerOrders.css';
 
 const orders = [{
+  id: 1,
   order: '0001',
   status: 'Pendente',
   date: '08/04/21',
   price: 23.80,
 }, {
+  id: 2,
   order: '0002',
   status: 'Preparando',
   date: '08/04/21',
   price: 23.80,
 }, {
+  id: 3,
   order: '0003',
   status: 'Entregue',
   date: '08/04/21',

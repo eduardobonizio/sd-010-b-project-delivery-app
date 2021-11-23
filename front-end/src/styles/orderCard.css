@@ -1,5 +1,11 @@
+a {
+  color: black;
+  text-decoration: none;
+}
+
 .order-card__main-container {
   background-color: #adadad44;
+  border: 1px ridge rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   box-sizing: border-box;
   display: grid;
@@ -7,7 +13,13 @@
   grid-template-columns: repeat(12, 1fr);
   height: 120px;
   padding: 10px;
+  transition: 0.9s;
   width: 100%;
+}
+
+.order-card__main-container:hover {
+  background-color: #adadad86;
+  border: 1px ridge rgba(60, 140, 0, 0.4);
 }
 
 .order-card__order-number, .order-card__order-status {
