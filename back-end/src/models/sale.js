@@ -1,5 +1,5 @@
 const Sale = (sequelize, DataTypes) => {
-  const sale = sequelize.define('sale', {
+  const sale = sequelize.define('Sale', {
     totalPrice: { type: DataTypes.DECIMAL(9, 2), allowNull: false },
     deliveryAddress: { type: DataTypes.STRING(100), allowNull: false },
     deliveryNumber: { type: DataTypes.STRING(50), allowNull: false },
@@ -7,7 +7,7 @@ const Sale = (sequelize, DataTypes) => {
     status: { type: DataTypes.STRING(50), allowNull: false },
     userId: { type: DataTypes.INTEGER, allowNull: false, foreignKey: true },
     sellerId: { type: DataTypes.INTEGER, allowNull: false, foreignKey: true },
-  }, { timestamps: false, underscored: true });
+  }, { timestamps: false, underscored: true, tableName: 'sales' });
 
   sale.associate = (models) => {
     sale.belongsTo(models.User, {
