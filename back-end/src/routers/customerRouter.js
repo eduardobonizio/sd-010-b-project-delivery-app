@@ -1,7 +1,7 @@
 const express = require('express');
 const auth = require('../middlewares/auth');
 const { createNewSale, getOrders } = require('../services/saleService');
-const { getOrderByPk } = require('../services/saleService');
+const { getOrderByPk } = require('../controllers/saleController');
 
 const customerRouter = express.Router();
 
@@ -27,7 +27,6 @@ customerRouter.post('/orders/:id', auth, async (req, res) => {
 });
 
 customerRouter.get('/orders', auth, async (req, res) => {
-  console('/order');
   const { user } = req.body;
   const orders = await getOrders(user.id);
   if (orders) return res.status(200).json(orders);
