@@ -1,4 +1,6 @@
+const { StatusCodes } = require('http-status-codes');
 const { Sale, SalesProduct } = require('../models');
+// const { userDataSchema } = require('./schemas');
 
 const insertIntoSalesProduct = async (products, saleId) => {
   await products.forEach(async (product) => {
@@ -36,10 +38,20 @@ const getOrders = async (userId) => {
   }
 };
 
-const getOrderByPk = async (userId, id) => {
+const getOrderByPk = async ({ userId, id }) => {
   try {
+    // const { error } = userDataSchema.validate({ email, password });
+    // if (error) { // error.isJoi indentifica se o erro foi tipo Joi
+    //   const { message } = error.details[0];    
+    //   return { code: StatusCodes.BAD_REQUEST, message };
+    // }
+
     const order = await Sale.findByPk(id, { where: { userId } });
-    return order;
+    if (!order) {
+      return { code: StatusCodes.NOT_FOUND, message: 'Order not found' };
+    }
+
+    return { code: StatusCodes.OK, order };
   } catch (e) {
     console.log(e);
     return null;
