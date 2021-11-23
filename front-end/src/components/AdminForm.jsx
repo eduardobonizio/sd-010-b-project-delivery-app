@@ -76,6 +76,7 @@ export default function AdminForm() {
         <label htmlFor="role">
           Tipo
           <select
+            className="form__select"
             name="role"
             data-testid="admin_manage__select-role"
             onChange={ (e) => setRole(e.target.value) }
@@ -88,7 +89,7 @@ export default function AdminForm() {
         <Button
           formbtn
           id="register-btn"
-          className="login-btn"
+          className="login__btn"
           value="CADASTRAR"
           testId="admin_manage__button-register"
           onClick={ (e) => registerUser(e) }

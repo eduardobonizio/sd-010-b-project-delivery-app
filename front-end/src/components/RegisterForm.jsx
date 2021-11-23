@@ -76,7 +76,7 @@ function RegisterForm() {
         <Button
           formbtn
           id="register-btn"
-          className="login-btn"
+          className="login__btn"
           value="REGISTER"
           testId="common_register__button-register"
           onClick={ (e) => registerUser(e) }

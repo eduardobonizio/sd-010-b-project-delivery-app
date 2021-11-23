@@ -26,54 +26,6 @@ form {
 
 }
 
-label {
-  padding-bottom: 8px;
-  padding-top: 15px;
-}
-
-label input {
-  border-radius: 10px;
-  box-sizing: border-box;
-  margin: 8px 0;
-  padding: 12px 20px;
-  width: 100%;
-}
-
-.login-btn {
-  background-color: #257727;
-  border: none;
-  border-radius: 10px;
-  color: white;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 16px;
-  margin-bottom: 8px;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  width: 15vw;
-}
-
-.login-btn[ disabled ] {
-  background-color: gray;
-  cursor: default;
-}
-
-.register-btn {
-  background-color: white;
-  border-color: #257727;
-  border-radius: 10px;
-  color: #257727;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 16px;
-  margin-bottom: 8px;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  width: 15vw;
-}
-
 .invalid-message {
   color: red;
   font-weight: 700;
