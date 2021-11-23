@@ -93,27 +93,29 @@ function ProductCard({ id, name, image, price }) {
         >
           {name}
         </p>
-        <button
-          type="button"
-          data-testid={ `customer_products__button-card-add-item-${id}` }
-          onClick={ () => addOne(price) }
-        >
-          { console.log(arrayProducts)}
-          +
-        </button>
-        <button
-          type="button"
-          data-testid={ `customer_products__button-card-rm-item-${id}` }
-          onClick={ () => subOne(price) }
-        >
-          -
-        </button>
-        <input
-          data-testid={ `customer_products__input-card-quantity-${id}` }
-          value={ valueInput }
-          onChange={ (event) => handleChange(event, price) }
-          onClick={ (e) => { e.target.value = ''; } }
-        />
+        <div style={ { display: 'flex' } }>
+          <button
+            type="button"
+            data-testid={ `customer_products__button-card-add-item-${id}` }
+            onClick={ () => addOne(price) }
+          >
+            +
+          </button>
+          <input
+            data-testid={ `customer_products__input-card-quantity-${id}` }
+            value={ valueInput }
+            onChange={ (event) => handleChange(event, price) }
+            onClick={ (e) => { e.target.value = ''; } }
+            style={ { width: 100, textAlign: 'center' } }
+          />
+          <button
+            type="button"
+            data-testid={ `customer_products__button-card-rm-item-${id}` }
+            onClick={ () => subOne(price) }
+          >
+            -
+          </button>
+        </div>
       </div>
     </section>
   );
