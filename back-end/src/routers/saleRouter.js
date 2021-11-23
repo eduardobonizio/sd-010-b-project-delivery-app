@@ -1,11 +1,12 @@
 const express = require('express');
-const { createSale } = require('../controllers/saleController');
+const { createSale, getOrderBySellerId } = require('../controllers/saleController');
 const errorMiddleware = require('../middlewares/error');
 
 const router = express.Router();
 
 router
-  .post('/', createSale);
+  .post('/', createSale)
+  .get('/orders/seller/:id', getOrderBySellerId);
 
 router.use(errorMiddleware);
 

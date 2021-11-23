@@ -40,8 +40,9 @@ const createSale = async (saleData) => {
   return newSale;
 };
 
-const getOrderById = async (id) => {
-  const result = await Sale.find(id);
+const getOrderBySellerId = async (id) => {
+  const sellerId = 'seller_id'; // utilizando para resolver o problema com snakecase.
+  const result = await Sale.findAll({ where: { [sellerId]: id } });
   return result;
 };
 
@@ -52,7 +53,7 @@ const updateSalesStatus = async () => {};
 
 module.exports = {
   createSale,
-  getOrderById,
+  getOrderBySellerId,
   getOrderAll,
   getSallesAll,
   updateOrderStatus,
