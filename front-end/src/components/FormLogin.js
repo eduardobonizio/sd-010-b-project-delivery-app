@@ -15,11 +15,12 @@ export default function FormLogin() {
   async function submit(e) {
     e.preventDefault();
     const userId = await login({ email, password: pass });
-    const { data: [user] } = userId;
+    console.log(userId);
     if (userId.message) {
       setErr(true);
       return setTimeout(() => setErr(false), threeSecond);
     }
+    const { data: [user] } = userId;
     createStorage('user', userId.data[0]);
     if (user.role === 'administrator') {
       return history.push('/admin/manage');
