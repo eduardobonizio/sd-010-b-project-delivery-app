@@ -1,10 +1,19 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import MyContext from '../../context/Context';
+import { getFromLocalStorage } from '../../helpers/localStorage';
 import * as styles from './styles';
 import TableCheckout from './TableCheckout';
+import DetailsOrder from './DetailsOrder';
 
 function CheckoutSales() {
-  const { totalPrice } = useContext(MyContext);
+  const { setTotalCart } = useContext(MyContext);
+
+  const totalCartProducts = getFromLocalStorage('totalCart');
+
+  useEffect(() => {
+    setTotalCart(totalCartProducts);
+  }, [setTotalCart, totalCartProducts]);
+
   return (
     <styles.ContainerCheckout>
 
@@ -16,7 +25,7 @@ function CheckoutSales() {
         <TableCheckout />
 
         <styles.ValueTotal data-testid="customer_checkout__element-order-total-price">
-          {`Total: R$ ${(totalPrice).toFixed(2).replace('.', ',')}`}
+          {`Total: R$ ${(totalCartProducts).toFixed(2).replace('.', ',')}`}
         </styles.ValueTotal>
       </styles.ContainerTable>
 
@@ -24,29 +33,7 @@ function CheckoutSales() {
         Detalhes e Endereço para Entrega
       </styles.TextFinalizeOrder>
 
-      <styles.ContainerTable>
-
-        <styles.InputSelectSalesman data-testid="customer_checkout__select-seller">
-          <option value="1">xablau</option>
-          <option value="1">xablau</option>
-          <option value="1">xablau</option>
-        </styles.InputSelectSalesman>
-
-        <styles.InputAddress
-          type="text"
-          data-testid="customer_checkout__input-address"
-        />
-
-        <styles.InputAddressNumber
-          data-testid="customer_checkout__input-addressNumber"
-          type="text"
-        />
-
-        <styles.ButtonFinishOrder data-testid="customer_checkout__button-submit-order">
-          FINALIZAR PEDIDO
-        </styles.ButtonFinishOrder>
-
-      </styles.ContainerTable>
+      <DetailsOrder />
 
     </styles.ContainerCheckout>
   );

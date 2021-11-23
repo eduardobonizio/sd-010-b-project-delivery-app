@@ -1,17 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import { getFromLocalStorage } from '../../helpers/localStorage';
+import React, { useContext } from 'react';
+import MyContext from '../../context/Context';
+import { getFromLocalStorage, setOnLocalStorage } from '../../helpers/localStorage';
 import * as styles from './styles';
 
 function BodyTable() {
-  const [cartProducts, setCartProducts] = useState([]);
+  const {
+    setCartProduct,
+    cartProduct,
+  } = useContext(MyContext);
 
-  useEffect(() => {
-    const getLocalStorage = getFromLocalStorage('cart');
-    setCartProducts(getLocalStorage);
-  }, []);
+  const getLocalStorage = getFromLocalStorage('cart');
+  const totalCartProducts = getFromLocalStorage('totalCart');
+
+  function handleOnClickRemove(event) {
+    const { name, value } = event.target;
+    const removeItem = cartProduct.filter((valueI) => valueI.name !== name);
+    const subTotal = Number(totalCartProducts - value).toFixed(2);
+
+    setCartProduct(removeItem);
+    setOnLocalStorage('cart', removeItem);
+
+    setOnLocalStorage('totalCart', subTotal);
+  }
 
   return (
-    cartProducts.map((value, index) => (
+    getLocalStorage.map((value, index) => (
       <styles.TrTable key={ index }>
 
         <styles.TdTable
@@ -47,7 +60,11 @@ function BodyTable() {
         <styles.TdTable
           data-testid={ `customer_checkout__element-order-table-remove-${index}` }
         >
-          <styles.ButtonRemove>
+          <styles.ButtonRemove
+            value={ value.subTotal.toFixed(2) }
+            name={ value.name }
+            onClick={ handleOnClickRemove }
+          >
             Remover
           </styles.ButtonRemove>
         </styles.TdTable>

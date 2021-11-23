@@ -6,10 +6,9 @@ const secret = require('fs')
   
 const { User } = require('../../database/models');
 
-// const secret = process.env.JWT_SECRET || 'secret_key';
-// const validToken = (req, _res, next) => {
-//   const token = req.headers.authorization;
-//   if (!token) throw messageError(401, 'Token not found');
+const secret = require('fs')
+  .readFileSync('jwt.evaluation.key', { encoding: 'utf-8' })
+  .trim();
 
 //   jwt.verify(token, secret, (err, decoded) => {
 //     if (err) throw messageError(401, 'Expired or invalid token');
