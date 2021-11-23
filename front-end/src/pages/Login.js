@@ -56,7 +56,7 @@ export default function Login() {
 
   const redirect = ({ role }) => {
     switch (role) {
-    case 'administrator': return window.location.replace('/customer/products');
+    case 'administrator': return window.location.replace('/admin/manage');
     case 'customer': return window.location.replace('/customer/products');
     case 'seller': return window.location.replace('/customer/seller');
     default:
