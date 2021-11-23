@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import isValidRegister from '../../../helpers/validRegister';
 import apiAdmCreateUser from '../../../services/register/apiRequestAdmRegister';
+import { getFromLocalStorage } from '../../../helpers/localStorage';
 
 export default function Management() {
   const [btnDisable, setBtnDisable] = useState(true);
@@ -11,8 +12,8 @@ export default function Management() {
 
   const tryRegister = async (e) => {
     e.preventDefault();
-
-    const result = await apiAdmCreateUser({ name, email, password, role });
+    const user = getFromLocalStorage('user');
+    const result = await apiAdmCreateUser({ name, email, password, role }, user.token);
     console.log(result);
   };
 

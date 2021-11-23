@@ -12,7 +12,8 @@ export async function getAll(url) {
 }
 
 export async function postAll(url, object, token) {
-  const { data } = await axiosInstance.post(url, object, token);
+  const { data } = await axiosInstance
+    .post(url, object, { headers: { authorization: token } });
   return data;
 }
 

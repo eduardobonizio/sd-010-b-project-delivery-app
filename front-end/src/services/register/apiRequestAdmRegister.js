@@ -1,8 +1,8 @@
 import { postAll } from '../httpService';
 
-export default async function apiAdmCreateUser(userObject) {
+export default function apiAdmCreateUser(userObject, token) {
   try {
-    const newUser = await postAll('/user/admin', userObject);
+    const newUser = postAll('/user/admin', userObject, token);
     return newUser;
   } catch (error) {
     return error.response.data;

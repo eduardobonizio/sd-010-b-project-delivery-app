@@ -5,7 +5,10 @@ const jwtConfig = {
   expiresIn: '7d',
   algorithm: 'HS256',
 };
-const secret = process.env.JWT_SECRET || 'secret_key';
+// const secret = process.env.JWT_SECRET || 'secret_key';
+const secret = require('fs')
+  .readFileSync('jwt.evaluation.key', { encoding: 'utf-8' })
+  .trim();
 
 const jwtLogin = (payload) => {
   const token = jwt.sign(payload, secret, jwtConfig);
