@@ -29,7 +29,7 @@ const getUsers = async (_req, res) => {
 const deleteUsers = async (req, res) => {
   const { id } = req.params;
   await User.destroy({ where: { id } });
-  return res.status(200).json({ message: 'ok' });
+  return res.status(200).json({ message: 'ok.' });
 };
 
 module.exports = { getSeller, getOrders, getUsers, deleteUsers };
