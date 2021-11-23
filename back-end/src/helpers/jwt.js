@@ -4,7 +4,7 @@ const path = require('path');
 
 const caminho = path.join(__dirname, '../../jwt.evaluation.key');
 
-const secret = fs.readFileSync(caminho).toString().trim();
+const secret = fs.readFileSync(caminho).toString();
 
 const jwtConfig = { expiresIn: '2h', algorithm: 'HS256' };
 
