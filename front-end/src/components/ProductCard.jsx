@@ -62,14 +62,14 @@ function ProductCard({ id, name, image, price }) {
   };
 
   return (
-    <section style={ { width: '160px', margin: 20 } }>
+    <section style={ { textAlign: 'center' } }>
       <div
         key={ id }
         data-testid={ `customer_products__element-card-price-${id}` }
       >
-        { price.replace('.', ',') }
+        <p>{ price.replace('.', ',') }</p>
         <img
-          style={ { height: 200 } }
+          style={ { height: 150 } }
           data-testid={ `customer_products__img-card-bg-image-${id}` }
           src={ image }
           alt={ name }
@@ -79,26 +79,29 @@ function ProductCard({ id, name, image, price }) {
         >
           {name}
         </p>
-        <button
-          type="button"
-          data-testid={ `customer_products__button-card-add-item-${id}` }
-          onClick={ () => addOne(price) }
-        >
-          +
-        </button>
-        <button
-          type="button"
-          data-testid={ `customer_products__button-card-rm-item-${id}` }
-          onClick={ () => subOne(price) }
-        >
-          -
-        </button>
-        <input
-          data-testid={ `customer_products__input-card-quantity-${id}` }
-          value={ valueInput }
-          onChange={ (event) => handleChange(event, price) }
-          onClick={ (e) => { e.target.value = ''; } }
-        />
+        <div style={ { display: 'flex' } }>
+          <button
+            type="button"
+            data-testid={ `customer_products__button-card-add-item-${id}` }
+            onClick={ () => addOne(price) }
+          >
+            +
+          </button>
+          <input
+            data-testid={ `customer_products__input-card-quantity-${id}` }
+            value={ valueInput }
+            onChange={ (event) => handleChange(event, price) }
+            onClick={ (e) => { e.target.value = ''; } }
+            style={ { width: 100, textAlign: 'center' } }
+          />
+          <button
+            type="button"
+            data-testid={ `customer_products__button-card-rm-item-${id}` }
+            onClick={ () => subOne(price) }
+          >
+            -
+          </button>
+        </div>
       </div>
     </section>
   );

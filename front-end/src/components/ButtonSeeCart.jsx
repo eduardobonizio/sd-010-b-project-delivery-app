@@ -23,7 +23,7 @@ export default function ButtonSeeCart() {
   return (
     <button
       style={
-        { position: 'fixed', bottom: 10, margin: 20 }
+        { position: 'fixed', bottom: 10, marginRight: 20 }
       }
       disabled={ !totalPrice }
       type="button"
