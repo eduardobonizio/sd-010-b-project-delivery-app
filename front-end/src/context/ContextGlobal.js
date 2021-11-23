@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 
 export const Context = createContext();
@@ -31,17 +31,6 @@ function Provider({ children }) {
     products,
     setProducts,
   };
-
-  useEffect(() => {
-    if (localStorage.getItem('user') === null) {
-      const User = [];
-      localStorage.setItem('user', JSON.stringify(User));
-    }
-    if (localStorage.getItem('products') === null) {
-      const Products = [];
-      localStorage.setItem('products', JSON.stringify(Products));
-    }
-  }, []);
 
   return (
     <Context.Provider value={ object }>
