@@ -20,6 +20,8 @@ const QUANTITY = '_order_details__element-order-table-quantity-'; // index
 const SUB_TOTAL = '_order_details__element-order-table-sub-total-'; // index
 const UNIT_PRICE = '_order_details__element-order-table-unit-price-'; // index
 const TOTAL_PRICE = '_order_details__element-order-total-price';
+const PREPARING_CHECK = '_order_details__button-preparing-check';
+const DISPACH_CHECK = '_order_details__button-dispatch-check';
 const DEFAULT_DATA_PRODUCTS = {
   seller: { name: '' },
   productsSold: [],
@@ -63,6 +65,49 @@ function OrderDetails() {
     ),
   );
 
+  const sellerNameComponente = () => (
+    <div className="pessoa-vendedora">
+      <span>Vendedor:</span>
+      <span data-testid={ role + NAME_SELLER }>
+        { productsDetails.seller.name }
+      </span>
+    </div>
+  );
+
+  const buttonPreparingCheck = () => (
+    <div className="button-preparing-check">
+      <button
+        type="button"
+        data-testid={ role + PREPARING_CHECK }
+      >
+        PREPARAR PEDIDO
+      </button>
+    </div>
+  );
+
+  const buttonDeliveryCheck = () => (
+    <div className="button-check-status">
+      <button
+        type="button"
+        disabled
+        data-testid={ role + CHECK_STAUS }
+      >
+        MARCAR COMO ENTREGUE
+      </button>
+    </div>
+  );
+
+  const buttonDispachCheck = () => (
+    <div className="button-check-status">
+      <button
+        type="button"
+        data-testid={ role + DISPACH_CHECK }
+      >
+        SAIU PARA ENTREGA
+      </button>
+    </div>
+  );
+
   return (
     <P.divPageOrderDetails>
       <NavBar />
@@ -72,12 +117,7 @@ function OrderDetails() {
           <span>pedido:</span>
           <span data-testid={ role + ID_ORDER }>{ productsDetails.id }</span>
         </div>
-        <div className="pessoa-vendedora">
-          <span>Vendedor:</span>
-          <span data-testid={ role + NAME_SELLER }>
-            { productsDetails.seller.name }
-          </span>
-        </div>
+        {role !== 'seller' ? sellerNameComponente() : ''}
         <div className="pedido-data">
           <span data-testid={ role + ORDER_DATE }>
             { formatDate(productsDetails.sale_date) }
@@ -86,15 +126,8 @@ function OrderDetails() {
         <div className="pedido-status">
           <span data-testid={ role + STATUS }>{ productsDetails.status }</span>
         </div>
-        <div className="button-check-status">
-          <button
-            type="button"
-            disabled
-            data-testid={ role + CHECK_STAUS }
-          >
-            MARCAR COMO ENTREGUE
-          </button>
-        </div>
+        {role === 'seller' ? buttonPreparingCheck() : ''}
+        {role === 'seller' ? buttonDispachCheck() : buttonDeliveryCheck()}
       </P.divOrderDetail>
 
       <div>
