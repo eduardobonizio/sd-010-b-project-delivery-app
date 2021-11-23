@@ -9,11 +9,11 @@ function Card() {
         >
           R$ 0,00
         </h1>
-        <image
+        <img
+          src="https://cdn.dooca.store/1656/features/grupo-1054.svg?v=1614960770"
+          alt="Imagem"
           data-testid="customer_products__img-card-bg-image-"
-        >
-          Imagem
-        </image>
+        />
         <h3
           data-testid="customer_products__element-card-title-"
         >
@@ -32,6 +32,9 @@ function Card() {
           data-testid="customer_products__input-card-quantity-"
           type="number"
           title="quantidade de ítens"
+          min="1"
+          max="15"
+          step="1"
         />
         <button
           data-testid="customer_products__button-card-add-item-"
