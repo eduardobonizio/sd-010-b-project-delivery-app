@@ -14,7 +14,10 @@ const Login = () => {
   useEffect(() => {
     if (localStorage.user) {
       const { role } = JSON.parse(localStorage.user);
-      return navigate(`/${role}/orders`);
+      if (role === 'seller') {
+        return navigate('/seller/orders');
+      }
+      return navigate('/customer/products');
     }
 
     if (validarEmail(email) && validarSenha(password)) {
@@ -28,7 +31,11 @@ const Login = () => {
       const { data } = await axios.post('http://localhost:3001/login', { email, password });
       localStorage.setItem('user', `${JSON.stringify(data)}`);
       setPassword('');
-      return navigate(`/${data.role}/orders`);
+      if (data.role === 'seller') {
+        console.log(data.role);
+        return navigate('/seller/orders');
+      }
+      return navigate('/customer/products');
     } catch (error) {
       setIsValidPW(true);
       return error;
