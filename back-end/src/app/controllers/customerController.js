@@ -19,5 +19,5 @@ const createSalles = rescue(async (req, res) => {
 module.exports = {
   getAll,
   getById,
-
+  createSalles,
 };
