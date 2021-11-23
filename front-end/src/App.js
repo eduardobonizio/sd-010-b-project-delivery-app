@@ -21,17 +21,17 @@ function App() {
       <CustomRoute
         path="/customer/products"
         component={ Products }
-        navbar={ <NavBar products order="Meus pedidos" /> }
+        navbar={ <NavBar order="Produtos" pedidos /> }
       />
       <CustomRoute
         path="/seller/orders"
         component={ SellerOrder }
-        navbar={ <NavBar /> }
+        navbar={ <NavBar order="Pedidos" /> }
       />
       <CustomRoute
         path="/admin/manage"
         component={ AdminManage }
-        navbar={ <NavBar products={ false } order="Gerenciar usuários" /> }
+        navbar={ <NavBar order="Gerenciar usuários" /> }
       />
       <CustomRoute path="/register" component={ Register } />
       <CustomRoute path="/customer/checkout" element={ <div /> } />
