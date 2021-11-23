@@ -5,10 +5,13 @@ import LoginContext from './LoginContext';
 
 function LoginProvider({ children }) {
   const [userData, setUserData] = React.useState(null);
+  const [totalPrice, setTotalPrice] = React.useState(0);
 
   const context = {
     userData,
     setUserData,
+    totalPrice,
+    setTotalPrice,
   };
 
   return (
