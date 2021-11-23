@@ -8,22 +8,26 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      total_price: {
+      totalPrice: {
         allowNull: false,
         type: Sequelize.DECIMAL(9, 2),
+        field: "total_price",
       },
-      delivery_address: {
+      deliveryAddress: {
         allowNull: false,
-        type: Sequelize.STRING(100)
+        type: Sequelize.STRING(100),
+        field: "delivery_address",
       },
-      delivery_number: {
+      deliveryNumber: {
         allowNull: false,
-        type: Sequelize.STRING(50)
+        type: Sequelize.STRING(50),
+        field: "delivery_number",
       },
-      sale_date: {
+      saleDate: {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: Sequelize.NOW,
+        field: "sale_date",
 
       },
       status: {
