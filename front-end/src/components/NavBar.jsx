@@ -1,84 +1,32 @@
-import React, { useContext } from 'react';
-import BottomNavigation from '@mui/material/BottomNavigation';
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import { Container } from '@mui/material';
-import {
-  ProductionQuantityLimitsOutlined,
-  RequestQuoteOutlined,
-  LoginOutlined,
-  ExitToAppOutlined,
-} from '@mui/icons-material';
-import Context from '../context/Context';
+import React from 'react';
 
 function NavBar() {
-  const { value, setValue } = useContext(Context);
   return (
     <header>
-      <Container>
-        <BottomNavigation
-          // sx={ {
-          //   opacity: 0.9,
-          //   display: 'grid',
-          //   gridTemplateColumns: 'repeat(1, 4fr)',
-          //   gap: 5,
-          //   gridTemplateRows: 'auto',
-          //   gridTemplateAreas: '"produtos meusPedidos cicranoDaSilva sair"',
-          // } }
-          showLabels
-          value={ value }
-          onChange={ (event, newValue) => {
-            setValue(newValue);
-          } }
-        >
-          <BottomNavigationAction
-            data-testid="customer_products__element-navbar-link-products"
-            // sx={ {
-            //   width: 'xs',
-            //   gridArea: 'produtos',
-            //   textAlign: 'center',
-            //   gap: 0,
-            // } }
-            label="Produtos"
-            icon={ <ProductionQuantityLimitsOutlined /> }
-          />
-          <BottomNavigationAction
-            data-testid="customer_products__element-navbar-link-orders"
-            // sx={ {
-            //   width: 'xs',
-            //   gridArea: 'meusPedidos',
-            //   boxShadow: 6,
-            //   gap: 0,
-            //   borderRadius: 5,
-            // } }
-            label="Meus Pedidos"
-            icon={ <RequestQuoteOutlined /> }
-          />
-          <BottomNavigationAction
-            data-testid="customer_products__element-navbar-user-full-name"
-            // sx={ {
-            //   width: 'xs',
-            //   gridArea: 'cicranoDaSilva',
-            //   boxShadow: 6,
-            //   gap: 0,
-            //   borderRadius: 5,
-            // } }
-            label="Cicrano da Silva"
-            icon={ <LoginOutlined /> }
-          />
-          <BottomNavigationAction
-            data-testid="customer_products__element-navbar-link-logout"
-            // sx={ {
-            //   width: 'xs',
-            //   gridArea: 'sair',
-            //   boxShadow: 6,
-            //   gap: 0,
-            //   borderRadius: 5,
-            // } }
-            label="Sair"
-            icon={ <ExitToAppOutlined /> }
-          />
-        </BottomNavigation>
-      </Container>
+      <button
+        type="button"
+        data-testid="customer_products__element-navbar-link-products"
+      >
+        Produtos
+      </button>
+      <button
+        type="button"
+        data-testid="customer_products__element-navbar-link-orders"
+      >
+        Meus Pedidos
+      </button>
+      <button
+        type="button"
+        data-testid="customer_products__element-navbar-user-full-name"
+      >
+        Cicrano da Silva
+      </button>
+      <button
+        type="button"
+        data-testid="customer_products__element-navbar-link-logout"
+      >
+        Sair
+      </button>
     </header>
   );
 }
