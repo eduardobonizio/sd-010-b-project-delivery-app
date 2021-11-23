@@ -1,8 +1,12 @@
 import axios from 'axios';
 
-const getPurchase = async (userId) => {
-  const response = await axios.get('http://localhost:3001/customer/orders', { userId });
-  return response;
+const postPurchase = async (checkoutObj, token) => {
+  const { data } = await axios.post(
+    'http://localhost:3001/customer/orders', checkoutObj, {
+      headers: { Authorization: token },
+    },
+  );
+  return data;
 };
 
 const getAllProducts = async () => {
@@ -27,6 +31,6 @@ const getAllProducts = async () => {
 };
 
 export {
-  getPurchase,
+  postPurchase,
   getAllProducts,
 };

@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import { Context } from '../provider/Provider';
-import fixPrice from '../helper/functions/fixPrice';
-import '../styles/ProductsCards.css';
-import ProductsCardsHandleButtons from './ProductsCardsHandleButtons';
+import { Context } from '../../provider/Provider';
+import fixPrice from '../../helper/functions/fixPrice';
+import '../../styles/ProductsCards.css';
+import ProductsCardsHandleButtons from '../ProductsCardsHandleButtons';
 
 const ProductsCards = () => {
   const { products } = useContext(Context);

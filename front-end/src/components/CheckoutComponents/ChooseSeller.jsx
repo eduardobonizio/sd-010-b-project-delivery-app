@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Context } from '../provider/Provider';
+import { Context } from '../../provider/Provider';
 
 function ChooseSeller() {
   const { sellers, setChooseSeller } = React.useContext(Context);

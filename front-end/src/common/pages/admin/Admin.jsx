@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../../../components/Header';
+import Header from '../../../components/ProductsComponents/Header';
 import CreateUserForm from '../../../components/CreateUserForm';
 
 const Admin = () => (

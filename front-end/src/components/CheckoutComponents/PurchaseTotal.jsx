@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { Context } from '../provider/Provider';
+import { Context } from '../../provider/Provider';
+import addZeroes from '../../helper/functions/addZeroes';
 
 function PurshaseTotal() {
   const { orderInProgress, totalOrder, setTotalOrder } = React.useContext(Context);
@@ -15,9 +16,7 @@ function PurshaseTotal() {
       <h3
         data-testid="customer_checkout__element-order-total-price"
       >
-        {
-          `Total: ${totalOrder}`
-        }
+        {addZeroes(totalOrder)}
       </h3>
     </div>
   );
