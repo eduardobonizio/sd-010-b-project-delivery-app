@@ -28,6 +28,7 @@ const Provider = ({ children }) => {
   const history = useHistory();
 
   async function checkoutPurchase() {
+    console.log('entrei aq :)');
     const listItem = orderInProgress.map((item) => {
       const revisedItem = item;
       revisedItem.productId = item.id;

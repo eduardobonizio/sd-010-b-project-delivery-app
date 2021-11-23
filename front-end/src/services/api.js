@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const postPurchase = async (checkoutObj, token) => {
+  console.log('to no post', checkoutObj, token, axios);
   const { data } = await axios.post(
     'http://localhost:3001/customer/orders', checkoutObj, {
       headers: { Authorization: token },
