@@ -5,13 +5,13 @@ module.exports = {
 
      await queryInterface.bulkInsert('sales', [{
       id: 1,
-      user_id: 1,
-      seller_id: 2,
-      total_price: 89.90,
-      delivery_address: 'Rua Laranja',
-      delivery_number: 2,
+      userId: 1,
+      sellerId: 2,
+      totalPrice: 89.90,
+      deliveryAddress: 'Rua Laranja',
+      deliveryNumber: 2,
       status: 'enviado',
-      sale_date: '2038-01-19 03:14:07',
+      saleDate: '2038-01-19 03:14:07',
     }], {});
   },
 

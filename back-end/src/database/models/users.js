@@ -4,13 +4,13 @@ module.exports = (sequelize, DataTypes) => {
     email: { type: DataTypes.STRING(255), unique: true },
     password: DataTypes.STRING(255),
     role: DataTypes.STRING(255),
-  }, { timestamps: false });
+  }, { underscored: true, timestamps: false });
    Users.associate = (models) => {
     Users.hasMany(models.sales, {
-      foreignkey: 'user_id', as: 'user'
+      foreignkey: 'userId', as: 'user'
     });
     Users.hasMany(models.sales, {
-      foreignkey: 'seller_id', as: 'seller'
+      foreignkey: 'sellerId', as: 'seller'
     });
   }
   return Users;
