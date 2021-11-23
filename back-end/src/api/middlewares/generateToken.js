@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
 
     const token = jwt.sign({ payload: { name, role, email } }, secretKey, jwtConfig);
 
-    res.status(StatusCodes.OK).json(token);
+    res.status(StatusCodes.OK).json({ name, role, email, token });
   } catch (error) {
     console.log(error);
   }
