@@ -10,6 +10,17 @@ function CustomerProducts() {
   const URL = 'http://localhost:3001/all-products';
 
   useEffect(() => {
+    if (localStorage.getItem('user') === null) {
+      const User = [];
+      localStorage.setItem('user', JSON.stringify(User));
+    }
+    if (localStorage.getItem('products') === null) {
+      const Products = [];
+      localStorage.setItem('products', JSON.stringify(Products));
+    }
+  }, []);
+
+  useEffect(() => {
     const getAllProducts = async () => {
       const userStorage = localStorage.getItem('user');
       const { data } = await axios.get(URL,
