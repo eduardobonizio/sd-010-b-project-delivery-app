@@ -1,5 +1,4 @@
 import React, { useEffect, useContext } from 'react';
-import { Card } from 'react-bootstrap';
 import axios from 'axios';
 import NavBar from '../components/NavBar';
 import { Context } from '../context/ContextGlobal';
@@ -42,23 +41,27 @@ function CustomerProducts() {
     <div>
       <NavBar />
       {products.map(({ id, name, url_image: urlImage, price, quantity }) => (
-        <Card style={ { width: '18rem', height: '18rem' } } key={ id }>
-          <Card.Body>
-            <Card.Title
+        <div
+          key={ id }
+        >
+          <section>
+            <h1
               data-testid={ `customer_products__element-card-title-${id}` }
             >
               { name }
-            </Card.Title>
-            <Card.Text
+            </h1>
+            <h2
               data-testid={ `customer_products__element-card-price-${id}` }
             >
               { price.replace('.', ',') }
-            </Card.Text>
-            <Card.Img
+            </h2>
+            <img
+              alt={ name }
               data-testid={ `customer_products__img-card-bg-image-${id}` }
               src={ urlImage }
+              style={ { width: '150px' } }
             />
-          </Card.Body>
+          </section>
           <div>
             <button
               type="button"
@@ -80,7 +83,7 @@ function CustomerProducts() {
               -
             </button>
           </div>
-        </Card>
+        </div>
       ))}
     </div>
   );
