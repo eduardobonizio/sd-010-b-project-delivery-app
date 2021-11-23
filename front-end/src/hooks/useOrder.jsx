@@ -17,7 +17,7 @@ export function OrderProvider({ children }) {
   const [customerOrders, setCustomerOrders] = useState([]);
   const [customerSingleOrder, setCustomerSingleOrder] = useState({});
   const [sellerOrders, setSellerOrders] = useState([]);
-  const [sellerSingleOrder, setSellerSingleOrder] = useState([]);
+  const [sellerSingleOrder, setSellerSingleOrder] = useState({});
 
   // useEffect(() => {
   //   const client = socketIOClient(URL);

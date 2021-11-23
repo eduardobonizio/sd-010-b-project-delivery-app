@@ -4,7 +4,7 @@ import Sale from './Sale';
 import './SaleList.scss';
 import { useOrder } from '../../../../hooks/useOrder';
 import { formatedDate, formatSaveAndRenderPrice } from '../../../../helpers/functions';
-import { getCustomerOrderApi } from '../../../../api/customer';
+import { getOneOrderApi } from '../../../../api/orders';
 
 const TEST_STATUS = 'customer_order_details__element-order-details-label-delivery-status';
 
@@ -12,11 +12,10 @@ function SalesList() {
   const { setCustomerSingleOrder, customerSingleOrder, emitUpdateOrder } = useOrder();
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(true);
-  console.log(customerSingleOrder);
   useEffect(() => {
     async function getOrder() {
       setIsLoading(true);
-      const order = await getCustomerOrderApi(id);
+      const order = await getOneOrderApi(id);
       setCustomerSingleOrder(order);
       setIsLoading(false);
     }

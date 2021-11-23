@@ -22,9 +22,3 @@ export async function newOrderApi(token, data) {
 
   return response.data.saleId;
 }
-
-export async function getCustomerOrderApi(id) {
-  const response = await api.get(`/oneorder/${id}`);
-
-  return response.data;
-}
