@@ -50,7 +50,7 @@ function Login() {
       const response = await axios.post('http://localhost:3001/login', { email, password });
       const { data } = response;
       localStorage.setItem('user', JSON.stringify(data));
-      redirect.to.customer();
+      redirect.to[data.role]();
     } catch (e) {
       setHideErrorMessage(false);
     }
