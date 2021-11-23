@@ -10,14 +10,12 @@ function SellerOrders() {
     const { token } = JSON.parse(localStorage.user);
     const endPoint = 'http://localhost:3001/sales';
     const { data } = await axios.get(endPoint, { headers: { Authorization: token } });
-    console.log(data);
     return setSales(data);
   };
 
   useEffect(() => {
     getAllSales();
   }, []);
-  const seller = 'seller';
 
   return (
     <>
@@ -27,7 +25,6 @@ function SellerOrders() {
           sales.map((sale) => (<CardOrderSeller
             key={ sale.id }
             sale={ sale }
-            seller={ seller }
           />))
         }
       </div>
