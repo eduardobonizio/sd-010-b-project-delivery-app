@@ -7,11 +7,10 @@ import Register from './pages/Register';
 import Products from './pages/Products';
 import CustomerOrders from './pages/CustomerOrders';
 
-import NavBar from './components/NavBar';
-
 import './App.css';
 import SellerOrder from './pages/SellerOrder';
 import AdminManage from './pages/AdminManage';
+import NavBar from './components/NavBar';
 
 function App() {
   return (
@@ -22,17 +21,17 @@ function App() {
       <CustomRoute
         path="/customer/products"
         component={ Products }
-        navbar={ <NavBar /> }
+        navbar={ <NavBar order="Produtos" pedidos /> }
       />
       <CustomRoute
         path="/seller/orders"
         component={ SellerOrder }
-        navbar={ <NavBar /> }
+        navbar={ <NavBar order="Pedidos" /> }
       />
       <CustomRoute
         path="/admin/manage"
         component={ AdminManage }
-        navbar={ <NavBar /> }
+        navbar={ <NavBar order="Gerenciar usuários" /> }
       />
       <CustomRoute path="/register" component={ Register } />
       <CustomRoute path="/customer/checkout" element={ <div /> } />
