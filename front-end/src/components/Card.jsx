@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import Context from '../context/Context';
 
 function Card() {
+  const { products } = useContext(Context);
+
   return (
     <main>
       <section>
         <h1
           data-testid="customer_products__element-card-price-"
         >
-          R$ 0,00
+          {products.price}
         </h1>
         <img
           src="https://cdn.dooca.store/1656/features/grupo-1054.svg?v=1614960770"
@@ -17,7 +20,7 @@ function Card() {
         <h3
           data-testid="customer_products__element-card-title-"
         >
-          Nome/Título do Produto
+          {products.title}
         </h3>
       </section>
       <section>
