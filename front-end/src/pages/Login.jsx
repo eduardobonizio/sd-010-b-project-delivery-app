@@ -32,7 +32,7 @@ function Login() {
 
   useEffect(() => {
     const alreadyLoggedIn = JSON.parse(localStorage.getItem('user'));
-    if (alreadyLoggedIn.role === 'customer') {
+    if (alreadyLoggedIn && alreadyLoggedIn.role === 'customer') {
       history.push('/customer/products');
     }
   }, []);
