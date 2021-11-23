@@ -1,15 +1,19 @@
 const express = require('express');
 const auth = require('../middlewares/auth');
+const { createNewSale } = require('../services/saleService');
 
 const customerRouter = express.Router();
 
 customerRouter.get('/products');
 
 customerRouter.post('/checkout', auth, async (req, res) => {
-  const { totalPrice, products, address, adressNumber } = req.body;
-  console.log(totalPrice, products, address, adressNumber);
-  console.log('Retorna o id do pedido que foi criado no banco de dados');
-  return res.status(200).send({ message: 'under construction' });
+  const { body } = req;
+
+  const newSale = await createNewSale(body);
+
+  // console.log('newSale', newSale);
+
+  return res.status(200).send(newSale);
 });
 
 customerRouter.get('/orders');
