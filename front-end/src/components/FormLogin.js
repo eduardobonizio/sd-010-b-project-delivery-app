@@ -26,7 +26,7 @@ export default function FormLogin() {
     } if (user.role === 'seller') {
       return history.push('/seller/orders');
     }
-    if (user.role === 'user') {
+    if (user.role === 'customer') {
       history.push('/customer/products');
     }
   }
