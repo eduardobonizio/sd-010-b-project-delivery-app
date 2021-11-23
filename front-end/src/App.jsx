@@ -7,14 +7,15 @@ import MyOrders from './pages/MyOrders';
 import Register from './pages/Register';
 import OrderDetails from './pages/OrderDetails';
 import Products from './pages/Products';
+import OrderPage from './pages/OrderPage';
 
 import './styles/App.css';
 
 function App() {
   return (
     <Routes>
-      <Route exact path="/customer/orders/1" element={ <OrderPage /> } />
       <Route exact path="/customer/orders/:saleId" element={ <OrderDetails /> } />
+      <Route exact path="/customer/orders/" element={ <OrderPage /> } />
       <Route exact path="/customer/checkout" element={ <Checkout /> } />
       <Route exact path="/customer/products" element={ <Products /> } />
       <Route exact path="/customer/orders" element={ <MyOrders /> } />
