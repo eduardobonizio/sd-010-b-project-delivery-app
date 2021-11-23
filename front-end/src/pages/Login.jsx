@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-// import { Box } from '@mui/material';
-// import PropTypes from 'prop-types';
+
 function Login() {
   const history = useHistory();
   const [loginButtonDisabled, setLoginButtonDisabled] = useState(true);
@@ -10,13 +9,7 @@ function Login() {
   const [isEmailInvalid, setIsEmailInvalid] = useState(false);
 
   const minPasswordLength = 6;
-  // const isDisabled = ((() => {
-  //   if (password.length >= minPasswordLength && re.test(login)) {
-  //     setLoginButtonDisabled(false);
-  //   } else {
-  //     setLoginButtonDisabled(true);
-  //   }
-  // }));
+
   const onChange = (value, setState) => {
     setIsEmailInvalid(false);
     setState(value);
@@ -29,13 +22,16 @@ function Login() {
     };
     fetch('http://localhost:3001/login', requestOptions)
       .then((response) => {
-        console.log(response);
         if (response.ok === false) {
           setIsEmailInvalid(true);
         } else {
-          history.push('/customer/products');
+          response.json().then((data) => {
+            localStorage.setItem('user', JSON.stringify(data));
+            history.push('/customer/products');
+          });
         }
-      });
+      })
+      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
@@ -66,6 +62,7 @@ function Login() {
         <label htmlFor="password">
           Senha:
           <input
+            type="password"
             value={ password }
             onChange={ (e) => onChange(e.target.value, setPassword) }
             placeholder="Digite sua senha"
@@ -80,7 +77,6 @@ function Login() {
         onClick={ () => fetchUser() }
       >
         ENTRAR
-
       </button>
       <Link to="/register">
         <button
@@ -94,7 +90,7 @@ function Login() {
         <h4
           data-testid="common_login__element-invalid-email"
         >
-          Email inválido
+          Email ou senha incorretos
 
         </h4>)
         : null}
