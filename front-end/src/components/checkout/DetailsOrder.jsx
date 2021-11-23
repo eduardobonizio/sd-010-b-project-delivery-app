@@ -24,7 +24,7 @@ function DetailsOrder() {
     const { seller, address, number } = detailsSales;
     const { id, token } = getFromLocalStorage('user');
     const totalSales = getFromLocalStorage('totalCart');
-    // const productsSale = getFromLocalStorage('cart');
+    const products = getFromLocalStorage('cart');
 
     const newSales = {
       userId: id,
@@ -32,11 +32,12 @@ function DetailsOrder() {
       totalPrice: totalSales.toFixed(2),
       deliveryAddress: address,
       deliveryNumber: number,
+      products,
     };
 
-    const response = await apiRequestSalesProduct(newSales, token);
+    console.log(newSales);
+
     const { sellerId } = await apiRequestSalesProduct(newSales, token);
-    console.log(response);
 
     navigate(`../customer/orders/${sellerId}`, { replace: true });
   }
