@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const { getUserByName } = require('../services/users');
 
-// const secret = require('../../')
 const SECRET = fs.readFileSync('jwt.evaluation.key', 'utf8', (err, data) => {
   if (err) {
     console.error(err);
@@ -11,7 +10,7 @@ const SECRET = fs.readFileSync('jwt.evaluation.key', 'utf8', (err, data) => {
   }
   console.log(data);
   return data;
-});
+}).trim();
 
 const jwtConfiguration = {
   expiresIn: '1d',
