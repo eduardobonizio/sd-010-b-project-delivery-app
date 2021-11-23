@@ -19,4 +19,9 @@ app.use('/register', registerRouter);
 
 app.get('/', (_req, res) => res.redirect('/login'));
 
+app.use((err, _req, res, _next) => { 
+  console.log('ERRO AQUI ÓÓ !!!!', err);
+  return res.status(500).json(err);
+});
+
 module.exports = app;
