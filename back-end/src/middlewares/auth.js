@@ -13,7 +13,7 @@ const auth = async (req, res, next) => {
 
   try {
     const { data } = await isTokenValid(authorization);
-    req.user = data;
+    req.body.user = data;
     next();
   } catch (err) {
     return res.status(UNAUTHORIZED).json({
