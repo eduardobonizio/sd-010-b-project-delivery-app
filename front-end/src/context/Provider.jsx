@@ -15,7 +15,7 @@ function Provider({ children }) {
   const history = useHistory();
 
   const setToken = (token) => {
-    localStorage.setItem('token', JSON.stringify(token));
+    localStorage.setItem('user', JSON.stringify(token));
     history.push({ pathname: '/customer/products' });
   };
 
