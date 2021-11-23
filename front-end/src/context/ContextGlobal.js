@@ -32,17 +32,6 @@ function Provider({ children }) {
     setProducts,
   };
 
-  useEffect(() => {
-    if (localStorage.getItem('user') === null) {
-      const User = [];
-      localStorage.setItem('user', JSON.stringify(User));
-    }
-    if (localStorage.getItem('products') === null) {
-      const Products = [];
-      localStorage.setItem('products', JSON.stringify(Products));
-    }
-  }, []);
-
   return (
     <Context.Provider value={ object }>
       {children}
