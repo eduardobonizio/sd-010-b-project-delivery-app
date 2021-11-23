@@ -1,4 +1,4 @@
-const { Sale, Product, User } = require('../database/models');
+const { Sale, Product, User, SalesProduct } = require('../database/models');
 
 const getSaleProduct = async (id) => {
   const saleWithProduct = await Sale.findAll({
@@ -22,6 +22,13 @@ const getSaleProduct = async (id) => {
   return saleWithProduct;
 };
 
+const addSales = async (saleId, productId, quantity) => {
+  const saleProductAdded = await SalesProduct.create({ saleId, productId, quantity });
+
+  return saleProductAdded.dataValues;
+};
+
 module.exports = {
   getSaleProduct,
+  addSales,
 };
