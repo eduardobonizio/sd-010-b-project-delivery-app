@@ -8,6 +8,7 @@ import NavBar from '../components/Navbar';
 function Orders() {
   const [ordersState, setOrdersState] = useState([]);
   const path = useLocation().pathname;
+
   useEffect(() => {
     const userInfo = JSON.parse(localStorage.getItem('user'));
     const { token } = userInfo;

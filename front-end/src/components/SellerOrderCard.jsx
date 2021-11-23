@@ -9,9 +9,7 @@ function OrderCard({ order }) {
 
   return (
     <Link to={ `/seller/orders/${id}` }>
-      <div data-testid={ `seller_orders__element-order-id-${id}` }>
-        {id}
-      </div>
+      <div data-testid={ `seller_orders__element-order-id-${id}` }>{id}</div>
       <button
         type="button"
         data-testid={ `seller_orders__element-delivery-status-${id}` }
@@ -22,11 +20,13 @@ function OrderCard({ order }) {
         {newDate}
       </div>
       <div data-testid={ `seller_orders__element-card-price-${id}` }>
-        {`${totalPrice.replace('.', ',')}` }
+        {`${totalPrice.replace('.', ',')}`}
       </div>
-      <div data-testid={ `seller_orders__element-card-address-${id}` }>
-        {`${deliveryAddress}, ${deliveryNumber}`}
-      </div>
+      {role === 'seller' ? (
+        <div data-testid={ `seller_orders__element-card-address-${id}` }>
+          {`${deliveryAddress}, ${deliveryNumber}`}
+        </div>
+      ) : null}
     </Link>
   );
 }
@@ -39,7 +39,6 @@ OrderCard.propTypes = {
     totalPrice: PropTypes.string,
     deliveryNumber: PropTypes.string,
     deliveryAddress: PropTypes.string,
-
   }).isRequired,
 };
 

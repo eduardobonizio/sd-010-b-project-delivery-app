@@ -49,8 +49,8 @@ export default function ProductContextProvider({ children }) {
 
   const handleSubTotal = (id) => {
     const elements = cart.filter((el) => el.id === id);
-    const subttoal = elements.reduce((acc, curr) => acc + +curr.price, 0);
-    return subttoal.toFixed(2);
+    const subTotal = elements.reduce((acc, curr) => acc + +curr.price, 0);
+    return subTotal.toFixed(2);
   };
 
   const handleRemoveProduct = (id) => {
