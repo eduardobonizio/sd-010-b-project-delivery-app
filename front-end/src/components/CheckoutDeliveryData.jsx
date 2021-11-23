@@ -3,7 +3,7 @@ import { Container, Dropdown, Form } from 'react-bootstrap';
 import Proptypes from 'prop-types';
 
 function CheckoutDeliveryData(props) {
-  const { finishSale, setDeliveryAddress, setDeliveryNumber } = props;
+  const { finishSale, setDeliveryAddress, setDeliveryNumber, setSellerId } = props;
 
   return (
     <Container>
@@ -16,10 +16,14 @@ function CheckoutDeliveryData(props) {
             </span>
           </div>
 
-          <select name="select" data-testid="customer_checkout__select-seller">
-            <option value="valor1" selected>Fulana pereira</option>
-            <option value="valor2">Valor 2</option>
-            <option value="valor3">Valor 3</option>
+          <select
+            onChange={ (e) => setSellerId(e.target.value) }
+            name="select"
+            data-testid="customer_checkout__select-seller"
+          >
+            <option value="1" selected>Fulana pereira</option>
+            <option value="2">Valor 2</option>
+            <option value="3">Valor 3</option>
           </select>
         </Dropdown>
         <Form.Label>
@@ -63,4 +67,5 @@ CheckoutDeliveryData.propTypes = {
   finishSale: Proptypes.func.isRequired,
   setDeliveryNumber: Proptypes.func.isRequired,
   setDeliveryAddress: Proptypes.func.isRequired,
+  setSellerId: Proptypes.func.isRequired,
 };

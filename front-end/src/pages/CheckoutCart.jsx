@@ -12,6 +12,8 @@ function Products() {
   const [cartTotal, setCartTotal] = useState(0);
   const [deliveryAddress, setDeliveryAddress] = useState('');
   const [deliveryNumber, setDeliveryNumber] = useState('');
+  const [sellerId, setSellerId] = useState(1);
+
   const history = useHistory();
 
   useEffect(() => {
@@ -47,6 +49,7 @@ function Products() {
         products: cart,
         deliveryAddress,
         deliveryNumber,
+        sellerId,
       };
       const { data: { saleId } } = await axios.post('http://localhost:3001/customer/checkout', newSale, config);
       history.push(`/customer/orders/${saleId}`);
@@ -65,6 +68,7 @@ function Products() {
 
   return (
     <>
+      {console.log(sellerId)}
       <TopBar name={ name } />
       <div style={ { display: 'flex' } }>
         {
@@ -84,6 +88,7 @@ function Products() {
         setDeliveryNumber={ setDeliveryNumber }
         setDeliveryAddress={ setDeliveryAddress }
         finishSale={ finishSale }
+        setSellerId={ setSellerId }
       />
     </>
   );

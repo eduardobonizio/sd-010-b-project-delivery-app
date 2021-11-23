@@ -11,14 +11,14 @@ const insertIntoSalesProduct = async (products, saleId) => {
 };
 
 const createNewSale = async (body) => {
-  const { products, user, totalPrice, deliveryAddress, deliveryNumber } = body;
+  const { products, user, totalPrice, deliveryAddress, deliveryNumber, sellerId } = body;
     const newSale = await Sale.create({
       userId: user.id,
       totalPrice,
       deliveryAddress,
       deliveryNumber,
-      status: 'Ainda não sei o que colocar',
-      sellerId: 1,
+      status: 'Pendente',
+      sellerId,
     });
 
     await insertIntoSalesProduct(products, newSale.id);
