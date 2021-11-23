@@ -8,7 +8,7 @@ const jwtConfig = {
 // const secret = process.env.JWT_SECRET || 'secret_key';
 const secret = require('fs')
   .readFileSync('jwt.evaluation.key', { encoding: 'utf-8' })
-  .trim();
+  // .trim();
 
 const jwtLogin = (payload) => {
   const token = jwt.sign(payload, secret, jwtConfig);
