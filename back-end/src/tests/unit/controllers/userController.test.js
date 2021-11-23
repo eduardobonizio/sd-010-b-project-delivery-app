@@ -1,61 +1,60 @@
-const sinon = require('sinon')
-const { expect } = chai;
+// const sinon = require('sinon');
 
-const { User } = require('../../../models');
-const { findAllUsers, findUserByPk } = require('../../../controllers/userController');
+// const { expect } = chai;
 
-describe('User controller', () => {
-  const users = [];
-  const userByPk = {};
+// const { User } = require('../../../models');
+// const { findAllUsers, findUserByPk } = require('../../../controllers/userController');
 
-  describe('GET Users', () => {
-    it('should use findAllUsers action and send response', async () => {
-      const findAllUsers = sinon.stub(User, 'findAllUsers').resolves(users)
-      let resSpy = sinon.spy();
-      const req = {};
-      const res = {
-        status: sinon.stub().returns({ json: resSpy }),
-      };
+// describe('User controller', () => {
+//   const users = [];
+//   const userByPk = {};
 
-      await findAllUsers(req, res);
+//   describe('GET Users', () => {
+//     it('should use findAllUsers action and send response', async () => {
+//       const findAllUsers = sinon.stub(User, 'findAllUsers').resolves(users);
+//       const resSpy = sinon.spy();
+//       const req = {};
+//       const res = {
+//         status: sinon.stub().returns({ json: resSpy }),
+//       };
 
-      expect(findAllUsers.calledOnce).to.equal(true)
-      expect(resSpy.calledOnce).to.equal(true)
-      expect(resSpy.calledWith(users)).to.equal(true)
+//       await findAllUsers(req, res);
 
-      findAllUsers.restore()
-    })
-  })
+//       expect(findAllUsers.calledOnce).to.equal(true);
+//       expect(resSpy.calledOnce).to.equal(true);
+//       expect(resSpy.calledWith(users)).to.equal(true);
 
-  describe('GET specific user', () => {
-    it('should use findUserByPk action and send response', async () => {
-      const findUserByPk = sinon
-        .stub(User, 'findUserByPk')
-        .resolves(userByPk)
-      let resSpy = sinon.spy()
-      const req = {
-        params: {
-          id: 1,
-        },
-      };
+//       findAllUsers.restore();
+//     });
+//   });
 
-      const res = {
-        status: () => {
-          return {
-            json: resSpy,
-          }
-        },
-      };
+//   describe('GET specific user', () => {
+//     it('should use findUserByPk action and send response', async () => {
+//       const findUserByPk = sinon
+//         .stub(User, 'findUserByPk')
+//         .resolves(userByPk);
+//       const resSpy = sinon.spy();
+//       const req = {
+//         params: {
+//           id: 1,
+//         },
+//       };
 
-      const spy = sinon.spy(res, 'status')
-      await findUserByPk(req, res)
+//       const res = {
+//         status: () => ({
+//             json: resSpy,
+//           }),
+//       };
 
-      expect(findUserByPk.calledOnce).to.equal(true)
-      expect(spy.calledOnce).to.equal(true)
-      expect(resSpy.calledOnce).to.equal(true)
-      expect(resSpy.calledWith(userByPk)).to.equal(true)
+//       const spy = sinon.spy(res, 'status');
+//       await findUserByPk(req, res);
 
-      findUserByPk.restore();
-    });
-  });
-});
+//       expect(findUserByPk.calledOnce).to.equal(true);
+//       expect(spy.calledOnce).to.equal(true);
+//       expect(resSpy.calledOnce).to.equal(true);
+//       expect(resSpy.calledWith(userByPk)).to.equal(true);
+
+//       findUserByPk.restore();
+//     });
+//   });
+// });

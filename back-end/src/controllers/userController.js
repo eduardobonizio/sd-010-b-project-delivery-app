@@ -14,7 +14,7 @@ const jwtConfig = {
   algorithm: 'HS256',
 };
 
-const userCreate = async (req, res, next) => {
+const userCreate = async (req, res, _next) => {
   const { dataValues } = await User.create(req.body);
   delete dataValues.password;
   const token = jwt.sign({ data: dataValues }, secret, jwtConfig);
@@ -40,8 +40,8 @@ const findUserByPk = async (req, res) => {
   const userByPk = await User.findByPk(id);
 
   if (!userByPk) {
-    return res.status(NOT_FOUND).json({ message: userNotExist })
+    return res.status(NOT_FOUND).json({ message: userNotExist });
   }
 };
 
-module.exports = { userCreate, findAllUsers, findUserByPk }
+module.exports = { userCreate, findAllUsers, findUserByPk };
