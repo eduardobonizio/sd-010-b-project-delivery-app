@@ -79,6 +79,7 @@ function OrderDetails() {
       <button
         type="button"
         data-testid={ role + PREPARING_CHECK }
+        disabled={ productsDetails.status !== 'Pendente' }
       >
         PREPARAR PEDIDO
       </button>
