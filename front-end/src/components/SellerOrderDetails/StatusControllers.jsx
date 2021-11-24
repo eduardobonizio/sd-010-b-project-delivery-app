@@ -44,8 +44,12 @@ function StatusControllers({ componentData }) {
     }
   }, [sale.deliveryStatus]);
 
-  const preparingButtonClasses = `seller-button ${preparing && 'disabled-button'}`;
-  const inTransitButtonClasses = `seller-button ${inTransit && 'disabled-button'}`;
+  const buttonClasses = {
+    preparing: `seller-button ${isDisabledButtons.preparing && 'disabled-button'}`,
+    inTransit: `seller-button ${isDisabledButtons.inTransit && 'disabled-button'}`,
+  };
+
+  if (!componentData) return '';
 
   return (
     <div className="seller-status-controllers">
@@ -63,7 +67,7 @@ function StatusControllers({ componentData }) {
       <div style={ { gridColumnStart: 5 } }>
         <button
           type="button"
-          className={ preparingButtonClasses }
+          className={ buttonClasses.preparing }
           name="preparing"
           data-testid={ dataTestId57 }
           disabled={ isDisabledButtons.preparing }
@@ -75,7 +79,7 @@ function StatusControllers({ componentData }) {
       <div style={ { gridColumnStart: 6 } }>
         <button
           type="button"
-          className={ inTransitButtonClasses }
+          className={ buttonClasses.inTransit }
           name="inTransit"
           data-testid={ dataTestId58 }
           disabled={ isDisabledButtons.inTransit }
