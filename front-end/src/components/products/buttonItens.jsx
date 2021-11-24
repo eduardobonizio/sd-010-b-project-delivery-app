@@ -16,7 +16,8 @@ const ButtonItens = (elem) => {
         className="count"
         data-testid={ `customer_products__input-card-quantity-${id}` }
         value={ count }
-        type="text"
+        onChange={ (e) => setCount(e.target.value) }
+        type="number"
       />
 
       <button

@@ -48,3 +48,8 @@
   text-align: center;
   width: 30px;
 }
+
+::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
