@@ -81,14 +81,14 @@ function ProductCard({ id, name, image, price }) {
   };
 
   return (
-    <section style={ { width: '160px', margin: 20 } }>
+    <section style={ { textAlign: 'center' } }>
       <div
         key={ id }
         data-testid={ `customer_products__element-card-price-${id}` }
       >
-        { price.replace('.', ',') }
+        <p>{ price.replace('.', ',') }</p>
         <img
-          style={ { height: 200 } }
+          style={ { height: 150 } }
           data-testid={ `customer_products__img-card-bg-image-${id}` }
           src={ image }
           alt={ name }
