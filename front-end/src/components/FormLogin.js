@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { login } from '../services/api';
-import { createStorage } from '../utils/localStorage';
+import { createStorage, getStorage } from '../utils/localStorage';
 
 export default function FormLogin() {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   const [err, setErr] = useState(false);
+
+  (getStorage('user') && history.push('/customer/products'))
 
   const PassLength = 6;
   const threeSecond = 3000;
@@ -28,9 +30,10 @@ export default function FormLogin() {
       return history.push('/seller/orders');
     }
     if (user.role === 'customer') {
-      history.push('/customer/products');
+      return history.push('/customer/products');
     }
   }
+
 
   return (
     <form onSubmit={ (e) => submit(e) }>

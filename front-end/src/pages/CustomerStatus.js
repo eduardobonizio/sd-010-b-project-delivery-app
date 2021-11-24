@@ -7,9 +7,13 @@ import { getStorage } from '../utils/localStorage';
 export default function OrderStatus() {
   const [orders, setOrders] = useState([]);
 
-  useEffect(() => getOrders().then(({ data }) => {
-    setOrders(data);
-  }), []);
+  useEffect(() => {
+    const takeOrders = async () => {
+      const { data } = await getOrders()
+      setOrders(data);
+    }
+    takeOrders()
+  }, []);
 
   return (
 
@@ -17,7 +21,7 @@ export default function OrderStatus() {
       <Header
         pageName="LISTA DE PEDIDOS"
         yourOrder
-        userName={ getStorage('user').name }
+        userName={ getStorage('user') && getStorage('user').name }
       />
 
       {orders.length && orders.map(({ id, status, saleData, totalPrice }) => {
@@ -25,22 +29,22 @@ export default function OrderStatus() {
         return (
           <Link to={ `/customer/orders/${id}` } key={ id }>
             <span
-              data-testid={ `customer_products__card-orderId-${id}` }
+              data-testid={ `customer_orders__element-order-id-${id}` }
             >
               {id}
             </span>
             <span
-              data-testid={ `customer_products__card-deliveryStatus-${id}` }
+              data-testid={ `customer_orders__element-delivery-status-${id}` }
             >
               {status}
             </span>
             <span
-              data-testid={ `customer_products__element-order-date-${id}` }
+              data-testid={ `customer_orders__element-order-date-${id}` }
             >
               {saleData}
             </span>
             <span
-              data-testid={ `customer_products__card-price-${id}` }
+            data-testid={ `customer_orders__element-card-price-${id}`}
             >
               {totalPrice}
             </span>
