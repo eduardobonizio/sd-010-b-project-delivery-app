@@ -10,7 +10,7 @@ const TEST_STATUS = 'seller_order_details__element-order-details-label-delivery-
 
 function ProductsList() {
   const { id } = useParams();
-  const { setSellerSingleOrder, sellerSingleOrder } = useOrder();
+  const { setSellerSingleOrder, sellerSingleOrder, emitUpdateOrder } = useOrder();
   const [isLoading, setIsLoading] = useState(true);
   const [isActiveDelivery, setIsActiveDelivery] = useState(true);
 
@@ -25,10 +25,12 @@ function ProductsList() {
     getOrder();
   }, []);
 
-  function handleUpdateStatus() {
+  function handleUpdateStatus(status) {
     setIsActiveDelivery(false);
-    // emitUpdateOrder(data);
+    const data = { id: sellerSingleOrder.id, status };
+    emitUpdateOrder(data);
   }
+
   return (
     <div>
       <div className="conteiner border">
@@ -50,7 +52,8 @@ function ProductsList() {
           <button
             type="button"
             data-testid="seller_order_details__button-preparing-check"
-            onClick={ handleUpdateStatus }
+            name="Preparando"
+            onClick={ ({ target }) => handleUpdateStatus(target.name) }
           >
             PREPARAR PEDIDO
           </button>
@@ -58,7 +61,8 @@ function ProductsList() {
             type="button"
             data-testid="seller_order_details__button-dispatch-check"
             disabled={ isActiveDelivery }
-            onClick={ handleUpdateStatus }
+            name="Em Trânsito"
+            onClick={ ({ target }) => handleUpdateStatus(target.name) }
           >
             SAIU PARA ENTREGA
           </button>
