@@ -1,5 +1,6 @@
 import React from 'react';
 import Sale from './Sale';
+import './SalesList.scss';
 
 import { useCustomer } from '../../../../hooks/useCustomer';
 
@@ -10,7 +11,7 @@ function SalesList() {
       <div className="container">
         <h3>Finalizar pedido</h3>
         <table style={ { width: '100%' } }>
-          <tr>
+          <tr className="table-header">
             <th>Item</th>
             <th>Descrição</th>
             <th>Quantidade</th>
@@ -26,8 +27,8 @@ function SalesList() {
             />
           ))}
         </table>
-        <p>
-          R$
+        <p className="total-price">
+          Total: R$&nbsp;
           <span data-testid="customer_checkout__element-order-total-price">
             {total}
           </span>
