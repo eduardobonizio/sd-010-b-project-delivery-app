@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 function Login() {
@@ -47,7 +47,7 @@ function Login() {
 
   return (
     <div>
-      { isRedirect && <Redirect to="/customer/products" />}
+      {isRedirect && <Redirect to="/customer/products" />}
 
       <h1>Login page</h1>
 
@@ -81,16 +81,11 @@ function Login() {
       >
         Login
       </button>
-
-      <button
-        type="button"
-        data-testid="common_login__button-register"
-      >
-        Ainda não tenho conta
+      <button type="button" data-testid="common_login__button-register">
+        <Link to="/register">Ainda não tenho conta</Link>
       </button>
 
-      { isError && <div data-testid={ lintChato }>{ errorMessage }</div> }
-
+      {isError && <div data-testid={ lintChato }>{errorMessage}</div>}
     </div>
   );
 }

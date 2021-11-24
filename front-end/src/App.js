@@ -8,6 +8,7 @@ import './App.css';
 import PagesOrder from './pages/PagesOrder';
 import Checkout from './pages/Checkout';
 import PagesOrderDetails from './pages/PagesOrderDetails';
+import Register from './pages/Register';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Redirect to="/login" />
           </Route>
           <Route path="/login" component={ Login } />
+          <Route path="/register" component={ Register } />
           <Route path="/customer/products" component={ Products } />
           <Route path="/customer/checkout" component={ Checkout } />
           <Route path="/customer/orders" component={ PagesOrder } />
