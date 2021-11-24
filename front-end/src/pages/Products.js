@@ -23,11 +23,11 @@ function Products() {
 
   return (
     <>
-      <Link to="/customer/orders">
+      {/* <Link to="/customer/orders">
         <div>
           Order
         </div>
-      </Link>
+      </Link> */}
       <Header />
       <main>
         {products.map((product, index) => (
