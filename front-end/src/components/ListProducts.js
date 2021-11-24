@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Context } from '../contexts/createContext';
 import { getProducts } from '../services/api';
-import { getStorage } from '../utils/localStorage';
+// import { getStorage } from '../utils/localStorage';
 
 export default function ListProducts() {
   const { products, setProducts, total, setTotal } = useContext(Context);
@@ -32,13 +32,13 @@ export default function ListProducts() {
   }
 
   useEffect(() => {
-    if (!getStorage('user')) { history.push('/login'); }
+    // if (!getStorage('user')) { history.push('/login'); }
     getProducts().then(({ data }) => {
       const newObj = data.map((item) => ({ ...item, quant: 0 }));
       setProducts(newObj);
     })
       .catch((err) => { console.log(err); });
-  }, [history, setProducts]);
+  }, [setProducts]);
 
   return (
     <>
