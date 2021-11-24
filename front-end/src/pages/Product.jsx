@@ -1,6 +1,6 @@
 import React from 'react';
 import NavBar from '../components/NavBar';
-import CardList from '../components/Card';
+import CardList from '../components/CardList';
 
 function Product() {
   return (
