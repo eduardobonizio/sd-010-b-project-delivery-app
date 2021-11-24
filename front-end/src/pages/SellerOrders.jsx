@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Row, Col } from 'react-bootstrap';
 import TopBar from '../components/TopBar';
-import OrderCard from '../components/OrderCard';
+import SellerOrderCard from '../components/SellerOrderCard';
 import './css/Products.css';
 
 function ListOrders() {
@@ -35,11 +35,13 @@ function ListOrders() {
           {
             orders && orders.map((order) => (
               <Col key={ order.id } style={ { padding: '0px' } }>
-                <OrderCard
+                <SellerOrderCard
                   id={ order.id }
                   status={ order.status }
                   date={ order.saleDate }
                   totalPrice={ order.totalPrice }
+                  deliveryAddress={ order.deliveryAddress }
+                  deliveryNumber={ order.deliveryNumber }
                 />
               </Col>
             ))
