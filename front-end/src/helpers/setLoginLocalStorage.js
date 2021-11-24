@@ -1,4 +1,4 @@
-const setLoginLocalStorage = ({ login, password, history }) => {
+const setLoginLocalStorage = ({ login, password }) => {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -7,11 +7,10 @@ const setLoginLocalStorage = ({ login, password, history }) => {
   fetch('http://localhost:3001/login', requestOptions)
     .then((response) => {
       if (response.ok === false) {
-        setIsEmailInvalid(true);
+        console.log(response);
       } else {
         response.json().then((data) => {
           localStorage.setItem('user', JSON.stringify(data));
-          history.push('/customer/products');
         });
       }
     })

@@ -111,7 +111,7 @@ describe(requirement(4), () => {
     password: internet.password(passwordMinLen),
   };
 
-  test(`O avaliador tentará fazer login com dados: ${JSON.stringify(
+  test.only(`O avaliador tentará fazer login com dados: ${JSON.stringify(
     login
   )}`, async () => {
     await expect(page).toTypeInInput(loginPage.input.login, login.email);

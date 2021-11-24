@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from '../api/api';
-import setLoginLocalStorage from '../helpers/setLoginLocalStorage';
 
 import validRegister from '../helpers/validRegister';
 
@@ -57,7 +56,6 @@ function Register() {
         setIsEmailInvalid(true);
         console.log(err);
       });
-    setLoginLocalStorage({ login: registerEmail, password: registerPassword, history });
   };
 
   return (
