@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { apiGetAllSales } from '../../services/salesProducts/apiRequestSalesProduct';
 import * as styles from './styles';
 
@@ -13,38 +14,37 @@ function CardOrdersDetails() {
     getAllSale();
   }, []);
 
-  console.log(dataSale);
-
   return (
     <styles.ContainerOrders>
 
       {
         dataSale.map((value, index) => (
-          <styles.CardOrders key={ index }>
+          <Link key={ index } to={ `/seller/orders/${value.id}` }>
+            <styles.CardOrders>
 
-            <styles.ContainerNumberOrder>
-              <styles.TextNumberOrder
-                data-testid={ `seller_orders__element-order-id-${value.id}` }
-              >
-                Pedido
-                {' '}
-                <br />
-                {value.id}
-              </styles.TextNumberOrder>
-            </styles.ContainerNumberOrder>
+              <styles.ContainerNumberOrder>
+                <styles.TextNumberOrder
+                  data-testid={ `seller_orders__element-order-id-${value.id}` }
+                >
+                  Pedido
+                  {' '}
+                  <br />
+                  {value.id}
+                </styles.TextNumberOrder>
+              </styles.ContainerNumberOrder>
 
-            <styles.ContainerStatusPriceDateAddress>
+              <styles.ContainerStatusPriceDateAddress>
 
-              <styles.ContainerStatusPrice>
-                <styles.ContainerStatus>
+                <styles.ContainerStatusPrice>
+                  {/* <styles.ContainerStatus> */}
                   <styles.TextStatusOrder
                     data-testid={ `seller_orders__element-delivery-status-${value.id}` }
                   >
                     {value.status}
                   </styles.TextStatusOrder>
-                </styles.ContainerStatus>
+                  {/* </styles.ContainerStatus> */}
 
-                <styles.ContainerDatePrice>
+                  {/* <styles.ContainerDatePrice> */}
                   <styles.TextDateOrder
                     data-testid={ `seller_orders__element-order-date-${value.id}` }
                   >
@@ -56,20 +56,21 @@ function CardOrdersDetails() {
                   >
                     {`R$ ${value.totalPrice}`}
                   </styles.TextPriceOrder>
-                </styles.ContainerDatePrice>
-              </styles.ContainerStatusPrice>
+                  {/* </styles.ContainerDatePrice> */}
+                </styles.ContainerStatusPrice>
 
-              <styles.ContainerAddress>
-                <styles.TextAddressOrder
-                  data-testid={ `seller_orders__element-card-address-${value.id}` }
-                >
-                  {`${value.deliveryAddress}, ${value.deliveryNumber}`}
-                </styles.TextAddressOrder>
-              </styles.ContainerAddress>
+                <styles.ContainerAddress>
+                  <styles.TextAddressOrder
+                    data-testid={ `seller_orders__element-card-address-${value.id}` }
+                  >
+                    {`${value.deliveryAddress}, ${value.deliveryNumber}`}
+                  </styles.TextAddressOrder>
+                </styles.ContainerAddress>
 
-            </styles.ContainerStatusPriceDateAddress>
+              </styles.ContainerStatusPriceDateAddress>
 
-          </styles.CardOrders>
+            </styles.CardOrders>
+          </Link>
         ))
       }
 
