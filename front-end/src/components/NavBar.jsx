@@ -4,15 +4,24 @@ import PropTypes from 'prop-types';
 import { useLocation, useHistory } from 'react-router-dom';
 
 const customerLabelArray = [
-  { label: 'Produtos', route: '/customer/products' },
-  { label: 'Meus Pedidos', route: '/customer/checkout' },
+  { label: 'Produtos',
+    route: '/customer/products',
+    testid: 'customer_products__element-navbar-link-products' },
+  { label: 'Meus Pedidos',
+    route: '/customer/checkout',
+    testid: 'customer_products__element-navbar-link-orders' },
 ];
 
 const renderTabByuserRole = (userRole, history) => {
   if (userRole === 'customer') {
     return customerLabelArray
-      .map(({ label, route }) => (
-        <Tab key={ label } label={ label } onClick={ () => history.push(route) } />
+      .map(({ label, route, testid }) => (
+        <Tab
+          data-testid={ testid }
+          key={ label }
+          label={ label }
+          onClick={ () => history.push(route) }
+        />
       ));
   }
   if (userRole === 'seller') {
@@ -26,12 +35,12 @@ const renderTabByuserRole = (userRole, history) => {
     );
   }
 };
-function NavBar({ username, userRole }) {
+function NavBar({ userRole }) {
   const [tabsValue, setTabsValue] = useState(0);
 
   const location = useLocation();
   const history = useHistory();
-
+  const username = JSON.parse(localStorage.getItem('user')).name;
   useEffect(() => {
     if (userRole === 'customer') {
       if (location.pathname === '/customer/products') setTabsValue(0);
@@ -44,6 +53,10 @@ function NavBar({ username, userRole }) {
     setTabsValue(newValue);
   };
 
+  const onLogout = () => {
+    localStorage.clear();
+    history.push('/');
+  };
   return (
     <Stack
       direction="row"
@@ -55,15 +68,28 @@ function NavBar({ username, userRole }) {
         { renderTabByuserRole(userRole, history) }
       </Tabs>
       <Stack direction="row" alignItems="center" spacing={ 2 }>
-        <Box><Typography>{username}</Typography></Box>
-        <Box><Button variant="contained">Sair</Button></Box>
+        <Box>
+          <Typography
+            data-testid="customer_products__element-navbar-user-full-name"
+          >
+            {username}
+          </Typography>
+        </Box>
+        <Box>
+          <Button
+            variant="contained"
+            data-testid="customer_products__element-navbar-link-logout"
+            onClick={ onLogout }
+          >
+            Sair
+          </Button>
+        </Box>
       </Stack>
     </Stack>
   );
 }
 
 NavBar.propTypes = {
-  username: PropTypes.string.isRequired,
   userRole: PropTypes.string.isRequired,
 };
 
