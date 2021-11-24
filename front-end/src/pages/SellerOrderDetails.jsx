@@ -1,8 +1,12 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import OrdersItemsTable from '../components/SellerOrderDetails/OrdersItemsTable';
-import Header from '../components/Header';
 
+import Header from '../components/Header';
+import SaleProducts from '../components/SellerOrderDetails/SaleProducts';
+import StatusControllers from '../components/SellerOrderDetails/StatusControllers';
+import TableHeader from '../components/SellerOrderDetails/TableHeader';
+import dataTestIdDict from '../utils/dataTestIdDict';
 import '../styles/SellerOrderDetails.css';
 
 function SellerOrderDetails() {
