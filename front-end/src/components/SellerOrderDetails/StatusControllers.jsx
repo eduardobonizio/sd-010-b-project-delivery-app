@@ -13,12 +13,17 @@ const {
 
 function StatusControllers({ componentData }) {
   const { id, saleDate, status } = componentData;
-  const [isDisabledButtons, setIsDisabledButtons] = useState({
-    preparing: true,
-    inTransit: true,
-  });
 
-  const { preparing, inTransit } = isDisabledButtons;
+  const saleState = {
+    id,
+    date: new Date(saleDate).toLocaleDateString(),
+    deliveryStatus: status.toUpperCase(),
+  };
+  const isDisabledButtonsState = { preparing: true, inTransit: true };
+
+  const [sale] = useState(saleState);
+  const [isDisabledButtons, setIsDisabledButtons] = useState(isDisabledButtonsState);
+
   const backgroundColorByStatus = {
     PENDENTE: { backgroundColor: '#D3C63C' },
     PREPARANDO: { backgroundColor: '#87D53C' },
