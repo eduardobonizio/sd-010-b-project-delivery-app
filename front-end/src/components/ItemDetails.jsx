@@ -3,32 +3,42 @@ import Proptypes from 'prop-types';
 import addZeroes from '../helper/functions/addZeroes';
 
 export default function ItemDetails({ order, index }) {
-  const { description, quantity, price } = order;
+  const { name, quantity, price } = order;
 
   return (
     <tr>
-      <th>
+      <td
+        data-testid={ `customer_order_details__element-order-table-item-number-${index}` }
+      >
         { index + 1 }
-      </th>
-      <th>
-        { description }
-      </th>
-      <th>
+      </td>
+      <td
+        data-testid={ `customer_order_details__element-order-table-name-${index}` }
+      >
+        { name }
+      </td>
+      <td
+        data-testid={ `customer_order_details__element-order-table-quantity-${index}` }
+      >
         { quantity }
-      </th>
-      <th>
+      </td>
+      <td
+        data-testid={ `customer_order_details__element-order-table-sub-total-${index}` }
+      >
         { price }
-      </th>
-      <th>
+      </td>
+      <td
+        data-testid={ `customer_order_details__element-order-total-price-${index}` }
+      >
         { addZeroes(price * quantity) }
-      </th>
+      </td>
     </tr>
   );
 }
 
 ItemDetails.propTypes = {
   order: Proptypes.shape({
-    description: Proptypes.string.isRequired,
+    name: Proptypes.string.isRequired,
     quantity: Proptypes.number.isRequired,
     price: Proptypes.string.isRequired,
   }).isRequired,

@@ -1,18 +1,22 @@
-import React from 'react';
-// import { Context } from '../../../provider/Provider';
+import React, { useContext } from 'react';
+import { Context } from '../../../provider/Provider';
 // import CheckoutProduct from '../../../components/CheckoutProducts';
 
 import Header from '../../../components/Header';
 import ItemDetails from '../../../components/ItemDetails';
+import PurshaseTotal from '../../../components/PurchaseTotal';
 
-const products = [
-  { description: 'Cerveja Stella 250ml', quantity: 3, price: 3.5 },
-  { description: 'Cerveja Skol Latão 450ml', quantity: 4, price: 4.1 },
-  { description: 'Salgadinho Torcida Churrasco', quantity: 1, price: 1.56 },
-];
+// const products = [
+//   { description: 'Cerveja Stella 250ml', quantity: 3, price: 3.5 },
+//   { description: 'Cerveja Skol Latão 450ml', quantity: 4, price: 4.1 },
+//   { description: 'Salgadinho Torcida Churrasco', quantity: 1, price: 1.56 },
+// ];
+
+const dlvStatus = 'customer_order_details__element-order-details-label-delivery-status';
 
 export default function OrderDetails() {
-  // const { orderInProgress } = useContext(Context);
+  const { orderInProgress } = useContext(Context);
+  console.log('DETAILS: ', orderInProgress);
 
   return (
     <div>
@@ -20,11 +24,31 @@ export default function OrderDetails() {
       <h2>Detalhe do Pedido</h2>
       <table>
         <tr>
-          <th>Pedido 0003</th>
-          <th>P.Vend: Fulana Pereira</th>
-          <th>07/04/2021</th>
-          <th>ENTREGUE</th>
-          <th>MARCAR COMO ENTREGUE</th>
+          <th
+            data-testid="customer_order_details__element-order-details-label-order-id"
+          >
+            Pedido 0003
+          </th>
+          <th
+            data-testid="customer_order_details__element-order-details-label-seller-name"
+          >
+            P.Vend: Fulana Pereira
+          </th>
+          <th
+            data-testid="customer_order_details__element-order-details-label-order-date"
+          >
+            07/04/2021
+          </th>
+          <th
+            data-testid={ `${dlvStatus}` }
+          >
+            ENTREGUE
+          </th>
+          <th
+            data-testid="customer_order_details__button-delivery-check"
+          >
+            MARCAR COMO ENTREGUE
+          </th>
         </tr>
         <tr>
           <th>Item</th>
@@ -35,7 +59,7 @@ export default function OrderDetails() {
         </tr>
         <tbody>
           {
-            products.map((order, index) => (
+            orderInProgress.map((order, index) => (
               <ItemDetails
                 key={ index }
                 order={ order }
@@ -45,6 +69,7 @@ export default function OrderDetails() {
           }
         </tbody>
       </table>
+      <PurshaseTotal text="Total" />
     </div>
   );
 }
