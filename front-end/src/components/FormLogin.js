@@ -9,7 +9,7 @@ export default function FormLogin() {
   const [pass, setPass] = useState('');
   const [err, setErr] = useState(false);
 
-  (getStorage('user') && history.push('/customer/products'))
+  (getStorage('user') && history.push('/customer/products'));
 
   const PassLength = 6;
   const threeSecond = 3000;
@@ -33,7 +33,6 @@ export default function FormLogin() {
       return history.push('/customer/products');
     }
   }
-
 
   return (
     <form onSubmit={ (e) => submit(e) }>

@@ -9,10 +9,10 @@ export default function OrderStatus() {
 
   useEffect(() => {
     const takeOrders = async () => {
-      const { data } = await getOrders()
+      const { data } = await getOrders();
       setOrders(data);
-    }
-    takeOrders()
+    };
+    takeOrders();
   }, []);
 
   return (
@@ -44,7 +44,7 @@ export default function OrderStatus() {
               {saleData}
             </span>
             <span
-            data-testid={ `customer_orders__element-card-price-${id}`}
+              data-testid={ `customer_orders__element-card-price-${id}` }
             >
               {totalPrice}
             </span>

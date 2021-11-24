@@ -24,8 +24,8 @@ export default function ListItemCheckout() {
           setSellers([...sellers, seller]);
         });
       });
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sellers]);
 
   useEffect(() => {
     setProductsList(products.filter(({ quant }) => quant > 0));
@@ -64,7 +64,7 @@ export default function ListItemCheckout() {
 
     const { data } = await checkoutProducts(objectOrder);
 
-    console.log(data, 'dataaaa')
+    console.log(data, 'dataaaa');
     return history.push(`/customer/orders/${data[0].saleId}`);
   }
 

@@ -4,7 +4,7 @@ import ListProducts from '../components/ListProducts';
 import { getStorage } from '../utils/localStorage';
 
 export default function Products() {
-  console.log('chegueiiiiii')
+  console.log('chegueiiiiii');
   return (
     <>
       <Header
