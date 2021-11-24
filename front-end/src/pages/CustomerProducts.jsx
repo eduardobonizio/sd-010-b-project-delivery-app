@@ -1,3 +1,4 @@
+import { Button, Stack } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import getProducts from '../api/getProducts';
 
@@ -33,14 +34,9 @@ const CustomerProducts = () => {
     console.log(totalValue);
   };
 
-  // useEffect(() => {
-  //   console.log('totalValue');
-  // }, [cart]);
-
   return isLoading
     ? <span>Carregando...</span> : (
       <div>
-        <span>{totalValue}</span>
         {products.map(({ name, id, price, url_image: image }) => (<ProductCard
           key={ id }
           id={ id }
@@ -50,15 +46,20 @@ const CustomerProducts = () => {
           setCartCallback={ setCartCallback }
         />
         ))}
-        {/* <button
-          type="button"
-          onClick={ () => console
-            .log(Object.values(cart)
-              .map((obj) => parseFloat(obj.price.replace(',', '.')) * obj.quantity)) }
-        >
-          log
+        <Stack>
+          <Button
+            data-testid="customer_products__button-cart"
+            style={ { position: 'absolute' } }
+            variant="contained"
+          >
+            <div
+              data-testid="customer_products__checkout-bottom-value"
+            >
+              {totalValue.toFixed(2).replace('.', ',')}
+            </div>
 
-        </button> */}
+          </Button>
+        </Stack>
       </div>);
 };
 
