@@ -19,6 +19,6 @@ export async function removeUserApi(id) {
 }
 
 export async function addUserApi(data, token) {
-  const response = await api.post('/register', data, headers(token));
+  const response = await api.post('/register', data, { headers: headers(token) });
   return response.data;
 }

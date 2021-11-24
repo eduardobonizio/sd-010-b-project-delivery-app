@@ -5,6 +5,7 @@ import User from './User';
 import './User.scss';
 
 function UserList() {
+  // const user = JSON.parse(localStorage.getItem('user'));
   const { users, setUsers } = useAdmin();
 
   async function getUsers() {
