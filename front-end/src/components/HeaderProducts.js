@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 function HeaderProducts(props) {
   const history = useHistory();
@@ -13,13 +13,13 @@ function HeaderProducts(props) {
       >
         {pageName}
       </span>
-      <span
+      <Link
         data-testid="customer_products__element-navbar-link-orders"
         className="yourOrder"
-        onClick={ () => { history.push('/customer/orders'); } }
+        to = "/customer/orders"
       >
         MEUS PEDIDOS
-      </span>
+      </Link>
     </>
   );
 }
