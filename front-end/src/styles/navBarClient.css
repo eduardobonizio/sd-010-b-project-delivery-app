@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap') ;
 
 * {
   box-sizing: border-box;
@@ -7,11 +7,11 @@
 }
 
 .client-navbar {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  padding: 30px 10%;
   background-color: darkslategrey;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 30px 10%;
 }
 
 .client-navbar ul {
@@ -22,18 +22,16 @@
 
 .client-navbar li {
   display: inline-block;
-  padding: 0px 20px;
-  
+  padding: 0 20px;
 }
 
 .client-navbar a {
-  font-family: 'Roboto', sans-serif;
   color: white;
+  font-family: 'Roboto', sans-serif;
   text-decoration: none;
   transition: all 0.3s ease 0s;
 }
 
 .client-navbar a:hover {
-  /* background-color: lightseagreen; */
   color: cadetblue;
 }
