@@ -12,12 +12,13 @@ const ButtonItens = (elem) => {
       >
         -
       </button>
-      <div
+      <input
         className="count"
         data-testid={ `customer_products__input-card-quantity-${id}` }
-      >
-        { count }
-      </div>
+        value={ count }
+        type="text"
+      />
+
       <button
         data-testid={ `customer_products__button-card-add-item-${id}` }
         onClick={ () => setCount(count + 1) }

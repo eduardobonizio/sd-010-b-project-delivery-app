@@ -15,10 +15,13 @@ const Products = () => {
       <div className="card-container">
         { products.map((elem) => (
           <div key={ elem.id } className="card-products">
-            <p
-              data-testid={ `customer_products__element-card-price-${elem.id}` }
-            >
-              { `R$ ${elem.price}` }
+            <p>
+              <span>
+                { 'R$ ' }
+              </span>
+              <span data-testid={ `customer_products__element-card-price-${elem.id}` }>
+                { (elem.price).replace(/\./, ',') }
+              </span>
             </p>
             <img
               data-testid={ `customer_products__img-card-bg-image-${elem.id}` }

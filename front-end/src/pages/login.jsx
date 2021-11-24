@@ -51,6 +51,7 @@ const Login = () => {
     console.log(data);
     if (data.message) {
       setErrorMessage(data.message);
+      // console.log(data.message);
     } else {
       setPassword('');
       setEmail('');
