@@ -50,14 +50,14 @@ function Navbar(props) {
 
   const renderSeller = () => (
     <div>
-      <div>
+      <Link to="/seller/orders">
         <button
           type="button"
           data-testid="customer_products__element-navbar-link-orders"
         >
           Pedidos
         </button>
-      </div>
+      </Link>
     </div>
   );
 
