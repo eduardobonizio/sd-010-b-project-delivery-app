@@ -8,12 +8,14 @@ import Register from './pages/Register';
 import OrderDetails from './pages/OrderDetails';
 import Products from './pages/Products';
 import SellerOrders from './pages/SellerOdrers';
+import SellerOrderDetails from './pages/SellerOrderDetails';
 
 import './styles/App.css';
 
 function App() {
   return (
     <Routes>
+      <Route exact path="/seller/orders/:id" element={ <SellerOrderDetails /> } />
       <Route exact path="/customer/orders/:saleId" element={ <OrderDetails /> } />
       <Route exact path="/customer/checkout" element={ <Checkout /> } />
       <Route exact path="/customer/products" element={ <Products /> } />
