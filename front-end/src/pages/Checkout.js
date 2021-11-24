@@ -1,5 +1,5 @@
 import React from 'react';
-import DetailsOrder from '../components/DetailsOrder';
+import DetailsOrder2 from '../components/DetailsOrder2';
 import Header from '../components/Header';
 import Total from '../components/Total';
 import FooterCheckout from '../components/FooterCheckout';
@@ -9,7 +9,7 @@ function Checkout() {
     <main>
       <Header />
       <h4>Finalizar Pedido</h4>
-      <DetailsOrder isRemoveBtn />
+      <DetailsOrder2 isRemoveBtn />
       <Total />
       <FooterCheckout />
     </main>

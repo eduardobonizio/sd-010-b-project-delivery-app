@@ -8,6 +8,7 @@ import './App.css';
 import PagesOrder from './pages/PagesOrder';
 import Checkout from './pages/Checkout';
 import PagesOrderDetails from './pages/PagesOrderDetails';
+import PageSellerProducts from './pages/PageSellerProducts';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/customer/checkout" component={ Checkout } />
           <Route exact path="/customer/orders" component={ PagesOrder } />
           <Route exact path="/customer/orders/:id" component={ PagesOrderDetails } />
+          <Route exact path="/seller/products" component={ PageSellerProducts } />
         </Switch>
       </AppProvider>
     </div>
