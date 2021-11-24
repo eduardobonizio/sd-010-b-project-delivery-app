@@ -15,10 +15,12 @@ const getById = async (id) => {
 const createSales = async ({ cart, sale }) => {
   const createdSale = await sales.create(sale);
 
-  cart.forEach(({ product_id, quantity }) => {
+  const saleId = 'sale_id';
+  const productId = 'product_id';
+
+  cart.forEach(({ product_id: prodId, quantity }) => {
     salesProducts.create({
-      // eslint-disable-next-line camelcase
-      sale_id: createdSale.toJSON().id, product_id, quantity,
+      [saleId]: createdSale.toJSON().id, [productId]: prodId, quantity,
       });
   });
 
