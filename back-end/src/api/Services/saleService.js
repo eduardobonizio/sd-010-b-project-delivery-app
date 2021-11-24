@@ -50,8 +50,9 @@ const formatResponseContent = (dataToFormatted) => {
 };
 
 const getById = async (id) => {
+  const stringId = id.toString();
   const saleFound = await sale.findByPk(
-    id,
+    stringId,
     {
       attributes: ['id', 'saleDate', 'status', 'totalPrice'],
       include: [{

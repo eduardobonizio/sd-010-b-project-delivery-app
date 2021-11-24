@@ -6,17 +6,17 @@ function renderProductCards({ id, name, price, quantity }) {
   return (
     <div key={ id }>
       Item
-      <div data-testid={ `${test.dataTestId41}-${id}` }>{id}</div>
+      <div data-testid={ `${test.dataTestId41}` }>{id}</div>
       Descrição
-      <div data-testid={ `${test.dataTestId42}-${name}` }>{name}</div>
+      <div data-testid={ `${test.dataTestId42}` }>{name}</div>
       Quantitdade
-      <div data-testid={ `${test.dataTestId42}-${quantity}` }>{quantity}</div>
+      <div data-testid={ `${test.dataTestId43}` }>{quantity}</div>
       Valor unitário
-      <div data-testid={ `${test.dataTestId42}-${price}` }>{price}</div>
+      <div data-testid={ `${test.dataTestId44}` }>{price}</div>
       Sub-total
       <div
         data-testid={
-          `${test.dataTestId42}-${(quantity * price).toFixed(2)}`
+          `${test.dataTestId45}-${(quantity * price).toFixed(2)}`
         }
       >
         {(quantity * price).toFixed(2)}
