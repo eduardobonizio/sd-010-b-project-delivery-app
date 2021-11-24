@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import * as style from './style';
 import { apiRequestLogin } from '../../../services/login/apiRequestLogin';
 import { setOnLocalStorage } from '../../../helpers/localStorage';
+/* eslint-disable */
 
 export default function Login() {
   const [password, setPassword] = useState('');
@@ -49,46 +50,48 @@ export default function Login() {
     <style.CommonContainer>
       <style.LoginContainer />
       <style.CommonForm>
-        <style.InputLabel>
-          Login
-          <br />
-          <input
-            type="text"
-            onChange={ (e) => setEmail(e.target.value) }
-            data-testid="common_login__input-email"
-          />
-        </style.InputLabel>
-        <style.InputLabel>
-          Senha
-          <br />
-          <input
-            type="password"
-            onChange={ (e) => setPassword(e.target.value) }
-            data-testid="common_login__input-password"
-          />
-        </style.InputLabel>
-        <style.LoginButton
-          type="submit"
-          data-testid="common_login__button-login"
-          disabled={ btnDisable }
-          onClick={ (e) => tryLogin(e) }
-        >
-          Login
-        </style.LoginButton>
-        <style.RegisterButton
-          type="submit"
-          data-testid="common_login__button-register"
-          onClick={ () => navigate('../register', { replace: true }) }
-        >
-          Ainda nao tenho conta
-        </style.RegisterButton>
-        <p
-          id="erro"
-          data-testid="common_login__element-invalid-email"
-        >
-          {' '}
-          { erro ? 'Deu erro' : ' ' }
-        </p>
+        <div id="inputs-group">
+          <style.InputLabel>
+            Login
+            <br />
+            <style.Input
+              type="text"
+              onChange={ (e) => setEmail(e.target.value) }
+              data-testid="common_login__input-email"
+            />
+          </style.InputLabel>
+          <style.InputLabel>
+            Senha
+            <br />
+            <style.Input
+              type="password"
+              onChange={ (e) => setPassword(e.target.value) }
+              data-testid="common_login__input-password"
+            />
+          </style.InputLabel>
+          <style.LoginButton
+            type="submit"
+            data-testid="common_login__button-login"
+            disabled={ btnDisable }
+            onClick={ (e) => tryLogin(e) }
+          >
+            Login
+          </style.LoginButton>
+          <style.RegisterButton
+            type="submit"
+            data-testid="common_login__button-register"
+            onClick={ () => navigate('../register', { replace: true }) }
+          >
+            Ainda nao tenho conta
+          </style.RegisterButton>
+        </div>
+          <p
+            id="erro"
+            data-testid="common_login__element-invalid-email"
+          >
+            {' '}
+            { erro ? 'Deu erro' : ' ' }
+          </p>
 
       </style.CommonForm>
     </style.CommonContainer>

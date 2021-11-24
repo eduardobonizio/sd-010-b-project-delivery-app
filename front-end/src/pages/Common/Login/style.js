@@ -16,7 +16,7 @@ export const LoginContainer = styled.div`
     display: none;
   }
 
-  background-color: green;
+  background-color: #036B52;
   height: 100vh;
   width: 50%;
 `;
@@ -28,22 +28,32 @@ export const CommonForm = styled.form`
   justify-content: center;
   height: 100vh;
   width: 50%;
+
+  #inputs-group {
+    background-color: white;
+    padding: 35px;
+    border-radius: 15px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
-export const InputEmail = styled.input`
+export const Input = styled.input`
   margin-bottom: 15px;
   border-radius: 6px;
+  padding: 15px;
+  border: none;
+  background-color: lightgray;
+  border: 1px solid lightgray;
 
-  height: 35px;
-  width: 200px;
-`;
-
-export const InputPassword = styled.input`
-  margin-bottom: 15px;
-  border-radius: 6px;
-
-  height: 35px;
-  width: 200px;
+  &:focus {
+    outline: none;
+    border: 1px solid #036B52;
+  }
 `;
 
 export const InputLabel = styled.label`
@@ -53,7 +63,7 @@ export const InputLabel = styled.label`
 `;
 
 export const LoginButton = styled.button`
-  background-color: green;
+  background-color: #036B52;
   border-radius: 6px;
   border: none;
   box-shadow: 0 0 0.5em rgb(160, 160, 160);
@@ -89,7 +99,7 @@ export const RegisterButton = styled.button`
   width: 200px;
 
   &:hover {
-    color: green;
+    color: #036B52;
     cursor: pointer;
     transform: scale(1.1);
   }
