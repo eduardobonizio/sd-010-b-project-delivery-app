@@ -94,8 +94,8 @@ function StatusControllers({ componentData }) {
 
 StatusControllers.propTypes = {
   componentData: PropTypes.shape({
-    id: PropTypes.number,
-    saleDate: PropTypes.instanceOf(Date),
+    id: PropTypes.string,
+    saleDate: PropTypes.string,
     status: PropTypes.string,
   }).isRequired,
 };
