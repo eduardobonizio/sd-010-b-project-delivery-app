@@ -46,6 +46,8 @@ const Login = () => {
       }),
     });
     const data = await response.json();
+    const { name, email, role, token } = data;
+    localStorage.setItem('user', JSON.stringify({ name, email, role, token }));
     console.log(data);
     if (data.message) {
       setErrorMessage(data.message);
