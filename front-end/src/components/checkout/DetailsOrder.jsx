@@ -6,7 +6,7 @@ import * as styles from './styles';
 
 function DetailsOrder() {
   const [detailsSales, setDetailsSales] = useState(
-    { seller: '1', address: '', number: 0 },
+    { seller: '1', address: '', number: '' },
   );
 
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ function DetailsOrder() {
     const { seller, address, number } = detailsSales;
     const { id, token } = getFromLocalStorage('user');
     const totalSales = getFromLocalStorage('totalCart');
-    // const productsSale = getFromLocalStorage('cart');
+    const products = getFromLocalStorage('cart');
 
     const newSales = {
       userId: id,
@@ -32,13 +32,12 @@ function DetailsOrder() {
       totalPrice: totalSales.toFixed(2),
       deliveryAddress: address,
       deliveryNumber: number,
+      products,
     };
 
-    const response = await apiRequestSalesProduct(newSales, token);
-    const { sellerId } = await apiRequestSalesProduct(newSales, token);
-    console.log(response);
+    const { data } = await apiRequestSalesProduct(newSales, token);
 
-    navigate(`../customer/orders/${sellerId}`, { replace: true });
+    navigate(`../customer/orders/${data[0].saleId}`, { replace: true });
   }
 
   return (
