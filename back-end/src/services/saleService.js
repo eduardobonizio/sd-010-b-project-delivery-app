@@ -34,9 +34,22 @@ const postProductSale = async (productArray) => {
   return 'Populei';
 };
 
+const updateSaleStatus = async (id, status) => {
+  await sale.update({ ...sale, status }, { where: { id } });
+  const updatedSale = await sale.findByPk(id, {
+    include: [
+      { model: product, as: 'products' },
+      { model: user, as: 'customer' },
+      { model: user, as: 'seller' },
+    ],
+  });
+  return updatedSale;
+};
+
 module.exports = {
   getAll,
   getSale,
   postSale,
   postProductSale,
+  updateSaleStatus,
 };

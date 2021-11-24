@@ -28,7 +28,7 @@ const postSale = async (req, res) => {
 };
 
 const postProductSale = async (req, res) => {
-  console.log('body:', req.body);
+  // console.log('body:', req.body);
   try {
     const newSales = await saleService.postProductSale(req.body);
     res.status(201).json(newSales);
