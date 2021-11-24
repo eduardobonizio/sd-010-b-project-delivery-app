@@ -18,7 +18,7 @@ function MeusPedidos() {
     await setOrdersCustomer(allOrders);
   };
 
-  useEffect(async () => getPedidos(), [setOrdersCustomer]);
+  useEffect(() => getPedidos(), [setOrdersCustomer]);
   const token = getFromLocalStorage('user');
 
   socket.on('preparandoPedido', async () => getPedidos());
