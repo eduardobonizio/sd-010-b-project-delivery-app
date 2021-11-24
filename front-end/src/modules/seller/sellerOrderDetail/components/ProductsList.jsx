@@ -1,13 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { getOneOrderApi } from '../../../../api/orders';
+import { formatedDate, formatSaveAndRenderPrice } from '../../../../helpers/functions';
+import { useOrder } from '../../../../hooks/useOrder';
 import Product from './Product';
 import './ProductsList.scss';
 
 const TEST_STATUS = 'seller_order_details__element-order-details-label-delivery-status';
 
 function ProductsList() {
+  const { id } = useParams();
+  const { setSellerSingleOrder, sellerSingleOrder } = useOrder();
+  const [isLoading, setIsLoading] = useState(true);
+  const [isActiveDelivery, setIsActiveDelivery] = useState(true);
+
+  async function getOrder() {
+    setIsLoading(true);
+    const respOrder = await getOneOrderApi(id);
+    setSellerSingleOrder(respOrder);
+    setIsLoading(false);
+  }
+
+  useEffect(() => {
+    getOrder();
+  }, []);
+
   function handleUpdateStatus() {
-    // data ainda vai ser definido;
-    emitUpdateOrder(data);
+    setIsActiveDelivery(false);
+    // emitUpdateOrder(data);
   }
   return (
     <div>
@@ -17,15 +37,15 @@ function ProductsList() {
           <span
             data-testid="seller_order_details__element-order-details-label-order-id"
           >
-            id
+            {sellerSingleOrder.id}
           </span>
           <span
             data-testid="seller_order_details__element-order-details-label-order-date"
           >
-            data
+            { formatedDate(new Date(sellerSingleOrder.saleDate)) }
           </span>
           <span data-testid={ TEST_STATUS }>
-            status
+            { sellerSingleOrder.status }
           </span>
           <button
             type="button"
@@ -37,6 +57,7 @@ function ProductsList() {
           <button
             type="button"
             data-testid="seller_order_details__button-dispatch-check"
+            disabled={ isActiveDelivery }
             onClick={ handleUpdateStatus }
           >
             SAIU PARA ENTREGA
@@ -51,16 +72,23 @@ function ProductsList() {
             <th>Sub-total</th>
           </tr>
           <tbody>
-            <Product index="1" />
-            <Product index="2" />
-            <Product index="3" />
+            {isLoading
+              ? <p>Carregando...</p>
+              : (sellerSingleOrder.saleItens.map((product, index) => (
+                <Product
+                  key={ index }
+                  product={ product }
+                  index={ index }
+                />
+              ))
+              )}
           </tbody>
         </table>
         <p>
           <span
             data-testid="seller_order_details__element-order-total-price"
           >
-            total
+            { formatSaveAndRenderPrice(sellerSingleOrder.totalPrice) }
           </span>
         </p>
       </div>
