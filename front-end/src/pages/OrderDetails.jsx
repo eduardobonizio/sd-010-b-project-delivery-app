@@ -116,12 +116,9 @@ function OrderDetails() {
     <div className="button-dispatch-check">
       <button
         type="button"
-        disabled={
-          productsDetails.status !== 'Em transito'
-          || productsDetails.status === 'Entregue'
-        }
+        disabled={ productsDetails.status !== 'Preparando' }
         data-testid={ role + DISPACH_CHECK }
-        onClick={ () => changeStatus('Em transito') }
+        onClick={ () => changeStatus('Em Trânsito') }
       >
         SAIU PARA ENTREGA
       </button>
