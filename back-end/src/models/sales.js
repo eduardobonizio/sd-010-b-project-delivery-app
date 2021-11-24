@@ -1,8 +1,7 @@
-const { sales } = require('../database/models');
+const { sales, salesProducts } = require('../database/models');
 
 const getAll = async () => {
- 
-  const allSales = await sales.findAll();
+   const allSales = await sales.findAll();
  
   return allSales;
 };
@@ -13,11 +12,18 @@ const getById = async (id) => {
   return sale;
 };
 
-const createSales = async (payload) => {
+const createSales = async ({ cart, sale }) => {
+  const createdSale = await sales.create(sale);
 
-  const result = await sales.create(payload);
-  return result;
-}
+  cart.forEach(({ product_id, quantity }) => {
+    salesProducts.create({
+      // eslint-disable-next-line camelcase
+      sale_id: createdSale.toJSON().id, product_id, quantity,
+      });
+  });
+
+  return createdSale;
+};
 
 module.exports = {
   getAll,

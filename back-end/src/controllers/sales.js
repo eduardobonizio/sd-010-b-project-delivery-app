@@ -14,9 +14,9 @@ router.get('/:id', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  console.log('sale')
+  console.log('sale');
   const result = await create(req.body);
-  return res.status(200).json({message: 'Ok', sale: result});
+  return res.status(200).json({ message: 'Ok', sale: result });
 });
 
 module.exports = router;
