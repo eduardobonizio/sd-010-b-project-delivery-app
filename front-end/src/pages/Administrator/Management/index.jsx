@@ -9,6 +9,7 @@ export default function Management() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('');
+  const [erro] = useState();
 
   const tryRegister = async (e) => {
     e.preventDefault();
@@ -58,6 +59,13 @@ export default function Management() {
         >
           BOTÃO
         </button>
+        <p
+          id="erro"
+          data-testid="admin_manage__element-invalid-register"
+        >
+          {' '}
+          { erro ? 'Deu erro' : ' ' }
+        </p>
       </form>
     </div>
   );
