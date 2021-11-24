@@ -13,6 +13,9 @@ function Provider({ children }) {
   const [passwordRegister, setPasswordRegister] = useState('');
   const [products, setProducts] = useState([]);
   const [total, setTotal] = useState(0.00);
+  const [seller, setSeller] = useState([]);
+  const [address, setAddress] = useState('');
+  const [number, setNumber] = useState('');
 
   const object = {
     errorMessage,
@@ -33,6 +36,12 @@ function Provider({ children }) {
     setProducts,
     total,
     setTotal,
+    seller,
+    setSeller,
+    address,
+    setAddress,
+    number,
+    setNumber,
   };
 
   return (

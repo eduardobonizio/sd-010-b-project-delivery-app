@@ -1,12 +1,47 @@
-import React, { useState } from 'react';
-// import axios from 'axios';
+import React, { useContext, useEffect } from 'react';
+import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import { Context } from '../context/ContextGlobal';
 
 function FormCheckout() {
-  const [setSeller] = useState('');
-  const [setAddress] = useState('');
-  const [setNumber] = useState('');
+  const {
+    seller,
+    setSeller,
+    address,
+    setAddress,
+    number,
+    setNumber,
+    total } = useContext(Context);
+  const URL = 'http://localhost:3001/all-sellers';
   const history = useHistory();
+
+  useEffect(() => {
+    const getSeller = async () => {
+      const userStorage = localStorage.getItem('user');
+      const { data } = await axios.get(URL,
+        { headers: { Authorization: JSON.parse(userStorage).token } });
+      const { allSellers } = data;
+      setSeller(allSellers.map((sell) => sell));
+    };
+    getSeller();
+  }, [setSeller]);
+
+  const sendData = async (e) => {
+    e.preventDefault();
+    const userStorage = localStorage.getItem('user');
+    const cartStorage = localStorage.getItem('cart');
+    await axios.post('http://localhost:3001/finish-sale',
+      {
+        total_price: total,
+        delivery_adress: address,
+        delivery_number: number,
+        userId: JSON.parse(userStorage).id,
+        sellerId: seller.id,
+        cart: JSON.parse(cartStorage),
+      },
+      { headers: { Authorization: JSON.parse(userStorage).token } });
+    history.push('/customer/orders/:id');
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -29,9 +64,13 @@ function FormCheckout() {
             onChange={ handleChange }
             data-testid="customer_checkout__select-seller"
           >
-            <option>Vendedora 1</option>
-            <option>Vendedora 2</option>
-            <option>Vendedora 3</option>
+            { seller.map((sell) => (
+              <option
+                key={ sell.id }
+              >
+                { sell.name }
+              </option>
+            )) }
           </select>
           <span>Endereço</span>
           <input
@@ -52,7 +91,7 @@ function FormCheckout() {
           <button
             type="submit"
             data-testid="customer_checkout__button-submit-order"
-            onClick={ () => history.push('/customer/orders/:id') }
+            onClick={ () => sendData() }
           >
             FINALIZAR PEDIDO
           </button>
