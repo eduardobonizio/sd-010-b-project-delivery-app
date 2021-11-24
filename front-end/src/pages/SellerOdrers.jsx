@@ -8,8 +8,12 @@ function SellerOrders() {
   useEffect(() => {
     const { token } = JSON.parse(localStorage.user);
     const execute = async () => {
-      const data = await getAllSales(token);
-      setSales(data);
+      try {
+        const data = await getAllSales(token);
+        setSales(data);
+      } catch (error) {
+        return error;
+      }
     };
     execute();
   }, []);

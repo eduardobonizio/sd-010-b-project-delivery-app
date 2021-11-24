@@ -9,9 +9,13 @@ function CustomerOrders() {
   useEffect(() => {
     const { token } = JSON.parse(localStorage.user);
     const execute = async () => {
-      const data = await getAllSales(token);
-      localStorage.setItem('carrinho', JSON.stringify([]));
-      setSales(data);
+      try {
+        const data = await getAllSales(token);
+        localStorage.setItem('carrinho', JSON.stringify([]));
+        setSales(data);
+      } catch (error) {
+        return error;
+      }
     };
     execute();
   }, []);
