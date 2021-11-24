@@ -7,8 +7,8 @@ function SalesList() {
   const { sales, total } = useCustomer();
   return (
     <div>
-      <h3>Finalizar pedido</h3>
-      <div className="conteiner border">
+      <div className="container">
+        <h3>Finalizar pedido</h3>
         <table style={ { width: '100%' } }>
           <tr>
             <th>Item</th>

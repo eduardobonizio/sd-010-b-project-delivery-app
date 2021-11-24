@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, useHistory } from 'react-router-dom';
 import './NavBar.scss';
+import { linkRedirect } from '../../helpers/functions';
 
 function NavBar({ item1, item2, user }) {
   const history = useHistory();
@@ -10,20 +11,6 @@ function NavBar({ item1, item2, user }) {
     history.push('/login');
   }
 
-  function linkRedirect(item) {
-    switch (item) {
-    case 'Gerenciar usuários':
-      return '/admin/manage';
-    case 'Produtos':
-      return '/customer/products';
-    case 'Pedidos':
-      return '/seller/orders';
-    case 'Meus pedidos':
-      return '/customer/orders';
-    default:
-      break;
-    }
-  }
   return (
     <div className="row d-flex customer-navbar">
       <div className="col-3 inner-customer-navbar">

@@ -6,7 +6,7 @@ import { formatedDate } from '../../../../helpers/functions';
 export default function OrderCard({ order }) {
   const address = `${order.deliveryAddress}, ${order.deliveryNumber}`;
   return (
-    <Link className="border d-flex w-50" to={ `/seller/orders/${order.id}` }>
+    <Link className="d-flex w-50" to={ `/seller/orders/${order.id}` }>
       <div className="m-4">
         <p>Pedido</p>
         <p
