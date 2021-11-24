@@ -7,8 +7,8 @@ function headers(token) {
   };
 }
 
-export async function getAllUsersApi(token) {
-  const response = await api.get('/allusersadm', headers(token));
+export async function getAllUsersApi() {
+  const response = await api.get('/allusersadm');
 
   return response.data;
 }

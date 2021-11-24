@@ -6,10 +6,9 @@ import './User.scss';
 
 function UserList() {
   const { users, setUsers } = useAdmin();
-  const user = JSON.parse(localStorage.getItem('user'));
 
   async function getUsers() {
-    const respUsers = await getAllUsersApi(user.token);
+    const respUsers = await getAllUsersApi();
     setUsers(respUsers);
   }
 

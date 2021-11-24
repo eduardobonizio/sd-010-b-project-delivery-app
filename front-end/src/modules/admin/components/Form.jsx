@@ -4,8 +4,6 @@ import { isValidateRegister } from '../../../helpers/validateRegister';
 import { useAdmin } from '../../../hooks/useAdmin';
 import './Form.scss';
 
-export const user = JSON.parse(localStorage.getItem('user'));
-
 function Form() {
   const { addUser } = useAdmin();
   const [name, setName] = useState('');
@@ -13,6 +11,8 @@ function Form() {
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('seller');
   const [isValidate, setIsValidade] = useState(true);
+
+  const { token } = JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
     const validateForm = isValidateRegister(name, email, password);
@@ -31,7 +31,8 @@ function Form() {
       password,
       role,
     };
-    const respUser = await addUserApi(data, user.token);
+
+    const respUser = await addUserApi(data, token);
     addUser(respUser);
 
     setName('');
@@ -93,7 +94,7 @@ function Form() {
         <button
           type="submit"
           className="btn btn-warning"
-          data-testid="admin_manage__select-role"
+          data-testid="admin_manage__button-register"
           disabled={ isValidate }
           onClick={ handleSubmit }
         >
