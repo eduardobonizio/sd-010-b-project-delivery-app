@@ -32,21 +32,17 @@ function StatusControllers({ componentData }) {
   };
 
   useEffect(() => {
-    switch (status) {
-    case 'Pendente':
-      setIsDisabledButtons({ inTransit: true, preparing: false });
-      break;
-    case 'Preparando':
-      setIsDisabledButtons({ inTransit: false, preparing: true });
-      break;
-    case 'Em Trânsito':
-      setIsDisabledButtons({ inTransit: true, preparing: true });
-      break;
+    switch (sale.deliveryStatus) {
+    case 'PENDENTE':
+      return setIsDisabledButtons({ inTransit: true, preparing: false });
+    case 'PREPARANDO':
+      return setIsDisabledButtons({ inTransit: false, preparing: true });
+    case 'EM TRÂNSITO':
+      return setIsDisabledButtons({ inTransit: true, preparing: true });
     default:
-      setIsDisabledButtons({ inTransit: true, preparing: true });
-      break;
+      return setIsDisabledButtons({ inTransit: true, preparing: true });
     }
-  }, [status]);
+  }, [sale.deliveryStatus]);
 
   const preparingButtonClasses = `seller-button ${preparing && 'disabled-button'}`;
   const inTransitButtonClasses = `seller-button ${inTransit && 'disabled-button'}`;
