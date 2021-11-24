@@ -6,6 +6,9 @@ const config = require('../database/config/config');
 
 const sequelize = new Sequelize(config.development);
 const date = new Date();
+const timezone = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(),
+date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
+console.log(timezone)
 
 const createOrder = async (req, res) => {
   const token = req.headers.authorization;  
