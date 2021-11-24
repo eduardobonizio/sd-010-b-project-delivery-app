@@ -1,15 +1,25 @@
-const express = require('express');
-const { Product } = require('../models');
+const sellerService = require('../services/sellerService');
 
-const router = express.Router();
+const findAllSales = async (req, res) => {
+  const { id: sellerId } = req.body.user;
+  const { code, sales } = await sellerService.findAllSales(sellerId);
 
-router.get('/', async (req, res) => {
-  try {
-    const products = await Product.findAll();
-    return res.status(200).json(products);
-  } catch (e) {
-    console.log(e);
+  return res.status(code).json({ sales });
+};
+
+const findOrderByPk = async (req, res) => {
+  const { id } = req.params;
+  const { id: sellerId } = req.body.user;
+  const { code, message, order } = await sellerService.findOrderByPk({ sellerId, id });
+
+  if (!order) {
+    return res.status(code).json({ message }); 
   }
-});
 
-module.exports = router;
+  return res.status(code).json({ order });
+};
+
+module.exports = {
+  findAllSales,
+  findOrderByPk,
+};

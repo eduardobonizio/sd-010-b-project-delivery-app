@@ -1,15 +1,13 @@
 const express = require('express');
-const { Sale } = require('../models');
+const auth = require('../middlewares/auth');
+
+const sellerController = require('../controllers/sellerController');
 
 const sellerRouter = express.Router();
 // sales
-sellerRouter.get('/orders', async (req, res) => {
-  const sales = await Sale.findAll({ where: {id:9}, include: ['user', 'seller', 'products'] });
-  console.log(sales);
-  return res.status(200).send(sales)
-});
+sellerRouter.get('/orders', auth, sellerController.findAllSales);
 
-sellerRouter.post('/order/:id');
+sellerRouter.post('/order/:id', auth, sellerController.findOrderByPk);
 
 module.exports = {
   sellerRouter,
