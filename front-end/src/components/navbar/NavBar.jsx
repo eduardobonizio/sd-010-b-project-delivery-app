@@ -5,17 +5,30 @@ import './NavBar.scss';
 
 function NavBar({ item1, item2, user }) {
   const history = useHistory();
-
   function handleLogout() {
     localStorage.clear();
     history.push('/login');
   }
 
+  function linkRedirect(item) {
+    switch (item) {
+    case 'Gerenciar usuários':
+      return '/admin/manage';
+    case 'Produtos':
+      return '/customer/products';
+    case 'Pedidos':
+      return '/seller/orders';
+    case 'Meus pedidos':
+      return '/customer/products';
+    default:
+      break;
+    }
+  }
   return (
     <div className="row d-flex customer-navbar">
       <div className="col-3 inner-customer-navbar">
         <Link
-          to="/customer/products"
+          to={ linkRedirect(item1) }
           data-testid="customer_products__element-navbar-link-products"
         >
           {item1 || ''}
@@ -23,7 +36,7 @@ function NavBar({ item1, item2, user }) {
       </div>
       <div className="col-3 inner-customer-navbar">
         <Link
-          to="/customer/orders"
+          to={ linkRedirect(item2) }
           data-testid="customer_products__element-navbar-link-orders"
         >
           {item2 || ''}
