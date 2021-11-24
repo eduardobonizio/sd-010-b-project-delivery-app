@@ -55,30 +55,21 @@ const formatResponseContent = (dataToFormatted) => {
 
 const getById = async (id) => {
   const stringId = id.toString();
-  const saleFound = await sale.findByPk(
-    stringId,
-    {
+  const saleFound = await sale.findByPk(stringId, {
       attributes: ['id', 'saleDate', 'status', 'totalPrice'],
-      include: [{
-        model: product,
+      include: [{ model: product,
         as: 'products',
         attributes: {
           exclude: ['url_image'],
         },
-        through: {
-          attributes: ['quantity'],
-        },
-      },
-      {
+         through: { attributes: ['quantity'] },
+      }, {
         model: user,
         as: 'seller',
         attributes: ['name'],
       }],
-    },
-  );
-
+    });
   const newSalePayload = formatResponseContent(saleFound);
-
   return newSalePayload;
 };
 
