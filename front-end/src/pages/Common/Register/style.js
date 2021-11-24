@@ -18,7 +18,7 @@ export const RegisterContainer = styled.div`
     display: none;
   }
 
-  background-color: #036B52;
+  background-color: rgb(220, 220, 220);
 
   align-items: center;
   display: flex;
@@ -68,9 +68,9 @@ export const CommonForm = styled.form`
   justify-content: center;
   height: 100vh;
   width: 50%;
+  background-color: #036B52;
 
   @media(max-width: 800px) {
-    background-color: #036B52;
     width: 100%;
   }
 

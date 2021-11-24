@@ -18,7 +18,7 @@ export const LoginContainer = styled.div`
     display: none;
   }
 
-  background-color: #036B52;
+  background-color: rgb(220, 220, 220);
 
   align-items: center;
   display: flex;
@@ -64,11 +64,12 @@ export const CommonForm = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-color: #036B52;
+
   height: 100vh;
   width: 50%;
 
   @media(max-width: 800px) {
-    background-color: #036B52;
     width: 100%;
   }
 
