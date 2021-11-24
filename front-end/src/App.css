@@ -58,6 +58,13 @@ a {
   color: black;
 }
 
+.card {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 1%;
+}
+
 .details-info {
   align-items: center;
   background-color: rgb(245, 245, 245);
