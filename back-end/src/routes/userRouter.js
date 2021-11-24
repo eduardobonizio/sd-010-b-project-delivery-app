@@ -1,21 +1,19 @@
 const express = require('express');
-
+const { validToken } = require('../middlewares/auth/validJWT');
 const userController = require('../app/controllers/userController');
-// const { validToken } = require('../middlewares/auth/validJWT');
-
-// jwt
 
 const router = express.Router();
 
 router.route('/')
 .get(userController.findAll)
 .post(userController.add);
+// .put
+// .delete
 
 router.route('/:id')
 .get(userController.findById);
 
-// by role
-
-// deleteUser
+router.route('/admin')
+.post(validToken, userController.add);
 
 module.exports = router;

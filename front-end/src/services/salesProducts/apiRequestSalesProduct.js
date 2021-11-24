@@ -18,21 +18,24 @@ export async function apiRequestOrdersByID(id) {
   }
 }
 
-async function apiRequestSalesProduct(id) {
+async function apiRequestSalesProduct(sale, token) {
+  const config = {
+    headers: { authorization: token },
+  };
   try {
-    const users = await postAll(`/customer/orders/${id}`);
+    const users = await postAll('/customers', sale, config);
     return users;
   } catch (error) {
     console.log(error);
   }
 }
 
-export async function apiUpdateFlashCard(Id, sales) {
+export async function apiUpdateSalesProduct(Id, sales) {
   try {
     const updateSales = await edit(`/customer/orders/${Id}`, sales);
     return updateSales;
   } catch (error) {
-    console.log(erro);
+    console.log(error);
   }
 }
 

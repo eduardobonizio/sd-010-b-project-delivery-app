@@ -8,8 +8,10 @@ import Checkout from './Client/Checkout';
 import Products from './Client/Products';
 import Login from './Common/Login';
 import Home from './Common/Home';
+import Details from './Client/Details';
 
 export {
+  Details,
   ClientOrderDetails,
   OrderDetails,
   Management,
