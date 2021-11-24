@@ -28,31 +28,32 @@ function SaleDetails() {
   }
 
   const { seller: { name }, saleDate, status, products, totalPrice } = saleDetails;
-
+  const formattedDate = new Date(saleDate).toLocaleDateString();
   console.log(test.dataTestId37);
 
   return (
     <main>
       <span>Detalhes do pedido</span>
       <div
-        data-testid={ `${test.dataTestId37}-${idNumber}` }
+        data-testid={ `${test.dataTestId37}` }
       >
         {`PEDIDO NÚMERO: ${idNumber}`}
       </div>
-      <div data-testid={ `${test.dataTestId38}-${name}` }>{`VENDEDOR(A) ${name}`}</div>
-      <div data-testid={ `${test.dataTestId39}-${saleDate}` }>{`DATA ${saleDate}`}</div>
-      <div data-testid={ `${test.dataTestId40}-${status}` }>{`STATUS ${status}`}</div>
+      <div data-testid={ `${test.dataTestId38}` }>{`VENDEDOR(A) ${name}`}</div>
+      <div data-testid={ `${test.dataTestId39}` }>{`${formattedDate}`}</div>
+      <div data-testid={ `${test.dataTestId40}` }>{`STATUS ${status}`}</div>
       <div>
         <button
           type="button"
-          data-testid={ `${test.dataTestId40}-${status}` }
+          data-testid={ `${test.dataTestId47}` }
+          disabled
         >
           MARCAR COMO ENTREGUE
         </button>
       </div>
       <SaleProductsDetails products={ products } />
-      <div data-testid={ `${1}-${totalPrice}` }>
-        {`TOTAL ${totalPrice}`}
+      <div data-testid={ `${test.dataTestId45}` }>
+        {`${totalPrice.replace('.', ',')}`}
       </div>
     </main>
   );
