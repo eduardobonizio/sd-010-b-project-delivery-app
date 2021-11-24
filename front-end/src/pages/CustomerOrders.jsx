@@ -1,10 +1,10 @@
 // import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import CardOrderCustomer from '../components/CardOrderCustomer';
 import Header from '../components/Header';
-import CardOrderSeller from '../components/CardOrderSeller';
 import { getAllSales } from '../services/API';
 
-function SellerOrders() {
+function CustomerOrders() {
   const [sales, setSales] = useState([]);
 
   // const getAllSales = async () => {
@@ -18,6 +18,7 @@ function SellerOrders() {
     const { token } = JSON.parse(localStorage.user);
     const execute = async () => {
       const data = await getAllSales(token);
+      localStorage.setItem('carrinho', JSON.stringify([]));
       setSales(data);
     };
     execute();
@@ -25,17 +26,14 @@ function SellerOrders() {
 
   return (
     <>
-      <Header userRole="seller" />
+      <Header userRole="customer" />
       <div className="boxPageOrder">
         {
-          sales.map((sale) => (<CardOrderSeller
-            key={ sale.id }
-            sale={ sale }
-          />))
+          sales.map((sale) => <CardOrderCustomer key={ sale.id } sale={ sale } />)
         }
       </div>
     </>
   );
 }
 
-export default SellerOrders;
+export default CustomerOrders;

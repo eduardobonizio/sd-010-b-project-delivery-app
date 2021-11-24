@@ -1,6 +1,7 @@
-import axios from 'axios';
+// import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { login } from '../services/API';
 
 import DeliveryContext from '../context/DeliveryContext';
 
@@ -28,11 +29,10 @@ const Login = () => {
 
   const buttonLogin = async () => {
     try {
-      const { data } = await axios.post('http://localhost:3001/login', { email, password });
+      const data = await login(email, password);
       localStorage.setItem('user', `${JSON.stringify(data)}`);
       setPassword('');
       if (data.role === 'seller') {
-        console.log(data.role);
         return navigate('/seller/orders');
       }
       return navigate('/customer/products');
@@ -40,6 +40,18 @@ const Login = () => {
       setIsValidPW(true);
       return error;
     }
+    // try {
+    //   const { data } = await axios.post('http://localhost:3001/login', { email, password });
+    //   localStorage.setItem('user', `${JSON.stringify(data)}`);
+    //   setPassword('');
+    //   if (data.role === 'seller') {
+    //     return navigate('/seller/orders');
+    //   }
+    //   return navigate('/customer/products');
+    // } catch (error) {
+    //   setIsValidPW(true);
+    //   return error;
+    // }
   };
 
   const TEST_INVALID_EMAIL = 'common_login__element-invalid-email';

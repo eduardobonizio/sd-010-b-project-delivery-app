@@ -1,8 +1,9 @@
-import axios from 'axios';
+// import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DeliveryContext from '../context/DeliveryContext';
 import ErrorMessage from './ErrorMessage';
+import { register } from '../services/API';
 
 function RegisterForm() {
   const navigate = useNavigate();
@@ -37,20 +38,30 @@ function RegisterForm() {
   const handleSendRegister = async (event) => {
     event.preventDefault();
     try {
-      const { data } = await axios.post('http://localhost:3001/register', {
-        name: nome,
-        password: senha,
-        email,
-      });
+      const data = await register(nome, senha, email);
       const { role, token } = data;
       localStorage.setItem('user', `${JSON
         .stringify({ name: nome, email, role, token })}`);
       navigate('/customer/products');
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
       setIsValidData(false);
-      return err;
+      return error;
     }
+    // try {
+    //   const { data } = await axios.post('http://localhost:3001/register', {
+    //     name: nome,
+    //     password: senha,
+    //     email,
+    //   });
+    //   const { role, token } = data;
+    //   localStorage.setItem('user', `${JSON
+    //     .stringify({ name: nome, email, role, token })}`);
+    //   navigate('/customer/products');
+    // } catch (err) {
+    //   console.log(err);
+    //   setIsValidData(false);
+    //   return err;
+    // }
   };
 
   return (

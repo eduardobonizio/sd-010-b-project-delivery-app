@@ -5,9 +5,6 @@ import ID from '../utils/dataTestIdDict';
 import '../styles/CardOrderCustomer.css';
 
 function CardOrderCustomer({ sale }) {
-  // const [colorStatus, setColorStatus] = useState('pendente');
-  // const [valueStatus, setValueStatus] = useState('Pendente');
-
   let colorStatus = 'pendente';
 
   if (sale.status === 'Pedente') {

@@ -1,75 +1,54 @@
 import axios from 'axios';
 
-const { token } = JSON.parse(localStorage.user);
-
-const getAllProduct = async () => {
-  const endPoint = 'http://localhost:3001/products';
-  try {
-    const { data } = await axios.get(endPoint, { headers: { Authorization: token } });
-    return data;
-  } catch (error) {
-    return error;
-  }
-};
-
-const getAllSales = async () => {
-  const endPoint = 'http://localhost:3001/sales';
-  try {
-    const { data } = await axios.get(endPoint, { headers: { Authorization: token } });
-    return data;
-  } catch (error) {
-    return error;
-  }
-};
-
 const login = async (email, password) => {
   const endPoint = 'http://localhost:3001/login';
-  try {
-    const { data } = await axios.post(endPoint, { email, password });
-    return data;
-  } catch (error) {
-    return error;
-  }
-};
-
-const postSale = async (sale) => {
-  const endPoint = 'http://localhost:3001/sales';
-  try {
-    const { data } = await axios.post(
-      endPoint, { sale },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: token,
-        },
-      },
-    );
-    return data;
-  } catch (error) {
-    return error;
-  }
-};
-
-const getAllSellers = async () => {
-  const endPoint = 'http://localhost:3001/users/sellers';
-  try {
-    const { data } = await axios.get(endPoint);
-    return data;
-  } catch (error) {
-    return error;
-  }
+  const { data } = await axios.post(endPoint, { email, password });
+  return data;
 };
 
 const register = async (name, password, email) => {
+  const endPoint = 'http://localhost:3001/register';
+  const { data } = await axios.post(endPoint, {
+    name,
+    password,
+    email,
+  });
+  return data;
+};
+
+const getAllProduct = async (token) => {
+  const endPoint = 'http://localhost:3001/products';
+  const { data } = await axios.get(endPoint, { headers: { Authorization: token } });
+  return data;
+};
+
+const getAllSales = async (token) => {
+  const endPoint = 'http://localhost:3001/sales';
   try {
-    const { data } = await axios.post('http://localhost:3001/register', {
-      name,
-      password,
-      email,
-    });
+    const { data } = await axios.get(endPoint, { headers: { Authorization: token } });
     return data;
-  } catch (err) {
-    return err;
+  } catch (error) {
+    return error;
+  }
+};
+
+const postSale = async (token, sale) => {
+  const endPoint = 'http://localhost:3001/sales';
+  const { data } = await axios.post(
+    endPoint, { sale },
+    { headers: { Authorization: token } },
+  );
+  console.log(data);
+  return data;
+};
+
+const getAllSellers = async (token) => {
+  const endPoint = 'http://localhost:3001/users/sellers';
+  try {
+    const { data } = await axios.get(endPoint, { headers: { Authorization: token } });
+    return data;
+  } catch (error) {
+    return error;
   }
 };
 

@@ -1,9 +1,10 @@
-import axios from 'axios';
+// import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import dataTestIdDict from '../../utils/dataTestIdDict';
 import InputText from './InputText';
 import SellersSelect from './SellersSelect';
+import { postSale } from '../../services/API';
 
 const { dataTestId30, dataTestId31, dataTestId32 } = dataTestIdDict;
 
@@ -28,32 +29,33 @@ function DeliveryDetails() {
     return Number(totalOrder.toFixed(2));
   };
 
-  const postSale = async (sale) => {
-    const { token } = JSON.parse(localStorage.getItem('user'));
+  // const postSale = async (sale) => {
+  //   const { token } = JSON.parse(localStorage.getItem('user'));
 
-    const { data } = await axios.post(
-      'http://localhost:3001/sales',
-      { sale },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: token,
-        },
-      },
-    );
-    return data;
-  };
+  //   const { data } = await axios.post(
+  //     'http://localhost:3001/sales',
+  //     { sale },
+  //     {
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         Authorization: token,
+  //       },
+  //     },
+  //   );
+  //   return data;
+  // };
 
   const handleCheckout = async () => {
-    const products = JSON.parse(localStorage.getItem('carrinho'));
+    const { token } = JSON.parse(localStorage.user);
+    const products = JSON.parse(localStorage.carrinho);
     const totalPrice = getTotalPrice(products);
     const saleDate = new Date();
     const sale = { ...details, totalPrice, saleDate, status: 'Pendente', products };
     try {
-      const { saleId } = await postSale(sale);
-      navigate(`/customer/orders/${saleId}`);
+      const { saleId } = await postSale(token, sale);
+      return navigate(`/customer/orders/${saleId}`);
     } catch (error) {
-      console.log(error.message);
+      return error;
     }
   };
 
