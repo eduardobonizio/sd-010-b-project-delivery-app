@@ -9,7 +9,6 @@ function Order({ id, status, date, total }) {
   };
   return (
     <>
-      <h1>cheguei</h1>
       { isRedirect && <Redirect to={ `/customer/orders/${id}` } /> }
       <button name={ id } type="button" onClick={ handleClick }>
         <span

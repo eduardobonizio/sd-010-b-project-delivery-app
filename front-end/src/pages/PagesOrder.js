@@ -7,10 +7,11 @@ function PagesOrder() {
   useEffect(() => {
     const getApi = async () => {
       const result = await SaleApi() || { sales: [] };
+
       setDataseler(result.sales);
     };
     getApi();
-  }, []);
+  }, [setDataseler]);
   return (
     <>
       <h1>Orders</h1>

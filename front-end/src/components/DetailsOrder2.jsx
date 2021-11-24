@@ -1,17 +1,10 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 // import PropTypes from 'prop-types';
 import AppContext from '../Context/AppContext';
 
 function DetailsOrder() {
-  const { productsAPI } = useContext(AppContext);
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    const getProducts = async () => {
-      await setData(productsAPI);
-    };
-    getProducts();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const { productsAPI, detailsOrder, name } = useContext(AppContext);
+
   const dataTesteIdItemNumber = `customer_order_detail
     s__element-order-table-item-number-`;
 
@@ -22,9 +15,20 @@ function DetailsOrder() {
   const dataTesteIdSubTotal = 'customer_order_details__element-order-table-sub-total';
 
   const dataTesteIdPrice = 'customer_order_details__element-order-total-price-';
+  const { id, saleDate, status } = detailsOrder;
+  const date = new Date(saleDate);
 
   return (
     <table>
+      <thead>
+        <tr>
+          <th>{id}</th>
+          <th>{name}</th>
+          <th>{date.toLocaleString().split(',', 1)}</th>
+          <th>{status}</th>
+          <th>Marcar Como Entregue</th>
+        </tr>
+      </thead>
       <thead>
         <tr>
           <th>Item</th>
@@ -35,7 +39,7 @@ function DetailsOrder() {
         </tr>
       </thead>
       <tbody>
-        {data.map((element, index) => (
+        {productsAPI.map((element, index) => (
           <tr key={ element.name }>
             <td
               data-testid={ `${dataTesteIdItemNumber}${index + 1}` }
@@ -50,7 +54,7 @@ function DetailsOrder() {
             <td
               data-testid={ `${dataTesteIdQuantidade}${index + 1}` }
             >
-              { element.SalesProduct.quantity }
+              { console.log(element.SalesProduct.quantity) }
             </td>
             <td
               data-testid={ `${dataTesteIdPrice}${index + 1}` }
