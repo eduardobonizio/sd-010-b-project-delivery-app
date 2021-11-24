@@ -1,0 +1,81 @@
+.seller-order-details-container {
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.1fr 1fr;
+  height: 89vh;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.seller-status-controllers {
+  align-items: center;
+  background-color: gainsboro;
+  display: grid;
+  gap: 0 10px;
+  grid-auto-flow: column;
+  grid-template-columns: 0.3fr 0.3fr 0.5fr 0.6fr 0.6fr 0.6fr;
+  justify-items: center;
+  padding: 0 10px;
+}
+
+.seller-status-controllers button {
+  box-shadow: 0 5px #999;
+  color: white;
+  height: 30px;
+  padding: 7px 15px;
+  width: 100%;
+}
+
+.seller-status-controllers button:active {
+  background-color: #216b54ce;
+  box-shadow: 0 1px #666;
+  transform: translateY(5px);
+}
+
+.seller-status {
+  border-radius: 7px;
+  padding: 8px 20px;
+}
+
+.disabled-button {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.seller-order-items-table {
+  border: 1px solid black;
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.15fr 0.1fr 1fr 0.1fr;
+  height: auto;
+}
+
+.seller-table-header {
+  align-items: center;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 0.25fr 2fr 0.5fr 0.5fr 0.5fr;
+  grid-template-rows: 1fr;
+  height: 30px;
+  justify-items: center;
+  padding: 0 15px;
+}
+
+.seller-items-container {
+  padding: 0 15px;
+}
+
+.seller-item-row {
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 7px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 0.25fr 2fr 0.5fr 0.5fr 0.5fr;
+  grid-template-rows: 1fr;
+  height: 30px;
+  justify-items: center;
+  margin-bottom: 8px;
+}
