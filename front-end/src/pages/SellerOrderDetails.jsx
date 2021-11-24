@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -8,6 +7,7 @@ import SaleProducts from '../components/SellerOrderDetails/SaleProducts';
 import StatusControllers from '../components/SellerOrderDetails/StatusControllers';
 import TableHeader from '../components/SellerOrderDetails/TableHeader';
 import dataTestIdDict from '../utils/dataTestIdDict';
+import { getSaleById } from '../services/sellerEndpoints';
 import '../styles/SellerOrderDetails.css';
 
 const { dataTestId64 } = dataTestIdDict;
@@ -20,9 +20,8 @@ function SellerOrderDetails() {
   const [orderTotalPrice, setOrderTotalPrice] = useState(null);
 
   useEffect(() => {
-    const URI = `http://localhost:3001/sales/${id}`;
-    axios.get(URI).then((res) => {
-      const { products, saleDate, status, totalPrice } = res.data;
+    getSaleById(id).then((res) => {
+      const { products, saleDate, status, totalPrice } = res;
       setSaleProducts(products);
       setStatusControllersData({ id, saleDate, status });
       setOrderTotalPrice(totalPrice.replace('.', ','));

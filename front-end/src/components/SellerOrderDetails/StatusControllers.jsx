@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import dataTestIdDict from '../../utils/dataTestIdDict';
+import { updateSaleStatus } from '../../services/sellerEndpoints';
 
 const {
   dataTestId54,
@@ -44,9 +45,8 @@ function StatusControllers({ componentData }) {
     }
   }, [sale.deliveryStatus]);
 
-  const buttonClasses = {
-    preparing: `seller-button ${isDisabledButtons.preparing && 'disabled-button'}`,
-    inTransit: `seller-button ${isDisabledButtons.inTransit && 'disabled-button'}`,
+  const handleClick = async (newStatus) => {
+    await updateSaleStatus(id, newStatus);
   };
 
   if (!componentData) return '';
@@ -71,7 +71,7 @@ function StatusControllers({ componentData }) {
           name="preparing"
           data-testid={ dataTestId57 }
           disabled={ isDisabledButtons.preparing }
-          onClick={ () => console.log('preparar pedido') }
+          onClick={ () => handleClick('Preparando') }
         >
           PREPARAR PEDIDO
         </button>
@@ -83,7 +83,7 @@ function StatusControllers({ componentData }) {
           name="inTransit"
           data-testid={ dataTestId58 }
           disabled={ isDisabledButtons.inTransit }
-          onClick={ () => console.log('entregando...') }
+          onClick={ () => handleClick('Em Trânsito') }
         >
           SAIU PARA ENTREGA
         </button>
