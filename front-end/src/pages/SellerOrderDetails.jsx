@@ -13,7 +13,20 @@ const { dataTestId64 } = dataTestIdDict;
 
 function SellerOrderDetails() {
   const { id } = useParams();
-  console.log(id);
+
+  const [saleProducts, setSaleProducts] = useState(null);
+  const [statusControllersData, setStatusControllersData] = useState(null);
+  const [orderTotalPrice, setOrderTotalPrice] = useState(null);
+
+  useEffect(() => {
+    const URI = `http://localhost:3001/sales/${id}`;
+    axios.get(URI).then((res) => {
+      const { products, saleDate, status, totalPrice } = res.data;
+      setSaleProducts(products);
+      setStatusControllersData({ id, saleDate, status });
+      setOrderTotalPrice(totalPrice.replace('.', ','));
+    });
+  }, []);
 
   return (
     <>
