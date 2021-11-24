@@ -21,7 +21,7 @@ function CheckoutDeliveryData(props) {
             name="select"
             data-testid="customer_checkout__select-seller"
           >
-            <option value="1" selected>Fulana pereira</option>
+            <option value="1" defaultValue>Fulana pereira</option>
             <option value="2">Valor 2</option>
             <option value="3">Valor 3</option>
           </select>
@@ -29,7 +29,7 @@ function CheckoutDeliveryData(props) {
         <Form.Label>
           Endereço
           <Form.Control
-            placeholder="Travessa teceira da Castanheira, Bairro Murici"
+            placeholder="Travessa Terceira da Castanheira, Bairro Murici"
             type="text"
             data-testid="customer_checkout__input-address"
             onChange={ (e) => {

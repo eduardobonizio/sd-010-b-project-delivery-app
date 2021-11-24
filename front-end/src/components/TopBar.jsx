@@ -17,14 +17,16 @@ function TopBar(props) {
             alt="Disk Birita logo"
           />
         </Navbar.Brand>
-        <Navbar.Text
-          variant="light"
-          className="products align-items-center"
-          data-testid="customer_products__element-navbar-link-products"
-          href="/customer/products"
-        >
-          PRODUTOS
-        </Navbar.Text>
+        <a href="/customer/products">
+          <Navbar.Text
+            variant="light"
+            className="products align-items-center"
+            data-testid="customer_products__element-navbar-link-products"
+            href="/customer/products"
+          >
+            PRODUTOS
+          </Navbar.Text>
+        </a>
         <a href="/customer/orders">
           <Navbar.Text
             className="orders align-items-center"

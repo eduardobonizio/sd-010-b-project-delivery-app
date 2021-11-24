@@ -9,7 +9,7 @@ const getOrderByPk = async (req, res) => {
     return res.status(code).json({ message });  
   }
 
-  return res.status(code).json(order);
+  return res.status(code).json({ order });
 };
 
 module.exports = {
