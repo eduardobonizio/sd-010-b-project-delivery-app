@@ -10,12 +10,14 @@ function Checkout() {
   return (
     <div>
       <NavBar />
-      <TableItens style={ { margin: 50 } } />
-      <p
-        data-testid="customer_checkout__element-order-total-price"
-      >
-        { `Total: ${totalPrice.toFixed(2).replace('.', ',')}` }
-      </p>
+      <section style={ { padding: 80 } }>
+        <TableItens />
+        <p
+          data-testid="customer_checkout__element-order-total-price"
+        >
+          { `Total: ${totalPrice.toFixed(2).replace('.', ',')}` }
+        </p>
+      </section>
       <DetailsAdress />
       <button
         type="button"
