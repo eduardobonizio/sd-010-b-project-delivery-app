@@ -67,7 +67,7 @@ function StatusControllers({ componentData }) {
       <div style={ { gridColumnStart: 5 } }>
         <button
           type="button"
-          className={ buttonClasses.preparing }
+          className={ isDisabledButtons.preparing ? 'disabled-button' : ' ' }
           name="preparing"
           data-testid={ dataTestId57 }
           disabled={ isDisabledButtons.preparing }
@@ -79,7 +79,7 @@ function StatusControllers({ componentData }) {
       <div style={ { gridColumnStart: 6 } }>
         <button
           type="button"
-          className={ buttonClasses.inTransit }
+          className={ isDisabledButtons.inTransit ? 'disabled-button' : ' ' }
           name="inTransit"
           data-testid={ dataTestId58 }
           disabled={ isDisabledButtons.inTransit }
