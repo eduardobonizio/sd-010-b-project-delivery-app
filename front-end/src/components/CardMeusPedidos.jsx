@@ -10,6 +10,7 @@ function CardMeusPedidos({ orders, token }) {
   const { id, sale_date: saleDate, status,
     total_price: totalPrice,
     delivery_address: deliveryAddress } = orders;
+
   const newDate = new Date(saleDate);
   const dia = newDate.getDate().toString().padStart(2, '0');
   const mes = (newDate.getMonth() + 1).toString().padStart(2, '0');

@@ -1,4 +1,5 @@
 const { Sale, User, SalesProduct, Product } = require('../database/models');
+const { Op } = require("sequelize");
 
 const createSale = async (body, user_id) => {
   const { seller_id, total_price, delivery_address, delivery_number, status } = body;
@@ -16,7 +17,13 @@ const createSale = async (body, user_id) => {
 
 const getSaleById = async (saleId, idUser) => {
   const data = await Sale.findOne({ 
-    where: { id: saleId, user_id: idUser  },
+    where: { 
+      id: saleId, 
+      [Op.or]: [
+        {user_id: idUser},
+        {seller_id: idUser},
+      ]
+    },
     include: [
       { model: User, as: 'user', attributes:{ exclude: ['email', 'password'] } },
       { model: User, as: 'seller', attributes:{ exclude: ['email', 'password'] } },
@@ -35,8 +42,14 @@ const generateSaleProduct = async (body) => {
   return { status: 201, data };
 }
 
+const updateStatusSale = async (id, status) => {
+  const [data] = await Sale.update({ status }, { where: { id } } );
+  return data;
+}
+
 module.exports = {
   createSale,
   getSaleById,
   generateSaleProduct,
+  updateStatusSale,
 }

@@ -1,4 +1,6 @@
 import React, { useContext, useState } from 'react';
+import io from 'socket.io-client';
+
 import { useHistory } from 'react-router-dom';
 import Context from '../context/Context';
 import { createSale, createSaleProducts } from '../services/apis/servicesSales';
@@ -12,6 +14,7 @@ const SUBMIT_ORDER = 'customer_checkout__button-submit-order';
 function DetailsAddress() {
   const history = useHistory();
   const { sellers, totalPrice, cart } = useContext(Context);
+  const socket = io('http://localhost:3001');
 
   const [address, setAddress] = useState('');
   const [number, setNumber] = useState('');
@@ -42,6 +45,7 @@ function DetailsAddress() {
     const sale = await createSale(saleData, token);
     const { id } = sale;
     await filterCart(id, token);
+    socket.emit('realizarPedido');
     history.push(`/customer/orders/${id}`);
   };
 

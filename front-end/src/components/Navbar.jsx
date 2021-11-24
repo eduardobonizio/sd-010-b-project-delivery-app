@@ -37,14 +37,13 @@ function NavBar() {
     if (role === 'seller') {
       return (
         <div>
-          <Link to="/page404">
-            <S.buttonNav
-              type="button"
-              data-testid="customer_products__element-navbar-link-orders"
-            >
-              Pedidos
-            </S.buttonNav>
-          </Link>
+          <S.buttonNav
+            type="button"
+            data-testid="customer_products__element-navbar-link-orders"
+            onClick={ () => history.push('/seller/orders') }
+          >
+            Pedidos
+          </S.buttonNav>
         </div>
       );
     }
