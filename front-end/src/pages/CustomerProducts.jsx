@@ -1,5 +1,6 @@
 import { Button, Stack } from '@mui/material';
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import getProducts from '../api/getProducts';
 
 import ProductCard from '../components/ProductCard';
@@ -9,6 +10,7 @@ const CustomerProducts = () => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState({});
   const [totalValue, setTotalValue] = useState(0);
+  const history = useHistory();
 
   useEffect(() => {
     setIsloading(true);
@@ -51,6 +53,8 @@ const CustomerProducts = () => {
             data-testid="customer_products__button-cart"
             style={ { position: 'absolute' } }
             variant="contained"
+            onClick={ () => history.push('/customer/checkout') }
+            disabled={ totalValue <= 0 }
           >
             <div
               data-testid="customer_products__checkout-bottom-value"
