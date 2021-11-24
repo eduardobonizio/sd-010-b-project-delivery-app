@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
+import { Redirect } from 'react-router';
 import axios from 'axios';
 import moment from 'moment';
 import LoginContext from '../../context/LoginContext';
@@ -9,13 +10,11 @@ export default function DetailsAdress() {
   const [address, setAddress] = useState('');
   const [numberAddress, setNumberAddress] = useState('');
   const [sellerId, setSellerId] = useState(0);
-  // const [userId, setUserId] = useState(0);
+  const [redirect, setRedirect] = useState(false);
+  const [saleId, setSaleId] = useState(0);
 
-  // const users = () => {
-  //   const user = localStorage.getItem('user');
-  //   data.map(({ name, id }) => name === JSON.parse(user).name && setUserId(id));
-  //   return user;
-  // };
+  const user = JSON.parse(localStorage.getItem('user'));
+  const { token } = user;
 
   useEffect(() => {
     axios.get('http://localhost:3001/users')
@@ -24,24 +23,43 @@ export default function DetailsAdress() {
       });
   }, []);
 
-  const now = moment().format('DD/MM/YYYY');
+  // const now = moment().format('DD/MM/YYYY');
+  const now = moment();
+
+  const config = {
+    headers: { Authorization: token },
+  };
+
+  const bodyParameters = {
+    totalPrice,
+    address,
+    numberAddress,
+    now,
+    sellerId,
+    userId: user.id,
+  };
 
   const buy = async () => {
-    const respLogin = await axios.post('http://localhost:3001/sales', {
-      totalPrice,
-      address,
-      numberAddress,
-      now,
-      sellerId,
-      userId,
-    });
-    console.log(respLogin);
+    const respLogin = await axios.post(
+      'http://localhost:3001/sales',
+      bodyParameters,
+      config,
+    );
+
+    console.log(respLogin.data);
+    setSaleId(respLogin.data.id);
+    setRedirect(true);
   };
+
+  if (redirect) {
+    return (
+      <Redirect to={ `/customer/orders/${saleId}` } />
+    );
+  }
 
   return (
     <session>
       <h1>Detalhes e Endereço para Entrega</h1>
-      {console.log(sellerId)}
       <select
         name="seller"
         id="seller-id"

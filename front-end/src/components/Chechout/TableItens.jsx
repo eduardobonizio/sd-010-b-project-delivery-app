@@ -8,7 +8,7 @@ export default function TableItens() {
   const removeItems = (id, subTotal) => {
     const takeItOut = arrayProducts.filter((product) => product.id !== id);
     const newTotalPrice = totalPrice - subTotal;
-    console.log(takeItOut);
+    // console.log(takeItOut);
     setArrayProducts(takeItOut);
     setTotalPrice(newTotalPrice);
   };
