@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import test from '../../utils/dataTestIdDict';
 
 function renderProductCards({ id, name, price, quantity }) {
@@ -34,5 +34,11 @@ function SaleProductsDetails({ products }) {
     </ul>
   );
 }
+
+SaleProductsDetails.propTypes = {
+  products: PropTypes.arrayOf(
+    PropTypes.object,
+  ).isRequired,
+};
 
 export default SaleProductsDetails;
