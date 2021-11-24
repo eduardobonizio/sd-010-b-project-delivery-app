@@ -6,7 +6,7 @@ function CardList() {
   const { products } = useContext(Context);
 
   return (
-    <main>
+    <main className="card">
       {products.map((item) => <Card key={ item.id } item={ item } />)}
     </main>
   );
