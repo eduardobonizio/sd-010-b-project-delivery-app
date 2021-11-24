@@ -44,12 +44,23 @@ const postSale = async (token, sale) => {
 
 const getAllSellers = async (token) => {
   const endPoint = 'http://localhost:3001/users/sellers';
-  try {
-    const { data } = await axios.get(endPoint, { headers: { Authorization: token } });
-    return data;
-  } catch (error) {
-    return error;
-  }
+  const { data } = await axios.get(endPoint, { headers: { Authorization: token } });
+  return data;
+};
+
+const getSaleById = async (token, id) => {
+  const endpoint = `http://localhost:3001/sales/${id}`;
+  const { data } = await axios.get(endpoint, { headers: { Authorization: token } });
+  return data;
+};
+
+const updateSaleStatus = async (token, id, status) => {
+  const endpoint = `http://localhost:3001/sales/${id}`;
+  await axios.patch(
+    endpoint,
+    { status },
+    { headers: { Authorization: token } },
+  );
 };
 
 export {
@@ -59,4 +70,6 @@ export {
   postSale,
   getAllSellers,
   register,
+  getSaleById,
+  updateSaleStatus,
 };
