@@ -1,15 +1,19 @@
 import { Stack, Typography } from '@mui/material';
 import { ButtonUnstyled } from '@mui/core';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Box } from '@mui/system';
 
-function ProductCard({ name, image, price, id }) {
+function ProductCard({ name, image, price, id, setCartCallback }) {
   const [quantity, setQuantity] = useState(0);
   const onChange = (element, setState) => {
     const { value: qnt } = element.target;
     setState(qnt);
   };
+
+  useEffect(() => {
+    setCartCallback(name, price, quantity);
+  });
   return (
     // TODO: Remove inline styles
     <Box style={ { width: '200px' } }>
@@ -77,6 +81,7 @@ ProductCard.propTypes = {
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
+  setCartCallback: PropTypes.func.isRequired,
 };
 
 export default ProductCard;

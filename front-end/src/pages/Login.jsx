@@ -14,7 +14,20 @@ function Login() {
     setIsEmailInvalid(false);
     setState(value);
   };
-  const fetchUser = () => {
+
+  useEffect(() => {
+    const isDisabled = ((() => {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (password.length >= minPasswordLength && re.test(login)) {
+        setLoginButtonDisabled(false);
+      } else {
+        setLoginButtonDisabled(true);
+      }
+    }));
+    isDisabled();
+  }, [password, login]);
+
+  const onSubmit = () => {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -33,19 +46,6 @@ function Login() {
       })
       .catch((err) => console.log(err));
   };
-
-  useEffect(() => {
-    const isDisabled = ((() => {
-      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (password.length >= minPasswordLength && re.test(login)) {
-        setLoginButtonDisabled(false);
-      } else {
-        setLoginButtonDisabled(true);
-      }
-    }));
-    isDisabled();
-  }, [password, login]);
-
   return (
     <div>
       <form>
@@ -53,6 +53,7 @@ function Login() {
         <label htmlFor="username">
           Email:
           <input
+            autoComplete
             value={ login }
             onChange={ (e) => onChange(e.target.value, setLogin) }
             placeholder="email@tryber.com"
@@ -74,7 +75,7 @@ function Login() {
         data-testid="common_login__button-login"
         disabled={ loginButtonDisabled }
         type="button"
-        onClick={ () => fetchUser() }
+        onClick={ onSubmit }
       >
         ENTRAR
       </button>

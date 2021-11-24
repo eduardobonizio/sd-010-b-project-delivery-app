@@ -11,6 +11,7 @@ let secret = fs
   .readFileSync(path.resolve('jwt.evaluation.key'), { encoding: 'utf8', flag: 'r' });
 
 secret = secret.trim();
+const jwtConfig = { expiresIn: '1h', algorithm: 'HS256' };
 
 const getUserByEmail = async (req, res) => {
   const { email, password } = req.body;
@@ -19,7 +20,6 @@ const getUserByEmail = async (req, res) => {
   try {
     const result = await getUserByEmailService(email); 
     if (result === null) return res.status(404).json({ message: 'Usuário nao existente' });
-    const jwtConfig = { expiresIn: '1h', algorithm: 'HS256' };
     const token = jwt.sign({ data: result.dataValues }, secret, jwtConfig);
     const { password: dbPassword } = result;
     if (md5(password) === dbPassword) {
@@ -44,6 +44,8 @@ const createUser = async (req, res) => {
   const password = md5(registerPassword);
   try {
     const result = await createUserService({ name, email, password, role });
+    const token = jwt.sign({ data: result.dataValues }, secret, jwtConfig);
+    result.dataValues.token = token;
     return res.status(201).json({ message: 'User created', result });
   } catch (err) {
     return res.status(500).json({ message: 'Erro interno', err });
