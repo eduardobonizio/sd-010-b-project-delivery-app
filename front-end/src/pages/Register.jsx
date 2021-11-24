@@ -48,8 +48,9 @@ function Register() {
     };
     await axios.post(pushUrl, userData)
       .then((res) => {
-        const { user, token } = res.data;
-        localStorage.setItem('user', JSON.stringify({ token, ...user }));
+        const { email, role, name, token } = res.data.result;
+        console.log(res);
+        localStorage.setItem('user', JSON.stringify({ email, role, name, token }));
         history.push('/customer/products');
       })
       .catch((err) => {
