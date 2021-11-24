@@ -19,7 +19,7 @@ function NavBar({ item1, item2, user }) {
     case 'Pedidos':
       return '/seller/orders';
     case 'Meus pedidos':
-      return '/customer/products';
+      return '/customer/orders';
     default:
       break;
     }
