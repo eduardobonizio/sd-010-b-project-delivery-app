@@ -7,7 +7,7 @@ function CardList() {
 
   return (
     <main>
-      {products.map((item, index) => <Card key={ item.id } item={ item } i={ index } />)}
+      {products.map((item) => <Card key={ item.id } item={ item } />)}
     </main>
   );
 }
