@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-// import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Cards from '../components/Cards';
@@ -25,12 +24,6 @@ function Products() {
       }
     };
     execute();
-    // const { token } = JSON.parse(localStorage.user);
-    // const endPoint = 'http://localhost:3001/products';
-    // axios.get(endPoint, { headers: { Authorization: token } }).then((res) => {
-    //   const resp = res.data;
-    //   setProducts(resp);
-    // });
   }, []);
 
   return (

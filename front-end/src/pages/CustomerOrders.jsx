@@ -7,13 +7,6 @@ import { getAllSales } from '../services/API';
 function CustomerOrders() {
   const [sales, setSales] = useState([]);
 
-  // const getAllSales = async () => {
-  //   const { token } = JSON.parse(localStorage.user);
-  //   const endPoint = 'http://localhost:3001/sales';
-  //   const { data } = await axios.get(endPoint, { headers: { Authorization: token } });
-  //   return setSales(data);
-  // };
-
   useEffect(() => {
     const { token } = JSON.parse(localStorage.user);
     const execute = async () => {

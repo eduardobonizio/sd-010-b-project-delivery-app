@@ -1,4 +1,3 @@
-// import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import dataTestIdDict from '../../utils/dataTestIdDict';
@@ -28,22 +27,6 @@ function DeliveryDetails() {
     const totalOrder = cartItems.reduce((acc, curr) => acc + curr.subTotal, 0);
     return Number(totalOrder.toFixed(2));
   };
-
-  // const postSale = async (sale) => {
-  //   const { token } = JSON.parse(localStorage.getItem('user'));
-
-  //   const { data } = await axios.post(
-  //     'http://localhost:3001/sales',
-  //     { sale },
-  //     {
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         Authorization: token,
-  //       },
-  //     },
-  //   );
-  //   return data;
-  // };
 
   const handleCheckout = async () => {
     const { token } = JSON.parse(localStorage.user);
