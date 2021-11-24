@@ -1,5 +1,7 @@
 const userService = require('../Services/loginService');
 
+const internalServerErrorMessage = 'Erro interno';
+
 const loginUser = async (req, res) => {
   const { body } = req;
   try {
@@ -11,7 +13,8 @@ const loginUser = async (req, res) => {
 
     return res.status(200).json(login);
   } catch (error) {
-    return error;
+    console.log(error.message);
+    return res.status(500).send(internalServerErrorMessage);
   }
   };
 
