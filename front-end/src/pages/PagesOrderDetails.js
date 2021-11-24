@@ -1,23 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import SaleApi from '../service/saleAPI';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useContext } from 'react';
+import { useParams } from 'react-router-dom';
+// import Total from '../components/Total';
+import Header from '../components/Header';
+import DetailsOrder2 from '../components/DetailsOrder2';
+import saleProductsAPI from '../service/saleProductsAPI';
+import AppContext from '../Context/AppContext';
 
 function PagesOrderDetails() {
-  const [dataSeler, setSeller] = useState();
+  const { id } = useParams();
+
+  const { setProductsAPI } = useContext(AppContext);
   useEffect(() => {
     const getApi = async () => {
-      const result = await SaleApi();
-      setSeller(result);
+      const result = await saleProductsAPI(id);
+      setProductsAPI(result[0].products);
     };
     getApi();
   }, []);
 
   return (
-    <h1>
-      {' '}
-      {console.log(dataSeler)}
-
-    </h1>
-
+    <>
+      <header>
+        <Header />
+      </header>
+      <DetailsOrder2 isRemoveBtn={ false } />
+    </>
   );
 }
 

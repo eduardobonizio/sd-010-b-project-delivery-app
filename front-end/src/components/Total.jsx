@@ -5,7 +5,6 @@ function Total() {
   const { dataOrder } = useContext(AppContext);
 
   const getTotal = () => {
-    console.log(dataOrder);
     const result = dataOrder.reduce((prev, curren) => prev + Number(curren.total), 0)
       .toFixed(2).replace('.', ',');
     return result;

@@ -6,6 +6,7 @@ function AppProvider({ children }) {
   const [products, setProducts] = useState([]);
   const [dataUser, setDataUser] = useState({});
   const [dataOrder, setDataOrder] = useState([]);
+  const [productsAPI, setProductsAPI] = useState([]);
 
   useEffect(() => {
     const getProducts = () => {
@@ -23,8 +24,9 @@ function AppProvider({ children }) {
     setDataUser,
     dataOrder,
     setDataOrder,
+    productsAPI,
+    setProductsAPI,
   };
-
   return (
     <AppContext.Provider
       value={ { ...contextValue } }
