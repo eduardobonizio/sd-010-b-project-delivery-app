@@ -24,7 +24,7 @@ const userLogin = async (state, setIsErr) => {
         id: data.data.id,
         token: data.token },
     ));
-    localStorage.setItem('products', JSON.stringify({}));
+    localStorage.setItem('products', JSON.stringify());
     redirect(data.data);
   } catch (error) {
     setIsErr(true);
