@@ -23,4 +23,5 @@ function SellerOrder() {
     </main>
   );
 }
+
 export default SellerOrder;

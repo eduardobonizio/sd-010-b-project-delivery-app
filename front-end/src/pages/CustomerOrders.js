@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-// import PropTypes from 'prop-types'
 
 import { getAll } from '../apis/sales';
 import OrderCard from '../components/OrderCard';
@@ -26,9 +25,5 @@ function CustomerOrders() {
     </main>
   );
 }
-
-CustomerOrders.propTypes = {
-
-};
 
 export default CustomerOrders;
