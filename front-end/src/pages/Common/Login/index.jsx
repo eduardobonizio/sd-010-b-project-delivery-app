@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import * as style from './style';
 import { apiRequestLogin } from '../../../services/login/apiRequestLogin';
 import { setOnLocalStorage } from '../../../helpers/localStorage';
-/* eslint-disable */
 
 export default function Login() {
   const [password, setPassword] = useState('');
@@ -51,8 +50,9 @@ export default function Login() {
       <style.LoginContainer />
       <style.CommonForm>
         <div id="inputs-group">
+          <h1>Fazer login</h1>
           <style.InputLabel>
-            Login
+            Email
             <br />
             <style.Input
               type="text"
@@ -85,14 +85,13 @@ export default function Login() {
             Ainda nao tenho conta
           </style.RegisterButton>
         </div>
-          <p
-            id="erro"
-            data-testid="common_login__element-invalid-email"
-          >
-            {' '}
-            { erro ? 'Deu erro' : ' ' }
-          </p>
-
+        <p
+          id="erro"
+          data-testid="common_login__element-invalid-email"
+        >
+          {' '}
+          { erro ? 'Deu erro' : ' ' }
+        </p>
       </style.CommonForm>
     </style.CommonContainer>
   );

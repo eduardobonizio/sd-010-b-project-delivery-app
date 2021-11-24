@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import apiCreateUser from '../../../services/register/apiRequestRegister';
+import * as style from './style';
 
 export default function Register() {
   const [btnDisable, setBtnDisable] = useState(true);
@@ -38,39 +39,59 @@ export default function Register() {
   }, [name, email, password]);
 
   return (
-    <div>
-      <h1>Register</h1>
-      <form>
-        <input
-          type="text"
-          data-testid="common_register__input-name"
-          onChange={ (e) => setName(e.target.value) }
-        />
-        Nome
-        <input
-          type="text"
-          data-testid="common_register__input-email"
-          onChange={ (e) => setEmail(e.target.value) }
-        />
-        Email
-        <input
-          type="password"
-          data-testid="common_register__input-password"
-          onChange={ (e) => setPassword(e.target.value) }
-        />
-        Password
-        <button
-          type="submit"
-          disabled={ btnDisable }
-          data-testid="common_register__button-register"
-          onClick={ (e) => tryRegister(e) }
-        >
-          desabilitando botao
-        </button>
+    <style.CommonContainer>
+      <style.RegisterContainer />
+      <style.CommonForm>
+        <div id="inputs-group">
+          <h1>Cadastre-se</h1>
+          <style.InputLabel>
+            Nome
+            <br />
+            <style.Input
+              type="text"
+              data-testid="common_register__input-name"
+              onChange={ (e) => setName(e.target.value) }
+            />
+          </style.InputLabel>
+          <style.InputLabel>
+            Email
+            <br />
+            <style.Input
+              type="text"
+              data-testid="common_register__input-email"
+              onChange={ (e) => setEmail(e.target.value) }
+            />
+          </style.InputLabel>
+          <style.InputLabel>
+            Password
+            <br />
+            <style.Input
+              type="password"
+              data-testid="common_register__input-password"
+              onChange={ (e) => setPassword(e.target.value) }
+            />
+          </style.InputLabel>
+
+          <style.RegisterButton
+            type="submit"
+            disabled={ btnDisable }
+            data-testid="common_register__button-register"
+            onClick={ (e) => tryRegister(e) }
+          >
+            Cadastrar
+          </style.RegisterButton>
+          <style.LoginButton
+            type="submit"
+            data-testid="common_login__button-register"
+            onClick={ () => navigate('../login', { replace: true }) }
+          >
+            Fazer login
+          </style.LoginButton>
+        </div>
         <p data-testid="common_register__element-invalid_register">
           { erro ? 'Falhou' : ' '}
         </p>
-      </form>
-    </div>
+      </style.CommonForm>
+    </style.CommonContainer>
   );
 }

@@ -39,6 +39,11 @@ export const CommonForm = styled.form`
     align-items: center;
     display: flex;
     flex-direction: column;
+
+    h1 {
+      font-family: 'Baloo Da 2', sans-serif;
+      padding: 10px;
+    }
   }
 `;
 
@@ -57,8 +62,9 @@ export const Input = styled.input`
 `;
 
 export const InputLabel = styled.label`
-  font-family: 'Dongle', sans-serif;
-  font-size: 2rem;
+  font-family: 'Baloo Da 2', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
   line-height: 0.8;
 `;
 
@@ -69,9 +75,9 @@ export const LoginButton = styled.button`
   box-shadow: 0 0 0.5em rgb(160, 160, 160);
   color: white;
 
-  font-family: 'Dongle', sans-serif;
-  font-weight: 400;
-  font-size: 2rem;
+  font-family: 'Baloo Da 2', sans-serif;
+  font-weight: 600;
+  font-size: 1.5rem;
 
   margin-top: 10px;
   height: 50px;
@@ -90,9 +96,9 @@ export const RegisterButton = styled.button`
   background: none;
   border: none;
 
-  font-family: 'Dongle', sans-serif;
+  font-family: 'Baloo Da 2', sans-serif;
   font-weight: 400;
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   margin-top: 10px;
 
   height: 30px;
