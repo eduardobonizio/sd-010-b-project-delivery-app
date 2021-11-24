@@ -7,7 +7,7 @@ import LogoutButton from './LogoutButton';
 function TopBar(props) {
   const { name } = props;
   const history = useHistory();
-  const onSellerPage = history.location.pathname === 'seller/orders';
+  const onSellerPage = history.location.pathname.includes('/seller');
 
   return (
     <Navbar variant="dark" className="navbar">
