@@ -28,7 +28,7 @@ function NavBar() {
             data-testid="customer_products__element-navbar-link-products"
           >
             <TextNavBar>
-              PRODUTOS
+              Produtos
             </TextNavBar>
           </ContainerTextProducts>
         </Link>
@@ -36,7 +36,7 @@ function NavBar() {
         <Link to="/customer/orders" className="link__navbar">
           <ContainerPedidos data-testid="customer_products__element-navbar-link-orders">
             <TextNavBar>
-              PEDIDOS
+              Meus Pedidos
             </TextNavBar>
           </ContainerPedidos>
         </Link>
@@ -56,7 +56,7 @@ function NavBar() {
         >
           <ContainerLogout data-testid="customer_products__element-navbar-link-logout">
             <TextNavBar>
-              SAIR
+              Sair
             </TextNavBar>
           </ContainerLogout>
         </Link>
