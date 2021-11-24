@@ -1,5 +1,5 @@
 const { StatusCodes } = require('http-status-codes');
-const { Sale, SalesProduct } = require('../models');
+const { Product, Sale, SalesProduct } = require('../models');
 // const { userDataSchema } = require('./schemas');
 
 const insertIntoSalesProduct = async (products, saleId) => {
@@ -46,11 +46,22 @@ const getOrderByPk = async ({ userId, id }) => {
     //   return { code: StatusCodes.BAD_REQUEST, message };
     // }
 
-    const order = await Sale.findByPk(id, { where: { userId } });
+    // const order = await Sale.findByPk(id, { where: { userId } });
+    // const items = await SalesProduct.findAll({ where: { saleId: id } });
+    // const seller = await User.findOne({ where: { id: order.sellerId } });
+
+    const order = await Sale.findOne({
+      where: { id, userId },
+      include: ['user', 'seller', 'products'],
+    });
+
+    console.log(order.products);
+
     if (!order) {
       return { code: StatusCodes.NOT_FOUND, message: 'Order not found' };
     }
 
+    // return { code: StatusCodes.OK, order, items, seller };
     return { code: StatusCodes.OK, order };
   } catch (e) {
     console.log(e);
