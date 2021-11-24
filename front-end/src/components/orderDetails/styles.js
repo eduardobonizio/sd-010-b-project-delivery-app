@@ -44,24 +44,24 @@ export const ContainerStatusPrice = styled.div`
   background: plum;
 `;
 
-export const ContainerStatus = styled.div`
-  width: 200px;
-  height: 100px;
-  margin: 10px 0 0 10px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-radius: 5px;
-  background: white;
-`;
+// export const ContainerStatus = styled.div`
+//   width: 200px;
+//   height: 100px;
+//   margin: 10px 0 0 10px;
+//   text-align: center;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   border-radius: 5px;
+//   background: white;
+// `;
 
-export const ContainerDatePrice = styled.div`
-  width: 200px;
-  height: 100px;
-  margin: 10px 0 0 10px;
-  background: pink;
-`;
+// export const ContainerDatePrice = styled.div`
+//   width: 200px;
+//   height: 100px;
+//   margin: 10px 0 0 10px;
+//   background: pink;
+// `;
 
 export const ContainerAddress = styled.div`
   width: 100%;
