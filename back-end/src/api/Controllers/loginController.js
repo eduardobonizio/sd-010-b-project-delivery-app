@@ -2,7 +2,6 @@ const userService = require('../Services/loginService');
 
 const loginUser = async (req, res) => {
   const { body } = req;
-  console.log(body);
   try {
     const login = await userService.loginUser(body);
 
