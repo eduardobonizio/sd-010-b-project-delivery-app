@@ -33,7 +33,20 @@ function SellerOrderDetails() {
       <Header userRole="seller" />
       <div className="seller-order-details-container">
         <h3>Detalhe do pedido</h3>
-        <OrdersItemsTable />
+        <div className="seller-order-items-table">
+          { (!saleProducts || !statusControllersData || !orderTotalPrice)
+            ? (<div>carregando...</div>)
+            : (
+              <>
+                <StatusControllers componentData={ statusControllersData } />
+                <TableHeader />
+                <SaleProducts products={ saleProducts } />
+                <div className="order-total-price" data-testid={ dataTestId64 }>
+                  {orderTotalPrice}
+                </div>
+              </>
+            )}
+        </div>
       </div>
     </>
   );
