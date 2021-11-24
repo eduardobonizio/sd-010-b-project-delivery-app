@@ -6,7 +6,7 @@ import * as styles from './styles';
 
 function DetailsOrder() {
   const [detailsSales, setDetailsSales] = useState(
-    { seller: '1', address: '', number: 0 },
+    { seller: '1', address: '', number: '' },
   );
 
   const navigate = useNavigate();
