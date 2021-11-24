@@ -80,8 +80,8 @@ function OrderDetails() {
     socket.emit('preparando', { idVenda, status });
   };
 
-  socket.on('preparandoPedido', ([status]) => {
-    setProductsDetails({ ...productsDetails, status });
+  socket.on('preparandoPedido', (data) => {
+    setProductsDetails({ ...productsDetails, status: data[1] });
   });
 
   const buttonPreparingCheck = () => (
@@ -102,7 +102,7 @@ function OrderDetails() {
     <div className="button-check-status">
       <button
         type="button"
-        disabled={ productsDetails.status !== 'Entregue' }
+        disabled={ productsDetails.status !== 'Em Trânsito' }
         data-testid={ role + CHECK_STAUS }
         onClick={ () => changeStatus('Entregue') }
       >
