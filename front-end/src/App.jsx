@@ -7,6 +7,7 @@ import MyOrders from './pages/MyOrders';
 import Register from './pages/Register';
 import OrderDetails from './pages/OrderDetails';
 import Products from './pages/Products';
+import SellerOrders from './pages/SellerOdrers';
 import SellerOrderDetails from './pages/SellerOrderDetails';
 
 import './styles/App.css';
@@ -19,6 +20,7 @@ function App() {
       <Route exact path="/customer/checkout" element={ <Checkout /> } />
       <Route exact path="/customer/products" element={ <Products /> } />
       <Route exact path="/customer/orders" element={ <MyOrders /> } />
+      <Route exact path="/seller/orders" element={ <SellerOrders /> } />
       <Route exact path="/login" element={ <LoginPage /> } />
       <Route exact path="/register" element={ <Register /> } />
       <Route exact path="/" element={ <Home /> } />

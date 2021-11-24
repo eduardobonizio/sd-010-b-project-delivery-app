@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import ID from '../utils/dataTestIdDict';
-import '../styles/CardOrder.css';
+import '../styles/CardOrderCustomer.css';
 
-function Order({ sale }) {
+function CardOrderCustomer({ sale }) {
   // const [colorStatus, setColorStatus] = useState('pendente');
   // const [valueStatus, setValueStatus] = useState('Pendente');
 
@@ -19,6 +19,7 @@ function Order({ sale }) {
   if (sale.status === 'Entregue') {
     colorStatus = 'entregue';
   }
+
   const data = new Date(sale.saleDate).toLocaleDateString('pt-BR', { timeZone: 'UTC' });
 
   return (
@@ -48,10 +49,10 @@ function Order({ sale }) {
   );
 }
 
-Order.propTypes = PropTypes.objectOf({
+CardOrderCustomer.propTypes = PropTypes.objectOf({
   id: PropTypes.number,
   date: PropTypes.string,
   totalPrice: PropTypes.number,
 }).isRequired;
 
-export default Order;
+export default CardOrderCustomer;

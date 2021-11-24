@@ -29,9 +29,13 @@ const create = async (reqPayload) => {
   }
 };
 
-const getAllSales = async (id) => {
+const getAllSales = async (id, role) => {
   const query = { where: { userId: id } };
-
+  if (role === 'seller') {
+    const roleSeller = { where: { sellerId: id } };
+    return sale.findAll(roleSeller);
+  }
+  
   const allSales = await sale.findAll(query);
   // if (allSales.length === 0) return { message: 'No momento você não possui compras' };
 
