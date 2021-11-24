@@ -30,7 +30,7 @@ function OrderCard({ order: {
   };
 
   return (
-    <Link to={ `localhost:3000/customer/orders/${id}` }>
+    <Link to={ `/customer/orders/${id}` }>
       <main className="order-card__main-container">
         <section className="order-card__order-number">
           <span className="order-card__order-label">Pedido</span>
@@ -46,7 +46,10 @@ function OrderCard({ order: {
           {status.toUpperCase()}
         </section>
         <span className="order-card__order-infos">
-          <section className={ `customer_orders__element-order-date-${id}` }>
+          <section
+            className="order-card__order-info-date"
+            data-testid={ `customer_orders__element-order-date-${id}` }
+          >
             {new Date(saleDate).toLocaleDateString()}
           </section>
           <section className="order-card__order-info-price">
