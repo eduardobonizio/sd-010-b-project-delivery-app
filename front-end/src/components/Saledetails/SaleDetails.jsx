@@ -7,11 +7,8 @@ import test from '../../utils/dataTestIdDict';
 function SaleDetails() {
   const { id } = useParams();
   const idNumber = parseInt(id, 10);
-  console.log(typeof idNumber, 'aqui');
   const [saleDetails, setSaleDetails] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  console.log(saleDetails);
 
   useEffect(() => {
     const fetchProductDetails = async () => {
@@ -29,7 +26,7 @@ function SaleDetails() {
 
   const { seller: { name }, saleDate, status, products, totalPrice } = saleDetails;
 
-  console.log(test.dataTestId37);
+  const formatedDate = new Date(saleDate).toLocaleDateString('pt-BR', { timeZone: 'UTC' });
 
   return (
     <main>
@@ -40,7 +37,7 @@ function SaleDetails() {
         {`PEDIDO NÚMERO: ${idNumber}`}
       </div>
       <div data-testid={ `${test.dataTestId38}-${name}` }>{`VENDEDOR(A) ${name}`}</div>
-      <div data-testid={ `${test.dataTestId39}-${saleDate}` }>{`DATA ${saleDate}`}</div>
+      <div data-testid={ `${test.dataTestId39}-${saleDate}` }>{`DATA ${formatedDate}`}</div>
       <div data-testid={ `${test.dataTestId40}-${status}` }>{`STATUS ${status}`}</div>
       <div>
         <button
