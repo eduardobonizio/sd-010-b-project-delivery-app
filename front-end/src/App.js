@@ -9,8 +9,6 @@ import CustomerOrders from './pages/CustomerOrders';
 import CustomerOrderDetails from './pages/CustomerOrderDetails';
 import Checkout from './pages/Checkout';
 
-import NavBar from './components/NavBar';
-
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import SellerOrder from './pages/SellerOrder';
