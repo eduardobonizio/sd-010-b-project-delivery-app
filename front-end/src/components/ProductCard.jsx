@@ -12,26 +12,28 @@ function ProductCard({ id, name, image, price }) {
     const quantity = target.value;
     const numPrice = parseFloat(priceProduct);
     setValueInput(quantity);
-    const newValue = numPrice * quantity;
+    const subTotal = numPrice * quantity;
     const valueCar = JSON.parse(localStorage.getItem('carrinho'));
-    const currentTotalValue = (newValue + valueCar);
+    const currentTotalValue = (subTotal + valueCar);
     setTotalPrice(currentTotalValue);
     localStorage.setItem('carrinho', JSON.stringify(currentTotalValue));
     if (arrayProducts.length > 0) {
       const productToSubtract = arrayProducts.find((product) => product.id === id);
       if (productToSubtract) {
         productToSubtract.quantity = quantity;
+        productToSubtract.subTotal = quantity * numPrice;
         return;
       }
-      return setArrayProducts([...arrayProducts, { id, name, price, quantity }]);
+      setArrayProducts([...arrayProducts, { id, name, price, quantity, subTotal }]);
     }
-    setArrayProducts([...arrayProducts, { id, name, price, quantity }]);
+    setArrayProducts([...arrayProducts, { id, name, price, quantity, subTotal }]);
   };
 
   const addOne = (priceProduct) => {
     const numPrice = parseFloat(priceProduct);
     const valueCar = JSON.parse(localStorage.getItem('carrinho'));
     const quantity = parseInt(valueInput, 10) + 1;
+    const subTotal = numPrice * quantity;
     setValueInput(quantity);
     const currentTotalValue = (valueCar + numPrice);
     setTotalPrice(currentTotalValue);
@@ -40,11 +42,12 @@ function ProductCard({ id, name, image, price }) {
       const productToSubtract = arrayProducts.find((product) => product.id === id);
       if (productToSubtract) {
         productToSubtract.quantity = quantity;
+        productToSubtract.subTotal = quantity * numPrice;
         return;
       }
-      return setArrayProducts([...arrayProducts, { id, name, price, quantity }]);
+      setArrayProducts([...arrayProducts, { id, name, price, quantity, subTotal }]);
     }
-    setArrayProducts([...arrayProducts, { id, name, price, quantity }]);
+    setArrayProducts([...arrayProducts, { id, name, price, quantity, subTotal }]);
   };
 
   const subOne = (priceProduct) => {
@@ -55,6 +58,7 @@ function ProductCard({ id, name, image, price }) {
       return 0;
     }
     const quantity = valueInput - 1;
+    const subTotal = numPrice * quantity;
     setValueInput(quantity);
     const currentTotalValue = (valueCar - numPrice);
     setTotalPrice(currentTotalValue);
@@ -68,11 +72,12 @@ function ProductCard({ id, name, image, price }) {
     if (arrayProducts.length > 0) {
       if (productToSubtract) {
         productToSubtract.quantity = quantity;
+        productToSubtract.subTotal = quantity * numPrice;
         return;
       }
-      return setArrayProducts([...arrayProducts, { id, name, price, quantity }]);
+      setArrayProducts([...arrayProducts, { id, name, price, quantity, subTotal }]);
     }
-    setArrayProducts([...arrayProducts, { id, name, price, quantity }]);
+    setArrayProducts([...arrayProducts, { id, name, price, quantity, subTotal }]);
   };
 
   return (
