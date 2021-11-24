@@ -29,6 +29,7 @@ const getAllSales = async (req, res) => {
 
 const getById = async (req, res) => {
   const { id } = req.params;
+  console.log(id);
   try {
     const salesDetails = await saleService.getById(id);
     return res.status(200).json(salesDetails);

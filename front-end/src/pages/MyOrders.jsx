@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import CardOrderCustomer from '../components/CardOrderCustomer';
+import CardOrderCustomer from '../components/SalesOrder/CardOrderCustomer';
 import Header from '../components/Header';
 
 function MyOrders() {

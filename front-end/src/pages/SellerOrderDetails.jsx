@@ -26,7 +26,7 @@ function SellerOrderDetails() {
       setStatusControllersData({ id, saleDate, status });
       setOrderTotalPrice(totalPrice.replace('.', ','));
     });
-  }, []);
+  }, [id]);
 
   return (
     <>
