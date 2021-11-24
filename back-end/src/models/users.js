@@ -7,8 +7,8 @@ const getAll = async () => {
 
 const login = async (mail, password) => {
   const oneUser = await users.findOne({ where: { email: mail, password } });
-  const { name, email, role } = oneUser;
-  return { name, email, role };
+  const { id, name, email, role } = oneUser;
+  return { id, name, email, role };
 };
 
 const register = async (name, email, password, role) => {

@@ -5,6 +5,7 @@ const fs = require('fs');
 
 const md5 = require('md5');
 const { getAll, login, register } = require('../services/users');
+const validateToken = require('../middleware/validation');
 
 router.get('/', async (_req, res) => {
   const users = await getAll();
@@ -23,7 +24,7 @@ router.post('/register', async (req, res) => {
   }
 });
 
-router.post('/adm/register', async (req, res) => {
+router.post('/adm/register', validateToken, async (req, res) => {
   try {
     const { name, email, password, role } = req.body;
     const encryptedPass = md5(password);

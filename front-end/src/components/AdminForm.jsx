@@ -19,13 +19,15 @@ export default function AdminForm() {
       && emailRegex.test(email);
     return validation;
   }
-
   function registerUser(e) {
+    const { token } = JSON.parse(localStorage.getItem('user'));
     e.preventDefault();
     const requestOptions = {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
+        authorization: token,
+
       },
       method: 'POST',
       body: JSON.stringify({ name, email, password, role }),
