@@ -54,11 +54,11 @@ function StatusControllers({ componentData }) {
   return (
     <div className="seller-status-controllers">
       <div data-testid={ dataTestId54 }>{ sale.id }</div>
-      <div data-testid={ dataTestId55 }>{ sale.date }</div>
+      <div data-testid={ dataTestId56 }>{ sale.date }</div>
       <div>
         <div
           className="seller-status"
-          data-testid={ dataTestId56 }
+          data-testid={ dataTestId55 }
           style={ backgroundColorByStatus[sale.deliveryStatus] }
         >
           { sale.deliveryStatus }
