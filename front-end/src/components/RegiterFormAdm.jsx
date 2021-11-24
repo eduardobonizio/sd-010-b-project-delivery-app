@@ -26,7 +26,7 @@ function RegisterForm() {
     if (role !== 'administrator') {
       navigate(`/${role}/orders`);
     }
-  }, []);
+  }, [navigate]);
 
   const ableButton = () => {
     if (validarNome(nome) && validarSenha(senha) && validarEmail(email)) {
