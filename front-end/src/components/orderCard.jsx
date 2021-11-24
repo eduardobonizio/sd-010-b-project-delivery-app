@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import client from '../utils/socketClient';
 
 function OrderCart(props) {
   const { order } = props;
   const { id: orderNum, saleDate, totalPrice, status } = order;
+  const [currentStatus, setCurrentStatus] = useState(status);
 
   const convertDate = (dateComplete) => {
     const onlyDate = dateComplete.split('T')[0];
@@ -16,6 +18,12 @@ function OrderCart(props) {
     const convert = price.replace(/\./, ',');
     return convert;
   };
+
+  useEffect(() => {
+    client.on('refreshStatus', (newStatus) => {
+      setCurrentStatus(newStatus);
+    });
+  }, []);
 
   return (
     <div>
@@ -31,7 +39,7 @@ function OrderCart(props) {
           <h3
             data-testid={ `customer_orders__element-delivery-status-${orderNum}` }
           >
-            {status}
+            {currentStatus}
           </h3>
         </div>
         <div>

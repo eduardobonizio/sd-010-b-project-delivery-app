@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import client from '../utils/socketClient';
 
 function OrderCart(props) {
   const { order } = props;
@@ -13,6 +14,8 @@ function OrderCart(props) {
     deliveryNumber,
   } = order;
 
+  const [currentStatus, setCurrentStatus] = useState(status);
+
   const convertDate = (dateComplete) => {
     const onlyDate = dateComplete.split('T')[0];
     const [year, month, day] = onlyDate.split('-');
@@ -24,7 +27,11 @@ function OrderCart(props) {
     return convert;
   };
 
-  console.log(order);
+  useEffect(() => {
+    client.on('refreshStatus', (newStatus) => {
+      setCurrentStatus(newStatus);
+    });
+  }, []);
 
   return (
     <div>
@@ -40,7 +47,7 @@ function OrderCart(props) {
           <h3
             data-testid={ `seller_orders__element-delivery-status-${orderNum}` }
           >
-            {status}
+            {currentStatus}
           </h3>
         </div>
         <div>
