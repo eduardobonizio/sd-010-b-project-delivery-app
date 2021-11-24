@@ -17,7 +17,7 @@ function StatusControllers({ componentData }) {
 
   const saleState = {
     id,
-    date: new Date(saleDate).toLocaleDateString(),
+    date: new Date(saleDate).toLocaleDateString('pt-BR', { timeZone: 'UTC' }),
     deliveryStatus: status,
   };
   const isDisabledButtonsState = { preparing: true, inTransit: true };
