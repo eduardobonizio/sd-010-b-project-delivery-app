@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { getAll } from '../apis/sales';
 import SellerCard from '../components/SellerCard';
 
-import '../styles/customerOrders.css';
-
 function SellerOrder() {
   const [orders, setOrders] = useState([]);
 
