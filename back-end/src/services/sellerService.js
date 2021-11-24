@@ -3,7 +3,6 @@ const { Sale } = require('../models');
 
 const findAllSales = async (sellerId) => {
   const sales = await Sale.findAll({ where: { sellerId } });
-  console.log(sales);
   return { code: StatusCodes.OK, sales };
 };
 
@@ -34,7 +33,18 @@ const findOrderByPk = async ({ sellerId, id }) => {
   }
 };
 
+const updateSaleStatus = async (id, newStatus) => {
+  const updated = await Sale.findOne(
+    { where: { id } }
+    ).then(sale => {
+      return sale.update({status: newStatus})
+    })
+
+    return updated;
+}
+
 module.exports = {
   findAllSales,
   findOrderByPk,
+  updateSaleStatus,
 };
