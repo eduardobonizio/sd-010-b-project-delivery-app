@@ -8,7 +8,7 @@ function TopBar(props) {
   const { name } = props;
   const history = useHistory();
   const onSellerPage = history.location.pathname === 'seller/orders';
-
+  console.log(onSellerPage);
   return (
     <Navbar variant="dark" className="navbar">
       <Navbar.Collapse className="justify-content-start">
@@ -28,7 +28,7 @@ function TopBar(props) {
         >
           PRODUTOS
         </Navbar.Text>
-        {onSellerPage
+        {!onSellerPage
         && (
           <a href="/customer/orders">
             <Navbar.Text
