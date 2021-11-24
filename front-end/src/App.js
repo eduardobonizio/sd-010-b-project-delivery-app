@@ -47,11 +47,11 @@ function App() {
         { verifyAllowanceToRenderNavBar(allowedNavBarSellerPaths, 'seller') }
         { verifyAllowanceToRenderNavBar(allowedNavBarAdminPaths, 'admin') }
         <Switch>
-          <Route path="/customer/products" component={ CustomerProducts } />
-          <Route path="/customer/checkout" component={ CustomerCheckout } />
-          <Route path="/login" component={ Login } />
-          <Route path="/register" component={ Register } />
-          <Route path="/customer/orders" component={ CustomerOrders } />
+          <Route exact path="/customer/products" component={ CustomerProducts } />
+          <Route exact path="/customer/checkout" component={ CustomerCheckout } />
+          <Route exact path="/login" component={ Login } />
+          <Route exact path="/register" component={ Register } />
+          <Route exact path="/customer/orders" component={ CustomerOrders } />
           <Route exact path="/"><Redirect to="/login" /></Route>
         </Switch>
       </UsersProvider>

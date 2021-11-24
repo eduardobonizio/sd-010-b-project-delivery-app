@@ -1,5 +1,6 @@
 import { Container, Grid } from '@mui/material';
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import getCustomerOrders from '../api/getCustomerOrders';
 
@@ -19,6 +20,12 @@ function CustomerOrders() {
     callbackAsync();
   }, []);
 
+  const history = useHistory();
+
+  const handleClick = (id) => {
+    history.push(`/customer/orders/${id}`);
+  };
+
   const renderOrders = () => (Array.isArray(orders) ? orders.map((order, index) => (
     <Grid item key={ order.sale_date } xs={ 6 }>
       <StatusProductCard
@@ -28,6 +35,7 @@ function CustomerOrders() {
         price={ order.total_price }
         status={ order.status }
         testIdPreffix="customer_orders"
+        onClick={ () => handleClick(order.id) }
       />
     </Grid>
   )) : null);
