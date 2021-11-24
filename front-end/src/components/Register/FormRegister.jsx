@@ -28,18 +28,13 @@ function FormRegister() {
         email,
         password,
       });
-      // console.log(respLogin);
       setRedirect(true);
     } catch (error) {
       setIsError(true);
     }
   };
 
-  // console.log(values);
-
   const openNotificationWithIcon = (type) => {
-    // const resp = await axios.get('http://localhost:3001/products');
-    // console.log(password, email);
     notification[type]({
       message: 'Cadastro efetuado com sucesso!',
       duration: 3,

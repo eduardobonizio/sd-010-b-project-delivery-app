@@ -35,18 +35,19 @@ export default function DetailsAdress() {
     address,
     numberAddress,
     now,
-    sellerId,
+    sellerId: sellerId || 2,
     userId: user.id,
   };
 
   const buy = async () => {
+    console.log('buy');
     const respLogin = await axios.post(
       'http://localhost:3001/sales',
       bodyParameters,
       config,
     );
 
-    console.log(respLogin.data);
+    console.log('oi', respLogin);
     setSaleId(respLogin.data.id);
     setRedirect(true);
   };
@@ -63,6 +64,7 @@ export default function DetailsAdress() {
       <select
         name="seller"
         id="seller-id"
+        value={ sellerId || 2 }
         data-testid="customer_checkout__select-seller"
         onClick={ (event) => setSellerId(event.target.value) }
       >
