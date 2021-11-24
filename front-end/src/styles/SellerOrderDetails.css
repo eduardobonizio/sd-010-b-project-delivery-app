@@ -19,6 +19,20 @@
   padding: 0 10px;
 }
 
+.seller-status-controllers button {
+  box-shadow: 0 5px #999;
+  color: white;
+  height: 30px;
+  padding: 7px 15px;
+  width: 100%;
+}
+
+.seller-status-controllers button:active {
+  background-color: #216b54ce;
+  box-shadow: 0 1px #666;
+  transform: translateY(5px);
+}
+
 .seller-status {
   border-radius: 7px;
   padding: 8px 20px;
@@ -27,13 +41,6 @@
 .disabled-button {
   cursor: not-allowed;
   opacity: 0.6;
-}
-
-.seller-button {
-  color: white;
-  height: 30px;
-  padding: 7px 15px;
-  width: 100%;
 }
 
 .seller-order-items-table {
