@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
       algorithm: 'HS256',
     };
     
-    const { dataValues: { name, role } } = dataUser;
+    const { dataValues: { name, role, id } } = dataUser;
 
     const token = jwt.sign({ payload: { name, role, email } }, secretKey, jwtConfig);
 
@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
 
     if (req.body.name) statusNow = StatusCodes.CREATED;
 
-    res.status(statusNow).json({ name, role, email, token });
+    res.status(statusNow).json({ id, name, role, email, token });
   } catch (error) {
     console.log(error);
   }
