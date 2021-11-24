@@ -13,9 +13,9 @@ const createSale = async (req, res, next) => {
   }
 };
 
-const getAllSalesByCustomerId = (req, res, next) => {
+const getAllSalesByCustomerId = async (req, res, next) => {
   try {
-    const foundAll = saleService.getAllSalesByCustomerId(req.params);
+    const foundAll = await saleService.getAllSalesByCustomerId(req.params.id);
     res.status(STATUS_OK).json(foundAll);
   } catch (error) {
     console.log(error);

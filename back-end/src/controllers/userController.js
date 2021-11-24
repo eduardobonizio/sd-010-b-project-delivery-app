@@ -24,7 +24,6 @@ const getUserByEmail = async (req, res) => {
     const { password: dbPassword } = result;
     if (md5(password) === dbPassword) {
       delete result.dataValues.password;
-      delete result.dataValues.id;
       return res.status(200).json({ token, ...result.dataValues });
     }
     return res.status(401).json({ Message: 'Senha incorreta!' });

@@ -75,7 +75,7 @@ StatusProductCard.propTypes = {
   orderNum: PropTypes.number.isRequired,
   status: PropTypes.string.isRequired,
   orderDate: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
+  price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   address: PropTypes.string,
   testIdPreffix: PropTypes.string.isRequired,
 };

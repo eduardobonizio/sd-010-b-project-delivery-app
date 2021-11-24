@@ -3,7 +3,7 @@ import axios from 'axios';
 require('dotenv').config();
 
 const api = axios.create({
-  baseURL: 'http://localhost:3002',
+  baseURL: 'http://localhost:3001',
 });
 
 const createSale = (saleData) => api.post('/sale', saleData)

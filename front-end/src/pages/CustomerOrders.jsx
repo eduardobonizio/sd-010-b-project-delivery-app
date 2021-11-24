@@ -1,11 +1,43 @@
-import { Grid } from '@mui/material';
-import React from 'react';
+import { Container, Grid } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+
+import getCustomerOrders from '../api/getCustomerOrders';
+
+import StatusProductCard from '../components/StatusProductCard';
 
 function CustomerOrders() {
-  return (
-    <Grid container rowSpacing={ 1 } columnSpacing={ 2 }>
-      <Grid item xs={ 6 } />
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    // const userLS = JSON.parse(localStorage.getItem('user'));
+    const callbackAsync = async () => {
+      // eslint-disable-next-line no-magic-numbers
+      const customerOrders = await getCustomerOrders(3);
+      setOrders(customerOrders.data);
+    };
+
+    callbackAsync();
+  }, []);
+
+  const renderOrders = () => (Array.isArray(orders) ? orders.map((order, index) => (
+    <Grid item key={ order.sale_date } xs={ 6 }>
+      <StatusProductCard
+        index={ index }
+        orderNum={ index + 1 }
+        orderDate={ order.sale_date }
+        price={ order.total_price }
+        status={ order.status }
+        testIdPreffix="customer_orders"
+      />
     </Grid>
+  )) : null);
+
+  return (
+    <Container>
+      <Grid container rowSpacing={ 1 } columnSpacing={ 2 }>
+        { renderOrders() }
+      </Grid>
+    </Container>
   );
 }
 
