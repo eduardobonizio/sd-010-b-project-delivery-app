@@ -29,14 +29,14 @@ export const getOrders = async () => axios.get('http://localhost:3001/sales', to
   .then(({ data }) => data)
   .catch((err) => err.response);
 
-<<<<<<< HEAD
 export const getSellerOrder = async () => axios.get('http://localhost:3001/', token())
-=======
+  .then(({ data }) => data)
+  .catch((err) => err.response);
+
 export const getUserList = async () => axios.get('http://localhost:3001/user/all', token())
   .then(({ data }) => data)
   .catch((err) => err.response);
 
 export const registerUser = async (body) => axios.post('http://localhost:3001/register/admin', body, token())
->>>>>>> d213b095e06b70435581eef29ece6db6df7f2589
   .then(({ data }) => data)
   .catch((err) => err.response);

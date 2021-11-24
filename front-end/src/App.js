@@ -10,11 +10,8 @@ import OrderDetail from './pages/OrderDetail';
 import CustomerStatus from './pages/CustomerStatus';
 import Checkout from './pages/Checkout';
 import SalesDetails from './pages/SalesDetails';
-<<<<<<< HEAD
 import SalesStatus from './pages/SalesStatus';
-=======
 import Admin from './pages/Admin';
->>>>>>> d213b095e06b70435581eef29ece6db6df7f2589
 /**
  *
  * @returns

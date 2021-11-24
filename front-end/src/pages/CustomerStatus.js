@@ -16,7 +16,7 @@ export default function OrderStatus() {
     <div>
       <Header
         pageName="LISTA DE PEDIDOS"
-        yourOrder={ true }
+        yourOrder
         userName={ getStorage('user').name }
       />
 
