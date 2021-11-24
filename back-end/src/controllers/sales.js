@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getAll, getById } = require('../services/sales');
+const { getAll, getById, create } = require('../services/sales');
 
 router.get('/', async (_req, res) => {
   const sales = await getAll();
@@ -11,6 +11,12 @@ router.get('/:id', async (req, res) => {
   const sale = await getById(req.params);
 
   return res.status(200).json(sale);
+});
+
+router.post('/', async (req, res) => {
+  console.log('sale')
+  const result = await create(req.body);
+  return res.status(200).json({message: 'Ok', sale: result});
 });
 
 module.exports = router;
