@@ -8,6 +8,7 @@ const validToken = (req, res, next) => {
     return res.status(isValid.status).json(isValid.message);
   }
 
+  req.role = isValid.role;
   req.userId = isValid.userId;
 
   next();

@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import ID from '../../utils/dataTestIdDict';
-import '../../styles/CardOrder.css';
+import ID from '../utils/dataTestIdDict';
+import '../styles/CardOrderSeller.css';
 
-function Order({ sale }) {
+function CardOrderSeller({ sale }) {
   let colorStatus = 'pendente';
 
   if (sale.status === 'Pedente') {
@@ -16,39 +16,48 @@ function Order({ sale }) {
   if (sale.status === 'Entregue') {
     colorStatus = 'entregue';
   }
+
   const data = new Date(sale.saleDate).toLocaleDateString('pt-BR', { timeZone: 'UTC' });
 
   return (
-    <Link className="boxOrder" to={ `/customer/orders/${sale.id}` }>
+    <Link className="boxOrder" to={ `/seller/orders/${sale.id}` }>
       <div className="conteiner">
         <div
           className={ `status ${colorStatus}` }
-          data-testid={ `${ID.dataTestId34}${sale.id}` }
+          data-testid={ `${ID.dataTestId49}${sale.id}` }
         >
           { sale.status }
         </div>
         <div className="saleId">
           <p>Pedido</p>
-          <p data-testid={ `${ID.dataTestId33}${sale.id}` }>{ sale.id }</p>
+          <p data-testid={ `${ID.dataTestId48}${sale.id}` }>{ sale.id }</p>
         </div>
         <div className="dataPrice">
-          <div data-testid={ `${ID.dataTestId35}${sale.id}` }>{ data }</div>
+          <div data-testid={ `${ID.dataTestId50}${sale.id}` }>
+            <p>{ data }</p>
+          </div>
           <div className="divPrice">
             <p>R$</p>
-            <p data-testid={ `customer_orders__element-card-price-${sale.id}` }>
+            <p data-testid={ `${ID.dataTestId51}${sale.id}` }>
               { sale.totalPrice.replace('.', ',') }
             </p>
           </div>
+        </div>
+        <div className="address">
+          <p data-testid={ `${ID.dataTestId52}${sale.id}` }>
+            {`${sale.deliveryAddress}, `}
+          </p>
+          <p>{ sale.deliveryNumber }</p>
         </div>
       </div>
     </Link>
   );
 }
 
-Order.propTypes = PropTypes.objectOf({
+CardOrderSeller.propTypes = PropTypes.objectOf({
   id: PropTypes.number,
   date: PropTypes.string,
   totalPrice: PropTypes.number,
 }).isRequired;
 
-export default Order;
+export default CardOrderSeller;
