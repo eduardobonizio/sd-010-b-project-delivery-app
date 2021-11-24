@@ -15,6 +15,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import SellerOrder from './pages/SellerOrder';
 import AdminManage from './pages/AdminManage';
+import NavBar from './components/NavBar';
 
 function App() {
   return (
@@ -25,17 +26,17 @@ function App() {
       <CustomRoute
         path="/customer/products"
         component={ Products }
-        navbar={ <NavBar /> }
+        navbar={ <NavBar order="Produtos" pedidos /> }
       />
       <CustomRoute
         path="/seller/orders"
         component={ SellerOrder }
-        navbar={ <NavBar /> }
+        navbar={ <NavBar order="Pedidos" /> }
       />
       <CustomRoute
         path="/admin/manage"
         component={ AdminManage }
-        navbar={ <NavBar /> }
+        navbar={ <NavBar order="Gerenciar usuários" /> }
       />
       <CustomRoute path="/register" component={ Register } />
       <CustomRoute

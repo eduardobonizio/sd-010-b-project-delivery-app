@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+
 import Input from './Input';
 import Button from './Button';
 
-function RegisterForm() {
+export default function AdminForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [userStatus, setUserStatus] = useState({ message: '', redirect: false });
+  const [, setRole] = useState('seller');
+  const [userStatus] = useState({ message: '', redirect: false });
 
   function validateLogin() {
     const emailRegex = /^[A-Za-z0-9_.]+@[a-zA-Z_]+?\.[a-zA-Z_.]{2,7}$/;
@@ -19,7 +20,7 @@ function RegisterForm() {
     return validation;
   }
 
-  function registerUser(e) {
+  /*   function registerUser(e) {
     e.preventDefault();
     const requestOptions = {
       headers: {
@@ -27,17 +28,18 @@ function RegisterForm() {
         'Content-Type': 'application/json',
       },
       method: 'POST',
-      body: JSON.stringify({ name, email, password }),
+      body: JSON.stringify({ name, email, password, role }),
     };
 
-    fetch('http://localhost:3001/users/register', requestOptions)
+    fetch('http://localhost:3001/users/adm/register', requestOptions)
       .then((res) => res.json())
       .then((data) => setUserStatus(data));
-  }
+  } */
 
   React.useEffect(() => {
     const span = document.getElementById('invalid-message');
-    if (userStatus.message === 'Usuário já cadastrado') {
+    span.innerHTML = userStatus.message;
+    if (userStatus.message !== '') {
       span.style.visibility = 'visible';
     } else {
       span.style.visibility = 'hidden';
@@ -45,14 +47,12 @@ function RegisterForm() {
   }, [userStatus]);
 
   return (
-    <>
-      { userStatus.redirect ? <Redirect to="/customer/products" />
-        : null}
-      <form>
+    <div>
+      <form className="admin_form">
         <Input
           name="Nome"
           id="name"
-          testId="common_register__input-name"
+          testId="admin_manage__input-name"
           type="text"
           placeholder="Digite seu nome"
           onChange={ (e) => setName(e.target.value) }
@@ -60,7 +60,7 @@ function RegisterForm() {
         <Input
           name="Email"
           id="email"
-          testId="common_register__input-email"
+          testId="admin_manage__input-email"
           type="text"
           placeholder="Digite seu email"
           onChange={ (e) => setEmail(e.target.value) }
@@ -68,23 +68,34 @@ function RegisterForm() {
         <Input
           name="Senha"
           id="password"
-          testId="common_register__input-password"
+          testId="admin_manage__input-password"
           type="password"
           placeholder="Digite sua senha"
           onChange={ (e) => setPassword(e.target.value) }
         />
+        <label htmlFor="role">
+          Tipo
+          <select
+            className="form__select"
+            name="role"
+            data-testid="admin_manage__select-role"
+            onChange={ (e) => setRole(e.target.value) }
+          >
+            <option value="seller" selected>Vendedor</option>
+            <option value="customer">Cliente</option>
+            <option value="administrator">Administrador</option>
+          </select>
+        </label>
         <Button
           formbtn
           id="register-btn"
           className="login__btn"
-          value="REGISTER"
-          testId="common_register__button-register"
+          value="CADASTRAR"
+          testId="admin_manage__button-register"
           onClick={ (e) => registerUser(e) }
           disabled={ !validateLogin() }
         />
       </form>
-    </>
+    </div>
   );
 }
-
-export default RegisterForm;

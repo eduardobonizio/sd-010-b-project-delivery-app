@@ -11,9 +11,9 @@ const login = async (mail, password) => {
   return { name, email, role };
 };
 
-const register = async (name, email, password) => {
+const register = async (name, email, password, role) => {
   const result = await users.findOrCreate({ 
-    where: { email }, defaults: { name, email, password, role: 'customer' },
+    where: { email }, defaults: { name, email, password, role },
   });
   return result;
 };

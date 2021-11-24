@@ -8,6 +8,7 @@ function Input(props) {
       { name }
       <br />
       <input
+        className="form__input"
         data-testid={ testId }
         id={ id }
         type={ type }
