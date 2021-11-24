@@ -3,9 +3,9 @@ import './App.css';
 import { Route, Routes } from 'react-router-dom';
 
 import {
-  // ClientOrderDetails,
+  ClientOrderDetails,
   OrderDetails,
-  MyRequests,
+  // MyRequests,
   Products,
   Register,
   Checkout,
