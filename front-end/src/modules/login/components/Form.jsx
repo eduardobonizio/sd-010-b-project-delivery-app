@@ -14,6 +14,12 @@ function Form() {
   const [isValidate, setIsValidade] = useState(true);
   const [isNotFound, setIsNotFound] = useState(false);
 
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  if (user && user.role === 'customer') {
+    history.push('/customer/products');
+  }
+
   useEffect(() => {
     const validateForm = isValidateLogin(email, password);
 

@@ -1,30 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { formatSaveAndRenderPrice } from '../../../../helpers/functions';
 
-function Product({ index }) {
+function Product({ index, product }) {
+  const { name, quantity, unitPrice, subTotal } = product;
   return (
     <tr>
       <td
         data-testid={ `seller_order_details__element-order-table-item-number-${index}` }
       >
-        1
+        { (index + 1) }
       </td>
       <td
         data-testid={ `seller_order_details__element-order-table-name-${index}` }
       >
-        Descrição do produto
+        { name }
       </td>
       <td
         data-testid={ `seller_order_details__element-order-table-quantity-${index}` }
       >
-        5
+        { quantity }
       </td>
       <td>
         R$
         <span
           data-testid={ `seller_order_details__element-order-table-unit-price-${index}` }
         >
-          2,00
+          { formatSaveAndRenderPrice(unitPrice) }
         </span>
       </td>
       <td>
@@ -32,7 +34,7 @@ function Product({ index }) {
         <span
           data-testid={ `seller_order_details__element-order-table-sub-total-${index}` }
         >
-          10,00
+          { formatSaveAndRenderPrice(subTotal.toFixed(2)) }
         </span>
       </td>
     </tr>
@@ -42,5 +44,11 @@ function Product({ index }) {
 export default Product;
 
 Product.propTypes = {
+  product: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    quantity: PropTypes.number.isRequired,
+    unitPrice: PropTypes.string.isRequired,
+    subTotal: PropTypes.number.isRequired,
+  }).isRequired,
   index: PropTypes.number.isRequired,
 };

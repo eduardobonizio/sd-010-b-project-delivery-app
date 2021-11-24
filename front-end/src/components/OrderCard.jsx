@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { formatedDate } from '../helpers/functions';
+import { formatedDate, formatSaveAndRenderPrice } from '../helpers/functions';
 
 export default function OrderCard({ order }) {
   return (
@@ -31,7 +31,7 @@ export default function OrderCard({ order }) {
             <span
               data-testid={ `customer_orders__element-card-price-${order.id}` }
             >
-              { order.totalPrice }
+              { formatSaveAndRenderPrice(order.totalPrice) }
             </span>
           </p>
         </div>
