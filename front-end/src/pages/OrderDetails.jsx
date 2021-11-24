@@ -82,7 +82,6 @@ function OrderDetails() {
 
   socket.on('preparandoPedido', ([status]) => {
     setProductsDetails({ ...productsDetails, status });
-    console.log(productsDetails);
   });
 
   const buttonPreparingCheck = () => (

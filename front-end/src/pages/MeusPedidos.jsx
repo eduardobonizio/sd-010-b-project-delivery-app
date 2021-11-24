@@ -21,9 +21,9 @@ function MeusPedidos() {
   useEffect(async () => getPedidos(), [setOrdersCustomer]);
   const token = getFromLocalStorage('user');
 
-  socket.on('preparandoPedido', async () => {
-    await getPedidos();
-  });
+  socket.on('preparandoPedido', async () => getPedidos());
+
+  socket.on('pedidoRealizado', async () => getPedidos());
 
   return (
     <div>

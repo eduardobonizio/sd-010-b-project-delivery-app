@@ -8,5 +8,9 @@ module.exports = async (io) => {
       const data = await updateStatusSale(idVenda, status);
       io.emit('preparandoPedido', [idVenda, status]);
     });
+
+    socket.on('realizarPedido', () => {
+      io.emit('pedidoRealizado', 'pedido realizado')
+    })
 });
 }
