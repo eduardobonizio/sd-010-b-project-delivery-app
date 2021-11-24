@@ -22,7 +22,7 @@ export default function SalesStatus() {
         yourOrder="MEUS PEDIDOS"
         userName={ getStorage('user') && getStorage('user').name }
       />
-      {orders.length && orders.map(({ id, status, saleData, totalPrice, addresses }) => {
+      {orders.length && orders.map(({ id, status, saleData, totalPrice }) => {
         console.log(id);
         return (
           <Link to={ `/seller/orders/${id}` } key={ id }>
