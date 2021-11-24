@@ -12,7 +12,7 @@ function Card(props) {
     <main>
       <section>
         <h1
-          data-testid="customer_products__element-card-price-"
+          data-testid={ `customer_products__element-card-price-${id}` }
         >
           {price}
         </h1>
