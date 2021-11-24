@@ -60,10 +60,15 @@ export default function ListItemCheckout() {
       cart,
 
     };
-    console.log(objectOrder);
+
     const { data } = await checkoutProducts(objectOrder);
+<<<<<<< HEAD
     console.log('idOrder', data);
     return history.push(`/customer/orders/${data[0].saleId}`);
+=======
+
+    return history.push(`localhost:3000/customer/orders/${data[0].saleId}`);
+>>>>>>> d213b095e06b70435581eef29ece6db6df7f2589
   }
 
   return (

@@ -14,13 +14,22 @@ export default function FormLogin() {
 
   async function submit(e) {
     e.preventDefault();
-    const user = await login({ email, password: pass });
-    if (user.message) {
+    const userId = await login({ email, password: pass });
+    console.log(userId);
+    if (userId.message) {
       setErr(true);
       return setTimeout(() => setErr(false), threeSecond);
     }
-    createStorage('user', user.data[0]);
-    history.push('/customer/products');
+    const { data: [user] } = userId;
+    createStorage('user', userId.data[0]);
+    if (user.role === 'administrator') {
+      return history.push('/admin/manage');
+    } if (user.role === 'seller') {
+      return history.push('/seller/orders');
+    }
+    if (user.role === 'customer') {
+      history.push('/customer/products');
+    }
   }
 
   return (
