@@ -2,7 +2,9 @@ import React from 'react';
 import { Stack, Typography, Box } from '@mui/material';
 import PropTypes from 'prop-types';
 
-function StatusProductCard({ orderNum, status, orderDate, price, address }) {
+function StatusProductCard(
+  { index, orderNum, status, orderDate, price, address, testIdPreffix },
+) {
   return (
     // TODO: remove inline style
     <Box style={ { width: '550px' } }>
@@ -19,16 +21,31 @@ function StatusProductCard({ orderNum, status, orderDate, price, address }) {
           spacing={ 2 }
         >
           <Typography variant="caption">Pedido</Typography>
-          <Typography>{orderNum}</Typography>
+          <Typography
+            data-testid={ `${testIdPreffix}__element-order-id-${index}` }
+          >
+            {orderNum}
+          </Typography>
         </Stack>
-        <Box><Typography variant="h5">{ status }</Typography></Box>
+        <Box>
+          <Typography
+            variant="h5"
+            data-testid={ `${testIdPreffix}__element-delivery-status-${index}` }
+          >
+            { status }
+          </Typography>
+        </Box>
         <Stack
           direction="column"
           justifyContent="center"
           alignItems="center"
           spacing={ 2 }
         >
-          <Typography>{ orderDate }</Typography>
+          <Typography
+            data-testid={ `${testIdPreffix}__element-order-date-${index}` }
+          >
+            { orderDate }
+          </Typography>
           <Typography>{ `R$ ${price}` }</Typography>
         </Stack>
       </Stack>
@@ -42,7 +59,6 @@ function StatusProductCard({ orderNum, status, orderDate, price, address }) {
               spacing={ 0 }
             >
               <Typography>{address}</Typography>
-
             </Stack>
           ) : null
       }
@@ -55,11 +71,13 @@ StatusProductCard.defaultProps = {
 };
 
 StatusProductCard.propTypes = {
+  index: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   orderNum: PropTypes.number.isRequired,
   status: PropTypes.string.isRequired,
   orderDate: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   address: PropTypes.string,
+  testIdPreffix: PropTypes.string.isRequired,
 };
 
 export default StatusProductCard;

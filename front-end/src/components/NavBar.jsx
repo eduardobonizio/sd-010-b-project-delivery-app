@@ -35,8 +35,8 @@ function NavBar({ username, userRole }) {
   useEffect(() => {
     if (userRole === 'customer') {
       if (location.pathname === '/customer/products') setTabsValue(0);
-      if (location.pathname === '/customer/checkout') setTabsValue(1);
-      if (location.pathname === /\/customer\/orders/) setTabsValue(1);
+      if (location.pathname === '/customer/checkout') setTabsValue(0);
+      if (location.pathname === '/customer/orders') setTabsValue(1);
     }
   }, [location.pathname, userRole]);
 

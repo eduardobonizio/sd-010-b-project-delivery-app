@@ -16,6 +16,7 @@ import {
   allowedNavBarCustomerPaths,
   allowedNavBarSellerPaths,
   allowedNavBarAdminPaths } from './utils/allowanceToRender';
+import CustomerOrders from './pages/CustomerOrders';
 
 function App() {
   const location = useLocation();
@@ -49,6 +50,7 @@ function App() {
           <Route path="/customer/checkout" component={ CustomerCheckout } />
           <Route path="/login" component={ Login } />
           <Route path="/register" component={ Register } />
+          <Route path="/customer/orders" component={ CustomerOrders } />
           <Route exact path="/"><Redirect to="/login" /></Route>
         </Switch>
       </UsersProvider>
