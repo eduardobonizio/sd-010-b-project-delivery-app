@@ -14,10 +14,16 @@ const Login = () => {
   useEffect(() => {
     if (localStorage.user) {
       const { role } = JSON.parse(localStorage.user);
-      if (role === 'seller') {
+      switch (role) {
+      case 'administrator':
+        return navigate('/admin/manage');
+      case 'seller':
         return navigate('/seller/orders');
+      case 'customer':
+        return navigate('/customer/products');
+      default:
+        break;
       }
-      return navigate('/customer/products');
     }
 
     if (validarEmail(email) && validarSenha(password)) {
@@ -32,8 +38,10 @@ const Login = () => {
       localStorage.setItem('user', `${JSON.stringify(data)}`);
       setPassword('');
       if (data.role === 'seller') {
-        console.log(data.role);
         return navigate('/seller/orders');
+      }
+      if (data.role === 'administrator') {
+        return navigate('/admin/manage');
       }
       return navigate('/customer/products');
     } catch (error) {
