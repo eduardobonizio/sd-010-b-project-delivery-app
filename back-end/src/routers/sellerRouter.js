@@ -1,10 +1,13 @@
 const express = require('express');
+const auth = require('../middlewares/auth');
+
+const sellerController = require('../controllers/sellerController');
 
 const sellerRouter = express.Router();
+// sales
+sellerRouter.get('/orders', auth, sellerController.findAllSales);
 
-sellerRouter.get('/orders');
-
-sellerRouter.post('/order/:id');
+sellerRouter.post('/order/:id', auth, sellerController.findOrderByPk);
 
 module.exports = {
   sellerRouter,
