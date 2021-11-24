@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import apiCreateUser from '../../../services/register/apiRequestRegister';
+import beer from '../../../images/beer.png';
 import * as style from './style';
 
 export default function Register() {
@@ -40,7 +41,9 @@ export default function Register() {
 
   return (
     <style.CommonContainer>
-      <style.RegisterContainer />
+      <style.RegisterContainer>
+        <img src={ beer } alt="beer" />
+      </style.RegisterContainer>
       <style.CommonForm>
         <div id="inputs-group">
           <h1>Cadastre-se</h1>

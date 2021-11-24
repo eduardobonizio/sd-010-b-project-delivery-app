@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import * as style from './style';
 import { apiRequestLogin } from '../../../services/login/apiRequestLogin';
 import { setOnLocalStorage } from '../../../helpers/localStorage';
+import beer from '../../../images/beer.png';
 
 export default function Login() {
   const [password, setPassword] = useState('');
@@ -47,7 +48,9 @@ export default function Login() {
 
   return (
     <style.CommonContainer>
-      <style.LoginContainer />
+      <style.LoginContainer>
+        <img src={ beer } alt="beer" />
+      </style.LoginContainer>
       <style.CommonForm>
         <div id="inputs-group">
           <h1>Fazer login</h1>

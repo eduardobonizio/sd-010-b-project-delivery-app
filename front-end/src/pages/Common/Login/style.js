@@ -6,6 +6,8 @@ export const CommonContainer = styled.div`
     justify-content: center;
   }
 
+  color: #444;
+
   display: flex;
   height: 100vh;
   width: 100vw;
@@ -17,8 +19,44 @@ export const LoginContainer = styled.div`
   }
 
   background-color: #036B52;
+
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
   height: 100vh;
   width: 50%;
+
+  img {
+    max-width: 500px;
+
+    & {
+	    -webkit-animation: slide-top 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite alternate-reverse both;
+	    animation: slide-top 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite alternate-reverse both;
+    }
+
+    @-webkit-keyframes slide-top {
+      0% {
+        -webkit-transform: translateY(0);
+                transform: translateY(0);
+      }
+      100% {
+        -webkit-transform: translateY(-50px);
+                transform: translateY(-50px);
+      }
+    }
+    @keyframes slide-top {
+      0% {
+        -webkit-transform: translateY(0);
+                transform: translateY(0);
+      }
+      100% {
+        -webkit-transform: translateY(-50px);
+                transform: translateY(-50px);
+      }
+    }
+  }
+
 `;
 
 export const CommonForm = styled.form`
@@ -28,6 +66,12 @@ export const CommonForm = styled.form`
   justify-content: center;
   height: 100vh;
   width: 50%;
+
+  @media(max-width: 800px) {
+    background-color: #036B52;
+    width: 100%;
+  }
+
 
   #inputs-group {
     background-color: white;
@@ -43,6 +87,7 @@ export const CommonForm = styled.form`
     h1 {
       font-family: 'Baloo Da 2', sans-serif;
       padding: 10px;
+      color: #036B52;
     }
   }
 `;
@@ -95,6 +140,7 @@ export const LoginButton = styled.button`
 export const RegisterButton = styled.button`
   background: none;
   border: none;
+  color: #444;
 
   font-family: 'Baloo Da 2', sans-serif;
   font-weight: 400;
