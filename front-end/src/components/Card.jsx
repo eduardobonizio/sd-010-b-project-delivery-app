@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 // import Context from '../context/Context';
 
 function Card(props) {
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(0);
   const { item } = props;
   const { price, name, id } = item;
 
-  const totalPrice = price * quantity;
+  const sumPrice = price * quantity;
 
   const handleClick = () => {
     if (quantity > 1) {
@@ -22,7 +22,7 @@ function Card(props) {
           <h1
             data-testid={ `customer_products__element-card-price-${id}` }
           >
-            {totalPrice.toFixed(2).toString().replace(/\./, ',')}
+            {sumPrice.toFixed(2).toString().replace(/\./, ',')}
           </h1>
           <img
             src={ item.url_image }
