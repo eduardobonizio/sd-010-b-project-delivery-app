@@ -53,15 +53,15 @@ function StatusControllers({ componentData }) {
 
   return (
     <div className="seller-status-controllers">
-      <div data-testid={ dataTestId54 }>{ id }</div>
-      <div data-testid={ dataTestId55 }>{ saleDate.toLocaleDateString() }</div>
+      <div data-testid={ dataTestId54 }>{ sale.id }</div>
+      <div data-testid={ dataTestId55 }>{ sale.date }</div>
       <div>
         <div
           className="seller-status"
           data-testid={ dataTestId56 }
-          style={ backgroundColorByStatus[status.toUpperCase()] }
+          style={ backgroundColorByStatus[sale.deliveryStatus] }
         >
-          { status.toUpperCase() }
+          { sale.deliveryStatus }
         </div>
       </div>
       <div style={ { gridColumnStart: 5 } }>
