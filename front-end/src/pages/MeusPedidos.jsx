@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import { io } from 'socket.io-client';
 import NavBar from '../components/Navbar';
 import { getFromLocalStorage } from '../services/helpers/servicesLocalStorage';
 import getAllOrders from '../services/apis/getOrders';
@@ -8,15 +9,21 @@ import * as S from '../styles/MeusPedidos';
 
 function MeusPedidos() {
   const { setOrdersCustomer, ordersCustomer } = useContext(Context);
-  useEffect(() => {
-    const getPedidos = async () => {
-      const token = getFromLocalStorage('user');
-      const allOrders = await getAllOrders(token);
-      await setOrdersCustomer(allOrders);
-    };
-    getPedidos();
-  }, [setOrdersCustomer]);
+  // const [newStatus, setNewStatus] = useState(status);
+  const socket = io('http://localhost:3001');
+
+  const getPedidos = async () => {
+    const token = getFromLocalStorage('user');
+    const allOrders = await getAllOrders(token);
+    await setOrdersCustomer(allOrders);
+  };
+
+  useEffect(async () => getPedidos(), [setOrdersCustomer]);
   const token = getFromLocalStorage('user');
+
+  socket.on('preparandoPedido', async () => {
+    await getPedidos();
+  });
 
   return (
     <div>

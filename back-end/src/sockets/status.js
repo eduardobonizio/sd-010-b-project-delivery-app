@@ -6,7 +6,7 @@ module.exports = async (io) => {
 
     socket.on('preparando', async ({ idVenda, status }) => {
       const data = await updateStatusSale(idVenda, status);
-      if(data) io.emit('preparandoPedido', [idVenda, status]);
+      io.emit('preparandoPedido', [idVenda, status]);
     });
 });
 }

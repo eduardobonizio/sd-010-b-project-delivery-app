@@ -76,13 +76,23 @@ function OrderDetails() {
     </div>
   );
 
+  const changeStatus = (status) => {
+    socket.emit('preparando', { idVenda, status });
+  };
+
+  socket.on('preparandoPedido', ([status]) => {
+    setProductsDetails({ ...productsDetails, status });
+    console.log(productsDetails);
+  });
+
   const buttonPreparingCheck = () => (
     <div className="button-preparing-check">
       <button
         type="button"
         data-testid={ role + PREPARING_CHECK }
-        disabled={ productsDetails.status !== 'Pendente' }
-        onClick={ () => socket.emit('preparando', { idVenda, status: 'Preparando' }) }
+        disabled={ productsDetails.status !== 'Pendente'
+        || productsDetails.status === 'Entregue' }
+        onClick={ () => changeStatus('Preparando') }
       >
         PREPARAR PEDIDO
       </button>
@@ -93,8 +103,9 @@ function OrderDetails() {
     <div className="button-check-status">
       <button
         type="button"
-        disabled
+        disabled={ productsDetails.status !== 'Entregue' }
         data-testid={ role + CHECK_STAUS }
+        onClick={ () => changeStatus('Entregue') }
       >
         MARCAR COMO ENTREGUE
       </button>
@@ -105,8 +116,12 @@ function OrderDetails() {
     <div className="button-dispatch-check">
       <button
         type="button"
-        disabled
+        disabled={
+          productsDetails.status !== 'Em transito'
+          || productsDetails.status === 'Entregue'
+        }
         data-testid={ role + DISPACH_CHECK }
+        onClick={ () => changeStatus('Em transito') }
       >
         SAIU PARA ENTREGA
       </button>
