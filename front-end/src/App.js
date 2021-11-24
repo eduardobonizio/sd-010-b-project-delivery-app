@@ -10,6 +10,7 @@ import OrderDetail from './pages/OrderDetail';
 import OrderStatus from './pages/OrderStatus';
 import Checkout from './pages/Checkout';
 import SalesDetails from './pages/SalesDetails';
+import Admin from './pages/Admin';
 /**
  *
  * @returns
@@ -22,6 +23,7 @@ function App() {
           <Route exact path="/" component={ Home } />
           <Route path="/login" component={ Login } />
           <Route path="/register" component={ Register } />
+          <Route path="/admin/manage" component={ Admin } />
           <Route path="/customer/products" component={ Products } />
           <Route path="/customer/checkout" component={ Checkout } />
           <Route path="/customer/orders" component={ OrderStatus } />
