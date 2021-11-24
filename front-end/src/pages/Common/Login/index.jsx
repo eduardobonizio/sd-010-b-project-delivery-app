@@ -23,13 +23,15 @@ export default function Login() {
 
     if (login.role === 'customer') {
       console.log(user);
-      setOnLocalStorage('user', login);
       navigate('../customer/products', { replace: true });
     }
     if (login.role === 'administrator') {
-      setOnLocalStorage('user', login);
       navigate('../admin/manage', { replace: true });
     }
+    if (login.role === 'seller') {
+      navigate('../seller/orders', { replace: true });
+    }
+    setOnLocalStorage('user', login);
   };
 
   useEffect(() => {
