@@ -1,6 +1,7 @@
 const { sales, salesProducts } = require('../database/models');
 
 const userId = 'user_id';
+const sellerId = 'seller_id';
 const saleId = 'sale_id';
 const productId = 'product_id';
 
@@ -24,6 +25,14 @@ const getByUserId = async (id) => {
   return sale;
 };
 
+const getBySellerId = async (id) => {
+  const sale = await sales.findAll({
+    where: { [sellerId]: id },
+  }); 
+
+  return sale;
+};
+
 const createSales = async ({ cart, sale }) => {
   const createdSale = await sales.create(sale);
 
@@ -41,4 +50,5 @@ module.exports = {
   getById,
   createSales,
   getByUserId,
+  getBySellerId,
 };

@@ -22,9 +22,21 @@ const getByUserId = async ({ id }) => {
   }
 };
 
+const getBySellerId = async ({ id }) => {
+  try {
+    const sale = await Sales.getBySellerId(id);
+
+    return sale;
+  } catch (error) {
+    console.log(error);
+    return { message: 'No Contents', code: 204 };
+  }
+};
+
 module.exports = {
   getAll: Sales.getAll,
   getById,
   create: Sales.createSales,
   getByUserId,
+  getBySellerId,
 };

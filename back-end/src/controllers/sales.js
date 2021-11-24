@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getAll, getById, create, getByUserId } = require('../services/sales');
+const { getAll, getById, create, getByUserId, getBySellerId } = require('../services/sales');
 
 router.get('/', async (_req, res) => {
   const sales = await getAll();
@@ -9,6 +9,12 @@ router.get('/', async (_req, res) => {
 
 router.get('/user/:id', async (req, res) => {
   const sale = await getByUserId(req.params);
+
+  return res.status(200).json(sale);
+});
+
+router.get('/seller/:id', async (req, res) => {
+  const sale = await getBySellerId(req.params);
 
   return res.status(200).json(sale);
 });
