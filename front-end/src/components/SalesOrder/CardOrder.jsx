@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import ID from '../utils/dataTestIdDict';
-import '../styles/CardOrder.css';
+import ID from '../../utils/dataTestIdDict';
+import '../../styles/CardOrder.css';
 
 function Order({ sale }) {
   let colorStatus = 'pendente';
