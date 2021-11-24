@@ -9,6 +9,8 @@ import TableHeader from '../components/SellerOrderDetails/TableHeader';
 import dataTestIdDict from '../utils/dataTestIdDict';
 import '../styles/SellerOrderDetails.css';
 
+const { dataTestId64 } = dataTestIdDict;
+
 function SellerOrderDetails() {
   const { id } = useParams();
   console.log(id);
