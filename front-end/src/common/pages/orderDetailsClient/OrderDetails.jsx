@@ -7,14 +7,14 @@ import { postPurchase } from '../../../services/api';
 function OrderDetails() {
   const { dataUser, totalOrder, setTotalOrder } = React.useContext(Context);
 
-  async function handleCheckout() {
-    const checkout = await postPurchase(dataUser.token);
-    setTotalOrder(checkout);
-  }
-
   useEffect(() => {
+    async function handleCheckout() {
+      const checkout = await postPurchase(dataUser.token);
+      setTotalOrder(checkout);
+    }
+
     handleCheckout();
-  }, []);
+  }, [setTotalOrder, dataUser]);
 
   return (
     <div>

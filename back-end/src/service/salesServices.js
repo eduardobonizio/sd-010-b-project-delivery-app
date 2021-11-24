@@ -16,7 +16,6 @@ const addPurchase = async (products, saleId) => {
       ProductId: el.productId,
       quantity: el.quantity,
     })));
-  console.log(data, 'data lindo');
   
   return data;
 };

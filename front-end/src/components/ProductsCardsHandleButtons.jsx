@@ -23,7 +23,6 @@ const ProductsCardsHandleButtons = ({ el }) => {
     if (arrQuantitity.length > 0) {
       setQuantity(arrQuantitity[0]);
     }
-    console.log(arrQuantitity, arrQuantitity[0], 'arrquantity');
   }, []);
 
   useEffect(() => {

@@ -28,7 +28,6 @@ export default function Login() {
   };
 
   const handleLocalStorage = (user) => {
-    console.log(user);
     const { userRole, userName, userEmail, key, userId } = user;
     localStorage.setItem('user', JSON.stringify({
       userId,
@@ -63,8 +62,7 @@ export default function Login() {
         handleLocalStorage(data);
         setUserLogged(true);
       })
-      .catch((e) => {
-        console.log(e);
+      .catch(() => {
         setLoginError(true);
       });
   };
