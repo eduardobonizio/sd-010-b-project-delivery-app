@@ -9,7 +9,7 @@
   text-decoration: none;
 }
 
-.conteiner {
+.conteinerCustomer {
   border-radius: 5px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16) , 0 3px 6px rgba(0, 0, 0, 0.23);
   display: grid;
@@ -22,24 +22,11 @@
   margin: 10px;
 }
 
-.conteinerSeller {
-  border-radius: 5px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16) , 0 3px 6px rgba(0, 0, 0, 0.23);
-  display: grid;
-  grid-gap: 1px;
-  grid-template-areas: 'box1 box1'
-    'box2 box3'
-    'box2 box3'
-    'box2 box3'
-    'box4 box4';
-  margin: 10px;
-}
-
 .conteiner:hover {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25) , 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
-.status {
+.statusCustomer {
   align-content: center;
   align-items: center;
   border-radius: 5px 5px 0 0;
@@ -48,7 +35,7 @@
   justify-content: center;
 }
 
-.saleId {
+.saleIdCustomer {
   align-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.16);
@@ -59,23 +46,23 @@
   place-content: center;
 }
 
-.saleId p {
+.saleIdCustomer p {
   font-size: 20px;
   line-height: 0.1;
 }
 
-.divPrice {
+.divPriceCustomer {
   display: flex;
   font-size: 20px;
   line-height: 0.1;
   padding: 1px;
 }
 
-.divPrice p {
+.divPriceCustomer p {
   padding-right: 5px;
 }
 
-.dataPrice {
+.dataPriceCustomer {
   align-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.16);
@@ -85,23 +72,19 @@
   grid-area: box3;
 }
 
-.address {
-  grid-area: box4;
-}
-
-.pendente {
+.pendenteCustomer {
   background-color: rgb(246, 224, 97);
 }
 
-.preparando {
+.preparandoCustomer {
   background-color: rgb(177, 241, 117);
 }
 
-.entregue {
+.entregueCustomer {
   background-color: rgb(75, 149, 5);
 }
 
-.conteiner div {
+.conteinerCustomer div {
   padding: 15px;
 }
 
