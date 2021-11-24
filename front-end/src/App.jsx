@@ -15,7 +15,7 @@ function App() {
   return (
     <Routes>
       <Route exact path="/seller/orders/:id" element={ <SellerOrderDetails /> } />
-      <Route exact path="/customer/orders/:saleId" element={ <OrderDetails /> } />
+      <Route exact path="/customer/orders/:saleId" element={ <SalesDetailPage /> } />
       <Route exact path="/customer/checkout" element={ <Checkout /> } />
       <Route exact path="/customer/products" element={ <Products /> } />
       <Route exact path="/seller/orders" element={ <SellerOrders /> } />

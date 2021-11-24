@@ -36,9 +36,17 @@ function SaleDetails() {
       >
         {`PEDIDO NÚMERO: ${idNumber}`}
       </div>
-      <div data-testid={ `${test.dataTestId38}-${name}` }>{`VENDEDOR(A) ${name}`}</div>
-      <div data-testid={ `${test.dataTestId39}-${saleDate}` }>{`DATA ${formatedDate}`}</div>
-      <div data-testid={ `${test.dataTestId40}-${status}` }>{`STATUS ${status}`}</div>
+      <div
+        data-testid={ `${test.dataTestId38}-${name}` }
+      >
+        {`VENDEDOR(A) ${name}`}
+      </div>
+      <div
+        data-testid={ `${test.dataTestId39}-${saleDate}` }
+      >
+        {`DATA ${formatedDate}`}
+      </div>
+      <div data-testid={ `${test.dataTestId40}-${status}` }>{`${status}`}</div>
       <div>
         <button
           type="button"
