@@ -1,14 +1,27 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import test from '../../utils/dataTestIdDict';
 
 function renderProductCards({ id, name, price, quantity }) {
   return (
-    <li key={ id }>
-      {id}
-      {name}
-      {price}
-      {quantity}
-    </li>
+    <div key={ id }>
+      Item
+      <div data-testid={ `${test.dataTestId41}-${id}` }>{id}</div>
+      Descrição
+      <div data-testid={ `${test.dataTestId42}-${name}` }>{name}</div>
+      Quantitdade
+      <div data-testid={ `${test.dataTestId42}-${quantity}` }>{quantity}</div>
+      Valor unitário
+      <div data-testid={ `${test.dataTestId42}-${price}` }>{price}</div>
+      Sub-total
+      <div
+        data-testid={
+          `${test.dataTestId42}-${(quantity * price).toFixed(2)}`
+        }
+      >
+        {(quantity * price).toFixed(2)}
+      </div>
+    </div>
   );
 }
 
