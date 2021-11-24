@@ -4,7 +4,7 @@ const addNewSale = async (objeto) => {
     const { obj, id } = objeto;
     console.log('Obj', obj);
     // const date = new Date();
-    // console.log(date);
+    console.log(obj, id);
     const saleAdded = await Sale.create({
         userId: id,
         ...obj,

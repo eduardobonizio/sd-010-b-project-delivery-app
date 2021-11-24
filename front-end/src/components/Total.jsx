@@ -17,7 +17,7 @@ function Total() {
   return (
     <>
       <span>Total:</span>
-      <span>{total}</span>
+      <span data-testid="customer_checkout__element-order-total-price">{total}</span>
     </>
 
   );
