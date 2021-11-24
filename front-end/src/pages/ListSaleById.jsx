@@ -72,9 +72,11 @@ function Products() {
             MARCAR COMO ENTREGUE
           </button>
           <OrderDetailsTable order={ order.products } />
-          <span>
-            Total: R$
-            { ` ${order.totalPrice}` }
+          <span>Total: R$</span>
+          <span
+            data-testid="customer_order_details__element-order-total-price"
+          >
+            { order.totalPrice.split('.').join(',') }
           </span>
         </div>
       </>

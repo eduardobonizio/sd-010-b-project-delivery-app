@@ -47,11 +47,7 @@ function OrderDetailsTable({ order }) {
               R$
               { entry.price.split('.').join(',') }
             </td>
-            <td
-              data-testid={
-                `customer_order_details__element-order-table-total-price-${entry.id}`
-              }
-            >
+            <td>
               R$
               {
                 (parseFloat(entry.price)

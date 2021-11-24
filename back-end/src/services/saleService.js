@@ -55,7 +55,7 @@ const getOrderByPk = async ({ userId, id }) => {
       include: ['user', 'seller', 'products'],
     });
 
-    console.log(order.products);
+    console.log(order);
 
     if (!order) {
       return { code: StatusCodes.NOT_FOUND, message: 'Order not found' };
