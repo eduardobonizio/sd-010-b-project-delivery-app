@@ -98,8 +98,8 @@ export const Input = styled.input`
   border-radius: 6px;
   padding: 15px;
   border: none;
-  background-color: lightgray;
-  border: 1px solid lightgray;
+  background-color: rgb(220, 220, 220);
+  border: 1px solid rgb(220, 220, 220);
 
   &:focus {
     outline: none;
