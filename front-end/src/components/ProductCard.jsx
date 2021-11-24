@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Stack, Typography } from '@mui/material';
 import { ButtonUnstyled } from '@mui/core';
 import React, { useState, useEffect } from 'react';
@@ -14,7 +13,7 @@ function ProductCard({ name, image, price, id, setCartCallback }) {
 
   useEffect(() => {
     setCartCallback(name, price, quantity);
-  }, [quantity]);
+  });
   return (
     // TODO: Remove inline styles
     <Box style={ { width: '200px' } }>

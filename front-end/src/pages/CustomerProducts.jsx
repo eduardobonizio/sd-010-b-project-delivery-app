@@ -33,7 +33,6 @@ const CustomerProducts = () => {
         .reduce((soma, object) => (soma + (parseFloat(object.price.replace(',', '.'))
         * object.quantity)), 0));
     }
-    console.log(totalValue);
   };
 
   return isLoading
