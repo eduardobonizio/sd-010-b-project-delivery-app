@@ -34,7 +34,11 @@ const registerValidateService = async (name, email, password) => {
   return userData;
 };
 
+const getAllSellersService = () => User
+  .findAll({ where: { role: 'seller' }, attributes: { exclude: ['password'] } });
+
 module.exports = {
   loginValidateService,
   registerValidateService,
+  getAllSellersService,
 };
