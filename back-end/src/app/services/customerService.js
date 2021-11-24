@@ -22,15 +22,13 @@ const createSalles = async (sale) => {
     totalPrice,
     deliveryAddress,
     deliveryNumber,
-    saleDate: Date.now(),
-    status: 'Pendente',
   });
 
   products.forEach(async ({ id, quantity }) => {
     await SalesProduct.create({ saleId: newSale.id, productId: id, quantity });
   });
 
-  return newSale;
+  return { data: [{ saleId: newSale.id }] };
 };
 
 module.exports = {

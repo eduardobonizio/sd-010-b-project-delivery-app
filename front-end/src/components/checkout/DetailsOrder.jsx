@@ -6,7 +6,7 @@ import * as styles from './styles';
 
 function DetailsOrder() {
   const [detailsSales, setDetailsSales] = useState(
-    { seller: '1', address: '', number: 0 },
+    { seller: '1', address: '', number: '' },
   );
 
   const navigate = useNavigate();
@@ -35,11 +35,9 @@ function DetailsOrder() {
       products,
     };
 
-    console.log(newSales);
+    const { data } = await apiRequestSalesProduct(newSales, token);
 
-    const { sellerId } = await apiRequestSalesProduct(newSales, token);
-
-    navigate(`../customer/orders/${sellerId}`, { replace: true });
+    navigate(`../customer/orders/${data[0].saleId}`, { replace: true });
   }
 
   return (
