@@ -22,17 +22,17 @@ export default function SalesStatus() {
         yourOrder="MEUS PEDIDOS"
         userName={ getStorage('user') && getStorage('user').name }
       />
-      {orders.length && orders.map(({ id, status, saleData, totalPrice }) => {
+      {orders.length && orders.map(({ id, status, saleData, totalPrice, addresses }) => {
         console.log(id);
         return (
           <Link to={ `/seller/orders/${id}` } key={ id }>
             <span
-              data-testid={ `seller_orders__card-orderId-${id}` }
+              data-testid={ `seller_orders__element-order-id-${id}` }
             >
               {id}
             </span>
             <span
-              data-testid={ `seller_orders__card-deliveryStatus-${id}` }
+              data-testid={ `seller_orders__element-delivery-status-${id}` }
             >
               {status}
             </span>
@@ -42,7 +42,12 @@ export default function SalesStatus() {
               {saleData}
             </span>
             <span
-              data-testid={ `seller_orders__card-price-${id}` }
+              data-testid={ `seller_orders__element-card-price-${id}` }
+            >
+              {totalPrice}
+            </span>
+            <span
+              data-testid={ `seller_orders__element-card-address-${id}` }
             >
               {totalPrice}
             </span>

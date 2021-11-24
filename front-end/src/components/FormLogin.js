@@ -10,7 +10,7 @@ export default function FormLogin() {
   const [err, setErr] = useState(false);
 
   const verifyLogin = () => getStorage('user') && history.push('/customer/products');
-  verifyLogin()
+  verifyLogin();
 
   const PassLength = 6;
   const threeSecond = 3000;
