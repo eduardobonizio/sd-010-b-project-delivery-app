@@ -7,18 +7,18 @@ function headers(token) {
   };
 }
 
-export async function getAllUsersApi(token) {
-  const response = await api.get('/allusersadm', headers(token));
+export async function getAllUsersApi() {
+  const response = await api.get('/allusersadm');
 
   return response.data;
 }
 
-export async function removeUserApi(email) {
-  await api.delete('/deleteuser', email);
+export async function removeUserApi(id) {
+  await api.delete(`/deleteuser/${id}`);
   return 'ok';
 }
 
 export async function addUserApi(data, token) {
-  const response = await api.post('/register', data, headers(token));
+  const response = await api.post('/register', data, { headers: headers(token) });
   return response.data;
 }

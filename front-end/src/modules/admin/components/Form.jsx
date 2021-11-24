@@ -4,15 +4,15 @@ import { isValidateRegister } from '../../../helpers/validateRegister';
 import { useAdmin } from '../../../hooks/useAdmin';
 import './Form.scss';
 
-export const user = JSON.parse(localStorage.getItem('user'));
-
 function Form() {
+  const user = JSON.parse(localStorage.getItem('user'));
   const { addUser } = useAdmin();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('seller');
   const [isValidate, setIsValidade] = useState(true);
+  const [isNotFound, setIsNotFound] = useState(false);
 
   useEffect(() => {
     const validateForm = isValidateRegister(name, email, password);
@@ -25,19 +25,24 @@ function Form() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    setIsNotFound(false);
+
     const data = {
       name,
       email,
       password,
       role,
     };
-    const respUser = await addUserApi(data, user.token);
-    addUser(respUser);
-
-    setName('');
-    setEmail('');
-    setPassword('');
-    setRole('seller');
+    try {
+      const respUser = await addUserApi(data, user.token);
+      addUser(respUser);
+    } catch (_erro) {
+      setName('');
+      setEmail('');
+      setPassword('');
+      setRole('seller');
+      return setIsNotFound(true);
+    }
   }
 
   return (
@@ -93,12 +98,20 @@ function Form() {
         <button
           type="submit"
           className="btn btn-warning"
-          data-testid="admin_manage__select-role"
+          data-testid="admin_manage__button-register"
           disabled={ isValidate }
           onClick={ handleSubmit }
         >
           CADASTRAR
         </button>
+        {
+          isNotFound
+            && (
+              <p data-testid="admin_manage__element-invalid-register">
+                usuário já cadastrado
+              </p>
+            )
+        }
       </div>
     </div>
   );

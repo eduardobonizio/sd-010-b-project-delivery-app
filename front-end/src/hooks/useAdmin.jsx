@@ -11,9 +11,9 @@ export function AdminProvider({ children }) {
     setUsers([...users, user]);
   }
 
-  async function removeUser(email) {
-    await removeUserApi(email);
-    const removedUser = users.filter((user) => user.email !== email);
+  async function removeUser(id) {
+    await removeUserApi(id);
+    const removedUser = users.filter((user) => user.id !== id);
     setUsers(removedUser);
   }
 

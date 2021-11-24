@@ -18,12 +18,12 @@ const loginController = async (req, res) => {
   const { user, password } = req.body;
   const pEncripted = md5(password);
   if (pEncripted !== user.password) {
-    res.status(401).json({ message: '"email" or "password" is incorrect' });
+    return res.status(401).json({ message: '"email" or "password" is incorrect' });
   }
   delete user.password;
   delete user.id;
   const token = jwt.sign({ ...user }, secret, jwtConfig);
-  res.status(200).json({ ...user, token });
+  return res.status(200).json({ ...user, token });
 };
 
 const register = async (req, res) => {
@@ -34,8 +34,8 @@ const register = async (req, res) => {
     return res.status(201).json({ message: 'Created' });
   }
   const create = await User.create({ name, email, password, role });
-  return res.status(201).json({
-    id: create.id, name: create.name, email: create.email, role: create.role }); 
+  return res.status(201).json({ 
+    id: create.id, name: create.name, email: create.email, role: create.role });
 };
 
 module.exports = { loginController, register };

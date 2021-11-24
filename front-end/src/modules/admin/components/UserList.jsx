@@ -5,11 +5,11 @@ import User from './User';
 import './User.scss';
 
 function UserList() {
+  // const user = JSON.parse(localStorage.getItem('user'));
   const { users, setUsers } = useAdmin();
-  const user = JSON.parse(localStorage.getItem('user'));
 
   async function getUsers() {
-    const respUsers = await getAllUsersApi(user.token);
+    const respUsers = await getAllUsersApi();
     setUsers(respUsers);
   }
 
@@ -46,6 +46,7 @@ function UserList() {
             name={ oneUser.name }
             email={ oneUser.email }
             roleUser={ oneUser.role }
+            id={ oneUser.id }
           />))}
       </div>
     </div>

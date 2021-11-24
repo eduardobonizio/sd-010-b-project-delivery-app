@@ -5,8 +5,8 @@ const { Sale, User, SaleProduct, Product } = require('../database/models');
 const config = require('../database/config/config');
 
 const sequelize = new Sequelize(config.development);
-const date = new Date();
-
+const date = new Date().toLocaleString("en-EU", {timeZone: "Europe/London"})
+// https://stackoverflow.com/questions/439630/create-a-date-with-a-set-timezone-without-using-a-string-representation
 const createOrder = async (req, res) => {
   const token = req.headers.authorization;  
   const { sellerId, totalPrice, deliveryAddress, deliveryNumber, status, products } = req.body;
@@ -22,10 +22,10 @@ const createOrder = async (req, res) => {
         { saleId: dataValues.id, productId: product.productId, quantity: product.quantity }
         ));
       await SaleProduct.bulkCreate(saleProduct, { transaction: t });
-      res.status(201).json({ saleId: dataValues.id });
+      return res.status(201).json({ saleId: dataValues.id });
     });
     } catch (_error) {
-      res.status(500).json({ message: 'Erro no geranciamento da transação no banco' });
+      return res.status(500).json({ message: 'Erro no geranciamento da transação no banco' });
     }
 };
 
@@ -45,7 +45,7 @@ const findOrder = async (req, res) => {
   });
   const saleObj = {
     id, userName: searchUser.name, sellerName: sellerName.name, saleDate, status, totalPrice, saleItens };
-  res.status(200).json(saleObj);
+  return res.status(200).json(saleObj);
 };
 
 // const findAllOrders = (req, res) => {
