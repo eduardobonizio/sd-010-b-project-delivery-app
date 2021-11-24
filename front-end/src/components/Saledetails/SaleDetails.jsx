@@ -3,15 +3,13 @@ import axios from 'axios';
 import { useParams } from 'react-router';
 import SaleProductsDetails from './SaleProductsDetails';
 import test from '../../utils/dataTestIdDict';
+import { updateSaleStatus } from '../../services/sellerEndpoints';
 
 function SaleDetails() {
   const { id } = useParams();
   const idNumber = parseInt(id, 10);
-  console.log(typeof idNumber, 'aqui');
   const [saleDetails, setSaleDetails] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  console.log(saleDetails);
 
   useEffect(() => {
     const fetchProductDetails = async () => {
@@ -29,7 +27,10 @@ function SaleDetails() {
 
   const { seller: { name }, saleDate, status, products, totalPrice } = saleDetails;
   const formattedDate = new Date(saleDate).toLocaleDateString();
-  console.log(test.dataTestId37);
+
+  const handleClick = async (newStatus) => {
+    await updateSaleStatus(id, newStatus);
+  };
 
   return (
     <main>
@@ -46,7 +47,8 @@ function SaleDetails() {
         <button
           type="button"
           data-testid={ `${test.dataTestId47}` }
-          disabled
+          disabled={ (status !== 'Em Trânsito') }
+          onClick={ () => handleClick('Entregue') }
         >
           MARCAR COMO ENTREGUE
         </button>
