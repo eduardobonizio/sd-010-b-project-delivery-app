@@ -28,8 +28,8 @@ function SaleDetails() {
   }
 
   const { seller: { name }, saleDate, status, products, totalPrice } = saleDetails;
-  const formattedDate = new Date(saleDate).toLocaleDateString('pt-BR', { timeZone: 'UTC' });
-  console.log(test.dataTestId37);
+  const formattedDate = new Date(saleDate).toLocaleDateString('pt-BR', { 
+    timeZone: 'UTC' });
 
   return (
     <main>
