@@ -14,7 +14,7 @@ export default function TableItens() {
   };
 
   return (
-    <div>
+    <section style={ { padding: 80 } }>
       { arrayProducts.map(({ id, name, quantity, price, subTotal }, index) => (
         <div
           key={ index }
@@ -59,6 +59,6 @@ export default function TableItens() {
           </button>
         </div>
       )) }
-    </div>
+    </section>
   );
 }

@@ -10,7 +10,7 @@ function Checkout() {
   return (
     <div>
       <NavBar />
-      <TableItens style={ { margin: 50 } } />
+      <TableItens />
       <p
         data-testid="customer_checkout__element-order-total-price"
       >
