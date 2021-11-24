@@ -6,6 +6,9 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Products from './pages/Products';
 import CustomerOrders from './pages/CustomerOrders';
+import Checkout from './pages/Checkout';
+
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 import './App.css';
 import SellerOrder from './pages/SellerOrder';
@@ -34,9 +37,14 @@ function App() {
         navbar={ <NavBar order="Gerenciar usuários" /> }
       />
       <CustomRoute path="/register" component={ Register } />
-      <CustomRoute path="/customer/checkout" element={ <div /> } />
+
       <CustomRoute
-        navbar={ <NavBar /> }
+        path="/customer/checkout"
+        component={ Checkout }
+        navbar={ <NavBar order="Pedidos" /> }
+      />
+      <CustomRoute
+        navbar={ <NavBar order="Pedidos" /> }
         path="/customer/orders"
         component={ CustomerOrders }
       />
