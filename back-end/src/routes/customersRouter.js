@@ -8,7 +8,7 @@ const { validToken } = require('../middlewares/auth/validJWT');
 router.route('/orders/:id')
   .get(customerController.getById);
 
-router.route('/orders')
+router.route('/')
   .get(customerController.getAll);
 
 router.route('/')
