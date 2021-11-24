@@ -1,9 +1,11 @@
 const STATUS_CREATED = 201;
 const STATUS_BAD_REQUEST = 400;
 const NOT_FOUND = 404;
+const STATUS_OK = 200;
 
 module.exports = {
   STATUS_CREATED,
   STATUS_BAD_REQUEST,
   NOT_FOUND,
+  STATUS_OK,
 };

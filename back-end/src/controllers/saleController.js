@@ -1,5 +1,5 @@
 const saleService = require('../services/saleService');
-const { STATUS_CREATED } = require('../utils/constants');
+const { STATUS_CREATED, STATUS_OK } = require('../utils/constants');
 // TODO: Create user verification middleware to obtain user_id
 const createSale = async (req, res, next) => {
   try {
@@ -13,6 +13,17 @@ const createSale = async (req, res, next) => {
   }
 };
 
+const getAllSalesByCustomerId = (req, res, next) => {
+  try {
+    const foundAll = saleService.getAllSalesByCustomerId(req.params);
+    res.status(STATUS_OK).json(foundAll);
+  } catch (error) {
+    console.log(error);
+    next(500);
+  }
+};
+
 module.exports = {
   createSale,
+  getAllSalesByCustomerId,
 };
