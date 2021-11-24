@@ -58,7 +58,7 @@ export default function Provider({ children }) {
 
   useEffect(() => {
     updateTotalCartValue();
-  }, [cart]);
+  }, [cart, updateTotalCartValue]);
 
   const setProductQuantityManual = async ({ id, value }) => {
     const productExistsOnCart = cart.find((product) => product.id === id);
@@ -75,6 +75,15 @@ export default function Provider({ children }) {
     }
   };
 
+  function validateLogin(email, password) {
+    const validator = /^[A-Za-z0-9_.]+@[a-zA-Z_]+?\.[a-zA-Z_.]{2,7}$/;
+    const PASSWORD_MIN_LENGHT = 6;
+    if (password.length >= PASSWORD_MIN_LENGHT && validator.test(email)) {
+      return true;
+    }
+    return false;
+  }
+
   const context = {
     cart,
     totalCart,
@@ -82,6 +91,7 @@ export default function Provider({ children }) {
     decreaseProductFromCart,
     setProductQuantityManual,
     deleteProductFromCart,
+    validateLogin,
   };
 
   return (

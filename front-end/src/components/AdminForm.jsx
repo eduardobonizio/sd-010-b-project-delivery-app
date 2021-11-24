@@ -7,8 +7,13 @@ export default function AdminForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+<<<<<<< HEAD
   const [, setRole] = useState('seller');
   const [userStatus] = useState({ message: '', redirect: false });
+=======
+  const [role, setRole] = useState('seller');
+  const [userStatus, setUserStatus] = useState({ message: '', redirect: false });
+>>>>>>> main-group-14
 
   function validateLogin() {
     const emailRegex = /^[A-Za-z0-9_.]+@[a-zA-Z_]+?\.[a-zA-Z_.]{2,7}$/;
@@ -19,13 +24,23 @@ export default function AdminForm() {
       && emailRegex.test(email);
     return validation;
   }
+<<<<<<< HEAD
 
   /*   function registerUser(e) {
+=======
+  function registerUser(e) {
+    const { token } = JSON.parse(localStorage.getItem('user'));
+>>>>>>> main-group-14
     e.preventDefault();
     const requestOptions = {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
+<<<<<<< HEAD
+=======
+        authorization: token,
+
+>>>>>>> main-group-14
       },
       method: 'POST',
       body: JSON.stringify({ name, email, password, role }),
@@ -34,7 +49,11 @@ export default function AdminForm() {
     fetch('http://localhost:3001/users/adm/register', requestOptions)
       .then((res) => res.json())
       .then((data) => setUserStatus(data));
+<<<<<<< HEAD
   } */
+=======
+  }
+>>>>>>> main-group-14
 
   React.useEffect(() => {
     const span = document.getElementById('invalid-message');
@@ -76,7 +95,10 @@ export default function AdminForm() {
         <label htmlFor="role">
           Tipo
           <select
+<<<<<<< HEAD
             className="form__select"
+=======
+>>>>>>> main-group-14
             name="role"
             data-testid="admin_manage__select-role"
             onChange={ (e) => setRole(e.target.value) }
@@ -89,7 +111,11 @@ export default function AdminForm() {
         <Button
           formbtn
           id="register-btn"
+<<<<<<< HEAD
           className="login__btn"
+=======
+          className="login-btn"
+>>>>>>> main-group-14
           value="CADASTRAR"
           testId="admin_manage__button-register"
           onClick={ (e) => registerUser(e) }

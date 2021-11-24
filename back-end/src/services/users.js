@@ -12,7 +12,7 @@ const login = async (email, pass) => {
   }
 };
 
-const register = async (name, email, password, role = 'costumer') => {
+const register = async (name, email, password, role = 'customer') => {
   try {
     const [user, created] = await Model.register(name, email, password, role);
     if (created) return user;
@@ -26,4 +26,5 @@ module.exports = {
   getAll: Model.getAll,
   login,
   register,
+  getByRole: Model.getByRole,
 };
