@@ -10,9 +10,9 @@ const check =  await checkUserLogin(email, crypto);
 if(check === null) {
   return res.status(404).json({ message: 'Not Found'})
 }
-const { name, role } = check;
+const { name, role, id } = check;
 const token = jwtLogin(check);
-return res.status(200).json({ name, email, role, token });
+return res.status(200).json({ id, name, email, role, token });
 });
 
 module.exports = router;

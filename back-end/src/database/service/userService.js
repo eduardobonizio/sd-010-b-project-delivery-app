@@ -11,7 +11,12 @@ const checkUserExists = async (name, email) => {
   return check;
 };
 
-module.exports = { checkUserLogin, checkUserExists };
+const getUsers = async () => {
+  const users = await user.findAll();
+  return users;
+};
+
+module.exports = { checkUserLogin, checkUserExists, getUsers };
 
 // const { Op } = require("sequelize");
 // Post.findAll({

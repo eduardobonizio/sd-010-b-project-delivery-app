@@ -19,12 +19,6 @@ function Checkout() {
         </p>
       </section>
       <DetailsAdress />
-      <button
-        type="button"
-        data-testid="customer_checkout__button-submit-order"
-      >
-        FINALIZAR PEDIDO
-      </button>
     </div>
   );
 }
