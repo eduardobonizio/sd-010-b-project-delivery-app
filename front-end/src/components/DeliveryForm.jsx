@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function DeliveryForm() {
+  const [sellerList, setSellerList] = useState('');
+
   const style = {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around',
   };
+
+  const getSellers = () => {
+    const sellers = fetch('http://localhost:3001/users/sellers')
+      .then((response) => response.json())
+      .then((data) => data);
+
+    setSellerList(sellers);
+  };
+
+  useEffect(() => {
+    getSellers();
+  }, []);
+
   return (
     <form style={ style }>
       <label htmlFor="seller">
@@ -15,9 +30,13 @@ export default function DeliveryForm() {
           name="sellers"
           id="sellers"
         >
-          <option value="Vendedor1">Vendedor1</option>
-          <option value="Vendedor2">Vendedor2</option>
-          <option value="Vendedor3">Vendedor3</option>
+          {sellerList.map((seller) => (
+            <option
+              value={ seller.id }
+              key={ seller.id }
+            >
+              {seller.name}
+            </option>))}
         </select>
         <br />
       </label>

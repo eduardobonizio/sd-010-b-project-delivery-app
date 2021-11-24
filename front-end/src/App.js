@@ -45,16 +45,12 @@ function App() {
         navbar={ <NavBar order="Produtos" pedidos /> }
       />
       <CustomRoute
-<<<<<<< HEAD
         navbar={ <NavBar /> }
         path="/customer/orders/:id"
         component={ CustomerOrderDetails }
       />
       <CustomRoute
-        navbar={ <NavBar /> }
-=======
         navbar={ <NavBar oorder="Produtos" pedidos /> }
->>>>>>> main-group-14
         path="/customer/orders"
         component={ CustomerOrders }
       />
