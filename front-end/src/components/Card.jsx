@@ -21,6 +21,7 @@ function Card(props) {
             src={ item.url_image }
             alt="Descrição da Imagem"
             data-testid={ `customer_products__img-card-bg-image-${id}` }
+            width="100px"
           />
           <h5
             data-testid={ `customer_products__element-card-title-${id}` }
