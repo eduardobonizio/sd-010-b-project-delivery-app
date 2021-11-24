@@ -41,10 +41,10 @@ function App() {
       <CustomRoute
         path="/customer/checkout"
         component={ Checkout }
-        navbar={ <NavBar order="Pedidos" /> }
+        navbar={ <NavBar order="Produtos" pedidos /> }
       />
       <CustomRoute
-        navbar={ <NavBar order="Pedidos" /> }
+        navbar={ <NavBar oorder="Produtos" pedidos /> }
         path="/customer/orders"
         component={ CustomerOrders }
       />

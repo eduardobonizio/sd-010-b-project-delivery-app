@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { useHistory } from 'react-router-dom';
+
 import '../styles/navBar.css';
 
 function NavBar(props) {
   const { order, pedidos } = props;
+  const history = useHistory();
 
   const user = JSON.parse(localStorage.getItem('user'));
 
@@ -17,6 +20,11 @@ function NavBar(props) {
         Meus pedidos
       </section>
     );
+  }
+
+  function clearAndLogout() {
+    localStorage.removeItem('user');
+    history.push('/');
   }
 
   return (
@@ -35,11 +43,13 @@ function NavBar(props) {
           className="navbar__container__user"
           data-testid="customer_products__element-navbar-user-full-name"
         >
-          { user.name ? user.name : 'Cicrano da Silva' }
+          {user.name ? user.name : 'Cicrano da Silva'}
         </section>
         <section
           className="navbar__container__logout"
           data-testid="customer_products__element-navbar-link-logout"
+          onClick={ () => { clearAndLogout(); } }
+          aria-hidden="true"
         >
           Sair
         </section>
