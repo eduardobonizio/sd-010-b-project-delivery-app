@@ -26,12 +26,27 @@ form {
 
 }
 
+.admin_form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
 label {
   padding-bottom: 8px;
   padding-top: 15px;
 }
 
 label input {
+  border-radius: 10px;
+  box-sizing: border-box;
+  margin: 8px 0;
+  padding: 12px 20px;
+  width: 100%;
+}
+
+label select {
+  background: transparent;
   border-radius: 10px;
   box-sizing: border-box;
   margin: 8px 0;

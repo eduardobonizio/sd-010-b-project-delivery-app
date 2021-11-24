@@ -12,9 +12,9 @@ const login = async (email, pass) => {
   }
 };
 
-const register = async (name, email, password) => {
+const register = async (name, email, password, role = 'costumer') => {
   try {
-    const [user, created] = await Model.register(name, email, password);
+    const [user, created] = await Model.register(name, email, password, role);
     if (created) return user;
     throw new Error('Usuário já cadastrad');
   } catch (error) {
