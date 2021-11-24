@@ -5,16 +5,16 @@ import LoginPage from './pages/LoginPage';
 import Home from './pages/Home';
 import MyOrders from './pages/MyOrders';
 import Register from './pages/Register';
-import OrderDetails from './pages/OrderDetails';
 import Products from './pages/Products';
 import OrderPage from './pages/OrderPage';
+import SalesDetailPage from './pages/SalesDetailPage';
 
 import './styles/App.css';
 
 function App() {
   return (
     <Routes>
-      <Route exact path="/customer/orders/:saleId" element={ <OrderDetails /> } />
+      <Route exact path="/customer/orders/:id" element={ <SalesDetailPage /> } />
       <Route exact path="/customer/orders/" element={ <OrderPage /> } />
       <Route exact path="/customer/checkout" element={ <Checkout /> } />
       <Route exact path="/customer/products" element={ <Products /> } />
