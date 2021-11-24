@@ -31,19 +31,29 @@ function ProductCard(props) {
   };
 
   return (
-    <div>
-      <p data-testid={ `customer_products__element-card-title-${id}` }>{ name }</p>
+    <div className="main-card-product-div">
+      <p
+        data-testid={ `customer_products__element-card-title-${id}` }
+        className="default-product-text"
+      >
+        { name }
+      </p>
       <img
+        className="products-img"
         data-testid={ `customer_products__img-card-bg-image-${id}` }
         src={ urlImage }
         alt={ name }
         width="100px"
       />
-      <p data-testid={ `customer_products__element-card-price-${id}` }>
+      <p
+        data-testid={ `customer_products__element-card-price-${id}` }
+        className="default-product-text"
+      >
         { price.replace(/\./, ',') }
       </p>
       <div>
         <button
+          className="product-quant-input del"
           onClick={ onClick }
           data-testid={ `customer_products__button-card-rm-item-${id}` }
           type="button"
@@ -52,6 +62,7 @@ function ProductCard(props) {
           -
         </button>
         <input
+          className="product-quant-input"
           onChange={ onClick }
           data-testid={ `customer_products__input-card-quantity-${id}` }
           type="text"
@@ -59,6 +70,7 @@ function ProductCard(props) {
           name="setManual"
         />
         <button
+          className="product-quant-input add"
           onClick={ onClick }
           data-testid={ `customer_products__button-card-add-item-${id}` }
           type="button"

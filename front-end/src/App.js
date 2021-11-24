@@ -14,24 +14,22 @@ import manage from './pages/manage';
 
 function App() {
   return (
-    <main>
-      <Provider>
-        <BrowserRouter>
-          <Route exact path="/">
-            <Redirect to="/login" />
-          </Route>
-          <Route exact path="/login" component={ Login } />
-          <Route exact path="/register" component={ Register } />
-          <Route exact path="/customer/products" component={ Products } />
-          <Route exact path="/customer/checkout" component={ Checkout } />
-          <Route exact path="/customer/orders" component={ customerOrders } />
-          <Route exact path="/customer/orders/:id" component={ orderDetails } />
-          <Route exact path="/seller/orders" component={ sellerOrders } />
-          <Route exact path="/seller/orders/:id" component={ orderDetails } />
-          <Route exact path="/admin/manage" component={ manage } />
-        </BrowserRouter>
-      </Provider>
-    </main>
+    <Provider>
+      <BrowserRouter>
+        <Route exact path="/">
+          <Redirect to="/login" />
+        </Route>
+        <Route exact path="/login" component={ Login } />
+        <Route exact path="/register" component={ Register } />
+        <Route exact path="/customer/products" component={ Products } />
+        <Route exact path="/customer/checkout" component={ Checkout } />
+        <Route exact path="/customer/orders" component={ customerOrders } />
+        <Route exact path="/customer/orders/:id" component={ orderDetails } />
+        <Route exact path="/seller/orders" component={ sellerOrders } />
+        <Route exact path="/seller/orders/:id" component={ orderDetails } />
+        <Route exact path="/admin/manage" component={ manage } />
+      </BrowserRouter>
+    </Provider>
   );
 }
 
