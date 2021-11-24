@@ -1,10 +1,13 @@
 import React from 'react';
 import { Image, Navbar } from 'react-bootstrap';
 import Proptypes from 'prop-types';
+import { useHistory } from 'react-router';
 import LogoutButton from './LogoutButton';
 
 function TopBar(props) {
   const { name } = props;
+  const history = useHistory();
+  const onSellerPage = history.location.pathname.includes('/seller');
 
   return (
     <Navbar variant="dark" className="navbar">
@@ -27,15 +30,20 @@ function TopBar(props) {
             PRODUTOS
           </Navbar.Text>
         </a>
-        <a href="/customer/orders">
-          <Navbar.Text
-            className="orders align-items-center"
-            data-testid="customer_products__element-navbar-link-orders"
-            href="/customer/orders"
-          >
-            MEUS PEDIDOS
-          </Navbar.Text>
-        </a>
+        {
+          !onSellerPage
+          && (
+            <a href="/customer/orders">
+              <Navbar.Text
+                className="orders align-items-center"
+                data-testid="customer_products__element-navbar-link-orders"
+                href="/customer/orders"
+              >
+                MEUS PEDIDOS
+              </Navbar.Text>
+            </a>
+          )
+        }
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text
             className="name align-items-center"
