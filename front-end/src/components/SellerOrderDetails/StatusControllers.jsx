@@ -18,7 +18,7 @@ function StatusControllers({ componentData }) {
   const saleState = {
     id,
     date: new Date(saleDate).toLocaleDateString(),
-    deliveryStatus: status.toUpperCase(),
+    deliveryStatus: status,
   };
   const isDisabledButtonsState = { preparing: true, inTransit: true };
 
@@ -26,19 +26,19 @@ function StatusControllers({ componentData }) {
   const [isDisabledButtons, setIsDisabledButtons] = useState(isDisabledButtonsState);
 
   const backgroundColorByStatus = {
-    PENDENTE: { backgroundColor: '#D3C63C' },
-    PREPARANDO: { backgroundColor: '#87D53C' },
-    'EM TRÂNSITO': { backgroundColor: '#66CDAA' },
-    ENTREGUE: { backgroundColor: '#47D5B1' },
+    Pendente: { backgroundColor: '#D3C63C' },
+    Preparando: { backgroundColor: '#87D53C' },
+    'Em Trânsito': { backgroundColor: '#66CDAA' },
+    Entregue: { backgroundColor: '#47D5B1' },
   };
 
   useEffect(() => {
     switch (sale.deliveryStatus) {
-    case 'PENDENTE':
+    case 'Pendente':
       return setIsDisabledButtons({ inTransit: true, preparing: false });
-    case 'PREPARANDO':
+    case 'Preparando':
       return setIsDisabledButtons({ inTransit: false, preparing: true });
-    case 'EM TRÂNSITO':
+    case 'Em Trânsito':
       return setIsDisabledButtons({ inTransit: true, preparing: true });
     default:
       return setIsDisabledButtons({ inTransit: true, preparing: true });
