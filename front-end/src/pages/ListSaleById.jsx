@@ -7,6 +7,7 @@ import './css/Products.css';
 
 function Products() {
   const { name } = JSON.parse(localStorage.getItem('user'));
+  const [orderStatus, setOrderStatus] = useState('Pendente');
   const [order, setOrder] = useState();
   const history = useHistory();
 
@@ -23,10 +24,25 @@ function Products() {
     const getOrder = async () => {
       const myOrder = await axios.get(`http://localhost:3001/customer/orders/${orderId}`, config);
       setOrder(myOrder.data.order);
+      setOrderStatus(myOrder.data.order.status);
     };
 
     getOrder();
   }, [history.location.pathname]);
+
+  const updateButtonsText = async (status) => {
+    const historyArray = history.location.pathname.split('/');
+    const orderId = historyArray[historyArray.length - 1];
+    const { token } = JSON.parse(localStorage.getItem('user'));
+    const config = {
+      headers: {
+        authorization: token,
+      },
+    };
+    await axios.post(`http://localhost:3001/seller/orders/${orderId}`, { orderStatus: status }, config);
+
+    setOrderStatus(status);
+  };
 
   console.log(order);
   if (order) {
@@ -62,12 +78,13 @@ function Products() {
           <span
             data-testid={ label }
           >
-            { order.status }
+            { orderStatus }
           </span>
           <button
             data-testid="customer_order_details__button-delivery-check"
             type="button"
-            disabled
+            disabled={ orderStatus !== 'Em Trânsito' }
+            onClick={ () => updateButtonsText('Entregue') }
           >
             MARCAR COMO ENTREGUE
           </button>
