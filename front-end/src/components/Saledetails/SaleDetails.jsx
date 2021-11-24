@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams } from 'react-router';
 import SaleProductsDetails from './SaleProductsDetails';
 import test from '../../utils/dataTestIdDict';
+import { updateSaleStatus } from '../../services/sellerEndpoints';
 
 function SaleDetails() {
   const { id } = useParams();
@@ -25,39 +26,37 @@ function SaleDetails() {
   }
 
   const { seller: { name }, saleDate, status, products, totalPrice } = saleDetails;
+  const formattedDate = new Date(saleDate)
+    .toLocaleDateString('pt-BR', { timeZone: 'UTC' });
 
-  const formatedDate = new Date(saleDate).toLocaleDateString('pt-BR', { timeZone: 'UTC' });
+  const handleClick = async (newStatus) => {
+    await updateSaleStatus(id, newStatus);
+  };
 
   return (
     <main>
       <span>Detalhes do pedido</span>
       <div
-        data-testid={ `${test.dataTestId37}-${idNumber}` }
+        data-testid={ `${test.dataTestId37}` }
       >
         {`PEDIDO NÚMERO: ${idNumber}`}
       </div>
-      <div
-        data-testid={ `${test.dataTestId38}-${name}` }
-      >
-        {`VENDEDOR(A) ${name}`}
-      </div>
-      <div
-        data-testid={ `${test.dataTestId39}-${saleDate}` }
-      >
-        {`DATA ${formatedDate}`}
-      </div>
-      <div data-testid={ `${test.dataTestId40}-${status}` }>{`${status}`}</div>
+      <div data-testid={ `${test.dataTestId38}` }>{`VENDEDOR(A) ${name}`}</div>
+      <div data-testid={ `${test.dataTestId39}` }>{`${formattedDate}`}</div>
+      <div data-testid={ `${test.dataTestId40}` }>{`${status}`}</div>
       <div>
         <button
           type="button"
-          data-testid={ `${test.dataTestId40}-${status}` }
+          data-testid={ `${test.dataTestId47}` }
+          disabled={ (status !== 'Em Trânsito') }
+          onClick={ () => handleClick('Entregue') }
         >
           MARCAR COMO ENTREGUE
         </button>
       </div>
       <SaleProductsDetails products={ products } />
-      <div data-testid={ `${1}-${totalPrice}` }>
-        {`TOTAL ${totalPrice}`}
+      <div data-testid={ `${test.dataTestId45}` }>
+        {`${totalPrice.replace('.', ',')}`}
       </div>
     </main>
   );

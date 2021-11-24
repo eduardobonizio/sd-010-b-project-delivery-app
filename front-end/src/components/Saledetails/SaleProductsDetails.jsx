@@ -2,24 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import test from '../../utils/dataTestIdDict';
 
-function renderProductCards({ id, name, price, quantity }) {
+function renderProductCards({ id, name, price, quantity }, index) {
   return (
     <div key={ id }>
       Item
-      <div data-testid={ `${test.dataTestId41}` }>{id}</div>
+      <div data-testid={ `${test.dataTestId41}${index}` }>{id}</div>
       Descrição
-      <div data-testid={ `${test.dataTestId42}` }>{name}</div>
+      <div data-testid={ `${test.dataTestId42}${index}` }>{name}</div>
       Quantitdade
-      <div data-testid={ `${test.dataTestId43}` }>{quantity}</div>
+      <div data-testid={ `${test.dataTestId43}${index}` }>{quantity}</div>
       Valor unitário
-      <div data-testid={ `${test.dataTestId44}` }>{price}</div>
+      <div>{price}</div>
       Sub-total
       <div
-        data-testid={
-          `${test.dataTestId45}-${(quantity * price).toFixed(2)}`
-        }
+        data-testid={ `${test.dataTestId44}${index}` }
       >
-        {(quantity * price).toFixed(2)}
+        {(quantity * price).toFixed(2).replace('.', ',')}
       </div>
     </div>
   );

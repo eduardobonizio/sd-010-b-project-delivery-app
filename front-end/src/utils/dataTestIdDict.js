@@ -42,7 +42,7 @@ export default {
   dataTestId42: 'customer_order_details__element-order-table-name-',
   dataTestId43: 'customer_order_details__element-order-table-quantity-',
   dataTestId44: 'customer_order_details__element-order-table-sub-total-',
-  dataTestId45: 'customer_order_details__element-order-total-price-',
+  dataTestId45: 'customer_order_details__element-order-total-price',
   dataTestId47: 'customer_order_details__button-delivery-check',
   dataTestId48: 'seller_orders__element-order-id-',
   dataTestId49: 'seller_orders__element-delivery-status-',
