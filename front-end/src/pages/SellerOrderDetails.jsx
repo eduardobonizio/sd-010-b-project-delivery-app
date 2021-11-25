@@ -9,7 +9,7 @@ function OrderDetails() {
   const { status, handleSaleStatus, setStatus } = useProductContext();
   const [saleInfo, setsaleInfo] = useState({
     productsInfo: {}, seller: {} });
-  const [isFetched, setisFetched] = useState(false);
+  const [isFetched, setIsFetched] = useState(false);
 
   const params = useParams();
 
