@@ -1,18 +1,22 @@
 const moment = require('moment');
-const { Sale } = require('../../database/models');
+const { Sale, SalesProducts } = require('../../database/models');
 
 const finishSaleService = async (newSale) => {
-  const { totalPrice, deliveryAddress, deliveryNumber, userId, sellerId } = newSale;
+  const { totalPrice, deliveryAddress, deliveryNumber, userId, sellerId, cart } = newSale;
 
   const saleDate = moment().utc().format();
 
-  return Sale.create({
+  const dataSale = await Sale.create({
     totalPrice, deliveryAddress, deliveryNumber, saleDate, userId, sellerId, status: 'pendente',
   });
 
-  // cart.map((product) => {
-    // const { id, quantity } = product;
-  // });
+  cart.forEach((product) => {
+    const saleId = dataSale.id;
+    const { id: productId, quantity } = product;
+    SalesProducts.create({ saleId, productId, quantity });
+  });
+
+  return dataSale.id;
 };
 
 module.exports = { finishSaleService };
