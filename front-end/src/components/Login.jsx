@@ -76,21 +76,23 @@ const Login = () => {
           value={ password }
           placeholder="Password"
         />
-        <button
-          data-testid="common_login__button-login"
-          type="button"
-          onClick={ buttonLogin }
-          disabled={ isDisabled }
-        >
-          LOGIN
-        </button>
-        <button
-          data-testid="common_login__button-register"
-          onClick={ () => navigate('/register') }
-          type="button"
-        >
-          Ainda não tenho conta
-        </button>
+        <div className="conteiner-login-button">
+          <button
+            data-testid="common_login__button-login"
+            type="button"
+            onClick={ buttonLogin }
+            disabled={ isDisabled }
+          >
+            LOGIN
+          </button>
+          <button
+            data-testid="common_login__button-register"
+            onClick={ () => navigate('/register') }
+            type="button"
+          >
+            Ainda não tenho conta
+          </button>
+        </div>
       </form>
     </div>
   );
