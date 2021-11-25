@@ -42,7 +42,6 @@ const Provider = ({ children }) => {
       status: 'Pendente',
       products: listItem,
     };
-    console.log(totalOrder, 'totalORder');
     const { token } = JSON.parse(localStorage.getItem('user'));
     const newPurchase = await postPurchase(checkoutObj, token);
     history.push(`/customer/orders/${newPurchase.data.data[0].SaleId}`);
