@@ -5,9 +5,11 @@ const getAll = async () => Sale.findAll({
   include: [{ model: Product, as: 'products' }],
 });
 
-// const getAllByUserId = async (userid) =>  
+const getAllByUserId = async ({ id }) => Sale.findAll({
+  where: { userId: id },
+    include: [{ model: Product, as: 'products', through: { attributes: [] } }] });
 
 module.exports = {
   getAll,
-  // getAllByUserId,
+  getAllByUserId,
 };
