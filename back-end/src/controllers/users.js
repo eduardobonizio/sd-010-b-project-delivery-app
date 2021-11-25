@@ -4,11 +4,23 @@ const jwt = require('jsonwebtoken');
 const fs = require('fs');
 
 const md5 = require('md5');
-const { getAll, login, register } = require('../services/users');
+const { getAll, login, register, getByRole } = require('../services/users');
 const validateToken = require('../middleware/validation');
 
 router.get('/', async (_req, res) => {
   const users = await getAll();
+
+  return res.status(200).json(users);
+});
+
+router.get('/sellers', async (_req, res) => {
+  const users = await getByRole('seller');
+
+  return res.status(200).json(users);
+});
+
+router.get('/customers', async (_req, res) => {
+  const users = await getByRole('customer');
 
   return res.status(200).json(users);
 });

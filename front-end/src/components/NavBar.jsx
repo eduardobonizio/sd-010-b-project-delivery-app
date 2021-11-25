@@ -27,12 +27,18 @@ function NavBar(props) {
     history.push('/');
   }
 
+  function backToPage() {
+    history.goBack();
+  }
+
   return (
     <main className="navbar__container">
       <section className="navbar__left__container">
         <section
           className="navbar__container__products clicked__menu"
           data-testid="customer_products__element-navbar-link-products"
+          onClick={ () => { backToPage(); } }
+          aria-hidden="true"
         >
           { order }
         </section>

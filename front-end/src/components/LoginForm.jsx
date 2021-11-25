@@ -86,7 +86,7 @@ function LoginForm() {
         <Button
           formbtn
           id="login-btn"
-          className="login-btn"
+          className="login__btn"
           value="LOGIN"
           testId="common_login__button-login"
           onClick={ (e) => clickLogin(e) }
