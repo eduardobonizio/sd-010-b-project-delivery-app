@@ -31,7 +31,7 @@ module.exports = {
       },
       totalPrice: {
         allowNull: false,
-        type: Sequelize.DECIMAL,
+        type: Sequelize.DECIMAL(9,2),
         defaultValue: 0.00,
         field: 'total_price',
       },

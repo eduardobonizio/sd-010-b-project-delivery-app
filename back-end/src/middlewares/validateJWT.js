@@ -5,7 +5,6 @@ const SECRET = process.env.JWT_SECRET || '123456';
 
 const validateJWT = async (req, _res, next) => {
   const { authorization } = req.headers;
-  console.log('Authoriza', authorization);
   // if (authorization) {
   //   next('validationJWT');
   // }

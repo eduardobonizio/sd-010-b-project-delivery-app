@@ -1,12 +1,13 @@
 const salesService = require('../services/sales');
 
 const addSale = async (req, res) => {
-    const obj = req.body;
-    console.log(obj, 'ReqUser', req.user);
+    const { objSale, objSaleProduct } = req.body;
+    console.log(objSale, 'ReqUser', req.user, objSaleProduct);
     const { id } = req.user;
     const objeto = {
         id,
-        obj,
+        objSale,
+        objSaleProduct,
     };
     const saleAdded = await salesService.addNewSale(objeto);
 

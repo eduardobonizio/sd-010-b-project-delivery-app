@@ -10,7 +10,16 @@ const getSaleProduct = async (req, res, next) => {
   res.status(200).json(saleWithProducts);
 };
 
+const addNewSales = async (req, res) => {
+  const { saleId, productId, quantity } = req.body;
+  console.log('saleId', saleId, 'productId', productId, 'quant', quantity);
+
+  const sale = await saleProductsService.addSales(saleId, productId, quantity);
+
+  return res.status(201).json(sale);
+};
+
 module.exports = {
   getSaleProduct,
-
+  addNewSales,
 };
