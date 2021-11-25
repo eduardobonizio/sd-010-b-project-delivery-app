@@ -17,7 +17,7 @@ function OrderDetails() {
   useEffect(() => {
     APITOKEN.fetchSaleInfo(params.id).then((response) => {
       setsaleInfo(response.data);
-      setisFetched(true);
+      setIsFetched(true);
       setStatus(saleInfo.productsInfo.status);
     });
   }, [params.id, saleInfo.productsInfo.status, setStatus]);
