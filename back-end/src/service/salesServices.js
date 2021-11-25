@@ -31,8 +31,6 @@ const addPurchase = async (products, saleId) => {
 //   return data;
 // };
 
-
-
 const setPurchaseById = async (id) => {
   const { dataValues: purchaseById } = await Sale.findByPk(id, {
     include: [{
