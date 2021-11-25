@@ -1,12 +1,17 @@
 const { Sale, Product, SalesProducts } = require('../../database/models');
 
-const getAllSalesProductsBySeleId = async (seleId) => {
-  const result = SalesProducts.findAll({
+const getAllSalesProductsBySeleId = async (saleId) => {
+  const result = await SalesProducts.findAll({
     raw: true,
-    where: { seleId },
+    where: { saleId },
   });
-  const products = result.map(({ productId }) => productId);
-  return products;
+  const products = result.map(async ({ productId }) => Product.findOne({
+    raw: true,
+    where: { id: productId },
+  }));
+
+  const data = Promise.all(products);
+  return data;
 };
 
 const getAll = async () => Sale.findAll({
