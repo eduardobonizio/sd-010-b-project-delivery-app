@@ -56,79 +56,83 @@ function RegisterFormAdm() {
   };
 
   return (
-    <form className="forms-adm">
-      <label htmlFor="nome">
-        Nome
-        <input
-          type="text"
-          name="nome"
-          placeholder="Insira seu nome"
-          data-testid={ ID.dataTestId65 }
-          onChange={ (event) => handleRegisterForm(event) }
-        />
-        {
-          !validarNome(nome)
-            ? <ErrorMessage input="nome" />
-            : null
-        }
-      </label>
-      <label htmlFor="email">
-        Email
-        <input
-          type="email"
-          name="email"
-          placeholder="Insira seu email"
-          data-testid={ ID.dataTestId66 }
-          onChange={ (event) => handleRegisterForm(event) }
-        />
-        {
-          !validarEmail(email)
-            ? <ErrorMessage input="email" />
-            : null
-        }
-      </label>
-      <label htmlFor="password">
-        Senha
-        <input
-          type="password"
-          name="senha"
-          placeholder="Insira sua senha"
-          data-testid={ ID.dataTestId78 }
-          onChange={ (event) => handleRegisterForm(event) }
-        />
-        {
-          !validarSenha(senha)
-            ? <ErrorMessage input="senha" />
-            : null
-        }
-      </label>
-      <label htmlFor="tipo">
-        Tipo
-        <select
-          name="role"
-          data-testid={ ID.dataTestId68 }
-          onChange={ (event) => handleRegisterForm(event) }
-          defaultValue="Vendedor"
+    <div className="conteiner-form-adm">
+      <span>Cadastrar novos usuários</span>
+      <form className="forms-adm">
+        <label htmlFor="nome">
+          <p className="paraf-form-adm">Name</p>
+          <input
+            type="text"
+            name="nome"
+            placeholder="Insira seu nome"
+            data-testid={ ID.dataTestId65 }
+            onChange={ (event) => handleRegisterForm(event) }
+          />
+          {
+            !validarNome(nome)
+              ? <ErrorMessage input="nome" />
+              : null
+          }
+        </label>
+        <label htmlFor="email">
+          Email
+          <input
+            type="email"
+            name="email"
+            placeholder="Insira seu email"
+            data-testid={ ID.dataTestId66 }
+            onChange={ (event) => handleRegisterForm(event) }
+          />
+          {
+            !validarEmail(email)
+              ? <ErrorMessage input="email" />
+              : null
+          }
+        </label>
+        <label htmlFor="password">
+          Senha
+          <input
+            type="password"
+            name="senha"
+            placeholder="Insira sua senha"
+            data-testid={ ID.dataTestId78 }
+            onChange={ (event) => handleRegisterForm(event) }
+          />
+          {
+            !validarSenha(senha)
+              ? <ErrorMessage input="senha" />
+              : null
+          }
+        </label>
+        <label htmlFor="tipo">
+          Tipo
+          <select
+            name="role"
+            data-testid={ ID.dataTestId68 }
+            onChange={ (event) => handleRegisterForm(event) }
+            defaultValue="Vendedor"
+          >
+            <option value="custumer">Usuário</option>
+            <option value="seller">Vendedor</option>
+            <option value="administrator">Administrador</option>
+          </select>
+        </label>
+        <button
+          type="button"
+          disabled={ ableButton() }
+          onClick={ handleSendRegister }
+          data-testid={ ID.dataTestId69 }
         >
-          <option value="custumer">Usuário</option>
-          <option value="seller">Vendedor</option>
-          <option value="administrator">Administrador</option>
-        </select>
-      </label>
-      <button
-        type="button"
-        disabled={ ableButton() }
-        onClick={ handleSendRegister }
-        data-testid={ ID.dataTestId69 }
-      >
-        Cadastrar
-      </button>
-      {
-        isValidData
-          ? null
-          : <ErrorMessage input="invalid-data" />
-      }
-    </form>);
+          Cadastrar
+        </button>
+        {
+          isValidData
+            ? null
+            : <ErrorMessage input="invalid-data" />
+        }
+      </form>
+    </div>
+  );
 }
 
 export default RegisterFormAdm;
