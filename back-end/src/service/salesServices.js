@@ -1,16 +1,14 @@
 const { User, Product, Sale, SalesProducts } = require('../database/models');
 
 const addSale = async (saleInfo) => {
-  const sale = saleInfo;
-  delete sale.products;
-  const data = await Sale.create(sale);
+  console.log(saleInfo)
+  const data = await Sale.create(saleInfo);
   return data;
 };
 
 const addPurchase = async (products, saleId) => {
   const data = await Promise
   .all(products.map(async (el) => 
-    // console.log('sale_id', el, typeof saleId, saleId);
       SalesProducts.create({
       SaleId: saleId,
       ProductId: el.productId,
