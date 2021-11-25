@@ -3,8 +3,8 @@ const { finishSaleService } = require('../services/saleService');
 
 const finishSaleController = async (req, res) => {
   const newSale = req.body;
-  const dataSale = await finishSaleService(newSale);
-  res.status(StatusCodes.CREATED).json({ dataSale });
+  const saleId = await finishSaleService(newSale);
+  res.status(StatusCodes.CREATED).json({ saleId });
 };
 
 module.exports = { finishSaleController };
