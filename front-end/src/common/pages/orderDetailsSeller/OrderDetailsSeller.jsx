@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Header from '../../../components/ProductsComponents/Header';
 import { getAllOrdersBySellerId, setOrdersStatus } from '../../../services/api';
 import OrderDetails from '../../../components/OrderDetailsSeller/OrderDetailsSeller';
@@ -20,6 +21,8 @@ const OrderDetailsSeller = () => {
 
     console.log(response, 'data cheiroso', data.id);
   };
+  const { id } = useParams();
+  console.log(id, 'params');
 
   useEffect(() => {
     fetchOrders();
