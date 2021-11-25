@@ -1,5 +1,5 @@
 const salesProduct = (sequelize, DataTypes) => {
-  const salesProduct = sequelize.define("saleProduct",
+  const salesProduct = sequelize.define("salesProduct",
   { quantity: DataTypes.INTEGER },
   {
     timestamps: false,

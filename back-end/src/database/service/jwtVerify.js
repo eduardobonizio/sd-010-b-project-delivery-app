@@ -4,10 +4,9 @@ const jwtKey = require("fs")
   .trim();
 
 const jwtValid = (token) => {
-  console.log('token', token);
-  console.log('jwtVerify');
+  // console.log('token', token);
+  // console.log('jwtVerify');
     const verify = jwt.verify(token, jwtKey);
-    console.log(verify);
     // quando eu faço req.user ou req.qualquerCoisa eu consigo exportar o verify ou qualquer outro nome;
     return verify;
 };

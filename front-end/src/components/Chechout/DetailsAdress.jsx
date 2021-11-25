@@ -5,7 +5,7 @@ import moment from 'moment';
 import LoginContext from '../../context/LoginContext';
 
 export default function DetailsAdress() {
-  const { totalPrice } = useContext(LoginContext);
+  const { totalPrice, arrayProducts } = useContext(LoginContext);
   const [data, setData] = useState([]);
   const [address, setAddress] = useState('');
   const [numberAddress, setNumberAddress] = useState('');
@@ -38,6 +38,7 @@ export default function DetailsAdress() {
     now,
     sellerId,
     userId: user.id,
+    arrayProducts,
   };
 
   const buy = async () => {
@@ -60,7 +61,7 @@ export default function DetailsAdress() {
 
   return (
     <session>
-      { console.log(data, sellerId) }
+      { console.log(arrayProducts) }
       <h1>Detalhes e Endereço para Entrega</h1>
       <select
         name="seller"
