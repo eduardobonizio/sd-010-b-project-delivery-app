@@ -11,7 +11,7 @@ function ListCardProdutos({ products }) {
   useEffect(() => {
     insertCart({ id, name, price, quantity });
     // eslint-disable-next-line
-  }, [quantity]);
+  }, [quantity, id, name, price, quantity]);
 
   const addItem = async () => {
     await setQuantity(quantity + 1);
