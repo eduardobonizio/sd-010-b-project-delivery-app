@@ -30,6 +30,8 @@ export default function DetailsAdress() {
     headers: { Authorization: token },
   };
 
+  console.log(totalPrice);
+
   const bodyParameters = {
     totalPrice,
     address,

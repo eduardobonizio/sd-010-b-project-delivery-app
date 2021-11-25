@@ -39,7 +39,6 @@ export default function TableItens() {
             data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }
           >
             { `${price.replace('.', ',')}  ` }
-            { console.log(subTotal) }
           </span>
           { ' ' }
           <span
@@ -53,7 +52,6 @@ export default function TableItens() {
             data-testid={ `customer_checkout__element-order-table-remove-${index}` }
             onClick={ () => removeItems(id, subTotal) }
           >
-            { console.log(arrayProducts) }
             Remover
           </button>
         </div>

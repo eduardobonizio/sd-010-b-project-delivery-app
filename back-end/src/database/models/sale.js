@@ -1,7 +1,7 @@
 const dados = (DataTypes) => (
   {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    total_price: DataTypes.DECIMAL,
+    total_price: DataTypes.DECIMAL(10, 2),
     delivery_address: DataTypes.STRING,
     delivery_number: DataTypes.STRING,
     sale_date: DataTypes.DATE,
