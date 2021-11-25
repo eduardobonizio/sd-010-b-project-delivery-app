@@ -17,13 +17,15 @@ const ProductsList = ({ products }) => (
   </main>
 );
 
-ProductsList.propTypes = {
-  products: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    url_image: PropTypes.string.isRequired,
-  })).isRequired,
-};
+// ProductsList.propTypes = {
+//   products: PropTypes.arrayOf(PropTypes.shape({
+//     id: PropTypes.number.isRequired,
+//     name: PropTypes.string.isRequired,
+//     price: PropTypes.number.isRequired,
+//     url_image: PropTypes.string.isRequired,
+//   })).isRequired,
+// };
+
+ProductsList.propTypes = PropTypes.instanceOf({}).isRequired;
 
 export default ProductsList;

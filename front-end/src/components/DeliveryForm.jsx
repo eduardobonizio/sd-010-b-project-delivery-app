@@ -1,18 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useHistory } from 'react-router';
+import { Redirect } from 'react-router-dom';
 import Context from '../context/Context';
 
 export default function DeliveryForm() {
   const { cart, totalCart } = React.useContext(Context);
   const [sellerList, setSellerList] = useState([]);
-  const [dataSale, setDataSale] = useState({});
+  const [orderId, setOrderId] = useState(0);
   const [redirect, setRedirect] = useState(false);
   const user = JSON.parse(localStorage.getItem('user'));
   const sellerIdRef = useRef();
   const addressRef = useRef();
   const addressNumberRef = useRef();
-
-  const history = useHistory();
 
   const style = {
     display: 'flex',
@@ -47,7 +45,7 @@ export default function DeliveryForm() {
     };
     fetch('http://localhost:3001/sales/', requestOptions)
       .then((res) => res.json())
-      .then((data) => setDataSale(data))
+      .then((data) => setOrderId(data.sale.id))
       .then(() => setRedirect(true));
   };
 
@@ -55,12 +53,13 @@ export default function DeliveryForm() {
     getSellers();
   }, []);
 
-  useEffect(() => {
-    if (redirect) {
-      history.push(`/customer/orders/${dataSale.sale.id}`);
-    }
-  }, [redirect]);
+  // useEffect(() => {
+  //   if (redirect) {
+  //     history.push(`/customer/orders/${dataSale.sale.id}`);
+  //   }
+  // }, [redirect]);
 
+  if (redirect) return <Redirect to={ `/customer/orders/${orderId}` } />;
   return (
     <form style={ style }>
       <label htmlFor="seller">
@@ -102,7 +101,7 @@ export default function DeliveryForm() {
       <button
         data-testid="customer_checkout__button-submit-order"
         type="button"
-        onClick={ () => { createSale(); } }
+        onClick={ createSale }
       >
         Finalizar Pedido
       </button>

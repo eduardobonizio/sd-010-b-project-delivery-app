@@ -19,8 +19,6 @@ import NavBar from './components/NavBar';
 function App() {
   return (
     <Switch>
-      {/* Vai receber props com path, comp e para verificar se vai renderizar
-      com ou sem navbar horizontal */}
       <CustomRoute path="/login" component={ Login } /* navbar={ <NavBar /> } */ />
       <CustomRoute
         path="/customer/products"
