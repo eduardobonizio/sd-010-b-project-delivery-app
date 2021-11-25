@@ -18,7 +18,9 @@ const OrderCard = ({ order: {
     <CardContainerLeft>
       <div>Pedido</div>
       {/* 1 */}
-      <div data-testid={ `seller_orders__element-order-id-${id}` }>{`000${id}`.slice(DIGITS)}</div>
+      <div data-testid={ `seller_orders__element-order-id-${id}` }>
+        {`000${id}`.slice(DIGITS)}
+      </div>
     </CardContainerLeft>
     <CardContainerRight>
       <CardContainerRightTop>
