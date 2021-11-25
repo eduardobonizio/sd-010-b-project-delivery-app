@@ -3,23 +3,17 @@ import React, { createContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useLocation } from 'react-router-dom';
 import tokenHandler from '../helper/functions/tokenHandler';
-import { getAllProducts } from '../services/api';
+import { getAllProducts, postPurchase } from '../services/api';
 import translateToCamelCase from '../helper/functions/translateProductsToCamelCase';
 
 const Context = createContext();
-const seller = [
-  {
-    id: 1,
-    name: 'João',
-  },
-];
 
 const Provider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [orderInProgress, setOrderInProgress] = useState([]);
   const [totalOrder, setTotalOrder] = useState(0);
   const [dataUser, setDataUser] = useState({});
-  const [sellers, setSellers] = useState(seller);
+  const [sellers, setSellers] = useState([]);
   const [chooseSeller, setChooseSeller] = useState();
   const [purchaseAddress, setPurchaseAddress] = useState('');
   const [addressNumber, setAddressNumber] = useState('');
@@ -27,18 +21,33 @@ const Provider = ({ children }) => {
   const location = useLocation();
   const history = useHistory();
 
-  function checkoutPurchase() {
-    const checkoutKeys = {
-      userId: dataUser.id,
-      sellerId: chooseSeller.id,
+  async function checkoutPurchase() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const listItem = orderInProgress.map((item) => {
+      const revisedItem = item;
+      revisedItem.productId = item.id;
+      delete revisedItem.id;
+      delete revisedItem.name;
+      delete revisedItem.price;
+      delete revisedItem.url;
+      return revisedItem;
+    });
+    const checkoutObj = {
+      userId: user.userId,
+      sellerId: chooseSeller,
       totalPrice: totalOrder,
       deliveryAddress: purchaseAddress,
       deliveryNumber: addressNumber,
       saleDate: new Date(),
       status: 'Pendente',
-      products: orderInProgress,
+      products: listItem,
     };
-    console.log(checkoutKeys);
+    console.log(totalOrder, 'totalORder');
+    const { token } = JSON.parse(localStorage.getItem('user'));
+    const newPurchase = await postPurchase(checkoutObj, token);
+    history.push(`/customer/orders/${newPurchase.data.data[0].SaleId}`);
+    setOrderInProgress([]);
+    setTotalOrder(0);
   }
 
   function removeProduct(productIndex) {
@@ -47,6 +56,11 @@ const Provider = ({ children }) => {
     );
     return setOrderInProgress(clearProduct);
   }
+
+  const getAllPurchase = async () => {
+    const { data } = await getPurchase(dataUser.id);
+    setProducts(data);
+  };
 
   const context = {
     products,
@@ -69,6 +83,7 @@ const Provider = ({ children }) => {
     setOrdered,
     sellers,
     setSellers,
+    getAllPurchase,
   };
 
   const fetchProducts = async () => {
@@ -93,11 +108,11 @@ const Provider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem('carrinho', JSON.stringify(orderInProgress));
     localStorage.setItem('price', JSON.stringify(totalOrder));
-    const kart = orderInProgress.map(
+    const cart = orderInProgress.map(
       ({ price, quantity }) => parseFloat(price) * quantity,
     );
-    if (kart.length > 0) {
-      const value = kart.reduce((acc, curr) => acc + curr);
+    if (cart.length > 0) {
+      const value = cart.reduce((acc, curr) => acc + curr);
       return setTotalOrder(parseFloat(value.toFixed(2)));
     }
     return setTotalOrder(0);

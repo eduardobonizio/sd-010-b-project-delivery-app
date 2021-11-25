@@ -119,10 +119,11 @@ describe(requirement(18), () => {
 describe(requirement(19), () => {
   test(`O avaliador tentará realizar a remoção de itens validando-os na tabela`, async () => {
     const { productsToExclude, newCart } = cartReduced(itemList);
-
+    
+    
     showCurrentCart({ cart: productsToExclude }, requirement(19), 'Produtos que serão deletados');
     showCurrentCart(newCart, requirement(19),'Nova lista de produtos');
-
+    
     for (let i = productsToExclude.length - one ; i >= zero; i -= one) {
       const { listItem } = productsToExclude[i];
       await expect(page).toClickOnElement({

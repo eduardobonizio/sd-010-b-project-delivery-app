@@ -1,5 +1,5 @@
 import React from 'react';
-import { Context } from '../provider/Provider';
+import { Context } from '../../provider/Provider';
 
 function PurchaseOrderBtn() {
   const { checkoutPurchase } = React.useContext(Context);
@@ -7,7 +7,7 @@ function PurchaseOrderBtn() {
     <button
       type="button"
       data-testid="customer_checkout__button-submit-order"
-      onClick={ () => checkoutPurchase() }
+      onClick={ async () => checkoutPurchase() }
     >
       FINALIZAR PEDIDO
     </button>

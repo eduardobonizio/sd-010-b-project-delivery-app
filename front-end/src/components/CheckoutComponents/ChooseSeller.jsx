@@ -1,12 +1,18 @@
 import React, { useEffect } from 'react';
-import { Context } from '../provider/Provider';
+import axios from 'axios';
+import { Context } from '../../provider/Provider';
 
 function ChooseSeller() {
-  const { sellers, setChooseSeller } = React.useContext(Context);
+  const { sellers, setChooseSeller, setSellers } = React.useContext(Context);
 
   useEffect(() => {
-    setChooseSeller(sellers[0].name);
-  }, [sellers, setChooseSeller]);
+    axios.get('http://localhost:3001/sellers')
+      .then(({ data }) => {
+        setSellers(data);
+        return data;
+      })
+      .then((data) => setChooseSeller(data[0].id));
+  }, [setChooseSeller, setSellers]);
 
   return (
     <label htmlFor="chooseSeller">
@@ -15,12 +21,12 @@ function ChooseSeller() {
         id="chooseSeller"
         name="chooseSeller"
         data-testid="customer_checkout__select-seller"
-        onChange={ (e) => setChooseSeller(e.target.value) }
+        onChange={ (e) => setChooseSeller(Number(e.target.value)) }
       >
         {sellers.map((sell) => (
           <option
             key={ sell.id }
-            value={ sell.name }
+            value={ sell.id }
           >
             {sell.name}
           </option>
