@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React
-  from 'react';
+import React from 'react';
 import Proptypes from 'prop-types';
 import moment from 'moment';
 import '../../styles/OrderDetailsSeller.css';
