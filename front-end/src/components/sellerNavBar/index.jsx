@@ -22,7 +22,7 @@ export default function SellerNavBar({ id, name, saleDate, status }) {
       </p>
       <button
         type="button"
-        default
+        disabled
         data-testid="customer_order_details__button-delivery-check"
       >
         marcar como entregue
