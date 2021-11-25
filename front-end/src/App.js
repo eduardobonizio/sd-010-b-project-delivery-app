@@ -7,6 +7,7 @@ import Register from './pages/Register';
 import Products from './pages/Products';
 import CustomerOrders from './pages/CustomerOrders';
 import CustomerOrderDetails from './pages/CustomerOrderDetails';
+import SellerOrderDetails from './pages/SellerOrderDetails';
 import Checkout from './pages/Checkout';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -45,7 +46,7 @@ function App() {
       <CustomRoute
         navbar={ <NavBar /> }
         path="/seller/orders/:id"
-        component={ CustomerOrderDetails }
+        component={ SellerOrderDetails }
       />
       <CustomRoute
         path="/seller/orders"
