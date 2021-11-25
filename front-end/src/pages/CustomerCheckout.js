@@ -27,6 +27,7 @@ function CustomerCheckout() {
   return (
     <div>
       <NavBar />
+      <h2>Detalhe do Pedido</h2>
       <div className="checkout-item">
         {selected.map((item, index) => (
           <div key={ item.id }>
