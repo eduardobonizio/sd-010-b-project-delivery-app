@@ -15,10 +15,10 @@ const OrderCard = ({ order: {
   delivery_number: number,
 } }) => (
   <CardContainer>
-    <CardContainerLeft data-testid={ `seller_orders__element-order-id-${id}` }>
+    <CardContainerLeft>
       <div>Pedido</div>
       {/* 1 */}
-      <div>{`000${id}`.slice(DIGITS)}</div>
+      <div data-testid={ `seller_orders__element-order-id-${id}` }>{`000${id}`.slice(DIGITS)}</div>
     </CardContainerLeft>
     <CardContainerRight>
       <CardContainerRightTop>
