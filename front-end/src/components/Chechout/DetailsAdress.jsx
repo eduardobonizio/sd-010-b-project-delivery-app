@@ -42,14 +42,11 @@ export default function DetailsAdress() {
   };
 
   const buy = async () => {
-    console.log('buy');
     const respLogin = await axios.post(
       'http://localhost:3001/sales',
       bodyParameters,
       config,
     );
-
-    console.log('oi', respLogin);
     setSaleId(respLogin.data.id);
     setRedirect(true);
   };

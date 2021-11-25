@@ -9,7 +9,6 @@ import Checkout from '../pages/customer/Checkout';
 
 const Routes = () => {
   const location = useLocation();
-  console.log(location.pathname);
   return (
     <Switch>
       {location.pathname === '/'

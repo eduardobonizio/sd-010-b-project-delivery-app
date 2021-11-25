@@ -10,6 +10,7 @@ router.post('/', async (req, res) => {
   if (!validToken) {
     return res.status(404).json({ message: 'something wrong' })
   }
+  // totalPrice=Math.round((totalPrice * 100) / 100).toFixed(2);
   const create =  await createSale(totalPrice, address, numberAddress, now, userId, sellerId);
     return res.status(201).json(create);
   });
