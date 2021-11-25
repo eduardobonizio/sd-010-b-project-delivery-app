@@ -12,8 +12,8 @@ function CustomerOrders() {
   useEffect(() => {
     // const userLS = JSON.parse(localStorage.getItem('user'));
     const callbackAsync = async () => {
-      // eslint-disable-next-line no-magic-numbers
-      const customerOrders = await getCustomerOrders(3);
+      const testId = 3;
+      const customerOrders = await getCustomerOrders(testId);
       setOrders(customerOrders.data);
     };
 
