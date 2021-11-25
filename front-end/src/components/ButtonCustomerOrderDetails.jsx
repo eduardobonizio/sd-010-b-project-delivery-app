@@ -8,7 +8,7 @@ function ButtonCustomerOrderDetails({ status, handleSaleStatus, id }) {
         disabled={ status !== 'Em Trânsito' }
         data-testid="customer_order_details__button-delivery-check"
         type="button"
-        name="delivired"
+        name="delivered"
         onClick={ (e) => handleSaleStatus(e, id) }
       >
         Marcar como entregue
