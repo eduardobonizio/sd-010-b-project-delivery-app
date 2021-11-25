@@ -1,7 +1,6 @@
 const { User, Product, Sale, SalesProducts } = require('../database/models');
 
 const addSale = async (saleInfo) => {
-  console.log(saleInfo)
   const data = await Sale.create(saleInfo);
   return data;
 };

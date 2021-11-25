@@ -2,17 +2,8 @@ const Sale = require('../../service/salesServices');
 
 const addPurchase = async (req, res) => {
   try {
-    const {
-      userId,
-      sellerId,
-      totalPrice,
-      deliveryAddress,
-      deliveryNumber,
-      saleDate,
-      status,
-      products
-    } = req.body;
-
+    const { userId, sellerId, totalPrice, deliveryAddress,
+      deliveryNumber, saleDate, status, products } = req.body;
     const { id } = await Sale.addSale({
       userId,
       sellerId,
