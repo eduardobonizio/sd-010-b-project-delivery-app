@@ -7,6 +7,15 @@ import { getStorage } from '../utils/localStorage';
 export default function OrderStatus() {
   const [orders, setOrders] = useState([]);
 
+  const date = (data) => {
+    const newDate = new Date(data)
+    const dia = newDate.getDate()
+    const mes = (newDate.getMonth()+1).toString()
+    const ano = newDate.getFullYear()
+    return `${dia}/${mes}/${ano}`
+  }
+
+
   useEffect(() => {
     const takeOrders = async () => {
       const { data } = await getOrders();
@@ -24,7 +33,7 @@ export default function OrderStatus() {
         userName={ getStorage('user') && getStorage('user').name }
       />
 
-      {orders.length && orders.map(({ id, status, saleData, totalPrice }) => {
+      {orders.length && orders.map(({ id, status, saleDate, totalPrice }) => {
         console.log(id);
         return (
           <Link to={ `/customer/orders/${id}` } key={ id }>
@@ -41,12 +50,12 @@ export default function OrderStatus() {
             <span
               data-testid={ `customer_orders__element-order-date-${id}` }
             >
-              {saleData}
+              {date(saleDate)}
             </span>
             <span
               data-testid={ `customer_orders__element-card-price-${id}` }
             >
-              {totalPrice}
+              {totalPrice.replace(/\./, ",")}
             </span>
           </Link>
         );

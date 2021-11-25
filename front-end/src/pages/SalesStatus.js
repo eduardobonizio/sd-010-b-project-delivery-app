@@ -15,6 +15,14 @@ export default function SalesStatus() {
     takeOrders();
   }, []);
 
+  const date = (data) => {
+    const newDate = new Date(data)
+    const dia = newDate.getDate()
+    const mes = (newDate.getMonth()+1).toString()
+    const ano = newDate.getFullYear()
+    return `${dia}/${mes}/${ano}`
+  }
+
   return (
     <div>
       <Header
@@ -22,8 +30,8 @@ export default function SalesStatus() {
         yourOrder="MEUS PEDIDOS"
         userName={ getStorage('user') && getStorage('user').name }
       />
-      {orders.length && orders.map(({ id, status, saleData, totalPrice }) => {
-        console.log(id);
+      {orders.length && orders.map(({ id, status, saleDate, totalPrice, deliveryAddress, deliveryNumber }) => {
+        console.log(orders);
         return (
           <Link to={ `/seller/orders/${id}` } key={ id }>
             <span
@@ -39,7 +47,7 @@ export default function SalesStatus() {
             <span
               data-testid={ `seller_orders__element-order-date-${id}` }
             >
-              {saleData}
+              {date(saleDate)}
             </span>
             <span
               data-testid={ `seller_orders__element-card-price-${id}` }
@@ -49,7 +57,7 @@ export default function SalesStatus() {
             <span
               data-testid={ `seller_orders__element-card-address-${id}` }
             >
-              {totalPrice}
+              {`${deliveryAddress}, ${deliveryNumber}`}
             </span>
           </Link>
         );
