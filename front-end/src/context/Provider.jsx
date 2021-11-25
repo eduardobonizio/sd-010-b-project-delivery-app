@@ -14,6 +14,7 @@ function Provider({ children }) {
   const [errorMsg, setErrorMsg] = useState(false);
   const [products, setProducts] = useState([]);
   const [totalPrice, setTotaPrice] = useState(0);
+  const [total, setTotal] = useState(0);
   const history = useHistory();
 
   const getAllProducts = async () => {
@@ -58,6 +59,8 @@ function Provider({ children }) {
     products,
     totalPrice,
     setTotaPrice,
+    total,
+    setTotal,
   };
 
   return (
