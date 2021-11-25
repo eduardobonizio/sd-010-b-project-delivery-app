@@ -13,13 +13,11 @@ const postPurchase = async (checkoutObj, token) => {
 
 const getAllProducts = async () => {
   const endpoint = 'http://localhost:3001/products';
-  // const token = localStorage.getItem('token');
 
   const responses = fetch(endpoint, {
     method: 'GET',
     headers: {
       'Content-Type': APPLICATION,
-      // authorization: token,
     },
   })
     .then((response) => response.json())
