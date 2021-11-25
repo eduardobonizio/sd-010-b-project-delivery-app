@@ -1,5 +1,6 @@
 import React from 'react';
 import NavBar from '../components/navBar';
+import OrderTable from '../components/orderTable';
 
 export default function OrderDetails() {
   return (
@@ -24,25 +25,7 @@ export default function OrderDetails() {
       <span data-testid="customer_order_details__button-delivery-check">
         botao marcar como entregue
       </span>
-
-      <span data-testid="customer_order_details__element-order-table-item-number-0">
-        numero do item
-      </span>
-      <span data-testid="customer_order_details__element-order-table-name-0">
-        nome do item
-      </span>
-      <span data-testid="customer_order_details__element-order-table-quantity-0">
-        quantidade do item
-      </span>
-      <span data-testid="customer_order_details__element-order-table-sub-total-0">
-        valor do item
-      </span>
-      <span data-testid="customer_order_details__element-order-total-price-0">
-        sub total do item
-      </span>
-      <span data-testid="depois colocar o data testid aqui">
-        total
-      </span>
+      <OrderTable />
     </>
   );
 }
