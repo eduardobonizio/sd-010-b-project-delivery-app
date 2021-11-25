@@ -143,8 +143,8 @@ export default function CustomerOrderDetails() {
           <section className="customer-order-details__header">Valor</section>
           <section className="customer-order-details__header">Subtotal</section>
         </main>
-        {orderItems.map((orderItem) => (
-          <main key={ orderItem.item } className="customer-order-details__container">
+        {orderItems.map((orderItem, id) => (
+          <main key={ id } className="customer-order-details__container">
             <section className="customer-order-details__item">
               { orderItem.item }
             </section>
