@@ -33,7 +33,7 @@ export function OrderProvider({ children }) {
   useEffect(() => {
     getOrders();
   }, []);
-  console.log(sellerSingleOrder);
+
   client.on('statusUpdated', (data) => {
     // updateOrders(customerOrders, data, setCustomerOrders);
     // updateSingleOrder(customerSingleOrder, data, setCustomerSingleOrder);
