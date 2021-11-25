@@ -26,7 +26,7 @@ export default function DeliveryForm() {
       .then((data) => setSellerList(data));
   };
 
-  const createSale = () => {
+  const createSale = async () => {
     const requestOptions = {
       headers: {
         Accept: 'application/json',
@@ -45,7 +45,7 @@ export default function DeliveryForm() {
           status: 'Pendente',
         } }),
     };
-    fetch('http://localhost:3001/sales/', requestOptions)
+    await fetch('http://localhost:3001/sales/', requestOptions)
       .then((res) => res.json())
       .then((data) => setDataSale(data))
       .then(() => setRedirect(true));
@@ -87,6 +87,7 @@ export default function DeliveryForm() {
           data-testid="customer_checkout__input-address"
           type="text"
           name="address"
+          autoComplete="off"
           ref={ addressRef }
         />
       </label>
