@@ -26,8 +26,6 @@ form {
 
 }
 
-<<<<<<< HEAD
-=======
 .admin_form {
   display: flex;
   flex-direction: row;
@@ -91,7 +89,6 @@ label select {
   width: 15vw;
 }
 
->>>>>>> main-group-14
 .invalid-message {
   color: red;
   font-weight: 700;
