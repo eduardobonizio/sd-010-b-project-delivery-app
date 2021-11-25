@@ -12,13 +12,13 @@ function MeusPedidos() {
   // const [newStatus, setNewStatus] = useState(status);
   const socket = io('http://localhost:3001');
 
-  const getPedidos = async () => {
+  const getPedidos = useCallback(async () => {
     const token = getFromLocalStorage('user');
     const allOrders = await getAllOrders(token);
     await setOrdersCustomer(allOrders);
-  };
+  }, [setOrdersCustomer]);
 
-  useEffect(() => getPedidos(), [setOrdersCustomer]);
+  useEffect(() => getPedidos(), [getPedidos, setOrdersCustomer]);
   const token = getFromLocalStorage('user');
 
   socket.on('preparandoPedido', async () => getPedidos());
