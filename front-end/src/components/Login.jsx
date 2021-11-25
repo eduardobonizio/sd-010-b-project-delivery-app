@@ -55,6 +55,11 @@ const Login = () => {
   return (
     <div className="App">
       <form action="" className="form-login">
+        {
+          isValidPW
+            ? <span data-testid={ TEST_INVALID_EMAIL }>Password ou E-mail invalido!</span>
+            : null
+        }
         <input
           data-testid="common_login__input-email"
           type="text"
@@ -86,11 +91,6 @@ const Login = () => {
         >
           Ainda não tenho conta
         </button>
-        {
-          isValidPW
-            ? <span data-testid={ TEST_INVALID_EMAIL }>Password ou E-mail invalido!</span>
-            : null
-        }
       </form>
     </div>
   );

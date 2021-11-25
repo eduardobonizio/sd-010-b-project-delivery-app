@@ -19,11 +19,13 @@ function Products() {
         localStorage.setItem('carrinho', JSON.stringify([]));
         setProducts(data);
       } catch (error) {
+        localStorage.clear();
+        navigate('/login');
         return error;
       }
     };
     execute();
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="div-main">

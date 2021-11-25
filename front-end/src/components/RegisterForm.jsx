@@ -49,7 +49,7 @@ function RegisterForm() {
   };
 
   return (
-    <form>
+    <form className="form-register">
       <label htmlFor="nome">
         Nome
         <input
