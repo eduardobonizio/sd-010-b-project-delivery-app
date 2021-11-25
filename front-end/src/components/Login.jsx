@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../services/API';
-
+import '../styles/Login.css';
 import DeliveryContext from '../context/DeliveryContext';
 
 const Login = () => {
@@ -54,7 +54,7 @@ const Login = () => {
 
   return (
     <div className="App">
-      <form action="">
+      <form action="" className="form-login">
         <input
           data-testid="common_login__input-email"
           type="text"

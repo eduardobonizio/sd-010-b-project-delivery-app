@@ -1,0 +1,10 @@
+.form-login {
+  border: 1px solid grey;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  height: 60%;
+  justify-content: space-between;
+  margin: 10%;
+  padding: 40px;
+}

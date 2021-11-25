@@ -1,4 +1,3 @@
-/* import axios from 'axios'; */
 import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DeliveryContext from '../context/DeliveryContext';
@@ -46,16 +45,9 @@ function RegisterFormAdm() {
   };
 
   const handleSendRegister = async (event) => {
-    /* const { token } = JSON.parse(localStorage.user); */
     event.preventDefault();
     try {
       registerAdm(nome, senha, email, papel);
-      /* await axios.post('http://localhost:3001/register/adm', {
-        name: nome,
-        password: senha,
-        email,
-        role: papel,
-      }, { headers: { Authorization: token } }); */
     } catch (err) {
       console.log(err);
       setIsValidData(false);
@@ -64,7 +56,7 @@ function RegisterFormAdm() {
   };
 
   return (
-    <form>
+    <form className="forms-adm">
       <label htmlFor="nome">
         Nome
         <input
