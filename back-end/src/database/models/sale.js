@@ -4,7 +4,7 @@ const dados = (DataTypes) => (
     total_price: DataTypes.DECIMAL,
     delivery_address: DataTypes.STRING,
     delivery_number: DataTypes.STRING,
-    sale_date: DataTypes.DATE,
+    sale_date: { type: DataTypes.DATE, defaultValue: Date.now() },
     status: DataTypes.STRING,
     user_id: DataTypes.INTEGER,
     seller_id: DataTypes.INTEGER,

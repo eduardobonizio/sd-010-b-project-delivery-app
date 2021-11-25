@@ -20,7 +20,9 @@ export default function DetailsAdress() {
     axios.get('http://localhost:3001/users')
       .then((result) => {
         setData(result.data);
-        setSellerId(result.data[0].id);
+        const idSeller = result.data.find(({ role }) => role === 'seller');
+        console.log(idSeller);
+        setSellerId(idSeller.id);
       });
   }, []);
 
@@ -42,6 +44,7 @@ export default function DetailsAdress() {
   };
 
   const buy = async () => {
+    console.log(sellerId);
     const respLogin = await axios.post(
       'http://localhost:3001/sales',
       bodyParameters,
@@ -61,7 +64,7 @@ export default function DetailsAdress() {
 
   return (
     <session>
-      { console.log(arrayProducts) }
+      { console.log(sellerId) }
       <h1>Detalhes e Endereço para Entrega</h1>
       <select
         name="seller"
