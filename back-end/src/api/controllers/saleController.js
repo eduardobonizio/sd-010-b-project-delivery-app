@@ -50,7 +50,6 @@ const getSaleInfo = async (req, res, next) => {
     const productsInfo = await saleService.getSaleInfo(id);
     return res.status(200).json(productsInfo);
   } catch (e) {
-    console.log(e.message);
     next(e);
   }
 };
