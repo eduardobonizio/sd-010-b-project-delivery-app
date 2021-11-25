@@ -18,81 +18,12 @@ import ProductTableListCard from '../components/ProductTableListCard';
 import UsersContext from '../context/Users/UsersContext';
 import ProductsContext from '../context/Products/ProductsContext';
 
-import APICalls from '../services/APICalls';
+import createSale from '../api/createSale';
 
-// Just for testing until macro requirement 3 isn't finished
-const PRODUCT_OBJ_ARRAY = [{
-  id: 1,
-  description: 'Skol Lata 250ml',
-  quantity: 2,
-  unitPrice: 2.20,
-},
-{
-  id: 2,
-  description: 'Império Lata 250ml',
-  quantity: 2,
-  unitPrice: 2.20,
-},
-{
-  id: 3,
-  description: 'Brahma Lata 250ml',
-  quantity: 2,
-  unitPrice: 2.20,
-},
-{
-  id: 4,
-  description: 'Budweiser Lata 250ml',
-  quantity: 2,
-  unitPrice: 2.20,
-},
-{
-  id: 5,
-  description: 'Stella Lata 250ml',
-  quantity: 2,
-  unitPrice: 2.20,
-},
-{
-  id: 6,
-  description: 'Coca Lata 250ml',
-  quantity: 2,
-  unitPrice: 2.20,
-},
-{
-  id: 7,
-  description: 'Pespi Lata 250ml',
-  quantity: 2,
-  unitPrice: 2.20,
-},
-{
-  id: 8,
-  description: 'Guarana Lata 250ml',
-  quantity: 2,
-  unitPrice: 2.20,
-},
-{
-  id: 9,
-  description: 'Agua Lata 250ml',
-  quantity: 2,
-  unitPrice: 2.20,
-},
-{
-  id: 10,
-  description: 'Tequila Lata 250ml',
-  quantity: 2,
-  unitPrice: 2.20,
-},
-{
-  id: 11,
-  description: 'Leite Lata 250ml',
-  quantity: 2,
-  unitPrice: 2.20,
-},
-];
-// ---------------------------------------------------------
 function CustomerCheckout() {
-  // Just for testing until macro requirement 3 isn't finished
   const [refresh, setRefresh] = useState(false);
   const [products, setProducts] = useState([]);
+  const [formatedProducts, setFormatedProducts] = useState([]);
 
   const {
     sellerId,
@@ -103,19 +34,35 @@ function CustomerCheckout() {
 
   const {
     totalPrice: totalPriceContext,
+    setTotalPrice: setTotalPriceContext,
   } = useContext(ProductsContext);
 
   const history = useHistory();
 
-  useEffect(() => {
-    localStorage.setItem('customerCart', JSON.stringify(PRODUCT_OBJ_ARRAY));
-    setRefresh(true);
-  }, []);
+  const calculateTotalPrice = (productsLS) => {
+    const totalPrice = Array.isArray(productsLS) ? productsLS.reduce(
+      (sum, { quantity, unitPrice }) => (
+        sum + quantity * parseFloat(unitPrice.replace(',', '.')).toFixed(2)), 0,
+    ) : 0;
+
+    setTotalPriceContext(totalPrice);
+    return totalPrice;
+  };
 
   useEffect(() => {
     const getLocalStorage = localStorage.getItem('customerCart');
     if (getLocalStorage) setProducts(JSON.parse(getLocalStorage));
-    setRefresh(false);
+    const productsFormatter = () => {
+      if (!getLocalStorage) return;
+      const parsedLS = JSON.parse(getLocalStorage);
+      const format = parsedLS.map((product) => (
+        { product_id: product.id, quantity: product.quantity }
+      ));
+
+      setFormatedProducts(format);
+    };
+
+    productsFormatter();
   }, [refresh]);
   // ---------------------------------------------------------
   const handleOnClickRemove = (index) => {
@@ -135,7 +82,7 @@ function CustomerCheckout() {
           index={ index }
           description={ description }
           quantity={ quantity }
-          pricePerUnit={ unitPrice }
+          pricePerUnit={ parseFloat(unitPrice.replace(',', '.')) }
           removeBtn
           testIdPreffix="customer_checkout"
           onClick={ handleOnClickRemove }
@@ -147,12 +94,13 @@ function CustomerCheckout() {
   };
 
   const handleOnClickCheckout = async () => {
-    const createdSale = await APICalls.createSale({
+    const createdSale = await createSale({
       user_id: userId,
       seller_id: sellerId,
       delivery_address: userAddress,
       delivery_number: userAddressNumber,
       total_price: totalPriceContext,
+      products: formatedProducts,
     });
     console.log(createdSale);
     if (createdSale.status) {
@@ -178,7 +126,7 @@ function CustomerCheckout() {
         <Typography
           data-testid="customer_checkout__element-order-total-price"
         >
-          {`Total: R$ ${calculateTotalPrice()}`}
+          {`Total: R$ ${calculateTotalPrice(products).toFixed(2)}`}
         </Typography>
       </Container>
       <Container>

@@ -14,8 +14,14 @@ const createUserService = async ({ name, email, password, role }) => {
   return result;
 };
 
+const getAllSellersService = async () => {
+  const sellers = User.findAll({ where: { role: 'seller' } });
+  return sellers;
+};
+
 module.exports = {
   getUserByEmailService,
   createUserService,
   getUserByNameService,
+  getAllSellersService,
 };

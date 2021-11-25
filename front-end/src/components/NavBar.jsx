@@ -8,7 +8,7 @@ const customerLabelArray = [
     route: '/customer/products',
     testid: 'customer_products__element-navbar-link-products' },
   { label: 'Meus Pedidos',
-    route: '/customer/checkout',
+    route: '/customer/orders',
     testid: 'customer_products__element-navbar-link-orders' },
 ];
 

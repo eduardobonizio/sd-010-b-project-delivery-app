@@ -29,7 +29,7 @@ const CustomerProducts = () => {
   const calculateTotalPrice = (productsLS) => {
     const totalPrice = Array.isArray(productsLS) ? productsLS.reduce(
       (sum, { quantity, unitPrice }) => (
-        sum + quantity * parseFloat(unitPrice.replace(',', '.'))), 0,
+        sum + quantity * parseFloat(unitPrice.replace(',', '.')).toFixed(2)), 0,
     ) : 0;
 
     setTotalPriceContext(totalPrice);

@@ -5,7 +5,7 @@ import {
   Stack,
   TextField } from '@mui/material';
 import React, { useContext, useEffect, useState } from 'react';
-import APICalls from '../services/APICalls';
+import getAllSellersAPI from '../api/getAllSellers';
 import UsersContext from '../context/Users/UsersContext';
 
 function CartForm() {
@@ -22,7 +22,8 @@ function CartForm() {
 
   useEffect(() => {
     const getAllSellers = async () => {
-      const sellers = await APICalls.getAllSellers();
+      const sellers = await getAllSellersAPI();
+      console.log(sellers);
       setSellersArray(sellers);
       setSellerName(sellers[0].name);
     };

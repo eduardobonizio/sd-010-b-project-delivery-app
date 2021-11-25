@@ -5,7 +5,11 @@ const jwt = require('jsonwebtoken');
 const { 
   getUserByEmailService, 
   createUserService, 
-  getUserByNameService } = require('../services/userService');
+  getUserByNameService,
+  getAllSellersService, 
+} = require('../services/userService');
+
+const { STATUS_OK } = require('../utils/constants');
 
 let secret = fs
   .readFileSync(path.resolve('jwt.evaluation.key'), { encoding: 'utf8', flag: 'r' });
@@ -51,7 +55,18 @@ const createUser = async (req, res) => {
   }
 };
 
+const getAllSellers = async (req, res, next) => {
+  try {
+    const sellers = await getAllSellersService();
+    res.status(STATUS_OK).json(sellers);
+  } catch (error) {
+    console.log(error);
+    next(500);
+  }
+};
+
 module.exports = {
   getUserByEmail,
   createUser,
+  getAllSellers,
 };

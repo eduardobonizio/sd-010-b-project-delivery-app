@@ -10,7 +10,7 @@ const ProductTableListCard = (
   const DESC_SIZE_WO_REVOMEBTN = 9;
   const DESC_SIZE = (!removeBtn) ? DESC_SIZE_WO_REVOMEBTN : DESC_SIZE_W_REMOVEBTN;
 
-  const totalPrice = () => quantity * pricePerUnit;
+  const totalPrice = () => (quantity * pricePerUnit).toFixed(2);
 
   return (
     <Grid direction="row" alignItems="center" container columns={ 16 }>
