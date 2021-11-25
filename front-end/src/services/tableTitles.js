@@ -1,4 +1,4 @@
 const tableTitles = ['Item', 'Descrição', 'Quantidade',
   'Valor Unitário', 'Sub-total', 'Remover Item'];
 
-export default tableTItles;
+export default tableTitles;
