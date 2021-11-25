@@ -1,23 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import test from '../../utils/dataTestIdDict';
+import '../../styles/SeleDetails.css';
 
 function renderProductCards({ id, name, price, quantity }, index) {
   return (
-    <div key={ id }>
-      Item
-      <div data-testid={ `${test.dataTestId41}${index}` }>{id}</div>
-      Descrição
-      <div data-testid={ `${test.dataTestId42}${index}` }>{name}</div>
-      Quantitdade
-      <div data-testid={ `${test.dataTestId43}${index}` }>{quantity}</div>
-      Valor unitário
-      <div>{price}</div>
-      Sub-total
-      <div
-        data-testid={ `${test.dataTestId44}${index}` }
-      >
-        {(quantity * price).toFixed(2).replace('.', ',')}
+    <div key={ id } className="conteiner-seles-products-details">
+      <div className="menu-seles-products-details">
+        <div data-testid={ `${test.dataTestId41}${index}` }>{id}</div>
+        <div data-testid={ `${test.dataTestId42}${index}` }>{name}</div>
+        <div data-testid={ `${test.dataTestId43}${index}` }>{quantity}</div>
+        <div>{price}</div>
+        <div
+          data-testid={ `${test.dataTestId44}${index}` }
+        >
+          {(quantity * price).toFixed(2).replace('.', ',')}
+        </div>
       </div>
     </div>
   );
@@ -25,11 +23,11 @@ function renderProductCards({ id, name, price, quantity }, index) {
 
 function SaleProductsDetails({ products }) {
   return (
-    <ul>
+    <div>
       {
         products.map(renderProductCards)
       }
-    </ul>
+    </div>
   );
 }
 

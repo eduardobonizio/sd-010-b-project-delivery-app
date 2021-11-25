@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 import SaleProductsDetails from './SaleProductsDetails';
 import test from '../../utils/dataTestIdDict';
 import { updateSaleStatus, getSaleById } from '../../services/API';
+import '../../styles/SeleDetails.css';
 
 function SaleDetails() {
   const { id } = useParams();
@@ -40,29 +41,42 @@ function SaleDetails() {
   };
 
   return (
-    <main>
+    <main className="main-conteiner">
       <span>Detalhes do pedido</span>
-      <div
-        data-testid={ `${test.dataTestId37}` }
-      >
-        {`PEDIDO NÚMERO: ${idNumber}`}
-      </div>
-      <div data-testid={ `${test.dataTestId38}` }>{`VENDEDOR(A) ${name}`}</div>
-      <div data-testid={ `${test.dataTestId39}` }>{`${formattedDate}`}</div>
-      <div data-testid={ `${test.dataTestId40}` }>{`${status}`}</div>
-      <div>
-        <button
-          type="button"
-          data-testid={ `${test.dataTestId47}` }
-          disabled={ (status !== 'Em Trânsito') }
-          onClick={ () => handleClick('Entregue') }
+      <div className="conteiner-sele-details">
+        <div
+          data-testid={ `${test.dataTestId37}` }
         >
-          MARCAR COMO ENTREGUE
-        </button>
+          {`PEDIDO NÚMERO: ${idNumber}`}
+        </div>
+        <div data-testid={ `${test.dataTestId38}` }>{`P. VEND(A): ${name}`}</div>
+        <div data-testid={ `${test.dataTestId39}` }>{`${formattedDate}`}</div>
+        <div data-testid={ `${test.dataTestId40}` }>{`${status}`}</div>
+        <div>
+          <button
+            type="button"
+            data-testid={ `${test.dataTestId47}` }
+            disabled={ (status !== 'Em Trânsito') }
+            onClick={ () => handleClick('Entregue') }
+          >
+            MARCAR COMO ENTREGUE
+          </button>
+        </div>
+      </div>
+      <div className="menu-seles-products-details">
+        <p>Item</p>
+        <p>Descrição</p>
+        <p>Quantitdade</p>
+        <p>Valor unitário</p>
+        <p>Sub-total</p>
       </div>
       <SaleProductsDetails products={ products } />
-      <div data-testid={ `${test.dataTestId45}` }>
-        {`${totalPrice.replace('.', ',')}`}
+      <div className="total-price-details">
+        <p>Total R$</p>
+        <p data-testid={ `${test.dataTestId45}` }>
+
+          {`${totalPrice.replace('.', ',')}`}
+        </p>
       </div>
     </main>
   );
