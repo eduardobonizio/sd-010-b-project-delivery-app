@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // import Context from '../context/Context';
 
 function Card(props) {
-  // const { products } = useContext(Context);
+  const [quantity, setQuantity] = useState(0);
   const { item } = props;
   const { price, name, id } = item;
 
-  console.log(item);
+  const sumPrice = price * quantity;
+
+  const handleClick = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+
   return (
     <main>
       <div className="card">
@@ -15,7 +22,7 @@ function Card(props) {
           <h1
             data-testid={ `customer_products__element-card-price-${id}` }
           >
-            {price}
+            {sumPrice.toFixed(2).toString().replace(/\./, ',')}
           </h1>
           <img
             src={ item.url_image }
@@ -34,21 +41,22 @@ function Card(props) {
             data-testid={ `customer_products__button-card-rm-item-${id}` }
             type="button"
             title="-"
+            onClick={ () => handleClick() }
           >
             -
           </button>
           <input
             data-testid={ `customer_products__input-card-quantity-${id}` }
-            type="number"
+            type="text"
             title="quantidade de ítens"
-            min="1"
-            max="15"
-            step="1"
+            onChange={ ({ target }) => setQuantity(Number(target.value)) }
+            value={ quantity }
           />
           <button
             data-testid={ `customer_products__button-card-add-item-${id}` }
             type="button"
             title="+"
+            onClick={ () => setQuantity(quantity + 1) }
           >
             +
           </button>
