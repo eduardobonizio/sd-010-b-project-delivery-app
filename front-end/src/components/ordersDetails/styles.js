@@ -58,7 +58,7 @@ export const ButtonDispatch = styled.button`
 `;
 
 export const Overflow = styled.div`
-  height: 165px;
+  height: 350px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -135,7 +135,9 @@ export const TitleHeader = styled.th`
 
 export const TextNumberOrder = styled.h2``;
 
-export const TextStatusOrder = styled.h2``;
+export const TextStatusOrder = styled.h2`
+  color: red;
+`;
 
 export const TextDateOrder = styled.h2``;
 
@@ -146,7 +148,7 @@ export const TextAddressOrder = styled.h2``;
 export const ValueTotal = styled.div`
   position: absolute;
   bottom: 10px;
-  right: 10px;
+  right: 50px;
   width: 200px;
   height: 50px;
   background:   #1DB954;
