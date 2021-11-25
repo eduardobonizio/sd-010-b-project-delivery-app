@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { jwtValid, createSale } = require('../service')
+const { jwtValid, createSale, getAllSales } = require('../service')
 
 router.post('/', async (req, res) => {
   const token = req.headers.authorization;
@@ -13,5 +13,11 @@ router.post('/', async (req, res) => {
   const create =  await createSale(totalPrice, address, numberAddress, now, userId, sellerId, arrayProducts);
     return res.status(201).json(create);
   });
+
+router.get('/', async (req, res) => {
+  const sales = await getAllSales();
+
+  return res.status(200).json(sales);
+})
 
 module.exports = router;

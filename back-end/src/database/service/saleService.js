@@ -12,4 +12,9 @@ const createSale = async (total_price, delivery_address, delivery_number, sale_d
   return create;
 };
 
-module.exports = { createSale };
+const getAllSales = async () => {
+  const getSales = await sale.findAll();
+  return getSales;
+};
+
+module.exports = { createSale, getAllSales};

@@ -1,46 +1,56 @@
 import React from 'react';
-import OrdersTable from './OrdersTable';
+import PropTypes from 'prop-types';
+import moment from 'moment';
+// import OrdersTable from './OrdersTable';
+function OrderCard({ id, saleDate, status, totalPrice }) {
+  const format = moment(saleDate).format('DD/MM/YYYY');
 
-export default function OrderCard() {
   return (
     <div>
       <section style={ { display: 'flex', justifyContent: 'space-around' } }>
         <p
-          data-testid="customer_order_details__element-order-details-label-order-id"
+          data-testid={ `customer_orders__element-order-id-${id}` }
         >
-          PEDIDO: 000
+          {`PEDIDO: 000 ${id}`}
 
         </p>
         <p
-          data-testid="customer_order_details__element-order-details-label-seller-name"
+          data-testid={ `customer_orders__element-order-date-${id}` }
         >
-          P.Vend: nome pessoa
+          { `Data Pedido ${format}` }
 
         </p>
         <p
-          data-testid="customer_order_details__element-order-details-label-order-date"
+          data-testid={ `customer_orders__element-delivery-status-${id}` }
         >
-          Data Pedido
+          { status }
 
         </p>
         <p
-          data-testid="customer_order_details__element-
-          order-details-label-delivery-status"
+          data-testid={ `customer_orders__element-card-price-${id}` }
         >
-          Entregue
-
+          { totalPrice }
         </p>
-        <button
+        {/* <button
           type="button"
           data-testid="customer_order_details__button-delivery-check"
         >
           Marcar como entregue
 
-        </button>
+        </button> */}
       </section>
-      <section>
+      {/* <section>
         <OrdersTable />
-      </section>
+      </section> */}
     </div>
   );
 }
+
+OrderCard.propTypes = {
+  id: PropTypes.number.isRequired,
+  saleDate: PropTypes.string.isRequired,
+  status: PropTypes.string.isRequired,
+  totalPrice: PropTypes.string.isRequired,
+};
+
+export default OrderCard;
