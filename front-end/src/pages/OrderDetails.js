@@ -8,7 +8,7 @@ export default function OrderDetails() {
 
       <p>Detalhe do pedido</p>
       <span data-testid="customer_order_details__element-order-details-label-order-id">
-        Id do pedido
+        id
       </span>
       <span data-testid="customer_order_details__element-order-details-label-seller-name">
         Pessoa vendedora

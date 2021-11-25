@@ -5,6 +5,9 @@ const getAll = async () => Sale.findAll({
   include: [{ model: Product, as: 'products' }],
 });
 
+// const getAllByUserId = async (userid) =>  
+
 module.exports = {
   getAll,
+  // getAllByUserId,
 };
