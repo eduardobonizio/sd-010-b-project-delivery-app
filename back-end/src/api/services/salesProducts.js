@@ -5,9 +5,8 @@ const getAllSalesProductsBySeleId = async (seleId) => {
     raw: true,
     where: { seleId },
   });
-  const products = result.map(({ productId }) => {
-
-  });
+  const products = result.map(({ productId }) => productId);
+  return products;
 };
 
 const getAll = async () => Sale.findAll({
@@ -30,4 +29,5 @@ const createSalesProducts = async (body) => {
 module.exports = {
   getAll,
   createSalesProducts,
+  getAllSalesProductsBySeleId,
 };
