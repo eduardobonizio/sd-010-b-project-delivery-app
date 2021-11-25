@@ -16,12 +16,12 @@ export default function SalesStatus() {
   }, []);
 
   const date = (data) => {
-    const newDate = new Date(data)
-    const dia = newDate.getDate()
-    const mes = (newDate.getMonth()+1).toString()
-    const ano = newDate.getFullYear()
-    return `${dia}/${mes}/${ano}`
-  }
+    const newDate = new Date(data);
+    const dia = newDate.getDate();
+    const mes = (newDate.getMonth() + 1).toString();
+    const ano = newDate.getFullYear();
+    return `${dia}/${mes}/${ano}`;
+  };
 
   return (
     <div>
@@ -30,7 +30,9 @@ export default function SalesStatus() {
         yourOrder="MEUS PEDIDOS"
         userName={ getStorage('user') && getStorage('user').name }
       />
-      {orders.length && orders.map(({ id, status, saleDate, totalPrice, deliveryAddress, deliveryNumber }) => {
+      {orders.length && orders.map(({ id,
+        status, saleDate, totalPrice,
+        deliveryAddress, deliveryNumber }) => {
         console.log(orders);
         return (
           <Link to={ `/seller/orders/${id}` } key={ id }>

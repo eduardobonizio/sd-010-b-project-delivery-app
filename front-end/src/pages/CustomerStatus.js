@@ -8,13 +8,12 @@ export default function OrderStatus() {
   const [orders, setOrders] = useState([]);
 
   const date = (data) => {
-    const newDate = new Date(data)
-    const dia = newDate.getDate()
-    const mes = (newDate.getMonth()+1).toString()
-    const ano = newDate.getFullYear()
-    return `${dia}/${mes}/${ano}`
-  }
-
+    const newDate = new Date(data);
+    const dia = newDate.getDate();
+    const mes = (newDate.getMonth() + 1).toString();
+    const ano = newDate.getFullYear();
+    return `${dia}/${mes}/${ano}`;
+  };
 
   useEffect(() => {
     const takeOrders = async () => {
@@ -55,7 +54,7 @@ export default function OrderStatus() {
             <span
               data-testid={ `customer_orders__element-card-price-${id}` }
             >
-              {totalPrice.replace(/\./, ",")}
+              {totalPrice.replace(/\./, ',')}
             </span>
           </Link>
         );
