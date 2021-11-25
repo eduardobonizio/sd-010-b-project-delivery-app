@@ -29,7 +29,6 @@ function Register() {
     const checkLogin = await sendNewUser(name, email, password);
     if (checkLogin.message.id) {
       const { message } = checkLogin;
-      console.log(message);
       checkRole(message);
     } else {
       setShowMessageError('Email ou usuário já existente!');

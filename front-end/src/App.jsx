@@ -8,6 +8,7 @@ import MeusPedidos from './pages/MeusPedidos';
 import Checkout from './pages/Checkout';
 import Page404 from './pages/Page404';
 import OrderDetails from './pages/OrderDetails';
+import Admin from './pages/Admin';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
       <Route path="/seller/orders" component={ MeusPedidos } />
       <Route path="/customer/checkout" component={ Checkout } />
       <Route path="/page404" component={ Page404 } />
-      <Route path="/admin/gerenciamento" component={ Page404 } />
+      <Route path="/admin/manage" component={ Admin } />
       <Route path="/page404" component={ Page404 } />
     </Switch>
   );

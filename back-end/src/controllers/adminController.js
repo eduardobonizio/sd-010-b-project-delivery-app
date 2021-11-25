@@ -20,7 +20,7 @@ const updateUserByAdmin = rescue(async (req, res) => {
 });
 
 const deleteUserByAdmin = rescue(async (req, res) => {
-  const { id: user_id } = req.user;
+  const { id: user_id } = req.params;
   const deleteUser = await adminService.deleteUserByAdmin(user_id);
   return res.status(deleteUser.status).json(deleteUser.data);
 });
