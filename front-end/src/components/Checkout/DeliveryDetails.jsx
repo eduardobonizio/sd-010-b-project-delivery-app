@@ -29,13 +29,12 @@ function DeliveryDetails() {
   };
 
   const handleCheckout = async () => {
-    const { token } = JSON.parse(localStorage.user);
     const products = JSON.parse(localStorage.carrinho);
     const totalPrice = getTotalPrice(products);
     const saleDate = new Date();
     const sale = { ...details, totalPrice, saleDate, status: 'Pendente', products };
     try {
-      const { saleId } = await postSale(token, sale);
+      const { saleId } = await postSale(sale);
       return navigate(`/customer/orders/${saleId}`);
     } catch (error) {
       return error;

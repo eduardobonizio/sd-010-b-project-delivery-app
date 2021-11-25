@@ -7,10 +7,9 @@ function CustomerOrders() {
   const [sales, setSales] = useState([]);
 
   useEffect(() => {
-    const { token } = JSON.parse(localStorage.user);
     const execute = async () => {
       try {
-        const data = await getAllSales(token);
+        const data = await getAllSales();
         localStorage.setItem('carrinho', JSON.stringify([]));
         setSales(data);
       } catch (error) {

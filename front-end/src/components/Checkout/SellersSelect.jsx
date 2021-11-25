@@ -9,10 +9,9 @@ function SellersSelect({ handleChange }) {
   const [sellers, setSellers] = useState([]);
 
   useEffect(() => {
-    const { token } = JSON.parse(localStorage.user);
     const execute = async () => {
       try {
-        const data = await getAllSellers(token);
+        const data = await getAllSellers();
         setSellers(data);
       } catch (error) {
         return error;

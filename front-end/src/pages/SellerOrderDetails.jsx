@@ -19,16 +19,19 @@ function SellerOrderDetails() {
   const [orderTotalPrice, setOrderTotalPrice] = useState(null);
 
   useEffect(() => {
-    const { token } = JSON.parse(localStorage.user);
     const execute = async () => {
-      const data = await getSaleById(token, id);
-      const { products, saleDate, status, totalPrice } = data;
-      setSaleProducts(products);
-      setStatusControllersData({ id, saleDate, status });
-      setOrderTotalPrice(totalPrice.replace('.', ','));
+      try {
+        const data = await getSaleById(id);
+        const { products, saleDate, status, totalPrice } = data;
+        setSaleProducts(products);
+        setStatusControllersData({ id, saleDate, status });
+        setOrderTotalPrice(totalPrice.replace('.', ','));
+      } catch (error) {
+        return error;
+      }
     };
     execute();
-  }, []);
+  }, [id]);
 
   return (
     <>

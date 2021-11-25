@@ -13,10 +13,9 @@ function Products() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const { token } = JSON.parse(localStorage.user);
     const execute = async () => {
       try {
-        const data = await getAllProduct(token);
+        const data = await getAllProduct();
         localStorage.setItem('carrinho', JSON.stringify([]));
         setProducts(data);
       } catch (error) {

@@ -46,9 +46,8 @@ function StatusControllers({ componentData }) {
   }, [sale.deliveryStatus]);
 
   const handleClick = async (newStatus) => {
-    const { token } = JSON.parse(localStorage.user);
     try {
-      await updateSaleStatus(token, id, newStatus);
+      await updateSaleStatus(id, newStatus);
     } catch (error) {
       return error;
     }

@@ -6,10 +6,9 @@ import { getAllSales } from '../services/API';
 function SellerOrders() {
   const [sales, setSales] = useState([]);
   useEffect(() => {
-    const { token } = JSON.parse(localStorage.user);
     const execute = async () => {
       try {
-        const data = await getAllSales(token);
+        const data = await getAllSales();
         setSales(data);
       } catch (error) {
         return error;
