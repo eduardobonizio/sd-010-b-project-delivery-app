@@ -68,24 +68,24 @@ export default function CustomerOrderDetails() {
             index={ index }
           />))}
 
-//         {orderItems.map((orderItem, id) => (
-//           <main key={ id } className="customer-order-details__container">
-//             <section className="customer-order-details__item">
-//               { orderItem.item }
-//             </section>
-//             <section className="customer-order-details__description">
-//               { orderItem.title }
-//             </section>
-//             <section className="customer-order-details__quantity">
-//               { orderItem.quantity }
-//             </section>
-//             <section className="customer-order-details__price">
-//               { `R$ ${orderItem.price.toFixed(2)}` }
-//             </section>
-//             <section className="customer-order-details__subtotal">
-//               { `R$ ${orderItem.subtotal.toFixed(2)}` }
-//             </section>
-//           </main>))}
+        {/* {orderItems.map((orderItem, id) => (
+          <main key={ id } className="customer-order-details__container">
+            <section className="customer-order-details__item">
+              { orderItem.item }
+            </section>
+            <section className="customer-order-details__description">
+              { orderItem.title }
+            </section>
+            <section className="customer-order-details__quantity">
+              { orderItem.quantity }
+            </section>
+            <section className="customer-order-details__price">
+              { `R$ ${orderItem.price.toFixed(2)}` }
+            </section>
+            <section className="customer-order-details__subtotal">
+              { `R$ ${orderItem.subtotal.toFixed(2)}` }
+            </section>
+          </main>))} */}
 
       </main>
       <button
