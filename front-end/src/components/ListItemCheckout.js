@@ -25,7 +25,7 @@ export default function ListItemCheckout() {
         });
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sellers]);
+  }, []);
 
   useEffect(() => {
     setProductsList(products.filter(({ quant }) => quant > 0));
