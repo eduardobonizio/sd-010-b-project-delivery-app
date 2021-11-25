@@ -15,7 +15,6 @@ const userLogin = async (state, setIsErr) => {
   try {
     const user = state.$data;
     const { data } = await api.create(user);
-    // console.log(data);
     localStorage.setItem('user', JSON.stringify(
       {
         name: data.data.name,
@@ -28,7 +27,6 @@ const userLogin = async (state, setIsErr) => {
     redirect(data.data);
   } catch (error) {
     setIsErr(true);
-    console.log(error);
   }
 };
 

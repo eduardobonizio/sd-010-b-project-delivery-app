@@ -16,16 +16,24 @@ function ProductCard(props) {
     const getProduct = JSON.parse(localStorage.getItem('products'));
     const currProds = { ...getProduct,
       [produto]: { name: produto, total, price, quant } };
+
     localStorage.setItem('products', JSON.stringify(currProds));
   };
 
-  const alterValue = (quanty, prodName) => {
-    if (quanty < 1) quanty = 0;
-    const prodQuantity = Number(quanty);
-    setQuantity(prodQuantity);
-    setProducts(prodQuantity, prodName);
-    setChanges(`${id}-${quanty + 1}`);
+  const deleteProduct = () => {
+    const getProduct = JSON.parse(localStorage.getItem('products')) || {};
+    if (quantity < 2) {
+      delete getProduct[name];
+      localStorage.setItem('products', JSON.stringify(getProduct));
+    }
   };
+  // const alterValue = (quanty, prodName) => {
+  //   if (quanty < 1) quanty = 0;
+  //   const prodQuantity = Number(quanty);
+  //   setQuantity(prodQuantity);
+  //   setProducts(prodQuantity, prodName);
+  //   setChanges(`${id}-${quanty + 1}`);
+  // };
 
   const addItem = () => {
     const itemQuanty = Number(quantity);
@@ -41,6 +49,7 @@ function ProductCard(props) {
       setProducts(itemQuantity - 1, name);
       setChanges(`${id}-${quantity + 1}`);
     }
+    deleteProduct();
   };
 
   return (

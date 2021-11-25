@@ -7,6 +7,14 @@ const getAllSalesById = async (id) => {
   return result; 
 };
 
+const createOrder = async (body) => {
+  const result = Sale.create({ 
+      ...body,
+   });
+  return result; 
+};
+
 module.exports = {
   getAllSalesById,
+  createOrder,
 };

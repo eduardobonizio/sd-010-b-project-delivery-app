@@ -11,13 +11,13 @@ const subTotalTable = 'customer_checkout__element-order-table-sub-total-';
 const removeTable = 'customer_checkout__element-order-table-remove-';
 export default function Checkout() {
   const [salesProducts, setSalesProducts] = useState([]);
-  // const [seller, setSeller] = useState({});
+  const [updateItens, setUpdateItens] = useState();
   useEffect(() => {
     (async () => {
       const cartProducts = JSON.parse(localStorage.getItem('products'));
       setSalesProducts(cartProducts);
     })();
-  }, []);
+  }, [updateItens]);
 
   const productPrice = (price) => {
     const min = 3;
@@ -28,6 +28,12 @@ export default function Checkout() {
   const returnTotal = () => Object.values(salesProducts).reduce((acc, { total }) => {
     acc += total; return acc;
   }, 0);
+
+  const removeItem = (name) => {
+    delete salesProducts[name];
+    setUpdateItens(salesProducts);
+    localStorage.setItem('products', JSON.stringify(salesProducts));
+  };
   return (
     <div>
       <table>
@@ -51,21 +57,29 @@ export default function Checkout() {
               <td
                 data-testid={ `${subTotalTable}${index}` }
               >
-                {productPrice(total)}
+                {productPrice(total.toFixed(2))}
               </td>
-              <td data-testid={ `${removeTable}${index}` }>Remover</td>
+              <td>
+                <button
+                  type="button"
+                  onClick={ () => removeItem(name) }
+                  data-testid={ `${removeTable}${index}` }
+                >
+                  Remover
+
+                </button>
+              </td>
             </tr>
           ))}
-          <p>
-            total=
-            <span data-testid="customer_checkout__element-order-total-price">
-              {productPrice(returnTotal())}
-            </span>
-          </p>
-          {/* {Object.values(salesProducts).map((value) => console.log(value))} */}
+          <tr data-testid="customer_checkout__element-order-total-price">
+            <td>
+              total=
+              {productPrice(returnTotal().toFixed(2))}
+            </td>
+          </tr>
         </tbody>
       </table>
-      <DetailsAddress />
+      <DetailsAddress totalPrice={ returnTotal().toFixed(2) } />
     </div>
   );
 }
