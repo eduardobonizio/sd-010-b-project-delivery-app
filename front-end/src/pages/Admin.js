@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Joi from 'joi';
 import { useValidator } from 'react-joi';
 import api from '../services';
-import userLogin from '../services/authLogin';
 
-export default function Register() {
+export default function Admin() {
   const TWELVE = 12;
   const SIX = 6;
   const { state, setData, validate } = useValidator({
@@ -29,6 +28,7 @@ export default function Register() {
   });
 
   const [isDisabled, setIsDisable] = useState(true);
+  const [role, setRole] = useState('customer');
   const [isErr, setIsErr] = useState(false);
 
   useEffect(() => {
@@ -62,23 +62,28 @@ export default function Register() {
     }));
   };
 
-  const userRegister = async () => {
-    const info = state.$data;
-    await api.register(info);
-    // return window.location.replace('/customer/products');
+  const updateRole = (e) => setRole(e.target.value);
+
+  const register = async () => {
+    try {
+      const info = { ...state.$data, role };
+      console.log(info);
+      await api.register(info);
+    } catch (error) {
+      setIsErr(true);
+    }
   };
 
   return (
     <>
-      <h2>REGISTRO</h2>
-
+      Cadastrar novo usuário:
       <form>
         <label htmlFor="name">
           Nome
           <input
             type="text"
             name="name"
-            data-testid="common_register__input-name"
+            data-testid="admin_manage__input-name"
             onChange={ updateName }
           />
         </label>
@@ -91,7 +96,7 @@ export default function Register() {
           <input
             type="email"
             name="email"
-            data-testid="common_register__input-email"
+            data-testid="admin_manage__input-email"
             onChange={ updateEmail }
           />
         </label>
@@ -104,36 +109,40 @@ export default function Register() {
           <input
             type="password"
             name="password"
-            data-testid="common_register__input-password"
+            data-testid="admin_manage__input-password"
             onChange={ updatePassword }
           />
         </label>
         <br />
         {state.$errors.password.map((data) => data.$message).join(',')}
         <br />
+
+        <label htmlFor="type">
+          Tipo
+          <select
+            name="type"
+            data-testid="admin_manage__select-role"
+            onChange={ updateRole }
+          >
+            <option defaultValue="customer">Cliente</option>
+            <option value="seller">Vendedor</option>
+            <option value="administrator">Administrador</option>
+          </select>
+        </label>
+
       </form>
 
       <button
         type="submit"
-        name="registerButton"
-        data-testid="common_register__button-register"
+        name="register"
+        data-testid="admin_manage__button-register"
         disabled={ isDisabled }
-        onClick={ async () => {
-          validate();
-          await userRegister();
-          await userLogin(state, setIsErr);
-        } }
+        onClick={ async () => { validate(); await register(); } }
       >
         CADASTRAR
-
       </button>
 
-      <p
-        data-testid="common_register__element-invalid_register"
-      >
-        {isErr && <p>Erro: Email já cadastrado </p>}
-
-      </p>
+      {isErr && <p>Erro: Email já cadastrado </p>}
     </>
   );
 }
