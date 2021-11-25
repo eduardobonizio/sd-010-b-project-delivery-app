@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { apiGetAllSales } from '../../../services/salesProducts/apiRequestSalesProduct';
 import Header from '../../../components/navbar';
 // import * as style from './style';
+// moment
 
 export default function CustomerSales() {
   const dateMoment = moment();
