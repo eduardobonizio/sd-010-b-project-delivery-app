@@ -13,8 +13,9 @@ const getAll = async () => {
 
 const getById = async (id) => {
   const sale = await sales.findByPk(id);
+  const products = await salesProducts.findAll({ where: { [saleId]: id } });
 
-  return sale;
+  return { sale, products };
 };
 
 const getByUserId = async (id) => {
