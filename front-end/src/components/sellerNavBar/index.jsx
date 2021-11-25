@@ -32,8 +32,8 @@ export default function SellerNavBar({ id, name, saleDate, status }) {
 }
 
 SellerNavBar.propTypes = {
-  id: PropTypes.string,
-  name: PropTypes.string,
-  saleDate: PropTypes.string,
-  status: PropTypes.string,
-}.isRequired;
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  saleDate: PropTypes.string.isRequired,
+  status: PropTypes.string.isRequired,
+};
