@@ -20,6 +20,9 @@ export const buttonNav = styled.button`
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
+  &:hover {
+    background-color:#FFC500
+  }
 `;
 
 export const divLeft = styled.div`
