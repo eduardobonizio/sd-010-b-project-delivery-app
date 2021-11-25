@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 // import { useParams } from 'react-router-dom';
 // import socketIOClient from 'socket.io-client';
 import { io } from 'socket.io-client';
-import { updateOrders } from './functions/helpers';
 import { getAllOrdersApi } from '../api/orders';
 
 const URL = 'http://localhost:3001';
@@ -36,7 +35,7 @@ export function OrderProvider({ children }) {
   }, []);
   console.log(sellerSingleOrder);
   client.on('statusUpdated', (data) => {
-    updateOrders(customerOrders, data, setCustomerOrders);
+    // updateOrders(customerOrders, data, setCustomerOrders);
     // updateSingleOrder(customerSingleOrder, data, setCustomerSingleOrder);
     // updateOrders(sellerOrders, data, setSellerOrders);
     setSellerSingleOrder(data);

@@ -12,7 +12,25 @@ function ProductsList() {
   const { id } = useParams();
   const { setSellerSingleOrder, sellerSingleOrder, emitUpdateOrder } = useOrder();
   const [isLoading, setIsLoading] = useState(true);
+  const [isActivePreparing, setIsActivePreparing] = useState(true);
   const [isActiveDelivery, setIsActiveDelivery] = useState(true);
+
+  useEffect(() => {
+    switch (sellerSingleOrder.status) {
+    case 'Pendente':
+      setIsActiveDelivery(true);
+      setIsActivePreparing(false);
+      break;
+    case 'Preparando':
+      setIsActiveDelivery(false);
+      setIsActivePreparing(true);
+      break;
+    default:
+      setIsActiveDelivery(true);
+      setIsActivePreparing(true);
+      break;
+    }
+  }, [sellerSingleOrder.status]);
 
   async function getOrder() {
     setIsLoading(true);
@@ -52,6 +70,7 @@ function ProductsList() {
           <button
             type="button"
             data-testid="seller_order_details__button-preparing-check"
+            disabled={ isActivePreparing }
             name="Preparando"
             onClick={ ({ target }) => handleUpdateStatus(target.name) }
           >
