@@ -2,9 +2,17 @@ const Sale = require('../../service/salesServices');
 
 const addPurchase = async (req, res) => {
   try {
-    const purchase = req.body;
-    const { products } = purchase;
-    const { id } = await Sale.addSale(purchase);
+    const { userId, sellerId, totalPrice, deliveryAddress,
+      deliveryNumber, saleDate, status, products } = req.body;
+    const { id } = await Sale.addSale({
+      userId,
+      sellerId,
+      totalPrice,
+      deliveryAddress,
+      deliveryNumber,
+      saleDate,
+      status,
+    });
     const newPurchase = await Sale.addPurchase(products, id);
     return res.status(201).json({ data: newPurchase });
   } catch (error) {
