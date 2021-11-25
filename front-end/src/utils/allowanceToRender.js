@@ -5,4 +5,5 @@ export const allowedNavBarAdminPaths = ['/admin/manage'];
 export const allowedNavBarCustomerPaths = [
   '/customer/products',
   '/customer/checkout',
+  '/customer/orders',
 ];
