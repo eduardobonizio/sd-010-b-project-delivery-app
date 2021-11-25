@@ -18,6 +18,6 @@ router.get('/all-sellers', JWTValidate, getAllSellersController);
 router.post('/login', emailValidate, passwordValidate, loginController, JWTGenerate);
 router.post('/register',
   nameValidate, emailValidate, passwordValidate, registerController, JWTGenerate);
-router.post('/finish-sale', /* JWTValidate, */ finishSaleController);
+router.post('/finish-sale', JWTValidate, finishSaleController);
 
 module.exports = router;
