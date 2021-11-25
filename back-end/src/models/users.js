@@ -19,10 +19,10 @@ const register = async (name, email, password, role) => {
 };
 
 const getByRole = async (role) => {
-  const result = await users.findAll({where: { role }})
+  const result = await users.findAll({ where: { role } });
 
   return result;
-}
+};
 
 module.exports = {
   getAll,

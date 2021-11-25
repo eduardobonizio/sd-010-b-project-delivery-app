@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const { getAll, getById, create, getByUserId, getBySellerId } = require('../services/sales');
 
+const validateToken = require('../middleware/validation');
+
 router.get('/', async (_req, res) => {
   const sales = await getAll();
 
@@ -25,7 +27,7 @@ router.get('/:id', async (req, res) => {
   return res.status(200).json(sale);
 });
 
-router.post('/', async (req, res) => {
+router.post('/', validateToken, async (req, res) => {
   const result = await create(req.body);
   return res.status(200).json({ message: 'Ok', sale: result });
 });

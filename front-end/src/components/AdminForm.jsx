@@ -32,7 +32,6 @@ export default function AdminForm() {
       method: 'POST',
       body: JSON.stringify({ name, email, password, role }),
     };
-
     fetch('http://localhost:3001/users/adm/register', requestOptions)
       .then((res) => res.json())
       .then((data) => setUserStatus(data));

@@ -36,7 +36,8 @@ const getBySellerId = async (id) => {
 const createSales = async ({ cart, sale }) => {
   const createdSale = await sales.create(sale);
 
-  cart.forEach(({ product_id: prodId, quantity }) => {
+  cart.forEach(({ id: prodId, quantity }) => {
+    console.log(prodId);
     salesProducts.create({
       [saleId]: createdSale.toJSON().id, [productId]: prodId, quantity,
       });

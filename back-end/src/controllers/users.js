@@ -25,7 +25,6 @@ router.get('/customers', async (_req, res) => {
   return res.status(200).json(users);
 });
 
-
 router.post('/register', async (req, res) => {
   try {
     const { name, email, password } = req.body;

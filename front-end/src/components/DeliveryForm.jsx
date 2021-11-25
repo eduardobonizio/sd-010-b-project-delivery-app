@@ -1,7 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useHistory } from 'react-router';
+import Context from '../context/Context';
 
 export default function DeliveryForm() {
-  const [sellerList, setSellerList] = useState('');
+  const { cart, totalCart } = React.useContext(Context);
+  const [sellerList, setSellerList] = useState([]);
+  const [dataSale, setDataSale] = useState({});
+  const [redirect, setRedirect] = useState(false);
+  const user = JSON.parse(localStorage.getItem('user'));
+  const sellerIdRef = useRef();
+  const addressRef = useRef();
+  const addressNumberRef = useRef();
+
+  const history = useHistory();
 
   const style = {
     display: 'flex',
@@ -10,16 +21,46 @@ export default function DeliveryForm() {
   };
 
   const getSellers = () => {
-    const sellers = fetch('http://localhost:3001/users/sellers')
+    fetch('http://localhost:3001/users/sellers')
       .then((response) => response.json())
-      .then((data) => data);
+      .then((data) => setSellerList(data));
+  };
 
-    setSellerList(sellers);
+  const createSale = () => {
+    console.log('clicou');
+    const requestOptions = {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        authorization: user.token,
+
+      },
+      method: 'POST',
+      body: JSON.stringify({ cart,
+        sale: {
+          user_id: user.id,
+          seller_id: sellerIdRef.current.value,
+          total_price: totalCart,
+          delivery_address: addressRef.current.value,
+          delivery_number: addressNumberRef.current.value,
+          status: 'Pendente',
+        } }),
+    };
+    fetch('http://localhost:3001/sales/', requestOptions)
+      .then((res) => res.json())
+      .then((data) => setDataSale(data))
+      .then(() => setRedirect(true));
   };
 
   useEffect(() => {
     getSellers();
   }, []);
+
+  useEffect(() => {
+    if (redirect) {
+      history.push(`/customer/orders/${dataSale.sale.id}`);
+    }
+  }, [redirect]);
 
   return (
     <form style={ style }>
@@ -29,6 +70,7 @@ export default function DeliveryForm() {
           data-testid="customer_checkout__select-seller"
           name="sellers"
           id="sellers"
+          ref={ sellerIdRef }
         >
           {sellerList.map((seller) => (
             <option
@@ -46,6 +88,7 @@ export default function DeliveryForm() {
           data-testid="customer_checkout__input-address"
           type="text"
           name="address"
+          ref={ addressRef }
         />
       </label>
       <label htmlFor="number">
@@ -54,9 +97,10 @@ export default function DeliveryForm() {
           data-testid="customer_checkout__input-addressNumber"
           type="text"
           name="number"
+          ref={ addressNumberRef }
         />
       </label>
-      <button type="button">Finalizar Pedido</button>
+      <button type="button" onClick={ () => { createSale(); } }>Finalizar Pedido</button>
     </form>
   );
 }
