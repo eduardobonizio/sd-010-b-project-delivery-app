@@ -11,8 +11,6 @@ import OrderDetails from './pages/OrderDetails';
 import Admin from './pages/Admin';
 import './App.css';
 
-import './App.css';
-
 function App() {
   return (
     <Switch>
