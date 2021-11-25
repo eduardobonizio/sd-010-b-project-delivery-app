@@ -1,17 +1,19 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
 import OrdersCard from '../components/Order/OrderCard';
-// import TotalOrderButton from '../components/Order/TotalOrderButton';
+import LoginContext from '../context/LoginContext';
 
 export default function CustomerOrder() {
   const [data, setData] = useState([]);
+  const { setOrders } = useContext(LoginContext);
 
   useEffect(() => {
     axios.get('http://localhost:3001/sales')
       .then((result) => {
         setData(result.data);
-        console.log(result);
+        setOrders(result.data);
+        // console.log(result.data);
       });
   }, []);
 

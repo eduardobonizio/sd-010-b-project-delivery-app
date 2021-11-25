@@ -7,6 +7,7 @@ function LoginProvider({ children }) {
   const [userData, setUserData] = React.useState(null);
   const [totalPrice, setTotalPrice] = React.useState(0);
   const [arrayProducts, setArrayProducts] = React.useState([]);
+  const [orders, setOrders] = React.useState([]);
 
   const context = {
     userData,
@@ -15,6 +16,8 @@ function LoginProvider({ children }) {
     setTotalPrice,
     arrayProducts,
     setArrayProducts,
+    orders,
+    setOrders,
   };
 
   return (

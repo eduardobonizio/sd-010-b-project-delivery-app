@@ -33,18 +33,8 @@ function OrderCard({ id, saleDate, status, totalPrice }) {
           >
             { totalPrice.replace('.', ',') }
           </p>
-          {/* <button
-          type="button"
-          data-testid="customer_order_details__button-delivery-check"
-        >
-          Marcar como entregue
-
-        </button> */}
         </section>
       </Link>
-      {/* <section>
-        <OrdersTable />
-      </section> */}
     </div>
   );
 }

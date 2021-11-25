@@ -16,14 +16,9 @@ const getUsers = async () => {
   return users;
 };
 
-module.exports = { checkUserLogin, checkUserExists, getUsers };
+const getUserById = async (id) => {
+  const userId = await user.findByPk(id);
+  return userId;
+}
 
-// const { Op } = require("sequelize");
-// Post.findAll({
-//   where: {
-//     [Op.or]: [
-//       { authorId: 12 },
-//       { authorId: 13 }
-//     ]
-//   }
-// });
+module.exports = { checkUserLogin, checkUserExists, getUsers, getUserById };

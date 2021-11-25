@@ -1,5 +1,5 @@
 const { checkUserLogin, getUsers } = require('./userService');
-const { createSale, getAllSales } = require('./saleService');
+const { createSale, getAllSales, getUserById } = require('./saleService');
 const { checkUserExists } = require('./userService');
 const { getAllProducts } = require('./productsService');
 const { createUser } = require('./signUpService');
