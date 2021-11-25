@@ -181,6 +181,7 @@
   padding: 0.5rem;
   box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
   margin: 4px;
+  max-width: 65%;
 }
 
 .add {
@@ -189,6 +190,7 @@
 }
 
 .del {
+  margin-left: 3%;
   color: white;
   background-color: red;
 }
