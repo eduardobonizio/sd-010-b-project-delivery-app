@@ -8,20 +8,20 @@ export const ContainerListCard = styled.div`
   align-items: center;
   justify-content: space-between;
   padding-top: 50px;
+  font-family: sans-serif;
 `;
 
 export const ContainerCard = styled.div`
   width: 200px;
   height: 300px;
-  /* background: pink; */
+  border-radius: 15px;
   margin: 10px;
   margin-bottom: 70px;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
-  border-radius: 5px;
-  border: solid 0.5px #B8B8B8;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   filter: drop-shadow(0px 1px 0px rgba(0, 0, 0, 0.2));
 `;
 
@@ -32,7 +32,7 @@ export const ContainerQuantity = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background-color: #EAE7C6;
+  background-color: #F2FFFC;
   border-radius: 5px;
 `;
 
@@ -42,7 +42,6 @@ export const ContainerInput = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background-color: red; */
 `;
 
 export const InputQuantity = styled.input`
@@ -57,7 +56,7 @@ export const ButtonQuantitySum = styled.button`
   height: 26px;
   border-radius: 0 5px 5px 0;
   border: none;
-  background: #4E9F3D;
+  background: #036B52;
   color: #FFF;
   font-size: 18px;
   font-weight: 900;
@@ -68,7 +67,7 @@ export const ButtonQuantitySubtract = styled.button`
   height: 26px;
   border-radius: 5px 0 0 5px;
   border: none;
-  background: #4E9F3D;
+  background: #036B52;
   color: #FFF;
   font-size: 20px;
   font-weight: 900;
@@ -78,15 +77,13 @@ export const CotainerPrice = styled.div`
   position: absolute;
   left: 10px;
   top: 10px;
-  width: 80px;
-  height: 30px;
+  padding: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(216, 216, 216, 0.1);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(242, 255, 252, 0.6);
   box-sizing: border-box;
-  border-radius: 7px;
+  border-radius: 5px;
 `;
 
 export const TextPrice = styled.p`
@@ -112,17 +109,17 @@ export const ButtonCart = styled.button`
   position: fixed;
   bottom: 10px;
   right: 60px;
-  background: #4E9F3D;
+  background: #036B52;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-weight: 800;
   font-size: 18px;
-  color: #000;
+  color: #fff;
 `;
 
 export const TextTotalCart = styled.span`
   font-weight: 800;
   font-size: 18px;
-  color: #000;
+  color: #fff;
 `;
