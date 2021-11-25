@@ -10,7 +10,7 @@ const login2 = async (req, res) => {
   if (!result) { return res.status(404).json({ message: 'deu merda corre!' }); }
   const { id, name, email, role } = result;
   const token = createToken({ id, name, email, role });
-  
+  // comentario aleatorio
   return res.status(200).json({ data: result, token });
 };
 
