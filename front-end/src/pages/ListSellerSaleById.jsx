@@ -54,6 +54,7 @@ function ListSellerSaleById() {
     const month = `${dateArray[1][0]}${dateArray[1][1]}`;
     const year = `${dateArray[0].slice(0, endArraySlice)}`;
     const formattedDate = `${day}/${month}/${year}`;
+
     const label = 'seller_order_details__element-order-details-label-delivery-status';
     return (
       <>

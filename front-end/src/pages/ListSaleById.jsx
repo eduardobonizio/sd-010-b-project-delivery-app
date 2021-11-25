@@ -7,6 +7,7 @@ import './css/Products.css';
 
 function Products() {
   const { name } = JSON.parse(localStorage.getItem('user'));
+  const [preparing, setPreparing] = useState(false);
   const [orderStatus, setOrderStatus] = useState('Pendente');
   const [order, setOrder] = useState();
   const history = useHistory();
@@ -39,12 +40,12 @@ function Products() {
         authorization: token,
       },
     };
-    await axios.post(`http://localhost:3001/seller/orders/${orderId}`, { orderStatus: status }, config);
+    axios.post(`http://localhost:3001/seller/orders/${orderId}`, { orderStatus: status }, config);
 
+    setPreparing(!preparing);
     setOrderStatus(status);
   };
 
-  console.log(order);
   if (order) {
     const endArraySlice = 4;
     const dateArray = order.saleDate.split('-');
@@ -85,6 +86,7 @@ function Products() {
             type="button"
             disabled={ orderStatus !== 'Em Trânsito' }
             onClick={ () => updateButtonsText('Entregue') }
+            style={ { fontSize: '5px' } }
           >
             MARCAR COMO ENTREGUE
           </button>

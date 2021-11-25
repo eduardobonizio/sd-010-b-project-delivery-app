@@ -20,14 +20,16 @@ function TopBar(props) {
             alt="Disk Birita logo"
           />
         </Navbar.Brand>
-        <a href="/customer/products">
+        <a href={ onSellerPage ? '/seller/orders' : '/customer/products' }>
           <Navbar.Text
             variant="light"
             className="products align-items-center"
-            data-testid="customer_products__element-navbar-link-products"
+            data-testid={ `customer_products__element-navbar-link-${
+              onSellerPage ? 'orders' : 'products'
+            }` }
             href="/customer/products"
           >
-            PRODUTOS
+            { onSellerPage ? 'ORDERS' : 'PRODUTOS' }
           </Navbar.Text>
         </a>
         {
