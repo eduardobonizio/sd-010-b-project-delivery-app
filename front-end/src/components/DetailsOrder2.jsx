@@ -42,30 +42,30 @@ function DetailsOrder() {
         {productsAPI.map((element, index) => (
           <tr key={ element.name }>
             <td
-              data-testid={ `${dataTesteIdItemNumber}${index + 1}` }
+              data-testid={ `${dataTesteIdItemNumber}${index}` }
             >
               {index + 1}
             </td>
             <td
-              data-testid={ `${dataTesteIdName}${index + 1}` }
+              data-testid={ `${dataTesteIdName}${index}` }
             >
               { element.name }
             </td>
             <td
-              data-testid={ `${dataTesteIdQuantidade}${index + 1}` }
+              data-testid={ `${dataTesteIdQuantidade}${index}` }
             >
-              { console.log(element.SalesProduct.quantity) }
+              { element.SalesProduct.quantity }
             </td>
             <td
-              data-testid={ `${dataTesteIdPrice}${index + 1}` }
+              data-testid={ `${dataTesteIdPrice}${index}` }
             >
               {Number(element.price).toFixed(2).toString().replace('.', ',')}
             </td>
             <td
-              data-testid={ `${dataTesteIdSubTotal}${index + 1}` }
+              data-testid={ `${dataTesteIdSubTotal}${index}` }
             >
-              {(Number(element.SalesProduct.quantity) * Number(element.price))
-                .toFixed(2).toString().replace('.', ',')}
+              {((Number(element.SalesProduct.quantity)
+              * Number(element.price)).toFixed(2).toString().replace('.', ','))}
             </td>
           </tr>
         ))}
