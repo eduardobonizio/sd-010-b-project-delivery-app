@@ -1,0 +1,23 @@
+.user-list {
+  margin: 0 1rem 1rem 1rem;
+  span {
+    color: #4f4f4f;
+    font-weight: 600;
+  }
+}
+
+.user-item {
+  background-color:#fff;
+  border: solid 1px #cccccc;
+  border-radius: 5px;
+  box-shadow: 0 0 4px 0px #ccc;
+  display: flex;
+  align-items: center;
+  margin-top: .5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  span {
+    font-weight: 400;
+  }
+
+}

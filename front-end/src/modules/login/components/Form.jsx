@@ -1,55 +1,86 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
-// import api from '../../../api/api';
-import './form.scss';
-import { validateEmail, validatePassword } from './functions';
+import { isValidateLogin } from '../../../helpers/validateLogin';
+import logo from '../../../images/logo.png';
+import '../login.scss';
+import { loginApi } from '../../../api/user';
+import redirectUser from './helpres';
 
 function Form() {
   const history = useHistory();
+  const mountedRef = useRef(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isValidate, setIsValidade] = useState(true);
   const [isNotFound, setIsNotFound] = useState(false);
 
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  if (user && user.role === 'customer') {
+    history.push('/customer/products');
+  }
+
   useEffect(() => {
-    const isEmailChecked = validateEmail(email);
-    const isPasswordChecked = validatePassword(password);
-    if (isEmailChecked && isPasswordChecked) setIsValidade(false);
+    const validateForm = isValidateLogin(email, password);
+
+    if (validateForm) {
+      setIsValidade(false);
+    } else {
+      setIsValidade(true);
+    }
   }, [email, password]);
 
   async function handleLogin(event) {
     event.preventDefault();
     setIsNotFound(false);
-    // const data = {
-    //   email,
-    //   password,
-    // };
-    // const response = await api.post('/login', data);
-    // console.log(response)
+    try {
+      const data = {
+        email,
+        password,
+      };
 
-    if (!(email === 'trybe@email.com' && password === '123456')) {
+      const dataLocalStorage = await loginApi(data);
+
+      localStorage.setItem('user', JSON.stringify(dataLocalStorage));
+
+      redirectUser(dataLocalStorage.role, history);
+    } catch (error) {
+      console.log(error);
+      setEmail('');
+      setPassword('');
       return setIsNotFound(true);
     }
 
-    const dataLocalStorage = {
-      name: 'nome', // response.name
-      email: 'email', // response.email
-      role: 'role', // response.naroleme
-      token: 'token', // response.token
-    };
+    // zebirita@email.com
+    // $#zebirita#$
 
-    localStorage.setItem('user', JSON.stringify(dataLocalStorage));
+    // fulana@deliveryapp.com
+    // fulana@123
 
-    // history.push('/client/products');
+    // adm@deliveryapp.com
+    // --adm2@21!!--
   }
+
+  useEffect(() => {
+    mountedRef.current = false;
+  }, []);
 
   function handleRegister() {
     history.push('/register');
   }
 
   return (
-    <div>
-      <form action="" className="flex-column align-items-center custom-form p-4">
+    <div
+      className="row custom-login"
+    >
+      <div className="col text-center">
+        <img src={ logo } alt="logo" width="150" />
+        <h1 className="text-warning">TryBeer</h1>
+      </div>
+      <form
+        action=""
+        className="col"
+      >
         <div className="row d-flex flex-column">
           <div className="col">
             <p>E-mail</p>
@@ -59,7 +90,7 @@ function Form() {
               name="email"
               value={ email }
               onChange={ (e) => setEmail(e.target.value) }
-              data-testid="common_login__input-password"
+              data-testid="common_login__input-email"
               className="form-control"
             />
           </div>

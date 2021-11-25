@@ -1,9 +1,26 @@
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
 
-.border {
-  border: solid 1px;
+.container-fluid {
+  background-color: #FCFCFC;
+  height: 100vh;
+  // border: solid 3px red;
 }
-
-body {
-  margin: 0;
-}
+.custom-card {
+  border: solid 1px #000;
+  border-radius: 4px;
+  padding-top: 1px;
+  width: 220px;
+  span {
+    background-color:#F2FFFC;
+    border-radius: 4px;
+    font-size: 18px; 
+    font-weight: bold;
+    padding: 4px;
+  }
+  &.prod-bg {
+    background-position: 'center';
+    background-size: 'cover';
+    width: 30%;
+    height: 150px;
+  }
+  }

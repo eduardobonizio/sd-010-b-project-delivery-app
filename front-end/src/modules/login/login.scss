@@ -1,0 +1,24 @@
+.custom-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-login {
+  align-items: center;
+  border: #DDDDDD solid 1px;
+  border-radius: .25rem;
+  box-shadow: 0 0 32px #DDDDDD;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  p {
+    font-weight: 500;
+    margin: 0 0 .25rem 0;
+  }
+  h1, input, img {
+    margin-bottom: 1rem;
+    color:#e7bd00
+  }
+}

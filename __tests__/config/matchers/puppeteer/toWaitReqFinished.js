@@ -34,9 +34,9 @@ async function toWaitReqFinished(
           method,
           status: response.status(),
         };
-
         if (hasToken) {
           const { authorization } = request.headers && request.headers();
+          console.log(authorization);
           data.token = !!jwt.verify(authorization, jwtKey);
         }
 

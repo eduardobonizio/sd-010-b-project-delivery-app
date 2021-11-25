@@ -3,10 +3,10 @@ import Form from './components/Form';
 
 function Login() {
   return (
-    <div className="h-100 border">
-      <p>Logo</p>
-      <h1>TryBeer</h1>
-      <Form />
+    <div className="row custom-form h-100">
+      <div className="col-3">
+        <Form />
+      </div>
     </div>
   );
 }
