@@ -9,7 +9,7 @@ import Products from './pages/Products';
 import SalesDetailPage from './pages/SalesDetailPage';
 import SellerOrders from './pages/SellerOdrers';
 import SellerOrderDetails from './pages/SellerOrderDetails';
-
+import AdmPage from './pages/AdmPage';
 import './styles/App.css';
 
 function App() {
@@ -21,6 +21,7 @@ function App() {
       <Route exact path="/customer/orders" element={ <CustomerOrders /> } />
       <Route exact path="/seller/orders/:id" element={ <SellerOrderDetails /> } />
       <Route exact path="/seller/orders" element={ <SellerOrders /> } />
+      <Route exact path="/admin/manage" element={ <AdmPage /> } />
       <Route exact path="/login" element={ <LoginPage /> } />
       <Route exact path="/register" element={ <Register /> } />
       <Route exact path="/" element={ <Home /> } />
