@@ -1,8 +1,8 @@
 import { React, useEffect, useState } from 'react';
-import { Redirect } from 'react-router';
-// import { Link } from 'react-router-dom';
 
 import { Layout, Menu } from 'antd';
+import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
 
 function NavBar() {
   const { Header } = Layout;
@@ -43,7 +43,9 @@ function NavBar() {
           key="pedidos"
           data-testid="customer_products__element-navbar-link-orders"
         >
-          MEUS PEDIDOS
+          <Link to="/customer/orders">
+            MEUS PEDIDOS
+          </Link>
 
         </Menu.Item>
         <Menu.Item
