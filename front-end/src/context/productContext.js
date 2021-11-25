@@ -81,7 +81,7 @@ export default function ProductContextProvider({ children }) {
     const { name } = e.target;
     let currStatus = '';
     if (name === 'transit') currStatus = 'Em Trânsito';
-    if (name === 'delivired') currStatus = 'Entregue';
+    if (name === 'delivered') currStatus = 'Entregue';
     if (name === 'preparing') currStatus = 'Preparando';
     try {
       const res = await APITOKEN.updateSaleStatus(id, currStatus);
