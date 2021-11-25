@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const jwtKey = require("fs")
-  .readFileSync("./back-end/jwt.evaluation.key", { encoding: "utf-8" });
+  .readFileSync("./back-end/jwt.evaluation.key", { encoding: "utf-8" })
+  .trim();
 
 const { result, messageDiff } = require("../../utils/assertionAux");
 const { timeout } = require("../../constants").puppeteer;
@@ -36,6 +37,7 @@ async function toWaitReqFinished(
 
         if (hasToken) {
           const { authorization } = request.headers && request.headers();
+          console.log('valor dentro de data', data);
           data.token = !!jwt.verify(authorization, jwtKey);
         }
 
