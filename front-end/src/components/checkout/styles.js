@@ -63,7 +63,7 @@ export const TdTable = styled.td`
   :nth-child(1) {
     border-radius: 5px 0 0 5px;
     text-align: center;
-    background:   #4E9F3D
+    background:   #4E9F3D;
   }
 
   :nth-child(2) {
