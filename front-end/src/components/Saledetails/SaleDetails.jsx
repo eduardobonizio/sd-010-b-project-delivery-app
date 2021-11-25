@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useParams } from 'react-router';
 import SaleProductsDetails from './SaleProductsDetails';
 import test from '../../utils/dataTestIdDict';
-import { updateSaleStatus } from '../../services/sellerEndpoints';
+import { updateSaleStatus, getSaleById } from '../../services/API';
 
 function SaleDetails() {
   const { id } = useParams();
@@ -12,13 +11,16 @@ function SaleDetails() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchProductDetails = async () => {
-      const { token } = JSON.parse(localStorage.getItem('user'));
-      const { data } = await axios.get(`http://localhost:3001/sales/${idNumber}`, { headers: { Authorization: token } });
-      setSaleDetails(data);
-      setLoading(false);
+    const execute = async () => {
+      try {
+        const data = await getSaleById(idNumber);
+        setSaleDetails(data);
+        setLoading(false);
+      } catch (error) {
+        return error;
+      }
     };
-    fetchProductDetails();
+    execute();
   }, [idNumber]);
 
   if (loading) {
@@ -30,7 +32,11 @@ function SaleDetails() {
     .toLocaleDateString('pt-BR', { timeZone: 'UTC' });
 
   const handleClick = async (newStatus) => {
-    await updateSaleStatus(id, newStatus);
+    try {
+      await updateSaleStatus(id, newStatus);
+    } catch (error) {
+      return error;
+    }
   };
 
   return (

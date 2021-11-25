@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import dataTestIdDict from '../../utils/dataTestIdDict';
-import { updateSaleStatus } from '../../services/sellerEndpoints';
+import { updateSaleStatus } from '../../services/API';
 
 const {
   dataTestId54,
@@ -46,7 +46,11 @@ function StatusControllers({ componentData }) {
   }, [sale.deliveryStatus]);
 
   const handleClick = async (newStatus) => {
-    await updateSaleStatus(id, newStatus);
+    try {
+      await updateSaleStatus(id, newStatus);
+    } catch (error) {
+      return error;
+    }
   };
 
   if (!componentData) return '';

@@ -1,20 +1,22 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import CardOrderCustomer from '../components/SalesOrder/CardOrderCustomer';
 import Header from '../components/Header';
+import { getAllSales } from '../services/API';
 
-function MyOrders() {
+function CustomerOrders() {
   const [sales, setSales] = useState([]);
 
-  const getAllSales = async () => {
-    const { token } = JSON.parse(localStorage.user);
-    const endPoint = 'http://localhost:3001/sales';
-    const { data } = await axios.get(endPoint, { headers: { Authorization: token } });
-    return setSales(data);
-  };
-
   useEffect(() => {
-    getAllSales();
+    const execute = async () => {
+      try {
+        const data = await getAllSales();
+        localStorage.setItem('carrinho', JSON.stringify([]));
+        setSales(data);
+      } catch (error) {
+        return error;
+      }
+    };
+    execute();
   }, []);
 
   return (
@@ -29,4 +31,4 @@ function MyOrders() {
   );
 }
 
-export default MyOrders;
+export default CustomerOrders;

@@ -1,25 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import dataTestIdDict from '../../utils/dataTestIdDict';
+import { getAllSellers } from '../../services/API';
 
 const { dataTestId29 } = dataTestIdDict;
 
 function SellersSelect({ handleChange }) {
   const [sellers, setSellers] = useState([]);
 
-  const getAllSellers = async () => {
-    const endPoint = 'http://localhost:3001/users/sellers';
-    try {
-      const { data } = await axios.get(endPoint);
-      setSellers(data);
-    } catch (error) {
-      return error;
-    }
-  };
-
   useEffect(() => {
-    getAllSellers();
+    const execute = async () => {
+      try {
+        const data = await getAllSellers();
+        setSellers(data);
+      } catch (error) {
+        return error;
+      }
+    };
+    execute();
   }, []);
 
   return (
