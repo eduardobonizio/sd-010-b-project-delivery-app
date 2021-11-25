@@ -7,7 +7,7 @@ const createUser = async (req, res) => {
     const create = await validateCreate({ name, email, password });
     return res.status(201).json(create);
   } catch (error) {
-    res.status(409).json({ error, message: 'Deu ruim!' });
+    res.status(409).json({ error, message: 'Email existente' });
   }
 };
 
