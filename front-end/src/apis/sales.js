@@ -8,6 +8,23 @@ export const getAll = () => {
   return sales;
 };
 
+export const getById = async ({ user, id }) => {
+  const requestOptions = {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      authorization: user.token,
+
+    },
+    method: 'GET',
+  };
+  const sale = await fetch(`${URL}/${id}`, requestOptions)
+    .then((res) => res.json())
+    .then((data) => data);
+
+  return sale;
+};
+
 export const getByCustomer = (id) => {
   const sales = fetch(`${URL}/user/${id}`)
     .then((response) => response.json())
