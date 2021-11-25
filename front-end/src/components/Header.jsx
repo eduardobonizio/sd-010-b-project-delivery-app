@@ -26,7 +26,7 @@ function Header({ userRole }) {
         <Link to="/customer/products">PRODUTOS</Link>
       </div>
       <div data-testid={ dataTestId12 }>
-        <Link to="/customer/orders">MEUS PRODUTOS</Link>
+        <Link to="/customer/orders">MEUS PEDIDOS</Link>
       </div>
     </>
   );
