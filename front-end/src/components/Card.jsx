@@ -1,18 +1,58 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+// import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 // import Context from '../context/Context';
 
 function Card(props) {
+  // const { setTotaPrice } = useContext(Context);
   const [quantity, setQuantity] = useState(0);
+  const [carrinho, setCarrinho] = useState({});
   const { item } = props;
   const { price, name, id } = item;
+  // const history = useHistory();
+  const CARRINHO_DE_COMPRAS = 'Carrinho de Compras';
+  const setLocalStorage = (key, value) => {
+    localStorage.setItem(key, JSON.stringify(value));
+    // history.push({ pathname: '/customer/products' });
+  };
 
-  const sumPrice = price * quantity;
+  useEffect(() => {
+    setLocalStorage(CARRINHO_DE_COMPRAS, carrinho);
+  }, [carrinho]);
 
-  const handleClick = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
+  const handleClickIncrease = () => {
+    const loadStorage = localStorage.getItem(CARRINHO_DE_COMPRAS);
+    const storeObjeto = JSON.parse(loadStorage);
+    const newCarrinho = {
+      ...storeObjeto,
+      [id]: {
+        name,
+        quantity: (quantity + 1),
+        totalPrice: (price * (quantity + 1)).toFixed(2) },
+    };
+
+    setCarrinho(newCarrinho);
+    setQuantity(quantity + 1);
+    setLocalStorage(CARRINHO_DE_COMPRAS, newCarrinho);
+  };
+
+  const handleClickDecrease = () => {
+    const loadStorage = localStorage.getItem(CARRINHO_DE_COMPRAS);
+    const storeObjeto = JSON.parse(loadStorage);
+    const newCarrinho = {
+      ...storeObjeto,
+      [id]: {
+        name,
+        quantity: (quantity - 1),
+        totalPrice: (price * (quantity - 1)).toFixed(2) },
+    };
+    setCarrinho(newCarrinho);
+    setQuantity(quantity - 1);
+    setLocalStorage(CARRINHO_DE_COMPRAS, newCarrinho);
+  };
+
+  const handleOnchage = (target) => {
+    setQuantity(Number(target.value));
   };
 
   return (
@@ -22,7 +62,7 @@ function Card(props) {
           <h1
             data-testid={ `customer_products__element-card-price-${id}` }
           >
-            {sumPrice.toFixed(2).toString().replace(/\./, ',')}
+            {`R$ ${price.replace(/\./, ',')}`}
           </h1>
           <img
             src={ item.url_image }
@@ -40,8 +80,8 @@ function Card(props) {
           <button
             data-testid={ `customer_products__button-card-rm-item-${id}` }
             type="button"
-            title="-"
-            onClick={ () => handleClick() }
+            title="diminuir"
+            onClick={ () => handleClickDecrease() }
           >
             -
           </button>
@@ -49,14 +89,14 @@ function Card(props) {
             data-testid={ `customer_products__input-card-quantity-${id}` }
             type="text"
             title="quantidade de ítens"
-            onChange={ ({ target }) => setQuantity(Number(target.value)) }
+            onChange={ () => handleOnchage() }
             value={ quantity }
           />
           <button
             data-testid={ `customer_products__button-card-add-item-${id}` }
             type="button"
-            title="+"
-            onClick={ () => setQuantity(quantity + 1) }
+            title="aumentar"
+            onClick={ () => handleClickIncrease() }
           >
             +
           </button>
