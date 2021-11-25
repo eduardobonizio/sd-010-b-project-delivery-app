@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router';
@@ -12,11 +13,25 @@ function AppProvider({ children }) {
     password: '',
     role: 'customer',
   });
+
+  const [dataLogin, setDataLogin] = useState({});
+  const [isAdmin, setIsAdmin] = useState(false);
   const [validUser, setValidUser] = useState(false);
   const [dataOrder, setDataOrder] = useState([]);
   const [error, setError] = useState(null);
 
   const history = useHistory();
+
+  const login = async () => {
+    const url = 'http://localhost:3001/login';
+    try {
+      const { data } = await axios.post(url, dataLogin);
+      console.log(data);
+      // history.push('customer/products');
+    } catch (e) {
+      setError(e.response.data.message);
+    }
+  };
 
   const getProducts = () => {
     const url = 'http://localhost:3001/products';
@@ -57,6 +72,10 @@ function AppProvider({ children }) {
     setDataUser({ ...dataUser, [name]: value });
   };
 
+  const changeLoginState = ({ target: { name, value } }) => {
+    setDataLogin({ ...dataLogin, [name]: value });
+  };
+
   useEffect(() => {
     getProducts();
   }, []);
@@ -67,7 +86,9 @@ function AppProvider({ children }) {
     validUser,
     error,
     dataOrder,
+    login,
     setDataUser,
+    changeLoginState,
     setDataOrder,
     registerUser,
     changeUserState,
