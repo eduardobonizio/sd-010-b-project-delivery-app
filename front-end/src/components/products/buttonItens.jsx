@@ -16,13 +16,13 @@ const ButtonItens = (elem) => {
         className="count"
         data-testid={ `customer_products__input-card-quantity-${id}` }
         value={ count }
-        onChange={ (e) => setCount(e.target.value) }
+        onChange={ ({ target: { value } }) => value.match(/\d+/) && setCount(value) }
         type="number"
       />
 
       <button
         data-testid={ `customer_products__button-card-add-item-${id}` }
-        onClick={ () => setCount(count + 1) }
+        onClick={ () => setCount(parseInt(count, 10) + 1) }
         type="button"
       >
         +

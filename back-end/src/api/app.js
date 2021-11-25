@@ -1,11 +1,11 @@
 const express = require('express');
 const cors = require('cors');
-const userController = require('../database/controllers/userControllers');
+const userController = require('../database/controllers/userController');
 const { getAllProducts } = require('../database/controllers/productControllers');
-const { attemptLogin } = require('../database/controllers/Login');
+const { attemptLogin } = require('../database/controllers/loginController');
+const { getAll, getById } = require('../database/controllers/saleController');
 
 const app = express();
-app.use(express.json());
 app.use(cors());
 
 app.use(express.json());
@@ -14,6 +14,9 @@ app.use(express.json());
 app.use(express.static('public'));
 
 app.post('/createUser', userController.createUser);
+
+app.get('/orders/:id', getById);
+app.get('/orders', getAll);
 
 app.get('/products', getAllProducts);
 

@@ -1,0 +1,36 @@
+'use strict';
+
+module.exports = {
+  up: async (queryInterface, Sequelize) => queryInterface.bulkInsert('sales',
+  [
+    {
+      user_id: 3,
+      seller_id: 2,
+      total_price: 20.20,
+      delivery_address: 'rua das azaléias',
+      delivery_number: 264,
+      sale_date: Sequelize.literal('CURRENT_TIMESTAMP'),
+      status: 'pendente',
+    },
+    {
+      user_id: 3,
+      seller_id: 2,
+      total_price: 34.90,
+      delivery_address: 'rua das camélias',
+      delivery_number: 1547,
+      sale_date: Sequelize.literal('CURRENT_TIMESTAMP'),
+      status: 'pendente',
+    },
+    {
+      user_id: 3,
+      seller_id: 2,
+      total_price: 92.80,
+      delivery_address: 'rua das hortências',
+      delivery_number: 417,
+      sale_date: Sequelize.literal('CURRENT_TIMESTAMP'),
+      status: 'pendente',
+    },
+  ], {}),
+
+  down: async (queryInterface, _Sequelize) => queryInterface.bulkDelete('sales', null, {}),
+};

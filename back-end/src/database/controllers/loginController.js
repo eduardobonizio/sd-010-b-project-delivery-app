@@ -1,6 +1,6 @@
 const { OK, INTERNAL_SERVER_ERROR, NOT_FOUND } = require('http-status');
-const jwt = require('jsonwebtoken');
-const Login = require('../services/Login');
+// const jwt = require('jsonwebtoken');
+const Login = require('../services/loginService');
 
 
 const attemptLogin = async (req, res) => {

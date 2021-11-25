@@ -8,6 +8,7 @@ const Login = () => {
   const [emailInput, setEmail] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [loginAllowed, setLoginAllowed] = useState(false);
+  const [userRole, setUserRole] = useState('');
 
   const validateEmail = (email) => {
     setEmail(email);
@@ -55,9 +56,16 @@ const Login = () => {
     } else {
       setPassword('');
       setEmail('');
+      setUserRole(role);
       setLoginAllowed(true);
     }
     return data;
+  };
+
+  const addressToRedirect = () => {
+    if (userRole === 'customer') return '/customer/products';
+    if (userRole === 'seller') return '/seller/orders';
+    return '/admin/manage';
   };
 
   return (
@@ -99,7 +107,7 @@ const Login = () => {
         </button>
       </Link>
       <div data-testid="common_login__element-invalid-email">{ errorMessage }</div>
-      { loginAllowed && <Redirect to="/customer/products" /> }
+      { loginAllowed && <Redirect to={ addressToRedirect() } /> }
     </div>
   );
 };
