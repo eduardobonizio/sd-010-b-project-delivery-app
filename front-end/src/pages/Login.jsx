@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useHistory, Link, Redirect } from 'react-router-dom';
 import API from '../api';
 
-import { validateEmail, validatePassword } from '../util/valdations';
+import { validateEmail, validatePassword } from '../util/userValidations';
 
 function Login() {
   const [passwordIsValid, setPasswordIsValid] = useState(false);
@@ -10,30 +10,33 @@ function Login() {
   const [email, setEmail] = useState('');
   const [emailIsValid, setEmailIsValid] = useState(false);
   const [error, setError] = useState(null);
+  const [shouldRedirect, setShouldRedirect] = useState(false);
   const history = useHistory();
 
-  const savePassword = (p) => {
-    setPassword(p);
-  };
+  useEffect(() => {
+    const userInfo = JSON.parse(localStorage.getItem('user'));
+    if (userInfo) {
+      const { token } = userInfo;
+      if (token) {
+        setShouldRedirect(true);
+      }
+    }
+  }, []);
 
   const handlePasswordChange = (event) => {
     const {
       target: { value },
     } = event;
-    savePassword(value);
+    setPassword(value);
     const passwordValidation = validatePassword(value);
     setPasswordIsValid(passwordValidation);
-  };
-
-  const saveEmail = (e) => {
-    setEmail(e);
   };
 
   const handleEmailChange = (event) => {
     const {
       target: { value },
     } = event;
-    saveEmail(value);
+    setEmail(value);
     const emailValidation = validateEmail(value);
     setEmailIsValid(emailValidation);
   };
@@ -42,7 +45,7 @@ function Login() {
     switch (role) {
     case 'administrator': return history.push('/customer/products');
     case 'customer': return history.push('/customer/products');
-    case 'seller': return history.push('/customer/seller');
+    case 'seller': return history.push('/seller/orders');
     default:
       break;
     }
@@ -52,6 +55,7 @@ function Login() {
     e.preventDefault();
     try {
       const { data: { user } } = await API.login({ email, password });
+      localStorage.setItem('user', JSON.stringify(user));
       redirect(user);
     } catch (err) {
       setError(err);
@@ -60,6 +64,9 @@ function Login() {
 
   return (
     <div>
+      {
+        shouldRedirect ? <Redirect to="customer/products" /> : ''
+      }
       <h1>App de Delivery</h1>
       <form onSubmit={ handleSubmit }>
         <label htmlFor="email">

@@ -4,7 +4,7 @@ const fs = require('fs');
 const generateToken = (user) => {
     const { id, email, role } = user;
     const jwtConfig = {
-      expiresIn: '60min',
+      expiresIn: '7d',
       algorithm: 'HS256',
     };
 
