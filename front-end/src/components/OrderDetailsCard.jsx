@@ -13,7 +13,6 @@ function OrderDetailsCard({ dataId, index, quantity }) {
       console.log(request);
       setProduct(request);
     };
-
     getProduct();
   }, []);
 
