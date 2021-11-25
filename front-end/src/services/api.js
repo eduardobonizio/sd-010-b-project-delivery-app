@@ -8,7 +8,6 @@ const postPurchase = async (checkoutObj, token) => {
       headers: { Authorization: token },
     },
   );
-  console.log(response);
   return response;
 };
 

@@ -14,14 +14,12 @@ const CreateUserForm = () => {
   const [errors, setErrors] = useState([]);
   const [alreadyExists, setAlreadyExists] = useState(false);
 
-  console.log(errors, 'errors');
   const handleChange = ({ target: { value, id } }) => {
     setUser({ ...user, [id]: value });
   };
 
   const registerUser = async () => {
     const token = JSON.parse(localStorage.getItem('user'));
-    console.log(token.token, 'token');
     await axios({
       method: 'post',
       url: 'http://localhost:3001/admin/manage/register',
