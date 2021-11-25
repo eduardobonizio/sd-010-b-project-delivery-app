@@ -5,10 +5,24 @@ function NavBar() {
   const history = useHistory();
   const user = JSON.parse(localStorage.getItem('user'));
   const { name } = user;
+  const { location } = history;
 
   const logout = () => {
     history.push({ pathname: '/' });
     localStorage.clear();
+  };
+
+  const renderMeusPedidos = (path) => {
+    if (location.pathname.includes(path)) {
+      return (
+        <button
+          type="button"
+          data-testid="customer_products__element-navbar-link-orders"
+        >
+          Meus Pedidos
+        </button>
+      );
+    }
   };
 
   return (
@@ -19,12 +33,7 @@ function NavBar() {
       >
         Produtos
       </button>
-      <button
-        type="button"
-        data-testid="customer_products__element-navbar-link-orders"
-      >
-        Meus Pedidos
-      </button>
+      { renderMeusPedidos('/customer') }
       <button
         type="button"
         data-testid="customer_products__element-navbar-user-full-name"
