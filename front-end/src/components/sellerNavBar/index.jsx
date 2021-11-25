@@ -22,7 +22,7 @@ export default function SellerNavBar({ id, name, saleDate, status }) {
       </p>
       <button
         type="button"
-        default
+        disabled
         data-testid="customer_order_details__button-delivery-check"
       >
         marcar como entregue
@@ -32,8 +32,8 @@ export default function SellerNavBar({ id, name, saleDate, status }) {
 }
 
 SellerNavBar.propTypes = {
-  id: PropTypes.string,
-  name: PropTypes.string,
-  saleDate: PropTypes.string,
-  status: PropTypes.string,
-}.isRequired;
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  saleDate: PropTypes.string.isRequired,
+  status: PropTypes.string.isRequired,
+};
