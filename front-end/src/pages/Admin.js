@@ -1,6 +1,19 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import AppContext from '../Context/AppContext';
 
 export default function Admin() {
+  const {
+    changeUserState,
+    validUser,
+    // error,
+    registerUser,
+    validateDataUser,
+  } = useContext(AppContext);
+
+  useEffect(() => {
+    validateDataUser();
+  }, [changeUserState, validateDataUser]);
+
   return (
     <div>
       <h1>Cadastrar novo usuário</h1>
@@ -12,7 +25,7 @@ export default function Admin() {
           id="name"
           name="name"
           data-testid="admin_manage__input-name"
-          onChange={ () => {} }
+          onChange={ changeUserState }
         />
       </label>
       <label htmlFor="email">
@@ -22,7 +35,7 @@ export default function Admin() {
           id="email"
           name="email"
           data-testid="admin_manage__input-email"
-          onChange={ () => {} }
+          onChange={ changeUserState }
         />
       </label>
 
@@ -33,15 +46,15 @@ export default function Admin() {
           id="password"
           name="password"
           data-testid="admin_manage__input-password"
-          onChange={ () => {} }
+          onChange={ changeUserState }
         />
       </label>
 
       <button
         type="button"
         data-testid="admin_manage__button"
-        onClick={ () => {} }
-        disabled
+        onClick={ registerUser }
+        disabled={ !validUser }
       >
         Login
       </button>

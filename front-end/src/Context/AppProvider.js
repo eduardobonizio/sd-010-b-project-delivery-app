@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+/* eslint-disable no-unused-expressions */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router';
@@ -14,7 +15,7 @@ function AppProvider({ children }) {
     role: 'customer',
   });
 
-  const [dataLogin, setDataLogin] = useState({});
+  const [dataLogin, setDataLogin] = useState({ name: 'fawfafaz', email: 'sadawfwea' });
   const [isAdmin, setIsAdmin] = useState(false);
   const [validUser, setValidUser] = useState(false);
   const [validLogin, setValidLogin] = useState(false);
@@ -28,11 +29,13 @@ function AppProvider({ children }) {
     try {
       const { data } = await axios.post(url, dataLogin);
       if (data.role === 'administrator') {
+        setIsAdmin(true);
         history.push('admin/manage');
         return;
       }
-      console.log(data);
 
+      setIsAdmin(false);
+      // eslint-disable-next-line sonarjs/no-duplicate-string
       history.push('customer/products');
     } catch (e) {
       setError(e.response.data.message);
@@ -61,7 +64,6 @@ function AppProvider({ children }) {
     // Ref- https://pt.stackoverflow.com/questions/1386/express%C3%A3o-regular-para-valida%C3%A7%C3%A3o-de-e-mail
     const validation = /^[a-z0-9.\D]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
     const MIN_LEN_PASS = 6;
-
     if (
       validation.test(dataLogin.email)
       && dataLogin.password.length >= MIN_LEN_PASS
