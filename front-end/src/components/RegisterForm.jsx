@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import DeliveryContext from '../context/DeliveryContext';
 import ErrorMessage from './ErrorMessage';
 import { register } from '../services/API';
+import '../styles/Register.css';
 
 function RegisterForm() {
   const navigate = useNavigate();
@@ -95,14 +96,16 @@ function RegisterForm() {
             : null
         }
       </label>
-      <button
-        type="button"
-        disabled={ ableButton() }
-        onClick={ handleSendRegister }
-        data-testid="common_register__button-register"
-      >
-        Registra-se
-      </button>
+      <div className="buttom-register">
+        <button
+          type="button"
+          disabled={ ableButton() }
+          onClick={ handleSendRegister }
+          data-testid="common_register__button-register"
+        >
+          Registra-se
+        </button>
+      </div>
       {
         isValidData
           ? null

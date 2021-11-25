@@ -1,6 +1,29 @@
 .App-register {
-  height: 230px;
-  margin-left: 31%;
-  margin-top: 15%;
-  width: 300px;
+  border: 1px solid grey;
+  border-radius: 2px;
+  height: auto;
+  padding: 10px;
+}
+
+.buttom-register {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.conteiner-login-register {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
+}
+
+.form-register label {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-register span {
+  padding-bottom: 5px;
 }

@@ -4,7 +4,9 @@ import '../styles/App.css';
 
 const LoginPage = () => (
   <div className="App">
-    <Login />
+    <div className="conteiner-login-register">
+      <Login />
+    </div>
   </div>
 );
 
