@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 // import Context from '../context/Context';
 
@@ -9,11 +9,11 @@ function Card(props) {
   const [carrinho, setCarrinho] = useState({});
   const { item } = props;
   const { price, name, id } = item;
-  // const history = useHistory();
+  const history = useHistory();
   const CARRINHO_DE_COMPRAS = 'Carrinho de Compras';
   const setLocalStorage = (key, value) => {
     localStorage.setItem(key, JSON.stringify(value));
-    // history.push({ pathname: '/customer/products' });
+    history.push({ pathname: '/customer/products' });
   };
 
   useEffect(() => {
