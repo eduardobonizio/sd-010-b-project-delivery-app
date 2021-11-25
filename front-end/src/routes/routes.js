@@ -6,6 +6,7 @@ import Login from '../pages/Login';
 import Register from '../pages/Register';
 import Products from '../pages/customer/Products';
 import Checkout from '../pages/customer/Checkout';
+import CostumerOrder from '../pages/CustomerOrder';
 
 const Routes = () => {
   const location = useLocation();
@@ -15,6 +16,7 @@ const Routes = () => {
       {location.pathname === '/'
         ? <Redirect to="/login" />
         : null}
+      <Route exact path="/customer/orders" component={ CostumerOrder } />
       <Route exact path="/customer/checkout" component={ Checkout } />
       <Route exact path="/register" component={ Register } />
       <Route exact path="/customer/products" component={ Products } />
