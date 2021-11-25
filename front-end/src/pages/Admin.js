@@ -67,10 +67,8 @@ export default function Admin() {
   const register = async () => {
     try {
       const info = { ...state.$data, role };
-      console.log(info);
+      // console.log(info);
       await api.register(info);
-      // return window.location.replace('/customer/products');
-      // console.log(data);
     } catch (error) {
       setIsErr(true);
     }

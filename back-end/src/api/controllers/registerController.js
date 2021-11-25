@@ -5,7 +5,6 @@ const createToken = require('../middlewares/createToken');
 const registerUser = rescue(async (req, res) => {
   const { name, email, password, role = 'customer' } = req.body;
   const newUser = await registerService.registerUser(name, email, password, role);
-  console.log(newUser);
   const token = await createToken({ id: newUser.id, name, email, role });
   const { error } = newUser;
   if (error) return res.status(error.status).json(error.message);
