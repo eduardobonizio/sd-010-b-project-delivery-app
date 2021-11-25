@@ -7,6 +7,7 @@ import Register from './pages/Register';
 import Products from './pages/Products';
 import CustomerOrders from './pages/CustomerOrders';
 import CustomerOrderDetails from './pages/CustomerOrderDetails';
+import SellerOrderDetails from './pages/SellerOrderDetails';
 import Checkout from './pages/Checkout';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -19,8 +20,6 @@ import NavBar from './components/NavBar';
 function App() {
   return (
     <Switch>
-      {/* Vai receber props com path, comp e para verificar se vai renderizar
-      com ou sem navbar horizontal */}
       <CustomRoute path="/login" component={ Login } /* navbar={ <NavBar /> } */ />
       <CustomRoute
         path="/customer/products"
@@ -47,7 +46,7 @@ function App() {
       <CustomRoute
         navbar={ <NavBar /> }
         path="/seller/orders/:id"
-        component={ CustomerOrderDetails }
+        component={ SellerOrderDetails }
       />
       <CustomRoute
         path="/seller/orders"
