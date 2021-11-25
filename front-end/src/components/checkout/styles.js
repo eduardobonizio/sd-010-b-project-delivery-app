@@ -4,11 +4,11 @@ export const ContainerCheckout = styled.div`
   width: 90%;
   height: 75vh;
   margin: 10px 50px;
+  font-family: sans-serif;
 `;
 
 export const TextFinalizeOrder = styled.h3`
   padding-bottom: 5px;
-  color: #000;
   font-weight: 700;
 `;
 
@@ -28,7 +28,7 @@ export const Overflow = styled.div`
   flex-direction: column;
   align-items: center;
   overflow: auto;
-  
+
 ::-webkit-scrollbar {
     width: 15px;
     background: #F4F4F4;
@@ -63,27 +63,27 @@ export const TdTable = styled.td`
   :nth-child(1) {
     border-radius: 5px 0 0 5px;
     text-align: center;
-    background:   #4E9F3D;
+    background: #0FD496;
   }
 
   :nth-child(2) {
-    background: #FFEEEF;
+    background: #F2FFFC;
     padding-left: 5px;
   }
 
   :nth-child(3) {
-    background: #3E7C17;
+    background: #007355;
     text-align: center;
     color: #FFF
   }
 
   :nth-child(4) {
-    background: #9C528B;
+    background: #421981;
     text-align: center;
     color: #FFF
   }
   :nth-child(5) {
-    background: #2274A5;
+    background: #056CF9;
     text-align: center;
     color: #FFF
   }
@@ -100,7 +100,7 @@ export const ButtonRemove = styled.button`
   height: 100%;
   border: none;
   border-radius: 0 5px 5px 0;
-  background:   #4E9F3D;
+  background: #0FD496;
   cursor: pointer;
   color: #FFFFFF;
   font-weight: 900;
@@ -112,7 +112,7 @@ export const ValueTotal = styled.div`
   right: 10px;
   width: 200px;
   height: 50px;
-  background:   #1DB954;
+  background: #036B52;
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -179,7 +179,7 @@ export const ButtonFinishOrder = styled.button`
   bottom: 6px;
   width: 20vw;
   height: 5vh;
-  background: #1DB954;
+  background: #036B52;
   border-radius: 5px;
   border: none;
   font-weight: 800;
