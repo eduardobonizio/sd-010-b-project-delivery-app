@@ -17,7 +17,7 @@ function Products() {
     const handleTotalValue = (carrinho) => {
       const zero = 0;
       if (!carrinho.length) setTotal(zero.toFixed(2));
-      const total2 = carrinho.reduce((acc, curr) => acc + +curr.price * curr.qty, 0);
+      const newTotal = carrinho.reduce((acc, curr) => acc + +curr.price * curr.qty, 0);
       setTotal(total2.toFixed(2));
     };
     handleTotalValue(cart);
