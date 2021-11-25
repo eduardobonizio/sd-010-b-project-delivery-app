@@ -35,13 +35,11 @@ const findOrderByPk = async ({ sellerId, id }) => {
 
 const updateSaleStatus = async (id, newStatus) => {
   const updated = await Sale.findOne(
-    { where: { id } }
-    ).then(sale => {
-      return sale.update({status: newStatus})
-    })
+    { where: { id } },
+    ).then((sale) => sale.update({ status: newStatus }));
 
     return updated;
-}
+};
 
 module.exports = {
   findAllSales,

@@ -25,7 +25,7 @@ const updateOrderStatus = async (req, res) => {
   const result = await sellerService.updateSaleStatus(id, orderStatus);
 
   if (!result) {
-    return res.status(409).json({ message }); 
+    return res.status(409).json({ message: 'Error in sellerController updateOrderStatus' }); 
   }
 
   return res.status(201).json(result);
@@ -34,5 +34,5 @@ const updateOrderStatus = async (req, res) => {
 module.exports = {
   findAllSales,
   findOrderByPk,
-  updateOrderStatus
+  updateOrderStatus,
 };

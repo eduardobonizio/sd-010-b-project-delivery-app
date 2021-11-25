@@ -11,7 +11,6 @@ sellerRouter.post('/orders/:id', auth, sellerController.updateOrderStatus);
 
 sellerRouter.get('/orders', auth, sellerController.findAllSales);
 
-
 module.exports = {
   sellerRouter,
 };
