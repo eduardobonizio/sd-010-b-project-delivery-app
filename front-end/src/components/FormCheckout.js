@@ -26,21 +26,21 @@ function FormCheckout() {
     getSeller();
   }, [setSeller]);
 
-  const sendData = async (e) => {
-    e.preventDefault();
+  const sendData = async () => {
     const userStorage = localStorage.getItem('user');
     const cartStorage = localStorage.getItem('cart');
-    await axios.post('http://localhost:3001/finish-sale',
+    const { dataSale } = await axios.post('http://localhost:3001/finish-sale',
       {
-        total_price: total,
-        delivery_adress: address,
-        delivery_number: number,
+        totalPrice: total,
+        deliveryAddress: address,
+        deliveryNumber: number,
         userId: JSON.parse(userStorage).id,
         sellerId: seller.id,
         cart: JSON.parse(cartStorage),
       },
       { headers: { Authorization: JSON.parse(userStorage).token } });
-    history.push('/customer/orders/:id');
+    console.log(dataSale);
+    history.push(`/customer/orders/${dataSale.id}`);
   };
 
   const handleChange = (event) => {
@@ -89,7 +89,7 @@ function FormCheckout() {
         </div>
         <div>
           <button
-            type="submit"
+            type="button"
             data-testid="customer_checkout__button-submit-order"
             onClick={ () => sendData() }
           >
