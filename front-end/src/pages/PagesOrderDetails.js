@@ -9,12 +9,13 @@ import AppContext from '../Context/AppContext';
 
 function PagesOrderDetails() {
   const { id } = useParams();
-  const { setProductsAPI, setDetailsOrder, setName } = useContext(AppContext);
+  const { setProductsAPI, setDetailsOrder } = useContext(AppContext);
 
   useEffect(() => {
     const getApi = async () => {
       const result = await saleProductsAPI(id);
-      setName(result[0].seller.name);
+      console.log(result);
+      // setName(result[0].seller.name);
       setDetailsOrder(result[0]);
       setProductsAPI(result[0].products);
     };

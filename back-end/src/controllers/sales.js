@@ -2,7 +2,6 @@ const salesService = require('../services/sales');
 
 const addSale = async (req, res) => {
     const { objSale, objSaleProduct } = req.body;
-    console.log(objSale, 'ReqUser', req.user, objSaleProduct);
     const { id } = req.user;
     const objeto = {
         id,

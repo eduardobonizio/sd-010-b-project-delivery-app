@@ -17,7 +17,7 @@ function FooterCheckout() {
     deliveryNumber: '',
   });
 
-  const handleChange = ({ target: { name, value } }) => {
+  const handleChange = async ({ target: { name, value } }) => {
     setObjSale({ ...objSale, [name]: value, totalPrice: total.replace(',', '.') });
   };
 
@@ -41,9 +41,9 @@ function FooterCheckout() {
       Authorization: tok.token,
     };
 
-    const { data: { id } } = await axios.post(url, sale, { headers: payload });
+    const { data } = await axios.post(url, sale, { headers: payload });
 
-    history.push(`localhost:3000/customer/orders/${id}`);
+    history.push(`/customer/orders/${data.id}`);
   };
 
   return (
