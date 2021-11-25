@@ -10,6 +10,8 @@ import Checkout from './common/pages/checkout/Checkout';
 import Admin from './common/pages/admin/Admin';
 import OrderDetails from './common/pages/orderDetailsClient/OrderDetails';
 import OrderDetailsSeller from './common/pages/orderDetailsSeller/OrderDetailsSeller';
+import OrderSeller from './components/OrderSeller/OrderSeller';
+import Apagar from './common/APAGAR';
 
 function App() {
   return (
@@ -20,11 +22,12 @@ function App() {
       <Route exact path="/admin/manage" component={ Admin } />
       <Route exact path="/login" component={ Login } />
       <Route exact path="/customer/checkout" component={ Checkout } />
+      <Route exact path="/customer/orders/:id" component={ Apagar } />
       <Route exact path="/customer/orders" component={ OrderDetails } />
       <Route exact path="/customer/products" component={ Products } />
       <Route exact path="/register" component={ Register } />
       <Route exact path="/seller/orders/:id" component={ OrderDetailsSeller } />
-      {/* <Route exact path="/customer/orders/:id" component={ OrderDetails } /> */}
+      <Route exact path="/seller/orders/" component={ OrderSeller } />
     </Switch>
   );
 }

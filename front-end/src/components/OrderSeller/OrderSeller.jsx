@@ -1,15 +1,22 @@
-import React, { useContext, useEffect } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useContext, useEffect, useState } from 'react';
 import Header from '../ProductsComponents/Header';
 import OrderSellerCard from './OrderSellerCard';
+import { Context } from '../../provider/Provider';
+import { getAllOrdersBySellerId } from '../../services/api';
 
 function OrderSeller() {
-  const { setDataUser, setTotalOrders, totalOrders } = useContext(Context);
+  const { setDataUser } = useContext(Context);
+  const [data, setData] = useState([]);
+  // antes tava sendo exportar o totalOrder e setTotalOrder, porém como eles seriam apenas o preço eu optei por troca-los
 
   async function getOrders() {
     const user = JSON.parse(localStorage.getItem('user'));
     setDataUser(user);
     const orders = await getAllOrdersBySellerId(user.userId);
-    setTotalOrders(orders);
+
+    setData([orders]);
+    console.log(orders, 'orders', data);
   }
 
   useEffect(() => {
@@ -21,7 +28,7 @@ function OrderSeller() {
       <Header />
       <div>
         {
-          totalOrders.map((order) => (
+          data && data.map((order) => (
             <OrderSellerCard order={ order } key={ order.id } />
           ))
         }

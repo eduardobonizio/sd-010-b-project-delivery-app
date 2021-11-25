@@ -32,7 +32,7 @@ function OrderSeller({ order }) {
         <p
           data-testid={ `seller_orders__element-card-price-${id}` }
         >
-          {AddZeroes(totalPrice)}
+          {AddZeroes(Number(totalPrice))}
         </p>
         <p
           data-testid={ `seller_orders__element-card-address-${id}` }

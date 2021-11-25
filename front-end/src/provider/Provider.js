@@ -101,6 +101,7 @@ const Provider = ({ children }) => {
     fetchProducts();
     const carrinho = localStorage.getItem('carrinho');
     const price = localStorage.getItem('price');
+
     setTotalOrder(JSON.parse(price) || 0);
     setOrderInProgress(JSON.parse(carrinho) || []);
   }, [history, location]);
@@ -108,12 +109,16 @@ const Provider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem('carrinho', JSON.stringify(orderInProgress));
     localStorage.setItem('price', JSON.stringify(totalOrder));
-    const cart = orderInProgress.map(
-      ({ price, quantity }) => parseFloat(price) * quantity,
-    );
-    if (cart.length > 0) {
-      const value = cart.reduce((acc, curr) => acc + curr);
-      return setTotalOrder(parseFloat(value.toFixed(2)));
+
+    if (orderInProgress.length > 0) {
+      // criei esse if de cima pq ele tava quebrando sem razão, depois  vou testar se tá funfando
+      const cart = orderInProgress.map(
+        ({ price, quantity }) => parseFloat(price) * quantity,
+      );
+      if (cart.length > 0) {
+        const value = cart.reduce((acc, curr) => acc + curr);
+        return setTotalOrder(parseFloat(value.toFixed(2)));
+      }
     }
     return setTotalOrder(0);
   }, [orderInProgress, totalOrder]);
