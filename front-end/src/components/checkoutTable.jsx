@@ -101,7 +101,13 @@ function Table() {
     <table className="main-checkout-table">
       <Thead removeBtn />
       <Tbody getTotal={ getTotal } />
-      <p data-testid="customer_checkout__element-order-total-price">{ total }</p>
+      <p
+        className="total-price-checkout"
+        data-testid="customer_checkout__element-order-total-price"
+      >
+        { `Valor total: ${total}` }
+
+      </p>
       <Address clickFuntion={ onClick } postFunction={ postSale } />
     </table>
   );

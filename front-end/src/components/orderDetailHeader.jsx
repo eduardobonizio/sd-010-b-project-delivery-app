@@ -9,28 +9,29 @@ function OrderDetailHeader(props) {
     month: '2-digit', day: '2-digit', year: 'numeric' });
 
   return (
-    <header>
+    <header className="main-detail-table">
       <p
         data-testid="customer_order_details__element-order-details-label-order-id"
       >
-        { `000${id}` }
+        { `Número do pedido: 000${id}` }
       </p>
       <p
         data-testid="customer_order_details__element-order-details-label-seller-name"
       >
-        { `P.Vend: ${seller.name}` }
+        { `Pessoa Vendedora: ${seller.name}` }
       </p>
       <p
         data-testid="customer_order_details__element-order-details-label-order-date"
       >
-        { date }
+        { `Data do pedido: ${date}` }
       </p>
       <p
         data-testid="customer_order_details__element-order-details-label-delivery-status"
       >
-        { status }
+        { `Status: ${status}` }
       </p>
       <button
+        className="check-delivery-button"
         data-testid="customer_order_details__button-delivery-check"
         type="button"
         disabled

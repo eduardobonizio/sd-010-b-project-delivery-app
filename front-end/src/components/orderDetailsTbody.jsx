@@ -14,6 +14,7 @@ function OrderDetailsTbody(props) {
         ? products.map((prod, index) => (
           <tr key={ index }>
             <td
+              className="td-item"
               data-testid={
                 `customer_order_details__element-order-table-item-number-${index}`
               }
@@ -21,11 +22,13 @@ function OrderDetailsTbody(props) {
               {prod.id}
             </td>
             <td
+              className="td-name"
               data-testid={ `customer_order_details__element-order-table-name-${index}` }
             >
               {prod.name}
             </td>
             <td
+              className="td-quant"
               data-testid={
                 `customer_order_details__element-order-table-quantity-${index}`
               }
@@ -33,6 +36,7 @@ function OrderDetailsTbody(props) {
               {prod.salesProducts.quantity}
             </td>
             <td
+              className="td-price"
               data-testid={
                 `customer_order_details__element-order-table-sub-total-${index}`
               }
@@ -40,6 +44,7 @@ function OrderDetailsTbody(props) {
               {prod.price.replace(/\./, ',') }
             </td>
             <td
+              className="td-total"
               data-testid={ `customer_order_details__element-order-total-price-${index}` }
             >
               {totalProdPrice(prod.price, prod.salesProducts.quantity)}

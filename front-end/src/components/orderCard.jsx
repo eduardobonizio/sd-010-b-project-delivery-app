@@ -18,23 +18,26 @@ function OrderCart(props) {
   };
 
   return (
-    <div>
-      <Link to={ `/customer/orders/${orderNum}` }>
-        <div>
-          <h3
-            data-testid={ `customer_orders__element-order-id-${orderNum}` }
-          >
-            {`Pedido ${orderNum}`}
-          </h3>
+    <Link className="no-uperlink" to={ `/customer/orders/${orderNum}` }>
+      <div className="order-card-customer">
+        <div className="order-card-customer-div1">
+          <div>
+            <h3
+              data-testid={ `customer_orders__element-order-id-${orderNum}` }
+            >
+              {`Pedido ${orderNum}`}
+            </h3>
+          </div>
+          <div>
+            <h3
+              className="order-card-status"
+              data-testid={ `customer_orders__element-delivery-status-${orderNum}` }
+            >
+              {status}
+            </h3>
+          </div>
         </div>
-        <div>
-          <h3
-            data-testid={ `customer_orders__element-delivery-status-${orderNum}` }
-          >
-            {status}
-          </h3>
-        </div>
-        <div>
+        <div className="order-card-customer-div2">
           <p
             data-testid={ `customer_orders__element-order-date-${orderNum}` }
           >
@@ -43,11 +46,11 @@ function OrderCart(props) {
           <p
             data-testid={ `customer_orders__element-card-price-${orderNum}` }
           >
-            {convertPrice(totalPrice)}
+            {`R$ ${convertPrice(totalPrice)}`}
           </p>
         </div>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 }
 

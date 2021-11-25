@@ -7,7 +7,7 @@ const OrderDetails = (props) => {
   const { name, role } = JSON.parse(localStorage.getItem('user'));
   const { match: { params: { id } } } = props;
   return (
-    <main>
+    <main className="main-checkout-page">
       <Navbar name={ name } role={ role } />
       <OrderDetailTable id={ id } />
     </main>

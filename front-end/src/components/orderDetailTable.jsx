@@ -25,15 +25,16 @@ function OrderDetailsTable(props) {
   return (
     <main>
       <OrderDetailHeader orderDetail={ orderDetail } />
-      <table>
+      <table className="main-checkout-table">
         <Thead />
         <OrderDetailsTbody orderDetail={ orderDetail } />
+        <p
+          className="total-price-checkout"
+          data-testid="customer_order_details__element-order-total-price"
+        >
+          { `Valor total: ${orderDetail.totalPrice.replace(/\./, ',')}` }
+        </p>
       </table>
-      <p
-        data-testid="customer_order_details__element-order-total-price"
-      >
-        { orderDetail.totalPrice.replace(/\./, ',') }
-      </p>
     </main>
   );
 }

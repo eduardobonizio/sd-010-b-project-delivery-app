@@ -18,17 +18,19 @@ function Address(props) {
   }, []);
 
   return (
-    <main>
-      <form>
+    <main className="main-adress">
+      <form className="adress-forms">
         <div>
           <select
+            className="address-input"
             data-testid="customer_checkout__select-seller"
             onChange={ clickFuntion }
             name="userName"
           >
-            <option value="null">Selecione um vendedor</option>
+            <option className="select-seller" value="null">Selecione um vendedor</option>
             {users.map((user, index) => (
               <option
+                className="select-seller"
                 key={ index }
                 value={ user.id }
               >
@@ -37,29 +39,32 @@ function Address(props) {
           </select>
         </div>
         <div>
-          <label htmlFor="endereço">
-            Endereço
+          <label htmlFor="endereço" className="label-address">
             <input
+              className="address-input address-input-e"
               data-testid="customer_checkout__input-address"
               type="text"
               name="address"
+              placeholder="endereço"
               onChange={ clickFuntion }
             />
           </label>
         </div>
         <div>
-          <label htmlFor="numero">
-            Número
+          <label htmlFor="numero" className="label-address">
             <input
+              className="address-input number-input-e"
               data-testid="customer_checkout__input-addressNumber"
               type="text"
               name="number"
+              placeholder="número"
               onChange={ clickFuntion }
             />
           </label>
         </div>
       </form>
       <button
+        className="end-order-button"
         data-testid="customer_checkout__button-submit-order"
         type="submit"
         onClick={ postFunction }

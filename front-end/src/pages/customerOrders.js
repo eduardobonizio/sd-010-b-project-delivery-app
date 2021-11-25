@@ -35,9 +35,11 @@ function CustomerOrders() {
   console.log('estado:', sales);
   if (isLoading) return <h1>Carregando...</h1>;
   return (
-    <div>
+    <div className="main-customer-orders">
       <Navbar name={ userObj.name } />
-      { renderOrderCards() }
+      <div className="main-order-cards-div">
+        { renderOrderCards() }
+      </div>
     </div>
   );
 }
