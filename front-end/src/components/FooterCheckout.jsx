@@ -17,7 +17,6 @@ function FooterCheckout() {
   });
 
   const handleChange = ({ target: { name, value } }) => {
-    console.log(value);
     setObjSale({ ...objSale, [name]: value, totalPrice: total.replace(',', '.') });
   };
 
@@ -41,9 +40,9 @@ function FooterCheckout() {
       Authorization: tok.token,
     };
 
-    await axios.post(url, sale, { headers: payload });
+    const { data: { id } } = await axios.post(url, sale, { headers: payload });
 
-    history.push('localhost:3000/customer/orders/<id>');
+    history.push(`localhost:3000/customer/orders/${id}`);
   };
 
   return (
