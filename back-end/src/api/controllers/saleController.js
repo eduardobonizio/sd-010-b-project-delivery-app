@@ -1,9 +1,10 @@
+const { StatusCodes } = require('http-status-codes');
 const { finishSaleService } = require('../services/saleService');
 
-const finishSaleController = (req, _res) => {
+const finishSaleController = async (req, res) => {
   const newSale = req.body;
-  finishSaleService(newSale);
-  // res.status().json({});
+  const dataSale = await finishSaleService(newSale);
+  res.status(StatusCodes.CREATED).json({ dataSale });
 };
 
 module.exports = { finishSaleController };

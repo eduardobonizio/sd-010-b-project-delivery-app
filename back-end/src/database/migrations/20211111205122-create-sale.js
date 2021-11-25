@@ -13,13 +13,13 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DECIMAL(9,2),
       },
-      delivery_adress: {
+      delivery_address: {
         allowNull: false,
         type: Sequelize.STRING,
       },
       delivery_number: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
       sale_date: {
         allowNull: false,
