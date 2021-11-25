@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 const tableHead = [
   'Item',
@@ -16,8 +16,8 @@ const unitPriceTable = 'customer_checkout__element-order-table-unit-price-';
 const subTotalTable = 'customer_checkout__element-order-table-sub-total-';
 const removeTable = 'customer_checkout__element-order-table-remove-';
 
-function OrderTable(props) {
-  const { salesProducts: { price, quant, name, total } } = props;
+function OrderTable() {
+  // const { salesProducts: { price, quant, name, total } } = props;
   return (
     <table>
       <thead>
@@ -64,8 +64,8 @@ function OrderTable(props) {
   );
 }
 
-OrderTable.propTypes = {
-  salesProducts: PropTypes.arrayOf(PropTypes).isRequired,
-};
+// OrderTable.propTypes = {
+//   salesProducts: PropTypes.arrayOf(PropTypes).isRequired,
+// };
 
 export default OrderTable;
