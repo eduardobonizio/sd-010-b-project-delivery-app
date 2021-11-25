@@ -12,7 +12,7 @@ const router = express.Router();
 router.get('/manage', validateJWT, getAllUserByAdmin);
 router.post('/manage', validateJWT, registerUserByAdmin);
 router.put('/manage', validateJWT, updateUserByAdmin);
-router.delete('/manage', validateJWT, deleteUserByAdmin);
+router.delete('/manage/:id',validateJWT, deleteUserByAdmin);
 
 
 module.exports = router;

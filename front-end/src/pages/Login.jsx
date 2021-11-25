@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
-// import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import rockGlass from '../images/rockGlass.svg';
-import { setOnLocalStorage,
-  getFromLocalStorage,
-} from '../services/helpers/servicesLocalStorage';
+import { setOnLocalStorage, getFromLocalStorage }
+  from '../services/helpers/servicesLocalStorage';
 import Context from '../context/Context';
 import { loginService } from '../services/apis/servicesLogin';
 
@@ -19,13 +17,9 @@ function Login() {
     password: '',
   });
 
-  // $#zebirita#$
-
   const redirect = () => {
     history.push('/register');
   };
-
-  // utilize o contexto aqui
 
   const validateFields = ({ email, password }) => {
     const regex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
@@ -51,8 +45,8 @@ function Login() {
     setUser(message);
     if (message.role === 'seller') {
       history.push('/seller/orders');
-    } else if (message.role === 'administrador') {
-      history.push('/admin/gerenciamento');
+    } else if (message.role === 'administrator') {
+      history.push('/admin/manage');
     } else if (message.role === 'customer') {
       history.push('/customer/products');
     } else {
@@ -69,22 +63,6 @@ function Login() {
     setHidden(false);
   };
 
-  const atalho = (rolee) => {
-    const message = {
-      id: 4,
-      name: 'Cliente Zé Birita',
-      email: 'zebirita@email.com',
-      role: rolee,
-      token: '1c37466c159755ce1fa181bd247cb925',
-    };
-    checkRole(message);
-  };
-
-  // useEffect(() => {
-  //   const { role } = getFromLocalStorage('user');
-  //   if (role === 'customer') history.push('/customer/products');
-  // });
-
   const isLogin = () => {
     checkRole(token);
   };
@@ -93,14 +71,11 @@ function Login() {
     validateFields(login);
   }, [login]);
 
-  // if(token) history.push('/customer/products')
-
   return (
     <div>
       {token !== null
         ? isLogin()
         : <span className="logo">TRYBE</span>}
-      {/* <span className="logo">TRYBE</span> */}
       <object className="rocksGlass" type="image/svg+xml" data={ rockGlass }>
         Glass
       </object>
@@ -149,13 +124,6 @@ function Login() {
       <h2 data-testid="common_login__element-invalid-email" hidden={ hidden }>
         Email ou Senha invalidos
       </h2>
-
-      <button type="button" onClick={ () => atalho('customer') }>
-        atalho customer
-      </button>
-      <button type="button" onClick={ () => atalho('seller') }>
-        atalho seller
-      </button>
     </div>
   );
 }
