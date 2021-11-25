@@ -1,12 +1,13 @@
-import axios from 'axios';
+/* import axios from 'axios'; */
 import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DeliveryContext from '../context/DeliveryContext';
 import ID from '../utils/dataTestIdDict';
+import { registerAdm } from '../services/API';
 import ErrorMessage from './ErrorMessage';
 import '../styles/FormAdm.css';
 
-function RegisterForm() {
+function RegisterFormAdm() {
   const { validarNome, validarSenha, validarEmail } = useContext(DeliveryContext);
   const navigate = useNavigate();
 
@@ -19,7 +20,7 @@ function RegisterForm() {
 
   const [isValidData, setIsValidData] = useState(true);
 
-  const { nome, senha, email } = registerInfo;
+  const { nome, senha, email, role: papel } = registerInfo;
 
   useEffect(() => {
     const { role } = JSON.parse(localStorage.user);
@@ -45,15 +46,16 @@ function RegisterForm() {
   };
 
   const handleSendRegister = async (event) => {
-    const { token, role: papel } = JSON.parse(localStorage.user);
+    /* const { token } = JSON.parse(localStorage.user); */
     event.preventDefault();
     try {
-      await axios.post('http://localhost:3001/register', {
+      registerAdm(nome, senha, email, papel);
+      /* await axios.post('http://localhost:3001/register/adm', {
         name: nome,
         password: senha,
         email,
-        role,
-      }, { headers: { Autorization: token, role: papel } });
+        role: papel,
+      }, { headers: { Authorization: token } }); */
     } catch (err) {
       console.log(err);
       setIsValidData(false);
@@ -137,4 +139,4 @@ function RegisterForm() {
     </form>);
 }
 
-export default RegisterForm;
+export default RegisterFormAdm;

@@ -8,13 +8,26 @@ const login = async (email, password) => {
   return data;
 };
 
-const register = async (name, password, email) => {
+const register = async (name, password, email, role) => {
   const endPoint = `${LOCALHOST}register`;
   const { data } = await axios.post(endPoint, {
     name,
     password,
     email,
+    role,
   });
+  return data;
+};
+
+const registerAdm = async (name, password, email, role) => {
+  const endPoint = `${LOCALHOST}register/adm`;
+  const { token } = JSON.parse(localStorage.user);
+  const { data } = await axios.post(endPoint, {
+    name,
+    password,
+    email,
+    role,
+  }, { headers: { Authorization: token } });
   return data;
 };
 
@@ -74,6 +87,7 @@ export {
   postSale,
   getAllSellers,
   register,
+  registerAdm,
   getSaleById,
   updateSaleStatus,
 };
