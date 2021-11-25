@@ -98,10 +98,7 @@ function Table() {
   if (loading) return <div>Carregando...</div>;
   if (redirect) return <Redirect to={ `/customer/orders/${saleId}` } />;
   return (
-    <table>
-      <p>{adress}</p>
-      <p>{adressNumber}</p>
-      <p>{sellerId}</p>
+    <table className="main-checkout-table">
       <Thead removeBtn />
       <Tbody getTotal={ getTotal } />
       <p data-testid="customer_checkout__element-order-total-price">{ total }</p>

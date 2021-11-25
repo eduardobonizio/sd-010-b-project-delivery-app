@@ -48,6 +48,7 @@ function Tbody(props) {
         items.map((prod, index) => (
           <tr key={ index }>
             <td
+              className="td-item"
               data-testid={
                 `customer_checkout__element-order-table-item-number-${index}`
               }
@@ -55,27 +56,32 @@ function Tbody(props) {
               {index + 1}
             </td>
             <td
+              className="td-name"
               data-testid={ `customer_checkout__element-order-table-name-${index}` }
             >
               {prod.name}
             </td>
             <td
+              className="td-quant"
               data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
             >
               {cart[prod.id] / prod.price}
             </td>
             <td
+              className="td-price"
               data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }
             >
               {prod.price.replace(/\./, ',') }
             </td>
             <td
+              className="td-total"
               data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }
             >
               {cart[prod.id].toFixed(2).toString().replace(/\./, ',')}
             </td>
             <td>
               <button
+                className="li-delete-button"
                 data-testid={ `customer_checkout__element-order-table-remove-${index}` }
                 type="button"
                 onClick={ () => removeItem(index, prod.id) }

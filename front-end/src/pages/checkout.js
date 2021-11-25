@@ -7,7 +7,7 @@ const Checkout = () => {
   const { name } = userInfo;
 
   return (
-    <main>
+    <main className="main-checkout-page">
       <Navbar name={ name } products="Produtos" orders="Meus Pedidos" />
       <Table />
     </main>
