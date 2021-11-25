@@ -1,16 +1,17 @@
 import React, { useContext } from 'react';
 import Context from '../context/Context';
+import ButtonTotal from './ButtonTotal';
 import Card from './Card';
 
 function CardList() {
-  const { products } = useContext(Context);
+  const { products, setTotal } = useContext(Context);
   const CARRINHO_DE_COMPRAS = 'Carrinho de Compras';
   const loadStorage = localStorage.getItem(CARRINHO_DE_COMPRAS);
   const storeJson = JSON.parse(loadStorage);
-  const total = Object.entries(storeJson).map((item) => Object.entries(item)
-    .map((chave) => console.log('Chave', chave)))
+  const total = Object.values(storeJson)
+    .map((item) => Number(item.totalPrice))
     .reduce((acc, value) => acc + value, 0);
-
+  setTotal(total);
   console.log('Total', total);
   return (
     <main>
@@ -19,18 +20,7 @@ function CardList() {
           <Card key={ item.id } item={ item } />
         ))}
       </section>
-      <section className="card">
-        <button
-          type="button"
-        >
-          <h3>Ver Carrinho:</h3>
-          {' '}
-          <h1 data-testid="customer_products__checkout-bottom-value">
-            R$
-            {total}
-          </h1>
-        </button>
-      </section>
+      <ButtonTotal />
     </main>
   );
 }
