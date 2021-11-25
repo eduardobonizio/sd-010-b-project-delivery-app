@@ -8,10 +8,11 @@ import {
   Products,
   Checkout,
   ClientOrderDetails,
-  OrderDetails,
+  SellerOrders,
   Home,
   Details,
   Management,
+  OrdersDetails,
 } from './pages';
 
 function App() {
@@ -22,7 +23,8 @@ function App() {
       <Route exact path="/customer/orders" element={ <ClientOrderDetails /> } />
       <Route exact path="/customer/products" element={ <Products /> } />
       <Route exact path="/customer/checkout" element={ <Checkout /> } />
-      <Route path="/seller/orders" element={ <OrderDetails /> } />
+      <Route path="/seller/orders/:id" element={ <OrdersDetails /> } />
+      <Route path="/seller/orders" element={ <SellerOrders /> } />
       <Route path="/register" element={ <Register /> } />
       <Route path="/login" element={ <Login /> } />
       <Route path="/" element={ <Home /> } />
