@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import TopBar from '../components/TopBar';
-import OrderDetailsTable from '../components/OrderDetailsTable';
+import SellerOrderDetailsTable from '../components/SellerOrderDetailsTable';
 import './css/Products.css';
 
-function Products() {
+function ListSellerSaleById() {
   const { name } = JSON.parse(localStorage.getItem('user'));
+  const [order, setOrder] = useState();
   const [preparing, setPreparing] = useState(false);
   const [orderStatus, setOrderStatus] = useState('Pendente');
-  const [order, setOrder] = useState();
   const history = useHistory();
 
   useEffect(() => {
@@ -23,7 +23,8 @@ function Products() {
     };
 
     const getOrder = async () => {
-      const myOrder = await axios.get(`http://localhost:3001/customer/orders/${orderId}`, config);
+      const myOrder = await axios.get(`http://localhost:3001/seller/orders/${orderId}`, config);
+
       setOrder(myOrder.data.order);
       setOrderStatus(myOrder.data.order.status);
     };
@@ -40,7 +41,7 @@ function Products() {
         authorization: token,
       },
     };
-    axios.post(`http://localhost:3001/seller/orders/${orderId}`, { orderStatus: status }, config);
+    await axios.post(`http://localhost:3001/seller/orders/${orderId}`, { orderStatus: status }, config);
 
     setPreparing(!preparing);
     setOrderStatus(status);
@@ -53,47 +54,49 @@ function Products() {
     const month = `${dateArray[1][0]}${dateArray[1][1]}`;
     const year = `${dateArray[0].slice(0, endArraySlice)}`;
     const formattedDate = `${day}/${month}/${year}`;
-    const label = 'customer_order_details__element-order-details-label-delivery-status';
+
+    const label = 'seller_order_details__element-order-details-label-delivery-status';
     return (
       <>
         <TopBar name={ name } />
         <p>Detalhe do pedido</p>
         <div>
           <span
-            data-testid="customer_order_details__element-order-details-label-order-id"
+            data-testid="seller_order_details__element-order-details-label-order-id"
           >
             Pedido
             { order.id }
           </span>
           <span
-            data-testid="customer_order_details__element-order-details-label-seller-name"
-          >
-            P. Vendedora:
-            { order.seller.name }
-          </span>
-          <span
-            data-testid="customer_order_details__element-order-details-label-order-date"
+            data-testid="seller_order_details__element-order-details-label-order-date"
           >
             { formattedDate }
           </span>
           <span
             data-testid={ label }
           >
-            { orderStatus }
+            {orderStatus}
           </span>
           <button
-            data-testid="customer_order_details__button-delivery-check"
+            data-testid="seller_order_details__button-preparing-check"
             type="button"
-            disabled={ orderStatus !== 'Em Trânsito' }
-            onClick={ () => updateButtonsText('Entregue') }
-            style={ { fontSize: '5px' } }
+            disabled={ orderStatus !== 'Pendente' }
+            onClick={ () => updateButtonsText('Preparando') }
           >
-            MARCAR COMO ENTREGUE
+            PREPARAR PEDIDO
           </button>
-          <OrderDetailsTable order={ order.products } />
+          <button
+            data-testid="seller_order_details__button-dispatch-check"
+            type="button"
+            disabled={ orderStatus !== 'Preparando' }
+            onClick={ () => updateButtonsText('Em Trânsito') }
+          >
+            SAIU PARA ENTREGA
+          </button>
+          <SellerOrderDetailsTable order={ order.products } />
           <span>Total: R$</span>
           <span
-            data-testid="customer_order_details__element-order-total-price"
+            data-testid="seller_order_details__element-order-total-price"
           >
             { order.totalPrice.split('.').join(',') }
           </span>
@@ -104,4 +107,4 @@ function Products() {
   return (<p>Carregando</p>);
 }
 
-export default Products;
+export default ListSellerSaleById;
