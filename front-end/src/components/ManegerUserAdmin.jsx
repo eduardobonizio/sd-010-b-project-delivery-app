@@ -6,7 +6,6 @@ import * as S from '../styles/Admin';
 
 function DetailsAddress() {
   const { allUsers, setAllUsers } = useContext(Context);
-  // --adm2@21!!--
   const regex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
   const MIN_NAME = 12;
   const MIN_PASSWORD = 6;
@@ -43,55 +42,60 @@ function DetailsAddress() {
   return (
     <S.mainContainer>
 
-      <h1>CADASTRAR USUÁRIO</h1>
+      <S.titleAdmin>CADASTRAR USUÁRIO</S.titleAdmin>
       <S.formAdmin>
 
-        <div>
-
-          <h2>Nome</h2>
+        <S.containerImput>
+          <S.legend>Nome</S.legend>
           <input
             data-testid={ `${INPUT_NAME_ADMIN}` }
             onChange={ ({ target }) => setName(target.value) }
             type="text"
             placeholder="Digite seu Nome Completo"
           />
-        </div>
-        <div>
+        </S.containerImput>
 
-          <h2>Email</h2>
+        <S.containerImput>
+          <S.legend>Email</S.legend>
           <input
             data-testid={ `${INPUT_EMAIL_ADMIN}` }
             onChange={ ({ target }) => setEmail(target.value) }
             type="email"
             placeholder="Digite seu e-mail"
           />
-        </div>
+        </S.containerImput>
 
-        <div>
-
-          <h2>Senha</h2>
+        <S.containerImput>
+          <S.legend>Senha</S.legend>
           <input
             data-testid={ `${INPUT_PASSWORD_ADMIN}` }
             onChange={ ({ target }) => setPassword(target.value) }
             type="password"
             placeholder="Digite Sua Senha"
           />
-        </div>
-        <select
-          data-testid={ `${INPUT_SELECT_ADMIN}` }
-          onChange={ ({ target }) => setRole(target.value) }
-        >
-          <option value="seller">Vendedor</option>
-          <option value="customer">Cliente</option>
-        </select>
-        <button
-          data-testid={ `${INPUT_BUTTON_ADMIN}` }
-          disabled={ buttonOn }
-          onClick={ () => registerUser() }
-          type="button"
-        >
-          CADASTRAR
-        </button>
+        </S.containerImput>
+
+        <S.containerSelect>
+
+          <S.selectRole
+            data-testid={ `${INPUT_SELECT_ADMIN}` }
+            onChange={ ({ target }) => setRole(target.value) }
+          >
+            <option value="seller">Vendedor</option>
+            <option value="customer">Cliente</option>
+          </S.selectRole>
+        </S.containerSelect>
+        <S.containerButton>
+
+          <S.buttonCadastrar
+            data-testid={ `${INPUT_BUTTON_ADMIN}` }
+            disabled={ buttonOn }
+            onClick={ () => registerUser() }
+            type="button"
+          >
+            CADASTRAR
+          </S.buttonCadastrar>
+        </S.containerButton>
         {
           isValid && (
             <span data-testid="admin_manage__element-invalid-register">

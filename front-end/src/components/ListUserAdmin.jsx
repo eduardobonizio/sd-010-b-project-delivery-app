@@ -3,6 +3,7 @@ import { getAllUsers, removeUser,
 } from '../services/apis/getAllUsers';
 import { getFromLocalStorage } from '../services/helpers/servicesLocalStorage';
 import Context from '../context/Context';
+import * as S from '../styles/Admin';
 
 function ListUser() {
   const { allUsers, setAllUsers } = useContext(Context);
@@ -14,7 +15,6 @@ function ListUser() {
     };
     getUsers();
   }, [setAllUsers]);
-  // --adm2@21!!--
 
   const deleteUser = async (id) => {
     const { token } = getFromLocalStorage('user');
@@ -25,10 +25,10 @@ function ListUser() {
 
   return (
     <main>
-      <ul>
+      <S.ulUsers>
         {allUsers.map(({ id, name, email, role }, index) => (
 
-          <li key={ index }>
+          <S.liUsers key={ index }>
             <h3
               data-testid={ `admin_manage__element-user-table-item-number-${id}` }
             >
@@ -56,8 +56,8 @@ function ListUser() {
             >
               Excluir
             </button>
-          </li>))}
-      </ul>
+          </S.liUsers>))}
+      </S.ulUsers>
 
     </main>
   );
