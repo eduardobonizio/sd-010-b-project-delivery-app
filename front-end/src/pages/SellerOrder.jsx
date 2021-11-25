@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react';
 
-import { getAll } from '../apis/sales';
+import { getBySeller } from '../apis/sales';
 import SellerCard from '../components/SellerCard';
 
 function SellerOrder() {
   const [orders, setOrders] = useState([]);
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const setAllOrders = async () => {
-    const getAllOrders = await getAll();
+    const getAllOrders = await getBySeller(user.id);
     setOrders(getAllOrders);
   };
 
   useEffect(() => {
     setAllOrders();
-  }, []);
+  }, [setAllOrders]);
 
   return (
     <main className="customer-orders__main-container">

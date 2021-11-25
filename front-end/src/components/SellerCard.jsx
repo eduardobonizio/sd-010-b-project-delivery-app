@@ -31,7 +31,7 @@ function SellerCard({ order: {
   };
 
   return (
-    <Link to={ `/${id}` }>
+    <Link to={ `/seller/orders/${id}` }>
       <main className="order-card__main-container">
         <section className="order-card__order-number">
           <span className="order-card__order-label">Pedido</span>
