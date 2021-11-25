@@ -15,7 +15,7 @@ const userLogin = async (state, setIsErr) => {
   try {
     const user = state.$data;
     const { data } = await api.create(user);
-    console.log(data);
+    // console.log(data);
     localStorage.setItem('user', JSON.stringify(
       {
         name: data.data.name,

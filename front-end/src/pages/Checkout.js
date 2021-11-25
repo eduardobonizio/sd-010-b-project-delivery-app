@@ -62,7 +62,7 @@ export default function Checkout() {
               {productPrice(returnTotal())}
             </span>
           </p>
-          {Object.values(salesProducts).map((value) => console.log(value))}
+          {/* {Object.values(salesProducts).map((value) => console.log(value))} */}
         </tbody>
       </table>
       <DetailsAddress />

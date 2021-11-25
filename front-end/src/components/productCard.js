@@ -38,7 +38,7 @@ function ProductCard(props) {
     const itemQuantity = Number(quantity);
     if (quantity >= 1) {
       setQuantity(itemQuantity - 1);
-      setProducts(itemQuantity - 1);
+      setProducts(itemQuantity - 1, name);
       setChanges(`${id}-${quantity + 1}`);
     }
   };
