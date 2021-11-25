@@ -42,7 +42,11 @@ function DetailsOrder() {
 
   return (
     <styles.ContainerDetatailsOrder>
-      <styles.Form onSubmit={ handleOnclickFinishSale }>
+      <styles.Form
+        action="/customer/products"
+        method="POST"
+        onSubmit={ handleOnclickFinishSale }
+      >
 
         <styles.Label>
           Vendedor(a) Responsável

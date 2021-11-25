@@ -1,5 +1,5 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export default Example = styled.h1`
-  color: red;
-`;
+export const DetailsContainer = styled.div``;
+
+export const DetailsCard = styled.div``;
