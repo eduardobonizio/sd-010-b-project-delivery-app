@@ -28,11 +28,6 @@ function App() {
         navbar={ <NavBar order="Produtos" pedidos /> }
       />
       <CustomRoute
-        path="/seller/orders"
-        component={ SellerOrder }
-        navbar={ <NavBar order="Pedidos" /> }
-      />
-      <CustomRoute
         path="/admin/manage"
         component={ AdminManage }
         navbar={ <NavBar order="Gerenciar usuários" /> }
@@ -48,6 +43,16 @@ function App() {
         navbar={ <NavBar /> }
         path="/customer/orders/:id"
         component={ CustomerOrderDetails }
+      />
+      <CustomRoute
+        navbar={ <NavBar /> }
+        path="/seller/orders/:id"
+        component={ CustomerOrderDetails }
+      />
+      <CustomRoute
+        path="/seller/orders"
+        component={ SellerOrder }
+        navbar={ <NavBar order="Pedidos" /> }
       />
       <CustomRoute
         navbar={ <NavBar oorder="Produtos" pedidos /> }
