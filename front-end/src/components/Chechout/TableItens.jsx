@@ -12,6 +12,7 @@ export default function TableItens() {
     setTotalPrice(newTotalPrice);
   };
 
+  console.log('tableItens', totalPrice);
   return (
     <div>
       { arrayProducts.map(({ id, name, quantity, price, subTotal }, index) => (
