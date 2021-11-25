@@ -1,9 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { apiGetAllSales } from '../../services/salesProducts/apiRequestSalesProduct';
+import MyContext from '../../context/Context';
+import formatDate from '../../helpers/formatDate';
+import {
+  apiGetAllSales,
+  apiRequestOrdersByID,
+} from '../../services/salesProducts/apiRequestSalesProduct';
 import * as styles from './styles';
 
 function CardOrdersDetails() {
+  const { setSalleProduct, setProducts } = useContext(MyContext);
   const [dataSale, setDataSale] = useState([]);
 
   useEffect(() => {
@@ -14,15 +20,28 @@ function CardOrdersDetails() {
     getAllSale();
   }, []);
 
+  async function handleOnClick({ target }) {
+    const { id } = target;
+    const response = await apiRequestOrdersByID(id);
+    const products = response.map((value) => value.products);
+    setSalleProduct(response);
+    setProducts(products[0]);
+  }
+
   return (
     <styles.ContainerOrders>
 
       {
         dataSale.map((value, index) => (
-          <Link key={ index } to={ `/seller/orders/${value.id}` }>
+          <Link
+            id={ value.id }
+            onClick={ (event) => handleOnClick(event) }
+            key={ index }
+            to={ `/seller/orders/${value.id}` }
+          >
             <styles.CardOrders>
 
-              <styles.ContainerNumberOrder>
+              <styles.ContainerNumberOrder id={ value.id }>
                 <styles.TextNumberOrder
                   data-testid={ `seller_orders__element-order-id-${value.id}` }
                 >
@@ -35,9 +54,10 @@ function CardOrdersDetails() {
 
               <styles.ContainerStatusPriceDateAddress>
 
-                <styles.ContainerStatusPrice>
+                <styles.ContainerStatusPrice id={ value.id }>
                   {/* <styles.ContainerStatus> */}
                   <styles.TextStatusOrder
+                    id={ value.id }
                     data-testid={ `seller_orders__element-delivery-status-${value.id}` }
                   >
                     {value.status}
@@ -46,12 +66,14 @@ function CardOrdersDetails() {
 
                   {/* <styles.ContainerDatePrice> */}
                   <styles.TextDateOrder
+                    id={ value.id }
                     data-testid={ `seller_orders__element-order-date-${value.id}` }
                   >
-                    {value.saleDate}
+                    {formatDate(value.saleDate)}
                   </styles.TextDateOrder>
 
                   <styles.TextPriceOrder
+                    id={ value.id }
                     data-testid={ `seller_orders__element-card-price-${value.id}` }
                   >
                     {`R$ ${value.totalPrice}`}
@@ -59,8 +81,9 @@ function CardOrdersDetails() {
                   {/* </styles.ContainerDatePrice> */}
                 </styles.ContainerStatusPrice>
 
-                <styles.ContainerAddress>
+                <styles.ContainerAddress id={ value.id }>
                   <styles.TextAddressOrder
+                    id={ value.id }
                     data-testid={ `seller_orders__element-card-address-${value.id}` }
                   >
                     {`${value.deliveryAddress}, ${value.deliveryNumber}`}
