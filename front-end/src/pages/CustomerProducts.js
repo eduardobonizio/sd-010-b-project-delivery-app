@@ -36,7 +36,7 @@ function CustomerProducts() {
     const getLocalStorage = JSON.parse(localStorage.getItem('cart'));
     const totalProductss = getLocalStorage
       .map((product) => product.totalValue).reduce((acc, curr) => acc + curr, 0);
-    setTotal((parseFloat(totalProductss).toFixed(2)).replace('.', ','));
+    setTotal((parseFloat(totalProductss).toFixed(2)));
   };
 
   const increase = (id) => {
@@ -165,8 +165,7 @@ function CustomerProducts() {
         <span
           data-testid="customer_products__checkout-bottom-value"
         >
-          { `Total: R$ ${total}` }
-
+          {total && total.replace('.', ',')}
         </span>
       </button>
     </div>
