@@ -20,6 +20,7 @@ export default function DetailsAdress() {
     axios.get('http://localhost:3001/users')
       .then((result) => {
         setData(result.data);
+        setSellerId(result.data[0].id);
       });
   }, []);
 
@@ -59,6 +60,7 @@ export default function DetailsAdress() {
 
   return (
     <session>
+      { console.log(data, sellerId) }
       <h1>Detalhes e Endereço para Entrega</h1>
       <select
         name="seller"
@@ -67,7 +69,8 @@ export default function DetailsAdress() {
         onClick={ (event) => setSellerId(event.target.value) }
       >
         {data.map(({ role, name, id }) => role === 'seller' && (
-          <option key={ role } value={ id }>{ name }</option>))}
+          <option key={ role } value={ id }>{ name }</option>
+        ))}
       </select>
       <input
         type="text"
