@@ -36,7 +36,7 @@ function SalesList() {
 
   return (
     <div>
-      <div className="conteiner border">
+      <div className="conteiner">
         <div className="order-title">
           <span
             data-testid="customer_order_details__element-order-details-label-order-id"
