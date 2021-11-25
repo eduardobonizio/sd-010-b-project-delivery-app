@@ -82,7 +82,15 @@ const RegisterComponent = () => {
       }),
     });
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
+    // const { name, email, role, token } = data;
+    localStorage.setItem('user',
+      JSON.stringify({
+        name: data.name,
+        email: data.email,
+        role: data.role,
+        token: data.token,
+      }));
     if (data.message) {
       setMsgError(data.message);
     } else {
