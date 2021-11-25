@@ -10,7 +10,6 @@ const addSale = async (saleInfo) => {
 const addPurchase = async (products, saleId) => {
   const data = await Promise
   .all(products.map(async (el) => 
-    // console.log('sale_id', el, typeof saleId, saleId);
       SalesProducts.create({
       SaleId: saleId,
       ProductId: el.productId,
@@ -44,7 +43,7 @@ as: 'products',
 const getPurchaseBySellerId = async (id) => {
   try {
   const data = await Sale.findAll({
-    where: { seller_id: Number(id) },
+    where: { sellerId: Number(id) },
   });
   return data;
 } catch (err) {
