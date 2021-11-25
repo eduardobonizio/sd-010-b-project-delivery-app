@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import CheckoutProducts from './CheckoutProducts';
 import PurshaseTotal from './PurchaseTotal';
@@ -9,11 +9,11 @@ import { Context } from '../../provider/Provider';
 
 function CheckoutContainer() {
   const { orderInProgress } = React.useContext(Context);
-  const [data, setData] = React.useState([]);
+  // const [data, setData] = React.useState([]);
 
-  useEffect(() => {
-    setData(orderInProgress);
-  }, [orderInProgress]);
+  // useEffect(() => {
+  //   setData(orderInProgress);
+  // }, [orderInProgress]);
 
   const heading = () => (
     <thead>
@@ -28,7 +28,7 @@ function CheckoutContainer() {
     </thead>
   );
 
-  return data === 0 ? (
+  return orderInProgress === 0 ? (
     <div>
       <h1>Carrinho Vazio</h1>
       <Link to="/customer/products">
@@ -49,7 +49,7 @@ function CheckoutContainer() {
         { heading() }
         <tbody>
           {
-            data.map((order, index) => (
+            orderInProgress.map((order, index) => (
               <CheckoutProducts key={ index } order={ order } index={ index } />
             ))
           }

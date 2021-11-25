@@ -126,7 +126,6 @@ describe.only(requirement(19), () => {
     
     for (let i = productsToExclude.length - one ; i >= zero; i -= one) {
       const { listItem } = productsToExclude[i];
-      console.log(productsToExclude, 'batata', listItem)
       await expect(page).toClickOnElement({
         selector: customerCheckoutPage.element.orderTable.remove + `[data-testid$='-${listItem - 1}']`
       });
