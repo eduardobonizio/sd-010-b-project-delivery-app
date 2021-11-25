@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import Input from './Input';
 import Button from './Button';
+import Context from '../context/Context';
 
 function LoginForm() {
-  const loginInitialState = { user: { role: '' }, message: '', toLogin: false };
+  const loginInitialState = { message: '', toLogin: false };
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginStatus, setLoginStatus] = useState(loginInitialState);
@@ -12,14 +13,8 @@ function LoginForm() {
   const [seller, setSeller] = useState(false);
   const [admin, setAdmin] = useState(false);
 
-  function validateLogin() {
-    const validator = /^[A-Za-z0-9_.]+@[a-zA-Z_]+?\.[a-zA-Z_.]{2,7}$/;
-    const PASSWORD_MIN_LENGHT = 6;
-    if (password.length >= PASSWORD_MIN_LENGHT && validator.test(email)) {
-      return true;
-    }
-    return false;
-  }
+  const { validateLogin } = useContext(Context);
+
   const clickLogin = (e) => {
     const requestOptions = {
       headers: {
@@ -36,7 +31,6 @@ function LoginForm() {
   };
 
   useEffect(() => {
-    localStorage.setItem('user', JSON.stringify(loginStatus.user));
     const span = document.getElementById('invalid-message');
     if (loginStatus.message === 'Login invalido') {
       span.style.visibility = 'visible';
@@ -45,15 +39,26 @@ function LoginForm() {
     }
   }, [loginStatus, setLoginStatus]);
 
-  useEffect(() => {
-    if (loginStatus.user.role === 'customer') {
-      setCustomer(true);
-    } if (loginStatus.user.role === 'seller') {
-      setSeller(true);
-    } if (loginStatus.user.role === 'administrator') {
-      setAdmin(true);
+  function roleRedirect(role = '') {
+    if (role === 'customer') {
+      return setCustomer(true);
+    } if (role === 'seller') {
+      return setSeller(true);
+    } if (role === 'administrator') {
+      return setAdmin(true);
     }
-  }, [loginStatus, setLoginStatus]);
+  }
+
+  function redirectAndLogin() {
+    const { user } = loginStatus;
+    localStorage.setItem('user', JSON.stringify(user));
+    roleRedirect(user.role);
+  }
+
+  useEffect(() => {
+    const { user } = loginStatus;
+    return user ? redirectAndLogin() : null;
+  }, [loginStatus, redirectAndLogin, setLoginStatus]);
 
   return (
     <>
@@ -81,11 +86,11 @@ function LoginForm() {
         <Button
           formbtn
           id="login-btn"
-          className="login-btn"
+          className="login__btn"
           value="LOGIN"
           testId="common_login__button-login"
           onClick={ (e) => clickLogin(e) }
-          disabled={ !validateLogin() }
+          disabled={ !validateLogin(email, password) }
         />
       </form>
     </>

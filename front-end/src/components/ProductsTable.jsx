@@ -46,7 +46,7 @@ export default function ProductsTable() {
               </td>
               <td data-testid={ `${sample}element-order-table-remove-${_id}` }>
                 <button
-                  data-testid={ `${sample}button-submit-order` }
+                  data-testid={ `${sample}element-order-table-remove-${_id}` }
                   type="button"
                   onClick={ () => deleteProductFromCart(id) }
                 >

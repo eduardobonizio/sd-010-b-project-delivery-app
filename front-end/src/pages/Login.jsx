@@ -4,6 +4,7 @@ import Button from '../components/Button';
 import LoginForm from '../components/LoginForm';
 
 import '../styles/loginPage.css';
+import '../styles/formsRegister.css';
 
 function Login() {
   const [redirect, setRedirect] = React.useState(false);
@@ -17,7 +18,7 @@ function Login() {
           <Button
             formbtn={ false }
             id="register-btn"
-            className="register-btn"
+            className="register__btn"
             value="Ainda não tenho conta"
             testId="common_login__button-register"
             onClick={ () => setRedirect(true) }

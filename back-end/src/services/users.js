@@ -12,11 +12,11 @@ const login = async (email, pass) => {
   }
 };
 
-const register = async (name, email, password) => {
+const register = async (name, email, password, role = 'customer') => {
   try {
-    const [user, created] = await Model.register(name, email, password);
+    const [user, created] = await Model.register(name, email, password, role);
     if (created) return user;
-    throw new Error('Usuário já cadastrad');
+    throw new Error('Usuário já cadastrado');
   } catch (error) {
     throw new Error('Usuário já cadastrado');
   }
@@ -26,4 +26,5 @@ module.exports = {
   getAll: Model.getAll,
   login,
   register,
+  getByRole: Model.getByRole,
 };
