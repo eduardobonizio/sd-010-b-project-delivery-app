@@ -57,6 +57,9 @@ function AppProvider({ children }) {
   const changeUserState = ({ target: { name, value } }) => {
     setDataUser({ ...dataUser, [name]: value });
   };
+  const [productsAPI, setProductsAPI] = useState([]);
+  const [detailsOrder, setDetailsOrder] = useState([]);
+  const [name, setName] = useState('');
 
   useEffect(() => {
     getProducts();
@@ -75,8 +78,13 @@ function AppProvider({ children }) {
     registerUser,
     changeUserState,
     validateDataUser,
+    productsAPI,
+    setProductsAPI,
+    detailsOrder,
+    setDetailsOrder,
+    name,
+    setName,
   };
-
   return (
     <AppContext.Provider
       value={ { ...contextValue } }

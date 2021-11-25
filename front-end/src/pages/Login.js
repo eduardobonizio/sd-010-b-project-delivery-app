@@ -8,6 +8,7 @@ function Login() {
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [isRedirect, setIsRedirect] = useState(false);
+  const [rout, setRout] = useState('');
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const validateData = () => {
@@ -38,6 +39,7 @@ function Login() {
       const { data } = await axios.post('http://localhost:3001/login', login);
 
       localStorage.setItem('user', JSON.stringify(data));
+      setRout(data.role);
       setIsRedirect(true);
     } catch (e) {
       setErrorMessage(e.response.data.message);
@@ -47,7 +49,7 @@ function Login() {
 
   return (
     <div>
-      {isRedirect && <Redirect to="/customer/products" />}
+      { isRedirect && <Redirect to={ `/${rout}/products` } />}
 
       <h1>Login page</h1>
 

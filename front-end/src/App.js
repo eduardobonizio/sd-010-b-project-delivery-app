@@ -9,6 +9,7 @@ import PagesOrder from './pages/PagesOrder';
 import Checkout from './pages/Checkout';
 import PagesOrderDetails from './pages/PagesOrderDetails';
 import Register from './pages/Register';
+import PageSellerProducts from './pages/PageSellerProducts';
 
 function App() {
   return (
@@ -22,8 +23,9 @@ function App() {
           <Route path="/register" component={ Register } />
           <Route path="/customer/products" component={ Products } />
           <Route path="/customer/checkout" component={ Checkout } />
-          <Route path="/customer/orders" component={ PagesOrder } />
-          <Route path="/customer/orders/:id" component={ PagesOrderDetails } />
+          <Route exact path="/customer/orders" component={ PagesOrder } />
+          <Route exact path="/customer/orders/:id" component={ PagesOrderDetails } />
+          <Route exact path="/seller/products" component={ PageSellerProducts } />
         </Switch>
       </AppProvider>
     </div>
