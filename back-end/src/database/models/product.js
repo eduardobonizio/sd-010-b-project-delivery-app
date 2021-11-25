@@ -24,6 +24,9 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: false,
     underscored: true,
   });
+  //   Product.associate = (models) => {
+  //   Product.hasOne(models.SalesProducts, { foreignKey:"product_id", as: "products"});
+  // };
 
   return Product;
 };

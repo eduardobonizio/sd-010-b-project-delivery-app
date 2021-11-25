@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import CheckoutProducts from './CheckoutProducts';
@@ -8,6 +9,11 @@ import { Context } from '../../provider/Provider';
 
 function CheckoutContainer() {
   const { orderInProgress } = React.useContext(Context);
+  // const [data, setData] = React.useState([]);
+
+  // useEffect(() => {
+  //   setData(orderInProgress);
+  // }, [orderInProgress]);
 
   const heading = () => (
     <thead>

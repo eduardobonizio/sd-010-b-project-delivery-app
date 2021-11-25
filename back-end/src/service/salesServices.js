@@ -10,13 +10,11 @@ const addSale = async (saleInfo) => {
 const addPurchase = async (products, saleId) => {
   const data = await Promise
   .all(products.map(async (el) => 
-    // console.log('sale_id', el, typeof saleId, saleId);
       SalesProducts.create({
       SaleId: saleId,
       ProductId: el.productId,
       quantity: el.quantity,
     })));
-  console.log(data, 'data lindo');
   
   return data;
 };
@@ -58,6 +56,17 @@ as: 'products',
   return purchaseById;
 };
 
+const getPurchaseBySellerId = async (id) => {
+  try {
+  const data = await Sale.findAll({
+    where: { sellerId: Number(id) },
+  });
+  return data;
+} catch (err) {
+  return { message: err };
+}
+};
+
 // const newPurchase = async ({ products, emptyProducts }) => {
 //   const { dataValues: purchase } = await Sales.create({
 //     ...emptyProducts,
@@ -67,18 +76,32 @@ as: 'products',
 //   return purchaseDone;
 // };
 
-// const getPurchaseById = async (purchaseId, userId) => {
-//   const purchaseById = await setPurchaseById(purchaseId);
-//   if (purchaseById.userId === userId || purchaseById.sellerId === userId) {
-//     return purchaseById;
-//   }
-//   return { error: 'Unauthorized user' };
-// };
+const getPurchaseById = async (id) => {
+  const data = await Sale.findByPk(id, { 
+    include: [ 
+      { model: Product, as: 'products' },
+      { model: User, as: 'user' },
+      { model: User, as: 'seller' },
+    ],
+  });
+  return data;
+};
+
+const updatePurchaseStatus = async (id, status) => {
+  const data = await Sale.update(
+    { status },
+    { where: { id } },
+  );
+  return data;
+};
 
 module.exports = {
   addPurchase,
   // newPurchase,
   setPurchaseById,
   // getPurchaseById,
+  getPurchaseBySellerId,
   addSale,
+  getPurchaseById,
+  updatePurchaseStatus,
 };

@@ -5,7 +5,6 @@ import { validateIfFieldsAreCorrect } from '../helper/verifyForm/admin_registerU
 const CreateUserFormErrorMessages = ({ user, errors, setErrors }) => {
   useEffect(() => {
     const data = validateIfFieldsAreCorrect(user);
-    console.log('data', data);
     if (data !== true) return setErrors(data.filter((el) => el !== true));
     return setErrors([]);
   }, [setErrors, user]);

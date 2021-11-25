@@ -7,7 +7,7 @@ function PurchaseOrderBtn() {
     <button
       type="button"
       data-testid="customer_checkout__button-submit-order"
-      onClick={ () => checkoutPurchase() }
+      onClick={ async () => checkoutPurchase() }
     >
       FINALIZAR PEDIDO
     </button>
