@@ -27,7 +27,7 @@ export default function SalesStatus() {
     <div>
       <Header
         pageName="LISTA DE PEDIDOS"
-        yourOrder={false}
+        yourOrder={ false }
         userName={ getStorage('user') && getStorage('user').name }
       />
       {orders.length && orders.map(({ id,
