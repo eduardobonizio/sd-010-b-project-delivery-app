@@ -8,6 +8,7 @@ const TEST_ID_55 = 'seller_order_details__element-order-details-label-delivery-s
 
 const OrderDetails = ({ Pedido, Data, Status, HandleClick }) => {
   const data = moment(Data).format('DD/MM/YYYY');
+  console.log('arroz');
 
   const renderSection = () => (
     <section className="seller-order-section">

@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CheckoutDetails from '../../../components/CheckDetailsComponents/CheckoutDetails';
 import Header from '../../../components/ProductsComponents/CheckBtnProducts';
 import { Context } from '../../../provider/Provider';
 import { postPurchase } from '../../../services/api';
 
 function OrderDetails() {
-  const { dataUser, totalOrder, setTotalOrder } = React.useContext(Context);
+  const { dataUser, setTotalOrder,
+    totalOrder,
+  } = React.useContext(Context);
 
   useEffect(() => {
     async function handleCheckout() {
