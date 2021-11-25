@@ -94,7 +94,7 @@ function DetailsOrder() {
           type="submit"
           data-testid="customer_checkout__button-submit-order"
         >
-          FINALIZAR PEDIDO
+          Finalizar pedido
         </styles.ButtonFinishOrder>
 
       </styles.Form>

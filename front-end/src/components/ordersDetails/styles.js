@@ -49,7 +49,7 @@ export const ButtonPreparing = styled.button`
 
 export const ButtonDispatch = styled.button`
   width: 200px;
-  height: 30px; 
+  height: 30px;
   background: #3E7C17;
   border: none;
   border-radius: 5px;
@@ -64,7 +64,7 @@ export const Overflow = styled.div`
   flex-direction: column;
   align-items: center;
   overflow: auto;
-  
+
 ::-webkit-scrollbar {
     width: 15px;
     background: #F4F4F4;
