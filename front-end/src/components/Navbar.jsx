@@ -13,7 +13,7 @@ function NavBar() {
 
     if (role === 'customer') {
       return (
-        <div>
+        <S.divLeft>
           <Link to="/customer/products">
             <S.buttonNav
               type="button"
@@ -30,7 +30,7 @@ function NavBar() {
               MEUS PEDIDOS
             </S.buttonNav>
           </Link>
-        </div>
+        </S.divLeft>
       );
     }
 
@@ -69,21 +69,22 @@ function NavBar() {
   return (
     <S.navBar>
       { checkRole() }
-      <S.buttonNav
-        type="button"
-        data-testid="customer_products__element-navbar-user-full-name"
-      >
-        {User.name}
-      </S.buttonNav>
-      <Link to="/login">
-        <S.buttonNav
-          type="button"
-          data-testid="customer_products__element-navbar-link-logout"
-          onClick={ () => removeLocalStorage('user') }
+      <S.divRight>
+        <S.spanName
+          data-testid="customer_products__element-navbar-user-full-name"
         >
-          SAIR
-        </S.buttonNav>
-      </Link>
+          {User.name}
+        </S.spanName>
+        <Link to="/login">
+          <S.buttonNav
+            type="button"
+            data-testid="customer_products__element-navbar-link-logout"
+            onClick={ () => removeLocalStorage('user') }
+          >
+            SAIR
+          </S.buttonNav>
+        </Link>
+      </S.divRight>
     </S.navBar>
   );
 }
