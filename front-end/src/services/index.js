@@ -33,6 +33,8 @@ const getSellers = () => api.get('/sellers');
 
 const createSalesProducts = (order) => api.post('/salesProducts', order);
 
+const getAllProducts = () => api.get('/products');
+
 export default {
   create,
   getAll,
@@ -43,4 +45,5 @@ export default {
   setToken,
   getSellers,
   createSalesProducts,
+  getAllProducts,
 };
