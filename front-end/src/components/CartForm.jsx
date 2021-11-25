@@ -68,6 +68,7 @@ function CartForm() {
     >
       <FormControl sx={ { maxWidth: 200, minWidth: 200 } }>
         <InputLabel
+          data-testid="customer_checkout__select-seller"
           variant="standard"
           htmlFor="select-seller"
         >

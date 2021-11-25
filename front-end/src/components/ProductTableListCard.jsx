@@ -40,7 +40,7 @@ const ProductTableListCard = (
           textAlign="center"
           data-testid={ `${testIdPreffix}__element-order-table-unit-price-${index}` }
         >
-          {`R$ ${pricePerUnit}`}
+          {`${pricePerUnit.replace('.', ',')}`}
         </Box>
       </Grid>
       <Grid item xs={ 2 }>
@@ -48,7 +48,7 @@ const ProductTableListCard = (
           textAlign="center"
           data-testid={ `${testIdPreffix}__element-order-table-sub-total-${index}` }
         >
-          {`R$ ${totalPrice()}`}
+          {`${totalPrice().replace('.', ',')}`}
         </Box>
       </Grid>
       {
