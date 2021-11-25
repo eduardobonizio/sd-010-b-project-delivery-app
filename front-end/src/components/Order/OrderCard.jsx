@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 // import OrdersTable from './OrdersTable';
 function OrderCard({ id, saleDate, status, totalPrice }) {
@@ -7,38 +8,40 @@ function OrderCard({ id, saleDate, status, totalPrice }) {
 
   return (
     <div>
-      <section style={ { display: 'flex', justifyContent: 'space-around' } }>
-        <p
-          data-testid={ `customer_orders__element-order-id-${id}` }
-        >
-          {`PEDIDO: 000 ${id}`}
+      <Link to={ `/customer/orders/${id}` }>
+        <section style={ { display: 'flex', justifyContent: 'space-around' } }>
+          <p
+            data-testid={ `customer_orders__element-order-id-${id}` }
+          >
+            {`PEDIDO: 000 ${id}`}
 
-        </p>
-        <p
-          data-testid={ `customer_orders__element-order-date-${id}` }
-        >
-          { `Data Pedido ${format}` }
+          </p>
+          <p
+            data-testid={ `customer_orders__element-order-date-${id}` }
+          >
+            { `Data Pedido ${format}` }
 
-        </p>
-        <p
-          data-testid={ `customer_orders__element-delivery-status-${id}` }
-        >
-          { status }
+          </p>
+          <p
+            data-testid={ `customer_orders__element-delivery-status-${id}` }
+          >
+            { status }
 
-        </p>
-        <p
-          data-testid={ `customer_orders__element-card-price-${id}` }
-        >
-          { totalPrice.replace('.', ',') }
-        </p>
-        {/* <button
+          </p>
+          <p
+            data-testid={ `customer_orders__element-card-price-${id}` }
+          >
+            { totalPrice.replace('.', ',') }
+          </p>
+          {/* <button
           type="button"
           data-testid="customer_order_details__button-delivery-check"
         >
           Marcar como entregue
 
         </button> */}
-      </section>
+        </section>
+      </Link>
       {/* <section>
         <OrdersTable />
       </section> */}
