@@ -33,16 +33,24 @@ function Products() {
             setSubtotal={ setSubtotal }
           />))}
       </div>
-      <button
-        disabled={ subtotal === '0,00' }
-        type="button"
-        data-testid="customer_products__button-cart"
-      >
-        <Link to="/customer/checkout">
-          Ver carrinho:
-          <p data-testid="customer_products__checkout-bottom-value">{ subtotal }</p>
-        </Link>
-      </button>
+      <div className="cart-div">
+        <button
+          className="cart-button"
+          disabled={ subtotal === '0,00' }
+          type="button"
+          data-testid="customer_products__button-cart"
+        >
+          <Link to="/customer/checkout" className="cart-text">
+            <p
+              data-testid="customer_products__checkout-bottom-value"
+              className="cart-text"
+            >
+              { `🛒 ver carrinho R$ ${subtotal}` }
+
+            </p>
+          </Link>
+        </button>
+      </div>
     </div>
   );
 }
