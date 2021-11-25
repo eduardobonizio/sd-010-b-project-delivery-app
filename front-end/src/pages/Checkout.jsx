@@ -1,7 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import CheckoutList from '../components/CheckoutList';
 import NavBar from '../components/NavBar';
 
 function Checkout() {
+  const pedidos = [
+    { id: 1, name: 'Cerveja Stella 250ml', qty: 3, price: 3.5, total: 10.5 },
+    { id: 2, name: 'Cerveja Skol Latão 450ml', qty: 4, price: 4.1, total: 16.4 },
+    { id: 3, name: 'Salgadinho Torcida Churrasco', qty: 1, price: 1.56, total: 1.56 },
+  ];
+
+  const [total, setTotal] = useState();
+
+  const renderList = () => pedidos.map((item, index) => (
+    <tr key={ index }>
+      <CheckoutList item={ item } />
+      <button
+        type="button"
+        data-testid={ `customer_checkout__element-order-table-remove-${item.id}` }
+        onClick={ ({ target }) => {
+          target.parentNode.remove();
+          pedidos.splice(index, 1);
+          console.log(pedidos, index);
+        } }
+      >
+        Remover
+      </button>
+    </tr>
+  ));
+  useEffect(() => {
+    const sumTotal = () => pedidos
+      .map((item) => item.total)
+      .reduce((acc, curr) => acc + curr, 0);
+    const priceTotal = sumTotal();
+    setTotal(priceTotal);
+  }, [pedidos]);
+
+  console.log(pedidos);
+
   return (
     <div>
       <NavBar />
@@ -15,68 +50,11 @@ function Checkout() {
           <th>Sub-total</th>
           <th>Remover Item</th>
         </tr>
-        <tr>
-          <td data-testid="customer_checkout__element-order-table-item-number-">1</td>
-          <td data-testid="customer_checkout__element-order-table-name-">
-            Cerveja Stella 250ml
-          </td>
-          <td data-testid="cutomer_checkout__element-order-table-quantity-">3</td>
-          <td data-testid="customer_checkout__element-order-table-unit-price-">
-            R$ 3,50
-          </td>
-          <td data-testid="customer_checkout__element-order-table-sub-total-">
-            R$ 10,50
-          </td>
-          <button
-            type="button"
-            data-testid="customer_checkout__element-order-table-remove-"
-          >
-            Remover
-          </button>
-        </tr>
-        <tr>
-          <td data-testid="customer_checkout__element-order-table-item-number-">2</td>
-          <td data-testid="customer_checkout__element-order-table-name-">
-            Cerveja Skol Latão 450ml
-          </td>
-          <td data-testid="cutomer_checkout__element-order-table-quantity-">4</td>
-          <td data-testid="customer_checkout__element-order-table-unit-price-">
-            R$ 4,10
-          </td>
-          <td data-testid="customer_checkout__element-order-table-sub-total-">
-            R$ 16,40
-          </td>
-          <button
-            type="button"
-            data-testid="customer_checkout__element-order-table-remove-"
-          >
-            Remover
-          </button>
-        </tr>
-        <tr>
-          <td data-testid="customer_checkout__element-order-table-item-number-">3</td>
-          <td
-            data-testid="customer_checkout__element-order-table-name-"
-          >
-            Salgadinho Torcida Churrasco
-          </td>
-          <td data-testid="cutomer_checkout__element-order-table-quantity-">1</td>
-          <td data-testid="customer_checkout__element-order-table-unit-price-">
-            R$ 1,56
-          </td>
-          <td data-testid="customer_checkout__element-order-table-sub-total-">
-            R$ 1,56
-          </td>
-          <button
-            type="button"
-            data-testid="customer_checkout__element-order-table-remove-"
-          >
-            Remover
-          </button>
-        </tr>
+        { renderList() }
       </table>
       <h2 data-testid="customer_checkout__element-order-total-price">
-        Total: R$28,46
+        R$
+        { total }
       </h2>
       <h3>Detalhes e Endereço para Entrega</h3>
       <table>
