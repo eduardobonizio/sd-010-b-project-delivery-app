@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as style from './style';
 import { apiRequestLogin } from '../../../services/login/apiRequestLogin';
-import { setOnLocalStorage } from '../../../helpers/localStorage';
+import { setOnLocalStorage, getFromLocalStorage } from '../../../helpers/localStorage';
 
 export default function Login() {
   const [password, setPassword] = useState('');
@@ -23,14 +23,24 @@ export default function Login() {
 
     if (login.role === 'customer') {
       console.log(user);
-      setOnLocalStorage('user', login);
       navigate('../customer/products', { replace: true });
     }
     if (login.role === 'administrator') {
-      setOnLocalStorage('user', login);
       navigate('../admin/manage', { replace: true });
     }
+    if (login.role === 'seller') {
+      navigate('../seller/orders', { replace: true });
+    }
+    setOnLocalStorage('user', login);
   };
+
+  useEffect(() => {
+    const localUser = getFromLocalStorage('user');
+    if (localUser) {
+      console.log('oi');
+      navigate('../customer/products', { replace: true });
+    }
+  }, [navigate]);
 
   useEffect(() => {
     function buttonAble() {
