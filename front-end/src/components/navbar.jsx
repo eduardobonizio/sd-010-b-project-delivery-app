@@ -13,9 +13,10 @@ function Navbar(props) {
   };
 
   const renderCustomer = () => (
-    <div>
+    <div className="nav-button-div">
       <div>
         <button
+          className="nav-button"
           type="button"
           data-testid="customer_products__element-navbar-link-products"
         >
@@ -25,6 +26,7 @@ function Navbar(props) {
       <div>
         <Link to="/customer/orders">
           <button
+            className="nav-button"
             type="button"
             data-testid="customer_products__element-navbar-link-orders"
           >
@@ -39,6 +41,7 @@ function Navbar(props) {
     <div>
       <div>
         <button
+          className="nav-button"
           type="button"
           data-testid="customer_products__element-navbar-link-orders"
         >
@@ -52,6 +55,7 @@ function Navbar(props) {
     <div>
       <Link to="/seller/orders">
         <button
+          className="nav-button"
           type="button"
           data-testid="customer_products__element-navbar-link-orders"
         >
@@ -68,20 +72,28 @@ function Navbar(props) {
   };
 
   return (
-    <nav>
+    <nav className="main-navbar-div">
       { verifyUserRole() }
-      <div>
-        <p data-testid="customer_products__element-navbar-user-full-name">{ name }</p>
-      </div>
-      <div>
-        <Link
-          data-testid="customer_products__element-navbar-link-logout"
-          to="/login"
-          onClick={ clearStorage }
-        >
-          Sair
+      <div className="name-exit-div">
+        <div className="right-div">
+          <p
+            data-testid="customer_products__element-navbar-user-full-name"
+            className="nav-client"
+          >
+            { `🧑 ${name}` }
+          </p>
+        </div>
+        <div className="right-div">
+          <Link
+            className="nav-exit"
+            data-testid="customer_products__element-navbar-link-logout"
+            to="/login"
+            onClick={ clearStorage }
+          >
+            Sair
 
-        </Link>
+          </Link>
+        </div>
       </div>
     </nav>
   );

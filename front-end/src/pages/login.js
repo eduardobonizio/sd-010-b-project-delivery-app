@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 import { loginUser } from '../services/user';
+import logo from '../images/mainLogo.png';
 import redirect from '../utils/loginRedirect';
 
 const Joi = require('joi');
@@ -64,34 +65,39 @@ function Login() {
 
   if (loggedUser !== '') return <Redirect to="/customer/products" />;
   return (
-    <div>
-      <form onSubmit={ handleSubmit }>
-        <label htmlFor="login-input">
-          Login
-          <input
-            type="text"
-            placeholder="email@trybeer.com"
-            id="login-input"
-            name="login"
-            data-testid="common_login__input-email"
-            onChange={ handleChange }
-            value={ login }
-          />
-        </label>
-        <label htmlFor="password-input">
-          Senha
-          <input
-            type="password"
-            placeholder="********"
-            id="password-input"
-            name="password"
-            data-testid="common_login__input-password"
-            onChange={ handleChange }
-            value={ password }
-          />
-        </label>
-
+    <div className="main-login-div">
+      <img src={ logo } alt="Delivery app logo" className="main-logo" />
+      <form onSubmit={ handleSubmit } className="form-login">
+        <div className="label-login">
+          <label htmlFor="login-input">
+            <input
+              className="login-input"
+              type="text"
+              placeholder="     email"
+              id="login-input"
+              name="login"
+              data-testid="common_login__input-email"
+              onChange={ handleChange }
+              value={ login }
+            />
+          </label>
+        </div>
+        <div className="label-login">
+          <label htmlFor="password-input">
+            <input
+              className="login-input"
+              type="password"
+              placeholder="     senha"
+              id="password-input"
+              name="password"
+              data-testid="common_login__input-password"
+              onChange={ handleChange }
+              value={ password }
+            />
+          </label>
+        </div>
         <button
+          className="button-login"
           type="submit"
           data-testid="common_login__button-login"
           disabled={ button }
@@ -101,10 +107,11 @@ function Login() {
         </button>
         <Link to="/register">
           <button
+            className="button-submit"
             type="button"
             data-testid="common_login__button-register"
           >
-            Ainda não tenho conta
+            Cadastrar
           </button>
         </Link>
         {token !== ''

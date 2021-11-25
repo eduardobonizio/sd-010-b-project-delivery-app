@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router';
 import { create } from '../services/user';
+import logo from '../images/mainLogo.png';
 // import { Link } from 'react-router-dom';
 
 const Joi = require('joi');
@@ -45,46 +46,53 @@ function Register() {
   }, [userName, email, password, validateLogin]);
 
   return (
-    <div>
-      <form onSubmit={ handleSubmit }>
-        <label htmlFor="login-input">
-          Nome
-          <input
-            type="text"
-            placeholder="Seu nome"
-            id="name-input"
-            name="userName"
-            data-testid="common_register__input-name"
-            onChange={ handleChange }
+    <div className="main-login-div">
+      <img src={ logo } alt="Delivery app logo" className="main-logo" />
+      <form onSubmit={ handleSubmit } className="form-login">
+        <div className="label-login">
+          <label htmlFor="login-input">
+            <input
+              className="login-input"
+              type="text"
+              placeholder="seu nome"
+              id="name-input"
+              name="userName"
+              data-testid="common_register__input-name"
+              onChange={ handleChange }
             // value={ userName }
-          />
-        </label>
-        <label htmlFor="email-input">
-          Email
-          <input
-            type="text"
-            placeholder="email@trybeer.com"
-            id="email-input"
-            name="email"
-            data-testid="common_register__input-email"
-            onChange={ handleChange }
+            />
+          </label>
+        </div>
+        <div className="label-login">
+          <label htmlFor="email-input">
+            <input
+              className="login-input"
+              type="text"
+              placeholder="email"
+              id="email-input"
+              name="email"
+              data-testid="common_register__input-email"
+              onChange={ handleChange }
             // value={ email }
-          />
-        </label>
-        <label htmlFor="password-input">
-          Senha
-          <input
-            type="password"
-            placeholder="********"
-            id="password-input"
-            name="password"
-            data-testid="common_register__input-password"
-            onChange={ handleChange }
+            />
+          </label>
+        </div>
+        <div className="label-login">
+          <label htmlFor="password-input">
+            <input
+              className="login-input"
+              type="password"
+              placeholder="senha"
+              id="password-input"
+              name="password"
+              data-testid="common_register__input-password"
+              onChange={ handleChange }
             // value={ password }
-          />
-        </label>
-
+            />
+          </label>
+        </div>
         <button
+          className="button-login"
           type="submit"
           data-testid="common_register__button-register"
           disabled={ button }

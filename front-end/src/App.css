@@ -1,54 +1,187 @@
-.App {
+/* TELA DE LOGIN E CADASTRO */
+
+.main-login-div {
+  background-image: url('../src/images/mainBackground.jpg');
+  background-size: cover;
+  background-position: center;
   align-items: center;
-  background: #0fa36b;
-  color: #464646;
   display: flex;
   flex-direction: column;
-  font-family: sans-serif;
-  height: 100vh;
   justify-content: center;
+  min-height: 100vh;
+}
+
+.login-input {
+  border: none;
+  border-radius: 2.5rem;
+  font-size: 1rem;
+  height: 2rem;
+  padding: 0.5rem;
+  width: 50%;
+  box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.8);
+}
+
+.form-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.label-login {
+  margin-left: 13.5rem;
+  width: 30rem;
+  margin-top: 10px;
+}
+
+.button-login {
+  background-color: rgba(81, 196, 211, 0.95);
+  border: none;
+  border-radius: 2.5rem;
+  color: #D8E3E7;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+  font-family: Poppins , sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  height: 35px;
+  margin-top: 10px;
+  width: 170px;
+  box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.8);
+}
+
+.button-submit {
+  background-color: rgba(18, 110, 130, 0.95);
+  border: none;
+  border-radius: 2.5rem;
+  color: #D8E3E7;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+  font-family: Poppins , sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  height: 35px;
+  margin-top: 10px;
+  width: 170px;
+  box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.8);
+}
+
+.main-logo {
+  height: 180px;
+  width: auto;
+  margin-bottom: 25px;
+}
+
+/* NAVBAR */
+
+.main-navbar-div {
+  background-color: rgba(19, 44, 51, 0.8);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
   width: 100%;
+  box-shadow: 0 0.3rem 0.5rem rgba(56, 27, 27, 0.5);
 }
 
-.App > .logo {
-  animation: shake 1.5s infinite ease;
-  color: aliceblue;
-  font-family: Montserrat , sans-serif;
-  font-size: 3em;
-  font-weight: 900;
+.name-exit-div {
+  display: flex;
+  width: 20rem;
+  flex-direction: column;
+  align-items: center;
 }
 
-.rocksGlass {
-  animation: shake 1s infinite ease;
-  max-height: 80vh;
+.right-div {
+  height: 40px;
+  margin-right: 3rem;
 }
 
-@keyframes shake {
-
-  0% {
-    transform: rotate(5deg);
-  }
-
-  50% {
-    transform: rotate(-5deg);
-  }
-
-  100% {
-    transform: rotate(5deg);
-  }
+.nav-button {
+  background-color: rgb(18, 110, 130); 
+  border: none;
+  border-radius: 2.5rem;
+  color: #D8E3E7;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+  font-family: Poppins , sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  height: 35px;
+  margin-left: 2rem;
+  width: 170px;
+  box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
 }
 
-@keyframes clink {
+.nav-button-div {
+  display: flex;
+  flex-direction: row;
+}
 
-  0% {
-    transform: rotate(-10deg);
-  }
+.nav-client {
+  color: white;
+  font-family: Poppins , sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}
 
-  50% {
-    transform: rotate(20deg);
-  }
+.nav-exit {
+  text-decoration: none;
+  font-family: Poppins , sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: red;
+}
 
-  100% {
-    transform: rotate(-10deg);
-  }
+/* TELA DE PRODUTOS */
+
+.main-products-div {
+  background-image: url('../src/images/mainBackground.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.products-img {
+  height: 270px;
+  width: auto;
+}
+
+.products-cards-div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+}
+
+.main-card-product-div {
+  background-color: white;
+  margin: 1.3rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 0 1 calc(15% - 1em);
+  min-width: 270px;
+  max-height: 425px;
+}
+
+.default-product-text {
+  color: rgb(18, 110, 130);
+  font-family: Poppins , sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.product-quant-input {
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.5);
+  margin: 4px;
+}
+
+.add {
+  color: white;
+  background-color: rgb(18, 110, 130);
+}
+
+.del {
+  color: white;
+  background-color: red;
 }

@@ -23,15 +23,16 @@ function Products() {
   const { name } = userObj;
 
   return (
-    <div>
+    <div className="main-products-div">
       <Navbar name={ name } products="Produtos" orders="Pedidos" />
-      { products.map((product) => (
-        <ProductCard
-          key={ product.id }
-          product={ product }
-          setSubtotal={ setSubtotal }
-        />))}
-
+      <div className="products-cards-div">
+        { products.map((product) => (
+          <ProductCard
+            key={ product.id }
+            product={ product }
+            setSubtotal={ setSubtotal }
+          />))}
+      </div>
       <button
         disabled={ subtotal === '0,00' }
         type="button"
