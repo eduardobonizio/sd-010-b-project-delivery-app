@@ -11,7 +11,7 @@ export async function apiGetAllSales() {
 
 export async function apiRequestOrdersByID(id) {
   try {
-    const allProducts = await getAll(`/customer/orders/${id}`);
+    const allProducts = await getAll(`/salesProducts/${id}`);
     return allProducts;
   } catch (error) {
     console.log(error);
