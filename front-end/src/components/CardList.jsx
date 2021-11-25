@@ -4,18 +4,33 @@ import Card from './Card';
 
 function CardList() {
   const { products } = useContext(Context);
+  const CARRINHO_DE_COMPRAS = 'Carrinho de Compras';
+  const loadStorage = localStorage.getItem(CARRINHO_DE_COMPRAS);
+  const storeJson = JSON.parse(loadStorage);
+  const total = Object.entries(storeJson).map((item) => Object.entries(item)
+    .map((chave) => console.log('Chave', chave)))
+    .reduce((acc, value) => acc + value, 0);
 
+  console.log('Total', total);
   return (
-    <main className="card">
-      {products.map((item) => <Card key={ item.id } item={ item } />)}
-      <button
-        data-testid="customer_products__checkout-bottom-value"
-        type="button"
-      >
-        Ver Carrinho: R$
-        {' '}
-        <h4>0,00</h4>
-      </button>
+    <main>
+      <section className="card">
+        {products.map((item) => (
+          <Card key={ item.id } item={ item } />
+        ))}
+      </section>
+      <section className="card">
+        <button
+          type="button"
+        >
+          <h3>Ver Carrinho:</h3>
+          {' '}
+          <h1 data-testid="customer_products__checkout-bottom-value">
+            R$
+            {total}
+          </h1>
+        </button>
+      </section>
     </main>
   );
 }
