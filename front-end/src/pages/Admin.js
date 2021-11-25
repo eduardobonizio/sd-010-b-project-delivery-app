@@ -9,7 +9,7 @@ function Admin() {
       <Header
         pageName="GERENCIAR USUARIOS"
         yourOrder={ false }
-        userName={ getStorage('user').name }
+        userName={ getStorage('user') && getStorage('user').name }
       />
       <FormAdmin />
     </>

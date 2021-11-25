@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 function HeaderProducts(props) {
   const { pageName } = props;
@@ -11,12 +12,13 @@ function HeaderProducts(props) {
       >
         {pageName}
       </span>
-      <span
+      <Link
         data-testid="customer_products__element-navbar-link-orders"
         className="yourOrder"
+        to="/customer/orders"
       >
         MEUS PEDIDOS
-      </span>
+      </Link>
     </>
   );
 }

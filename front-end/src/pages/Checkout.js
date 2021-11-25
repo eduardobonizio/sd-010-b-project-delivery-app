@@ -9,7 +9,7 @@ export default function Checkout() {
       <Header
         pageName="PRODUTOS"
         yourOrder
-        userName={ getStorage('user').name }
+        userName={ getStorage('user') && getStorage('user').name }
       />
       <ListItemCheckout />
     </>
