@@ -57,8 +57,9 @@ const getPurchaseBySellerId = async (id) => {
   const data = await Sale.findAll({
     where: { sellerId: Number(id) },
   });
+  console.log(data);
   return data;
-} catch (err) {
+} catch (err) {  
   return { message: err };
 }
 };

@@ -1,7 +1,7 @@
 const Sale = require('../../service/salesServices');
 
 const addPurchase = async (req, res) => {
-  try {
+  // try {
     const { userId, sellerId, totalPrice, deliveryAddress,
       deliveryNumber, saleDate, status, products } = req.body;
     const { id } = await Sale.addSale({
@@ -14,11 +14,12 @@ const addPurchase = async (req, res) => {
       status,
     });
     const newPurchase = await Sale.addPurchase(products, id);
+    console.log(newPurchase)
     return res.status(201).json({ data: newPurchase });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json(error);
-  }
+  // } catch (error) {
+  //   console.log(error);
+  //   return res.status(500).json(error);
+  // }
 };
 
 const getAllPurchases = async (req, res) => {
@@ -32,9 +33,9 @@ const getAllPurchases = async (req, res) => {
 };
 
 const getPurchaseById = async (req, res) => {
-  console.log('entrei');
+  // console.log('entrei');
     const { id } = req.params;
-    console.log('arroz');
+    // console.log('arroz');
     const purchase = await Sale.getPurchaseById(id);
     return res.status(200).json(purchase);
 };
