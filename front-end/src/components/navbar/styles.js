@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const ContainerGeneric = styled.div`
-  height: 100%;
   display: flex;
 `;
 
@@ -70,6 +69,8 @@ export const ContainerLogout = styled.div`
   text-align: center;
   background: #056CF9;
   text-transform: uppercase;
+
+  width: 150px;
 
   align-items: center;
   display: flex;
