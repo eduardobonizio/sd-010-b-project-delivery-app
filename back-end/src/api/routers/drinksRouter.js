@@ -7,6 +7,7 @@ const { getAllProductsController } = require('../controllers/productsController'
 const { loginController } = require('../controllers/loginController');
 const { getAllSellersController } = require('../controllers/usersController');
 const { registerController } = require('../controllers/registerController');
+const { finishSaleController } = require('../controllers/saleController');
 const JWTGenerate = require('../middlewares/generateToken');
 const JWTValidate = require('../middlewares/validateToken');
 
@@ -17,5 +18,6 @@ router.get('/all-sellers', JWTValidate, getAllSellersController);
 router.post('/login', emailValidate, passwordValidate, loginController, JWTGenerate);
 router.post('/register',
   nameValidate, emailValidate, passwordValidate, registerController, JWTGenerate);
+router.post('/finish-sale', JWTValidate, finishSaleController);
 
 module.exports = router;
