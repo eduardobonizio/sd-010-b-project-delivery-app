@@ -19,4 +19,22 @@ const finishSaleService = async (newSale) => {
   return dataSale.id;
 };
 
-module.exports = { finishSaleService };
+const allSalesByUserService = async (userId) => Sale
+  .findAll({ where: { userId }, attributes: { exclude: ['user_id', 'seller_id'] } });
+
+const saleByUserService = async (_userId) => {
+  // const checkUserId = async (id, user) => {  
+  //   const updatedPost = await BlogPost.findByPk(id, {
+  //     include: [{ model: Category, as: 'categories', through: { attributes: [] } }],
+  //     attributes: { exclude: ['id', 'published', 'updated'] },
+  //   });
+    
+  //   if (user !== updatedPost.userId) {    
+  //     console.log('updatepost console', updatedPost.userId, user);
+  //     return { fieldError: true, message: 'Unauthorized user' };    
+  //   }
+  //   return { fieldError: false };
+  // };
+};
+
+module.exports = { finishSaleService, allSalesByUserService, saleByUserService };

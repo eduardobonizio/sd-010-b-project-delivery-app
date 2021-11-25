@@ -7,7 +7,9 @@ const { getAllProductsController } = require('../controllers/productsController'
 const { loginController } = require('../controllers/loginController');
 const { getAllSellersController } = require('../controllers/usersController');
 const { registerController } = require('../controllers/registerController');
-const { finishSaleController } = require('../controllers/saleController');
+const { finishSaleController,
+  allSalesByUserController,
+  saleByUserController } = require('../controllers/saleController');
 const JWTGenerate = require('../middlewares/generateToken');
 const JWTValidate = require('../middlewares/validateToken');
 
@@ -18,6 +20,10 @@ router.get('/all-sellers', JWTValidate, getAllSellersController);
 router.post('/login', emailValidate, passwordValidate, loginController, JWTGenerate);
 router.post('/register',
   nameValidate, emailValidate, passwordValidate, registerController, JWTGenerate);
-router.post('/finish-sale', /* JWTValidate, */ finishSaleController);
+router.post('/finish-sale', JWTValidate, finishSaleController);
+router.post('/all-sales-by-user', JWTValidate, allSalesByUserController);
+router.post('/sale-by-user', JWTValidate, saleByUserController);
+
+// (`0000${sale.id}`).slice(-4)
 
 module.exports = router;
