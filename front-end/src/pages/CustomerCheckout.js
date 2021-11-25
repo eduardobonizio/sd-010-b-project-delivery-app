@@ -11,7 +11,7 @@ function CustomerCheckout() {
     const getLocalStorage = JSON.parse(localStorage.getItem('cart'));
     const totalProductss = getLocalStorage
       .map((product) => product.totalValue).reduce((acc, curr) => acc + curr, 0);
-    setTotal((parseFloat(totalProductss).toFixed(2)).replace('.', ','));
+    setTotal((parseFloat(totalProductss).toFixed(2)));
   }, [selected, setTotal]);
 
   useEffect(() => {
@@ -56,14 +56,14 @@ function CustomerCheckout() {
                 `customer_checkout__element-order-table-unit-price-${index}`
               }
             >
-              {`R$ ${item.price}`}
+              { item.price.replace('.', ',') }
             </span>
             <span
               data-testid={
                 `customer_checkout__element-order-table-sub-total-${index}`
               }
             >
-              {`R$ ${item.totalValue}`}
+              { (item.totalValue).toFixed(2).replace('.', ',') }
             </span>
             <button
               data-testid={ `customer_checkout__element-order-table-remove-${index}` }
@@ -77,7 +77,7 @@ function CustomerCheckout() {
         <span
           data-testid="customer_checkout__element-order-total-price"
         >
-          {`Total: R$ ${total}`}
+          {total && total.replace('.', ',')}
         </span>
       </div>
       <FormCheckout />

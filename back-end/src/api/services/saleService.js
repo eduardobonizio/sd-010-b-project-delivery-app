@@ -7,7 +7,7 @@ const finishSaleService = async (newSale) => {
   const saleDate = moment().utc().format();
 
   const dataSale = await Sale.create({
-    totalPrice, deliveryAddress, deliveryNumber, saleDate, userId, sellerId, status: 'pendente',
+    totalPrice, deliveryAddress, deliveryNumber, saleDate, userId, sellerId, status: 'Pendente',
   });
 
   cart.forEach((product) => {
