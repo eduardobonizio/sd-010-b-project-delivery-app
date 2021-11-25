@@ -21,6 +21,22 @@ const addPurchase = async (products, saleId) => {
   return data;
 };
 
+// fazer um getPurchaseById com o include sellerId
+const getPurchaseById = async (id) => {
+  const data = await SalesProducts.findAll({
+    where: {
+     seller_id: id,
+    },
+    include: [{
+      model: Product,
+      as: 'product',
+    }],
+  });
+  return data;
+};
+
+
+
 const setPurchaseById = async (id) => {
   const { dataValues: purchaseById } = await Sale.findByPk(id, {
     include: [{
