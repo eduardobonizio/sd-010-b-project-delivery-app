@@ -27,39 +27,43 @@ function OrderCart(props) {
   console.log(order);
 
   return (
-    <div>
-      <Link to={ `/seller/orders/${orderNum}` }>
-        <div>
-          <h3
-            data-testid={ `seller_orders__element-order-id-${orderNum}` }
-          >
-            {`Pedido ${orderNum}`}
-          </h3>
+    <Link className="no-uperlink" to={ `/seller/orders/${orderNum}` }>
+      <div className="order-card-seller">
+        <div className="order-card-seller-div1">
+          <div>
+            <h3
+              data-testid={ `seller_orders__element-order-id-${orderNum}` }
+            >
+              {`Pedido ${orderNum}`}
+            </h3>
+            <h3
+              className="order-card-status"
+              data-testid={ `seller_orders__element-delivery-status-${orderNum}` }
+            >
+              {status}
+            </h3>
+          </div>
+          <div>
+            <p
+              data-testid={ `seller_orders__element-order-date-${orderNum}` }
+            >
+              {convertDate(saleDate)}
+            </p>
+            <p
+              data-testid={ `seller_orders__element-card-price-${orderNum}` }
+            >
+              {`R$ ${convertPrice(totalPrice)}`}
+            </p>
+          </div>
         </div>
-        <div>
-          <h3
-            data-testid={ `seller_orders__element-delivery-status-${orderNum}` }
-          >
-            {status}
-          </h3>
-        </div>
-        <div>
-          <p
-            data-testid={ `seller_orders__element-order-date-${orderNum}` }
-          >
-            {convertDate(saleDate)}
-          </p>
-          <p
-            data-testid={ `seller_orders__element-card-price-${orderNum}` }
-          >
-            {convertPrice(totalPrice)}
-          </p>
-          <p data-testid={ `seller_orders__element-card-address-${orderNum}` }>
-            {`${deliveryAddress} ${deliveryNumber}`}
-          </p>
-        </div>
-      </Link>
-    </div>
+        <p
+          className="order-card-seller-div2"
+          data-testid={ `seller_orders__element-card-address-${orderNum}` }
+        >
+          {`${deliveryAddress} ${deliveryNumber}`}
+        </p>
+      </div>
+    </Link>
   );
 }
 

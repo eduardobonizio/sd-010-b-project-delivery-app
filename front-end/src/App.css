@@ -410,3 +410,36 @@
 .order-card-status {
   color: rgb(81, 196, 211);
 }
+
+/* TELA DE PEDIDOS DO VENDEDOR */
+
+.main-seller-orders {
+  background-image: url('../src/images/mainBackground.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+.order-card-seller {
+  background-color: rgba(19, 44, 51, 0.8);
+  margin: 1.3rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 calc(60% - 1em);
+  min-width: 13rem;
+  max-height: 425px;
+}
+
+.order-card-seller-div1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.order-card-seller-div2 {
+  margin-left: 1rem;
+  font-size: 10px;
+}
