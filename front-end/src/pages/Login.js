@@ -1,8 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
+import { useHistory } from 'react-router';
 
 function Login() {
+  const history = useHistory();
   const [login, setLogin] = useState({ email: '', password: '' });
   const [disableBtn, setDisableBtn] = useState(true);
   const [isError, setIsError] = useState(false);
@@ -10,7 +13,6 @@ function Login() {
   const [isRedirect, setIsRedirect] = useState(false);
   const [rout, setRout] = useState('');
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const validateData = () => {
     // Ref- https://pt.stackoverflow.com/questions/1386/express%C3%A3o-regular-para-valida%C3%A7%C3%A3o-de-e-mail
     const validation = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
@@ -22,7 +24,12 @@ function Login() {
       setDisableBtn(true);
     }
   };
-
+  useEffect(() => {
+    const local = JSON.parse(localStorage.getItem('user')) || null;
+    if (local) {
+      history.push('/customer/products');
+    }
+  }, []);
   const changeState = ({ target: { name, value } }) => {
     setLogin({ ...login, [name]: value });
     validateData();

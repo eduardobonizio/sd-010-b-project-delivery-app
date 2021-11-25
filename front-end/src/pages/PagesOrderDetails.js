@@ -14,7 +14,7 @@ function PagesOrderDetails() {
   useEffect(() => {
     const getApi = async () => {
       const result = await saleProductsAPI(id);
-      console.log(result);
+
       setName(result[0].seller.name);
       setDetailsOrder(result[0]);
       setProductsAPI(result[0].products);
