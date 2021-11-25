@@ -17,6 +17,7 @@ function AppProvider({ children }) {
   const [dataLogin, setDataLogin] = useState({});
   const [isAdmin, setIsAdmin] = useState(false);
   const [validUser, setValidUser] = useState(false);
+  const [validLogin, setValidLogin] = useState(false);
   const [dataOrder, setDataOrder] = useState([]);
   const [error, setError] = useState(null);
 
@@ -26,8 +27,13 @@ function AppProvider({ children }) {
     const url = 'http://localhost:3001/login';
     try {
       const { data } = await axios.post(url, dataLogin);
+      if (data.role === 'administrator') {
+        history.push('admin/manage');
+        return;
+      }
       console.log(data);
-      // history.push('customer/products');
+
+      history.push('customer/products');
     } catch (e) {
       setError(e.response.data.message);
     }
@@ -48,6 +54,21 @@ function AppProvider({ children }) {
       history.push('customer/products');
     } catch (e) {
       setError(e.response.data.message);
+    }
+  };
+
+  const validateDataLogin = () => {
+    // Ref- https://pt.stackoverflow.com/questions/1386/express%C3%A3o-regular-para-valida%C3%A7%C3%A3o-de-e-mail
+    const validation = /^[a-z0-9.\D]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
+    const MIN_LEN_PASS = 6;
+
+    if (
+      validation.test(dataLogin.email)
+      && dataLogin.password.length >= MIN_LEN_PASS
+    ) {
+      setValidLogin(true);
+    } else {
+      setValidLogin(false);
     }
   };
 
@@ -86,6 +107,7 @@ function AppProvider({ children }) {
     validUser,
     error,
     dataOrder,
+    validLogin,
     login,
     setDataUser,
     changeLoginState,
@@ -93,6 +115,7 @@ function AppProvider({ children }) {
     registerUser,
     changeUserState,
     validateDataUser,
+    validateDataLogin,
   };
 
   return (

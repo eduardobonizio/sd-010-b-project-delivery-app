@@ -5,27 +5,20 @@ import axios from 'axios';
 import AppContext from '../Context/AppContext';
 
 function Login() {
-  const { changeLoginState, login, error } = useContext(AppContext);
+  const {
+    changeLoginState,
+    login,
+    error,
+    validLogin,
+    validateDataLogin,
+  } = useContext(AppContext);
 
-  const [disableBtn, setDisableBtn] = useState(true);
-
-  const [isRedirect, setIsRedirect] = useState(false);
-
-  const getApi = async () => {
-    try {
-      const { data } = await axios.post('http://localhost:3001/login', login);
-
-      setIsRedirect(true);
-    } catch (e) {
-      setErrorMessage(e.response.data.message);
-      setIsError(true);
-    }
-  };
+  useEffect(() => {
+    validateDataLogin();
+  }, [changeLoginState, validateDataLogin]);
 
   return (
     <div>
-      {isRedirect && <Redirect to="/customer/products" />}
-
       <h1>Login page</h1>
 
       <label htmlFor="email-login">
@@ -54,7 +47,7 @@ function Login() {
         type="button"
         data-testid="common_login__button-login"
         onClick={ login }
-        // disabled={ disableBtn }
+        disabled={ !validLogin }
       >
         Login
       </button>
@@ -63,9 +56,7 @@ function Login() {
       </button>
 
       {error && (
-        <div data-testid="common_login__element-invalid-email">
-          {error}
-        </div>
+        <div data-testid="common_login__element-invalid-email">{error}</div>
       )}
     </div>
   );
