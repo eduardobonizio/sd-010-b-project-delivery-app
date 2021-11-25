@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useCallback, useContext, useEffect } from 'react';
 import { io } from 'socket.io-client';
 import NavBar from '../components/Navbar';
 import { getFromLocalStorage } from '../services/helpers/servicesLocalStorage';
