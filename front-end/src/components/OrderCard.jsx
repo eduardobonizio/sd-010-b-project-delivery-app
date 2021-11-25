@@ -6,11 +6,13 @@ import '../styles/orderCard.css';
 
 const LEFTPAD = -4;
 
+const locale = 'pt-br';
+
 function OrderCard({ order: {
-  id, delivery_number: deliveryNumber,
+  id,
   status, sale_date: saleDate, total_price: totalPrice,
 } }) {
-  const generateBackgroundColor = () => {
+  const generatebackgroundcolor = () => {
     switch (status.toUpperCase()) {
     case 'PENDENTE':
       return 'rgb(215, 195, 80)';
@@ -35,25 +37,28 @@ function OrderCard({ order: {
         <section className="order-card__order-number">
           <span className="order-card__order-label">Pedido</span>
           <span data-testid={ `customer_orders__element-order-id-${id}` }>
-            {(`0000${deliveryNumber}`).slice(LEFTPAD)}
+            {(`0000${id}`).slice(LEFTPAD)}
           </span>
         </section>
         <section
-          style={ { backgroundColor: generateBackgroundColor() } }
+          style={ { backgroundColor: generatebackgroundcolor() } }
           className="order-card__order-status"
           data-testid={ `customer_orders__element-delivery-status-${id}` }
         >
-          {status.toUpperCase()}
+          {status.charAt(0).toUpperCase() + status.slice(1)}
         </section>
         <span className="order-card__order-infos">
           <section
             className="order-card__order-info-date"
             data-testid={ `customer_orders__element-order-date-${id}` }
           >
-            {new Date(saleDate).toLocaleDateString()}
+            { new Date(saleDate).toLocaleDateString(locale)}
           </section>
-          <section className="order-card__order-info-price">
-            {`R$ ${Number(totalPrice).toFixed(2)}`}
+          <section
+            className="order-card__order-info-price"
+            data-testid={ `customer_orders__element-card-price-${id}` }
+          >
+            {Number(totalPrice).toFixed(2).toString().replace('.', ',')}
           </section>
         </span>
       </main>

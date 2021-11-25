@@ -11,11 +11,17 @@ function NavBar(props) {
 
   const user = JSON.parse(localStorage.getItem('user'));
 
+  function ordersPage() {
+    history.push('/customer/orders');
+  }
+
   function renderPedidos() {
     return (
       <section
         className="navbar__container__orders"
         data-testid="customer_products__element-navbar-link-orders"
+        onClick={ () => { ordersPage(); } }
+        aria-hidden="true"
       >
         Meus pedidos
       </section>

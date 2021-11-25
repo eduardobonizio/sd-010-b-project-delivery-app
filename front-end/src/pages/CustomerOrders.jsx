@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 
-import { getAll } from '../apis/sales';
+import { getByCustomer } from '../apis/sales';
 import OrderCard from '../components/OrderCard';
 
 import '../styles/customerOrders.css';
 
 function CustomerOrders() {
   const [orders, setOrders] = useState([]);
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const setAllOrders = async () => {
-    const getAllOrders = await getAll();
+    const getAllOrders = await getByCustomer(user.id);
     setOrders(getAllOrders);
   };
 

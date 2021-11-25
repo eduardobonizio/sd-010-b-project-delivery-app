@@ -8,9 +8,19 @@ import '../styles/formsRegister.css';
 
 function Login() {
   const [redirect, setRedirect] = React.useState(false);
+  const [loggedUser, setLoggedUser] = React.useState(false);
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  React.useEffect(() => {
+    if (user) {
+      setLoggedUser(true);
+    }
+  }, [user]);
+
   return (
     <>
       { redirect ? <Redirect to="/register" /> : null }
+      { loggedUser ? <Redirect to="/customer/products" /> : null }
 
       <div className="login-page">
         <main className="main-login">
