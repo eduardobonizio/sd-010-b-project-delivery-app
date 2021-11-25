@@ -28,15 +28,15 @@ function NavBar() {
             data-testid="customer_products__element-navbar-link-products"
           >
             <TextNavBar>
-              PRODUTOS
+              Produtos
             </TextNavBar>
           </ContainerTextProducts>
         </Link>
 
-        <Link to="/" className="link__navbar">
+        <Link to="/customer/orders" className="link__navbar">
           <ContainerPedidos data-testid="customer_products__element-navbar-link-orders">
             <TextNavBar>
-              PEDIDOS
+              Meus Pedidos
             </TextNavBar>
           </ContainerPedidos>
         </Link>
@@ -45,7 +45,7 @@ function NavBar() {
       <ContainerGeneric>
         <ContainerName data-testid="customer_products__element-navbar-user-full-name">
           <TextNavBar>
-            {userName.name}
+            {userName ? userName.name : ' '}
           </TextNavBar>
         </ContainerName>
 
@@ -56,7 +56,7 @@ function NavBar() {
         >
           <ContainerLogout data-testid="customer_products__element-navbar-link-logout">
             <TextNavBar>
-              SAIR
+              Sair
             </TextNavBar>
           </ContainerLogout>
         </Link>

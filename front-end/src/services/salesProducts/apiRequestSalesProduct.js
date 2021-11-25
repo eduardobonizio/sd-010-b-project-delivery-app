@@ -2,7 +2,7 @@ import { postAll, getAll, edit } from '../httpService';
 
 export async function apiGetAllSales() {
   try {
-    const allUsers = await getAll('/customer/orders/');
+    const allUsers = await getAll('/customers');
     return allUsers;
   } catch (error) {
     console.log(error);
@@ -11,7 +11,7 @@ export async function apiGetAllSales() {
 
 export async function apiRequestOrdersByID(id) {
   try {
-    const allProducts = await getAll(`/customer/orders/${id}`);
+    const allProducts = await getAll(`/salesProducts/${id}`);
     return allProducts;
   } catch (error) {
     console.log(error);

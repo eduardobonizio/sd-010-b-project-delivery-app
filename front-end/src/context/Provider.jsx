@@ -7,6 +7,8 @@ import { getFromLocalStorage } from '../helpers/localStorage';
 export default function Provider({ children }) {
   const [dataProducts, setDataProducts] = useState([]);
   const [cartProduct, setCartProduct] = useState([]);
+  const [salleProduct, setSalleProduct] = useState([]);
+  const [products, setProducts] = useState([]);
   const [totalCart, setTotalCart] = useState(0);
 
   useEffect(() => {
@@ -50,6 +52,10 @@ export default function Provider({ children }) {
     setDataProducts,
     totalCart,
     setTotalCart,
+    salleProduct,
+    setSalleProduct,
+    products,
+    setProducts,
   };
 
   return (

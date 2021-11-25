@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as style from './style';
 import { apiRequestLogin } from '../../../services/login/apiRequestLogin';
-import { setOnLocalStorage } from '../../../helpers/localStorage';
+import { setOnLocalStorage, getFromLocalStorage } from '../../../helpers/localStorage';
 import beer from '../../../images/beer.png';
 
 export default function Login() {
@@ -24,14 +24,24 @@ export default function Login() {
 
     if (login.role === 'customer') {
       console.log(user);
-      setOnLocalStorage('user', login);
       navigate('../customer/products', { replace: true });
     }
     if (login.role === 'administrator') {
-      setOnLocalStorage('user', login);
       navigate('../admin/manage', { replace: true });
     }
+    if (login.role === 'seller') {
+      navigate('../seller/orders', { replace: true });
+    }
+    setOnLocalStorage('user', login);
   };
+
+  useEffect(() => {
+    const localUser = getFromLocalStorage('user');
+    if (localUser) {
+      console.log('oi');
+      navigate('../customer/products', { replace: true });
+    }
+  }, [navigate]);
 
   useEffect(() => {
     function buttonAble() {
@@ -85,7 +95,7 @@ export default function Login() {
             data-testid="common_login__button-register"
             onClick={ () => navigate('../register', { replace: true }) }
           >
-            Ainda nao tenho conta
+            Ainda não tenho conta
           </style.RegisterButton>
         </div>
         <p

@@ -6,12 +6,13 @@ export const ContainerGeneric = styled.div`
 `;
 
 export const Header = styled.nav`
-  width: 100vw;
-  height: 105px;
+  background: #036B52;
+
   display: flex;
   flex-direction: row;
-  background: #3E7C17;
   justify-content: space-between;
+
+  width: 100vw;
 
   .link__navbar {
     text-decoration: none;
@@ -19,71 +20,63 @@ export const Header = styled.nav`
 `;
 
 export const ContainerTextProducts = styled.div`
-  width: 300px;
-  height: 100%;
+  background: #036B52;
+  text-align: center;
+  text-transform: uppercase;
+
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  text-align: center;
-  background: #4E9F3D;
 
   :hover {
-      background: #D8E9A8;
-      transform: scale(1.1);
-    }
+    background-color: #048C66;
+  }
 `;
 
 export const TextNavBar = styled.p`
-  color: #000;
+  color: white;
   font-weight: 800;
-  font-size: 24px;
+  font-size: 16px;
+  font-family: 'Baloo Da 2', sans-serif;
+  padding: 15px;
 `;
 
 export const ContainerPedidos = styled.div`
-  width: 300px;
-  height: 100%;
+  text-align: center;
+  background: #2FC18C;
+  text-transform: uppercase;
+
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  text-align: center;
-  background: #3E7C17;
-  
+
   :hover {
-      background: #D8E9A8;
-      transform: scale(1.1);
-    }
+    background-color: #08A476;
+  }
 `;
 
 export const ContainerName = styled.div`
-  width: 300px;
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: #9C528B;
-
-  :hover {
-      background: #D8E9A8;
-      transform: scale(1.1);
-    }
+  background: #421981;
 `;
 
 export const ContainerLogout = styled.div`
-  width: 150px;
-  height: 100%;
+  text-align: center;
+  background: #056CF9;
+  text-transform: uppercase;
+
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  text-align: center;
-  background: #2274A5;
 
   :hover {
-      background: #D8E9A8;
-      transform: scale(1.1);
-    }
+    background-color: #273AAA;
+  }
 `;

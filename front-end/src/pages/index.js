@@ -1,6 +1,6 @@
 import ClientOrderDetails from './Client/OrderDetails';
 import Management from './Administrator/Management';
-import OrderDetails from './Salesman/OrderDetails';
+import SellerOrders from './Salesman/SellerOrders';
 import MyRequests from './Client/MyRequests';
 import Requests from './Salesman/Requests';
 import Register from './Common/Register';
@@ -9,11 +9,13 @@ import Products from './Client/Products';
 import Login from './Common/Login';
 import Home from './Common/Home';
 import Details from './Client/Details';
+import OrdersDetails from './Salesman/OrdersDetails';
 
 export {
   Details,
   ClientOrderDetails,
-  OrderDetails,
+  SellerOrders,
+  OrdersDetails,
   Management,
   MyRequests,
   Checkout,
