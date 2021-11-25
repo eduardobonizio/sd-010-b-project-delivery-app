@@ -12,7 +12,7 @@ function ProductCard({ name, image, price, id, setCartCallback }) {
   };
 
   useEffect(() => {
-    setCartCallback(name, price, quantity);
+    setCartCallback(id, name, price, quantity);
   });
   return (
     // TODO: Remove inline styles

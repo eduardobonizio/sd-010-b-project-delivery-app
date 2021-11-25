@@ -1,16 +1,21 @@
 import { Button, Stack } from '@mui/material';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import getProducts from '../api/getProducts';
 
 import ProductCard from '../components/ProductCard';
 
+import ProductsContext from '../context/Products/ProductsContext';
+
 const CustomerProducts = () => {
   const [isLoading, setIsloading] = useState(false);
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState({});
-  const [totalValue, setTotalValue] = useState(0);
   const history = useHistory();
+
+  const {
+    totalPrice: totalPriceContext,
+    setTotalPrice: setTotalPriceContext,
+  } = useContext(ProductsContext);
 
   useEffect(() => {
     setIsloading(true);
@@ -21,18 +26,41 @@ const CustomerProducts = () => {
     setIsloading(false);
   }, []);
 
-  const setCartCallback = (productName, productPrice, productQuantity) => {
-    const obj = { price: productPrice, quantity: productQuantity };
-    const oldCart = cart;
-    oldCart[productName] = obj;
-    setCart(oldCart);
-    localStorage.setItem('cart', JSON.stringify(oldCart));
-    const total = Object.values(oldCart);
-    if (total) {
-      setTotalValue(total
-        .reduce((soma, object) => (soma + (parseFloat(object.price.replace(',', '.'))
-        * object.quantity)), 0));
+  const calculateTotalPrice = (productsLS) => {
+    const totalPrice = Array.isArray(productsLS) ? productsLS.reduce(
+      (sum, { quantity, unitPrice }) => (
+        sum + quantity * parseFloat(unitPrice.replace(',', '.'))), 0,
+    ) : 0;
+
+    setTotalPriceContext(totalPrice);
+    return totalPrice;
+  };
+
+  const setCartCallback = (productId, productName, productPrice, productQuantity) => {
+    let cartLS = JSON.parse(localStorage.getItem('customerCart'));
+    const hasSomeProduct = cartLS.some((product) => product.id === productId);
+    if (!hasSomeProduct) {
+      cartLS.push({
+        id: productId,
+        description: productName,
+        quantity: productQuantity,
+        unitPrice: productPrice,
+      });
+    } else {
+      cartLS = cartLS.map((product) => {
+        if (product.id === productId) {
+          product.quantity = productQuantity;
+        }
+        return product;
+      });
     }
+
+    cartLS = cartLS.filter((product) => product.quantity !== 0);
+
+    localStorage.setItem('customerCart', JSON.stringify(cartLS));
+    const total = calculateTotalPrice(cartLS);
+    console.log(total);
+    setTotalPriceContext(total);
   };
 
   return isLoading
@@ -53,12 +81,12 @@ const CustomerProducts = () => {
             style={ { position: 'absolute' } }
             variant="contained"
             onClick={ () => history.push('/customer/checkout') }
-            disabled={ totalValue <= 0 }
+            disabled={ totalPriceContext <= 0 }
           >
             <div
               data-testid="customer_products__checkout-bottom-value"
             >
-              {totalValue.toFixed(2).replace('.', ',')}
+              {totalPriceContext.toFixed(2).replace('.', ',')}
             </div>
 
           </Button>

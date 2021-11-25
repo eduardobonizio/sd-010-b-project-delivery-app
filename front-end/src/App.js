@@ -33,8 +33,11 @@ function App() {
 
   useEffect(() => {
     const verifyLocalStorage = () => {
-      const gotLS = localStorage.getItem('customerCart');
-      if (!gotLS) localStorage.setItem('customerCart', '[]');
+      const gotCustomerCartLS = localStorage.getItem('customerCart');
+      const gotUserLS = localStorage.getItem('user');
+
+      if (!gotCustomerCartLS) localStorage.setItem('customerCart', '[]');
+      if (!gotUserLS) localStorage.setItem('user', '{ name: \' \' }');
     };
 
     verifyLocalStorage();

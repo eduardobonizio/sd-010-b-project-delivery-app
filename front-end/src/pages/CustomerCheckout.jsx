@@ -103,7 +103,6 @@ function CustomerCheckout() {
 
   const {
     totalPrice: totalPriceContext,
-    setTotalPrice: setTotalPriceContext,
   } = useContext(ProductsContext);
 
   const history = useHistory();
@@ -145,18 +144,6 @@ function CustomerCheckout() {
     ) : null;
 
     return mappedRenderProducts;
-  };
-
-  const calculateTotalPrice = () => {
-    let totalPrice = Array.isArray(products) ? products.reduce(
-      (sum, { quantity, unitPrice }) => sum + quantity * unitPrice,
-      0,
-    ) : null;
-
-    // SOURCE: https://stackoverflow.com/questions/11832914/how-to-round-to-at-most-2-decimal-places-if-necessary
-    totalPrice = Math.ceil(totalPrice * 100) / 100;
-    setTotalPriceContext(totalPrice);
-    return totalPrice;
   };
 
   const handleOnClickCheckout = async () => {
