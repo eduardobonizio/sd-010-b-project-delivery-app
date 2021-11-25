@@ -14,54 +14,50 @@ function DetailsOrder() {
 
   const dataTesteIdSubTotal = 'customer_order_details__element-order-table-sub-total-';
 
-  const dataTesteIdPrice = 'customer_order_details__element-order-total-price-';
+  const dataTesteIdPrice = 'customer_order_details__element-order-total-price';
+
+  const dataTest = 'customer_order_details__element-order-details-label-delivery-status';
   const { id, saleDate, status } = detailsOrder;
   const date = new Date(saleDate);
 
   return (
     <>
       <span>
-        <lable
+        <label
           htmlFor="input-id"
-          data-testid={ `customer_order_details__element
-          -order-details-label-order-${id}` }
+          data-testid="customer_order_details__element-order-details-label-order-id"
         >
           PEDIDO -
           <selector id="input-id">{id}</selector>
           <selector />
-        </lable>
-        <lable
+        </label>
+        <label
           htmlFor="input-name"
-          data-testid={ `
-          -order-details-label-seller-name${id}` }
+          data-testid="customer_order_details__element-order-details-label-seller-name"
         >
           P.Venda
           <selector id="input-name">{name}</selector>
-        </lable>
-        <lable
+        </label>
+        <label
           htmlFor="input-date"
-          data-testid={ `customer_order_details__
-          element-order-details-label-order-date${id}` }
+          data-testid="customer_order_details__element-order-details-label-order-date"
         >
-          <selector id="input-date">{ date.toLocaleString().split(',', 1)}</selector>
-        </lable>
-        <lable
+          <selector id="input-date">{ date.toLocaleDateString('pt-br')}</selector>
+        </label>
+        <label
           htmlFor="input-status"
-          data-testid={ `customer_order_details__element-
-          order-details-label-delivery-status${id}` }
+          data-testid={ dataTest }
         >
-          <input id="input-status" value={ status } />
-        </lable>
-        <lable htmlFor="button">
-          <button
-            type="button"
-            id="button"
-            data-testid={ `customer_order_details__button-
-            delivery-check` }
-          >
-            Marcar Como Entregue
-          </button>
-        </lable>
+          <selector id="input-status">{status}</selector>
+        </label>
+        <button
+          disabled
+          type="button"
+          id="button"
+          data-testid="customer_order_details__button-delivery-check"
+        >
+          Marcar Como Entregue
+        </button>
       </span>
       <table>
         <thead>
@@ -86,7 +82,7 @@ function DetailsOrder() {
               <td data-testid={ `${dataTesteIdQuantidade}${index}` }>
                 {element.SalesProduct.quantity}
               </td>
-              <td data-testid={ `${dataTesteIdPrice}${index}` }>
+              <td>
                 {Number(element.price).toFixed(2).toString().replace('.', ',')}
               </td>
               <td data-testid={ `${dataTesteIdSubTotal}${index}` }>
@@ -99,6 +95,13 @@ function DetailsOrder() {
           ))}
         </tbody>
       </table>
+      <span>Total: </span>
+      <span data-testid={ `${dataTesteIdPrice}` }>
+        {productsAPI.reduce((prev, currenty) => (prev
+          + (Number(currenty.price) * currenty.SalesProduct.quantity)), 0)
+          .toFixed(2).toString().replace('.', ',')}
+
+      </span>
     </>
   );
 }

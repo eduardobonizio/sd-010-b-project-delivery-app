@@ -26,7 +26,7 @@ function Order({ id, status, date, total }) {
         <span
           data-testid={ `customer_orders__element-order-date-${id}` }
         >
-          {`${newData[2]}/${newData[1]}/${newData[0]}`}
+          {`${newData[1]}/${newData[2]}/${newData[0]}`}
         </span>
         <span>
           {total}
