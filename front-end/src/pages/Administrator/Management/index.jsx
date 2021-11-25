@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import isValidRegister from '../../../helpers/validRegister';
 import apiRequestAdmin from '../../../services/register/apiRequestAdmin';
 import { getFromLocalStorage } from '../../../helpers/localStorage';
+import TableUsers from '../../../components/TableUsers';
+import { apiGetAllUsers } from '../../../services/login/apiRequestLogin';
 
 export default function Management() {
   const [btnDisable, setBtnDisable] = useState(true);
@@ -10,13 +12,25 @@ export default function Management() {
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('');
   const [erro] = useState();
+  const [listUser, setListUser] = useState();
 
   const tryRegister = async (e) => {
     e.preventDefault();
     const user = getFromLocalStorage('user');
     const result = await apiRequestAdmin({ name, email, password, role }, user.token);
     console.log(result);
+    const allUsers = await apiGetAllUsers();
+    setListUser(allUsers);
   };
+
+  useEffect(() => {
+    const allUsers = async () => {
+      const result = await apiGetAllUsers();
+      setListUser(result);
+    };
+    allUsers();
+  }, []);
+
   useEffect(() => {
     const isValid = isValidRegister(name, email, password);
     setBtnDisable(isValid);
@@ -67,6 +81,15 @@ export default function Management() {
           { erro ? 'Deu erro' : ' ' }
         </p>
       </form>
+      {listUser && listUser.map((list, index) => (
+        <TableUsers
+          key={ index }
+          id={ list.id }
+          name={ list.name }
+          email={ list.email }
+          role={ list.role }
+        />
+      ))}
     </div>
   );
 }
