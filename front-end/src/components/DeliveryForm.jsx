@@ -27,7 +27,6 @@ export default function DeliveryForm() {
   };
 
   const createSale = () => {
-    console.log('clicou');
     const requestOptions = {
       headers: {
         Accept: 'application/json',
@@ -100,7 +99,13 @@ export default function DeliveryForm() {
           ref={ addressNumberRef }
         />
       </label>
-      <button type="button" onClick={ () => { createSale(); } }>Finalizar Pedido</button>
+      <button
+        data-testid="customer_checkout__button-submit-order"
+        type="button"
+        onClick={ () => { createSale(); } }
+      >
+        Finalizar Pedido
+      </button>
     </form>
   );
 }
