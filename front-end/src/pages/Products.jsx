@@ -18,7 +18,7 @@ function Products() {
       const zero = 0;
       if (!carrinho.length) setTotal(zero.toFixed(2));
       const newTotal = carrinho.reduce((acc, curr) => acc + +curr.price * curr.qty, 0);
-      setTotal(total2.toFixed(2));
+      setTotal(newTotal.toFixed(2));
     };
     handleTotalValue(cart);
   }, [cart]);
