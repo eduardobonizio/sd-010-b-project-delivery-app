@@ -13,6 +13,7 @@ function Provider({ children }) {
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState(false);
   const [products, setProducts] = useState([]);
+  const [totalPrice, setTotaPrice] = useState(0);
   const history = useHistory();
 
   const getAllProducts = async () => {
@@ -55,6 +56,8 @@ function Provider({ children }) {
     handleClickLogin,
     handleClickRegister,
     products,
+    totalPrice,
+    setTotaPrice,
   };
 
   return (
