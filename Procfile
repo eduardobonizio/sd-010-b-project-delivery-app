@@ -1,1 +1,1 @@
-web: ./back-end/package.json
+web: cd ./back-end && npm install && node  .
