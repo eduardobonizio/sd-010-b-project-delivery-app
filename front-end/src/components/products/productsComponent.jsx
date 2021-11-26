@@ -34,7 +34,7 @@ const Products = () => {
               >
                 { elem.name }
               </p>
-              <ButtonItens elem={ elem } key={ elem.id } id={ elem.id } />
+              <ButtonItens elem={ elem } key={ elem.id } />
             </div>
           </div>
         ))}
