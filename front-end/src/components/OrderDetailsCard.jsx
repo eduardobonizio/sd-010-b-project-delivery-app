@@ -14,7 +14,7 @@ function OrderDetailsCard({ dataId, index, quantity }) {
       setProduct(request);
     };
     getProduct();
-  }, []);
+  }, [dataId]);
 
   return (
     <main key={ index } className="customer-order-details__container">
@@ -40,13 +40,13 @@ function OrderDetailsCard({ dataId, index, quantity }) {
         data-testid={ `${dataTestId}total-price` }
         className="customer-order-details__price"
       >
-        { product && `R$ ${product.price.toFixed(2)}` }
+        { product && `R$ ${(+product.price).toFixed(2)}` }
       </section>
       <section
         data-testid={ `${dataTestId}table-sub-total-${index}` }
         className="customer-order-details__subtotal"
       >
-        { product && `R$ ${(quantity * product.price).toFixed(2)}` }
+        { product && `R$ ${(quantity * (+product.price)).toFixed(2)}` }
       </section>
     </main>
   );

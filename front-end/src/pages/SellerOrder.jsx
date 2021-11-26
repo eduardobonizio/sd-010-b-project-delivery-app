@@ -14,7 +14,7 @@ function SellerOrder() {
 
   useEffect(() => {
     setAllOrders();
-  }, [setAllOrders]);
+  }, []);
 
   return (
     <main className="customer-orders__main-container">
