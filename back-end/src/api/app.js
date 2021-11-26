@@ -35,12 +35,10 @@ app.use('/seller', sellerRouter);
 /* Todas as rotas com /admin/<alguma-coisa> entram aqui e vão para o roteador */
 app.use('/admin', adminRouter);
 
-app.get('/', async (req, res) => {
-  res.sendFile(path.join(__dirname, pathToBuild, 'index.html'))
-})
+const pathToBuild = path.join(__dirname, '../../public/build');
 
 app.use((req, res, next) => {
-  res.sendFile(path.join(__dirname, "../..", "public", "index.html"));
+  res.sendFile(path.join(pathToBuild, "index.html"));
 });
 
 module.exports = app;
