@@ -13,7 +13,12 @@ const createSalesProducts = rescue(async (req, res) => {
   if (!result) { return res.status(404).json({ message: 'nao criou' }); }
   return res.status(200).json(result);
 });
-
+const getAllSalesProductsBySeleId = rescue(async (req, res) => {
+  const result = await salesProductsService.getAllSalesProductsBySeleId(req.body.saleId);
+  return res.json(result);
+ });
 module.exports = {
-  getAll, createSalesProducts,
+  getAll,
+  createSalesProducts,
+  getAllSalesProductsBySeleId,
 };
