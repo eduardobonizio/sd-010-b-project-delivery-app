@@ -5,3 +5,4 @@ jest.config.js
 **/migrations/
 **/seeders/
 **/models/index.js
+/public/build
