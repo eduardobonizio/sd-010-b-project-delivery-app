@@ -14,7 +14,7 @@ const addPurchase = async (req, res) => {
       status,
     });
     const newPurchase = await Sale.addPurchase(products, id);
-    console.log(newPurchase)
+    console.log(newPurchase);
     return res.status(201).json({ data: newPurchase });
   // } catch (error) {
   //   console.log(error);

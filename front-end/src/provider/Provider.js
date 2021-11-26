@@ -18,6 +18,7 @@ const Provider = ({ children }) => {
   const [purchaseAddress, setPurchaseAddress] = useState('');
   const [addressNumber, setAddressNumber] = useState('');
   const [ordered, setOrdered] = useState([]);
+
   const location = useLocation();
   const history = useHistory();
 
@@ -83,6 +84,7 @@ const Provider = ({ children }) => {
     sellers,
     setSellers,
     getAllPurchase,
+
   };
 
   const fetchProducts = async () => {

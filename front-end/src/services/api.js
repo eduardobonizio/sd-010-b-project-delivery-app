@@ -51,6 +51,26 @@ const getAllOrdersBySellerId = async (id) => {
   return data;
 };
 
+const getAllOrdersSaleId = async (id) => {
+  const endpoint = `http://localhost:3001/seller/orders/${id}`;
+  const responses = fetch(endpoint, {
+    method: 'GET',
+    headers: {
+      'Content-Type': APPLICATION,
+      // authorization: token,
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => data)
+
+    .catch((err) => err);
+
+  const data = await responses;
+  // if (data.err) { return console.log(data.err.message); }
+
+  return data;
+};
+
 const setOrdersStatus = async (id, status) => {
   await axios({
     method: 'patch',
@@ -68,5 +88,6 @@ export {
   getAllProducts,
   getAllOrdersBySellerId,
   setOrdersStatus,
+  getAllOrdersSaleId,
 
 };

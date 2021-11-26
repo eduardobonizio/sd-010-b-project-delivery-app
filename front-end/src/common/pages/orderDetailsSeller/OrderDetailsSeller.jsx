@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from '../../../components/ProductsComponents/Header';
-import { getAllOrdersBySellerId, setOrdersStatus } from '../../../services/api';
+import { setOrdersStatus, getAllOrdersSaleId } from '../../../services/api';
 import OrderDetails from '../../../components/OrderDetailsSeller/OrderDetailsSeller';
 import OrderDetailsTable from '../../../components/OrderDetailsSeller/OrderDetailsTable';
 import addZeroes from '../../../helper/functions/addZeroes';
@@ -12,16 +12,16 @@ const OrderDetailsSeller = () => {
   const [status, setStatus] = useState('Pendente');
 
   // const [totalPrice, setTotalPrice] = useState([]);
+  const { id } = useParams();
   const fetchOrders = async () => {
-    // const token = JSON.parse(localStorage.getItem('user'));
-    // const response = await getAllOrdersBySellerId(token.userId);
-    const response = await getAllOrdersBySellerId(1);
+    // const user = JSON.parse(localStorage.getItem('user'));
+    // const response = dataSeller.filter((el) => el.id === Number(id));
+    const response = await getAllOrdersSaleId(Number(id));
 
     setData(response);
 
-    console.log(response, 'data cheiroso', data.id);
+    console.log(response, 'data cheiroso', data.id, id);
   };
-  const { id } = useParams();
   console.log(id, 'params');
 
   useEffect(() => {

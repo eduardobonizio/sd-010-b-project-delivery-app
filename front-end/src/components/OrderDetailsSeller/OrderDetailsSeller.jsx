@@ -13,26 +13,43 @@ const OrderDetails = ({ Pedido, Data, Status, HandleClick }) => {
   const renderSection = () => (
     <section className="seller-order-section">
       <div className="seller-order-div-1">
-
-        <p
-          className="seller-order-p"
+        <label
+          htmlFor="order_id"
           data-testid="seller_order_details__element-order-details-label-order-id"
         >
-          {' '}
-          {`PEDIDO ${Pedido}`}
-        </p>
-        <p
-          className="seller-order-p"
+          <button
+            className="seller-order-p"
+            type="button"
+            id="order_date"
+          >
+            {' '}
+            {`PEDIDO ${Pedido}`}
+          </button>
+        </label>
+        <label
+          htmlFor="order_id"
           data-testid="seller_order_details__element-order-details-label-order-date"
         >
-          {data}
-        </p>
-        <p
-          className="seller-order-p"
+          <button
+            className="seller-order-p"
+            type="button"
+            id="order_date"
+          >
+            {data}
+          </button>
+        </label>
+        <label
+          htmlFor="order_status"
           data-testid={ TEST_ID_55 }
         >
-          {Status}
-        </p>
+          <button
+            className="seller-order-p"
+            type="button"
+            id="order_status"
+          >
+            {Status}
+          </button>
+        </label>
       </div>
       <div className="seller-order-div-2">
         <button
@@ -41,6 +58,7 @@ const OrderDetails = ({ Pedido, Data, Status, HandleClick }) => {
           onClick={ HandleClick }
           name="PREPARAR PEDIDO"
           disabled={ Status !== 'Pendente' }
+          id=""
         >
           PREPARAR PEDIDO
         </button>
