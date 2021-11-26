@@ -20,7 +20,7 @@
     "test:dev:open": "NODE_ENV=development HEADLESS=false npm run test:dev",
     "test:dev:report": "./__tests__/reports/generate.sh",
     "build:noinstall": "cd ./front-end && npm run build && cp -R ./build .././back-end/public && cd .././back-end && node .",
-    "build": "cd ./front-end && npm install && npm run build && cp -R ./build .././back-end/public && cd .././back-end && npm install && node ."
+    "build:full": "cd ./front-end && npm install && npm run build && cp -R ./build .././back-end/public && cd .././back-end && npm install && node ."
   },
   "repository": {
     "type": "git",
