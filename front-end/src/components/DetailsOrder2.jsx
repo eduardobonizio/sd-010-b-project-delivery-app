@@ -28,27 +28,26 @@ function DetailsOrder() {
           data-testid="customer_order_details__element-order-details-label-order-id"
         >
           PEDIDO -
-          <selector id="input-id">{id}</selector>
-          <selector />
+          <span id="input-id">{id}</span>
         </label>
         <label
           htmlFor="input-name"
           data-testid="customer_order_details__element-order-details-label-seller-name"
         >
           P.Venda
-          <selector id="input-name">{name}</selector>
+          <span id="input-name">{name}</span>
         </label>
         <label
           htmlFor="input-date"
           data-testid="customer_order_details__element-order-details-label-order-date"
         >
-          <selector id="input-date">{ date.toLocaleDateString('pt-br')}</selector>
+          <span id="input-date">{ date.toLocaleDateString('pt-br')}</span>
         </label>
         <label
           htmlFor="input-status"
           data-testid={ dataTest }
         >
-          <selector id="input-status">{status}</selector>
+          <span id="input-status">{status}</span>
         </label>
         <button
           disabled
