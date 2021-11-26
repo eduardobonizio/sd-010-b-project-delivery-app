@@ -33,4 +33,5 @@ app.use('/customer', customerRouter);
 app.use('/seller', sellerRouter);
 /* Todas as rotas com /admin/<alguma-coisa> entram aqui e vão para o roteador */
 app.use('/admin', adminRouter);
+
 module.exports = app;
