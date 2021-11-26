@@ -28,8 +28,8 @@ function Order({ id, status, date, total }) {
         >
           { newDate.toLocaleDateString('pt-br') }
         </span>
-        <span>
-          {total}
+        <span data-testid={ `customer_orders__element-card-price-${id}` }>
+          {`${total.replace('.', ',')}`}
         </span>
       </button>
     </>);
