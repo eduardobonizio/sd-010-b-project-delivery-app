@@ -41,7 +41,8 @@ function Login() {
     validateData();
   }, [login, validateData]);
 
-  const getApi = async () => {
+  const getApi = async (event) => {
+    event.preventDefault();
     try {
       const { data } = await axios.post('http://localhost:3001/login', login);
 
@@ -51,6 +52,7 @@ function Login() {
     } catch (e) {
       setErrorMessage(e.response.data.message);
       setIsError(true);
+      setDisableBtn(true);
     }
   };
 
@@ -83,9 +85,9 @@ function Login() {
       </label>
 
       <button
-        type="button"
+        type="submit"
         data-testid="common_login__button-login"
-        onClick={ () => getApi() }
+        onClick={ getApi }
         disabled={ disableBtn }
       >
         Login
