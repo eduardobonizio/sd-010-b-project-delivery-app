@@ -88,7 +88,6 @@ function Products() {
             type="button"
             disabled={ orderStatus !== 'Em Trânsito' }
             onClick={ () => updateButtonsText('Entregue') }
-            style={ { fontSize: '5px' } }
           >
             MARCAR COMO ENTREGUE
           </button>

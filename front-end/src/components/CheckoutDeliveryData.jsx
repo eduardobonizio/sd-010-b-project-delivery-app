@@ -3,11 +3,12 @@ import { Container, Dropdown, Form } from 'react-bootstrap';
 import Proptypes from 'prop-types';
 
 function CheckoutDeliveryData(props) {
-  const { finishSale, setDeliveryAddress, setDeliveryNumber, setSellerId } = props;
+  const { finishSale, setDeliveryAddress, setDeliveryNumber, setSellerId,
+    sellers } = props;
 
   return (
     <Container>
-      <div className="d-flex" style={ { fontSize: '11px' } }>
+      <div className="d-flex">
         {/* title */}
         <Dropdown>
           <div>
@@ -21,9 +22,10 @@ function CheckoutDeliveryData(props) {
             name="select"
             data-testid="customer_checkout__select-seller"
           >
-            <option value="1" defaultValue>Fulana pereira</option>
-            <option value="2">Valor 2</option>
-            <option value="3">Valor 3</option>
+            <option disabled selected value> -- Selecione -- </option>
+            {sellers.map((
+              { id, name }, index,
+            ) => (<option key={ index } value={ id } defaultValue>{name}</option>))}
           </select>
         </Dropdown>
         <Form.Label>
@@ -68,4 +70,5 @@ CheckoutDeliveryData.propTypes = {
   setDeliveryNumber: Proptypes.func.isRequired,
   setDeliveryAddress: Proptypes.func.isRequired,
   setSellerId: Proptypes.func.isRequired,
+  sellers: Proptypes.arrayOf({}).isRequired,
 };

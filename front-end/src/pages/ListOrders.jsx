@@ -33,7 +33,7 @@ function ListOrders() {
         <Row>
           {
             orders && orders.map((order) => (
-              <Col key={ order.id } style={ { padding: '0px', margin: '0px' } }>
+              <Col key={ order.id }>
                 <OrderCard
                   id={ order.id }
                   status={ order.status }

@@ -15,7 +15,6 @@ function SellerOrderCard({ id, status, date, totalPrice, deliveryAddress,
     <a href={ `/seller/orders/${id}` }>
       <Card.Title
         data-testid={ `seller_orders__element-order-id-${id}` }
-        style={ { fontSize: '5px' } }
       >
         Pedido
         { id }

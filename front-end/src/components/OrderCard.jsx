@@ -14,7 +14,6 @@ function OrderCard({ id, status, date, totalPrice }) {
     <a href={ `/customer/orders/${id}` }>
       <Card.Title
         data-testid={ `customer_orders__element-order-id-${id}` }
-        style={ { fontSize: '5px' } }
       >
         Pedido
         { id }

@@ -42,7 +42,7 @@ function Products() {
         <Row>
           {
             cart && cart.map((product) => (
-              <Col key={ product.key } style={ { padding: '0px' } }>
+              <Col key={ product.key }>
                 <ProductCard
                   product={ product }
                   setCart={ setCart }

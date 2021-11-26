@@ -68,17 +68,15 @@ function ProductCard(props) {
   };
 
   return (
-    <Card style={ { width: '10rem', height: '325px' } }>
+    <Card>
       <Card.Img
         data-testid={ `customer_products__img-card-bg-image-${id}` }
         variant="top"
         src={ urlImage }
-        style={ { height: '158px' } }
       />
       <Card.Body>
         <Card.Title
           data-testid={ `customer_products__element-card-title-${id}` }
-          style={ { fontSize: '5px' } }
         >
           { name }
         </Card.Title>

@@ -11,7 +11,6 @@ function CheckoutCartTotal({ cartTotal }) {
       className="floating-total"
       data-testid="customer_products__checkout-bottom-value"
       disabled={ cartTotal <= 0 }
-      style={ { marginLeft: '5px' } }
     >
       Total: R$
       <button

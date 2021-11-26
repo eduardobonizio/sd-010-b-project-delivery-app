@@ -1,7 +1,7 @@
 import React from 'react';
 import Proptypes from 'prop-types';
 import { Button, Card, Form, InputGroup } from 'react-bootstrap';
-// import './css/ProductCard.css';
+import './css/ProductCard.css';
 
 function ProductCard(props) {
   const { product, product: { id, name, price, urlImage, quantity },
@@ -68,16 +68,14 @@ function ProductCard(props) {
   };
 
   return (
-    <div>
+    <Card key={ id }>
       <Card.Img
         data-testid={ `customer_products__img-card-bg-image-${id}` }
         variant="top"
         src={ urlImage }
-        style={ { height: '158px' } }
       />
       <Card.Title
         data-testid={ `customer_products__element-card-title-${id}` }
-        style={ { fontSize: '5px' } }
       >
         { name }
       </Card.Title>
@@ -121,7 +119,7 @@ function ProductCard(props) {
           +
         </Button>
       </InputGroup>
-    </div>
+    </Card>
   );
 }
 

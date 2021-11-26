@@ -8,14 +8,14 @@ import CheckoutDeliveryData from '../components/CheckoutDeliveryData';
 import { serverUrl } from '../helpers/constants';
 
 function Products() {
+  const history = useHistory();
   const { name } = JSON.parse(localStorage.getItem('user'));
   const [cart, setCart] = useState();
   const [cartTotal, setCartTotal] = useState(0);
   const [deliveryAddress, setDeliveryAddress] = useState('');
   const [deliveryNumber, setDeliveryNumber] = useState('');
-  const [sellerId, setSellerId] = useState(1);
-
-  const history = useHistory();
+  const [sellerId, setSellerId] = useState();
+  const [sellers, setSellers] = useState([]);
 
   useEffect(() => {
     const getLocalStorageCartItens = async () => {
@@ -24,7 +24,13 @@ function Products() {
       setCart(olyItensInCart);
     };
     getLocalStorageCartItens();
-  }, []);
+
+    const getSellers = async () => {
+      const { data } = await axios.get(`${serverUrl}/seller/all`);
+      setSellers(data);
+    };
+    getSellers();
+  }, [setSellers]);
 
   useEffect(() => {
     let sum = 0;
@@ -65,7 +71,7 @@ function Products() {
   return (
     <>
       <TopBar name={ name } />
-      <div style={ { display: 'flex' } }>
+      <div>
         {
           cart && cart.map((product) => (
             <CheckoutProductCard
@@ -84,6 +90,7 @@ function Products() {
         setDeliveryAddress={ setDeliveryAddress }
         finishSale={ finishSale }
         setSellerId={ setSellerId }
+        sellers={ sellers }
       />
     </>
   );

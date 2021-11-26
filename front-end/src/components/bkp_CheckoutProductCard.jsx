@@ -76,7 +76,7 @@ function CheckoutProductCard(props) {
   };
 
   return (
-    <Card style={ { width: '10rem', height: '325px' } }>
+    <Card>
 
       <Card.Body>
         <Card.Text>
@@ -88,13 +88,11 @@ function CheckoutProductCard(props) {
         </Card.Text>
         <Card.Title
           data-testid={ `customer_checkout__element-order-table-name-${index}` }
-          style={ { fontSize: '5px' } }
         >
           { name }
         </Card.Title>
         <Card.Title
           data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
-          style={ { fontSize: '5px' } }
         >
           { quantity }
         </Card.Title>
