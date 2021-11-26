@@ -5,11 +5,13 @@ import moment from 'moment';
 import LoginContext from '../../context/LoginContext';
 
 export default function DetailsAdress() {
-  const { totalPrice, arrayProducts } = useContext(LoginContext);
+  const {
+    totalPrice, arrayProducts,
+    setOrders, setSellerInfo, sellerInfo } = useContext(LoginContext);
   const [data, setData] = useState([]);
   const [address, setAddress] = useState('');
   const [numberAddress, setNumberAddress] = useState('');
-  const [sellerId, setSellerId] = useState(0);
+  // const [sellerId, setSellerId] = useState({});
   const [redirect, setRedirect] = useState(false);
   const [saleId, setSaleId] = useState(0);
 
@@ -21,8 +23,7 @@ export default function DetailsAdress() {
       .then((result) => {
         setData(result.data);
         const idSeller = result.data.find(({ role }) => role === 'seller');
-        console.log(idSeller);
-        setSellerId(idSeller.id);
+        setSellerInfo(idSeller);
       });
   }, []);
 
@@ -38,20 +39,19 @@ export default function DetailsAdress() {
     address,
     numberAddress,
     now,
-    sellerId,
+    sellerId: sellerInfo.id,
     userId: user.id,
     arrayProducts,
   };
 
   const buy = async () => {
-    console.log(sellerId);
     const respLogin = await axios.post(
       'http://localhost:3001/sales',
       bodyParameters,
       config,
     );
 
-    console.log(respLogin.data);
+    setOrders([respLogin.data]);
     setSaleId(respLogin.data.id);
     setRedirect(true);
   };
@@ -64,13 +64,12 @@ export default function DetailsAdress() {
 
   return (
     <session>
-      { console.log(sellerId) }
       <h1>Detalhes e Endereço para Entrega</h1>
       <select
         name="seller"
         id="seller-id"
         data-testid="customer_checkout__select-seller"
-        onClick={ (event) => setSellerId(event.target.value) }
+        onClick={ (event) => setSellerInfo(event.target.value) }
       >
         {data.map(({ role, name, id }) => role === 'seller' && (
           <option key={ role } value={ id }>{ name }</option>
