@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require('path')
 
 const app = express();
 
@@ -33,5 +34,9 @@ app.use('/customer', customerRouter);
 app.use('/seller', sellerRouter);
 /* Todas as rotas com /admin/<alguma-coisa> entram aqui e vão para o roteador */
 app.use('/admin', adminRouter);
+
+app.get('/', async (req, res) => {
+  res.sendFile(path.join(__dirname, pathToBuild, 'index.html'))
+})
 
 module.exports = app;
