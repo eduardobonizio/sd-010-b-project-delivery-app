@@ -21,13 +21,6 @@ function Login() {
   const passwordTestId = 'common_login__input-password';
   const title = 'Login';
 
-  const redirect = {
-    to: {
-      customer: () => history.push('/customer/products'),
-      seller: () => history.push('/seller/orders'),
-    },
-  };
-
   useEffect(() => {
     if (password && email) {
       if (validateEmailFormat(email) && validatePassword(password)) {
@@ -42,7 +35,8 @@ function Login() {
     const alreadyLoggedIn = JSON.parse(localStorage.getItem('user'));
     if (alreadyLoggedIn) {
       const { role } = alreadyLoggedIn;
-      redirect.to[role]();
+      if (role === 'customer') return history.push('/customer/products');
+      if (role === 'seller') return history.push('/seller/orders');
     }
   });
 
