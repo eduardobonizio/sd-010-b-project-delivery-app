@@ -1,4 +1,6 @@
-const serverUrl = process.env.REACT_APP_HEROKU_SERVER_LINK || 'http://localhost:3001';
+const serverUrl = process.env.NODE_ENV === 'production'
+  ? process.env.REACT_APP_PROD_API_URL
+  : process.env.REACT_APP_DEV_API_URL;
 const test = 'teste';
 
 export {
