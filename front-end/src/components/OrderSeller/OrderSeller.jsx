@@ -15,7 +15,7 @@ function OrderSeller() {
     setDataUser(user);
     const orders = await getAllOrdersBySellerId(user.userId);
 
-    setData([orders]);
+    setData(orders);
     console.log(orders, 'orders', data);
   }
 

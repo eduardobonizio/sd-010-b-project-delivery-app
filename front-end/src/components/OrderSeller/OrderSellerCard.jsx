@@ -5,9 +5,10 @@ import PropTypes from 'prop-types';
 import AddZeroes from '../../helper/functions/addZeroes';
 
 function OrderSeller({ order }) {
+  console.log(order);
   const { id, saleDate, totalPrice, status, deliveryAddress, deliveryNumber } = order;
   return (
-    <Link to={ `seller/orders/${id}` }>
+    <Link to={ `/seller/orders/${id}` }>
       <div>
         <p>
           Pedido

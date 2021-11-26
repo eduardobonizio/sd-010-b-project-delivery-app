@@ -33,7 +33,6 @@ const getAllProducts = async () => {
 
 const getAllOrdersBySellerId = async (id) => {
   const endpoint = `http://localhost:3001/seller/orders/purchase/${id}`;
-
   const responses = fetch(endpoint, {
     method: 'GET',
     headers: {
@@ -43,10 +42,11 @@ const getAllOrdersBySellerId = async (id) => {
   })
     .then((response) => response.json())
     .then((data) => data)
+
     .catch((err) => err);
 
   const data = await responses;
-  if (data.err) { return console.log(data.err.message); }
+  // if (data.err) { return console.log(data.err.message); }
 
   return data;
 };
