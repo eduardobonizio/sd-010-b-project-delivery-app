@@ -1,4 +1,5 @@
 const sellerService = require('../services/sellerService');
+const userService = require('../services/userService');
 
 const findAllSales = async (req, res) => {
   const { id: sellerId } = req.body.user;
@@ -31,8 +32,15 @@ const updateOrderStatus = async (req, res) => {
   return res.status(201).json(result);
 };
 
+const findAllSellers = async (_req, _res) => {
+  const seller = await userService.findAllSellers();
+  console.log(seller);
+  // return res.status(code).json({ sales });
+};
+
 module.exports = {
   findAllSales,
   findOrderByPk,
   updateOrderStatus,
+  findAllSellers,
 };
