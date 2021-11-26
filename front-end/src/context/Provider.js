@@ -58,7 +58,7 @@ export default function Provider({ children }) {
 
   useEffect(() => {
     updateTotalCartValue();
-  }, [cart, updateTotalCartValue]);
+  }, [cart]);
 
   const setProductQuantityManual = async ({ id, value }) => {
     const productExistsOnCart = cart.find((product) => product.id === id);
