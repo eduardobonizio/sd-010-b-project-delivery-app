@@ -14,6 +14,7 @@ const insertIntoSalesProduct = async (products, saleId) => {
 
 const createNewSale = async (body) => {
   const { products, user, totalPrice, deliveryAddress, deliveryNumber, sellerId } = body;
+  
   const newSale = await Sale.create({
     userId: user.id,
     totalPrice,
@@ -54,8 +55,6 @@ const getOrderByPk = async ({ userId, id }) => {
       where: { id, userId },
       include: ['user', 'seller', 'products'],
     });
-
-    console.log(order);
 
     if (!order) {
       return { code: StatusCodes.NOT_FOUND, message: 'Order not found' };

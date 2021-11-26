@@ -32,10 +32,10 @@ const updateOrderStatus = async (req, res) => {
   return res.status(201).json(result);
 };
 
-const findAllSellers = async (_req, _res) => {
-  const seller = await userService.findAllSellers();
-  console.log(seller);
-  // return res.status(code).json({ sales });
+const findAllSellers = async (_req, res) => {
+  const sellers = await userService.findAllSellers();
+
+  return res.status(201).json(sellers);
 };
 
 module.exports = {

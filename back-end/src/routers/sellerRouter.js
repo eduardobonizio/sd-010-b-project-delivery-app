@@ -11,7 +11,7 @@ sellerRouter.post('/orders/:id', auth, sellerController.updateOrderStatus);
 
 sellerRouter.get('/orders', auth, sellerController.findAllSales);
 
-sellerRouter.get('/all/sellers', () => { console.log('entrei'); }, sellerController.findAllSellers);
+sellerRouter.get('/all', sellerController.findAllSellers);
 
 module.exports = {
   sellerRouter,
