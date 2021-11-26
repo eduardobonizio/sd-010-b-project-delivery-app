@@ -4,7 +4,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import TopBar from '../components/TopBar';
 import ProductCard from '../components/ProductCard';
 import CartTotal from '../components/CartTotal';
-import { serverUrl } from '../helpers/contants';
+import { serverUrl } from '../helpers/constants';
 import './css/Products.css';
 
 function Products() {

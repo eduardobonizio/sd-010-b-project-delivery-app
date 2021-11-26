@@ -5,7 +5,7 @@ import TopBar from '../components/TopBar';
 import CheckoutProductCard from '../components/CheckoutProductCard';
 import CheckoutCartTotal from '../components/CheckoutCartTotal';
 import CheckoutDeliveryData from '../components/CheckoutDeliveryData';
-import { serverUrl } from '../helpers/contants';
+import { serverUrl } from '../helpers/constants';
 
 function Products() {
   const { name } = JSON.parse(localStorage.getItem('user'));

@@ -9,7 +9,7 @@ import NameInput from '../components/NameInput';
 import {
   validateEmailFormat,
   validateName, validatePassword } from '../helpers/validation';
-import { serverUrl } from '../helpers/contants';
+import { serverUrl } from '../helpers/constants';
 import './css/Register.css';
 
 function Register() {

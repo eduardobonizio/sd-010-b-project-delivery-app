@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { serverUrl } from '../contants';
+import { serverUrl } from '../constants';
 
 const checkExistence = async (email) => {
   const success = 200;

@@ -8,7 +8,7 @@ import PasswordInput from '../components/PasswordInput';
 import LoginErrorMessage from '../components/LoginErrorMessage';
 import RegisterButton from '../components/RegisterButton';
 import { validateEmailFormat, validatePassword } from '../helpers/validation';
-import { serverUrl } from '../helpers/contants';
+import { serverUrl } from '../helpers/constants';
 import './css/Login.css';
 
 function Login() {

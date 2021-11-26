@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import TopBar from '../components/TopBar';
 import SellerOrderDetailsTable from '../components/SellerOrderDetailsTable';
-import { serverUrl } from '../helpers/contants';
+import { serverUrl } from '../helpers/constants';
 import './css/Products.css';
 
 function ListSellerSaleById() {
