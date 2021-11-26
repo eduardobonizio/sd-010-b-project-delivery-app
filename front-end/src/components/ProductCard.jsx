@@ -52,7 +52,6 @@ function ProductCard(props) {
   const changeCart = (cardId, value) => {
     let inputValue = value;
     const idArray = cardId.split('-')[1] - 1;
-    console.log(idArray);
     if (value.isNaN) {
       inputValue = 0;
     }

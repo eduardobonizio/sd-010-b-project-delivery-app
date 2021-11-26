@@ -52,7 +52,6 @@ function Register() {
       localStorage.setItem('user', JSON.stringify(user));
       history.push('/customer/products');
     } catch (e) {
-      console.log(e);
       return setHidden(false);
     }
   };

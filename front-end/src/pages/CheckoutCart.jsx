@@ -57,14 +57,6 @@ function Products() {
         `${serverUrl}/customer/checkout`, newSale, config,
       );
       history.push(`/customer/orders/${saleId}`);
-
-    // front total_price
-    // front delivery_address
-    // front?jwt? user_id
-    // back delivery_number
-    // back sale_date
-    // back status
-    // back? seller_id
     } catch (e) {
       console.log(e);
     }
@@ -72,7 +64,6 @@ function Products() {
 
   return (
     <>
-      {console.log(sellerId)}
       <TopBar name={ name } />
       <div style={ { display: 'flex' } }>
         {

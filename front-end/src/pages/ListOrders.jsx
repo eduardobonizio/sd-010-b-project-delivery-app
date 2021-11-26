@@ -26,8 +26,6 @@ function ListOrders() {
     getOrders();
   }, []);
 
-  console.log(orders);
-
   return (
     <>
       <TopBar name={ name } />
