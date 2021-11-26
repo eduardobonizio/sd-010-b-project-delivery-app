@@ -4,6 +4,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import TopBar from '../components/TopBar';
 import OrderCard from '../components/OrderCard';
 import './css/Products.css';
+import { serverUrl } from '../helpers/contants';
 
 function ListOrders() {
   const { name } = JSON.parse(localStorage.getItem('user'));
@@ -18,7 +19,7 @@ function ListOrders() {
     };
 
     const getOrders = async () => {
-      const dbOrders = await axios.get('http://localhost:3001/customer/orders', config);
+      const dbOrders = await axios.get(`${serverUrl}/customer/orders`, config);
       setOrders(dbOrders.data);
     };
 

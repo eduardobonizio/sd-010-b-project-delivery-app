@@ -9,6 +9,7 @@ import NameInput from '../components/NameInput';
 import {
   validateEmailFormat,
   validateName, validatePassword } from '../helpers/validation';
+import { serverUrl } from '../helpers/contants';
 import './css/Register.css';
 
 function Register() {
@@ -38,7 +39,9 @@ function Register() {
 
   const createUser = async () => {
     try {
-      const response = await axios.post('http://localhost:3001/register', { name, email, password });
+      const response = await axios.post(
+        `${serverUrl}/register`, { name, email, password },
+      );
       const parsedResponse = response.data;
       const user = {
         name: parsedResponse.name,

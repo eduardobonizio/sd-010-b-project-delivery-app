@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import TopBar from '../components/TopBar';
 import OrderDetailsTable from '../components/OrderDetailsTable';
+import { serverUrl } from '../helpers/contants';
 import './css/Products.css';
 
 function Products() {
@@ -23,7 +24,7 @@ function Products() {
     };
 
     const getOrder = async () => {
-      const myOrder = await axios.get(`http://localhost:3001/customer/orders/${orderId}`, config);
+      const myOrder = await axios.get(`${serverUrl}/customer/orders/${orderId}`, config);
       setOrder(myOrder.data.order);
       setOrderStatus(myOrder.data.order.status);
     };
@@ -40,7 +41,8 @@ function Products() {
         authorization: token,
       },
     };
-    axios.post(`http://localhost:3001/seller/orders/${orderId}`, { orderStatus: status }, config);
+
+    axios.post(`${serverUrl}/seller/orders/${orderId}`, { orderStatus: status }, config);
 
     setPreparing(!preparing);
     setOrderStatus(status);

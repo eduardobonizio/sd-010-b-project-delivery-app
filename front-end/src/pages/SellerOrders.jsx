@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Container, Row, Col } from 'react-bootstrap';
 import TopBar from '../components/TopBar';
 import SellerOrderCard from '../components/SellerOrderCard';
+import { serverUrl } from '../helpers/contants';
 import './css/Products.css';
 
 function ListOrders() {
@@ -18,7 +19,7 @@ function ListOrders() {
     };
 
     const getOrders = async () => {
-      const dbOrders = await axios.get('http://localhost:3001/seller/orders', config);
+      const dbOrders = await axios.get(`${serverUrl}/seller/orders`, config);
       setOrders(dbOrders.data.sales);
     };
 

@@ -5,6 +5,7 @@ import TopBar from '../components/TopBar';
 import CheckoutProductCard from '../components/CheckoutProductCard';
 import CheckoutCartTotal from '../components/CheckoutCartTotal';
 import CheckoutDeliveryData from '../components/CheckoutDeliveryData';
+import { serverUrl } from '../helpers/contants';
 
 function Products() {
   const { name } = JSON.parse(localStorage.getItem('user'));
@@ -51,7 +52,10 @@ function Products() {
         deliveryNumber,
         sellerId,
       };
-      const { data: { saleId } } = await axios.post('http://localhost:3001/customer/checkout', newSale, config);
+
+      const { data: { saleId } } = await axios.post(
+        `${serverUrl}/customer/checkout`, newSale, config,
+      );
       history.push(`/customer/orders/${saleId}`);
 
     // front total_price

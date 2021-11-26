@@ -4,6 +4,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import TopBar from '../components/TopBar';
 import ProductCard from '../components/ProductCard';
 import CartTotal from '../components/CartTotal';
+import { serverUrl } from '../helpers/contants';
 import './css/Products.css';
 
 function Products() {
@@ -13,7 +14,7 @@ function Products() {
 
   useEffect(() => {
     const getProducts = async () => {
-      const response = await axios.get('http://localhost:3001/products');
+      const response = await axios.get(`${serverUrl}/products`);
       const productsWithQuantity = response.data.map((e) => {
         e.quantity = 0;
         return e;
