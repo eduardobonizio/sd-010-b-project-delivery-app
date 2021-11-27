@@ -1,11 +1,12 @@
 import React from 'react';
 import Proptypes from 'prop-types';
+import { Alert } from 'react-bootstrap';
 
 function LoginErrorMessage({ hideErrorMessage }) {
   return (
-    <span data-testid="common_login__element-invalid-email" hidden={ hideErrorMessage }>
+    <Alert variant="warning" hidden={ hideErrorMessage }>
       Usuário/Senha inválidos
-    </span>
+    </Alert>
   );
 }
 

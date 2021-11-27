@@ -91,7 +91,7 @@ function Login() {
           </Col>
         </Row>
         <Row>
-          <Col>
+          <Col className="d-flex justify-content-center">
             <LoginErrorMessage hideErrorMessage={ hideErrorMessage } />
           </Col>
         </Row>

@@ -12,7 +12,7 @@ function LoginButton(props) {
       onClick={ dispatchOnSubmit }
       type="button"
     >
-      LOGIN
+      Entrar
     </Button>
   );
 }
