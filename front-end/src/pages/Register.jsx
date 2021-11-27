@@ -52,7 +52,9 @@ function Register() {
       localStorage.setItem('user', JSON.stringify(user));
       history.push('/customer/products');
     } catch (e) {
-      return setHidden(false);
+      const delay = 3000;
+      setHidden(false);
+      setTimeout(() => setHidden(true), delay);
     }
   };
 

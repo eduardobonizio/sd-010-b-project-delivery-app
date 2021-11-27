@@ -46,7 +46,9 @@ function Login() {
       localStorage.setItem('user', JSON.stringify(data));
       redirect.to[data.role]();
     } catch (e) {
+      const delay = 3000;
       setHideErrorMessage(false);
+      setTimeout(() => setHideErrorMessage(true), delay);
     }
   };
 
