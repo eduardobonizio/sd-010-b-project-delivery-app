@@ -4,7 +4,6 @@ import axios from 'axios';
 import TopBar from '../components/TopBar';
 import SellerOrderDetailsTable from '../components/SellerOrderDetailsTable';
 import { serverUrl } from '../helpers/constants';
-import './css/Products.css';
 
 function ListSellerSaleById() {
   const { name } = JSON.parse(localStorage.getItem('user'));

@@ -1,7 +1,6 @@
 import React from 'react';
 import Proptypes from 'prop-types';
 import { Card } from 'react-bootstrap';
-import '../pages/css/Products.css';
 
 function SellerOrderCard({ id, status, date, totalPrice, deliveryAddress,
   deliveryNumber }) {

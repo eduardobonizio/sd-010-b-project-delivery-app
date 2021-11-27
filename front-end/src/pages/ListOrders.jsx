@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Container, Row, Col } from 'react-bootstrap';
 import TopBar from '../components/TopBar';
 import OrderCard from '../components/OrderCard';
-import './css/Products.css';
 import { serverUrl } from '../helpers/constants';
 
 function ListOrders() {

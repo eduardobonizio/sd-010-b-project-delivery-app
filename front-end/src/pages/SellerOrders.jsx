@@ -4,7 +4,6 @@ import { Container, Row, Col } from 'react-bootstrap';
 import TopBar from '../components/TopBar';
 import SellerOrderCard from '../components/SellerOrderCard';
 import { serverUrl } from '../helpers/constants';
-import './css/Products.css';
 
 function ListOrders() {
   const { name } = JSON.parse(localStorage.getItem('user'));

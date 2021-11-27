@@ -4,7 +4,6 @@ import axios from 'axios';
 import TopBar from '../components/TopBar';
 import OrderDetailsTable from '../components/OrderDetailsTable';
 import { serverUrl } from '../helpers/constants';
-import './css/Products.css';
 
 function Products() {
   const { name } = JSON.parse(localStorage.getItem('user'));

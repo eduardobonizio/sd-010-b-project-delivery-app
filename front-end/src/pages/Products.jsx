@@ -5,7 +5,6 @@ import TopBar from '../components/TopBar';
 import ProductCard from '../components/ProductCard';
 import CartTotal from '../components/CartTotal';
 import { serverUrl } from '../helpers/constants';
-import './css/Products.css';
 
 function Products() {
   const { name } = JSON.parse(localStorage.getItem('user'));

@@ -1,7 +1,6 @@
 import React from 'react';
 import Proptypes from 'prop-types';
 import { Table } from 'react-bootstrap';
-import '../pages/css/Products.css';
 
 function OrderDetailsTable({ order }) {
   return (
