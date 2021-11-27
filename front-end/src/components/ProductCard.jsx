@@ -1,7 +1,6 @@
 import React from 'react';
 import Proptypes from 'prop-types';
 import { Button, Card, Form, InputGroup } from 'react-bootstrap';
-import './css/ProductCard.css';
 
 function ProductCard(props) {
   const { product, product: { id, name, price, urlImage, quantity },

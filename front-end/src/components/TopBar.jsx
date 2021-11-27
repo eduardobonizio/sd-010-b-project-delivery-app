@@ -3,7 +3,6 @@ import { Image, Navbar } from 'react-bootstrap';
 import Proptypes from 'prop-types';
 import { useHistory } from 'react-router';
 import LogoutButton from './LogoutButton';
-import './css/NavBar.css';
 
 function TopBar(props) {
   const { name } = props;
