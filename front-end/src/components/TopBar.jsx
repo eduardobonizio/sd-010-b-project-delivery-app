@@ -1,11 +1,10 @@
 /* eslint-disable react/jsx-max-depth */
 import React from 'react';
 import { Container, Image, Nav, Navbar, Button } from 'react-bootstrap';
-import Proptypes from 'prop-types';
 import { useHistory } from 'react-router';
 
-function TopBar(props) {
-  const { name } = props;
+function TopBar() {
+  const { name } = JSON.parse(localStorage.getItem('user'));
   const history = useHistory();
   const onSellerPage = history.location.pathname.includes('/seller');
 
@@ -67,9 +66,5 @@ function TopBar(props) {
     </Navbar>
   );
 }
-
-TopBar.propTypes = {
-  name: Proptypes.string.isRequired,
-};
 
 export default TopBar;

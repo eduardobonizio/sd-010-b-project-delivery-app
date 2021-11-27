@@ -6,7 +6,6 @@ import OrderCard from '../components/OrderCard';
 import { serverUrl } from '../helpers/constants';
 
 function ListOrders() {
-  const { name } = JSON.parse(localStorage.getItem('user'));
   const [orders, setOrders] = useState();
 
   useEffect(() => {
@@ -27,7 +26,7 @@ function ListOrders() {
 
   return (
     <>
-      <TopBar name={ name } />
+      <TopBar />
       <Container fluid>
         <Row>
           {

@@ -7,7 +7,6 @@ import CartTotal from '../components/CartTotal';
 import { serverUrl } from '../helpers/constants';
 
 function Products() {
-  const { name } = JSON.parse(localStorage.getItem('user'));
   const [cart, setCart] = useState();
   const [cartTotal, setCartTotal] = useState(0);
 
@@ -36,7 +35,7 @@ function Products() {
 
   return (
     <>
-      <TopBar name={ name } />
+      <TopBar />
       <Container>
         {
           cart && cart.map((product, index) => (

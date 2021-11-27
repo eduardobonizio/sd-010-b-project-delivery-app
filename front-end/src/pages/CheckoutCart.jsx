@@ -9,7 +9,6 @@ import { serverUrl } from '../helpers/constants';
 
 function Products() {
   const history = useHistory();
-  const { name } = JSON.parse(localStorage.getItem('user'));
   const [cart, setCart] = useState();
   const [cartTotal, setCartTotal] = useState(0);
   const [deliveryAddress, setDeliveryAddress] = useState('');
@@ -70,7 +69,7 @@ function Products() {
 
   return (
     <>
-      <TopBar name={ name } />
+      <TopBar />
       <div>
         {
           cart && cart.map((product) => (

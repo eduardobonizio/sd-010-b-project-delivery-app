@@ -6,7 +6,6 @@ import SellerOrderDetailsTable from '../components/SellerOrderDetailsTable';
 import { serverUrl } from '../helpers/constants';
 
 function ListSellerSaleById() {
-  const { name } = JSON.parse(localStorage.getItem('user'));
   const [order, setOrder] = useState();
   const [preparing, setPreparing] = useState(false);
   const [orderStatus, setOrderStatus] = useState('Pendente');
@@ -61,7 +60,7 @@ function ListSellerSaleById() {
     const label = 'seller_order_details__element-order-details-label-delivery-status';
     return (
       <>
-        <TopBar name={ name } />
+        <TopBar />
         <p>Detalhe do pedido</p>
         <div>
           <span
