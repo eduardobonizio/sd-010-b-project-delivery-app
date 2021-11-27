@@ -9,7 +9,6 @@ import LoginErrorMessage from '../components/LoginErrorMessage';
 import RegisterButton from '../components/RegisterButton';
 import { validateEmailFormat, validatePassword } from '../helpers/validation';
 import { serverUrl } from '../helpers/constants';
-import './css/Login.css';
 
 function Login() {
   const [email, setStateEmail] = useState('');
@@ -52,20 +51,20 @@ function Login() {
   };
 
   return (
-    <Container className="login">
+    <Container className="d-flex justify-content-center">
       <Form>
-        <Row className="justify-content-md-center">
-          <Col md="auto">
-            <Image src="images/logo.svg" className="login-logo" />
+        <Row>
+          <Col>
+            <Image src="images/logo.svg" className=".login-logo" fluid />
           </Col>
         </Row>
-        <Row className="justify-content-md-center">
-          <Col md="auto">
+        <Row>
+          <Col>
             <h3>Disk-Birita</h3>
           </Col>
         </Row>
-        <Row className="justify-content-md-center">
-          <Col md="auto">
+        <Row>
+          <Col>
             <EmailInput
               title={ title }
               setStateEmail={ setStateEmail }
@@ -73,29 +72,26 @@ function Login() {
             />
           </Col>
         </Row>
-        <Row className="justify-content-md-center">
-          <Col md="auto">
+        <Row>
+          <Col>
             <PasswordInput
               setStatePassword={ setStatePassword }
               passwordTestId={ passwordTestId }
             />
           </Col>
         </Row>
-        <br />
-        <Row className="justify-content-md-center">
-          <Col md="auto">
+        <Row>
+          <Col className="d-flex justify-content-center">
             <LoginButton dispatchOnSubmit={ dispatchOnSubmit } disabled={ disabled } />
           </Col>
         </Row>
-        <br />
-        <Row className="justify-content-md-center">
-          <Col md="auto">
+        <Row>
+          <Col className="d-flex justify-content-center">
             <RegisterButton />
           </Col>
         </Row>
-        <br />
-        <Row className="justify-content-md-center">
-          <Col md="auto">
+        <Row>
+          <Col>
             <LoginErrorMessage hideErrorMessage={ hideErrorMessage } />
           </Col>
         </Row>
