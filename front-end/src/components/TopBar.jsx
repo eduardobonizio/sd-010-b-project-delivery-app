@@ -1,18 +1,23 @@
+/* eslint-disable react/jsx-max-depth */
 import React from 'react';
-import { Image, Navbar } from 'react-bootstrap';
+import { Container, Image, Nav, Navbar, Button } from 'react-bootstrap';
 import Proptypes from 'prop-types';
 import { useHistory } from 'react-router';
-import LogoutButton from './LogoutButton';
 
 function TopBar(props) {
   const { name } = props;
   const history = useHistory();
   const onSellerPage = history.location.pathname.includes('/seller');
 
+  const logout = () => {
+    localStorage.clear();
+    history.push('/');
+  };
+
   return (
-    <Navbar variant="dark" className="navbar">
-      <Navbar.Collapse className="justify-content-start">
-        <Navbar.Brand className="logo">
+    <Navbar bg="light" expand="md">
+      <Container>
+        <Navbar.Brand>
           <Image
             src="/images/logo.svg"
             width="50"
@@ -20,49 +25,45 @@ function TopBar(props) {
             alt="Disk Birita logo"
           />
         </Navbar.Brand>
-        <a href={ onSellerPage ? '/seller/orders' : '/customer/products' }>
-          <Navbar.Text
-            variant="light"
-            className="products align-items-center"
-            data-testid={ `customer_products__element-navbar-link-${
-              onSellerPage ? 'orders' : 'products'
-            }` }
-            href="/customer/products"
+        <Navbar.Toggle aria-controls="navbarScroll" />
+        <Navbar.Collapse id="navbarScroll">
+          <Nav
+            className="me-auto my-2 my-lg-0"
+            navbarScroll
           >
-            { onSellerPage ? 'ORDERS' : 'PRODUTOS' }
-          </Navbar.Text>
-        </a>
-        {
-          !onSellerPage
-          && (
-            <a href="/customer/orders">
-              <Navbar.Text
-                className="orders align-items-center"
-                data-testid="customer_products__element-navbar-link-orders"
-                href="/customer/orders"
-              >
-                MEUS PEDIDOS
-              </Navbar.Text>
-            </a>
-          )
-        }
-        <Navbar.Collapse className="justify-content-end">
+            <Nav.Link
+              href={ onSellerPage ? '/seller/orders' : '/customer/products' }
+              data-testid={ `customer_products__element-navbar-link-${
+                onSellerPage ? 'orders' : 'products'
+              }` }
+            >
+              { onSellerPage ? 'ORDERS' : 'PRODUTOS' }
+            </Nav.Link>
+            {!onSellerPage
+              && (
+                <Nav.Link
+                  href="/customer/orders"
+                  data-testid="customer_products__element-navbar-link-orders"
+                >
+                  PEDIDOS
+                </Nav.Link>
+              )}
+          </Nav>
           <Navbar.Text
-            className="name align-items-center"
             data-testid="customer_products__element-navbar-user-full-name"
             href="/customer/orders"
           >
             { name }
           </Navbar.Text>
-          <Navbar.Text
-            className="exit align-items-center"
+          <Button
+            onClick={ logout }
             data-testid="customer_products__element-navbar-link-logout"
-            href="/customer/orders"
+            type="button"
           >
-            <LogoutButton />
-          </Navbar.Text>
+            Sair
+          </Button>
         </Navbar.Collapse>
-      </Navbar.Collapse>
+      </Container>
     </Navbar>
   );
 }
@@ -72,73 +73,3 @@ TopBar.propTypes = {
 };
 
 export default TopBar;
-
-// import React from 'react';
-// import { Image, Navbar } from 'react-bootstrap';
-// import Proptypes from 'prop-types';
-// import { useHistory } from 'react-router';
-// import LogoutButton from './LogoutButton';
-
-// function TopBar(props) {
-//   const { name } = props;
-//   const history = useHistory();
-//   const onSellerPage = history.location.pathname.includes('/seller');
-
-//   return (
-//     <Navbar variant="dark" className="navbar">
-//       <Navbar.Collapse className="justify-content-start">
-//         <Navbar.Brand className="logo">
-//           <Image
-//             src="/images/logo.svg"
-//             width="50"
-//             height="40"
-//             alt="Disk Birita logo"
-//           />
-//         </Navbar.Brand>
-//         <a href="/customer/products">
-//           <Navbar.Text
-//             variant="light"
-//             className="products align-items-center"
-//             data-testid="customer_products__element-navbar-link-products"
-//             href="/customer/products"
-//           >
-//             PRODUTOS
-//           </Navbar.Text>
-//         </a>
-//         {!onSellerPage
-//         && (
-//           <a href="/customer/orders">
-//             <Navbar.Text
-//               className="orders align-items-center"
-//               data-testid="customer_products__element-navbar-link-orders"
-//               href="/customer/orders"
-//             >
-//               MEUS PEDIDOS
-//             </Navbar.Text>
-//           </a>)}
-//         <Navbar.Collapse className="justify-content-end">
-//           <Navbar.Text
-//             className="name align-items-center"
-//             data-testid="customer_products__element-navbar-user-full-name"
-//             href="/customer/orders"
-//           >
-//             { name }
-//           </Navbar.Text>
-//           <Navbar.Text
-//             className="exit align-items-center"
-//             data-testid="customer_products__element-navbar-link-logout"
-//             href="/customer/orders"
-//           >
-//             <LogoutButton />
-//           </Navbar.Text>
-//         </Navbar.Collapse>
-//       </Navbar.Collapse>
-//     </Navbar>
-//   );
-// }
-
-// TopBar.propTypes = {
-//   name: Proptypes.string.isRequired,
-// };
-
-// export default TopBar;
