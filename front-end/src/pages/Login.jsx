@@ -55,11 +55,11 @@ function Login() {
       <Form>
         <Row>
           <Col>
-            <Image src="images/logo.svg" className=".login-logo" fluid />
+            <Image src="images/logo.svg" />
           </Col>
         </Row>
         <Row>
-          <Col>
+          <Col className="d-flex justify-content-center">
             <h3>Disk-Birita</h3>
           </Col>
         </Row>
