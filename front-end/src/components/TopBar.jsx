@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-max-depth */
 import React from 'react';
 import { Container, Image, Nav, Navbar, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router';
@@ -15,31 +16,34 @@ function TopBar({ cartTotal }) {
   };
 
   return (
-    <Navbar bg="light" expand="md">
-      <Container style={ { padding: 0 } }>
-        <Nav
-          className="me-auto my-2 my-lg-0 flex-row align-items-center"
-          navbarScroll
-        >
-          <Navbar.Brand>
-            <Image
-              src="/images/logo.svg"
-              width="50"
-              height="40"
-              alt="Disk Birita logo"
-            />
-          </Navbar.Brand>
-
-          <Nav.Link
-            href={ onSellerPage ? '/seller/orders' : '/customer/products' }
-            data-testid={ `customer_products__element-navbar-link-${
-              onSellerPage ? 'orders' : 'products'
-            }` }
-            style={ { marginRight: '10px' } }
+    <Navbar bg="light" expand="md" style={ { flexWrap: 'nowrap' } }>
+      <Container
+        className="d-flex"
+      >
+        <Container className="d-flex" style={ { padding: 0 } }>
+          <Nav
+            className="me-auto my-2 my-lg-0 flex-row align-items-center"
+            navbarScroll
           >
-            { onSellerPage ? 'ORDERS' : 'PRODUTOS' }
-          </Nav.Link>
-          {!onSellerPage
+            <Navbar.Brand>
+              <Image
+                src="/images/logo.svg"
+                width="50"
+                height="40"
+                alt="Disk Birita logo"
+              />
+            </Navbar.Brand>
+
+            <Nav.Link
+              href={ onSellerPage ? '/seller/orders' : '/customer/products' }
+              data-testid={ `customer_products__element-navbar-link-${
+                onSellerPage ? 'orders' : 'products'
+              }` }
+              style={ { marginRight: '10px' } }
+            >
+              { onSellerPage ? 'ORDERS' : 'PRODUTOS' }
+            </Nav.Link>
+            {!onSellerPage
               && (
                 <Nav.Link
                   href="/customer/orders"
@@ -48,31 +52,32 @@ function TopBar({ cartTotal }) {
                   PEDIDOS
                 </Nav.Link>
               )}
-        </Nav>
-        <CartTotal cartTotal={ cartTotal } />
-        <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
-          <Container
-            className="d-flex justify-content-end align-items-center"
-            style={ { padding: 0 } }
-          >
-            <Navbar.Text
-              data-testid="customer_products__element-navbar-user-full-name"
-              href="/customer/orders"
-              style={ { marginRight: '10px' } }
-            >
-              { name }
-            </Navbar.Text>
-            <Button
-              onClick={ logout }
-              data-testid="customer_products__element-navbar-link-logout"
-              type="button"
-            >
-              Sair
-            </Button>
-          </Container>
-        </Navbar.Collapse>
+          </Nav>
 
+          <Navbar.Toggle aria-controls="navbarScroll" />
+          <Navbar.Collapse id="navbarScroll">
+            <Container
+              className="d-flex justify-content-end align-items-center"
+              style={ { padding: 0 } }
+            >
+              <Navbar.Text
+                data-testid="customer_products__element-navbar-user-full-name"
+                href="/customer/orders"
+                style={ { marginRight: '10px' } }
+              >
+                { name }
+              </Navbar.Text>
+              <Button
+                onClick={ logout }
+                data-testid="customer_products__element-navbar-link-logout"
+                type="button"
+              >
+                Sair
+              </Button>
+            </Container>
+          </Navbar.Collapse>
+        </Container>
+        <CartTotal cartTotal={ cartTotal } />
       </Container>
     </Navbar>
   );
