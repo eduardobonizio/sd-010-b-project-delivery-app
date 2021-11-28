@@ -1,7 +1,7 @@
-/* eslint-disable react/jsx-max-depth */
 import React from 'react';
 import { Container, Image, Nav, Navbar, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router';
+import CartTotal from './CartTotal';
 
 function TopBar() {
   const { name } = JSON.parse(localStorage.getItem('user'));
@@ -16,29 +16,29 @@ function TopBar() {
   return (
     <Navbar bg="light" expand="md">
       <Container>
-        <Navbar.Brand>
-          <Image
-            src="/images/logo.svg"
-            width="50"
-            height="40"
-            alt="Disk Birita logo"
-          />
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
-          <Nav
-            className="me-auto my-2 my-lg-0"
-            navbarScroll
+        <Nav
+          className="me-auto my-2 my-lg-0 flex-row align-items-center"
+          navbarScroll
+        >
+          <Navbar.Brand>
+            <Image
+              src="/images/logo.svg"
+              width="50"
+              height="40"
+              alt="Disk Birita logo"
+            />
+          </Navbar.Brand>
+
+          <Nav.Link
+            href={ onSellerPage ? '/seller/orders' : '/customer/products' }
+            data-testid={ `customer_products__element-navbar-link-${
+              onSellerPage ? 'orders' : 'products'
+            }` }
+            style={ { marginRight: '10px' } }
           >
-            <Nav.Link
-              href={ onSellerPage ? '/seller/orders' : '/customer/products' }
-              data-testid={ `customer_products__element-navbar-link-${
-                onSellerPage ? 'orders' : 'products'
-              }` }
-            >
-              { onSellerPage ? 'ORDERS' : 'PRODUTOS' }
-            </Nav.Link>
-            {!onSellerPage
+            { onSellerPage ? 'ORDERS' : 'PRODUTOS' }
+          </Nav.Link>
+          {!onSellerPage
               && (
                 <Nav.Link
                   href="/customer/orders"
@@ -47,20 +47,28 @@ function TopBar() {
                   PEDIDOS
                 </Nav.Link>
               )}
-          </Nav>
-          <Navbar.Text
-            data-testid="customer_products__element-navbar-user-full-name"
-            href="/customer/orders"
+        </Nav>
+        <Navbar.Toggle aria-controls="navbarScroll" />
+        <Navbar.Collapse id="navbarScroll">
+          <Container
+            className="d-flex justify-content-end align-items-center"
           >
-            { name }
-          </Navbar.Text>
-          <Button
-            onClick={ logout }
-            data-testid="customer_products__element-navbar-link-logout"
-            type="button"
-          >
-            Sair
-          </Button>
+            <Navbar.Text
+              data-testid="customer_products__element-navbar-user-full-name"
+              href="/customer/orders"
+              style={ { marginRight: '10px' } }
+            >
+              { name }
+            </Navbar.Text>
+            <Button
+              onClick={ logout }
+              data-testid="customer_products__element-navbar-link-logout"
+              type="button"
+            >
+              Sair
+            </Button>
+            <CartTotal cartTotal={ 100 } />
+          </Container>
         </Navbar.Collapse>
       </Container>
     </Navbar>
