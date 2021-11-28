@@ -1,23 +1,37 @@
 /* eslint-disable react/jsx-max-depth */
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Image, Nav, Navbar, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router';
 import Proptypes from 'prop-types';
 import CartTotal from './CartTotal';
 import HamburgerButton from './HamburgerButton';
+import SideNav from './SideNav';
+import useWindowSize from '../../helpers/getWindowSize';
 
 function TopBar({ cartTotal }) {
   const { name } = JSON.parse(localStorage.getItem('user'));
   const history = useHistory();
   const onSellerPage = history.location.pathname.includes('/seller');
+  const [openMenu, setOpenMenu] = useState(false);
 
   const logout = () => {
     localStorage.clear();
     history.push('/');
   };
 
+  const windowSize = useWindowSize();
+
+  const oitocentos = 800;
+  if (windowSize.width < oitocentos) console.log('menor');
+
   return (
     <Navbar bg="light" expand="md" style={ { flexWrap: 'nowrap' } }>
+      <SideNav
+        setOpenMenu={ setOpenMenu }
+        openMenu={ openMenu }
+        logout={ logout }
+        name={ name }
+      />
       <Container
         className="d-flex"
       >
@@ -79,7 +93,7 @@ function TopBar({ cartTotal }) {
           </Navbar.Collapse>
         </Container>
         <CartTotal cartTotal={ cartTotal } />
-        <HamburgerButton />
+        <HamburgerButton setOpenMenu={ setOpenMenu } openMenu={ openMenu } />
       </Container>
     </Navbar>
   );

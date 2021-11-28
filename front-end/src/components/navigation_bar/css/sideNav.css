@@ -21,6 +21,24 @@
   transition: 0.3s;
 }
 
+.sidenav button {
+  color: #818181;
+  display: block;
+  font-size: 25px;
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.sidenav span {
+  color: #818181;
+  display: block;
+  font-size: 25px;
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
 .sidenav a:hover {
   color: #f1f1f1;
 }
@@ -38,4 +56,14 @@
   .sidenav { padding-top: 15px;}
 
   .sidenav a { font-size: 18px;}
+}
+
+.clear-button-style {
+  background: none;
+  border: none;
+  color: green;
+  cursor: pointer;
+  font: inherit;
+  outline: inherit;
+  padding: 0;
 }
