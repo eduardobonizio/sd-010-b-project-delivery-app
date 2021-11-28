@@ -81,11 +81,12 @@ function ProductCard(props) {
           whiteSpace: 'nowrap',
           overflow: 'hidden',
           textOverflow: 'ellipsis',
+          textAlign: 'center',
         } }
       >
         { name }
       </Card.Title>
-      <Card.Text>
+      <Card.Text style={ { textAlign: 'center' } }>
         R$
         <span
           data-testid={ `customer_products__element-card-price-${id}` }
@@ -93,7 +94,7 @@ function ProductCard(props) {
           { price.toString().split('.').join(',') }
         </span>
       </Card.Text>
-      <InputGroup>
+      <InputGroup className="d-flex justify-content-center">
         <Button
           id={ id }
           data-testid={ `customer_products__button-card-rm-item-${id}` }
@@ -114,6 +115,7 @@ function ProductCard(props) {
           type="integer"
           placeholder="0"
           defaultValue={ quantity }
+          style={ { maxWidth: '176px' } }
         />
         <Button
           id={ id }
