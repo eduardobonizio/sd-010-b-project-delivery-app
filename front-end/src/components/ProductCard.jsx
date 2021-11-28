@@ -77,6 +77,11 @@ function ProductCard(props) {
       />
       <Card.Title
         data-testid={ `customer_products__element-card-title-${id}` }
+        style={ {
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+        } }
       >
         { name }
       </Card.Title>
@@ -99,7 +104,6 @@ function ProductCard(props) {
         </Button>
         <Form.Control
           as="input"
-          size="sm"
           min="0"
           max="99"
           id={ `input-${id}` }

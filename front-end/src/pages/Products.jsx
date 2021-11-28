@@ -37,7 +37,7 @@ function Products() {
     <>
       <TopBar />
       <Container>
-        <Row xs={ 1 } md={ 3 } sm={ 2 } className="g-4">
+        <Row xs={ 2 } md={ 3 } sm={ 2 } className="g-4">
           {
             cart && cart.map((product, index) => (
               <ProductCard
