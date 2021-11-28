@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import axios from 'axios';
-import TopBar from '../components/navigation_bar/CartTotal';
+import { Container } from 'react-bootstrap';
+import TopBar from '../components/navigation_bar/TopBar';
 import CheckoutProductCard from '../components/CheckoutProductCard';
 import CheckoutCartTotal from '../components/CheckoutCartTotal';
 import CheckoutDeliveryData from '../components/CheckoutDeliveryData';
@@ -70,27 +71,29 @@ function Products() {
   return (
     <>
       <TopBar cartTotal={ cartTotal } />
-      <div>
-        {
-          cart && cart.map((product) => (
-            <CheckoutProductCard
-              key={ product.id }
-              product={ product }
-              setCart={ setCart }
-              cart={ cart }
-            />
-          ))
-        }
-        <CheckoutCartTotal cartTotal={ cartTotal } />
-      </div>
-      <div>Detalhes e Endereço para Entrega</div>
-      <CheckoutDeliveryData
-        setDeliveryNumber={ setDeliveryNumber }
-        setDeliveryAddress={ setDeliveryAddress }
-        finishSale={ finishSale }
-        setSellerId={ setSellerId }
-        sellers={ sellers }
-      />
+      <Container>
+        <div>
+          {
+            cart && cart.map((product) => (
+              <CheckoutProductCard
+                key={ product.id }
+                product={ product }
+                setCart={ setCart }
+                cart={ cart }
+              />
+            ))
+          }
+          <CheckoutCartTotal cartTotal={ cartTotal } />
+        </div>
+        <div>Detalhes e Endereço para Entrega</div>
+        <CheckoutDeliveryData
+          setDeliveryNumber={ setDeliveryNumber }
+          setDeliveryAddress={ setDeliveryAddress }
+          finishSale={ finishSale }
+          setSellerId={ setSellerId }
+          sellers={ sellers }
+        />
+      </Container>
     </>
   );
 }
