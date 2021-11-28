@@ -1,9 +1,10 @@
 import React from 'react';
 import { Container, Image, Nav, Navbar, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router';
+import Proptypes from 'prop-types';
 import CartTotal from './CartTotal';
 
-function TopBar() {
+function TopBar({ cartTotal }) {
   const { name } = JSON.parse(localStorage.getItem('user'));
   const history = useHistory();
   const onSellerPage = history.location.pathname.includes('/seller');
@@ -67,12 +68,16 @@ function TopBar() {
             >
               Sair
             </Button>
-            <CartTotal cartTotal={ 100 } />
+            <CartTotal cartTotal={ cartTotal } />
           </Container>
         </Navbar.Collapse>
       </Container>
     </Navbar>
   );
 }
+
+TopBar.propTypes = {
+  cartTotal: Proptypes.number.isRequired,
+};
 
 export default TopBar;

@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Container, Row } from 'react-bootstrap';
 import TopBar from '../components/TopBar';
 import ProductCard from '../components/ProductCard';
-import CartTotal from '../components/CartTotal';
 import { serverUrl } from '../helpers/constants';
 
 function Products() {
@@ -35,7 +34,7 @@ function Products() {
 
   return (
     <>
-      <TopBar />
+      <TopBar cartTotal={ cartTotal } />
       <Container>
         <Row xs={ 2 } md={ 3 } sm={ 2 } className="g-4">
           {
@@ -50,7 +49,6 @@ function Products() {
           }
         </Row>
       </Container>
-      <CartTotal cartTotal={ cartTotal } />
     </>
   );
 }
