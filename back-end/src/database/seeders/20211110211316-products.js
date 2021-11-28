@@ -4,7 +4,7 @@ module.exports = {
   up: async (queryInterface, _Sequelize) => {
     await queryInterface.bulkInsert('products', 
     [
-      {name: 'Skol Lata 250ml', price: 2.20, url_image: '/images/skol_lata_350ml.jpg'},
+      {name: 'Skol Lata 350ml', price: 2.20, url_image: '/images/skol_lata_350ml.jpg'},
       {name: 'Heineken 600ml', price: 7.50, url_image: '/images/heineken_600ml.jpg'},
       {name: 'Antarctica Pilsen 300ml', price: 2.49, url_image: '/images/antarctica_pilsen_300ml.jpg'},
       {name: 'Brahma 600ml', price: 7.50, url_image: '/images/brahma_600ml.jpg'},
