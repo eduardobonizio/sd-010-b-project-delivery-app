@@ -16,7 +16,7 @@ function TopBar({ cartTotal }) {
 
   return (
     <Navbar bg="light" expand="md">
-      <Container>
+      <Container style={ { padding: 0 } }>
         <Nav
           className="me-auto my-2 my-lg-0 flex-row align-items-center"
           navbarScroll
@@ -49,10 +49,12 @@ function TopBar({ cartTotal }) {
                 </Nav.Link>
               )}
         </Nav>
+        <CartTotal cartTotal={ cartTotal } />
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Container
             className="d-flex justify-content-end align-items-center"
+            style={ { padding: 0 } }
           >
             <Navbar.Text
               data-testid="customer_products__element-navbar-user-full-name"
@@ -68,9 +70,9 @@ function TopBar({ cartTotal }) {
             >
               Sair
             </Button>
-            <CartTotal cartTotal={ cartTotal } />
           </Container>
         </Navbar.Collapse>
+
       </Container>
     </Navbar>
   );
