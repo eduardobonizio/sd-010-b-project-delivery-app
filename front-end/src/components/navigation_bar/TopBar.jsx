@@ -13,16 +13,14 @@ function TopBar({ cartTotal }) {
   const history = useHistory();
   const onSellerPage = history.location.pathname.includes('/seller');
   const [openMenu, setOpenMenu] = useState(false);
+  const { width } = useWindowSize();
+
+  const showMobileMenuWidth = 800;
 
   const logout = () => {
     localStorage.clear();
     history.push('/');
   };
-
-  const windowSize = useWindowSize();
-
-  const oitocentos = 800;
-  if (windowSize.width < oitocentos) console.log('menor');
 
   return (
     <Navbar bg="light" expand="md" style={ { flexWrap: 'nowrap' } }>
@@ -34,6 +32,7 @@ function TopBar({ cartTotal }) {
       />
       <Container
         className="d-flex"
+        style={ { padding: 0 } }
       >
         <Container className="d-flex" style={ { padding: 0 } }>
           <Nav
@@ -68,12 +67,10 @@ function TopBar({ cartTotal }) {
                 </Nav.Link>
               )}
           </Nav>
-
-          <Navbar.Toggle aria-controls="navbarScroll" />
-          <Navbar.Collapse id="navbarScroll">
+          {width >= showMobileMenuWidth
+          && (
             <Container
               className="d-flex justify-content-end align-items-center"
-              style={ { padding: 0 } }
             >
               <Navbar.Text
                 data-testid="customer_products__element-navbar-user-full-name"
@@ -89,11 +86,11 @@ function TopBar({ cartTotal }) {
               >
                 Sair
               </Button>
-            </Container>
-          </Navbar.Collapse>
+            </Container>)}
+          <CartTotal cartTotal={ cartTotal } />
+          {width < showMobileMenuWidth
+        && <HamburgerButton setOpenMenu={ setOpenMenu } openMenu={ openMenu } />}
         </Container>
-        <CartTotal cartTotal={ cartTotal } />
-        <HamburgerButton setOpenMenu={ setOpenMenu } openMenu={ openMenu } />
       </Container>
     </Navbar>
   );

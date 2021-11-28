@@ -9,27 +9,25 @@ function CartTotal({ cartTotal }) {
   const history = useHistory();
   const redirectToCart = () => history.push('/customer/checkout');
   return (
-    <div className="d-flex">
-      <Nav.Link href="/customer/checkout">
-        <div
-          className="container-test"
-          data-testid="customer_products__checkout-bottom-value"
+    <Nav.Link href="/customer/checkout">
+      <div
+        className="container-test"
+        data-testid="customer_products__checkout-bottom-value"
+        disabled={ cartTotal <= 0 }
+      >
+        <ShoppingCartOutlined style={ { fontSize: '2.5rem' } } />
+        <button
+          type="button"
+          data-testid="customer_products__button-cart"
+          className="clear-button-style price-tag"
           disabled={ cartTotal <= 0 }
+          onClick={ redirectToCart }
         >
-          <ShoppingCartOutlined style={ { fontSize: '2.5rem' } } />
-          <button
-            type="button"
-            data-testid="customer_products__button-cart"
-            className="clear-button-style price-tag"
-            disabled={ cartTotal <= 0 }
-            onClick={ redirectToCart }
-          >
-            { ` ${cartTotal.toFixed(2).toString().split('.').join(',')}` }
-          </button>
+          { ` ${cartTotal.toFixed(2).toString().split('.').join(',')}` }
+        </button>
 
-        </div>
-      </Nav.Link>
-    </div>
+      </div>
+    </Nav.Link>
   );
 }
 
