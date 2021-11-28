@@ -1,5 +1,5 @@
 const { StatusCodes } = require('http-status-codes');
-const { Sale, SalesProduct } = require('../models');
+const { Sale, SalesProduct } = require('../database/models');
 // const { userDataSchema } = require('./schemas');
 
 const insertIntoSalesProduct = async (products, saleId) => {

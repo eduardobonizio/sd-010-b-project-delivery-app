@@ -3,7 +3,7 @@ const md5 = require('md5');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const path = require('path');
-const { User } = require('../models');
+const { User } = require('../database/models');
 
 const caminho = path.join(__dirname, '../../jwt.evaluation.key');
 const secret = fs.readFileSync(caminho).toString().trim();

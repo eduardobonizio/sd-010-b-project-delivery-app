@@ -1,5 +1,5 @@
 const { StatusCodes } = require('http-status-codes');
-const { Sale } = require('../models');
+const { Sale } = require('../database/models');
 
 const findAllSales = async (sellerId) => {
   const sales = await Sale.findAll({ where: { sellerId } });
