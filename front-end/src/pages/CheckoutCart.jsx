@@ -69,12 +69,12 @@ function Products() {
 
   return (
     <>
-      <TopBar />
+      <TopBar cartTotal={ cartTotal } />
       <div>
         {
           cart && cart.map((product) => (
             <CheckoutProductCard
-              key={ product.key }
+              key={ product.id }
               product={ product }
               setCart={ setCart }
               cart={ cart }

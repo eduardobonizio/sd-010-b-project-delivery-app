@@ -21,8 +21,9 @@ function CheckoutDeliveryData(props) {
             onChange={ (e) => setSellerId(e.target.value) }
             name="select"
             data-testid="customer_checkout__select-seller"
+            defaultValue="DEFAULT"
           >
-            <option disabled selected value> -- Selecione -- </option>
+            <option disabled value="DEFAULT"> -- Selecione -- </option>
             {sellers.map((
               { id, name }, index,
             ) => (<option key={ index } value={ id } defaultValue>{name}</option>))}
@@ -70,5 +71,5 @@ CheckoutDeliveryData.propTypes = {
   setDeliveryNumber: Proptypes.func.isRequired,
   setDeliveryAddress: Proptypes.func.isRequired,
   setSellerId: Proptypes.func.isRequired,
-  sellers: Proptypes.arrayOf({}).isRequired,
+  sellers: Proptypes.arrayOf(Object).isRequired,
 };
