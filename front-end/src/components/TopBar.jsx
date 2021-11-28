@@ -4,6 +4,7 @@ import { Container, Image, Nav, Navbar, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router';
 import Proptypes from 'prop-types';
 import CartTotal from './CartTotal';
+import HamburgerButton from './HamburgerButton';
 
 function TopBar({ cartTotal }) {
   const { name } = JSON.parse(localStorage.getItem('user'));
@@ -78,6 +79,7 @@ function TopBar({ cartTotal }) {
           </Navbar.Collapse>
         </Container>
         <CartTotal cartTotal={ cartTotal } />
+        <HamburgerButton />
       </Container>
     </Navbar>
   );
