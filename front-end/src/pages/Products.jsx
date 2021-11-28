@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Container } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import TopBar from '../components/TopBar';
 import ProductCard from '../components/ProductCard';
 import CartTotal from '../components/CartTotal';
@@ -37,16 +37,18 @@ function Products() {
     <>
       <TopBar />
       <Container>
-        {
-          cart && cart.map((product, index) => (
-            <ProductCard
-              product={ product }
-              setCart={ setCart }
-              cart={ cart }
-              key={ index }
-            />
-          ))
-        }
+        <Row xs={ 1 } md={ 3 } sm={ 2 } className="g-4">
+          {
+            cart && cart.map((product, index) => (
+              <ProductCard
+                product={ product }
+                setCart={ setCart }
+                cart={ cart }
+                key={ index }
+              />
+            ))
+          }
+        </Row>
       </Container>
       <CartTotal cartTotal={ cartTotal } />
     </>

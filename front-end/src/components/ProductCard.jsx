@@ -67,11 +67,13 @@ function ProductCard(props) {
   };
 
   return (
-    <Card key={ id }>
+
+    <Card>
       <Card.Img
         data-testid={ `customer_products__img-card-bg-image-${id}` }
         variant="top"
         src={ urlImage }
+        style={ { heigth: '100px' } }
       />
       <Card.Title
         data-testid={ `customer_products__element-card-title-${id}` }
@@ -86,7 +88,7 @@ function ProductCard(props) {
           { price.toString().split('.').join(',') }
         </span>
       </Card.Text>
-      <InputGroup className="sm-3">
+      <InputGroup>
         <Button
           id={ id }
           data-testid={ `customer_products__button-card-rm-item-${id}` }
@@ -119,6 +121,7 @@ function ProductCard(props) {
         </Button>
       </InputGroup>
     </Card>
+
   );
 }
 
