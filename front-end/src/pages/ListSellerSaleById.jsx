@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import TopBar from '../components/TopBar';
+import TopBar from '../components/navigation_bar/TopBar';
 import SellerOrderDetailsTable from '../components/SellerOrderDetailsTable';
 import { serverUrl } from '../helpers/constants';
 

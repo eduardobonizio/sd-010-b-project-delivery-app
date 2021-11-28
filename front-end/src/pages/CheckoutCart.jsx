@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import axios from 'axios';
-import TopBar from '../components/TopBar';
+import TopBar from '../components/navigation_bar/CartTotal';
 import CheckoutProductCard from '../components/CheckoutProductCard';
 import CheckoutCartTotal from '../components/CheckoutCartTotal';
 import CheckoutDeliveryData from '../components/CheckoutDeliveryData';

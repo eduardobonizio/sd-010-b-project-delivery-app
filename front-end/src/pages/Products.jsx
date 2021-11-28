@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Container, Row } from 'react-bootstrap';
-import TopBar from '../components/TopBar';
+import TopBar from '../components/navigation_bar/TopBar';
 import ProductCard from '../components/ProductCard';
 import { serverUrl } from '../helpers/constants';
 
