@@ -23,7 +23,7 @@ function TopBar({ cartTotal }) {
   };
 
   return (
-    <Navbar bg="light" expand="md" style={ { flexWrap: 'nowrap' } }>
+    <Navbar sticky="top" bg="light" expand="md" style={ { flexWrap: 'nowrap' } }>
       <SideNav
         setOpenMenu={ setOpenMenu }
         openMenu={ openMenu }
