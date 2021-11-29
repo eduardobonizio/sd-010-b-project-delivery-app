@@ -87,7 +87,7 @@ function TopBar({ cartTotal }) {
                 Sair
               </Button>
             </Container>)}
-          <CartTotal cartTotal={ cartTotal } />
+          {!onSellerPage && <CartTotal cartTotal={ cartTotal } />}
           {width < showMobileMenuWidth
         && <HamburgerButton setOpenMenu={ setOpenMenu } openMenu={ openMenu } />}
         </Container>
@@ -97,7 +97,11 @@ function TopBar({ cartTotal }) {
 }
 
 TopBar.propTypes = {
-  cartTotal: Proptypes.number.isRequired,
+  cartTotal: Proptypes.number,
+};
+
+TopBar.defaultProps = {
+  cartTotal: 0,
 };
 
 export default TopBar;
