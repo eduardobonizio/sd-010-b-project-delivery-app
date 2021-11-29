@@ -40,7 +40,7 @@ function ListOrders() {
     <>
       <TopBar cartTotal={ cartTotal } />
       <Container>
-        <Row xs={ 2 } md={ 2 } sm={ 2 } className="g-2 justify-content-center">
+        <Row xs={ 2 } md={ 2 } sm={ 2 } className="g-2 justify-content-between">
           {
             orders && orders.map((order) => (
               <OrderCard
