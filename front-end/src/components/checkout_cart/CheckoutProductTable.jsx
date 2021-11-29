@@ -13,7 +13,7 @@ function CheckoutProductTable(props) {
   };
 
   return (
-    <Table hover className="table-format">
+    <Table responsive hover className="table-format">
       <thead>
         <tr>
           <th>Item</th>
