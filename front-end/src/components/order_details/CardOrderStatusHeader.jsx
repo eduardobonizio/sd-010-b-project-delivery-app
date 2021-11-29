@@ -5,7 +5,6 @@ import './css/OrderDetailsTable.css';
 
 function CardOrderStatusHeader({ updateButtonsText, orderId,
   sellerName, orderStatus, saleDate }) {
-    
   const endArraySlice = 4;
   const dateArray = saleDate.split('-');
   const day = `${dateArray[2][0]}${dateArray[2][1]}`;
@@ -13,7 +12,6 @@ function CardOrderStatusHeader({ updateButtonsText, orderId,
   const year = `${dateArray[0].slice(0, endArraySlice)}`;
   const formattedDate = `${day}/${month}/${year}`;
   const label = 'customer_order_details__element-order-details-label-delivery-status';
-
   const tyTrybe = 'customer_order_details__element-order-details-label-seller-name';
   const s2BigNames = 'customer_order_details__element-order-details-label-order-date';
 
