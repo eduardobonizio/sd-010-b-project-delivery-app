@@ -3,7 +3,8 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { Container } from 'react-bootstrap';
 import TopBar from '../components/navigation_bar/TopBar';
-import SellerOrderDetailsTable from '../components/SellerOrderDetailsTable';
+import SellerOrderDetailsTable from '../components/order_details/SellerOrderDetailsTable';
+import SellerOrderStatusHeader from '../components/order_details/SellerOrderStatusHeader';
 import { serverUrl } from '../helpers/constants';
 
 function ListSellerSaleById() {
@@ -51,60 +52,22 @@ function ListSellerSaleById() {
   };
 
   if (order) {
-    const endArraySlice = 4;
-    const dateArray = order.saleDate.split('-');
-    const day = `${dateArray[2][0]}${dateArray[2][1]}`;
-    const month = `${dateArray[1][0]}${dateArray[1][1]}`;
-    const year = `${dateArray[0].slice(0, endArraySlice)}`;
-    const formattedDate = `${day}/${month}/${year}`;
-
-    const label = 'seller_order_details__element-order-details-label-delivery-status';
     return (
       <>
         <TopBar />
+        {console.log(order)}
         <Container>
           <p>Detalhe do pedido</p>
-          <div>
-            <span
-              data-testid="seller_order_details__element-order-details-label-order-id"
-            >
-              Pedido
-              { order.id }
-            </span>
-            <span
-              data-testid="seller_order_details__element-order-details-label-order-date"
-            >
-              { formattedDate }
-            </span>
-            <span
-              data-testid={ label }
-            >
-              {orderStatus}
-            </span>
-            <button
-              data-testid="seller_order_details__button-preparing-check"
-              type="button"
-              disabled={ orderStatus !== 'Pendente' }
-              onClick={ () => updateButtonsText('Preparando') }
-            >
-              PREPARAR PEDIDO
-            </button>
-            <button
-              data-testid="seller_order_details__button-dispatch-check"
-              type="button"
-              disabled={ orderStatus !== 'Preparando' }
-              onClick={ () => updateButtonsText('Em Trânsito') }
-            >
-              SAIU PARA ENTREGA
-            </button>
-            <SellerOrderDetailsTable order={ order.products } />
-            <span>Total: R$</span>
-            <span
-              data-testid="seller_order_details__element-order-total-price"
-            >
-              { order.totalPrice.split('.').join(',') }
-            </span>
-          </div>
+          <SellerOrderStatusHeader
+            orderId={ order.id }
+            orderStatus={ orderStatus }
+            updateButtonsText={ updateButtonsText }
+            saleDate={ order.saleDate }
+          />
+          <SellerOrderDetailsTable
+            products={ order.products }
+            totalPrice={ order.totalPrice }
+          />
         </Container>
       </>
     );

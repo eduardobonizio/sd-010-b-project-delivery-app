@@ -1,10 +1,12 @@
 import React from 'react';
 import Proptypes from 'prop-types';
 import { Table } from 'react-bootstrap';
+import './css/OrderDetailsTable.css';
 
-function SellerOrderDetailsTable({ order }) {
+function SellerOrderDetailsTable({ products, totalPrice }) {
+  console.log(products);
   return (
-    <Table striped bordered hover>
+    <Table responsive hover className="table-format">
       <thead>
         <tr>
           <th>Item</th>
@@ -15,7 +17,7 @@ function SellerOrderDetailsTable({ order }) {
         </tr>
       </thead>
       <tbody>
-        { order.map((entry) => (
+        { products.map((entry) => (
           <tr key={ entry.id }>
             <td
               data-testid={
@@ -59,13 +61,23 @@ function SellerOrderDetailsTable({ order }) {
             </td>
           </tr>
         ))}
+        <tr>
+          <td
+            colSpan="5"
+            data-testid="seller_order_details__element-order-total-price"
+            className="total-price"
+          >
+            { `Total: R$${totalPrice.split('.').join(',')}` }
+          </td>
+        </tr>
       </tbody>
     </Table>
   );
 }
 
 SellerOrderDetailsTable.propTypes = {
-  order: Proptypes.arrayOf(Proptypes.any).isRequired,
+  products: Proptypes.arrayOf(Proptypes.any).isRequired,
+  totalPrice: Proptypes.string.isRequired,
 };
 
 export default SellerOrderDetailsTable;
