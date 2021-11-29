@@ -7,6 +7,7 @@ import { serverUrl } from '../helpers/constants';
 
 function ListOrders() {
   const [orders, setOrders] = useState();
+  const [cartTotal, setCartTotal] = useState(0);
 
   useEffect(() => {
     const { token } = JSON.parse(localStorage.getItem('user'));
@@ -24,10 +25,21 @@ function ListOrders() {
     getOrders();
   }, []);
 
+  useEffect(() => {
+    let sum = 0;
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    if (cart) {
+      cart.forEach((element) => {
+        sum += element.price * element.quantity;
+      });
+    }
+    setCartTotal(sum);
+  }, []);
+
   return (
     <>
-      <TopBar />
-      <Container fluid>
+      <TopBar cartTotal={ cartTotal } />
+      <Container>
         <Row>
           {
             orders && orders.map((order) => (
