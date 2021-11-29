@@ -24,7 +24,7 @@ function ListSellerSaleById() {
     };
 
     const getOrder = async () => {
-      const myOrder = await axios.get(`${serverUrl}/seller/orders/${orderId}`, config);
+      const myOrder = await axios.get(`${serverUrl}/seller/order/${orderId}`, config);
 
       setOrder(myOrder.data.order);
       setOrderStatus(myOrder.data.order.status);
