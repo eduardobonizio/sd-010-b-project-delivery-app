@@ -3,9 +3,8 @@ import { useHistory } from 'react-router';
 import axios from 'axios';
 import { Container } from 'react-bootstrap';
 import TopBar from '../components/navigation_bar/TopBar';
-import CheckoutProductCard from '../components/CheckoutProductCard';
-import CheckoutCartTotal from '../components/CheckoutCartTotal';
-import CheckoutDeliveryData from '../components/CheckoutDeliveryData';
+import CheckoutProductTable from '../components/checkout_cart/CheckoutProductTable';
+import CheckoutDeliveryData from '../components/checkout_cart/CheckoutDeliveryData';
 import { serverUrl } from '../helpers/constants';
 
 function Products() {
@@ -24,7 +23,9 @@ function Products() {
       setCart(olyItensInCart);
     };
     getLocalStorageCartItens();
+  }, []);
 
+  useEffect(() => {
     const getSellers = async () => {
       const { data } = await axios.get(`${serverUrl}/seller/all`);
       setSellers(data);
@@ -72,19 +73,7 @@ function Products() {
     <>
       <TopBar cartTotal={ cartTotal } />
       <Container>
-        <div>
-          {
-            cart && cart.map((product) => (
-              <CheckoutProductCard
-                key={ product.id }
-                product={ product }
-                setCart={ setCart }
-                cart={ cart }
-              />
-            ))
-          }
-          <CheckoutCartTotal cartTotal={ cartTotal } />
-        </div>
+        <CheckoutProductTable cart={ cart } setCart={ setCart } cartTotal={ cartTotal } />
         <div>Detalhes e Endereço para Entrega</div>
         <CheckoutDeliveryData
           setDeliveryNumber={ setDeliveryNumber }
