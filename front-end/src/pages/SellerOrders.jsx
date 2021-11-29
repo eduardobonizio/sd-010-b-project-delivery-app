@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import TopBar from '../components/navigation_bar/TopBar';
-import SellerOrderCard from '../components/SellerOrderCard';
+import SellerOrderCard from '../components/orders/SellerOrderCard';
 import { serverUrl } from '../helpers/constants';
 
 function ListOrders() {
@@ -28,19 +28,20 @@ function ListOrders() {
     <>
       <TopBar />
       <Container>
-        <Row>
+        <Row xs={ 1 } md={ 2 } sm={ 2 } className="g-2 justify-content-between">
           {
             orders && orders.map((order) => (
-              <Col key={ order.id }>
-                <SellerOrderCard
-                  id={ order.id }
-                  status={ order.status }
-                  date={ order.saleDate }
-                  totalPrice={ order.totalPrice }
-                  deliveryAddress={ order.deliveryAddress }
-                  deliveryNumber={ order.deliveryNumber }
-                />
-              </Col>
+
+              <SellerOrderCard
+                key={ order.id }
+                id={ order.id }
+                status={ order.status }
+                date={ order.saleDate }
+                totalPrice={ order.totalPrice }
+                deliveryAddress={ order.deliveryAddress }
+                deliveryNumber={ order.deliveryNumber }
+              />
+
             ))
           }
         </Row>
