@@ -6,6 +6,9 @@ import TopBar from '../components/navigation_bar/TopBar';
 import OrderDetailsTable from '../components/order_details/OrderDetailsTable';
 import { serverUrl } from '../helpers/constants';
 import OrderStatusHeader from '../components/order_details/OrderStatusHeader';
+import useWindowSize from '../helpers/getWindowSize';
+import CardOrderStatusHeader from '../components/order_details/CardOrderStatusHeader';
+import CardOrderDetailsTable from '../components/order_details/CardOrderDetailsTable';
 
 function Products() {
   const [preparing, setPreparing] = useState(false);
@@ -13,6 +16,9 @@ function Products() {
   const [order, setOrder] = useState();
   const [cartTotal, setCartTotal] = useState(0);
   const history = useHistory();
+  const { width } = useWindowSize();
+  const minWidthToShow = 800;
+  const showMobileCards = width < minWidthToShow;
 
   useEffect(() => {
     const historyArray = history.location.pathname.split('/');
@@ -60,10 +66,35 @@ function Products() {
     setCartTotal(sum);
   }, []);
 
-  if (order) {
+  if (showMobileCards) {
     return (
       <>
         <TopBar cartTotal={ cartTotal } />
+        {order
+        && (
+          <Container>
+            <p>Detalhe do pedido</p>
+            <CardOrderStatusHeader
+              orderId={ order.id }
+              sellerName={ order.seller.name }
+              orderStatus={ orderStatus }
+              updateButtonsText={ updateButtonsText }
+              saleDate={ order.saleDate }
+            />
+            <CardOrderDetailsTable
+              products={ order.products }
+              totalPrice={ order.totalPrice }
+            />
+          </Container>)}
+      </>
+    );
+  }
+
+  return (
+    <>
+      <TopBar cartTotal={ cartTotal } />
+      {order
+      && (
         <Container>
           <p>Detalhe do pedido</p>
           <OrderStatusHeader
@@ -77,11 +108,9 @@ function Products() {
             products={ order.products }
             totalPrice={ order.totalPrice }
           />
-        </Container>
-      </>
-    );
-  }
-  return (<p>Carregando</p>);
+        </Container>)}
+    </>
+  );
 }
 
 export default Products;
