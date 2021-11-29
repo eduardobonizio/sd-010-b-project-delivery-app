@@ -4,7 +4,6 @@ import { Table } from 'react-bootstrap';
 import './css/OrderDetailsTable.css';
 
 function SellerOrderDetailsTable({ products, totalPrice }) {
-  console.log(products);
   return (
     <Table responsive hover className="table-format">
       <thead>

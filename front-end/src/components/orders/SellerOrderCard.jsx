@@ -13,9 +13,6 @@ function SellerOrderCard({ id, status, date, totalPrice, deliveryAddress,
   const formattedDate = `${day}/${month}/${year}`;
   const history = useHistory();
 
-  console.log(deliveryAddress,
-    deliveryNumber);
-
   const changePath = () => {
     history.push(`/seller/orders/${id}`);
   };
