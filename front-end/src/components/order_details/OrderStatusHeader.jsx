@@ -17,39 +17,41 @@ function OrderStatusHeader({ updateButtonsText, orderId,
   const s2BigNames = 'customer_order_details__element-order-details-label-order-date';
 
   return (
-    <Table responsive hover className="table-head-format">
-      <tr>
-        <th
-          data-testid="customer_order_details__element-order-details-label-order-id"
-        >
-          { `Pedido ${orderId}` }
-        </th>
-        <th
-          data-testid={ tyTrybe }
-        >
-          { `P. Vend: ${sellerName}` }
-        </th>
-        <th
-          data-testid={ s2BigNames }
-        >
-          { formattedDate }
-        </th>
-        <th
-          data-testid={ label }
-        >
-          { orderStatus }
-        </th>
-        <th>
-          <button
-            data-testid="customer_order_details__button-delivery-check"
-            type="button"
-            disabled={ orderStatus !== 'Em Trânsito' }
-            onClick={ () => updateButtonsText('Entregue') }
+    <Table responsive hover className="table-format">
+      <thead>
+        <tr>
+          <th
+            data-testid="customer_order_details__element-order-details-label-order-id"
           >
-            MARCAR COMO ENTREGUE
-          </button>
-        </th>
-      </tr>
+            { `Pedido ${orderId}` }
+          </th>
+          <th
+            data-testid={ tyTrybe }
+          >
+            { `P. Vend: ${sellerName}` }
+          </th>
+          <th
+            data-testid={ s2BigNames }
+          >
+            { formattedDate }
+          </th>
+          <th
+            data-testid={ label }
+          >
+            { orderStatus }
+          </th>
+          <th>
+            <button
+              data-testid="customer_order_details__button-delivery-check"
+              type="button"
+              disabled={ orderStatus !== 'Em Trânsito' }
+              onClick={ () => updateButtonsText('Entregue') }
+            >
+              MARCAR COMO ENTREGUE
+            </button>
+          </th>
+        </tr>
+      </thead>
     </Table>
   );
 }
