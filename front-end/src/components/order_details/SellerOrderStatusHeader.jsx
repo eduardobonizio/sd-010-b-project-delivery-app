@@ -16,50 +16,52 @@ function SellerOrderStatusHeader({ updateButtonsText, orderId,
 
   return (
     <Table responsive hover className="table-head-format">
-      <tr>
-        <th
-          data-testid="seller_order_details__element-order-details-label-order-id"
-        >
-          { `Pedido ${orderId}` }
-        </th>
-        <th
-          data-testid={ s2BigNames }
-        >
-          { formattedDate }
-        </th>
-        <th
-          data-testid={ label }
-        >
-          { orderStatus }
-        </th>
-        <th>
-          <button
-            data-testid="seller_order_details__button-preparing-check"
-            type="button"
-            disabled={ orderStatus !== 'Pendente' }
-            onClick={ () => updateButtonsText('Preparando') }
+      <tbody>
+        <tr>
+          <th
+            data-testid="seller_order_details__element-order-details-label-order-id"
           >
-            PREPARAR PEDIDO
-          </button>
-        </th>
-        <th>
-          <button
-            data-testid="seller_order_details__button-dispatch-check"
-            type="button"
-            disabled={ orderStatus !== 'Preparando' }
-            onClick={ () => updateButtonsText('Em Trânsito') }
+            { `Pedido ${orderId}` }
+          </th>
+          <th
+            data-testid={ s2BigNames }
           >
-            SAIU PARA ENTREGA
-          </button>
-        </th>
-      </tr>
+            { formattedDate }
+          </th>
+          <th
+            data-testid={ label }
+          >
+            { orderStatus }
+          </th>
+          <th>
+            <button
+              data-testid="seller_order_details__button-preparing-check"
+              type="button"
+              disabled={ orderStatus !== 'Pendente' }
+              onClick={ () => updateButtonsText('Preparando') }
+            >
+              PREPARAR PEDIDO
+            </button>
+          </th>
+          <th>
+            <button
+              data-testid="seller_order_details__button-dispatch-check"
+              type="button"
+              disabled={ orderStatus !== 'Preparando' }
+              onClick={ () => updateButtonsText('Em Trânsito') }
+            >
+              SAIU PARA ENTREGA
+            </button>
+          </th>
+        </tr>
+      </tbody>
     </Table>
   );
 }
 
 SellerOrderStatusHeader.propTypes = {
   updateButtonsText: Proptypes.func.isRequired,
-  orderId: Proptypes.string.isRequired,
+  orderId: Proptypes.number.isRequired,
   orderStatus: Proptypes.string.isRequired,
   saleDate: Proptypes.string.isRequired,
 };

@@ -5,7 +5,7 @@ const sellerController = require('../controllers/sellerController');
 
 const sellerRouter = express.Router();
 // sales
-sellerRouter.get('/order/:id', () => console.log('entrei'), auth, sellerController.findOrderByPk);
+sellerRouter.get('/order/:id', auth, sellerController.findOrderByPk);
 
 sellerRouter.post('/order/:id', auth, sellerController.updateOrderStatus);
 
