@@ -55,7 +55,6 @@ function ListSellerSaleById() {
     return (
       <>
         <TopBar />
-        {console.log(order)}
         <Container>
           <p>Detalhe do pedido</p>
           <SellerOrderStatusHeader
