@@ -9,6 +9,7 @@ function Products() {
   const [preparing, setPreparing] = useState(false);
   const [orderStatus, setOrderStatus] = useState('Pendente');
   const [order, setOrder] = useState();
+  const [cartTotal, setCartTotal] = useState(0);
   const history = useHistory();
 
   useEffect(() => {
@@ -46,6 +47,17 @@ function Products() {
     setOrderStatus(status);
   };
 
+  useEffect(() => {
+    let sum = 0;
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    if (cart) {
+      cart.forEach((element) => {
+        sum += element.price * element.quantity;
+      });
+    }
+    setCartTotal(sum);
+  }, []);
+
   if (order) {
     const endArraySlice = 4;
     const dateArray = order.saleDate.split('-');
@@ -56,7 +68,7 @@ function Products() {
     const label = 'customer_order_details__element-order-details-label-delivery-status';
     return (
       <>
-        <TopBar />
+        <TopBar cartTotal={ cartTotal } />
         <p>Detalhe do pedido</p>
         <div>
           <span
