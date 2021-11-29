@@ -16,20 +16,40 @@ function OrderCard({ id, status, date, totalPrice }) {
     history.push(`/customer/orders/${id}`);
   };
   return (
-    <Card onClick={ changePath } className="card-container">
-      <div
+    <Card
+      onClick={ changePath }
+      style={ {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        maxWidth: '400px',
+        alignItems: 'center',
+        minHeight: '70px',
+      } }
+    >
+      <Card.Text
+        style={ { marginBottom: 0 } }
         data-testid={ `customer_orders__element-order-id-${id}` }
       >
         { `Pedido ${id}` }
-      </div>
-      <div data-testid={ `customer_orders__element-delivery-status-${id}` }>
+      </Card.Text>
+
+      <Card.Text
+        style={ { marginBottom: 0 } }
+        data-testid={ `customer_orders__element-delivery-status-${id}` }
+      >
         { status }
-      </div>
-      <div data-testid={ `customer_orders__element-order-date-${id}` }>
-        { formattedDate }
-      </div>
-      <div data-testid={ `customer_orders__element-card-price-${id}` }>
-        { `R$${totalPrice.toString().split('.').join(',')}` }
+      </Card.Text>
+
+      <div>
+        <Card.Text
+          style={ { marginBottom: 0 } }
+          data-testid={ `customer_orders__element-order-date-${id}` }
+        >
+          { formattedDate }
+        </Card.Text>
+        <Card.Text data-testid={ `customer_orders__element-card-price-${id}` }>
+          { `R$${totalPrice.toString().split('.').join(',')}` }
+        </Card.Text>
       </div>
     </Card>
   );
