@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import { Container } from 'react-bootstrap';
 import TopBar from '../components/navigation_bar/TopBar';
 import OrderDetailsTable from '../components/OrderDetailsTable';
 import { serverUrl } from '../helpers/constants';
@@ -66,49 +67,53 @@ function Products() {
     const year = `${dateArray[0].slice(0, endArraySlice)}`;
     const formattedDate = `${day}/${month}/${year}`;
     const label = 'customer_order_details__element-order-details-label-delivery-status';
+
+    const tyTrybe = 'customer_order_details__element-order-details-label-seller-name';
     return (
       <>
         <TopBar cartTotal={ cartTotal } />
-        <p>Detalhe do pedido</p>
-        <div>
-          <span
-            data-testid="customer_order_details__element-order-details-label-order-id"
-          >
-            Pedido
-            { order.id }
-          </span>
-          <span
-            data-testid="customer_order_details__element-order-details-label-seller-name"
-          >
-            P. Vendedora:
-            { order.seller.name }
-          </span>
-          <span
-            data-testid="customer_order_details__element-order-details-label-order-date"
-          >
-            { formattedDate }
-          </span>
-          <span
-            data-testid={ label }
-          >
-            { orderStatus }
-          </span>
-          <button
-            data-testid="customer_order_details__button-delivery-check"
-            type="button"
-            disabled={ orderStatus !== 'Em Trânsito' }
-            onClick={ () => updateButtonsText('Entregue') }
-          >
-            MARCAR COMO ENTREGUE
-          </button>
-          <OrderDetailsTable order={ order.products } />
-          <span>Total: R$</span>
-          <span
-            data-testid="customer_order_details__element-order-total-price"
-          >
-            { order.totalPrice.split('.').join(',') }
-          </span>
-        </div>
+        <Container>
+          <p>Detalhe do pedido</p>
+          <div>
+            <span
+              data-testid="customer_order_details__element-order-details-label-order-id"
+            >
+              Pedido
+              { order.id }
+            </span>
+            <span
+              data-testid={ tyTrybe }
+            >
+              P. Vendedora:
+              { order.seller.name }
+            </span>
+            <span
+              data-testid="customer_order_details__element-order-details-label-order-date"
+            >
+              { formattedDate }
+            </span>
+            <span
+              data-testid={ label }
+            >
+              { orderStatus }
+            </span>
+            <button
+              data-testid="customer_order_details__button-delivery-check"
+              type="button"
+              disabled={ orderStatus !== 'Em Trânsito' }
+              onClick={ () => updateButtonsText('Entregue') }
+            >
+              MARCAR COMO ENTREGUE
+            </button>
+            <OrderDetailsTable order={ order.products } />
+            <span>Total: R$</span>
+            <span
+              data-testid="customer_order_details__element-order-total-price"
+            >
+              { order.totalPrice.split('.').join(',') }
+            </span>
+          </div>
+        </Container>
       </>
     );
   }
