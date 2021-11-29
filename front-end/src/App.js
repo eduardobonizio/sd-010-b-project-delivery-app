@@ -10,6 +10,7 @@ import ListSaleById from './pages/ListSaleById';
 import ListSellerSaleById from './pages/ListSellerSaleById';
 import ListOrders from './pages/ListOrders';
 import SellerOrders from './pages/SellerOrders';
+import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {
   return (
