@@ -18,7 +18,7 @@ function ListOrders() {
     };
 
     const getOrders = async () => {
-      const dbOrders = await axios.get(`${serverUrl}/customer/orders`, config);
+      const dbOrders = await axios.get(`${serverUrl}/customer/order`, config);
       setOrders(dbOrders.data);
     };
 

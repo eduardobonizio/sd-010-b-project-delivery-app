@@ -24,7 +24,7 @@ function Products() {
     };
 
     const getOrder = async () => {
-      const myOrder = await axios.get(`${serverUrl}/customer/orders/${orderId}`, config);
+      const myOrder = await axios.get(`${serverUrl}/customer/order/${orderId}`, config);
       setOrder(myOrder.data.order);
       setOrderStatus(myOrder.data.order.status);
     };

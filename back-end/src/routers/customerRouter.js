@@ -19,14 +19,14 @@ customerRouter.post('/checkout', auth, async (req, res) => {
   }
 });
 
-customerRouter.get('/orders/:id', auth, getOrderByPk);
+customerRouter.get('/order/:id', auth, getOrderByPk);
 
-customerRouter.post('/orders/:id', auth, async (req, res) => {
+customerRouter.post('/order/:id', auth, async (req, res) => {
   console.log('Rota para retorno de uma ordem de compra');
   return res.status(200).send({ message: 'under construction' });
 });
 
-customerRouter.get('/orders', auth, async (req, res) => {
+customerRouter.get('/order', auth, async (req, res) => {
   const { user } = req.body;
   const orders = await getOrders(user.id);
   if (orders) return res.status(200).json(orders);
