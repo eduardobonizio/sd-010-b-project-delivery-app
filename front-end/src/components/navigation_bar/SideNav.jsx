@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import Proptypes from 'prop-types';
-import { Button } from 'react-bootstrap';
 import './css/sideNav.css';
 
 // https://github.com/codeSTACKr/hamburger-animation
@@ -19,14 +18,14 @@ function SideNav({ openMenu, setOpenMenu, logout, name }) {
       </button>
       <span>{name}</span>
 
-      <Button
+      <button
         className="clear-button-style"
         onClick={ logout }
         data-testid="customer_products__element-navbar-link-logout"
         type="button"
       >
         Sair
-      </Button>
+      </button>
 
     </div>
   );
