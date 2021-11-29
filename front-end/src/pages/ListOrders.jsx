@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import TopBar from '../components/navigation_bar/TopBar';
-import OrderCard from '../components/OrderCard';
+import OrderCard from '../components/orders/OrderCard';
 import { serverUrl } from '../helpers/constants';
 
 function ListOrders() {
@@ -40,17 +40,16 @@ function ListOrders() {
     <>
       <TopBar cartTotal={ cartTotal } />
       <Container>
-        <Row>
+        <Row xs={ 2 } md={ 2 } sm={ 2 } className="g-4">
           {
             orders && orders.map((order) => (
-              <Col key={ order.id }>
-                <OrderCard
-                  id={ order.id }
-                  status={ order.status }
-                  date={ order.saleDate }
-                  totalPrice={ order.totalPrice }
-                />
-              </Col>
+              <OrderCard
+                key={ order.id }
+                id={ order.id }
+                status={ order.status }
+                date={ order.saleDate }
+                totalPrice={ order.totalPrice }
+              />
             ))
           }
         </Row>

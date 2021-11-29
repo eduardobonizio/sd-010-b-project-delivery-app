@@ -1,6 +1,8 @@
 import React from 'react';
 import Proptypes from 'prop-types';
 import { Card } from 'react-bootstrap';
+import { useHistory } from 'react-router';
+import './css/OrderCard.css';
 
 function OrderCard({ id, status, date, totalPrice }) {
   const dateArray = date.split('-');
@@ -8,38 +10,28 @@ function OrderCard({ id, status, date, totalPrice }) {
   const month = `${dateArray[1][0]}${dateArray[1][1]}`;
   const year = `${dateArray[0][0]}${dateArray[0][1]}${dateArray[0][2]}${dateArray[0][3]}`;
   const formattedDate = `${day}/${month}/${year}`;
+  const history = useHistory();
 
+  const changePath = () => {
+    history.push(`/customer/orders/${id}`);
+  };
   return (
-    <a href={ `/customer/orders/${id}` }>
-      <Card.Title
+    <Card onClick={ changePath } className="card-container">
+      <div
         data-testid={ `customer_orders__element-order-id-${id}` }
       >
-        Pedido
-        { id }
-      </Card.Title>
-      <Card.Text>
-        <span
-          data-testid={ `customer_orders__element-delivery-status-${id}` }
-        >
-          { status }
-        </span>
-      </Card.Text>
-      <Card.Text>
-        <span
-          data-testid={ `customer_orders__element-order-date-${id}` }
-        >
-          { formattedDate }
-        </span>
-      </Card.Text>
-      <Card.Text>
-        R$
-        <span
-          data-testid={ `customer_orders__element-card-price-${id}` }
-        >
-          { totalPrice.toString().split('.').join(',') }
-        </span>
-      </Card.Text>
-    </a>
+        { `Pedido ${id}` }
+      </div>
+      <div data-testid={ `customer_orders__element-delivery-status-${id}` }>
+        { status }
+      </div>
+      <div data-testid={ `customer_orders__element-order-date-${id}` }>
+        { formattedDate }
+      </div>
+      <div data-testid={ `customer_orders__element-card-price-${id}` }>
+        { `R$${totalPrice.toString().split('.').join(',')}` }
+      </div>
+    </Card>
   );
 }
 
