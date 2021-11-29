@@ -27,7 +27,7 @@ function ListOrders() {
   return (
     <>
       <TopBar />
-      <Container fluid>
+      <Container>
         <Row>
           {
             orders && orders.map((order) => (

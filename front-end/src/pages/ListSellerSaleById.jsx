@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import { Container } from 'react-bootstrap';
 import TopBar from '../components/navigation_bar/TopBar';
 import SellerOrderDetailsTable from '../components/SellerOrderDetailsTable';
 import { serverUrl } from '../helpers/constants';
@@ -61,48 +62,50 @@ function ListSellerSaleById() {
     return (
       <>
         <TopBar />
-        <p>Detalhe do pedido</p>
-        <div>
-          <span
-            data-testid="seller_order_details__element-order-details-label-order-id"
-          >
-            Pedido
-            { order.id }
-          </span>
-          <span
-            data-testid="seller_order_details__element-order-details-label-order-date"
-          >
-            { formattedDate }
-          </span>
-          <span
-            data-testid={ label }
-          >
-            {orderStatus}
-          </span>
-          <button
-            data-testid="seller_order_details__button-preparing-check"
-            type="button"
-            disabled={ orderStatus !== 'Pendente' }
-            onClick={ () => updateButtonsText('Preparando') }
-          >
-            PREPARAR PEDIDO
-          </button>
-          <button
-            data-testid="seller_order_details__button-dispatch-check"
-            type="button"
-            disabled={ orderStatus !== 'Preparando' }
-            onClick={ () => updateButtonsText('Em Trânsito') }
-          >
-            SAIU PARA ENTREGA
-          </button>
-          <SellerOrderDetailsTable order={ order.products } />
-          <span>Total: R$</span>
-          <span
-            data-testid="seller_order_details__element-order-total-price"
-          >
-            { order.totalPrice.split('.').join(',') }
-          </span>
-        </div>
+        <Container>
+          <p>Detalhe do pedido</p>
+          <div>
+            <span
+              data-testid="seller_order_details__element-order-details-label-order-id"
+            >
+              Pedido
+              { order.id }
+            </span>
+            <span
+              data-testid="seller_order_details__element-order-details-label-order-date"
+            >
+              { formattedDate }
+            </span>
+            <span
+              data-testid={ label }
+            >
+              {orderStatus}
+            </span>
+            <button
+              data-testid="seller_order_details__button-preparing-check"
+              type="button"
+              disabled={ orderStatus !== 'Pendente' }
+              onClick={ () => updateButtonsText('Preparando') }
+            >
+              PREPARAR PEDIDO
+            </button>
+            <button
+              data-testid="seller_order_details__button-dispatch-check"
+              type="button"
+              disabled={ orderStatus !== 'Preparando' }
+              onClick={ () => updateButtonsText('Em Trânsito') }
+            >
+              SAIU PARA ENTREGA
+            </button>
+            <SellerOrderDetailsTable order={ order.products } />
+            <span>Total: R$</span>
+            <span
+              data-testid="seller_order_details__element-order-total-price"
+            >
+              { order.totalPrice.split('.').join(',') }
+            </span>
+          </div>
+        </Container>
       </>
     );
   }
