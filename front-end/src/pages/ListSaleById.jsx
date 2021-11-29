@@ -49,7 +49,7 @@ function Products() {
       },
     };
 
-    axios.post(`${serverUrl}/seller/orders/${orderId}`, { orderStatus: status }, config);
+    axios.post(`${serverUrl}/seller/order/${orderId}`, { orderStatus: status }, config);
 
     setPreparing(!preparing);
     setOrderStatus(status);

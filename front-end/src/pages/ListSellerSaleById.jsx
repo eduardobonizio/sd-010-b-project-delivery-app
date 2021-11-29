@@ -44,7 +44,7 @@ function ListSellerSaleById() {
     };
 
     await axios.post(
-      `${serverUrl}/seller/orders/${orderId}`, { orderStatus: status }, config,
+      `${serverUrl}/seller/order/${orderId}`, { orderStatus: status }, config,
     );
 
     setPreparing(!preparing);
